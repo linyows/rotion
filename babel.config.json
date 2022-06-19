@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    "styled-jsx/babel"
+  ],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": true
+        }
+      }
+    ],
+    "@babel/preset-typescript",
+    "@babel/preset-react"
+  ]
+}
