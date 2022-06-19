@@ -1,5 +1,4 @@
 import React from 'react'
-//import { useSize } from 'react-use'
 import {
   QueryDatabaseResponse,
 } from '@notionhq/client/build/src/api-endpoints'
@@ -16,15 +15,6 @@ export const DBTitleField: React.FC<{ payload: Array<RichTextItemResponse> }> = 
     const richtext = v as RichText
     return richtext.text.content
   }).join(',')
-  /*
-  const pxToRem = 36
-  const words = (w) => Math.floor(w/pxToRem)
-  const slice = (subject, w) => `${subject.slice(0, words(w) - 3)}...`
-  const [sized, { width, height }] = useSize(
-    ({ width }) => <div title={title}>{ title.length > words(width) ? slice(title, width) : title }</div>,
-    { width: 240, height: 18 }
-  )
-  */
 
   return (
     <div className="title">
