@@ -1,5 +1,5 @@
 import { Client } from '@notionhq/client'
-import {
+import type {
   QueryDatabaseResponse,
   GetDatabaseResponse,
   GetUserResponse,
@@ -11,7 +11,7 @@ import https from 'https'
 import path from 'path'
 import url from 'url'
 import { promisify } from 'util'
-import {
+import type {
   ListBlockChildrenResponseEx,
   BlockObjectResponse,
   GetPageResponseEx,

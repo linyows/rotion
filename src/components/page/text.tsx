@@ -1,6 +1,6 @@
 import React from 'react'
 import path from 'path'
-import { RichTextItemResponse, BlockObjectResponse } from '../../types'
+import type { RichTextItemResponse, BlockObjectResponse } from '../../types'
 
 export type TextObject = {
   type: string

@@ -1,7 +1,7 @@
 import React from 'react'
 import List from './list'
 import Handler from './handler'
-import {
+import type {
   ListBlockChildrenResponseEx,
   BlockObjectResponse,
 } from '../../types'

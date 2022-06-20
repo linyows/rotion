@@ -1,8 +1,6 @@
 import React from 'react'
-import {
-  QueryDatabaseResponse,
-} from '@notionhq/client/build/src/api-endpoints'
-import {
+import type { QueryDatabaseResponse, } from '@notionhq/client/build/src/api-endpoints'
+import type {
   DBProperties,
   RichTextItemResponse,
   DateResponse,

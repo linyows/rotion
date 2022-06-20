@@ -3,9 +3,7 @@ import Code from './code'
 import ImageBlock from './image'
 import TextBlock from './text'
 import path from 'path'
-import {
-  BlockObjectResponse,
-} from '../../types'
+import type { BlockObjectResponse } from '../../types'
 import { JSXElementConstructor } from 'react'
 
 export const blockType = {
