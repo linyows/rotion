@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "license": "MIT",
   "repository": "linyows/notionate",
-  "description": "These are component for notion",
+  "description": "This is React components that uses the Notion API to display the Notion's database and page.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": {
