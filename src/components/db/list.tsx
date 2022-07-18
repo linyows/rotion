@@ -9,24 +9,36 @@ import type {
   RichText,
 } from '../../types'
 
-export const DBTitleField: React.FC<{ payload: Array<RichTextItemResponse> }> = ({ payload }) => {
+export const DBTitleField: React.FC<{ payload: Array<RichTextItemResponse> }> = ({ payload, path, slug }) => {
   const title = payload.map(v => {
     const richtext = v as RichText
     return richtext.text.content
   }).join(',')
+  const href = `${path}${slug}`
 
   return (
     <div className="title">
-      {title}
+      <Link href={href}>
+        <a className="title-anchor" title={title}>
+          {title}
+        </a>
+      </Link>
       <style jsx>{`
         .title {
           white-space: nowrap;
           font-size: var(--fontSize-1);
           font-family: var(--fontFamily-sans);
-          display: flex;
-          max-width: 400px;
+          display: block;
+          max-width: 600px;
           overflow: hidden;
+          text-overflow: ellipsis;
           margin-right: auto;
+          line-height: 1.3;
+        }
+        .title-anchor {
+          text-decoration: none;
+          color: inherit;
+          cursor: pointer;
         }
       `}</style>
     </div>
@@ -61,13 +73,17 @@ export const DBRichTextField: React.FC<{ payload: Array<RichTextItemResponse> }>
   )
 }
 
-export const DBMultiSelectField: React.FC<{ payload: Array<SelectPropertyResponse> }> = ({ payload }) => {
+export const DBMultiSelectField: React.FC<{ payload: Array<SelectPropertyResponse> }> = ({ payload, path }) => {
   return (
     <>
       <ul>
         {payload.map(f => (
           <li key={f.id} className={f.color}>
-            {f.name}
+            <Link href={`${path}tags/${encodeURIComponent(f.name)}`}>
+              <a className="tag-anchor">
+                {f.name}
+              </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -216,14 +232,16 @@ export const DBCheckboxField: React.FC<{ payload: boolean }> = ({ payload }) => 
 export type DBFieldProps = {
   name: string
   properties: DBProperties
+  path: string
+  slug: string
 }
 
-export const DBField = ({ name, properties }: DBFieldProps) => {
+export const DBField = ({ name, properties, path, slug }: DBFieldProps) => {
   const data = properties[name]
 
   switch (data.type) {
     case 'title':
-      return DBTitleField({ payload: data[data.type] })
+      return DBTitleField({ payload: data[data.type], path, slug })
       break
 
     case 'date':
@@ -235,7 +253,7 @@ export const DBField = ({ name, properties }: DBFieldProps) => {
       break
 
     case 'multi_select':
-      return DBMultiSelectField({ payload: data[data.type] })
+      return DBMultiSelectField({ payload: data[data.type], path })
       break
 
     case 'url':
@@ -255,16 +273,38 @@ export const DBField = ({ name, properties }: DBFieldProps) => {
 export type DBListProps = {
   keys: string[]
   db: QueryDatabaseResponse
+  link: string
 }
 
-export const DBList: React.FC<DBListProps> = ({ keys, db }) => {
+export const DBList: React.FC<DBListProps> = ({ keys, db, link }) => {
+  const getLinkPathAndLinkKey = (link: string): [string, string] => {
+    const linkArray = link.split('[')
+    if (linkArray.length !== 2) {
+      console.error(`link format is wrong, example: /blog/path/[slug]`)
+      return ['', '']
+    }
+    return [linkArray[0], linkArray[1].split(']')[0]]
+  }
+
+  const getSlug = (key, db): string => {
+    if (key === 'id') {
+      return db.id
+    }
+    if (db.properties[key] === undefined) {
+      return 'not-found-page-path'
+    }
+    return db.properties[key].rich_text.map(v => v.text.content).join(',')
+  }
+
+  const [path, slugKey] = getLinkPathAndLinkKey(link)
+
   return (
     <>
       {db.results.map((v) => (
         <div key={v.id} className="record">
           {keys.map((name, i) => (
             <div key={`${v.id}${name}`} className={`${name === 'spacer' ? 'spacer ' : ''}field${i}`}>
-              {name === 'spacer' ? '' : DBField({ name, properties: v.properties as DBProperties })}
+              {name === 'spacer' ? '' : DBField({ name, properties: v.properties as DBProperties, path, slug: getSlug(slugKey, v) })}
             </div>
           ))}
         </div>
