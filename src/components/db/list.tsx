@@ -95,9 +95,10 @@ export const DBMultiSelectField: React.FC<{ payload: Array<SelectPropertyRespons
           align-items: center;
           padding: 0;
           margin: 0;
-          max-width: 300px;
+          max-width: 400px;
           overflow: hidden;
           margin-left: 14px;
+          text-overflow: ellipsis;
         }
         li {
           font-family: var(--fontFamily-sans);
@@ -153,6 +154,11 @@ export const DBMultiSelectField: React.FC<{ payload: Array<SelectPropertyRespons
           color: rgb(50, 48, 44);
           background: rgb(227, 226, 224) none repeat scroll 0% 0%;
         }
+        .tag-anchor {
+          text-decoration: none;
+          color: inherit;
+          cursor: pointer;
+        }
       `}</style>
     </>
   )
@@ -182,7 +188,7 @@ export const DBUrlField: React.FC<{ payload: string | null }> = ({ payload }) =>
       </a>
       <style jsx>{`
         .url {
-          display: fles;
+          display: flex;
           white-space: nowrap;
           margin-left: 14px;
         }
@@ -198,19 +204,17 @@ export const DBUrlField: React.FC<{ payload: string | null }> = ({ payload }) =>
           background: rgb(227, 226, 224) none repeat scroll 0% 0%;
         }
         svg {
-          display: inline-block;
+          display: inline;
           width: 12px;
           height: 12px;
           margin-right: 4px;
           vertical-align: middle;
         }
         span {
-          display: inline-block;
+          display: inline;
           font-size: var(--fontSize-0);
           line-height: 1.2;
           white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
           background-image: linear-gradient(to right, rgba(55, 53, 47, 0.16) 0%, rgba(55, 53, 47, 0.16) 100%);
           background-repeat: repeat-x;
           background-position: 0px 100%;
@@ -319,12 +323,14 @@ export const DBList: React.FC<DBListProps> = ({ keys, db, link }) => {
           width: 100%;
           display: flex;
           align-items: center;
-          padding-right: 4px;
           justify-content: flex-start;
+        }
+        .record:hover {
+          background-color: #DDD;
         }
         .spacer {
           width: 100%;
-          flex-shrink: 2;
+          flex-shrink: 10;
           display: block;
           margin-left: 14px;
           border-top: 1px dashed #999;
