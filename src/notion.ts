@@ -92,9 +92,9 @@ const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<str
   return filePath
 }
 
-export const FetchDatabase = async (database_id: string): Promise<QueryDatabaseResponse> => {
+export const FetchDatabase = async (database_id: string, limit?: number): Promise<QueryDatabaseResponse> => {
   const useCache = process.env.NOTION_CACHE === 'true'
-  const cacheFile = `${cacheDir}/notion.databases.query-${database_id}`
+  const cacheFile = `${cacheDir}/notion.databases.query-${database_id}${limit !== undefined ? `.limit-${limit}` : ''}`
   let cursor: undefined|string = undefined
   let allres: undefined|QueryDatabaseResponse = undefined
 
@@ -125,7 +125,7 @@ export const FetchDatabase = async (database_id: string): Promise<QueryDatabaseR
         },
       ],
       start_cursor: cursor,
-      //page_size: pageSize
+      page_size: limit || 100,
     })
 
     if (allres === undefined) {
@@ -134,7 +134,7 @@ export const FetchDatabase = async (database_id: string): Promise<QueryDatabaseR
       allres.results.push(...res.results)
     }
 
-    if (res.next_cursor === null) {
+    if (res.next_cursor === null || limit !== undefined) {
       break
     }
 
