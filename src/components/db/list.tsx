@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import type { QueryDatabaseResponse, } from '@notionhq/client/build/src/api-endpoints'
 import type {
   DBProperties,
