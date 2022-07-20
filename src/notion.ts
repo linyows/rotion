@@ -224,8 +224,12 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
       if (block.type === 'image' && block.image !== undefined) {
         block.image.src = await saveImageInBlock(block)
       }
-      if (block.type === 'embed' && block.embed !== undefined && block.embed.url.includes('twitter.com')) {
-        block.embed.html = await getTwitterHtml(block)
+      if (block.type === 'embed' && block.embed !== undefined) {
+        if (block.embed.url.includes('twitter.com')) {
+          block.embed.html = await getTwitterHtml(block)
+        } else if (block.embed.url.includes('speakerdeck.com')) {
+          block.embed.html = await getSpeakerdeckHtml(block)
+        }
       }
     }
     await writeFile(cacheFile, JSON.stringify(list), 'utf8').catch(() => {})
