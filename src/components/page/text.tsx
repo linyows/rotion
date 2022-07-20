@@ -2,31 +2,31 @@ import React from 'react'
 import path from 'path'
 import type { RichTextItemResponse, BlockObjectResponse } from '../../types'
 
-export type TextObject = {
-  type: string
-  text?: {
-    content: string
-    link: {
-      url: string
-    } | null
-  }
-  mention?: {
-    type: string
-    link_preview: {
-      url: string
-    }
-  }
-  annotations: {
-    bold: boolean
-    italic: boolean
-    strikethrough: boolean
-    underline: boolean
-    code: boolean
-    color: string
-  }
-  plain_text: string
-  href: string | null
-}
+// export type TextObject = {
+//   type: string
+//   text?: {
+//     content: string
+//     link: {
+//       url: string
+//     } | null
+//   }
+//   mention?: {
+//     type: string
+//     link_preview: {
+//       url: string
+//     }
+//   }
+//   annotations: {
+//     bold: boolean
+//     italic: boolean
+//     strikethrough: boolean
+//     underline: boolean
+//     code: boolean
+//     color: string
+//   }
+//   plain_text: string
+//   href: string | null
+// }
 
 type TextProps = {
   textObject: RichTextItemResponse
