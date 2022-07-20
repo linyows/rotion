@@ -55,6 +55,15 @@ const getTwitterHtml = async (block: BlockObjectResponse): Promise<string> => {
   return json.html
 }
 
+const getSpeakerdeckHtml = async (block: BlockObjectResponse): Promise<string> => {
+  const url = block.embed?.url as string
+  const res = await fetch(`https://speakerdeck.com/oembed.json?url=${url}`)
+  const json = await res.json()
+  return json.html
+    .replace(/width=\"\d+\"/, 'width="100%"')
+    .replace(/height=\"\d+\"/, 'height="100%"')
+}
+
 const saveImageInBlock = async (block: BlockObjectResponse): Promise<string> => {
   const { id, last_edited_time, image } = block
   if (image === undefined) {
