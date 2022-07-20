@@ -29,7 +29,7 @@ export const DBTitleField: React.FC<{ payload: Array<RichTextItemResponse> }> = 
           font-size: var(--fontSize-1);
           font-family: var(--fontFamily-sans);
           display: block;
-          max-width: 600px;
+          max-width: 500px;
           overflow: hidden;
           text-overflow: ellipsis;
           margin-right: auto;
@@ -324,6 +324,7 @@ export const DBList: React.FC<DBListProps> = ({ keys, db, link }) => {
           display: flex;
           align-items: center;
           justify-content: flex-start;
+          overflow: hidden;
         }
         .record:hover {
           background-color: #DDD;
