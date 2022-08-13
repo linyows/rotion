@@ -1,7 +1,7 @@
 import React from 'react'
 import Code from './code'
 import ImageBlock from './image'
-import TextBlock from './text'
+import TodoBlock from './todo'
 import path from 'path'
 import type { BlockObjectResponse } from '../../types'
 import { JSXElementConstructor } from 'react'
@@ -79,7 +79,10 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
       break
 
     case 'link_preview':
-      console.log('link preview:', block)
+      break
+
+    case 'to_do':
+      return <TodoBlock block={block} />
       break
 
     default:
