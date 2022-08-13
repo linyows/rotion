@@ -1,43 +1,94 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Prism from 'prismjs'
-//import 'prismjs/components/prism-jsx'
-import 'prismjs/components/prism-css'
+import { TextObject } from './text'
+
+import type {
+  BlockObjectResponse,
+} from '../../types'
 
 export type CodeProps = {
   language: string
 }
 
-export const Code: React.FC<CodeProps> = ({ children, language = 'javascript' }) => {
+export type CodeBlockProps = {
+  block: BlockObjectResponse
+}
+
+export const Code: React.FC<CodeProps> = ({ children, language = 'text' }) => {
   const cl = `language-${language.toLowerCase()}`
-  //const text = children as string
-  //const grammar = Prism.languages[language.toLowerCase()] || Prism.languages.javascript
-  //const lang = language.toLowerCase() || Prism.languages.javascript
-  //const html = Prism.highlight(text, grammar, lang)
-  // <code className={cl} dangerouslySetInnerHTML={{ __html: html }} />
+
+  const [show, setShow] = React.useState(false)
+  const showLang = () => setShow(true)
+  const hideLang = () => setShow(false)
+
   useEffect(() => {
     Prism.highlightAll()
   }, [])
+
   return (
-    <>
-      <pre>
-        <code className={cl}>{children}</code>
+    <div className="code" onMouseOver={showLang} onMouseOut={hideLang}>
+      {show && <div className="code-lang">
+        {language}
+      </div>}
+      <pre className={cl}>
+        <code>
+          {children}
+        </code>
       </pre>
       <style jsx>{`
-        pre {
-          tab-size: 2;
+        .code {
+          border-radius: 3px;
+          padding: .6rem 1rem;
+          background-color: #f5f2f0;
+          margin: 1rem 0;
+          font-size: .8rem;
+          position: relative;
+          top: 0;
+          left: 0;
         }
-        code {
-          overflow: auto;
+        .code-lang {
+          position: absolute;
+          top: .5rem;
+          left: .8rem;
+          color: #999;
+          font-size: .75rem;
+          text-transform: capitalize;
           display: block;
-          padding: 0.8rem;
-          line-height: 1.5;
-          background: #f5f5f5;
-          font-size: 0.75rem;
-          border-radius: var(--radius);
+        }
+      `}</style>
+    </div>
+  )
+}
+
+const CodeBlock = ({ block }): React.FC<CodeBlockProps> => {
+  const els = block.code?.text.map((textObject, i) => {
+    return (
+      <Code language={block.code.language} key={i}>
+        {textObject.text.content}
+      </Code>
+    )
+  })
+
+  const captions = block.code.caption.map((v, i) => {
+    return TextObject({ textObject: v, key: i})
+  })
+
+  return (
+    <>
+      {els}
+      <div className="code-caption">
+        {captions}
+      </div>
+      <style jsx>{`
+        .code-caption {
+          margin: .3rem .3rem 0;
+          text-align: left;
+          color: #888;
+          font-size: .95rem;
         }
       `}</style>
     </>
   )
 }
 
-export default Code
+export default CodeBlock

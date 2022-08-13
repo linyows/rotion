@@ -1,6 +1,6 @@
 import React from 'react'
-import Code from './code'
 import VideoBlock from './video'
+import CodeBlock from './code'
 import ImageBlock from './image'
 import TodoBlock from './todo'
 import ToggleBlock from './toggle'
@@ -52,17 +52,7 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
       break
 
     case 'code':
-      return (
-        <div key={id}>
-          {code?.text.map((textObject, i) => {
-            return (
-              <Code language={code.language} key={i}>
-                {textObject.text.content}
-              </Code>
-            )
-          })}
-        </div>
-      )
+      return <CodeBlock block={block} />
       break
 
     case 'video':
