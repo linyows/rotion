@@ -221,15 +221,16 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
 
   if (useCache) {
     for (const block of list.results) {
-      if (block.type === 'image' && block.image !== undefined) {
-        block.image.src = await saveImageInBlock(block)
-      }
-      if (block.type === 'embed' && block.embed !== undefined) {
-        if (block.embed.url.includes('twitter.com')) {
-          block.embed.html = await getTwitterHtml(block)
-        } else if (block.embed.url.includes('speakerdeck.com')) {
-          block.embed.html = await getSpeakerdeckHtml(block)
+      try {
+        if (block.type === 'table' && block.table !== undefined && block.has_children) {
+          block.children = await FetchBlocks(block.id)
+        } else if (block.type === 'image' && block.image !== undefined) {
+          block.image.src = await saveImageInBlock(block)
+        } else if (block.type === 'embed' && block.embed !== undefined) {
+          block.embed.html = await getEmbedHtml(block)
         }
+      } catch (e) {
+        console.log(`error for ${block.type} contents get`, block, e)
       }
     }
     await writeFile(cacheFile, JSON.stringify(list), 'utf8').catch(() => {})
