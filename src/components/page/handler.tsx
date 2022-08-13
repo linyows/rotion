@@ -1,6 +1,7 @@
 import React from 'react'
 import ColumnlistBlock from './columnlist'
 import VideoBlock from './video'
+import EmbedBlock from './embed'
 import CodeBlock from './code'
 import ImageBlock from './image'
 import TodoBlock from './todo'
@@ -60,17 +61,7 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
       break
 
     case 'embed':
-      if (block.embed?.html !== undefined) {
-        return (
-          <div dangerouslySetInnerHTML={{ __html: block.embed.html }} />
-        )
-      } else {
-        console.log('embed:', block)
-      }
-      break
-
-    case 'mention':
-      console.log('mention:', block)
+      return <EmbedBlock block={block} />
       break
 
     case 'bookmark':
