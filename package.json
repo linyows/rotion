@@ -1,6 +1,6 @@
 {
   "name": "notionate",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "license": "MIT",
   "repository": "linyows/notionate",
   "description": "This is React components that uses the Notion API to display the Notion's database and page.",
@@ -31,6 +31,7 @@
   "dependencies": {
     "@notionhq/client": "^0.4.4",
     "@types/prismjs": "^1.26.0",
+    "babel-plugin-prismjs": "^2.1.0",
     "prismjs": "^1.25.0"
   },
   "devDependencies": {
