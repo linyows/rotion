@@ -1,4 +1,5 @@
 import React from 'react'
+import ColumnlistBlock from './columnlist'
 import VideoBlock from './video'
 import CodeBlock from './code'
 import ImageBlock from './image'
@@ -90,6 +91,10 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
 
     case 'callout':
       return <CalloutBlock block={block} />
+      break
+
+    case 'column_list':
+      return <ColumnlistBlock block={block} />
       break
 
     case 'child_page':

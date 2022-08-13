@@ -226,6 +226,12 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
           block.children = await FetchBlocks(block.id)
         } else if (block.type === 'toggle' && block.toggle !== undefined && block.has_children) {
           block.children = await FetchBlocks(block.id)
+        } else if (block.type === 'column_list' && block.column_list !== undefined && block.has_children) {
+          block.children = await FetchBlocks(block.id)
+          block.columns = []
+          for (const b of block.children.results) {
+            block.columns.push(await FetchBlocks(b.id))
+          }
         } else if (block.type === 'child_page' && block.child_page !== undefined) {
           block.page = await FetchPage(block.id)
           block.children = await FetchBlocks(block.id)
