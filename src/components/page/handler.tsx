@@ -3,6 +3,7 @@ import Code from './code'
 import VideoBlock from './video'
 import ImageBlock from './image'
 import TodoBlock from './todo'
+import ToggleBlock from './toggle'
 import TableBlock from './table'
 import CalloutBlock from './callout'
 import path from 'path'
@@ -98,6 +99,10 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
 
     case 'callout':
       return <CalloutBlock block={block} />
+      break
+
+    case 'toggle':
+      return <ToggleBlock block={block} />
       break
 
     default:
