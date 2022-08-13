@@ -47,9 +47,7 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
       break
 
     case 'image':
-      return (
-        <ImageBlock block={block} key={block.id} />
-      )
+      return <ImageBlock block={block} key={block.id} />
       break
 
     case 'code':
