@@ -47,21 +47,49 @@ const isEmpty = (obj: Object) => {
   return !Object.keys(obj).length
 }
 
-const getTwitterHtml = async (block: BlockObjectResponse): Promise<string> => {
-  const src = block.embed?.url as string
-  const tweetId = path.basename(src)
-  const res = await fetch(`https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`)
-  const json = await res.json()
-  return json.html
+const getHtmlMeta = async (url: string): Promise<string> => {
+  const res = await fetch(url)
+  const body = await res.text()
+  const title = body.match(/<title>(.*?)<\/title>/)[1]
+  const desc = body.match(/<meta\s+name="description"\s+content="(.*?)">/)[1]
+  const imageUrl = body.match(/<meta\s+property="og:image"\s+content="(.*?)">/)[1]
+  const image = imageUrl ? await saveImage(imageUrl) : ''
+  return { title, desc, image }
 }
 
-const getSpeakerdeckHtml = async (block: BlockObjectResponse): Promise<string> => {
-  const url = block.embed?.url as string
-  const res = await fetch(`https://speakerdeck.com/oembed.json?url=${url}`)
-  const json = await res.json()
-  return json.html
-    .replace(/width=\"\d+\"/, 'width="100%"')
-    .replace(/height=\"\d+\"/, 'height="100%"')
+const getVideoHtml = async (block: BlockObjectResponse): Promise<string> => {
+  if (block.video?.type !== 'external') {
+    return ''
+  }
+  const url = block.video?.external.url as string
+  if (url.includes('youtube.com')) {
+    const res = await fetch(`https://www.youtube.com/oembed?url=${url}`)
+    const json = await res.json()
+    return json.html
+      .replace(/width=\"\d+\"/, 'width="100%"')
+      .replace(/height=\"\d+\"/, 'height="100%"')
+  } else {
+    return ''
+  }
+}
+
+const getEmbedHtml = async (block: BlockObjectResponse): Promise<string> => {
+  if (block.embed.url.includes('twitter.com')) {
+    const src = block.embed?.url as string
+    const tweetId = path.basename(src.split('?').shift())
+    const res = await fetch(`https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`)
+    const json = await res.json()
+    return json.html
+  } else if (block.embed.url.includes('speakerdeck.com')) {
+    const url = block.embed?.url as string
+    const res = await fetch(`https://speakerdeck.com/oembed.json?url=${url}`)
+    const json = await res.json()
+    return json.html
+      .replace(/width=\"\d+\"/, 'width="100%"')
+      .replace(/height=\"\d+\"/, 'height="100%"')
+  } else {
+    return ''
+  }
 }
 
 const saveImageInBlock = async (block: BlockObjectResponse): Promise<string> => {
@@ -239,6 +267,8 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
           block.bookmark.site = await getHtmlMeta(block.bookmark.url)
         } else if (block.type === 'image' && block.image !== undefined) {
           block.image.src = await saveImageInBlock(block)
+        } else if (block.type === 'video' && block.video !== undefined) {
+          block.video.html = await getVideoHtml(block)
         } else if (block.type === 'embed' && block.embed !== undefined) {
           block.embed.html = await getEmbedHtml(block)
         }
