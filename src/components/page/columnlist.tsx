@@ -32,7 +32,7 @@ const ColumnlistBlock = ({ block }): React.FC<ColumnlistBlockProps> => {
           margin: 1rem 0;
           display: grid;
           grid-template: repeat(1, 1fr) / repeat(${l}, 1fr);
-          gap: 5rem;
+          gap: 5%;
         }
       `}</style>
     </div>

@@ -73,7 +73,7 @@ const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
           font-size: 1rem;
           max-width: 1000px;
           margin: 0 auto;
-          padding: 240px 0 0;
+          padding: 240px 1.5rem 0;
         }
         .icon {
           font-size: 4rem;
@@ -90,6 +90,7 @@ const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
         .page {
           max-width: 1000px;
           margin: 2rem auto;
+          padding: 0 1.5rem;
         }
       `}</style>
     </>

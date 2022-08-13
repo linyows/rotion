@@ -255,8 +255,8 @@ export const TextBlock: React.FC<TextBlockProps> = ({ tag, block }) => {
         .text-blockquote {
           border-left: 3px solid currentcolor;
           padding-left: 1rem;
-          padding-right: 1rem;
-          width: 100%;
+          margin-left: 0;
+          margin-right: 0;
         }
       `}</style>
     </>

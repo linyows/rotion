@@ -22,7 +22,6 @@ const VideoBlock = ({ block }): React.FC<VideoBlockProps> => {
   const h = `${ratioH * baseWidth / ratioW}px`
 
   const html = block.video.html
-    .replace('width="100%"', `width="${w}"`)
     .replace('height="100%"', `height="${h}"`)
 
   const captions = block.video.caption.map((v, i) => {
