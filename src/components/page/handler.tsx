@@ -6,6 +6,7 @@ import TodoBlock from './todo'
 import ToggleBlock from './toggle'
 import TableBlock from './table'
 import CalloutBlock from './callout'
+import ChildpageBlock from './childpage'
 import path from 'path'
 import type { BlockObjectResponse } from '../../types'
 import { JSXElementConstructor } from 'react'
@@ -99,6 +100,10 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
 
     case 'callout':
       return <CalloutBlock block={block} />
+      break
+
+    case 'child_page':
+      return <ChildpageBlock block={block} />
       break
 
     case 'toggle':
