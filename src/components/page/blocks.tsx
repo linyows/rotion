@@ -53,11 +53,7 @@ export const Blocks: React.FC<BlocksProps> = ({ blocks }) => {
     }
   })
 
-  return (
-    <>
-      {children}
-    </>
-  )
+  return children
 }
 
 export default Blocks
