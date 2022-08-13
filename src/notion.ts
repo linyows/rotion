@@ -129,6 +129,22 @@ const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<str
   return filePath
 }
 
+const saveImage = async (imageUrl: string): Promise<string> => {
+  const basename = path.basename(imageUrl.split('?').shift())
+  const myurl = url.parse(basename)
+  const extname = path.extname(myurl.pathname as string)
+  const filePath = `/images/${basename}`
+  try {
+    const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
+    res.pipe(fs.createWriteStream(`./public${filePath}`))
+    await res.end
+    console.log(`saved image: public${filePath}`)
+  } catch (e) {
+    console.log('saveImage error', e)
+  }
+  return filePath
+}
+
 export const FetchDatabase = async (database_id: string, limit?: number): Promise<QueryDatabaseResponse> => {
   const useCache = process.env.NOTION_CACHE === 'true'
   const cacheFile = `${cacheDir}/notion.databases.query-${database_id}${limit !== undefined ? `.limit-${limit}` : ''}`
