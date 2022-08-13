@@ -98,7 +98,7 @@ const saveImageInBlock = async (block: BlockObjectResponse): Promise<string> => 
     return ''
   }
   const imageUrl = image.type === 'file' ? image.file.url : image.external.url
-  const basename = path.basename(imageUrl)
+  const basename = path.basename(imageUrl.split('?').shift())
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
   const filePath = `/images/${id}${extname}`
@@ -114,7 +114,7 @@ const saveImageInBlock = async (block: BlockObjectResponse): Promise<string> => 
 }
 
 const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<string> => {
-  const basename = path.basename(imageUrl)
+  const basename = path.basename(imageUrl.split('?').shift())
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
   const filePath = `/images/${idWithKey}${extname}`
