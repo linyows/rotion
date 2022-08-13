@@ -3,6 +3,7 @@ import Code from './code'
 import ImageBlock from './image'
 import TodoBlock from './todo'
 import TableBlock from './table'
+import CalloutBlock from './callout'
 import path from 'path'
 import type { BlockObjectResponse } from '../../types'
 import { JSXElementConstructor } from 'react'
@@ -88,6 +89,10 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
 
     case 'table':
       return <TableBlock block={block} />
+      break
+
+    case 'callout':
+      return <CalloutBlock block={block} />
       break
 
     default:
