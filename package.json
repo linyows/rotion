@@ -1,6 +1,6 @@
 {
   "name": "notionate",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "license": "MIT",
   "repository": "linyows/notionate",
   "description": "This is React components that uses the Notion API to display the Notion's database and page.",
@@ -16,12 +16,13 @@
     "url": "https://tomohisaoda.com"
   },
   "scripts": {
-    "build": "yarn clean && babel src -D -d dist --extensions '.ts,.tsx' && tsc",
-    "esm": "tsc --module es6 --outdir ./dist/esm/",
-    "cjs": "tsc --module commonjs --outdir  ./dist/",
+    "build": "yarn clean && babel src -D -d dist --extensions '.ts,.tsx' --config-file notionate.babelrc.json && tsc",
+    "esm": "tsc --module es6 --outdir ./dist/esm/ --project notionate.tsconfig.json",
+    "cjs": "tsc --module commonjs --outdir ./dist/ --project notionate.tsconfig.json",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "clean": "rm -rf dist/",
-    "test": "jest --no-cache"
+    "test": "jest --no-cache",
+    "dev": "next dev"
   },
   "peerDependencies": {
     "react": "17.0.2",
@@ -30,7 +31,6 @@
   "dependencies": {
     "@notionhq/client": "^0.4.4",
     "@types/prismjs": "^1.26.0",
-    "nextjs": "^0.0.3",
     "prismjs": "^1.25.0"
   },
   "devDependencies": {
@@ -50,6 +50,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.3",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "styled-jsx": "^5.0.0",
     "typescript": "^4.6.2"
   }
