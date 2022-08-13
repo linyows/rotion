@@ -1,4 +1,5 @@
 import React from 'react'
+import { TextObject } from './text'
 import type {
   BlockObjectResponse,
   RichText,
@@ -12,23 +13,29 @@ export const ImageBlock: React.FC<ImageBlockProps> = ({ block }) => {
   if (block.image?.caption === undefined) {
     return (<></>)
   }
-  const caption = block.image.caption as RichText[]
+  const captions = block.image.caption.map((v, i) => {
+    return TextObject({ textObject: v, key: i})
+  })
+
   return (
     <div className="image-block">
       <div className="image-inner-block">
         <img src={block.image?.src} alt="" />
       </div>
-      {caption.map((c, i) => (
-        <p key={i}>{c.text.content}</p>
-      ))}
+      <div className="image-caption">
+        {captions}
+      </div>
       <style jsx>{`
         img {
           margin-left: auto;
           margin-right: auto;
           width: 100%;
         }
-        p {
-          margin: var(--spacing-5) 0 0;
+        .image-caption {
+          margin: .3rem .3rem 0;
+          text-align: left;
+          color: #888;
+          font-size: .95rem;
         }
         .image-block {
           text-align: center;
