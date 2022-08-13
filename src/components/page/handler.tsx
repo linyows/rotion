@@ -1,5 +1,6 @@
 import React from 'react'
 import Code from './code'
+import VideoBlock from './video'
 import ImageBlock from './image'
 import TodoBlock from './todo'
 import TableBlock from './table'
@@ -60,6 +61,10 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
           })}
         </div>
       )
+      break
+
+    case 'video':
+      return <VideoBlock block={block} />
       break
 
     case 'embed':
