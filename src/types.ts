@@ -178,7 +178,10 @@ export type BlockObjectResponse = {
   unsupported?: EmptyObject
 }
 
-export type ListBlockChildrenResponseEx = ListBlockChildrenResponse & { results: Array<BlockObjectResponse> }
+export type ListBlockChildrenResponseEx = ListBlockChildrenResponse & {
+  results: Array<BlockObjectResponse>
+  children?: ListBlockChildrenResponse
+}
 
 // Extending by adding src param
 export type GetPageResponseEx = GetPageResponse & {
