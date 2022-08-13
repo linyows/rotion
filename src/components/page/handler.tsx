@@ -6,6 +6,7 @@ import ImageBlock from './image'
 import TodoBlock from './todo'
 import ToggleBlock from './toggle'
 import TableBlock from './table'
+import BookmarkBlock from './bookmark'
 import CalloutBlock from './callout'
 import ChildpageBlock from './childpage'
 import path from 'path'
@@ -73,7 +74,7 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
       break
 
     case 'bookmark':
-      console.log('bookmark:', block)
+      return <BookmarkBlock block={block} />
       break
 
     case 'link_preview':
