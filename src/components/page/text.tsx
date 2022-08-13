@@ -1,6 +1,7 @@
 import React from 'react'
 import path from 'path'
 import type { RichTextItemResponse, BlockObjectResponse } from '../../types'
+import { GithubIcon, SlackIcon, FigmaIcon } from './icons'
 
 // export type TextObject = {
 //   type: string
@@ -34,7 +35,7 @@ type TextProps = {
 
 export const LinkObject: React.FC<TextProps> = ({ textObject, children }) => {
   return (
-    <a href={textObject.href as string} rel={"noreferrer"} target={"_blank"}>
+    <a href={textObject.href as string} rel="noreferrer" target="_blank">
       {children}
       <style jsx>{`
         a {
@@ -45,54 +46,140 @@ export const LinkObject: React.FC<TextProps> = ({ textObject, children }) => {
   )
 }
 
-export const MentionObject: React.FC<TextProps> = ({ textObject, children }) => {
+const UserMention = ({ children }) => {
   return (
-    <span className="mention">
-      <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="200.000000pt" height="200.000000pt" viewBox="0 0 200.000000 200.000000" preserveAspectRatio="xMidYMid meet">
-        <g transform="translate(0.000000,200.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
-          <path d="M899 1910 c-314 -38 -586 -232 -720 -515 -63 -133 -80 -205 -86 -356 -6 -144 10 -245 57 -367 88 -226 287 -429 503 -512 110 -43 117 -38 117 88 l0 97 -98 0 c-89 0 -102 2 -138 26 -27 18 -49 46 -72 90 -37 74 -54 96 -99 127 -39 28 -42 49 -9 58 43 10 110 -28 155 -90 46 -61 71 -82 122 -96 45 -13 138 5 145 28 3 10 15 38 28 63 l22 46 -76 17 c-220 47 -330 188 -330 425 0 81 19 150 59 213 29 45 30 51 21 100 -10 52 -7 95 12 157 10 33 11 33 56 28 25 -3 82 -24 128 -47 l82 -42 59 13 c79 16 232 17 324 0 76 -13 76 -13 116 13 50 34 148 68 182 64 20 -2 28 -11 37 -43 15 -49 17 -135 4 -169 -8 -21 -4 -34 25 -76 45 -67 57 -116 57 -225 -2 -235 -118 -376 -344 -416 -64 -12 -67 -13 -52 -30 34 -38 43 -91 44 -256 0 -133 3 -164 16 -177 21 -22 25 -21 115 18 147 64 292 181 385 311 50 70 109 196 136 290 19 68 23 104 23 235 0 188 -13 248 -90 405 -92 185 -230 325 -411 415 -144 72 -349 108 -505 90z"/>
-        </g>
-      </svg>
-      {children}
+    <>
+      <span className="mention-user">
+        {children}
+      </span>
       <style jsx>{`
-        svg {
-          margin-right: var(--spacing-1);
-          vertical-align: middle;
-        }
-        .mention {
-          border-radius: 3px;
-          font-size: var(--fontSize-1);
-          padding: var(--spacing-0) var(--spacing-1) var(--spacing-1);
-          color: #000;
-        }
-        .mention:hover {
-          background: rgba(135,131,120,0.15);
+        .mention-user {
+          color: #999;
         }
       `}</style>
-    </span>
+    </>
   )
+}
+
+export const MentionObject: React.FC<TextProps> = ({ textObject, children }) => {
+  if (textObject.mention.type === 'link_preview') {
+    const url = textObject.mention.link_preview.url
+    let Icon
+
+    if (url.includes('github.com')) {
+      Icon = GithubIcon
+    } else if (url.includes('slack.com')) {
+      Icon = SlackIcon
+    } else if (url.includes('figma.com')) {
+      Icon = FigmaIcon
+    } else {
+      console.log(`unsupport mention link_preview: ${url}`)
+    }
+
+    return (
+      <>
+        <span className="mention">
+          {Icon && <Icon />}
+          {children}
+        </span>
+        <style jsx>{`
+          .mention {
+            padding: .1rem .2rem .2rem;
+            border-radius: 5px;
+          }
+          .mention:hover {
+            background: rgba(135,131,120,0.15);
+          }
+        `}</style>
+      </>
+    )
+
+  } else if (textObject.mention.type === 'user') {
+    return UserMention({ children })
+
+  } else {
+    console.log(`unsupport mention type: ${textObject.mention.type}`)
+    return
+  }
 }
 
 export const StyleObject: React.FC<TextProps> = ({ textObject, children }) => {
   const { annotations, href } = textObject
   let css = ['annotation']
+  css.push(`color-${annotations.color.replace('_', '-')}`)
   if (annotations.bold) css.push('bold')
   if (annotations.italic) css.push('italic')
   if (annotations.strikethrough) css.push('strikethrough')
   if (annotations.underline) css.push('underline')
   if (annotations.code) css.push('code')
+  if (href !== null) css.push('link')
 
   return (
     <span className={css.join(' ')}>
       {children}
       <style jsx>{`
-        .annotation {
-          ${annotations.color !== 'default' ? `` : `color: ${annotations.color};`}
-          ${href === null ? ``: `border-bottom: 1px solid #999;
-          color: #666;`}
+        .color-default {
+          color: inherit;
+        }
+        .color-gray {
+          color: rgba(120, 119, 116, 1);
+        }
+        .color-brown {
+          color: rgba(159, 107, 83, 1);
+        }
+        .color-orange {
+          color: rgba(217, 115, 13, 1);
+        }
+        .color-yellow {
+          color: rgba(203, 145, 47, 1);
+        }
+        .color-green {
+          color: rgba(68, 131, 97, 1);
+        }
+        .color-blue {
+          color: rgba(51, 126, 169, 1);
+        }
+        .color-purple {
+          color: rgba(144, 101, 176, 1);
+        }
+        .color-pink {
+          color: rgba(193, 76, 138, 1);
+        }
+        .color-red {
+          color: rgba(212, 76, 71, 1);
+        }
+        .color-default-background {
+          background: inherit;
+        }
+        .color-gray-background {
+          background: rgba(241, 241, 239, 1);
+        }
+        .color-brown-background {
+          background: rgba(244, 238, 238, 1);
+        }
+        .color-orange-background {
+          background: rgba(251, 236, 221, 1);
+        }
+        .color-yellow-background {
+          background: rgba(251, 243, 219, 1);
+        }
+        .color-green-background {
+          background: rgba(237, 243, 236, 1);
+        }
+        .color-blue-background {
+          background: rgba(231, 243, 248, 1);
+        }
+        .color-purple-background {
+          background: rgba(244, 240, 247, 0.8);
+        }
+        .color-pink-background {
+          background: rgba(249, 238, 243, 0.8);
+        }
+        .color-red-background {
+          background: rgba(253, 235, 236, 1);
         }
         .bold {
-          font-weight: var(--fontWeight-bold);
+          font-weight: bold;
         }
         .italic {
           font-style: italic;
@@ -103,13 +190,17 @@ export const StyleObject: React.FC<TextProps> = ({ textObject, children }) => {
         .underline {
           text-decoration: underline;
         }
+        .link {
+          border-bottom: 1px solid #999;
+          color: #666;
+        }
         .code {
-          color: ${annotations.color === 'default' ? '#EB5757' : annotations.color};
+          color: #EB5757;
           font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
           background: rgba(135,131,120,0.15);
           border-radius: 3px;
-          font-size: var(--fontSize-0);
-          padding: var(--spacing-1) var(--spacing-2);
+          font-size: .8rem;
+          padding: .1rem .2rem;
         }
       `}</style>
     </span>
@@ -123,11 +214,7 @@ export const TextObject: React.FC<TextProps> = ({ textObject }) => {
     StyleObject({ textObject, children: plain_text })
 
   if (href === null) {
-    return (
-      <>
-        {children}
-      </>
-    )
+    return children
   }
 
   return (
@@ -151,11 +238,28 @@ export const TextBlock: React.FC<TextBlockProps> = ({ tag, block }) => {
   }
 
   return (
-    <CustomTag>
-      {block.map((textObject, i) => (
-        <TextObject textObject={textObject} key={i} />
-      ))}
-    </CustomTag>
+    <>
+      <CustomTag className={`text-${tag}`}>
+        {block.map((textObject, i) => (
+          <TextObject textObject={textObject} key={i} />
+        ))}
+      </CustomTag>
+      <style jsx>{`
+        .text-h1,
+        .text-h2,
+        .text-h3,
+        .text-h4 {
+        }
+        .text-p {
+        }
+        .text-blockquote {
+          border-left: 3px solid currentcolor;
+          padding-left: 1rem;
+          padding-right: 1rem;
+          width: 100%;
+        }
+      `}</style>
+    </>
   )
 }
 

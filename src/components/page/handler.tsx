@@ -9,7 +9,9 @@ import ToggleBlock from './toggle'
 import TableBlock from './table'
 import BookmarkBlock from './bookmark'
 import CalloutBlock from './callout'
+import LinkpreviewBlock from './linkpreview'
 import ChildpageBlock from './childpage'
+import TextBlock, { TextObject } from './text'
 import path from 'path'
 import type { BlockObjectResponse } from '../../types'
 import { JSXElementConstructor } from 'react'
@@ -31,8 +33,7 @@ export type HandlerProps = {
 }
 
 export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
-  const { id, type, code } = block
-  switch (type) {
+  switch (block.type) {
     case 'heading_1':
     case 'heading_2':
     case 'heading_3':
@@ -41,11 +42,9 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
     case 'quote':
     case 'numbered_list_item':
     case 'bulleted_list_item':
-      const tag = blockType[type] as keyof JSX.IntrinsicElements
-      const text = block[type]?.text
-      return (
-        <TextBlock tag={tag} block={text} key={`${id}-${tag}`} />
-      )
+      const tag = blockType[block.type] as keyof JSX.IntrinsicElements
+      const text = block[block.type]?.text
+      return <TextBlock tag={tag} block={text} key={`${block.id}-${tag}`} />
       break
 
     case 'image':
@@ -69,6 +68,7 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
       break
 
     case 'link_preview':
+      return <LinkpreviewBlock block={block} />
       break
 
     case 'to_do':
@@ -96,7 +96,7 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
       break
 
     default:
-      console.log(`out of switch: ${type}`, block)
+      console.log(`still a not supported component: ${type}`, block)
       break
   }
 }
