@@ -226,6 +226,9 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
           block.children = await FetchBlocks(block.id)
         } else if (block.type === 'toggle' && block.toggle !== undefined && block.has_children) {
           block.children = await FetchBlocks(block.id)
+        } else if (block.type === 'child_page' && block.child_page !== undefined) {
+          block.page = await FetchPage(block.id)
+          block.children = await FetchBlocks(block.id)
         } else if (block.type === 'image' && block.image !== undefined) {
           block.image.src = await saveImageInBlock(block)
         } else if (block.type === 'embed' && block.embed !== undefined) {
