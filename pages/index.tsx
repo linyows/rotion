@@ -26,9 +26,12 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const blocks = await FetchBlocks(id)
   const page = await FetchPage(id)
 
-  const title = page.properties.title.title
-  const icon = page.icon.emoji
+  const page = await FetchPage(id)
+  const title = ('properties' in page) ? page.properties.title.id : ''
+  const icon = ('emoji' in page.icon) ? page.icon.emoji : ''
   const image = page.cover.src
+
+  const blocks = await FetchBlocks(id)
 
   return {
     props: {
@@ -49,14 +52,14 @@ const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
             {icon}
           </div>
           <h1 className="title">
-            <TextBlock tag="span" block={title} />
+            {title}
           </h1>
         </div>
         <img className="image" src={image} width="100%" />
       </header>
 
       <div className="page">
-        <Blocks blocks={blocks} />
+        {Blocks({ blocks })}
       </div>
       <style jsx>{`
         .title {
