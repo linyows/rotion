@@ -37,13 +37,14 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
     case 'heading_1':
     case 'heading_2':
     case 'heading_3':
-    case 'divider':
     case 'paragraph':
     case 'quote':
+    case 'divider':
     case 'numbered_list_item':
     case 'bulleted_list_item':
       const tag = blockType[block.type] as keyof JSX.IntrinsicElements
-      const text = block[block.type]?.text
+      // @ts-ignore
+      const text = block[block.type]?.rich_text
       return <TextBlock tag={tag} block={text} key={`${block.id}-${tag}`} />
       break
 
@@ -96,7 +97,7 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
       break
 
     default:
-      console.log(`still a not supported component: ${type}`, block)
+      console.log(`still a not supported component: ${block.type}`, block)
       break
   }
 }

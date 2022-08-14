@@ -1,18 +1,22 @@
 import React from 'react'
 import { TextObject } from './text'
 import type {
-  BlockObjectResponse,
+  BookmarkBlockObjectResponseEx,
 } from '../../types'
 
 export type BookmarkBlockProps = {
-  block: BlockObjectResponse
+  block: BookmarkBlockObjectResponseEx
 }
 
-const BookmarkBlock = ({ block }): React.FC<TodoBlockProps> => {
+const BookmarkBlock: React.FC<BookmarkBlockProps> = ({ block }) => {
+  if (!block.bookmark) {
+    return <></>
+  }
+
   const captions = block.bookmark.caption.map((v, i) => {
-    return TextObject({ textObject: v, key: i})
+    return TextObject({ textObject: v, key: `${i}` })
   })
-  const jump = () => window.open(block.bookmark.url, '_blank', 'noreferrer')
+  const jump = () => window.open(block.bookmark?.url, '_blank', 'noreferrer')
 
   return (
     <div className="bookmark">

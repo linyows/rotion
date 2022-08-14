@@ -3,34 +3,9 @@ import path from 'path'
 import type { RichTextItemResponse, BlockObjectResponse } from '../../types'
 import { GithubIcon, SlackIcon, FigmaIcon } from './icons'
 
-// export type TextObject = {
-//   type: string
-//   text?: {
-//     content: string
-//     link: {
-//       url: string
-//     } | null
-//   }
-//   mention?: {
-//     type: string
-//     link_preview: {
-//       url: string
-//     }
-//   }
-//   annotations: {
-//     bold: boolean
-//     italic: boolean
-//     strikethrough: boolean
-//     underline: boolean
-//     code: boolean
-//     color: string
-//   }
-//   plain_text: string
-//   href: string | null
-// }
-
 type TextProps = {
   textObject: RichTextItemResponse
+  key?: string
 }
 
 export const LinkObject: React.FC<TextProps> = ({ textObject, children }) => {
@@ -46,7 +21,7 @@ export const LinkObject: React.FC<TextProps> = ({ textObject, children }) => {
   )
 }
 
-const UserMention = ({ children }) => {
+const UserMention: React.FC = ({ children }) => {
   return (
     <>
       <span className="mention-user">
@@ -62,44 +37,49 @@ const UserMention = ({ children }) => {
 }
 
 export const MentionObject: React.FC<TextProps> = ({ textObject, children }) => {
-  if (textObject.mention.type === 'link_preview') {
-    const url = textObject.mention.link_preview.url
-    let Icon
+  if (textObject.type === 'mention') {
+    if (textObject.mention.type === 'link_preview') {
+      const url = textObject.mention.link_preview.url
+      let Icon
 
-    if (url.includes('github.com')) {
-      Icon = GithubIcon
-    } else if (url.includes('slack.com')) {
-      Icon = SlackIcon
-    } else if (url.includes('figma.com')) {
-      Icon = FigmaIcon
+      if (url.includes('github.com')) {
+        Icon = GithubIcon
+      } else if (url.includes('slack.com')) {
+        Icon = SlackIcon
+      } else if (url.includes('figma.com')) {
+        Icon = FigmaIcon
+      } else {
+        console.log(`unsupport mention link_preview: ${url}`)
+      }
+
+      return (
+        <>
+          <span className="mention">
+            {Icon && <Icon />}
+            {children}
+          </span>
+          <style jsx>{`
+            .mention {
+              padding: .1rem .2rem .2rem;
+              border-radius: 5px;
+            }
+            .mention:hover {
+              background: rgba(135,131,120,0.15);
+            }
+          `}</style>
+        </>
+      )
+
+    } else if (textObject.mention.type === 'user') {
+      return UserMention({ children })
+
     } else {
-      console.log(`unsupport mention link_preview: ${url}`)
+      console.log(`unsupport mention type: ${textObject.mention.type}`)
+      return <></>
     }
-
-    return (
-      <>
-        <span className="mention">
-          {Icon && <Icon />}
-          {children}
-        </span>
-        <style jsx>{`
-          .mention {
-            padding: .1rem .2rem .2rem;
-            border-radius: 5px;
-          }
-          .mention:hover {
-            background: rgba(135,131,120,0.15);
-          }
-        `}</style>
-      </>
-    )
-
-  } else if (textObject.mention.type === 'user') {
-    return UserMention({ children })
-
   } else {
-    console.log(`unsupport mention type: ${textObject.mention.type}`)
-    return
+      console.log(`unsupport richtext type: ${textObject.type}`)
+      return <></>
   }
 }
 
@@ -241,7 +221,7 @@ export const TextBlock: React.FC<TextBlockProps> = ({ tag, block }) => {
     <>
       <CustomTag className={`text-${tag}`}>
         {block.map((textObject, i) => (
-          <TextObject textObject={textObject} key={i} />
+          <TextObject textObject={textObject} key={`${i}`} />
         ))}
       </CustomTag>
       <style jsx>{`

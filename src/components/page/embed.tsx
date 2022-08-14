@@ -1,20 +1,20 @@
 import React from 'react'
 import { TextObject } from './text'
 import type {
-  BlockObjectResponse,
+  EmbedBlockObjectResponseEx,
 } from '../../types'
 
 export type EmbedBlockProps = {
-  block: BlockObjectResponse
+  block: EmbedBlockObjectResponseEx
 }
 
-const EmbedBlock = ({ block }): React.FC<EmbedBlockProps> => {
+const EmbedBlock: React.FC<EmbedBlockProps> = ({ block }) => {
   if (block.embed?.html === undefined) {
     console.log('unsupported embed:', block)
-    return
+    return <></>
   }
   const captions = block.embed.caption.map((v, i) => {
-    return TextObject({ textObject: v, key: i})
+    return TextObject({ textObject: v, key: `${i}` })
   })
 
   return (

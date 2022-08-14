@@ -1,22 +1,24 @@
 import React from 'react'
 import TextBlock from './text'
 import type {
-  BlockObjectResponse,
+  CalloutBlockObjectResponse,
 } from '../../types'
 
 export type CalloutBlockProps = {
-  block: BlockObjectResponse
+  block: CalloutBlockObjectResponse
 }
 
-const CalloutBlock = ({ block }): React.FC<CalloutBlockProps> => {
+const CalloutBlock: React.FC<CalloutBlockProps> = ({ block }) => {
+  const icon = block.callout.icon?.type === 'emoji' ? block.callout.icon?.emoji : ''
+  const text = block.callout.rich_text
   return (
     <>
       <div className="callout">
         <div className="callout-emoji">
-          {block.callout.icon.emoji}
+          {icon}
         </div>
         <div className="callout-text">
-          <TextBlock tag="span" block={block.callout.text} key={`${block.id}-span`} />
+          <TextBlock tag="span" block={text} key={`${block.id}-span`} />
         </div>
       </div>
       <style jsx>{`

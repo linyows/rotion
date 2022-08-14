@@ -1,14 +1,19 @@
 import React from 'react'
 import TextBlock from './text'
 import type {
-  BlockObjectResponse,
+  ToggleBlockObjectResponseEx,
+  ParagraphBlockObjectResponse,
 } from '../../types'
 
 export type ToggleBlockProps = {
-  block: BlockObjectResponse
+  block: ToggleBlockObjectResponseEx
 }
 
-const Triangle = ({ open }) => {
+type Triangle = {
+  open: boolean
+}
+
+const Triangle: React.FC<Triangle> = ({ open }) => {
   return (
     <svg viewBox="0 0 100 100" className="triangle-closed">
       <polygon points="5.9,88.2 50,11.8 94.1,88.2 "></polygon>
@@ -29,11 +34,12 @@ const Triangle = ({ open }) => {
   )
 }
 
-const ToggleBlock = ({ block }): React.FC<ToggleBlockProps> => {
+const ToggleBlock: React.FC<ToggleBlockProps> = ({ block }) => {
   const [open, setOpen] = React.useState(false)
   const onClick = () => setOpen(!open)
-  const text = block.children.results.map((v, i) => {
-    return <TextBlock tag="div" block={v.paragraph.text} key={i} />
+  const text = block.children.results.map((vv, i) => {
+    const v = vv as ParagraphBlockObjectResponse
+    return <TextBlock tag="div" block={v.paragraph.rich_text} key={`${i}`} />
   })
 
   return (
@@ -42,7 +48,7 @@ const ToggleBlock = ({ block }): React.FC<ToggleBlockProps> => {
         <Triangle open={open} />
       </div>
       <div className="toggle-box">
-        <TextBlock tag="div" block={block.toggle.text} />
+        <TextBlock tag="div" block={block.toggle.rich_text} />
         {open ? text : null }
       </div>
       <style jsx>{`

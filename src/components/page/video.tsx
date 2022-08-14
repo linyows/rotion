@@ -1,17 +1,17 @@
 import React from 'react'
 import { TextObject } from './text'
 import type {
-  BlockObjectResponse,
+  VideoBlockObjectResponseEx,
 } from '../../types'
 
 export type VideoBlockProps = {
-  block: BlockObjectResponse
+  block: VideoBlockObjectResponseEx
 }
 
-const VideoBlock = ({ block }): React.FC<VideoBlockProps> => {
-  if (block.video?.html === undefined) {
+const VideoBlock: React.FC<VideoBlockProps> = ({ block }) => {
+  if (block.video?.type !== 'external' || (block.video?.type === 'external' && block.video?.html === undefined)) {
     console.log('unsupported video:', block)
-    return
+    return <></>
   }
 
   // 16:9
@@ -25,7 +25,7 @@ const VideoBlock = ({ block }): React.FC<VideoBlockProps> => {
     .replace('height="100%"', `height="${h}"`)
 
   const captions = block.video.caption.map((v, i) => {
-    return TextObject({ textObject: v, key: i})
+    return TextObject({ textObject: v, key: `${i}` })
   })
 
   return (

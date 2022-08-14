@@ -1,20 +1,16 @@
 import React from 'react'
 import { TextObject } from './text'
 import type {
-  BlockObjectResponse,
-  RichText,
+  ImageBlockObjectResponseEx,
 } from '../../types'
 
 export type ImageBlockProps = {
-  block: BlockObjectResponse
+  block: ImageBlockObjectResponseEx
 }
 
 export const ImageBlock: React.FC<ImageBlockProps> = ({ block }) => {
-  if (block.image?.caption === undefined) {
-    return (<></>)
-  }
-  const captions = block.image.caption.map((v, i) => {
-    return TextObject({ textObject: v, key: i})
+  const captions = block.image.caption?.map((v, i) => {
+    return TextObject({ textObject: v, key: `${i}` })
   })
 
   return (

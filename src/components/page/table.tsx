@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { TextObject } from './text'
 import type {
-  BlockObjectResponse,
+  TableBlockObjectResponseEx,
+  TableRowBlockObjectResponse,
+  RichTextItemResponse,
 } from '../../types'
 
 export type TableBlockProps = {
-  block: BlockObjectResponse
+  block: TableBlockObjectResponseEx
 }
 
-const Td = ({ cell, key }) => {
+export type TrProps = {
+  key: string
+}
+
+export type ThTdProps = {
+  cell: RichTextItemResponse
+  key: string
+}
+
+const Td: React.FC<ThTdProps> = ({ cell, key }) => {
   return (
     <td className="table-cell" key={key}>
       <div className="table-cell-div">
@@ -28,7 +39,7 @@ const Td = ({ cell, key }) => {
   )
 }
 
-const Th = ({ cell, key }) => {
+const Th: React.FC<ThTdProps> = ({ cell, key }) => {
   return (
     <th className="table-cell" key={key}>
       <div className="table-cell-div">
@@ -49,7 +60,7 @@ const Th = ({ cell, key }) => {
   )
 }
 
-const Tr = ({ children, key }) => {
+const Tr: React.FC<TrProps> = ({ children, key }) => {
   return (
     <tr className="table-row" key={key}>
       {children}
@@ -57,24 +68,34 @@ const Tr = ({ children, key }) => {
   )
 }
 
-const TableBlock = ({ block }): React.FC<TableBlockProps> => {
+const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
+  if (!block.table || !block.children) {
+    return <></>
+  }
+
   let rows: JSX.Element[] = []
   const tw = block.table.table_width
   const ch = block.table.has_column_header
   const rh = block.table.has_row_header
 
-  block.children.results.map((v, i) => {
+  block.children.results.map((vv, i) => {
+    const v = vv as TableRowBlockObjectResponse
     let columns: JSX.Element[] = []
+    if (v.table_row === undefined) {
+      return
+    }
     v.table_row.cells.map((cells, ii) => {
       cells.map((cell, iii) => {
+        const key = `${v.id}-${i}-${ii}-${iii}`
         if ((i == 0 && ch) || (iii == 0 && rh)) {
-          columns.push(Th({ cell, key: `${v.id}-${i}-${ii}-${iii}` }))
+          columns.push(Th({ cell, key }) || <></>)
         } else {
-          columns.push(Td({ cell, key: `${v.id}-${i}-${ii}-${iii}` }))
+          columns.push(Td({ cell, key }) || <></>)
         }
       })
     })
-    rows.push(Tr({ children: columns, key: `${block.id}-${i}` }))
+    const key = `${block.id}-${i}`
+    rows.push(Tr({ children: columns, key }) || <></>)
   })
 
   return (
