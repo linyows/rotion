@@ -1,6 +1,6 @@
 {
   "name": "notionate",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "license": "MIT",
   "repository": "linyows/notionate",
   "description": "This is React components that uses the Notion API to display the Notion's database and page.",
@@ -16,9 +16,9 @@
     "url": "https://tomohisaoda.com"
   },
   "scripts": {
-    "build": "yarn clean && babel src -D -d dist --extensions '.ts,.tsx' --config-file notionate.babelrc.json && tsc",
-    "esm": "tsc --module es6 --outdir ./dist/esm/ --project notionate.tsconfig.json",
-    "cjs": "tsc --module commonjs --outdir ./dist/ --project notionate.tsconfig.json",
+    "build": "yarn clean && babel src -D -d dist --extensions '.ts,.tsx' --config-file ./notionate.babelrc.json && tsc",
+    "esm": "tsc --module es6 --outdir ./dist/esm/ --project ./notionate.tsconfig.json",
+    "cjs": "tsc --module commonjs --outdir ./dist/ --project ./notionate.tsconfig.json",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "clean": "rm -rf dist/",
     "test": "jest --no-cache",
@@ -29,7 +29,7 @@
     "react-dom": "17.0.2"
   },
   "dependencies": {
-    "@notionhq/client": "^0.4.4",
+    "@notionhq/client": "^2.1.1",
     "@types/prismjs": "^1.26.0",
     "babel-plugin-prismjs": "^2.1.0",
     "prismjs": "^1.25.0"

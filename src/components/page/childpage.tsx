@@ -1,17 +1,18 @@
 import React from 'react'
 import type {
-  BlockObjectResponse,
+  ChildPageBlockObjectResponseEx,
 } from '../../types'
 
 export type ChildpageBlockProps = {
-  block: BlockObjectResponse
+  block: ChildPageBlockObjectResponseEx
 }
 
-const ChildpageBlock = ({ block }): React.FC<ChildpageBlockProps> => {
+const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block }) => {
+  const icon = block.page.icon.type === 'emoji' ? block.page.icon.emoji : ''
   return (
     <div className="childpage">
       <span className="childpage-icon">
-        {block.page.icon.emoji}
+        {icon}
       </span>
       <span className="childpage-title">
         {block.child_page.title}

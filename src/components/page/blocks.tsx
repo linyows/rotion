@@ -14,7 +14,7 @@ type ListType = {
   [key: string]: string
 }
 
-export const Blocks: React.FC<BlocksProps> = ({ blocks }) => {
+export const Blocks = ({ blocks }: BlocksProps): JSX.Element[] => {
   const { results } = blocks
   const listType: ListType = {
     bulleted_list_item: 'ul',
@@ -29,10 +29,10 @@ export const Blocks: React.FC<BlocksProps> = ({ blocks }) => {
     const block = v as unknown as BlockObjectResponse
     if (listTag.includes(block.type)) {
       // intermediate
-      if (isListTag && listTag.includes(results[i + 1]?.type)) {
+      if (isListTag && listTag.includes(results[i + 1]?.type || '')) {
         list.push(block)
       // last or (first and last)
-      } else if (isListTag || !listTag.includes(results[i + 1]?.type)) {
+      } else if (isListTag || !listTag.includes(results[i + 1]?.type || '')) {
         isListTag = false
         list.push(block)
         if (Object.keys(listType).includes(block.type)) {
@@ -53,11 +53,7 @@ export const Blocks: React.FC<BlocksProps> = ({ blocks }) => {
     }
   })
 
-  return (
-    <>
-      {children}
-    </>
-  )
+  return children
 }
 
 export default Blocks

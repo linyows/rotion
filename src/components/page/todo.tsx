@@ -1,14 +1,14 @@
 import React from 'react'
 import TextBlock from './text'
 import type {
-  BlockObjectResponse,
+  ToDoBlockObjectResponse,
 } from '../../types'
 
 export type TodoBlockProps = {
-  block: BlockObjectResponse
+  block: ToDoBlockObjectResponse
 }
 
-const checkedBox = () => {
+const checkedBox: React.FC = () => {
   return (
     <>
       <div className="todo-check-bg">
@@ -52,7 +52,7 @@ const checkedBox = () => {
   )
 }
 
-const uncheckedBox = () => {
+const uncheckedBox: React.FC = () => {
   return (
     <>
       <div className="todo-check-inner">
@@ -84,7 +84,11 @@ const uncheckedBox = () => {
   )
 }
 
-const TodoBlock = ({ block }): React.FC<TodoBlockProps> => {
+const TodoBlock: React.FC<TodoBlockProps> = ({ block }) => {
+  if (!block.to_do) {
+    return <></>
+  }
+
   const todoChecked = block.to_do.checked
   const TodoCheckbox = todoChecked ? checkedBox : uncheckedBox
 
@@ -96,7 +100,7 @@ const TodoBlock = ({ block }): React.FC<TodoBlockProps> => {
         </div>
         <div className="todo-text">
           <div className="todo-text-inner">
-            <TextBlock tag="span" block={block.to_do.text} />
+            <TextBlock tag="span" block={block.to_do.rich_text} />
           </div>
         </div>
       </div>

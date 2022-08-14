@@ -16,6 +16,9 @@ import type {
   BlockObjectResponse,
   GetPageResponseEx,
   RichTextItemResponse,
+  VideoBlockObjectResponseEx,
+  EmbedBlockObjectResponseEx,
+  ImageBlockObjectResponseEx,
 } from './types'
 
 // @ts-ignore
@@ -47,24 +50,62 @@ const isEmpty = (obj: Object) => {
   return !Object.keys(obj).length
 }
 
-const getTwitterHtml = async (block: BlockObjectResponse): Promise<string> => {
-  const src = block.embed?.url as string
-  const tweetId = path.basename(src)
-  const res = await fetch(`https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`)
-  const json = await res.json()
-  return json.html
+const getHtmlMeta = async (url: string): Promise<{ title: string, desc: string, image: string }> => {
+  const res = await fetch(url)
+  const body = await res.text()
+
+  const titleRegex = /<title>(.*?)<\/title>/
+  const descRegex = /<meta\s+name="description"\s+content="(.*?)">/
+  const imageRegex = /<meta\s+property="og:image"\s+content="(.*?)">/
+  const titleMatched = body.match(titleRegex)
+  const descMatched = body.match(descRegex)
+  const imageMatched = body.match(imageRegex)
+
+  const title = titleMatched ? titleMatched[1] : 'unknown'
+  const desc = descMatched ? descMatched[1] : 'unknown'
+  const imageUrl = imageMatched ? imageMatched[1] : ''
+  const image = imageUrl !== '' ? await saveImage(imageUrl) : ''
+  return { title, desc, image }
 }
 
-const getSpeakerdeckHtml = async (block: BlockObjectResponse): Promise<string> => {
-  const url = block.embed?.url as string
-  const res = await fetch(`https://speakerdeck.com/oembed.json?url=${url}`)
-  const json = await res.json()
-  return json.html
-    .replace(/width=\"\d+\"/, 'width="100%"')
-    .replace(/height=\"\d+\"/, 'height="100%"')
+const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> => {
+  if (block.video?.type !== 'external') {
+    return ''
+  }
+  const url = block.video?.external.url as string
+  if (url.includes('youtube.com')) {
+    const res = await fetch(`https://www.youtube.com/oembed?url=${url}`)
+    const json = await res.json()
+    return json.html
+      .replace(/width=\"\d+\"/, 'width="100%"')
+      .replace(/height=\"\d+\"/, 'height="100%"')
+  } else {
+    return ''
+  }
 }
 
-const saveImageInBlock = async (block: BlockObjectResponse): Promise<string> => {
+const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> => {
+  if (!block.embed) {
+    return ''
+  } else if (block.embed.url.includes('twitter.com')) {
+    const src = block.embed?.url || ''
+    const tweetId = path.basename(src.split('?').shift() || '')
+    const res = await fetch(`https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`)
+    const json = await res.json()
+    return json.html
+  } else if (block.embed.url.includes('speakerdeck.com')) {
+    const url = block.embed?.url as string
+    const res = await fetch(`https://speakerdeck.com/oembed.json?url=${url}`)
+    const json = await res.json()
+    return json.html
+      .replace(/width=\"\d+\"/, 'width="100%"')
+      .replace(/height=\"\d+\"/, 'height="100%"')
+  } else {
+    return ''
+  }
+}
+
+const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<string> => {
   const { id, last_edited_time, image } = block
   if (image === undefined) {
     return ''
@@ -86,7 +127,7 @@ const saveImageInBlock = async (block: BlockObjectResponse): Promise<string> => 
 }
 
 const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<string> => {
-  const basename = path.basename(imageUrl)
+  const basename = path.basename(imageUrl.split('?').shift() || '')
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
   const filePath = `/images/${idWithKey}${extname}`
@@ -97,6 +138,22 @@ const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<str
     console.log(`saved image: public${filePath}`)
   } catch (e) {
     console.log('saveImageInPage error', e)
+  }
+  return filePath
+}
+
+const saveImage = async (imageUrl: string): Promise<string> => {
+  const basename = path.basename(imageUrl.split('?').shift() || '')
+  const myurl = url.parse(basename)
+  const extname = path.extname(myurl.pathname as string)
+  const filePath = `/images/${basename}`
+  try {
+    const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
+    res.pipe(fs.createWriteStream(`./public${filePath}`))
+    await res.end
+    console.log(`saved image: public${filePath}`)
+  } catch (e) {
+    console.log('saveImage error', e)
   }
   return filePath
 }
@@ -222,11 +279,11 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
   if (useCache) {
     for (const block of list.results) {
       try {
-        if (block.type === 'table' && block.table !== undefined && block.has_children) {
+        if (block.type === 'table' && block.table !== undefined) {
           block.children = await FetchBlocks(block.id)
-        } else if (block.type === 'toggle' && block.toggle !== undefined && block.has_children) {
+        } else if (block.type === 'toggle' && block.toggle !== undefined) {
           block.children = await FetchBlocks(block.id)
-        } else if (block.type === 'column_list' && block.column_list !== undefined && block.has_children) {
+        } else if (block.type === 'column_list' && block.column_list !== undefined) {
           block.children = await FetchBlocks(block.id)
           block.columns = []
           for (const b of block.children.results) {
@@ -239,6 +296,8 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
           block.bookmark.site = await getHtmlMeta(block.bookmark.url)
         } else if (block.type === 'image' && block.image !== undefined) {
           block.image.src = await saveImageInBlock(block)
+        } else if (block.type === 'video' && block.video !== undefined && block.video.type === 'external') {
+          block.video.html = await getVideoHtml(block)
         } else if (block.type === 'embed' && block.embed !== undefined) {
           block.embed.html = await getEmbedHtml(block)
         }

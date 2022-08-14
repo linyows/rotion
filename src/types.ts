@@ -5,7 +5,45 @@ import type {
   GetPageResponse,
   ListBlockChildrenResponse,
   GetSelfResponse,
+  TextRichTextItemResponse,
+  MentionRichTextItemResponse,
+  EquationRichTextItemResponse,
+  ParagraphBlockObjectResponse,
+  Heading1BlockObjectResponse,
+  Heading2BlockObjectResponse,
+  Heading3BlockObjectResponse,
+  BulletedListItemBlockObjectResponse,
+  NumberedListItemBlockObjectResponse,
+  QuoteBlockObjectResponse,
+  ToDoBlockObjectResponse,
+  ToggleBlockObjectResponse,
+  TemplateBlockObjectResponse,
+  SyncedBlockBlockObjectResponse,
+  ChildPageBlockObjectResponse,
+  ChildDatabaseBlockObjectResponse,
+  EquationBlockObjectResponse,
+  CodeBlockObjectResponse,
+  CalloutBlockObjectResponse,
+  DividerBlockObjectResponse,
+  BreadcrumbBlockObjectResponse,
+  TableOfContentsBlockObjectResponse,
+  ColumnListBlockObjectResponse,
+  ColumnBlockObjectResponse,
+  LinkToPageBlockObjectResponse,
+  TableBlockObjectResponse,
+  TableRowBlockObjectResponse,
+  EmbedBlockObjectResponse,
+  BookmarkBlockObjectResponse,
+  ImageBlockObjectResponse,
+  VideoBlockObjectResponse,
+  PdfBlockObjectResponse,
+  FileBlockObjectResponse,
+  AudioBlockObjectResponse,
+  LinkPreviewBlockObjectResponse,
+  UnsupportedBlockObjectResponse,
+  RichTextItemResponse,
 } from '@notionhq/client/build/src/api-endpoints'
+import { ColumnlistBlockProps } from './components/page/columnlist'
 
 export * from '@notionhq/client/build/src/api-endpoints'
 
@@ -43,59 +81,6 @@ export type SelectColorWithBG = SelectColor
   | "pink_background"
   | "red_background"
 
-// https://github.com/makenotion/notion-sdk-js/blob/d3f6c1b41c0f814e39ed202c6aa3b4a7cfdca582/src/api-endpoints.ts#L651-L755
-export type RichText = {
-  type: "text"
-  text: { content: string; link: { url: TextRequest } | null }
-  annotations: {
-    bold: boolean
-    italic: boolean
-    strikethrough: boolean
-    underline: boolean
-    code: boolean
-    color: SelectColorWithBG
-  }
-  plain_text: string
-  href: string | null
-}
-
-export type RichMention = {
-  type: "mention"
-  mention:
-    | { type: "user"; user: PartialUserObjectResponse }
-    | { type: "date"; date: DateResponse }
-    | { type: "link_preview"; link_preview: { url: TextRequest } }
-    | { type: "page"; page: { id: IdRequest } }
-    | { type: "database"; database: { id: IdRequest } }
-  annotations: {
-    bold: boolean
-    italic: boolean
-    strikethrough: boolean
-    underline: boolean
-    code: boolean
-    color: SelectColorWithBG
-  }
-  plain_text: string
-  href: string | null
-}
-
-export type RichEquation = {
-  type: "equation"
-  equation: { expression: TextRequest }
-  annotations: {
-    bold: boolean
-    italic: boolean
-    strikethrough: boolean
-    underline: boolean
-    code: boolean
-    color: SelectColorWithBG
-  }
-  plain_text: string
-  href: string | null
-}
-
-export type RichTextItemResponse = | RichText | RichMention | RichEquation
-
 export type SelectPropertyResponse = {
   id: StringRequest
   name: StringRequest
@@ -120,73 +105,122 @@ export type File = {
   caption: Array<RichTextItemResponse>
 }
 
-// Extending by adding src param
-export type ExternalEx = External & { src: string }
-export type FileEx = File & { src: string }
-export type Url = { url: string, caption: Array<RichTextItemResponse> }
-export type UrlEx = Url & { html: string }
-
 export type Icon =
     | { type: "emoji", emoji: EmojiRequest }
     | { type: "external", external: { url: TextRequest } }
     | { type: "file", file: { url: string, expiry_time: string } }
     | null
 
-// https://github.com/makenotion/notion-sdk-js/blob/2a45b83197314e989239f0ae9437fe9a0adb2a2b/src/api-endpoints.ts#L4479-L4880
-export type BlockObjectResponse = {
-  type: string
-  object: string
-  id: string
-  created_time: string
-  last_edited_time: string
-  has_children: boolean
-  archived: boolean
-  paragraph?: { text: Array<RichTextItemResponse> }
-  heading_1?: { text: Array<RichTextItemResponse>  }
-  heading_2?: { text: Array<RichTextItemResponse>  }
-  heading_3?: { text: Array<RichTextItemResponse>  }
-  bulleted_list_item?: { text: Array<RichTextItemResponse>  }
-  numbered_list_item?: { text: Array<RichTextItemResponse>  }
-  quote?: { text: Array<RichTextItemResponse>  }
-  to_do?: { text: Array<RichTextItemResponse> , checked: boolean }
-  toggle?: { text: Array<RichTextItemResponse>  }
-  template?: { text: Array<RichTextItemResponse>  }
-  synced_block?: unknown
-  child_page?: { title: string }
-  child_database?: { title: string }
-  equation?: { title: string }
-  code?: { text: Array<RichText> , caption: Object[], language: string }
-  callout?: { text: Array<RichTextItemResponse> , icon: Icon }
-  divider?: EmptyObject
-  breadcrumb?: EmptyObject
-  table_of_contents?: EmptyObject
-  column_list?: EmptyObject
-  column?: EmptyObject
-  link_to_page?:
-    | { type: "page_id", page_id: IdRequest }
-    | { type: "database_id", database_id: IdRequest }
-  table?: { has_column_header: boolean, has_row_header: boolean, table_width: number }
-  table_row?: { cells: Array<Array<RichTextItemResponse>> }
-  embed?: UrlEx
-  bookmark?: Url
-  image?: | ExternalEx | FileEx
-  video?: | External | File
-  pdf?: | External | File
-  file?: | External | File
-  audio?: | External | File
-  link_preview?: { url: TextRequest }
-  unsupported?: EmptyObject
+export type TableBlockObjectResponseEx = TableBlockObjectResponse & {
+  children: ListBlockChildrenResponseEx
+}
+export type ToggleBlockObjectResponseEx = ToggleBlockObjectResponse & {
+  children: ListBlockChildrenResponseEx
+}
+export type ColumnListBlockObjectResponseEx = ColumnListBlockObjectResponse & {
+  children: ListBlockChildrenResponseEx
+  columns: Array<ListBlockChildrenResponseEx>
+}
+export type ChildPageBlockObjectResponseEx = ChildPageBlockObjectResponse & {
+  children: ListBlockChildrenResponseEx
+  page: GetPageResponseEx
+}
+export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & { 
+  bookmark: {
+    url: string
+    caption: Array<RichTextItemResponse>
+    site: {
+      title: string
+      desc: string
+      image: string
+    }
+  }
+}
+export type ImageBlockObjectResponseEx = ImageBlockObjectResponse & {
+  image:
+  | {
+    type: "external"
+    external: { url: TextRequest }
+    caption: Array<RichTextItemResponse>
+    src: string
+  }
+  | {
+    type: "file"
+    file: { url: string; expiry_time: string }
+    caption: Array<RichTextItemResponse>
+    src: string
+  }
+}
+export type VideoBlockObjectResponseEx = VideoBlockObjectResponse & {
+  video:
+  | {
+    type: "external"
+    external: { url: TextRequest }
+    caption: Array<RichTextItemResponse>
+    html: string
+  }
+  | {
+    type: "file"
+    file: { url: string; expiry_time: string }
+    caption: Array<RichTextItemResponse>
+  }
+}
+export type EmbedBlockObjectResponseEx = EmbedBlockObjectResponse & {
+  embed: {
+    url: string
+    caption: Array<RichTextItemResponse>
+    html: string
+  }
 }
 
-export type ListBlockChildrenResponseEx = ListBlockChildrenResponse & { results: Array<BlockObjectResponse> }
+export type BlockObjectResponse =
+  | ParagraphBlockObjectResponse
+  | Heading1BlockObjectResponse
+  | Heading2BlockObjectResponse
+  | Heading3BlockObjectResponse
+  | BulletedListItemBlockObjectResponse
+  | NumberedListItemBlockObjectResponse
+  | QuoteBlockObjectResponse
+  | ToDoBlockObjectResponse
+  | ToggleBlockObjectResponseEx
+  | TemplateBlockObjectResponse
+  | SyncedBlockBlockObjectResponse
+  | ChildPageBlockObjectResponseEx
+  | ChildDatabaseBlockObjectResponse
+  | EquationBlockObjectResponse
+  | CodeBlockObjectResponse
+  | CalloutBlockObjectResponse
+  | DividerBlockObjectResponse
+  | BreadcrumbBlockObjectResponse
+  | TableOfContentsBlockObjectResponse
+  | ColumnListBlockObjectResponseEx
+  | ColumnBlockObjectResponse
+  | LinkToPageBlockObjectResponse
+  | TableBlockObjectResponseEx
+  | TableRowBlockObjectResponse
+  | EmbedBlockObjectResponseEx
+  | BookmarkBlockObjectResponseEx
+  | ImageBlockObjectResponseEx
+  | VideoBlockObjectResponseEx
+  | PdfBlockObjectResponse
+  | FileBlockObjectResponse
+  | AudioBlockObjectResponse
+  | LinkPreviewBlockObjectResponse
+  | UnsupportedBlockObjectResponse
+
+export type ListBlockChildrenResponseEx = ListBlockChildrenResponse & {
+  results: Array<BlockObjectResponse>
+  children?: ListBlockChildrenResponse
+}
 
 // Extending by adding src param
 export type GetPageResponseEx = GetPageResponse & {
   cover:
-    | { src: string, type: "external", file: { url: string, expiry_time: string } }
+    | { src: string, type: "external", external: { url: string, expiry_time: string } }
     | { src: string, type: "file", file: { url: string, expiry_time: string } }
   icon:
-    | { src: string, type: "external", file: { url: string, expiry_time: string } }
+    | { src: string, type: "emoji"; emoji: EmojiRequest }
+    | { src: string, type: "external", external: { url: string, expiry_time: string } }
     | { src: string, type: "file", file: { url: string, expiry_time: string } }
 }
 

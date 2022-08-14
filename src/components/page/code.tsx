@@ -3,7 +3,9 @@ import Prism from 'prismjs'
 import { TextObject } from './text'
 
 import type {
-  BlockObjectResponse,
+  CodeBlockObjectResponse,
+  RichTextItemResponse,
+  TextRichTextItemResponse,
 } from '../../types'
 
 export type CodeProps = {
@@ -11,7 +13,7 @@ export type CodeProps = {
 }
 
 export type CodeBlockProps = {
-  block: BlockObjectResponse
+  block: CodeBlockObjectResponse
 }
 
 export const Code: React.FC<CodeProps> = ({ children, language = 'text' }) => {
@@ -60,17 +62,18 @@ export const Code: React.FC<CodeProps> = ({ children, language = 'text' }) => {
   )
 }
 
-const CodeBlock = ({ block }): React.FC<CodeBlockProps> => {
-  const els = block.code?.text.map((textObject, i) => {
+const CodeBlock: React.FC<CodeBlockProps> = ({ block }) => {
+  const els = block.code?.rich_text.map((textObject, i) => {
+    const text = textObject as TextRichTextItemResponse
     return (
-      <Code language={block.code.language} key={i}>
-        {textObject.text.content}
+      <Code language={block.code?.language || ''} key={i}>
+        {text.text.content}
       </Code>
     )
   })
 
-  const captions = block.code.caption.map((v, i) => {
-    return TextObject({ textObject: v, key: i})
+  const captions = block.code?.caption.map((v, i) => {
+    return TextObject({ textObject: v as RichTextItemResponse, key: `${i}` })
   })
 
   return (

@@ -1,14 +1,18 @@
 import React from 'react'
 import { GithubIcon, SlackIcon, FigmaIcon } from './icons'
 import type {
-  BlockObjectResponse,
+  LinkPreviewBlockObjectResponse,
 } from '../../types'
 
 export type LinkpreviewBlockProps = {
-  block: BlockObjectResponse
+  block: LinkPreviewBlockObjectResponse
 }
 
-const LinkpreviewBlock = ({ block }): React.FC<TodoBlockProps> => {
+const LinkpreviewBlock: React.FC<LinkpreviewBlockProps> = ({ block }) => {
+  if (!block.link_preview) {
+    return <></>
+  }
+
   let Icon
   if (block.link_preview.url.includes('github.com')) {
     Icon = GithubIcon

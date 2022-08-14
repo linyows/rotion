@@ -1,18 +1,18 @@
 import React from 'react'
 import Blocks from './blocks'
 import type {
-  BlockObjectResponse,
+  ColumnListBlockObjectResponseEx,
 } from '../../types'
 
 export type ColumnlistBlockProps = {
-  block: BlockObjectResponse
+  block: ColumnListBlockObjectResponseEx
 }
 
-const ColumnlistBlock = ({ block }): React.FC<ColumnlistBlockProps> => {
+const ColumnlistBlock: React.FC<ColumnlistBlockProps> = ({ block }) => {
   const columns = block.columns.map((v, i) => {
     return (
       <div key={i} className="columnlist-inner">
-        <Blocks blocks={v} />
+        {Blocks({ blocks: v })}
         <style jsx>{`
           .columnlist-inner {
             margin: 0 0 1rem;
@@ -32,7 +32,7 @@ const ColumnlistBlock = ({ block }): React.FC<ColumnlistBlockProps> => {
           margin: 1rem 0;
           display: grid;
           grid-template: repeat(1, 1fr) / repeat(${l}, 1fr);
-          gap: 5rem;
+          gap: 5%;
         }
       `}</style>
     </div>
