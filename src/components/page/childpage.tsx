@@ -19,6 +19,7 @@ const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block }) => {
       </span>
       <style jsx>{`
         .childpage {
+          padding-top: .5rem;
           display: grid;
           width: 100%;
           grid-template: repeat(1, 1fr) / 1rem 1fr;
