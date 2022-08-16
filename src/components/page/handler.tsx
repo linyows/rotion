@@ -11,6 +11,7 @@ import BookmarkBlock from './bookmark'
 import CalloutBlock from './callout'
 import LinkpreviewBlock from './linkpreview'
 import ChildpageBlock from './childpage'
+import ChilddatabaseBlock from './childdatabase'
 import TextBlock, { TextObject } from './text'
 import path from 'path'
 import type { BlockObjectResponse } from '../../types'
@@ -90,6 +91,10 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
 
     case 'child_page':
       return <ChildpageBlock block={block} />
+      break
+
+    case 'child_database':
+      return <ChilddatabaseBlock block={block} />
       break
 
     case 'toggle':
