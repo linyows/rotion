@@ -1,10 +1,11 @@
 import { Client } from '@notionhq/client'
 import type {
-  QueryDatabaseResponse,
   GetDatabaseResponse,
   GetUserResponse,
   GetPageResponse,
   GetSelfResponse,
+  GetPagePropertyResponse,
+  PropertyItemObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
 import fs from 'fs'
 import https from 'https'
@@ -12,6 +13,8 @@ import path from 'path'
 import url from 'url'
 import { promisify } from 'util'
 import type {
+  QueryDatabaseResponse,
+  QueryDatabaseResponseEx,
   ListBlockChildrenResponseEx,
   BlockObjectResponse,
   GetPageResponseEx,
@@ -158,15 +161,15 @@ const saveImage = async (imageUrl: string): Promise<string> => {
   return filePath
 }
 
-export const FetchDatabase = async (database_id: string, limit?: number): Promise<QueryDatabaseResponse> => {
+export const FetchDatabase = async (database_id: string, limit?: number): Promise<QueryDatabaseResponseEx> => {
   const useCache = process.env.NOTION_CACHE === 'true'
   const cacheFile = `${cacheDir}/notion.databases.query-${database_id}${limit !== undefined ? `.limit-${limit}` : ''}`
   let cursor: undefined|string = undefined
-  let allres: undefined|QueryDatabaseResponse = undefined
+  let allres: undefined|QueryDatabaseResponseEx = undefined
 
   if (useCache) {
     try {
-      const list: QueryDatabaseResponse = JSON.parse(await readFile(cacheFile, 'utf8'))
+      const list: QueryDatabaseResponseEx = JSON.parse(await readFile(cacheFile, 'utf8'))
       if (!isEmpty(list)) {
         return list
       }
@@ -195,7 +198,7 @@ export const FetchDatabase = async (database_id: string, limit?: number): Promis
     })
 
     if (allres === undefined) {
-      allres = res
+      allres = res as QueryDatabaseResponseEx
     } else {
       allres.results.push(...res.results)
     }
@@ -205,6 +208,16 @@ export const FetchDatabase = async (database_id: string, limit?: number): Promis
     }
 
     cursor = res.next_cursor
+  }
+  
+  for (const result of allres.results) {
+    result.property_items = []
+    for (const [k, v] of Object.entries(result.properties)) {
+      const page_id = result.id
+      const property_id = v.id
+      const props = await notion.pages.properties.retrieve({ page_id, property_id })
+      result.property_items.push(props)
+    }
   }
 
   if (useCache) {
@@ -230,6 +243,23 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
   }
 
   let page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
+
+  if ('properties' in page) {
+    let list: undefined|GetPagePropertyResponse = undefined
+    for (const [k, v] of Object.entries(page.properties)) {
+      const property_id = v.id
+      const res = await notion.pages.properties.retrieve({ page_id, property_id })
+      if (res.object !== 'list') {
+        continue
+      }
+      if (list === undefined) {
+        list = res
+      } else {
+        list.results.push(...res.results)
+      }
+    }
+    page.list = list
+  }
 
   if (useCache) {
     if (page.cover !== null) {
@@ -292,6 +322,9 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
         } else if (block.type === 'child_page' && block.child_page !== undefined) {
           block.page = await FetchPage(block.id)
           block.children = await FetchBlocks(block.id)
+        } else if (block.type === 'child_database' && block.child_database !== undefined) {
+          const database_id = block.id
+          block.database = await notion.databases.retrieve({ database_id })
         } else if (block.type === 'bookmark' && block.bookmark !== undefined) {
           block.bookmark.site = await getHtmlMeta(block.bookmark.url)
         } else if (block.type === 'image' && block.image !== undefined) {

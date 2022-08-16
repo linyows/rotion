@@ -42,6 +42,9 @@ import type {
   LinkPreviewBlockObjectResponse,
   UnsupportedBlockObjectResponse,
   RichTextItemResponse,
+  GetPagePropertyResponse,
+  PageObjectResponse,
+  PropertyItemObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
 import { ColumnlistBlockProps } from './components/page/columnlist'
 
@@ -125,6 +128,9 @@ export type ChildPageBlockObjectResponseEx = ChildPageBlockObjectResponse & {
   children: ListBlockChildrenResponseEx
   page: GetPageResponseEx
 }
+export type ChildDatabaseBlockObjectResponseEx = ChildDatabaseBlockObjectResponse & {
+  database: GetDatabaseResponse
+}
 export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & { 
   bookmark: {
     url: string
@@ -186,7 +192,7 @@ export type BlockObjectResponse =
   | TemplateBlockObjectResponse
   | SyncedBlockBlockObjectResponse
   | ChildPageBlockObjectResponseEx
-  | ChildDatabaseBlockObjectResponse
+  | ChildDatabaseBlockObjectResponseEx
   | EquationBlockObjectResponse
   | CodeBlockObjectResponse
   | CalloutBlockObjectResponse
@@ -222,6 +228,7 @@ export type GetPageResponseEx = GetPageResponse & {
     | { src: string, type: "emoji"; emoji: EmojiRequest }
     | { src: string, type: "external", external: { url: string, expiry_time: string } }
     | { src: string, type: "file", file: { url: string, expiry_time: string } }
+  list?: GetPagePropertyResponse
 }
 
 export type DBPageBase = {
@@ -298,3 +305,11 @@ export type QueryDatabaseResponseResult = | {
   archived: boolean
   url: string
 } | { object: "page"; id: string }
+
+export type PageObjectResponseEx = PageObjectResponse & {
+  property_items: Array<GetPagePropertyResponse>
+}
+
+export type QueryDatabaseResponseEx = QueryDatabaseResponse & {
+  results: Array<PageObjectResponseEx>
+}
