@@ -21,6 +21,7 @@
     "cjs": "tsc --module commonjs --outdir ./dist/ --project ./notionate.tsconfig.json",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "clean": "rm -rf dist/*",
+    "cacheclean": "rm -rf .cache/*",
     "test": "jest --no-cache",
     "dev": "next dev"
   },
