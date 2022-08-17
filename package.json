@@ -1,6 +1,6 @@
 {
   "name": "notionate",
-  "version": "0.18.0",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": "linyows/notionate",
   "description": "This is React components that uses the Notion API to display the Notion's database and page.",
@@ -20,7 +20,8 @@
     "esm": "tsc --module es6 --outdir ./dist/esm/ --project ./notionate.tsconfig.json",
     "cjs": "tsc --module commonjs --outdir ./dist/ --project ./notionate.tsconfig.json",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
-    "clean": "rm -rf dist/",
+    "clean": "rm -rf dist/*",
+    "cacheclean": "rm -rf .cache/*",
     "test": "jest --no-cache",
     "dev": "next dev"
   },

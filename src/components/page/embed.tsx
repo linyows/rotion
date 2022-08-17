@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextObject } from './text'
+import TextBlock from './text'
 import type {
   EmbedBlockObjectResponseEx,
 } from '../../types'
@@ -13,15 +13,12 @@ const EmbedBlock: React.FC<EmbedBlockProps> = ({ block }) => {
     console.log('unsupported embed:', block)
     return <></>
   }
-  const captions = block.embed.caption.map((v, i) => {
-    return TextObject({ textObject: v, key: `${i}` })
-  })
 
   return (
     <div className="embed">
       <div className="embed-inner" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
       <div className="embed-caption">
-        {captions}
+        {TextBlock({ tag: 'span', block: block.embed.caption })}
       </div>
       <style jsx>{`
         .embed {

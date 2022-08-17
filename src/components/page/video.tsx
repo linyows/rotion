@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextObject } from './text'
+import TextBlock from './text'
 import type {
   VideoBlockObjectResponseEx,
 } from '../../types'
@@ -24,16 +24,12 @@ const VideoBlock: React.FC<VideoBlockProps> = ({ block }) => {
   const html = block.video.html
     .replace('height="100%"', `height="${h}"`)
 
-  const captions = block.video.caption.map((v, i) => {
-    return TextObject({ textObject: v, key: `${i}` })
-  })
-
   return (
     <div className="video">
       <div className="video-inner">
         <div className="video-html" dangerouslySetInnerHTML={{ __html: html }} />
         <div className="video-caption">
-          {captions}
+          {TextBlock({ tag: 'span', block: block.video.caption })}
         </div>
       </div>
       <style jsx>{`

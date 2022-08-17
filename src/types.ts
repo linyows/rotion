@@ -42,6 +42,9 @@ import type {
   LinkPreviewBlockObjectResponse,
   UnsupportedBlockObjectResponse,
   RichTextItemResponse,
+  GetPagePropertyResponse,
+  PageObjectResponse,
+  PropertyItemObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
 import { ColumnlistBlockProps } from './components/page/columnlist'
 
@@ -125,6 +128,9 @@ export type ChildPageBlockObjectResponseEx = ChildPageBlockObjectResponse & {
   children: ListBlockChildrenResponseEx
   page: GetPageResponseEx
 }
+export type ChildDatabaseBlockObjectResponseEx = ChildDatabaseBlockObjectResponse & {
+  database: GetDatabaseResponse
+}
 export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & { 
   bookmark: {
     url: string
@@ -133,6 +139,7 @@ export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & {
       title: string
       desc: string
       image: string
+      icon: string
     }
   }
 }
@@ -186,7 +193,7 @@ export type BlockObjectResponse =
   | TemplateBlockObjectResponse
   | SyncedBlockBlockObjectResponse
   | ChildPageBlockObjectResponseEx
-  | ChildDatabaseBlockObjectResponse
+  | ChildDatabaseBlockObjectResponseEx
   | EquationBlockObjectResponse
   | CodeBlockObjectResponse
   | CalloutBlockObjectResponse
@@ -222,6 +229,7 @@ export type GetPageResponseEx = GetPageResponse & {
     | { src: string, type: "emoji"; emoji: EmojiRequest }
     | { src: string, type: "external", external: { url: string, expiry_time: string } }
     | { src: string, type: "file", file: { url: string, expiry_time: string } }
+  meta?: GetPagePropertyResponse
 }
 
 export type DBPageBase = {
@@ -298,3 +306,25 @@ export type QueryDatabaseResponseResult = | {
   archived: boolean
   url: string
 } | { object: "page"; id: string }
+
+export type PageObjectResponseEx = PageObjectResponse & {
+  property_items: Array<GetPagePropertyResponse>
+}
+
+// https://github.com/makenotion/notion-sdk-js/blob/7c5b7645759bf90d71d496dc542a1a912379ee12/src/api-endpoints.ts#L4603-L4632
+export type GetDatabaseResponseEx = GetDatabaseResponse & {
+  icon:
+    | { type: "emoji"; emoji: EmojiRequest }
+    | { src: string, type: "external"; external: { url: TextRequest } }
+    | { src: string, type: "file"; file: { url: string; expiry_time: string } }
+    | null
+  cover:
+    | { src: string, type: "external"; external: { url: TextRequest } }
+    | { src: string, type: "file"; file: { url: string; expiry_time: string } }
+    | null
+}
+
+export type QueryDatabaseResponseEx = QueryDatabaseResponse & {
+  results: Array<PageObjectResponseEx>
+  meta: GetDatabaseResponseEx
+}

@@ -1,5 +1,4 @@
 import type { GetStaticProps, NextPage } from 'next'
-
 import {
   FetchBlocks,
   FetchPage,
@@ -21,7 +20,7 @@ type Props = {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  const id = process.env.NOTION_TESTROOT_ID as string
+  const id = process.env.NOTION_TESTPAGE_ID as string
   const page = await FetchPage(id)
   let title: null|RichTextItemResponse = null
   if ('meta' in page && page.meta?.object == 'list') {
@@ -42,14 +41,14 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   }
 }
 
-const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
+const Page: NextPage<Props> = ({ title, icon, image, blocks }) => {
   return (
     <>
       <Header icon={icon} image={image}>
         {title && TextObject({ textObject: title })}
       </Header>
       <div className="page">
-        {Blocks({ blocks, link: '/[title]' })}
+        {Blocks({ blocks })}
       </div>
       <style jsx>{`
         .page {
@@ -62,4 +61,4 @@ const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
   )
 }
 
-export default Home
+export default Page

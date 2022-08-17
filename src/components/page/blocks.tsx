@@ -8,13 +8,14 @@ import type {
 
 export type BlocksProps = {
   blocks: ListBlockChildrenResponseEx
+  link?: string
 }
 
 type ListType = {
   [key: string]: string
 }
 
-export const Blocks = ({ blocks }: BlocksProps): JSX.Element[] => {
+export const Blocks = ({ blocks, link }: BlocksProps): JSX.Element[] => {
   const { results } = blocks
   const listType: ListType = {
     bulleted_list_item: 'ul',
@@ -46,7 +47,7 @@ export const Blocks = ({ blocks }: BlocksProps): JSX.Element[] => {
         list.push(block)
       }
     } else {
-      const elem = Handler({ block })
+      const elem = Handler({ block, link })
       if (elem !== undefined) {
         children.push(elem)
       }

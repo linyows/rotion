@@ -11,6 +11,7 @@ import BookmarkBlock from './bookmark'
 import CalloutBlock from './callout'
 import LinkpreviewBlock from './linkpreview'
 import ChildpageBlock from './childpage'
+import ChilddatabaseBlock from './childdatabase'
 import TextBlock, { TextObject } from './text'
 import path from 'path'
 import type { BlockObjectResponse } from '../../types'
@@ -30,9 +31,10 @@ export const blockType = {
 
 export type HandlerProps = {
   block: BlockObjectResponse
+  link?: string
 }
 
-export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
+export const Handler = ({ block, link }: HandlerProps): JSX.Element | undefined => {
   switch (block.type) {
     case 'heading_1':
     case 'heading_2':
@@ -45,7 +47,7 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
       const tag = blockType[block.type] as keyof JSX.IntrinsicElements
       // @ts-ignore
       const text = block[block.type]?.rich_text
-      return <TextBlock tag={tag} block={text} key={`${block.id}-${tag}`} />
+      return <TextBlock tag={tag} block={text} key={block.id} />
       break
 
     case 'image':
@@ -53,47 +55,51 @@ export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
       break
 
     case 'code':
-      return <CodeBlock block={block} />
+      return <CodeBlock block={block} key={block.id} />
       break
 
     case 'video':
-      return <VideoBlock block={block} />
+      return <VideoBlock block={block} key={block.id} />
       break
 
     case 'embed':
-      return <EmbedBlock block={block} />
+      return <EmbedBlock block={block} key={block.id} />
       break
 
     case 'bookmark':
-      return <BookmarkBlock block={block} />
+      return <BookmarkBlock block={block} key={block.id} />
       break
 
     case 'link_preview':
-      return <LinkpreviewBlock block={block} />
+      return <LinkpreviewBlock block={block} key={block.id} />
       break
 
     case 'to_do':
-      return <TodoBlock block={block} />
+      return <TodoBlock block={block} key={block.id} />
       break
 
     case 'table':
-      return <TableBlock block={block} />
+      return <TableBlock block={block} key={block.id} />
       break
 
     case 'callout':
-      return <CalloutBlock block={block} />
+      return <CalloutBlock block={block} key={block.id} />
       break
 
     case 'column_list':
-      return <ColumnlistBlock block={block} />
+      return <ColumnlistBlock block={block} key={block.id} />
       break
 
     case 'child_page':
-      return <ChildpageBlock block={block} />
+      return <ChildpageBlock block={block} link={link} key={block.id} />
+      break
+
+    case 'child_database':
+      return <ChilddatabaseBlock block={block} link={link} key={block.id} />
       break
 
     case 'toggle':
-      return <ToggleBlock block={block} />
+      return <ToggleBlock block={block} key={block.id} />
       break
 
     default:

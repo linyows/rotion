@@ -1,17 +1,22 @@
 import { Client } from '@notionhq/client'
 import type {
-  QueryDatabaseResponse,
   GetDatabaseResponse,
   GetUserResponse,
   GetPageResponse,
   GetSelfResponse,
+  GetPagePropertyResponse,
+  PropertyItemObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
 import fs from 'fs'
 import https from 'https'
 import path from 'path'
 import url from 'url'
+import crypto from 'crypto'
 import { promisify } from 'util'
 import type {
+  QueryDatabaseParameters,
+  QueryDatabaseResponse,
+  QueryDatabaseResponseEx,
   ListBlockChildrenResponseEx,
   BlockObjectResponse,
   GetPageResponseEx,
@@ -19,6 +24,7 @@ import type {
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
   ImageBlockObjectResponseEx,
+  GetDatabaseResponseEx,
 } from './types'
 
 // @ts-ignore
@@ -50,22 +56,45 @@ const isEmpty = (obj: Object) => {
   return !Object.keys(obj).length
 }
 
-const getHtmlMeta = async (url: string): Promise<{ title: string, desc: string, image: string }> => {
+const atoh = (a: string): string => {
+  const shasum = crypto.createHash('sha1')
+  shasum.update(a)
+  return shasum.digest('hex')
+}
+
+const getHtmlMeta = async (url: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
   const res = await fetch(url)
+  if (!res.ok) {
+    console.log('fetch api error:', url, res)
+    return { title: '', desc: '', image: '', icon: '' }
+  }
   const body = await res.text()
 
+  const ogTitleRegex = /<meta\s+property="og:title"\s+content="(.*?)">/
+  const ogDescRegex = /<meta\s+property="og:description"\s+content="(.*?)">/
+  const ogImageRegex = /<meta\s+property="og:image"\s+content="(.*?)">/
   const titleRegex = /<title>(.*?)<\/title>/
   const descRegex = /<meta\s+name="description"\s+content="(.*?)">/
-  const imageRegex = /<meta\s+property="og:image"\s+content="(.*?)">/
-  const titleMatched = body.match(titleRegex)
-  const descMatched = body.match(descRegex)
-  const imageMatched = body.match(imageRegex)
+  const iconRegex = /<link\s+href="(.*?)"\s+rel="icon"\s?\/?>|<link\s+rel="icon"\s+href="(.*?)"\s?\/?>/
+
+  let titleMatched = body.match(ogTitleRegex)
+  if (!titleMatched) {
+    titleMatched = body.match(titleRegex)
+  }
+  let descMatched = body.match(ogDescRegex)
+  if (!descMatched) {
+    descMatched = body.match(descRegex)
+  }
+  const imageMatched = body.match(ogImageRegex)
+  const iconMatched = body.match(iconRegex)
 
   const title = titleMatched ? titleMatched[1] : 'unknown'
   const desc = descMatched ? descMatched[1] : 'unknown'
   const imageUrl = imageMatched ? imageMatched[1] : ''
   const image = imageUrl !== '' ? await saveImage(imageUrl) : ''
-  return { title, desc, image }
+  const iconUrl = iconMatched ? (iconMatched[1] || iconMatched[2]) : ''
+  const icon = iconUrl !== '' ? await saveImage(iconUrl) : ''
+  return { title, desc, image, icon }
 }
 
 const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> => {
@@ -74,11 +103,17 @@ const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> 
   }
   const url = block.video?.external.url as string
   if (url.includes('youtube.com')) {
-    const res = await fetch(`https://www.youtube.com/oembed?url=${url}`)
+    const reqUrl = `https://www.youtube.com/oembed?url=${url}`
+    const res = await fetch(reqUrl)
+    if (!res.ok) {
+      console.log('fetch api error:', reqUrl, res)
+      return ''
+    }
     const json = await res.json()
     return json.html
       .replace(/width=\"\d+\"/, 'width="100%"')
       .replace(/height=\"\d+\"/, 'height="100%"')
+
   } else {
     return ''
   }
@@ -90,16 +125,28 @@ const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> 
   } else if (block.embed.url.includes('twitter.com')) {
     const src = block.embed?.url || ''
     const tweetId = path.basename(src.split('?').shift() || '')
-    const res = await fetch(`https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`)
+    const reqUrl = `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
+    const res = await fetch(reqUrl)
+    if (!res.ok) {
+      console.log('fetch api error:', reqUrl, res)
+      return ''
+    }
     const json = await res.json()
     return json.html
+
   } else if (block.embed.url.includes('speakerdeck.com')) {
     const url = block.embed?.url as string
-    const res = await fetch(`https://speakerdeck.com/oembed.json?url=${url}`)
+    const reqUrl = `https://speakerdeck.com/oembed.json?url=${url}`
+    const res = await fetch(reqUrl)
+    if (!res.ok) {
+      console.log('fetch api error:', reqUrl, res)
+      return ''
+    }
     const json = await res.json()
     return json.html
       .replace(/width=\"\d+\"/, 'width="100%"')
       .replace(/height=\"\d+\"/, 'height="100%"')
+
   } else {
     return ''
   }
@@ -143,10 +190,12 @@ const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<str
 }
 
 const saveImage = async (imageUrl: string): Promise<string> => {
-  const basename = path.basename(imageUrl.split('?').shift() || '')
+  const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
+  const basename = path.basename(urlWithoutQuerystring)
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
-  const filePath = `/images/${basename}`
+  const prefix = atoh(urlWithoutQuerystring)
+  const filePath = `/images/${prefix}-${basename}`
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(`./public${filePath}`))
@@ -158,15 +207,21 @@ const saveImage = async (imageUrl: string): Promise<string> => {
   return filePath
 }
 
-export const FetchDatabase = async (database_id: string, limit?: number): Promise<QueryDatabaseResponse> => {
+export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<QueryDatabaseResponseEx> => {
+  const { database_id } = params
+  if ('page_size' in params) {
+    params.page_size = 100
+  }
+  const limit = params.page_size
+
   const useCache = process.env.NOTION_CACHE === 'true'
   const cacheFile = `${cacheDir}/notion.databases.query-${database_id}${limit !== undefined ? `.limit-${limit}` : ''}`
   let cursor: undefined|string = undefined
-  let allres: undefined|QueryDatabaseResponse = undefined
+  let allres: undefined|QueryDatabaseResponseEx = undefined
 
   if (useCache) {
     try {
-      const list: QueryDatabaseResponse = JSON.parse(await readFile(cacheFile, 'utf8'))
+      const list: QueryDatabaseResponseEx = JSON.parse(await readFile(cacheFile, 'utf8'))
       if (!isEmpty(list)) {
         return list
       }
@@ -176,26 +231,10 @@ export const FetchDatabase = async (database_id: string, limit?: number): Promis
   }
 
   while (true) {
-    const res: QueryDatabaseResponse = await notion.databases.query({
-      database_id,
-      filter: {
-        property: 'Published',
-        checkbox: {
-          equals: true,
-        },
-      },
-      sorts: [
-        {
-          property: 'Date',
-          direction: 'descending',
-        },
-      ],
-      start_cursor: cursor,
-      page_size: limit || 100,
-    })
+    const res: QueryDatabaseResponse = await notion.databases.query(params)
 
     if (allres === undefined) {
-      allres = res
+      allres = res as QueryDatabaseResponseEx
     } else {
       allres.results.push(...res.results)
     }
@@ -206,6 +245,23 @@ export const FetchDatabase = async (database_id: string, limit?: number): Promis
 
     cursor = res.next_cursor
   }
+  
+  for (const result of allres.results) {
+    result.property_items = []
+    for (const [k, v] of Object.entries(result.properties)) {
+      const page_id = result.id
+      const property_id = v.id
+      const props = await notion.pages.properties.retrieve({ page_id, property_id })
+      result.property_items.push(props)
+    }
+  }
+
+  const meta = await notion.databases.retrieve({ database_id }) as GetDatabaseResponseEx
+  if ('cover' in meta && meta.cover !== null) {
+    const imageUrl = (meta.cover.type === 'external') ? meta.cover.external.url : meta.cover.file.url
+    meta.cover.src = await saveImage(imageUrl)
+  }
+  allres.meta = meta
 
   if (useCache) {
     await writeFile(cacheFile, JSON.stringify(allres), 'utf8').catch(() => {})
@@ -230,6 +286,23 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
   }
 
   let page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
+
+  if ('properties' in page) {
+    let list: undefined|GetPagePropertyResponse = undefined
+    for (const [k, v] of Object.entries(page.properties)) {
+      const property_id = v.id
+      const res = await notion.pages.properties.retrieve({ page_id, property_id })
+      if (res.object !== 'list') {
+        continue
+      }
+      if (list === undefined) {
+        list = res
+      } else {
+        list.results.push(...res.results)
+      }
+    }
+    page.meta = list
+  }
 
   if (useCache) {
     if (page.cover !== null) {
@@ -292,6 +365,9 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
         } else if (block.type === 'child_page' && block.child_page !== undefined) {
           block.page = await FetchPage(block.id)
           block.children = await FetchBlocks(block.id)
+        } else if (block.type === 'child_database' && block.child_database !== undefined) {
+          const database_id = block.id
+          block.database = await notion.databases.retrieve({ database_id })
         } else if (block.type === 'bookmark' && block.bookmark !== undefined) {
           block.bookmark.site = await getHtmlMeta(block.bookmark.url)
         } else if (block.type === 'image' && block.image !== undefined) {
@@ -309,12 +385,4 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
   }
 
   return list
-}
-
-export const FetchRetrieveDatabase = async (database_id: string) => {
-  const res: GetDatabaseResponse = await notion.databases.retrieve({ database_id })
-}
-
-export const FetchRetrieveUser = async (user_id: string) => {
-  const res: GetUserResponse = await notion.users.retrieve({ user_id })
 }
