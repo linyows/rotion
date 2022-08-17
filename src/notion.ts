@@ -11,6 +11,7 @@ import fs from 'fs'
 import https from 'https'
 import path from 'path'
 import url from 'url'
+import crypto from 'crypto'
 import { promisify } from 'util'
 import type {
   QueryDatabaseResponse,
@@ -52,6 +53,12 @@ const notion = new Client({
 
 const isEmpty = (obj: Object) => {
   return !Object.keys(obj).length
+}
+
+const atoh = (a: string): string => {
+  const shasum = crypto.createHash('sha1')
+  shasum.update(a)
+  return shasum.digest('hex')
 }
 
 const getHtmlMeta = async (url: string): Promise<{ title: string, desc: string, image: string }> => {
