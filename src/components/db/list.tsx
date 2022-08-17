@@ -6,6 +6,7 @@ import type {
   DBProperties,
 } from '../../types'
 import Handler from './handler'
+import { getLinkPathAndLinkKey } from '../lib/linkpath'
 
 export type DBListProps = {
   keys: string[]
@@ -14,15 +15,6 @@ export type DBListProps = {
 }
 
 export const DBList: React.FC<DBListProps> = ({ keys, db, link }) => {
-  const getLinkPathAndLinkKey = (link: string): [string, string] => {
-    const linkArray = link.split('[')
-    if (linkArray.length !== 2) {
-      console.log(`link format is wrong, example: /blog/path/[slug]`)
-      return ['', '']
-    }
-    return [linkArray[0], linkArray[1].split(']')[0]]
-  }
-
   const getSlug = (key: string, page: GetPageResponse): string => {
     if (!('properties' in page)) {
       return 'not-found-properties'
