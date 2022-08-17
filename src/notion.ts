@@ -69,12 +69,21 @@ const getHtmlMeta = async (url: string): Promise<{ title: string, desc: string, 
   }
   const body = await res.text()
 
+  const ogTitleRegex = /<meta\s+property="og:title"\s+content="(.*?)">/
+  const ogDescRegex = /<meta\s+property="og:description"\s+content="(.*?)">/
+  const ogImageRegex = /<meta\s+property="og:image"\s+content="(.*?)">/
   const titleRegex = /<title>(.*?)<\/title>/
   const descRegex = /<meta\s+name="description"\s+content="(.*?)">/
-  const imageRegex = /<meta\s+property="og:image"\s+content="(.*?)">/
-  const titleMatched = body.match(titleRegex)
-  const descMatched = body.match(descRegex)
-  const imageMatched = body.match(imageRegex)
+
+  let titleMatched = body.match(ogTitleRegex)
+  if (!titleMatched) {
+    titleMatched = body.match(titleRegex)
+  }
+  let descMatched = body.match(ogDescRegex)
+  if (!descMatched) {
+    descMatched = body.match(descRegex)
+  }
+  const imageMatched = body.match(ogImageRegex)
 
   const title = titleMatched ? titleMatched[1] : 'unknown'
   const desc = descMatched ? descMatched[1] : 'unknown'
