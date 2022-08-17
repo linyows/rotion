@@ -31,9 +31,10 @@ export const blockType = {
 
 export type HandlerProps = {
   block: BlockObjectResponse
+  link?: string
 }
 
-export const Handler = ({ block }: HandlerProps): JSX.Element | undefined => {
+export const Handler = ({ block, link }: HandlerProps): JSX.Element | undefined => {
   switch (block.type) {
     case 'heading_1':
     case 'heading_2':

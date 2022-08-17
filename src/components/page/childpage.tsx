@@ -1,27 +1,38 @@
 import React from 'react'
 import Link from 'next/link'
+import { getLinkPathAndLinkKey } from '../lib/linkpath'
 import type {
   ChildPageBlockObjectResponseEx,
 } from '../../types'
 
 export type ChildpageBlockProps = {
   block: ChildPageBlockObjectResponseEx
+  link?: string
 }
 
-const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block }) => {
+const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block, link }) => {
   const icon = block.page.icon.type === 'emoji' ? block.page.icon.emoji : ''
   const title = block.child_page.title
+  const [path, slugKey] = getLinkPathAndLinkKey(link || '')
+  const file = slugKey === 'id' ? block.page.id : encodeURIComponent(title.toLowerCase())
   return (
     <div className="childpage">
       <span className="childpage-icon">
         {icon}
       </span>
       <div>
-        <Link href={`/${encodeURIComponent(title.toLowerCase())}`}>
-          <a className="childpage-anchor">
+        {link &&
+          <Link href={`${path}${file}`}>
+            <a className="childpage-anchor">
+              {title}
+            </a>
+          </Link>
+        }
+        {!link &&
+          <span className="childpage-title">
             {title}
-          </a>
-        </Link>
+          </span>
+        }
       </div>
       <style jsx>{`
         .childpage {

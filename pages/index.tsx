@@ -51,7 +51,7 @@ const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
         {title && TextObject({ textObject: title })}
       </Header>
       <div className="page">
-        {Blocks({ blocks })}
+        {Blocks({ blocks, link: '/[title]' })}
       </div>
       <style jsx>{`
         .page {
