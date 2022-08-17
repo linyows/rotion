@@ -47,6 +47,9 @@ const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block, link }) => {
           display: inline;
           text-decoration: none;
         }
+        .childpage-title {
+          display: inline;
+        }
       `}</style>
     </div>
   )

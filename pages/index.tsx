@@ -1,6 +1,4 @@
 import type { GetStaticProps, NextPage } from 'next'
-import Link from 'next/link'
-//import Image from 'next/image'
 
 import {
   FetchBlocks,

@@ -58,6 +58,7 @@ export const DBList: React.FC<DBListProps> = ({ keys, db, link }) => {
       return false
     })
     const slug = getSlug(slugKey, page)
+
     return Handler({ name, items, path, slug })
   }
 

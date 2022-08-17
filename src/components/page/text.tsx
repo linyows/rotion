@@ -216,8 +216,8 @@ export const TextBlock: React.FC<TextBlockProps> = ({ tag, block }) => {
   return (
     <>
       <CustomTag className={`text-${tag}`}>
-        {block.map((textObject, i) => (
-          <TextObject textObject={textObject} key={`${i}`} />
+        {block.map((v, i) => (
+          <TextObject textObject={v} key={`${i}`} />
         ))}
       </CustomTag>
       <style jsx>{`
