@@ -22,6 +22,7 @@ import type {
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
   ImageBlockObjectResponseEx,
+  GetDatabaseResponseEx,
 } from './types'
 
 // @ts-ignore
@@ -219,6 +220,13 @@ export const FetchDatabase = async (database_id: string, limit?: number): Promis
       result.property_items.push(props)
     }
   }
+
+  const meta = await notion.databases.retrieve({ database_id }) as GetDatabaseResponseEx
+  if ('cover' in meta && meta.cover !== null) {
+    const imageUrl = (meta.cover.type === 'external') ? meta.cover.external.url : meta.cover.file.url
+    meta.cover.src = await saveImage(imageUrl)
+  }
+  allres.meta = meta
 
   if (useCache) {
     await writeFile(cacheFile, JSON.stringify(allres), 'utf8').catch(() => {})
