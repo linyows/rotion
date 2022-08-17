@@ -351,11 +351,3 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
 
   return list
 }
-
-export const FetchRetrieveDatabase = async (database_id: string) => {
-  const res: GetDatabaseResponse = await notion.databases.retrieve({ database_id })
-}
-
-export const FetchRetrieveUser = async (user_id: string) => {
-  const res: GetUserResponse = await notion.users.retrieve({ user_id })
-}
