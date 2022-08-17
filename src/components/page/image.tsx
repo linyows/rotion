@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextObject } from './text'
+import TextBlock from './text'
 import type {
   ImageBlockObjectResponseEx,
 } from '../../types'
@@ -9,17 +9,13 @@ export type ImageBlockProps = {
 }
 
 export const ImageBlock: React.FC<ImageBlockProps> = ({ block }) => {
-  const captions = block.image.caption?.map((v, i) => {
-    return TextObject({ textObject: v, key: `${i}` })
-  })
-
   return (
     <div className="image-block">
       <div className="image-inner-block">
         <img className="image" src={block.image?.src} alt="" />
       </div>
       <div className="image-caption">
-        {captions}
+        {TextBlock({ tag: 'span', block: block.image.caption })}
       </div>
       <style jsx>{`
         .image {

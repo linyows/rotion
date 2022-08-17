@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextObject } from './text'
+import TextBlock from './text'
 import type {
   BookmarkBlockObjectResponseEx,
 } from '../../types'
@@ -13,9 +13,6 @@ const BookmarkBlock: React.FC<BookmarkBlockProps> = ({ block }) => {
     return <></>
   }
 
-  const captions = block.bookmark.caption.map((v, i) => {
-    return TextObject({ textObject: v, key: `${i}` })
-  })
   const jump = () => window.open(block.bookmark?.url, '_blank', 'noreferrer')
   const { title, desc, icon, image } = block.bookmark.site
   const url = block.bookmark.url
@@ -40,7 +37,7 @@ const BookmarkBlock: React.FC<BookmarkBlockProps> = ({ block }) => {
         </div>
       </div>
       <div className="bookmark-caption">
-        {captions}
+        {TextBlock({ tag: 'span', block: block.bookmark.caption })}
       </div>
       <style jsx>{`
         .bookmark {
