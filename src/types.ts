@@ -228,7 +228,7 @@ export type GetPageResponseEx = GetPageResponse & {
     | { src: string, type: "emoji"; emoji: EmojiRequest }
     | { src: string, type: "external", external: { url: string, expiry_time: string } }
     | { src: string, type: "file", file: { url: string, expiry_time: string } }
-  list?: GetPagePropertyResponse
+  meta?: GetPagePropertyResponse
 }
 
 export type DBPageBase = {

@@ -23,8 +23,8 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const id = process.env.NOTION_TESTPAGE_ID as string
   const page = await FetchPage(id)
   let title: null|RichTextItemResponse = null
-  if ('list' in page && page.list?.object == 'list') {
-    const obj = page.list?.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
+  if ('meta' in page && page.meta?.object == 'list') {
+    const obj = page.meta?.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
     title = obj.title
   }
   const icon = ('emoji' in page.icon) ? page.icon.emoji : ''

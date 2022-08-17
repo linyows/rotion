@@ -266,7 +266,7 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
         list.results.push(...res.results)
       }
     }
-    page.list = list
+    page.meta = list
   }
 
   if (useCache) {
