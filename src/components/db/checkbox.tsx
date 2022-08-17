@@ -1,6 +1,10 @@
 import React from 'react'
 
-export const DBCheckboxField: React.FC<{ payload: boolean }> = ({ payload }) => {
+export type DBCheckboxProps = {
+  payload: boolean
+}
+
+export const DBCheckboxField: React.FC<DBCheckboxProps> = ({ payload }) => {
   return (
     <div>
       {payload}

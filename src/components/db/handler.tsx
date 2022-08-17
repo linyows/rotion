@@ -1,7 +1,6 @@
 import React from 'react'
 import type {
   GetPagePropertyResponse,
-  RichTextItemResponse,
   TitlePropertyItemObjectResponse,
 } from '../../types'
 
@@ -12,14 +11,14 @@ import DBMultiSelectField from './multiselect'
 import DBUrlField from './url'
 import DBCheckboxField from './checkbox'
 
-export type DBFieldProps = {
+export type HandlerProps = {
   name: string
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
 }
 
-export const DBField = ({ name, items, path, slug }: DBFieldProps) => {
+export const Handler = ({ name, items, path, slug }: HandlerProps) => {
   if (items === undefined) {
     return <></>
   }
@@ -84,4 +83,4 @@ export const DBField = ({ name, items, path, slug }: DBFieldProps) => {
   }
 }
 
-export default DBField
+export default Handler

@@ -8,13 +8,13 @@ export const DBDateField: React.FC<{ payload: DateResponse | null }> = ({ payloa
       <style jsx>{`
         .date {
           white-space: nowrap;
-          font-size: var(--fontSize-0);
-          font-family: var(--fontFamily-sans);
+          font-size: .85rem;
           display: flex;
           align-items: center;
           margin-left: 14px;
           margin-right: 0px;
           min-width: 20px;
+          color: #999;
         }
       `}</style>
     </div>

@@ -12,9 +12,9 @@ export type MultiSelectProps = {
 export const DBMultiSelectField: React.FC<MultiSelectProps> = ({ payload, path }) => {
   return (
     <>
-      <ul>
+      <ul className="multiselect">
         {payload.multi_select.map(f => (
-          <li key={f.id} className={f.color}>
+          <li key={f.id} className={`multiselect-li ${f.color}`}>
             <Link href={`${path}tags/${encodeURIComponent(f.name)}`}>
               <a className="tag-anchor">
                 {f.name}
@@ -24,7 +24,7 @@ export const DBMultiSelectField: React.FC<MultiSelectProps> = ({ payload, path }
         ))}
       </ul>
       <style jsx>{`
-        ul {
+        .multiselect {
           list-style-type: none;
           display: flex;
           flex-shrink: 0;
@@ -36,15 +36,14 @@ export const DBMultiSelectField: React.FC<MultiSelectProps> = ({ payload, path }
           margin-left: 14px;
           text-overflow: ellipsis;
         }
-        li {
-          font-family: var(--fontFamily-sans);
-          font-size: var(--fontSize-0);
+        .multiselect-li {
+          font-size: .85rem;
           display: flex;
           align-items: center;
           flex-shrink: 0;
           min-width: 0px;
           border-radius: 3px;
-          padding: var(--spacing-1);
+          padding: 0;
           color: rgb(24, 51, 71);
           background: rgb(211, 229, 239) none repeat scroll 0% 0%;
           margin: 0px 6px 0px 0px;
@@ -94,6 +93,7 @@ export const DBMultiSelectField: React.FC<MultiSelectProps> = ({ payload, path }
           text-decoration: none;
           color: inherit;
           cursor: pointer;
+          padding: 0 10px;
         }
       `}</style>
     </>

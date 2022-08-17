@@ -5,7 +5,7 @@ import type {
   PageObjectResponseEx,
   DBProperties,
 } from '../../types'
-import DBField from './field'
+import Handler from './handler'
 
 export type DBListProps = {
   keys: string[]
@@ -66,7 +66,7 @@ export const DBList: React.FC<DBListProps> = ({ keys, db, link }) => {
       return false
     })
     const slug = getSlug(slugKey, page)
-    return DBField({ name, items, path, slug })
+    return Handler({ name, items, path, slug })
   }
 
   return (
@@ -94,7 +94,7 @@ export const DBList: React.FC<DBListProps> = ({ keys, db, link }) => {
           overflow: hidden;
         }
         .record:hover {
-          background-color: #DDD;
+          background-color: #f5f5f5;
         }
         .spacer {
           width: 100%;

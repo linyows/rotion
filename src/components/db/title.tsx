@@ -38,8 +38,6 @@ export const DBTitleField: React.FC<DBTitleProps> = ({ payload, path, slug }) =>
       <style jsx>{`
         .title {
           white-space: nowrap;
-          font-size: var(--fontSize-1);
-          font-family: var(--fontFamily-sans);
           display: block;
           max-width: 500px;
           overflow: hidden;
