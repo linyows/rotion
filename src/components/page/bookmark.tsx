@@ -17,23 +17,26 @@ const BookmarkBlock: React.FC<BookmarkBlockProps> = ({ block }) => {
     return TextObject({ textObject: v, key: `${i}` })
   })
   const jump = () => window.open(block.bookmark?.url, '_blank', 'noreferrer')
+  const { title, desc, icon, image } = block.bookmark.site
+  const url = block.bookmark.url
 
   return (
     <div className="bookmark">
       <div className="bookmark-inner" onClick={jump}>
         <div className="bookmark-text">
           <div className="site-title">
-            {block.bookmark.site.title}
+            {title}
           </div>
           <div className="site-desc">
-            {block.bookmark.site.desc}
+            {desc}
           </div>
           <div className="site-url">
-            {block.bookmark.url}
+            <img className="favicon" src={icon} width="16px" alt={`${title} icon`} />
+            {url}
           </div>
         </div>
         <div className="bookmark-image">
-          <img src={block.bookmark.site.image} width="200px" alt={`${block.bookmark.site.title} image`} />
+          <img src={image} width="200px" alt={`${title} image`} />
         </div>
       </div>
       <div className="bookmark-caption">
@@ -73,12 +76,21 @@ const BookmarkBlock: React.FC<BookmarkBlockProps> = ({ block }) => {
         }
         .site-desc {
           color: #999;
+          line-height: 1;
+          font-size: .65rem;
+          padding-top: .1rem;
         }
         .site-url {
           position: absolute;
           left: 1rem;
           bottom: .7rem;
           font-size: .7rem;
+        }
+        .favicon {
+          display: inline;
+          vertical-align: bottom;
+          margin-right: 10px;
+          margin-bottom: 1px;
         }
       `}</style>
     </div>

@@ -139,6 +139,7 @@ export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & {
       title: string
       desc: string
       image: string
+      icon: string
     }
   }
 }

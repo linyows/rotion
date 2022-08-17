@@ -61,7 +61,7 @@ const atoh = (a: string): string => {
   return shasum.digest('hex')
 }
 
-const getHtmlMeta = async (url: string): Promise<{ title: string, desc: string, image: string }> => {
+const getHtmlMeta = async (url: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
   const res = await fetch(url)
   if (!res.ok) {
     console.log('fetch api error:', url, res)
@@ -74,6 +74,7 @@ const getHtmlMeta = async (url: string): Promise<{ title: string, desc: string, 
   const ogImageRegex = /<meta\s+property="og:image"\s+content="(.*?)">/
   const titleRegex = /<title>(.*?)<\/title>/
   const descRegex = /<meta\s+name="description"\s+content="(.*?)">/
+  const iconRegex = /<link\s+href="(.*?)"\s+rel="icon"\s?\/?>|<link\s+rel="icon"\s+href="(.*?)"\s?\/?>/
 
   let titleMatched = body.match(ogTitleRegex)
   if (!titleMatched) {
@@ -84,12 +85,15 @@ const getHtmlMeta = async (url: string): Promise<{ title: string, desc: string, 
     descMatched = body.match(descRegex)
   }
   const imageMatched = body.match(ogImageRegex)
+  const iconMatched = body.match(iconRegex)
 
   const title = titleMatched ? titleMatched[1] : 'unknown'
   const desc = descMatched ? descMatched[1] : 'unknown'
   const imageUrl = imageMatched ? imageMatched[1] : ''
   const image = imageUrl !== '' ? await saveImage(imageUrl) : ''
-  return { title, desc, image }
+  const iconUrl = iconMatched ? (iconMatched[1] || iconMatched[2]) : ''
+  const icon = iconUrl !== '' ? await saveImage(iconUrl) : ''
+  return { title, desc, image, icon }
 }
 
 const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> => {
