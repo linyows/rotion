@@ -23,16 +23,14 @@ export const LinkObject: React.FC<TextProps> = ({ textObject, children }) => {
 
 const UserMention: React.FC = ({ children }) => {
   return (
-    <>
-      <span className="mention-user">
-        {children}
-      </span>
+    <span className="mention-user">
+      {children}
       <style jsx>{`
         .mention-user {
           color: #999;
         }
       `}</style>
-    </>
+    </span>
   )
 }
 
@@ -53,11 +51,9 @@ export const MentionObject: React.FC<TextProps> = ({ textObject, children }) => 
       }
 
       return (
-        <>
-          <span className="mention">
-            {Icon && <Icon />}
-            {children}
-          </span>
+        <span className="mention">
+          {Icon && <Icon />}
+          {children}
           <style jsx>{`
             .mention {
               padding: .1rem .2rem .2rem;
@@ -67,7 +63,7 @@ export const MentionObject: React.FC<TextProps> = ({ textObject, children }) => 
               background: rgba(135,131,120,0.15);
             }
           `}</style>
-        </>
+        </span>
       )
 
     } else if (textObject.mention.type === 'user') {
