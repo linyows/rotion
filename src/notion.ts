@@ -176,10 +176,12 @@ const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<str
 }
 
 const saveImage = async (imageUrl: string): Promise<string> => {
-  const basename = path.basename(imageUrl.split('?').shift() || '')
+  const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
+  const basename = path.basename(urlWithoutQuerystring)
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
-  const filePath = `/images/${basename}`
+  const prefix = atoh(urlWithoutQuerystring)
+  const filePath = `/images/${prefix}-${basename}`
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(`./public${filePath}`))
