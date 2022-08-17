@@ -4,10 +4,8 @@ import Link from 'next/link'
 
 import {
   FetchBlocks,
-  FetchDatabase,
   FetchPage,
   ListBlockChildrenResponseEx,
-  PropertyItemObjectResponse,
   RichTextItemResponse,
   TitlePropertyItemObjectResponse,
 } from '../src'
@@ -15,6 +13,7 @@ import {
   Blocks,
   TextObject,
 } from '../src/components'
+import Header from '../components/header'
 
 type Props = {
   title: null|RichTextItemResponse
@@ -48,45 +47,13 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
   return (
     <>
-      <header className="header">
-        <div className="header-inner">
-          <div className="icon">
-            {icon}
-          </div>
-          <h1 className="title">
-            {title && TextObject({ textObject: title })}
-          </h1>
-        </div>
-      </header>
+      <Header icon={icon} image={image}>
+        {title && TextObject({ textObject: title })}
+      </Header>
       <div className="page">
         {Blocks({ blocks })}
       </div>
       <style jsx>{`
-        .title {
-          padding: 0;
-          margin: 0;
-          font-size: 2.2rem;
-        }
-        .header {
-          width: 100%;
-          height: 434px;
-          margin: 0 0 160px;
-          position: relative;
-          background-size: cover;
-          background-image: url("${image}");
-          background-position: left 40%;
-          background-repeat: no-repeat;
-          background-color: #eee;
-        }
-        .header-inner {
-          font-size: 1rem;
-          max-width: 1000px;
-          margin: 0 auto;
-          padding: 378px 1.5rem 0;
-        }
-        .icon {
-          font-size: 4rem;
-        }
         .page {
           max-width: 1000px;
           margin: 2rem auto;
