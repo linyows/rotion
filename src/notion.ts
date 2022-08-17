@@ -56,6 +56,10 @@ const isEmpty = (obj: Object) => {
 
 const getHtmlMeta = async (url: string): Promise<{ title: string, desc: string, image: string }> => {
   const res = await fetch(url)
+  if (!res.ok) {
+    console.log('fetch api error:', url, res)
+    return { title: '', desc: '', image: '', icon: '' }
+  }
   const body = await res.text()
 
   const titleRegex = /<title>(.*?)<\/title>/
@@ -78,11 +82,17 @@ const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> 
   }
   const url = block.video?.external.url as string
   if (url.includes('youtube.com')) {
-    const res = await fetch(`https://www.youtube.com/oembed?url=${url}`)
+    const reqUrl = `https://www.youtube.com/oembed?url=${url}`
+    const res = await fetch(reqUrl)
+    if (!res.ok) {
+      console.log('fetch api error:', reqUrl, res)
+      return ''
+    }
     const json = await res.json()
     return json.html
       .replace(/width=\"\d+\"/, 'width="100%"')
       .replace(/height=\"\d+\"/, 'height="100%"')
+
   } else {
     return ''
   }
@@ -94,16 +104,28 @@ const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> 
   } else if (block.embed.url.includes('twitter.com')) {
     const src = block.embed?.url || ''
     const tweetId = path.basename(src.split('?').shift() || '')
-    const res = await fetch(`https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`)
+    const reqUrl = `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
+    const res = await fetch(reqUrl)
+    if (!res.ok) {
+      console.log('fetch api error:', reqUrl, res)
+      return ''
+    }
     const json = await res.json()
     return json.html
+
   } else if (block.embed.url.includes('speakerdeck.com')) {
     const url = block.embed?.url as string
-    const res = await fetch(`https://speakerdeck.com/oembed.json?url=${url}`)
+    const reqUrl = `https://speakerdeck.com/oembed.json?url=${url}`
+    const res = await fetch(reqUrl)
+    if (!res.ok) {
+      console.log('fetch api error:', reqUrl, res)
+      return ''
+    }
     const json = await res.json()
     return json.html
       .replace(/width=\"\d+\"/, 'width="100%"')
       .replace(/height=\"\d+\"/, 'height="100%"')
+
   } else {
     return ''
   }
