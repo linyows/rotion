@@ -14,6 +14,7 @@ import url from 'url'
 import crypto from 'crypto'
 import { promisify } from 'util'
 import type {
+  QueryDatabaseParameters,
   QueryDatabaseResponse,
   QueryDatabaseResponseEx,
   ListBlockChildrenResponseEx,
@@ -206,7 +207,13 @@ const saveImage = async (imageUrl: string): Promise<string> => {
   return filePath
 }
 
-export const FetchDatabase = async (database_id: string, limit?: number): Promise<QueryDatabaseResponseEx> => {
+export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<QueryDatabaseResponseEx> => {
+  const { database_id } = params
+  if ('page_size' in params) {
+    params.page_size = 100
+  }
+  const limit = params.page_size
+
   const useCache = process.env.NOTION_CACHE === 'true'
   const cacheFile = `${cacheDir}/notion.databases.query-${database_id}${limit !== undefined ? `.limit-${limit}` : ''}`
   let cursor: undefined|string = undefined
@@ -224,23 +231,7 @@ export const FetchDatabase = async (database_id: string, limit?: number): Promis
   }
 
   while (true) {
-    const res: QueryDatabaseResponse = await notion.databases.query({
-      database_id,
-      filter: {
-        property: 'Published',
-        checkbox: {
-          equals: true,
-        },
-      },
-      sorts: [
-        {
-          property: 'Date',
-          direction: 'descending',
-        },
-      ],
-      start_cursor: cursor,
-      page_size: limit || 100,
-    })
+    const res: QueryDatabaseResponse = await notion.databases.query(params)
 
     if (allres === undefined) {
       allres = res as QueryDatabaseResponseEx

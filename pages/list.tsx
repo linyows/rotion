@@ -3,6 +3,7 @@ import {
   QueryDatabaseResponseEx,
   FetchDatabase,
   RichTextItemResponse,
+  QueryDatabaseParameters,
 } from '../src'
 import {
   DBList,
@@ -18,8 +19,23 @@ type Props = {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  const id = process.env.NOTION_TESTDB_ID as string
-  const db = await FetchDatabase(id)
+  const params = {
+    database_id: process.env.NOTION_TESTDB_ID as string,
+    filter: {
+      property: 'Published',
+      checkbox: {
+        equals: true
+      },
+    },
+    sorts: [
+      {
+        property: 'Date',
+        direction: 'descending'
+      },
+    ]
+  } as QueryDatabaseParameters
+  const db = await FetchDatabase(params)
+
   const title = ('title' in db.meta) ? db.meta.title : null
   const icon = ('icon' in db.meta && db.meta.icon !== null && db.meta.icon.type === 'emoji') ?  db.meta.icon.emoji : ''
   const image = ('cover' in db.meta && db.meta.cover !== null && db.meta.cover.type === 'external') ? db.meta.cover.external.url : ''
