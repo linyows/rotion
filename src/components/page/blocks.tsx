@@ -1,6 +1,6 @@
 import React from 'react'
 import List from './list'
-import Handler from './handler'
+import BlockHandler from './handler'
 import type {
   ListBlockChildrenResponseEx,
   BlockObjectResponse,
@@ -47,7 +47,7 @@ export const Blocks = ({ blocks, link }: BlocksProps): JSX.Element[] => {
         list.push(block)
       }
     } else {
-      const elem = Handler({ block, link })
+      const elem = BlockHandler({ block, link })
       if (elem !== undefined) {
         children.push(elem)
       }

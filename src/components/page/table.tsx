@@ -10,7 +10,7 @@ export type TableBlockProps = {
   block: TableBlockObjectResponseEx
 }
 
-export type TrProps = {
+export type TrProps = React.PropsWithChildren & {
   key: string
 }
 

@@ -3,7 +3,7 @@ import path from 'path'
 import type { RichTextItemResponse, BlockObjectResponse } from '../../types'
 import { GithubIcon, SlackIcon, FigmaIcon } from './icons'
 
-type TextProps = {
+type TextProps = React.PropsWithChildren & {
   textObject: RichTextItemResponse
   key?: string
 }
@@ -21,7 +21,7 @@ export const LinkObject: React.FC<TextProps> = ({ textObject, children }) => {
   )
 }
 
-const UserMention: React.FC = ({ children }) => {
+const UserMention: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <span className="mention-user">
       {children}

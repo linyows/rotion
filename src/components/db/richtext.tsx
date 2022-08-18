@@ -2,6 +2,7 @@ import React from 'react'
 import type {
   RichTextPropertyItemObjectResponse,
 } from '../../types'
+import TextBlock from '../page/text'
 
 export type RichTextProps = {
   payload: RichTextPropertyItemObjectResponse
@@ -10,7 +11,7 @@ export type RichTextProps = {
 export const DBRichTextField: React.FC<RichTextProps> = ({ payload }) => {
   return (
     <div>
-      {payload.rich_text}
+      {TextBlock({ tag: 'span', block: [payload.rich_text]})}
     </div>
   )
 }

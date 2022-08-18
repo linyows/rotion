@@ -11,14 +11,14 @@ import DBMultiSelectField from './multiselect'
 import DBUrlField from './url'
 import DBCheckboxField from './checkbox'
 
-export type HandlerProps = {
+export type ListHandlerProps = {
   name: string
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
 }
 
-export const Handler = ({ name, items, path, slug }: HandlerProps) => {
+export const ListHandler = ({ name, items, path, slug }: ListHandlerProps) => {
   if (items === undefined) {
     return <></>
   }
@@ -83,4 +83,4 @@ export const Handler = ({ name, items, path, slug }: HandlerProps) => {
   }
 }
 
-export default Handler
+export default ListHandler

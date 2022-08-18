@@ -5,10 +5,10 @@ import type {
   PageObjectResponseEx,
   DBProperties,
 } from '../../types'
-import Handler from './handler'
+import ListHandler from './handler'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
 
-export type DBListProps = {
+export type DBListProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
   link: string
@@ -59,7 +59,7 @@ export const DBList: React.FC<DBListProps> = ({ keys, db, link }) => {
     })
     const slug = getSlug(slugKey, page)
 
-    return Handler({ name, items, path, slug })
+    return ListHandler({ name, items, path, slug })
   }
 
   return (

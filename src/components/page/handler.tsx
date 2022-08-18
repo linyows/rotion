@@ -29,12 +29,12 @@ export const blockType = {
   quote: 'blockquote',
 }
 
-export type HandlerProps = {
+export type BlockHandlerProps = {
   block: BlockObjectResponse
   link?: string
 }
 
-export const Handler = ({ block, link }: HandlerProps): JSX.Element | undefined => {
+export const BlockHandler = ({ block, link }: BlockHandlerProps): JSX.Element | undefined => {
   switch (block.type) {
     case 'heading_1':
     case 'heading_2':
@@ -108,4 +108,4 @@ export const Handler = ({ block, link }: HandlerProps): JSX.Element | undefined 
   }
 }
 
-export default Handler
+export default BlockHandler

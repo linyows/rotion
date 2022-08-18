@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TextBlock from './text'
 import type {
   ToggleBlockObjectResponseEx,
@@ -35,7 +35,7 @@ const Triangle: React.FC<Triangle> = ({ open }) => {
 }
 
 const ToggleBlock: React.FC<ToggleBlockProps> = ({ block }) => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
   const onClick = () => setOpen(!open)
   const text = block.children.results.map((vv, i) => {
     const v = vv as ParagraphBlockObjectResponse
