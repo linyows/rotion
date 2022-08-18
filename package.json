@@ -4,8 +4,8 @@
   "license": "MIT",
   "repository": "linyows/notionate",
   "description": "This is React components that uses the Notion API to display the Notion's database and page.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/server.js",
+  "types": "dist/server.d.ts",
   "files": [
     "LICENSE",
     "README.md",
@@ -16,7 +16,9 @@
     "url": "https://tomohisaoda.com"
   },
   "scripts": {
-    "build": "yarn clean && babel src -D -d dist --extensions '.ts,.tsx' --config-file ./notionate.babelrc.json && tsc",
+    "build": "yarn clean && yarn transpile && yarn types",
+    "transpile": "babel src -D -d dist --extensions '.ts,.tsx' --config-file ./notionate.babelrc.json",
+    "types": "tsc --project ./notionate.tsconfig.json",
     "esm": "tsc --module es6 --outdir ./dist/esm/ --project ./notionate.tsconfig.json",
     "cjs": "tsc --module commonjs --outdir ./dist/ --project ./notionate.tsconfig.json",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
@@ -26,13 +28,13 @@
     "dev": "next dev"
   },
   "peerDependencies": {
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "dependencies": {
     "@notionhq/client": "^2.1.1",
     "@types/prismjs": "^1.26.0",
-    "babel-plugin-prismjs": "^2.1.0",
     "prismjs": "^1.25.0"
   },
   "devDependencies": {
@@ -41,20 +43,21 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
-    "@types/node": "16.11.6",
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.13",
+    "@types/node": "18.7.6",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@types/styled-jsx": "^3.4.4",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
-    "eslint": "7.32.0",
-    "eslint-config-standard": "^16.0.3",
+    "eslint": "8.22.0",
+    "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.3",
-    "next": "12.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "styled-jsx": "^5.0.0",
     "typescript": "^4.6.2"
   }
