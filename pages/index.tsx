@@ -6,11 +6,11 @@ import {
   ListBlockChildrenResponseEx,
   RichTextItemResponse,
   TitlePropertyItemObjectResponse,
-} from '../src'
+} from '../src/server'
 import {
   Blocks,
   TextObject,
-} from '../src/components'
+} from '../src/client'
 import Header from '../components/header'
 
 type Props = {

@@ -4,11 +4,11 @@ import {
   FetchDatabase,
   RichTextItemResponse,
   QueryDatabaseParameters,
-} from '../src'
+} from '../src/server'
 import {
   DBList,
   TextBlock,
-} from '../src/components'
+} from '../src/client'
 
 type Props = {
   title: null|RichTextItemResponse[]
