@@ -1,6 +1,6 @@
 import React from 'react'
 
-type Props = {
+type Props = React.PropsWithChildren & {
     icon: string
     image: string
 }
