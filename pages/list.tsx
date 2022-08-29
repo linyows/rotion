@@ -8,7 +8,7 @@ import {
 import {
   DBList,
   TextBlock,
-} from '../src/client'
+} from '../src/components'
 
 type Props = {
   title: null|RichTextItemResponse[]

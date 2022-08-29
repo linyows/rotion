@@ -9,8 +9,9 @@ import {
 import {
   Blocks,
   TextObject,
-} from '../src/client'
+} from '../src/components'
 import Header from '../components/header'
+import 'prismjs/themes/prism.css'
 
 type Props = React.PropsWithChildren & {
   title: null|RichTextItemResponse

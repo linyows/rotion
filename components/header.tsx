@@ -27,7 +27,7 @@ const Header: React.FC<Props> = ({ icon, image, children }) => {
           .header {
             width: 100%;
             height: 434px;
-            margin: 0 0 160px;
+            margin: 0 0 80px;
             position: relative;
             background-size: cover;
             background-image: url("${image}");
