@@ -1,12 +1,4 @@
 import { Client } from '@notionhq/client'
-import type {
-  GetDatabaseResponse,
-  GetUserResponse,
-  GetPageResponse,
-  GetSelfResponse,
-  GetPagePropertyResponse,
-  PropertyItemObjectResponse,
-} from '@notionhq/client/build/src/api-endpoints'
 import fs from 'fs'
 import { access, constants, mkdir } from 'node:fs/promises'
 import https from 'https'
@@ -15,13 +7,13 @@ import url from 'url'
 import crypto from 'crypto'
 import { promisify } from 'util'
 import type {
+  GetPageResponse,
+  GetPagePropertyResponse,
   QueryDatabaseParameters,
   QueryDatabaseResponse,
   QueryDatabaseResponseEx,
   ListBlockChildrenResponseEx,
-  BlockObjectResponse,
   GetPageResponseEx,
-  RichTextItemResponse,
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
   ImageBlockObjectResponseEx,
