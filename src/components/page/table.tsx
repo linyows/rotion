@@ -21,48 +21,27 @@ export type ThTdProps = {
 
 const Td: React.FC<ThTdProps> = ({ cell, key }) => {
   return (
-    <td className="table-cell" key={key}>
-      <div className="table-cell-div">
+    <td className="notionate-blocks-table-td" key={key}>
+      <div className="notionate-blocks-table-td-inner">
         <TextObject textObject={cell} />
       </div>
-      <style jsx>{`
-        .table-cell {
-          border: 1px solid #EEE;
-          margin: 0;
-          padding: 0;
-        }
-        .table-cell-div {
-          padding: .2rem .8rem;
-        }
-      `}</style>
     </td>
   )
 }
 
 const Th: React.FC<ThTdProps> = ({ cell, key }) => {
   return (
-    <th className="table-cell" key={key}>
-      <div className="table-cell-div">
+    <th className="notionate-blocks-table-th" key={key}>
+      <div className="notionate-blocks-table-th-inner">
         <TextObject textObject={cell} />
       </div>
-      <style jsx>{`
-        .table-cell {
-          border: 1px solid #EEE;
-          background-color: #F5F5F5;
-          margin: 0;
-          padding: 0;
-        }
-        .table-cell-div {
-          padding: .2rem .8rem;
-        }
-      `}</style>
     </th>
   )
 }
 
 const Tr: React.FC<TrProps> = ({ children, key }) => {
   return (
-    <tr className="table-row" key={key}>
+    <tr className="notionate-blocks-table-tr" key={key}>
       {children}
     </tr>
   )
@@ -99,22 +78,13 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
   })
 
   return (
-    <>
-      <div className="table">
-        <table className="table-table">
-          <tbody>
-            {rows}
-          </tbody>
-        </table>
-      </div>
-      <style jsx>{`
-        .table-table {
-          border-collapse: collapse;
-          border-spacing: 0;
-          font-size: .9rem;
-        }
-      `}</style>
-    </>
+    <div className="notionate-blocks-table">
+      <table className="notionate-blocks-table-table">
+        <tbody>
+          {rows}
+        </tbody>
+      </table>
+    </div>
   )
 }
 

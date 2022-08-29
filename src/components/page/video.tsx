@@ -24,33 +24,18 @@ const VideoBlock: React.FC<VideoBlockProps> = ({ block }) => {
   const html = block.video.html
     .replace('height="100%"', `height="${h}"`)
 
+  const style = {
+    maxWidth: w,
+  }
+
   return (
-    <div className="video">
-      <div className="video-inner">
-        <div className="video-html" dangerouslySetInnerHTML={{ __html: html }} />
-        <div className="video-caption">
-          {TextBlock({ tag: 'span', block: block.video.caption })}
+    <div className="notionate-blocks-video">
+      <div className="notionate-blocks-video-inner" style={style}>
+        <div className="notionate-blocks-video-html" dangerouslySetInnerHTML={{ __html: html }} />
+        <div className="notionate-blocks-video-caption">
+          <TextBlock tag="span" block={block.video.caption} />
         </div>
       </div>
-      <style jsx>{`
-        .video {
-          width: 100%;
-        }
-        .video-inner {
-          max-width: ${w};
-          margin: auto;
-        }
-        .video-html {
-          width: 100%;
-          margin: auto;
-        }
-        .video-caption {
-          margin: .3rem .3rem 0;
-          text-align: left;
-          color: #888;
-          font-size: .95rem;
-        }
-      `}</style>
     </div>
   )
 }

@@ -34,23 +34,6 @@ const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block, link }) => {
           </span>
         }
       </div>
-      <style jsx>{`
-        .childpage {
-          display: grid;
-          width: 100%;
-          grid-template: repeat(1, 1fr) / 1rem 1fr;
-          gap: .8rem;
-        }
-        .childpage-anchor {
-          color: #333;
-          border-bottom: 1px solid #ddd;
-          display: inline;
-          text-decoration: none;
-        }
-        .childpage-title {
-          display: inline;
-        }
-      `}</style>
     </div>
   )
 }

@@ -63,41 +63,17 @@ export const DBList: React.FC<DBListProps> = ({ keys, db, link }) => {
   }
 
   return (
-    <>
+    <div className="notionate">
       {db.results.map((v) => (
-        <div key={v.id} className="record">
+        <div key={v.id} className="notionate-db-list-record">
           {keys.map((name, i) => (
-            <div key={`${v.id}${name}`} className={`${name === 'spacer' ? 'spacer ' : ''}field${i}`}>
+            <div key={`${v.id}${name}`} className={`${name === 'spacer' ? 'notionate-db-list-spacer ' : ''}field${i}`}>
               {dbf(name, v as PageObjectResponseEx)}
             </div>
           ))}
         </div>
       ))}
-      <style jsx>{`
-        .record {
-          display: flex;
-          margin: 4px 0;
-          padding: 4px 0;
-          user-select: none;
-          transition: background 20ms ease-in 0s;
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-          overflow: hidden;
-        }
-        .record:hover {
-          background-color: #f5f5f5;
-        }
-        .spacer {
-          width: 100%;
-          flex-shrink: 10;
-          display: block;
-          margin-left: 14px;
-          border-top: 1px dashed #999;
-        }
-      `}</style>
-    </>
+    </div>
   )
 }
 

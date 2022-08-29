@@ -54,7 +54,11 @@ export const Blocks = ({ blocks, link }: BlocksProps): JSX.Element[] => {
     }
   })
 
-  return children
+  return (
+    <div className="notionate">
+      {children}
+    </div>
+  )
 }
 
 export default Blocks

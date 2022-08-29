@@ -18,8 +18,8 @@ const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, link }) 
   const [path, slugKey] = getLinkPathAndLinkKey(link || '')
   const file = slugKey === 'id' ? block.database.id : encodeURIComponent(plainTitle.toLowerCase())
   return (
-    <div className="childdatabase">
-      <span className="childdatabase-icon">
+    <div className="notionate-blocks-childdatabase">
+      <span>
         {icon}
       </span>
       <div>
@@ -29,20 +29,6 @@ const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, link }) 
           </a>
         </Link>
       </div>
-      <style jsx>{`
-        .childdatabase {
-          display: grid;
-          width: 100%;
-          grid-template: repeat(1, 1fr) / 1rem 1fr;
-          gap: .8rem;
-        }
-        .childdatabase-anchor {
-          color: #333;
-          border-bottom: 1px solid #ddd;
-          display: inline;
-          text-decoration: none;
-        }
-      `}</style>
     </div>
   )
 }

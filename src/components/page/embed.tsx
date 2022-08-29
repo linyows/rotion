@@ -15,27 +15,11 @@ const EmbedBlock: React.FC<EmbedBlockProps> = ({ block }) => {
   }
 
   return (
-    <div className="embed">
-      <div className="embed-inner" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
-      <div className="embed-caption">
-        {TextBlock({ tag: 'span', block: block.embed.caption })}
+    <div className="notionate-blocks-embed">
+      <div className="notionate-blocks-embed-inner" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
+      <div className="notionate-blocks-embed-caption">
+        <TextBlock tag="span" block={block.embed.caption} />
       </div>
-      <style jsx>{`
-        .embed {
-          width: 100%;
-          text-align: center;
-        }
-        .embed-inner {
-          width: 100%;
-          text-align: center;
-        }
-        .embed-caption {
-          margin: .3rem .3rem 0;
-          text-align: left;
-          color: #888;
-          font-size: .95rem;
-        }
-      `}</style>
     </div>
   )
 }

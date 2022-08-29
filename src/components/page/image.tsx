@@ -10,34 +10,13 @@ export type ImageBlockProps = {
 
 export const ImageBlock: React.FC<ImageBlockProps> = ({ block }) => {
   return (
-    <div className="image-block">
-      <div className="image-inner-block">
-        <img className="image" src={block.image?.src} alt="" />
+    <div className="notionate-blocks-image">
+      <div className="notionate-blocks-image-inner">
+        <img className="notionate-blocks-image-img" src={block.image?.src} alt="" />
       </div>
-      <div className="image-caption">
-        {TextBlock({ tag: 'span', block: block.image.caption })}
+      <div className="notionate-blocks-image-caption">
+        <TextBlock tag="span" block={block.image.caption} />
       </div>
-      <style jsx>{`
-        .image {
-          margin-left: auto;
-          margin-right: auto;
-          width: 100%;
-        }
-        .image-caption {
-          margin: .3rem .3rem 0;
-          text-align: left;
-          color: #888;
-          font-size: .95rem;
-        }
-        .image-block {
-          text-align: center;
-          margin: 0;
-          padding: 0 0 .5rem;
-        }
-        .image-inner-block {
-          display: flex;
-        }
-      `}</style>
     </div>
   )
 }
