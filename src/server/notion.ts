@@ -237,6 +237,7 @@ const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<stri
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `${imageDir}/${id}${extname}`
   const filePath = `${docRoot}/${urlPath}`
+  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(filePath))
@@ -254,6 +255,7 @@ const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<str
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `${imageDir}/${idWithKey}${extname}`
   const filePath = `${docRoot}/${urlPath}`
+  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(filePath))
@@ -273,6 +275,7 @@ const saveImage = async (imageUrl: string): Promise<string> => {
   const prefix = atoh(urlWithoutQuerystring)
   const urlPath = `${imageDir}/${prefix}-${basename}`
   const filePath = `${docRoot}/${urlPath}`
+  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(filePath))
@@ -284,6 +287,15 @@ const saveImage = async (imageUrl: string): Promise<string> => {
   return urlPath
 }
 
+const createDirWhenNotfound = async (dir: string): Promise<void> => {
+  try {
+    await access(dir, constants.R_OK | constants.W_OK)
+  } catch {
+    await mkdir(dir, { recursive: true })
+    console.log(`created direcotry: ${dir}`)
+  }
+}
+
 export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<QueryDatabaseResponseEx> => {
   const { database_id } = params
   if ('page_size' in params) {
@@ -292,6 +304,9 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
   const limit = params.page_size
 
   const useCache = process.env.NOTION_CACHE === 'true'
+  if (useCache) {
+    await createDirWhenNotfound(cacheDir)
+  }
   const cacheFile = `${cacheDir}/notion.databases.query-${database_id}${limit !== undefined ? `.limit-${limit}` : ''}`
   let cursor: undefined|string = undefined
   let allres: undefined|QueryDatabaseResponseEx = undefined
@@ -349,6 +364,9 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
 
 export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => {
   const useCache = process.env.NOTION_CACHE === 'true'
+  if (useCache) {
+    await createDirWhenNotfound(cacheDir)
+  }
   const cacheFile = `${cacheDir}/notion.pages.retrieve-${page_id}`
 
   if (useCache) {
@@ -411,6 +429,9 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
 
 export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenResponseEx> => {
   const useCache = process.env.NOTION_CACHE === 'true'
+  if (useCache) {
+    await createDirWhenNotfound(cacheDir)
+  }
   const cacheFile = `${cacheDir}/notion.blocks.children.list-${block_id}`
 
   if (useCache) {
