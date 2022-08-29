@@ -2,7 +2,7 @@ import React from 'react'
 import TextBlock from './text'
 import type {
   ImageBlockObjectResponseEx,
-} from '../../types'
+} from '../../server/types'
 
 export type ImageBlockProps = {
   block: ImageBlockObjectResponseEx

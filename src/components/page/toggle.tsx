@@ -3,7 +3,7 @@ import TextBlock from './text'
 import type {
   ToggleBlockObjectResponseEx,
   ParagraphBlockObjectResponse,
-} from '../../types'
+} from '../../server/types'
 
 export type ToggleBlockProps = {
   block: ToggleBlockObjectResponseEx

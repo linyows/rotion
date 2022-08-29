@@ -2,7 +2,7 @@ import React from 'react'
 import TextBlock from './text'
 import type {
   ToDoBlockObjectResponse,
-} from '../../types'
+} from '../../server/types'
 
 export type TodoBlockProps = {
   block: ToDoBlockObjectResponse

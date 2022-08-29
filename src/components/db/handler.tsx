@@ -2,7 +2,7 @@ import React from 'react'
 import type {
   GetPagePropertyResponse,
   TitlePropertyItemObjectResponse,
-} from '../../types'
+} from '../../server/types'
 
 import DBTitleField from './title'
 import DBDateField from './date'

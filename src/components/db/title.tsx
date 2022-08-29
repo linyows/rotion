@@ -1,9 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import type {
-  RichTextItemResponse,
   TitlePropertyItemObjectResponse,
-} from '../../types'
+} from '../../server/types'
 
 export type DBTitleProps = {
   payload: Array<TitlePropertyItemObjectResponse>

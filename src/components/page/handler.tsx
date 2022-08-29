@@ -14,7 +14,7 @@ import ChildpageBlock from './childpage'
 import ChilddatabaseBlock from './childdatabase'
 import TextBlock, { TextObject } from './text'
 import path from 'path'
-import type { BlockObjectResponse } from '../../types'
+import type { BlockObjectResponse } from '../../server/types'
 import { JSXElementConstructor } from 'react'
 
 export const blockType = {

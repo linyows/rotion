@@ -4,7 +4,7 @@ import BlockHandler from './handler'
 import type {
   ListBlockChildrenResponseEx,
   BlockObjectResponse,
-} from '../../types'
+} from '../../server/types'
 
 export type BlocksProps = {
   blocks: ListBlockChildrenResponseEx

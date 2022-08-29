@@ -3,8 +3,7 @@ import type {
   QueryDatabaseResponseEx,
   GetPageResponse,
   PageObjectResponseEx,
-  DBProperties,
-} from '../../types'
+} from '../../server/types'
 import ListHandler from './handler'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
 

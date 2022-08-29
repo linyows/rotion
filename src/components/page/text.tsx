@@ -1,6 +1,6 @@
 import React from 'react'
 import path from 'path'
-import type { RichTextItemResponse, BlockObjectResponse } from '../../types'
+import type { RichTextItemResponse } from '../../server/types'
 import { GithubIcon, SlackIcon, FigmaIcon } from './icons'
 
 type TextProps = React.PropsWithChildren & {

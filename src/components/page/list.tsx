@@ -1,6 +1,6 @@
 import React from 'react'
 import Handler from './handler'
-import type { BlockObjectResponse } from '../../types'
+import type { BlockObjectResponse } from '../../server/types'
 
 export type ListProps = {
   tag: keyof JSX.IntrinsicElements

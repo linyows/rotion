@@ -2,7 +2,7 @@ import React from 'react'
 import TextBlock from './text'
 import type {
   VideoBlockObjectResponseEx,
-} from '../../types'
+} from '../../server/types'
 
 export type VideoBlockProps = {
   block: VideoBlockObjectResponseEx

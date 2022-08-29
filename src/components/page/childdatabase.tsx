@@ -4,7 +4,7 @@ import { TextBlock } from './text'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
 import type {
   ChildDatabaseBlockObjectResponseEx,
-} from '../../types'
+} from '../../server/types'
 
 export type ChilddatabaseBlockProps = {
   block: ChildDatabaseBlockObjectResponseEx

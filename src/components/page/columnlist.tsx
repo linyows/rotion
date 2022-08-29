@@ -2,7 +2,7 @@ import React from 'react'
 import Blocks from './blocks'
 import type {
   ColumnListBlockObjectResponseEx,
-} from '../../types'
+} from '../../server/types'
 
 export type ColumnlistBlockProps = {
   block: ColumnListBlockObjectResponseEx

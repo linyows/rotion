@@ -4,7 +4,7 @@ import type {
   TableBlockObjectResponseEx,
   TableRowBlockObjectResponse,
   RichTextItemResponse,
-} from '../../types'
+} from '../../server/types'
 
 export type TableBlockProps = {
   block: TableBlockObjectResponseEx

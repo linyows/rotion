@@ -1,8 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import type {
-  MultiSelectPropertyItemObjectResponse,
-} from '../../types'
+  MultiSelectPropertyItemObjectResponse, SelectPropertyResponse,
+} from '../../server/types'
 
 export type MultiSelectProps = {
   payload: MultiSelectPropertyItemObjectResponse

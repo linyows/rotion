@@ -36,7 +36,7 @@ import type {
   CodeBlockObjectResponse,
   RichTextItemResponse,
   TextRichTextItemResponse,
-} from '../../types'
+} from '../../server/types'
 
 export type CodeProps = React.PropsWithChildren & {
   language: string

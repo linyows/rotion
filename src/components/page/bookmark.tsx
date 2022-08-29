@@ -2,7 +2,7 @@ import React from 'react'
 import TextBlock from './text'
 import type {
   BookmarkBlockObjectResponseEx,
-} from '../../types'
+} from '../../server/types'
 
 export type BookmarkBlockProps = {
   block: BookmarkBlockObjectResponseEx

@@ -2,7 +2,7 @@ import React from 'react'
 import { GithubIcon, SlackIcon, FigmaIcon } from './icons'
 import type {
   LinkPreviewBlockObjectResponse,
-} from '../../types'
+} from '../../server/types'
 
 export type LinkpreviewBlockProps = {
   block: LinkPreviewBlockObjectResponse

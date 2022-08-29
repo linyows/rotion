@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
 import type {
   ChildPageBlockObjectResponseEx,
-} from '../../types'
+} from '../../server/types'
 
 export type ChildpageBlockProps = {
   block: ChildPageBlockObjectResponseEx

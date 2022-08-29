@@ -1,5 +1,5 @@
 import React from 'react'
-import type { DateResponse } from '../../types'
+import type { DateResponse } from '../../server/types'
 
 export const DBDateField: React.FC<{ payload: DateResponse | null }> = ({ payload }) => {
   return (
