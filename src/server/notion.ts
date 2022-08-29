@@ -43,19 +43,57 @@ type HttpGetResponse = {
   pipe: Function
   end: Promise<unknown>
 }
-
-type SpeakerdeckOembedResponse = {
-  type: string
+// https://oembed.com/
+type Oembed = {
+  type: 'photo'|'video'|'link'|'rich'
   version: number
-  provider_name: string
-  provider_url: string
+  title?: string
+  author_name?: string
+  author_url?: string
+  provider_name?: string
+  provider_url?: string
+  cache_age?: string
+  thumbnail_url?: string
+  thumbnail_width?: number
+  thumbnail_height?: number
+}
+type SpeakerdeckOembedResponse = Oembed & {
+  type: 'rich'
   title: string
   author_name: string
   author_url: string
-  html: string
+  provider_name: 'Speaker Deck'
+  provider_url: 'https://speakerdeck.com/'
   width: number
   height: number
   ratio: number
+  html: string
+}
+type YoutubeOembedResponse = Oembed & {
+  type: 'video'
+  title: string
+  author_name: string
+  author_url: string
+  provider_name: 'YouTube'
+  provider_url: 'https://www.youtube.com/'
+  thumbnail_url: string
+  thumbnail_width: number
+  thumbnail_height: number
+  width: number
+  height: number
+  html: string
+}
+type TwitterOembedResponse = Oembed & {
+  type: 'rich'
+  author_name: string
+  author_url: string
+  provider_name: 'Twitter'
+  provider_url: 'https://twitter.com/'
+  width: number
+  height: number
+  url: string
+  html: string
+  cache_age: string
 }
 type GetJsonError = {
   error: string
