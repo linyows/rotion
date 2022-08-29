@@ -38,3 +38,9 @@ yarn-error.log*
 *.tsbuildinfo
 
 /public
+
+# playground
+/playground/.cache
+/playground/.next
+/playground/out
+/playground/public/images
