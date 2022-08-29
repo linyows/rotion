@@ -4,7 +4,7 @@ import {
   FetchDatabase,
   RichTextItemResponse,
   QueryDatabaseParameters,
-} from '../src'
+} from '../src/server'
 import {
   DBList,
   TextBlock,

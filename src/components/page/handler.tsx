@@ -12,10 +12,8 @@ import CalloutBlock from './callout'
 import LinkpreviewBlock from './linkpreview'
 import ChildpageBlock from './childpage'
 import ChilddatabaseBlock from './childdatabase'
-import TextBlock, { TextObject } from './text'
-import path from 'path'
-import type { BlockObjectResponse } from '../../types'
-import { JSXElementConstructor } from 'react'
+import TextBlock from './text'
+import type { BlockObjectResponse } from '../../server/types'
 
 export const blockType = {
   heading_1: 'h1',
@@ -29,12 +27,13 @@ export const blockType = {
   quote: 'blockquote',
 }
 
-export type HandlerProps = {
+export type BlockHandlerProps = {
   block: BlockObjectResponse
   link?: string
+  LinkComp?: unknown
 }
 
-export const Handler = ({ block, link }: HandlerProps): JSX.Element | undefined => {
+export const BlockHandler = ({ block, link, LinkComp }: BlockHandlerProps): JSX.Element | undefined => {
   switch (block.type) {
     case 'heading_1':
     case 'heading_2':
@@ -91,11 +90,11 @@ export const Handler = ({ block, link }: HandlerProps): JSX.Element | undefined 
       break
 
     case 'child_page':
-      return <ChildpageBlock block={block} link={link} key={block.id} />
+      return <ChildpageBlock block={block} link={link} LinkComp={LinkComp} key={block.id} />
       break
 
     case 'child_database':
-      return <ChilddatabaseBlock block={block} link={link} key={block.id} />
+      return <ChilddatabaseBlock block={block} link={link} LinkComp={LinkComp} key={block.id} />
       break
 
     case 'toggle':
@@ -108,4 +107,4 @@ export const Handler = ({ block, link }: HandlerProps): JSX.Element | undefined 
   }
 }
 
-export default Handler
+export default BlockHandler

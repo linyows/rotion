@@ -5,14 +5,15 @@ import {
   ListBlockChildrenResponseEx,
   RichTextItemResponse,
   TitlePropertyItemObjectResponse,
-} from '../src'
+} from '../src/server'
 import {
   Blocks,
   TextObject,
 } from '../src/components'
 import Header from '../components/header'
+import 'prismjs/themes/prism.css'
 
-type Props = {
+type Props = React.PropsWithChildren & {
   title: null|RichTextItemResponse
   icon: string
   image: string

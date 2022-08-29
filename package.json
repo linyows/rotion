@@ -1,38 +1,45 @@
 {
   "name": "notionate",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "license": "MIT",
   "repository": "linyows/notionate",
   "description": "This is React components that uses the Notion API to display the Notion's database and page.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/server/index.js",
+  "components": "dist/components/index.js",
+  "componentsSrc": "src/components/index.ts",
+  "types": "dist/types/index.d.ts",
   "files": [
     "LICENSE",
     "README.md",
-    "dist/"
+    "dist/types/*",
+    "dist/server/*",
+    "dist/styles/*",
+    "dist/components/index.js"
   ],
   "author": {
     "name": "Tomohisa Oda",
     "url": "https://tomohisaoda.com"
   },
   "scripts": {
-    "build": "yarn clean && babel src -D -d dist --extensions '.ts,.tsx' --config-file ./notionate.babelrc.json && tsc",
-    "esm": "tsc --module es6 --outdir ./dist/esm/ --project ./notionate.tsconfig.json",
-    "cjs": "tsc --module commonjs --outdir ./dist/ --project ./notionate.tsconfig.json",
+    "dev": "next dev",
+    "build": "npm run clean && npm run transpile && npm run typecheck && npm run types && npm run rollup && npm run styles",
+    "rollup": "rollup -c",
+    "transpile": "babel src/server -D -d dist/server --extensions '.ts,.tsx' --config-file ./src/.babelrc.json",
+    "types": "tsc -p ./src/tsconfig.json",
+    "typecheck": "tsc -p ./src/tsconfig.typecheck.json",
+    "styles": "cp -r ./src/styles ./dist/",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "clean": "rm -rf dist/*",
     "cacheclean": "rm -rf .cache/*",
-    "test": "jest --no-cache",
-    "dev": "next dev"
+    "test": "jest --no-cache"
   },
   "peerDependencies": {
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react": ">= 18.0.0-0",
+    "react-dom": ">= 18.0.0-0"
   },
   "dependencies": {
     "@notionhq/client": "^2.1.1",
     "@types/prismjs": "^1.26.0",
-    "babel-plugin-prismjs": "^2.1.0",
     "prismjs": "^1.25.0"
   },
   "devDependencies": {
@@ -41,21 +48,33 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
-    "@types/node": "16.11.6",
-    "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.13",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.4",
+    "@types/node": "18.7.6",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@types/styled-jsx": "^3.4.4",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
-    "eslint": "7.32.0",
-    "eslint-config-standard": "^16.0.3",
+    "eslint": "8.22.0",
+    "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.3",
-    "next": "12.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "next": "12.2.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "rollup": "^2.78.0",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-import-css": "^3.0.3",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "styled-jsx": "^5.0.0",
+    "tslib": "^2.4.0",
     "typescript": "^4.6.2"
   }
 }

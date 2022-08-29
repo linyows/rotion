@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next'
+import Link from 'next/link'
 
 import {
   FetchBlocks,
@@ -6,11 +7,13 @@ import {
   ListBlockChildrenResponseEx,
   RichTextItemResponse,
   TitlePropertyItemObjectResponse,
-} from '../src'
+} from '../src/server'
+
 import {
   Blocks,
   TextObject,
 } from '../src/components'
+
 import Header from '../components/header'
 
 type Props = {
@@ -23,11 +26,8 @@ type Props = {
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const id = process.env.NOTION_TESTROOT_ID as string
   const page = await FetchPage(id)
-  let title: null|RichTextItemResponse = null
-  if ('meta' in page && page.meta?.object == 'list') {
-    const obj = page.meta?.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
-    title = obj.title
-  }
+  const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
+  const title = obj.title
   const icon = ('emoji' in page.icon) ? page.icon.emoji : ''
   const image = page.cover.src
   const blocks = await FetchBlocks(id)
@@ -46,11 +46,13 @@ const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
   return (
     <>
       <Header icon={icon} image={image}>
-        {title && TextObject({ textObject: title })}
+        <TextObject textObject={title} />
       </Header>
+
       <div className="page">
-        {Blocks({ blocks, link: '/[title]' })}
+        <Blocks blocks={blocks} link="/[title]" LinkComp={Link} />
       </div>
+
       <style jsx>{`
         .page {
           max-width: 1000px;

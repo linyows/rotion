@@ -1,48 +1,59 @@
-import React from 'react'
-import Link from 'next/link'
+import React, { ReactElement } from 'react'
 import { TextBlock } from './text'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
 import type {
   ChildDatabaseBlockObjectResponseEx,
-} from '../../types'
+} from '../../server/types'
 
 export type ChilddatabaseBlockProps = {
   block: ChildDatabaseBlockObjectResponseEx
   link?: string
+  LinkComp?: unknown
 }
 
-const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, link }) => {
+type LinkedTitleProps = ChilddatabaseBlockProps
+
+const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, link, LinkComp }) => {
   const icon = ('icon' in block.database) && block.database.icon?.type === 'emoji' ? block.database.icon.emoji : ''
   const title = ('title' in block.database) ? block.database.title : []
   const plainTitle = title.map(v => v.plain_text).join('').toLowerCase()
   const [path, slugKey] = getLinkPathAndLinkKey(link || '')
   const file = slugKey === 'id' ? block.database.id : encodeURIComponent(plainTitle.toLowerCase())
+
+  const LinkedTitle = ({ block, link, LinkComp }: LinkedTitleProps) => {
+    const [path, slugKey] = getLinkPathAndLinkKey(link || '')
+    const file = slugKey === 'id' ? block.database.id : encodeURIComponent(plainTitle.toLowerCase())
+    const Link = LinkComp as React.FC<{ children: ReactElement<'a'>, href: string}>
+
+    if (!link) {
+      return (
+        <TextBlock tag="span" block={title} />
+      )
+    }
+    if (LinkComp) {
+      return (
+        <Link href={`${path}${file}`}>
+          <a className="notionate-blocks-childdatabase-a">
+            <TextBlock tag="span" block={title} />
+          </a>
+        </Link>
+      )
+    }
+    return (
+      <a href={`${path}${file}`} className="notionate-blocks-childdatabase-a">
+        <TextBlock tag="span" block={title} />
+      </a>
+    )
+  }
+
   return (
-    <div className="childdatabase">
-      <span className="childdatabase-icon">
+    <div className="notionate-blocks-childdatabase">
+      <span>
         {icon}
       </span>
       <div>
-        <Link href={`${path}${file}`}>
-          <a className="childdatabase-anchor">
-            {TextBlock({ tag: 'span', block: title })}
-          </a>
-        </Link>
+        {LinkedTitle({ block, link, LinkComp })}
       </div>
-      <style jsx>{`
-        .childdatabase {
-          display: grid;
-          width: 100%;
-          grid-template: repeat(1, 1fr) / 1rem 1fr;
-          gap: .8rem;
-        }
-        .childdatabase-anchor {
-          color: #333;
-          border-bottom: 1px solid #ddd;
-          display: inline;
-          text-decoration: none;
-        }
-      `}</style>
     </div>
   )
 }

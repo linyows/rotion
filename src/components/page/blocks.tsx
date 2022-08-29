@@ -1,21 +1,22 @@
 import React from 'react'
 import List from './list'
-import Handler from './handler'
+import BlockHandler from './handler'
 import type {
   ListBlockChildrenResponseEx,
   BlockObjectResponse,
-} from '../../types'
+} from '../../server/types'
 
 export type BlocksProps = {
   blocks: ListBlockChildrenResponseEx
   link?: string
+  LinkComp?: unknown
 }
 
 type ListType = {
   [key: string]: string
 }
 
-export const Blocks = ({ blocks, link }: BlocksProps): JSX.Element[] => {
+export const Blocks: React.FC<BlocksProps> = ({ blocks, link, LinkComp }) => {
   const { results } = blocks
   const listType: ListType = {
     bulleted_list_item: 'ul',
@@ -47,14 +48,18 @@ export const Blocks = ({ blocks, link }: BlocksProps): JSX.Element[] => {
         list.push(block)
       }
     } else {
-      const elem = Handler({ block, link })
+      const elem = BlockHandler({ block, link, LinkComp })
       if (elem !== undefined) {
         children.push(elem)
       }
     }
   })
 
-  return children
+  return (
+    <div className="notionate">
+      {children}
+    </div>
+  )
 }
 
 export default Blocks

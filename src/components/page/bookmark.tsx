@@ -2,7 +2,7 @@ import React from 'react'
 import TextBlock from './text'
 import type {
   BookmarkBlockObjectResponseEx,
-} from '../../types'
+} from '../../server/types'
 
 export type BookmarkBlockProps = {
   block: BookmarkBlockObjectResponseEx
@@ -18,78 +18,27 @@ const BookmarkBlock: React.FC<BookmarkBlockProps> = ({ block }) => {
   const url = block.bookmark.url
 
   return (
-    <div className="bookmark">
-      <div className="bookmark-inner" onClick={jump}>
-        <div className="bookmark-text">
-          <div className="site-title">
+    <div className="notionate-blocks-bookmark">
+      <div className="notionate-blocks-bookmark-inner" onClick={jump}>
+        <div className="notionate-blocks-bookmark-text">
+          <div className="notionate-blocks-bookmark-title">
             {title}
           </div>
-          <div className="site-desc">
+          <div className="notionate-blocks-bookmark-desc">
             {desc}
           </div>
-          <div className="site-url">
-            <img className="favicon" src={icon} width="16px" alt={`${title} icon`} />
+          <div className="notionate-blocks-bookmark-url">
+            <img className="notionate-blocks-bookmark-favicon" src={icon} width="16px" alt={`${title} icon`} />
             {url}
           </div>
         </div>
-        <div className="bookmark-image">
+        <div className="notionate-blocks-bookmark-image">
           <img src={image} width="200px" alt={`${title} image`} />
         </div>
       </div>
-      <div className="bookmark-caption">
-        {TextBlock({ tag: 'span', block: block.bookmark.caption })}
+      <div className="notionate-blocks-bookmark-caption">
+        <TextBlock tag="span" block={block.bookmark.caption} />
       </div>
-      <style jsx>{`
-        .bookmark {
-          padding: .5rem 0;
-        }
-        .bookmark-inner {
-          border: 1px solid #EEE;
-          border-radius: 3px;
-          font-size: .75rem;
-          padding: 0;
-          display: grid;
-          grid-template: repeat(1, 1fr) / 1fr 200px;
-          gap: 1rem;
-          justify-items: end;
-          cursor: pointer;
-          position: relative;
-        }
-        .bookmark-inner:hover {
-          background-color: #f5f5f5;
-        }
-        .bookmark-text {
-          padding: .7rem 1rem 2rem;
-          width: 100%;
-        }
-        .bookmark-caption {
-          margin: .3rem .3rem 0;
-          text-align: left;
-          color: #888;
-          font-size: .8rem;
-        }
-        .site-title {
-          font-size: .85rem;
-        }
-        .site-desc {
-          color: #999;
-          line-height: 1;
-          font-size: .65rem;
-          padding-top: .1rem;
-        }
-        .site-url {
-          position: absolute;
-          left: 1rem;
-          bottom: .7rem;
-          font-size: .7rem;
-        }
-        .favicon {
-          display: inline;
-          vertical-align: bottom;
-          margin-right: 10px;
-          margin-bottom: 1px;
-        }
-      `}</style>
     </div>
   )
 }

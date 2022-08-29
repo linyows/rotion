@@ -2,7 +2,7 @@ import React from 'react'
 import type {
   GetPagePropertyResponse,
   TitlePropertyItemObjectResponse,
-} from '../../types'
+} from '../../server/types'
 
 import DBTitleField from './title'
 import DBDateField from './date'
@@ -11,14 +11,15 @@ import DBMultiSelectField from './multiselect'
 import DBUrlField from './url'
 import DBCheckboxField from './checkbox'
 
-export type HandlerProps = {
+export type ListHandlerProps = {
   name: string
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
+  LinkComp?: unknown
 }
 
-export const Handler = ({ name, items, path, slug }: HandlerProps) => {
+export const ListHandler = ({ name, items, path, slug, LinkComp }: ListHandlerProps) => {
   if (items === undefined) {
     return <></>
   }
@@ -28,7 +29,7 @@ export const Handler = ({ name, items, path, slug }: HandlerProps) => {
     switch (target.type) {
       case 'title':
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
-        return DBTitleField({ payload, path, slug })
+        return DBTitleField({ payload, path, slug, LinkComp })
         break
 
       case 'rich_text':
@@ -83,4 +84,4 @@ export const Handler = ({ name, items, path, slug }: HandlerProps) => {
   }
 }
 
-export default Handler
+export default ListHandler

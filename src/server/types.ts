@@ -46,7 +46,6 @@ import type {
   PageObjectResponse,
   PropertyItemObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
-import { ColumnlistBlockProps } from './components/page/columnlist'
 
 export * from '@notionhq/client/build/src/api-endpoints'
 
