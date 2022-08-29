@@ -140,38 +140,37 @@ const atoh = (a: string): string => {
 }
 
 const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
-  const res = await fetch(reqUrl)
-  if (!res.ok) {
-    console.log('fetch api error:', reqUrl, res)
-    return { title: '', desc: '', image: '', icon: '' }
-  }
-  const body = await res.text()
-
   const ogTitleRegex = /<meta\s+property="og:title"\s+content="(.*?)">/
   const ogDescRegex = /<meta\s+property="og:description"\s+content="(.*?)">/
   const ogImageRegex = /<meta\s+property="og:image"\s+content="(.*?)">/
   const titleRegex = /<title>(.*?)<\/title>/
   const descRegex = /<meta\s+name="description"\s+content="(.*?)">/
   const iconRegex = /<link\s+href="(.*?)"\s+rel="icon"\s?\/?>|<link\s+rel="icon"\s+href="(.*?)"\s?\/?>/
+  try {
+    const body = await getHTTP(reqUrl)
 
-  let titleMatched = body.match(ogTitleRegex)
-  if (!titleMatched) {
-    titleMatched = body.match(titleRegex)
-  }
-  let descMatched = body.match(ogDescRegex)
-  if (!descMatched) {
-    descMatched = body.match(descRegex)
-  }
-  const imageMatched = body.match(ogImageRegex)
-  const iconMatched = body.match(iconRegex)
+    let titleMatched = body.match(ogTitleRegex)
+    if (!titleMatched) {
+      titleMatched = body.match(titleRegex)
+    }
+    let descMatched = body.match(ogDescRegex)
+    if (!descMatched) {
+      descMatched = body.match(descRegex)
+    }
+    const imageMatched = body.match(ogImageRegex)
+    const iconMatched = body.match(iconRegex)
 
-  const title = titleMatched ? titleMatched[1] : 'unknown'
-  const desc = descMatched ? descMatched[1] : 'unknown'
-  const imageUrl = imageMatched ? imageMatched[1] : ''
-  const image = imageUrl !== '' ? await saveImage(imageUrl) : ''
-  const iconUrl = iconMatched ? (iconMatched[1] || iconMatched[2]) : ''
-  const icon = iconUrl !== '' ? await saveImage(iconUrl) : ''
-  return { title, desc, image, icon }
+    const title = titleMatched ? titleMatched[1] : 'unknown'
+    const desc = descMatched ? descMatched[1] : 'unknown'
+    const imageUrl = imageMatched ? imageMatched[1] : ''
+    const image = imageUrl !== '' ? await saveImage(imageUrl) : ''
+    const iconUrl = iconMatched ? (iconMatched[1] || iconMatched[2]) : ''
+    const icon = iconUrl !== '' ? await saveImage(iconUrl) : ''
+    return { title, desc, image, icon }
+  } catch (e) {
+    console.log(`getHtmlMeta failure: ${reqUrl} -- ${e}`)
+  }
+  return { title: '', desc: '', image: '', icon: ''}
 }
 
 const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> => {
@@ -181,51 +180,31 @@ const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> 
   const extUrl = block.video?.external.url as string
   if (extUrl.includes('youtube.com')) {
     const reqUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(extUrl)}`
-    const res = await fetch(reqUrl)
-    if (!res.ok) {
-      console.log('fetch api error:', reqUrl, res)
-      return ''
+    const json = await getJson<YoutubeOembedResponse>(reqUrl)
+    if ('error' in json) {
+      console.log(`getVideoHtml failure: ${json.error}`)
+    } else {
+      return json.html
+        .replace(/width=\"\d+\"/, 'width="100%"')
+        .replace(/height=\"\d+\"/, 'height="100%"')
     }
-    const json = await res.json()
-    return json.html
-      .replace(/width=\"\d+\"/, 'width="100%"')
-      .replace(/height=\"\d+\"/, 'height="100%"')
-
-  } else {
-    return ''
   }
-}
-
-async function getJson<T>(reqUrl: string): Promise<T|GetJsonError> {
-  let body = ''
-  try {
-    const res = await httpsGet(reqUrl)
-    // @ts-ignore
-    for await (const chunk of res) {
-      body += chunk
-    }
-  } catch (e) {
-    return JSON.parse(`{ "error": "${reqUrl} -- ${e}"}`) as GetJsonError
-  }
-  return JSON.parse(body) as T
+  return ''
 }
 
 const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> => {
-  if (!block.embed) {
-    return ''
-  } else if (block.embed.url.includes('twitter.com')) {
+  if (block.embed && block.embed.url.includes('twitter.com')) {
     const src = block.embed?.url || ''
     const tweetId = path.basename(src.split('?').shift() || '')
     const reqUrl = `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
-    const res = await fetch(reqUrl)
-    if (!res.ok) {
-      console.log('fetch api error:', reqUrl, res)
-      return ''
+    const json = await getJson<TwitterOembedResponse>(reqUrl)
+    if ('error' in json) {
+      console.log(`getEmbedHtml failure: ${json.error}`)
+    } else {
+      return json.html
     }
-    const json = await res.json()
-    return json.html
 
-  } else if (block.embed.url.includes('speakerdeck.com')) {
+  } else if (block.embed && block.embed.url.includes('speakerdeck.com')) {
     const embedUrl = block.embed?.url as string
     const reqUrl = `https://speakerdeck.com/oembed.json?url=${encodeURIComponent(embedUrl)}`
 
@@ -243,6 +222,7 @@ const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> 
         .replace(/height=\"\d+\"/, 'height="100%"')
     }
   }
+
   return ''
 }
 
