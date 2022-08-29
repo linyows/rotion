@@ -47,6 +47,12 @@ export type CodeBlockProps = {
 }
 
 export const Code: React.FC<CodeProps> = ({ children, language = 'text' }) => {
+  const codeRef = React.createRef<HTMLPreElement>()
+  const highlight = async () => {
+    if (codeRef.current) {
+      Prism.highlightElement(codeRef.current as Element);
+    }
+  }
   const cl = `language-${language.toLowerCase()}`
 
   const [show, setShow] = useState(false)
@@ -54,8 +60,8 @@ export const Code: React.FC<CodeProps> = ({ children, language = 'text' }) => {
   const hideLang = () => setShow(false)
 
   useEffect(() => {
-    Prism.highlightAll()
-  }, [])
+    highlight()
+  }, [language, ''])
 
   return (
     <div className="notionate-blocks-code" onMouseOver={showLang} onMouseOut={hideLang}>
