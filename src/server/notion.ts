@@ -1,26 +1,19 @@
 import { Client } from '@notionhq/client'
-import type {
-  GetDatabaseResponse,
-  GetUserResponse,
-  GetPageResponse,
-  GetSelfResponse,
-  GetPagePropertyResponse,
-  PropertyItemObjectResponse,
-} from '@notionhq/client/build/src/api-endpoints'
 import fs from 'fs'
+import { access, constants, mkdir } from 'node:fs/promises'
 import https from 'https'
 import path from 'path'
 import url from 'url'
 import crypto from 'crypto'
 import { promisify } from 'util'
 import type {
+  GetPageResponse,
+  GetPagePropertyResponse,
   QueryDatabaseParameters,
   QueryDatabaseResponse,
   QueryDatabaseResponseEx,
   ListBlockChildrenResponseEx,
-  BlockObjectResponse,
   GetPageResponseEx,
-  RichTextItemResponse,
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
   ImageBlockObjectResponseEx,
@@ -42,19 +35,57 @@ type HttpGetResponse = {
   pipe: Function
   end: Promise<unknown>
 }
-
-type SpeakerdeckOembedResponse = {
-  type: string
+// https://oembed.com/
+type Oembed = {
+  type: 'photo'|'video'|'link'|'rich'
   version: number
-  provider_name: string
-  provider_url: string
+  title?: string
+  author_name?: string
+  author_url?: string
+  provider_name?: string
+  provider_url?: string
+  cache_age?: string
+  thumbnail_url?: string
+  thumbnail_width?: number
+  thumbnail_height?: number
+}
+type SpeakerdeckOembedResponse = Oembed & {
+  type: 'rich'
   title: string
   author_name: string
   author_url: string
-  html: string
+  provider_name: 'Speaker Deck'
+  provider_url: 'https://speakerdeck.com/'
   width: number
   height: number
   ratio: number
+  html: string
+}
+type YoutubeOembedResponse = Oembed & {
+  type: 'video'
+  title: string
+  author_name: string
+  author_url: string
+  provider_name: 'YouTube'
+  provider_url: 'https://www.youtube.com/'
+  thumbnail_url: string
+  thumbnail_width: number
+  thumbnail_height: number
+  width: number
+  height: number
+  html: string
+}
+type TwitterOembedResponse = Oembed & {
+  type: 'rich'
+  author_name: string
+  author_url: string
+  provider_name: 'Twitter'
+  provider_url: 'https://twitter.com/'
+  width: number
+  height: number
+  url: string
+  html: string
+  cache_age: string
 }
 type GetJsonError = {
   error: string
@@ -66,6 +97,25 @@ const writeFile = promisify(fs.writeFile)
 const cacheDir = '.cache'
 const docRoot = 'public'
 const imageDir = 'images'
+
+async function getHTTP(reqUrl: string): Promise<string> {
+  let body = ''
+  const res = await httpsGet(reqUrl)
+  // @ts-ignore
+  for await (const chunk of res) {
+    body += chunk
+  }
+  return body
+}
+
+async function getJson<T>(reqUrl: string): Promise<T|GetJsonError> {
+  try {
+    const body = await getHTTP(reqUrl)
+    return JSON.parse(body) as T
+  } catch (e) {
+    return JSON.parse(`{ "error": "${reqUrl} -- ${e}"}`) as GetJsonError
+  }
+}
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -82,38 +132,37 @@ const atoh = (a: string): string => {
 }
 
 const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
-  const res = await fetch(reqUrl)
-  if (!res.ok) {
-    console.log('fetch api error:', reqUrl, res)
-    return { title: '', desc: '', image: '', icon: '' }
-  }
-  const body = await res.text()
-
   const ogTitleRegex = /<meta\s+property="og:title"\s+content="(.*?)">/
   const ogDescRegex = /<meta\s+property="og:description"\s+content="(.*?)">/
   const ogImageRegex = /<meta\s+property="og:image"\s+content="(.*?)">/
   const titleRegex = /<title>(.*?)<\/title>/
   const descRegex = /<meta\s+name="description"\s+content="(.*?)">/
   const iconRegex = /<link\s+href="(.*?)"\s+rel="icon"\s?\/?>|<link\s+rel="icon"\s+href="(.*?)"\s?\/?>/
+  try {
+    const body = await getHTTP(reqUrl)
 
-  let titleMatched = body.match(ogTitleRegex)
-  if (!titleMatched) {
-    titleMatched = body.match(titleRegex)
-  }
-  let descMatched = body.match(ogDescRegex)
-  if (!descMatched) {
-    descMatched = body.match(descRegex)
-  }
-  const imageMatched = body.match(ogImageRegex)
-  const iconMatched = body.match(iconRegex)
+    let titleMatched = body.match(ogTitleRegex)
+    if (!titleMatched) {
+      titleMatched = body.match(titleRegex)
+    }
+    let descMatched = body.match(ogDescRegex)
+    if (!descMatched) {
+      descMatched = body.match(descRegex)
+    }
+    const imageMatched = body.match(ogImageRegex)
+    const iconMatched = body.match(iconRegex)
 
-  const title = titleMatched ? titleMatched[1] : 'unknown'
-  const desc = descMatched ? descMatched[1] : 'unknown'
-  const imageUrl = imageMatched ? imageMatched[1] : ''
-  const image = imageUrl !== '' ? await saveImage(imageUrl) : ''
-  const iconUrl = iconMatched ? (iconMatched[1] || iconMatched[2]) : ''
-  const icon = iconUrl !== '' ? await saveImage(iconUrl) : ''
-  return { title, desc, image, icon }
+    const title = titleMatched ? titleMatched[1] : 'unknown'
+    const desc = descMatched ? descMatched[1] : 'unknown'
+    const imageUrl = imageMatched ? imageMatched[1] : ''
+    const image = imageUrl !== '' ? await saveImage(imageUrl) : ''
+    const iconUrl = iconMatched ? (iconMatched[1] || iconMatched[2]) : ''
+    const icon = iconUrl !== '' ? await saveImage(iconUrl) : ''
+    return { title, desc, image, icon }
+  } catch (e) {
+    console.log(`getHtmlMeta failure: ${reqUrl} -- ${e}`)
+  }
+  return { title: '', desc: '', image: '', icon: ''}
 }
 
 const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> => {
@@ -123,51 +172,31 @@ const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> 
   const extUrl = block.video?.external.url as string
   if (extUrl.includes('youtube.com')) {
     const reqUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(extUrl)}`
-    const res = await fetch(reqUrl)
-    if (!res.ok) {
-      console.log('fetch api error:', reqUrl, res)
-      return ''
+    const json = await getJson<YoutubeOembedResponse>(reqUrl)
+    if ('error' in json) {
+      console.log(`getVideoHtml failure: ${json.error}`)
+    } else {
+      return json.html
+        .replace(/width=\"\d+\"/, 'width="100%"')
+        .replace(/height=\"\d+\"/, 'height="100%"')
     }
-    const json = await res.json()
-    return json.html
-      .replace(/width=\"\d+\"/, 'width="100%"')
-      .replace(/height=\"\d+\"/, 'height="100%"')
-
-  } else {
-    return ''
   }
-}
-
-async function getJson<T>(reqUrl: string): Promise<T|GetJsonError> {
-  let body = ''
-  try {
-    const res = await httpsGet(reqUrl)
-    // @ts-ignore
-    for await (const chunk of res) {
-      body += chunk
-    }
-  } catch (e) {
-    return JSON.parse(`{ "error": "${reqUrl} -- ${e}"}`) as GetJsonError
-  }
-  return JSON.parse(body) as T
+  return ''
 }
 
 const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> => {
-  if (!block.embed) {
-    return ''
-  } else if (block.embed.url.includes('twitter.com')) {
+  if (block.embed && block.embed.url.includes('twitter.com')) {
     const src = block.embed?.url || ''
     const tweetId = path.basename(src.split('?').shift() || '')
     const reqUrl = `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
-    const res = await fetch(reqUrl)
-    if (!res.ok) {
-      console.log('fetch api error:', reqUrl, res)
-      return ''
+    const json = await getJson<TwitterOembedResponse>(reqUrl)
+    if ('error' in json) {
+      console.log(`getEmbedHtml failure: ${json.error}`)
+    } else {
+      return json.html
     }
-    const json = await res.json()
-    return json.html
 
-  } else if (block.embed.url.includes('speakerdeck.com')) {
+  } else if (block.embed && block.embed.url.includes('speakerdeck.com')) {
     const embedUrl = block.embed?.url as string
     const reqUrl = `https://speakerdeck.com/oembed.json?url=${encodeURIComponent(embedUrl)}`
 
@@ -185,6 +214,7 @@ const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> 
         .replace(/height=\"\d+\"/, 'height="100%"')
     }
   }
+
   return ''
 }
 
@@ -199,6 +229,7 @@ const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<stri
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `${imageDir}/${id}${extname}`
   const filePath = `${docRoot}/${urlPath}`
+  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(filePath))
@@ -216,6 +247,7 @@ const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<str
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `${imageDir}/${idWithKey}${extname}`
   const filePath = `${docRoot}/${urlPath}`
+  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(filePath))
@@ -235,6 +267,7 @@ const saveImage = async (imageUrl: string): Promise<string> => {
   const prefix = atoh(urlWithoutQuerystring)
   const urlPath = `${imageDir}/${prefix}-${basename}`
   const filePath = `${docRoot}/${urlPath}`
+  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(filePath))
@@ -246,6 +279,15 @@ const saveImage = async (imageUrl: string): Promise<string> => {
   return urlPath
 }
 
+const createDirWhenNotfound = async (dir: string): Promise<void> => {
+  try {
+    await access(dir, constants.R_OK | constants.W_OK)
+  } catch {
+    await mkdir(dir, { recursive: true })
+    console.log(`created direcotry: ${dir}`)
+  }
+}
+
 export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<QueryDatabaseResponseEx> => {
   const { database_id } = params
   if ('page_size' in params) {
@@ -254,6 +296,9 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
   const limit = params.page_size
 
   const useCache = process.env.NOTION_CACHE === 'true'
+  if (useCache) {
+    await createDirWhenNotfound(cacheDir)
+  }
   const cacheFile = `${cacheDir}/notion.databases.query-${database_id}${limit !== undefined ? `.limit-${limit}` : ''}`
   let cursor: undefined|string = undefined
   let allres: undefined|QueryDatabaseResponseEx = undefined
@@ -311,6 +356,9 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
 
 export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => {
   const useCache = process.env.NOTION_CACHE === 'true'
+  if (useCache) {
+    await createDirWhenNotfound(cacheDir)
+  }
   const cacheFile = `${cacheDir}/notion.pages.retrieve-${page_id}`
 
   if (useCache) {
@@ -373,6 +421,9 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
 
 export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenResponseEx> => {
   const useCache = process.env.NOTION_CACHE === 'true'
+  if (useCache) {
+    await createDirWhenNotfound(cacheDir)
+  }
   const cacheFile = `${cacheDir}/notion.blocks.children.list-${block_id}`
 
   if (useCache) {
