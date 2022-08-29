@@ -12,10 +12,8 @@ import CalloutBlock from './callout'
 import LinkpreviewBlock from './linkpreview'
 import ChildpageBlock from './childpage'
 import ChilddatabaseBlock from './childdatabase'
-import TextBlock, { TextObject } from './text'
-import path from 'path'
+import TextBlock from './text'
 import type { BlockObjectResponse } from '../../server/types'
-import { JSXElementConstructor } from 'react'
 
 export const blockType = {
   heading_1: 'h1',

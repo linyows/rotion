@@ -1,5 +1,4 @@
 import React from 'react'
-import path from 'path'
 import type { RichTextItemResponse } from '../../server/types'
 import { GithubIcon, SlackIcon, FigmaIcon } from './icons'
 

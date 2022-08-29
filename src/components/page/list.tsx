@@ -1,5 +1,5 @@
 import React from 'react'
-import Handler from './handler'
+import BlockHandler from './handler'
 import type { BlockObjectResponse } from '../../server/types'
 
 export type ListProps = {
@@ -9,11 +9,10 @@ export type ListProps = {
 
 export const List = ({ tag, blocks }: ListProps) => {
   const CustomTag = tag
-
   return (
-    <CustomTag key={tag + blocks[0].id}>
+    <CustomTag className={`notionate-blocks-list-${tag}`} key={tag + blocks[0].id}>
       {blocks.map(block => (
-        Handler({ block })
+        BlockHandler({ block })
       ))}
     </CustomTag>
   )
