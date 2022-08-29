@@ -6,15 +6,17 @@ This is React components that uses the Notion API to display the Notion's databa
 Usage
 --
 
-Use API calls and components together. This is atabase list example:
+Use API calls and components together. This is database list example:
 
 ```ts
 import type { GetStaticProps, NextPage } from 'next'
+import Link from 'next/link'
 import {
   FetchDatabase,
   Querydatabaseresponse,
 } from 'notionate'
 import { DBList } from 'notionate/dist/components'
+import 'notionate/dist/styles/notionate.css'
 
 type Props = { blog: QueryDatabaseResponse }
 
@@ -35,10 +37,12 @@ export default const Home: NextPage<Props> = ({ blog }) => {
       </div>
 
       <div className="list">
-        {DBList({
-          keys: ['Name', 'spacer', 'Tags', 'Date'],
-          db: blog,
-        })}
+        <DBList
+          keys={['Name', 'spacer', 'Tags', 'Date']}
+          db={blog}
+          link="/posts/[id]"
+          LinkComp={Link}
+        />
       </div>
     </section>
   )
@@ -51,7 +55,6 @@ API
 This is the API available:
 
 - FetchDatabase
-- FetchPage
 - FetchBlocks
 
 Images are saved locally.
