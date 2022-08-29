@@ -8,6 +8,7 @@ import type {
   PropertyItemObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
 import fs from 'fs'
+import { access, constants, mkdir } from 'node:fs/promises'
 import https from 'https'
 import path from 'path'
 import url from 'url'
@@ -66,6 +67,25 @@ const writeFile = promisify(fs.writeFile)
 const cacheDir = '.cache'
 const docRoot = 'public'
 const imageDir = 'images'
+
+async function getHTTP(reqUrl: string): Promise<string> {
+  let body = ''
+  const res = await httpsGet(reqUrl)
+  // @ts-ignore
+  for await (const chunk of res) {
+    body += chunk
+  }
+  return body
+}
+
+async function getJson<T>(reqUrl: string): Promise<T|GetJsonError> {
+  try {
+    const body = await getHTTP(reqUrl)
+    return JSON.parse(body) as T
+  } catch (e) {
+    return JSON.parse(`{ "error": "${reqUrl} -- ${e}"}`) as GetJsonError
+  }
+}
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
