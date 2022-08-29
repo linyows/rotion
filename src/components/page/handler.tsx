@@ -32,9 +32,10 @@ export const blockType = {
 export type BlockHandlerProps = {
   block: BlockObjectResponse
   link?: string
+  LinkComp?: unknown
 }
 
-export const BlockHandler = ({ block, link }: BlockHandlerProps): JSX.Element | undefined => {
+export const BlockHandler = ({ block, link, LinkComp }: BlockHandlerProps): JSX.Element | undefined => {
   switch (block.type) {
     case 'heading_1':
     case 'heading_2':
@@ -91,11 +92,11 @@ export const BlockHandler = ({ block, link }: BlockHandlerProps): JSX.Element | 
       break
 
     case 'child_page':
-      return <ChildpageBlock block={block} link={link} key={block.id} />
+      return <ChildpageBlock block={block} link={link} LinkComp={LinkComp} key={block.id} />
       break
 
     case 'child_database':
-      return <ChilddatabaseBlock block={block} link={link} key={block.id} />
+      return <ChilddatabaseBlock block={block} link={link} LinkComp={LinkComp} key={block.id} />
       break
 
     case 'toggle':

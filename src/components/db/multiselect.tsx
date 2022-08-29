@@ -1,5 +1,4 @@
-import React from 'react'
-import Link from 'next/link'
+import React, { ReactElement } from 'react'
 import type {
   MultiSelectPropertyItemObjectResponse, SelectPropertyResponse,
 } from '../../server/types'
@@ -7,9 +6,31 @@ import type {
 export type MultiSelectProps = {
   payload: MultiSelectPropertyItemObjectResponse
   path: string
+  LinkComp?: unknown
 }
 
-export const DBMultiSelectField: React.FC<MultiSelectProps> = ({ payload, path }) => {
+export const DBMultiSelectField: React.FC<MultiSelectProps> = ({ payload, path, LinkComp }) => {
+  const LinkedTag = (name: string) => {
+    const href = `${path}tags/${encodeURIComponent(name)}`
+    if (LinkComp) {
+      const Link = LinkComp as React.FC<{ children: ReactElement<'a'>, href: string}>
+      return (
+        <>
+          <Link href={href}>
+            <a className="notionate-db-multiselect-a" title={name}>
+              {name}
+            </a>
+          </Link>
+        </>
+      )
+    }
+    return (
+      <a className="notionate-db-multiselect-a" href={href} title={name}>
+        {name}
+      </a>
+    )
+  }
+
   const listStyle = (color: string) => {
     let colorAttr = 'rgb(24, 51, 71)'
     let backgroundAttr = 'rgb(211, 229, 239)'

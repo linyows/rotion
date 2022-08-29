@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import type {
   TitlePropertyItemObjectResponse,
 } from '../../server/types'
@@ -8,9 +7,10 @@ export type DBTitleProps = {
   payload: Array<TitlePropertyItemObjectResponse>
   path: string
   slug: string
+  LinkComp?: unknown
 }
 
-export const DBTitleField: React.FC<DBTitleProps> = ({ payload, path, slug }) => {
+export const DBTitleField: React.FC<DBTitleProps> = ({ payload, path, slug, LinkComp }) => {
   const title = payload.map(v => {
     const richtext = v.title
     switch (richtext.type) {
@@ -28,6 +28,19 @@ export const DBTitleField: React.FC<DBTitleProps> = ({ payload, path, slug }) =>
   const href = `${path}${slug}`
 
   const LinkedTitle = () => {
+    if (LinkComp) {
+      const Link = LinkComp as React.FC<{ children: ReactElement<'a'>, href: string}>
+      return (
+        <>
+          <Link href={href}>
+            <a className="notionate-db-title-a" title={title}>
+              {title}
+            </a>
+          </Link>
+        </>
+      )
+    }
+
     return (
       <a className="notionate-db-title-a" href={href} title={title}>
         {title}

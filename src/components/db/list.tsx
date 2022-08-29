@@ -11,9 +11,10 @@ export type DBListProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
   link: string
+  LinkComp?: unknown
 }
 
-export const DBList: React.FC<DBListProps> = ({ keys, db, link }) => {
+export const DBList: React.FC<DBListProps> = ({ keys, db, link, LinkComp }) => {
   const getSlug = (key: string, page: GetPageResponse): string => {
     if (!('properties' in page)) {
       return 'not-found-properties'
@@ -58,7 +59,7 @@ export const DBList: React.FC<DBListProps> = ({ keys, db, link }) => {
     })
     const slug = getSlug(slugKey, page)
 
-    return ListHandler({ name, items, path, slug })
+    return ListHandler({ name, items, path, slug, LinkComp })
   }
 
   return (

@@ -16,9 +16,10 @@ export type ListHandlerProps = {
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
+  LinkComp?: unknown
 }
 
-export const ListHandler = ({ name, items, path, slug }: ListHandlerProps) => {
+export const ListHandler = ({ name, items, path, slug, LinkComp }: ListHandlerProps) => {
   if (items === undefined) {
     return <></>
   }
@@ -28,7 +29,7 @@ export const ListHandler = ({ name, items, path, slug }: ListHandlerProps) => {
     switch (target.type) {
       case 'title':
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
-        return DBTitleField({ payload, path, slug })
+        return DBTitleField({ payload, path, slug, LinkComp })
         break
 
       case 'rich_text':
