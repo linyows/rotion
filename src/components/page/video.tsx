@@ -10,7 +10,7 @@ export type VideoBlockProps = {
 
 const VideoBlock: React.FC<VideoBlockProps> = ({ block }) => {
   if (block.video?.type !== 'external' || (block.video?.type === 'external' && block.video?.html === undefined)) {
-    console.log('unsupported video:', block)
+    console.log('The html for this video block was undefined:', block)
     return <></>
   }
 

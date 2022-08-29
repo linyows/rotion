@@ -11,7 +11,7 @@ export type RichTextProps = {
 export const DBRichTextField: React.FC<RichTextProps> = ({ payload }) => {
   return (
     <div>
-      {TextBlock({ tag: 'span', block: [payload.rich_text]})}
+      <TextBlock tag="span" block={[payload.rich_text]} />
     </div>
   )
 }

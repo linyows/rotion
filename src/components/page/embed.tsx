@@ -10,7 +10,7 @@ export type EmbedBlockProps = {
 
 const EmbedBlock: React.FC<EmbedBlockProps> = ({ block }) => {
   if (block.embed?.html === undefined) {
-    console.log('unsupported embed:', block)
+    console.log('The html property for this embed block was undefined:', block)
     return <></>
   }
 

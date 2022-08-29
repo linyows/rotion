@@ -76,7 +76,7 @@ export const StyleObject: React.FC<TextProps> = ({ textObject, children }) => {
 export const TextObject: React.FC<TextProps> = ({ textObject }) => {
   const { href, plain_text } = textObject
   const children = textObject.type === 'mention' ?
-    MentionObject({ textObject, children: StyleObject({ textObject, children: path.basename(plain_text) }) }) :
+    MentionObject({ textObject, children: StyleObject({ textObject, children: pathBasename(plain_text) }) }) :
     StyleObject({ textObject, children: plain_text })
 
   if (href === null) {
