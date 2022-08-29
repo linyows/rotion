@@ -43,10 +43,29 @@ type HttpGetResponse = {
   end: Promise<unknown>
 }
 
+type SpeakerdeckOembedResponse = {
+  type: string
+  version: number
+  provider_name: string
+  provider_url: string
+  title: string
+  author_name: string
+  author_url: string
+  html: string
+  width: number
+  height: number
+  ratio: number
+}
+type GetJsonError = {
+  error: string
+}
+
 const httpsGet = promisify(https.get)
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 const cacheDir = '.cache'
+const docRoot = 'public'
+const imageDir = 'images'
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -62,10 +81,10 @@ const atoh = (a: string): string => {
   return shasum.digest('hex')
 }
 
-const getHtmlMeta = async (url: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
-  const res = await fetch(url)
+const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
+  const res = await fetch(reqUrl)
   if (!res.ok) {
-    console.log('fetch api error:', url, res)
+    console.log('fetch api error:', reqUrl, res)
     return { title: '', desc: '', image: '', icon: '' }
   }
   const body = await res.text()
@@ -101,9 +120,9 @@ const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> 
   if (block.video?.type !== 'external') {
     return ''
   }
-  const url = block.video?.external.url as string
-  if (url.includes('youtube.com')) {
-    const reqUrl = `https://www.youtube.com/oembed?url=${url}`
+  const extUrl = block.video?.external.url as string
+  if (extUrl.includes('youtube.com')) {
+    const reqUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(extUrl)}`
     const res = await fetch(reqUrl)
     if (!res.ok) {
       console.log('fetch api error:', reqUrl, res)
@@ -117,6 +136,20 @@ const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> 
   } else {
     return ''
   }
+}
+
+async function getJson<T>(reqUrl: string): Promise<T|GetJsonError> {
+  let body = ''
+  try {
+    const res = await httpsGet(reqUrl)
+    // @ts-ignore
+    for await (const chunk of res) {
+      body += chunk
+    }
+  } catch (e) {
+    return JSON.parse(`{ "error": "${reqUrl} -- ${e}"}`) as GetJsonError
+  }
+  return JSON.parse(body) as T
 }
 
 const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> => {
@@ -135,21 +168,24 @@ const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> 
     return json.html
 
   } else if (block.embed.url.includes('speakerdeck.com')) {
-    const url = block.embed?.url as string
-    const reqUrl = `https://speakerdeck.com/oembed.json?url=${url}`
-    const res = await fetch(reqUrl)
-    if (!res.ok) {
-      console.log('fetch api error:', reqUrl, res)
-      return ''
-    }
-    const json = await res.json()
-    return json.html
-      .replace(/width=\"\d+\"/, 'width="100%"')
-      .replace(/height=\"\d+\"/, 'height="100%"')
+    const embedUrl = block.embed?.url as string
+    const reqUrl = `https://speakerdeck.com/oembed.json?url=${encodeURIComponent(embedUrl)}`
 
-  } else {
-    return ''
+    /*
+     * The `UND_ERR_SOCKET` error occurs when GET request to the speakerdeck.com using the fetch api. That's why this using the https module.
+     * A bug report has been created
+     * https://github.com/nodejs/undici/issues/1412
+     */
+    const json = await getJson<SpeakerdeckOembedResponse>(reqUrl)
+    if ('error' in json) {
+      console.log(`getEmbedHtml failure: ${json.error}`)
+    } else {
+      return json.html
+        .replace(/width=\"\d+\"/, 'width="100%"')
+        .replace(/height=\"\d+\"/, 'height="100%"')
+    }
   }
+  return ''
 }
 
 const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<string> => {
@@ -161,32 +197,34 @@ const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<stri
   const basename = path.basename(imageUrl)
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
-  const filePath = `/images/${id}${extname}`
+  const urlPath = `${imageDir}/${id}${extname}`
+  const filePath = `${docRoot}/${urlPath}`
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
-    res.pipe(fs.createWriteStream(`./public${filePath}`))
+    res.pipe(fs.createWriteStream(filePath))
     await res.end
-    console.log(`saved image: public${filePath}`)
+    console.log(`saved image: ${filePath}`)
   } catch (e) {
     console.log('saveImageInBlock error', e)
   }
-  return filePath
+  return urlPath
 }
 
 const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<string> => {
   const basename = path.basename(imageUrl.split('?').shift() || '')
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
-  const filePath = `/images/${idWithKey}${extname}`
+  const urlPath = `${imageDir}/${idWithKey}${extname}`
+  const filePath = `${docRoot}/${urlPath}`
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
-    res.pipe(fs.createWriteStream(`./public${filePath}`))
+    res.pipe(fs.createWriteStream(filePath))
     await res.end
-    console.log(`saved image: public${filePath}`)
+    console.log(`saved image: ${filePath}`)
   } catch (e) {
     console.log('saveImageInPage error', e)
   }
-  return filePath
+  return urlPath
 }
 
 const saveImage = async (imageUrl: string): Promise<string> => {
@@ -195,16 +233,17 @@ const saveImage = async (imageUrl: string): Promise<string> => {
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
   const prefix = atoh(urlWithoutQuerystring)
-  const filePath = `/images/${prefix}-${basename}`
+  const urlPath = `${imageDir}/${prefix}-${basename}`
+  const filePath = `${docRoot}/${urlPath}`
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
-    res.pipe(fs.createWriteStream(`./public${filePath}`))
+    res.pipe(fs.createWriteStream(filePath))
     await res.end
-    console.log(`saved image: public${filePath}`)
+    console.log(`saved image: ${filePath}`)
   } catch (e) {
     console.log('saveImage error', e)
   }
-  return filePath
+  return urlPath
 }
 
 export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<QueryDatabaseResponseEx> => {
@@ -245,7 +284,7 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
 
     cursor = res.next_cursor
   }
-  
+
   for (const result of allres.results) {
     result.property_items = []
     for (const [k, v] of Object.entries(result.properties)) {
