@@ -20,7 +20,7 @@ function MyApp ({ Component, pageProps }: AppProps) {
           </Link>
         </div>
         <div className={styles.repo}>
-          <a className={styles.link} href="https://github.com/linyows/notionate" target="_blank" rel="noopener">
+          <a className={styles.link} href="https://github.com/linyows/notionate" target="_blank" rel="noreferrer">
             <GithubIcon />
             GitHub
           </a>

@@ -1,6 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
 import styles from '../styles/list.module.css'
 
 import {

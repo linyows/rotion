@@ -16,7 +16,6 @@ import {
   TextObject,
 } from '../src/components'
 
-
 type Props = {
   title: null|RichTextItemResponse
   icon: string
