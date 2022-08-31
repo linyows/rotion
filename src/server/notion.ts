@@ -1,6 +1,6 @@
 import { Client } from '@notionhq/client'
 import fs from 'fs'
-import { access, constants, mkdir } from 'node:fs/promises'
+import { mkdir } from 'node:fs/promises'
 import https from 'https'
 import path from 'path'
 import url from 'url'
@@ -132,9 +132,7 @@ const atoh = (a: string): string => {
 }
 
 const createDirWhenNotfound = async (dir: string): Promise<void> => {
-  try {
-    await access(dir, constants.R_OK | constants.W_OK)
-  } catch {
+  if (!fs.existsSync(dir)) {
     await mkdir(dir, { recursive: true })
     console.log(`created direcotry: ${dir}`)
   }

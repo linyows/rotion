@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { GithubIcon } from '../src/components/page/icons'
 import '../src/styles/notionate.css'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp ({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
