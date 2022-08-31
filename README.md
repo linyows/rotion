@@ -9,6 +9,12 @@ This is React components that uses the Notion API to display the Notion's databa
   <a href="https://github.com/linyows/notionate/blob/main/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
 </p>
 
+Example
+--
+
+- https://notionate.linyo.ws
+- https://www.notion.so/linyows/Notionate-6d6150cf068f4293a78b6fd9fa8d0181
+
 Usage
 --
 
