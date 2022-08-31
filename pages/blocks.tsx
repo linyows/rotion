@@ -1,4 +1,8 @@
 import type { GetStaticProps, NextPage } from 'next'
+import Head from 'next/head'
+import Link from 'next/link'
+import styles from '../styles/blocks.module.css'
+
 import {
   FetchBlocks,
   FetchPage,
@@ -6,12 +10,11 @@ import {
   RichTextItemResponse,
   TitlePropertyItemObjectResponse,
 } from '../src/server'
+
 import {
   Blocks,
   TextObject,
 } from '../src/components'
-import Header from '../components/header'
-import 'prismjs/themes/prism.css'
 
 type Props = React.PropsWithChildren & {
   title: null|RichTextItemResponse
@@ -42,24 +45,33 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   }
 }
 
-const Page: NextPage<Props> = ({ title, icon, image, blocks }) => {
+const BlocksPage: NextPage<Props> = ({ title, icon, image, blocks }) => {
+  const bg = {
+    backgroundImage: `url("${image}")`
+  }
+
   return (
     <>
-      <Header icon={icon} image={image}>
-        {title && <TextObject textObject={title} />}
-      </Header>
-      <div className="page">
+      <Head>
+        <title>Blocks - Notionate</title>
+      </Head>
+
+      <header className={styles.header} style={bg}>
+        <div className={styles.headerInner}>
+          <div className={styles.icon}>
+            {icon}
+          </div>
+          <h1 className={styles.title}>
+            {title && <TextObject textObject={title} />}
+          </h1>
+        </div>
+      </header>
+
+      <div className={styles.page}>
         <Blocks blocks={blocks} />
       </div>
-      <style jsx>{`
-        .page {
-          max-width: 1000px;
-          margin: 2rem auto;
-          padding: 0 1.5rem;
-        }
-      `}</style>
     </>
   )
 }
 
-export default Page
+export default BlocksPage

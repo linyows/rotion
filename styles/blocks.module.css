@@ -1,0 +1,34 @@
+.title {
+  padding: 0;
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.header {
+  width: 100%;
+  height: 434px;
+  margin: 0 0 120px;
+  position: relative;
+  background-size: cover;
+  background-position: left 40%;
+  background-repeat: no-repeat;
+  background-color: #eee;
+}
+
+.headerInner {
+  font-size: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 380px 1.5rem 0;
+}
+
+.icon {
+  font-size: 5rem;
+  padding-bottom: 1rem;
+}
+
+.page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}

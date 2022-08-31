@@ -1,5 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next'
+import Head from 'next/head'
 import Link from 'next/link'
+import styles from '../styles/blocks.module.css'
 
 import {
   FetchBlocks,
@@ -14,7 +16,6 @@ import {
   TextObject,
 } from '../src/components'
 
-import Header from '../components/header'
 
 type Props = {
   title: null|RichTextItemResponse
@@ -46,23 +47,30 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 }
 
 const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
+  const bg = {
+    backgroundImage: `url("${image}")`
+  }
+
   return (
     <>
-      <Header icon={icon} image={image}>
-        {title && <TextObject textObject={title} />}
-      </Header>
+      <Head>
+        <title>Notionate</title>
+      </Head>
 
-      <div className="page">
+      <header className={styles.header} style={bg}>
+        <div className={styles.headerInner}>
+          <div className={styles.icon}>
+            {icon}
+          </div>
+          <h1 className={styles.title}>
+            {title && <TextObject textObject={title} />}
+          </h1>
+        </div>
+      </header>
+
+      <div className={styles.page}>
         <Blocks blocks={blocks} link="/[title]" LinkComp={Link} />
       </div>
-
-      <style jsx>{`
-        .page {
-          max-width: 1000px;
-          margin: 2rem auto;
-          padding: 0 1.5rem;
-        }
-      `}</style>
     </>
   )
 }
