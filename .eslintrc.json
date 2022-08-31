@@ -26,6 +26,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "react/prop-types": "off",
     "camelcase": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],

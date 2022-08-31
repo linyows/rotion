@@ -12,7 +12,7 @@ import {
 
 type Props = {
   title: null|RichTextItemResponse[]
-  desc:  null|RichTextItemResponse[]
+  desc: null|RichTextItemResponse[]
   icon: string
   image: string
   db: QueryDatabaseResponseEx
@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const db = await FetchDatabase(params)
 
   const title = ('title' in db.meta) ? db.meta.title : null
-  const icon = ('icon' in db.meta && db.meta.icon !== null && db.meta.icon.type === 'emoji') ?  db.meta.icon.emoji : ''
+  const icon = ('icon' in db.meta && db.meta.icon !== null && db.meta.icon.type === 'emoji') ? db.meta.icon.emoji : ''
   const image = ('cover' in db.meta && db.meta.cover !== null && db.meta.cover.type === 'external') ? db.meta.cover.external.url : ''
   const desc = ('description' in db.meta) ? db.meta.description : null
 

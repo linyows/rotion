@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const id = process.env.NOTION_TESTPAGE_ID as string
   const page = await FetchPage(id)
   let title: null|RichTextItemResponse = null
-  if ('meta' in page && page.meta?.object == 'list') {
+  if ('meta' in page && page.meta?.object === 'list') {
     const obj = page.meta?.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
     title = obj.title
   }
@@ -46,10 +46,10 @@ const Page: NextPage<Props> = ({ title, icon, image, blocks }) => {
   return (
     <>
       <Header icon={icon} image={image}>
-        {title && TextObject({ textObject: title })}
+        {title && <TextObject textObject={title} />}
       </Header>
       <div className="page">
-        {Blocks({ blocks })}
+        <Blocks blocks={blocks} />
       </div>
       <style jsx>{`
         .page {
