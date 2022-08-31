@@ -1,13 +1,9 @@
 import type {
   QueryDatabaseResponse,
   GetDatabaseResponse,
-  GetUserResponse,
   GetPageResponse,
   ListBlockChildrenResponse,
   GetSelfResponse,
-  TextRichTextItemResponse,
-  MentionRichTextItemResponse,
-  EquationRichTextItemResponse,
   ParagraphBlockObjectResponse,
   Heading1BlockObjectResponse,
   Heading2BlockObjectResponse,
@@ -44,7 +40,6 @@ import type {
   RichTextItemResponse,
   GetPagePropertyResponse,
   PageObjectResponse,
-  PropertyItemObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
 
 export * from '@notionhq/client/build/src/api-endpoints'
