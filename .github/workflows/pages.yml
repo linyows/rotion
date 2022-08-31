@@ -27,6 +27,12 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    env:
+      NOTION_CACHE: true
+      NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+      NOTION_TESTROOT_ID: ${{ secrets.NOTION_TESTROOT_ID }}
+      NOTION_TESTPAGE_ID: ${{ secrets.NOTION_TESTPAGE_ID }}
+      NOTION_TESTDB_ID: ${{ secrets.NOTION_TESTDB_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
