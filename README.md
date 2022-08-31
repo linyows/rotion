@@ -12,8 +12,8 @@ This is React components that uses the Notion API to display the Notion's databa
 Example
 --
 
-- https://notionate.linyo.ws
-- https://www.notion.so/linyows/Notionate-6d6150cf068f4293a78b6fd9fa8d0181
+- Notionate: https://notionate.linyo.ws
+- Original: https://www.notion.so/linyows/Notionate-6d6150cf068f4293a78b6fd9fa8d0181
 
 Usage
 --
