@@ -52,14 +52,14 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
     return <></>
   }
 
-  let rows: JSX.Element[] = []
+  const rows: JSX.Element[] = []
   const tw = block.table.table_width
   const ch = block.table.has_column_header
   const rh = block.table.has_row_header
 
   block.children.results.map((vv, i) => {
     const v = vv as TableRowBlockObjectResponse
-    let columns: JSX.Element[] = []
+    const columns: JSX.Element[] = []
     if (v.table_row === undefined) {
       return
     }

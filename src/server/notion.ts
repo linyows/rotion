@@ -21,7 +21,7 @@ import type {
 } from './types'
 
 // @ts-ignore
-https.get[promisify.custom] = function getAsync(options: any) {
+https.get[promisify.custom] = function getAsync (options: any) {
   return new Promise((resolve, reject) => {
     https.get(options, (res) => {
       // @ts-ignore
@@ -98,7 +98,7 @@ const cacheDir = '.cache'
 const docRoot = 'public'
 const imageDir = 'images'
 
-async function getHTTP(reqUrl: string): Promise<string> {
+async function getHTTP (reqUrl: string): Promise<string> {
   let body = ''
   const res = await httpsGet(reqUrl)
   // @ts-ignore
@@ -108,7 +108,7 @@ async function getHTTP(reqUrl: string): Promise<string> {
   return body
 }
 
-async function getJson<T>(reqUrl: string): Promise<T|GetJsonError> {
+async function getJson<T> (reqUrl: string): Promise<T|GetJsonError> {
   try {
     const body = await getHTTP(reqUrl)
     return JSON.parse(body) as T
@@ -162,7 +162,7 @@ const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc: strin
   } catch (e) {
     console.log(`getHtmlMeta failure: ${reqUrl} -- ${e}`)
   }
-  return { title: '', desc: '', image: '', icon: ''}
+  return { title: '', desc: '', image: '', icon: '' }
 }
 
 const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> => {
@@ -195,7 +195,6 @@ const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> 
     } else {
       return json.html
     }
-
   } else if (block.embed && block.embed.url.includes('speakerdeck.com')) {
     const embedUrl = block.embed?.url as string
     const reqUrl = `https://speakerdeck.com/oembed.json?url=${encodeURIComponent(embedUrl)}`
@@ -300,8 +299,8 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
     await createDirWhenNotfound(cacheDir)
   }
   const cacheFile = `${cacheDir}/notion.databases.query-${database_id}${limit !== undefined ? `.limit-${limit}` : ''}`
-  let cursor: undefined|string = undefined
-  let allres: undefined|QueryDatabaseResponseEx = undefined
+  let cursor: undefined|string
+  let allres: undefined|QueryDatabaseResponseEx
 
   if (useCache) {
     try {
@@ -372,10 +371,10 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
     }
   }
 
-  let page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
+  const page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
 
   if ('properties' in page) {
-    let list: undefined|GetPagePropertyResponse = undefined
+    let list: undefined|GetPagePropertyResponse
     for (const [k, v] of Object.entries(page.properties)) {
       const property_id = v.id
       const res = await notion.pages.properties.retrieve({ page_id, property_id })
@@ -437,7 +436,7 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
     }
   }
 
-  let list = await notion.blocks.children.list({ block_id }) as ListBlockChildrenResponseEx
+  const list = await notion.blocks.children.list({ block_id }) as ListBlockChildrenResponseEx
 
   if (useCache) {
     for (const block of list.results) {

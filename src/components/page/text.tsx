@@ -41,23 +41,21 @@ export const MentionObject: React.FC<TextProps> = ({ textObject, children }) => 
           {children}
         </span>
       )
-
     } else if (textObject.mention.type === 'user') {
       return UserMention({ children })
-
     } else {
       console.log(`unsupport mention type: ${textObject.mention.type}`)
       return <></>
     }
   } else {
-      console.log(`unsupport richtext type: ${textObject.type}`)
-      return <></>
+    console.log(`unsupport richtext type: ${textObject.type}`)
+    return <></>
   }
 }
 
 export const StyleObject: React.FC<TextProps> = ({ textObject, children }) => {
   const { annotations, href } = textObject
-  let css = ['notionate-blocks-text-annotation']
+  const css = ['notionate-blocks-text-annotation']
   css.push(`notionate-blocks-text-${annotations.color.replace('_', '-')}`)
   if (annotations.bold) css.push('notionate-blocks-text-bold')
   if (annotations.italic) css.push('notionate-blocks-text-italic')
@@ -75,9 +73,9 @@ export const StyleObject: React.FC<TextProps> = ({ textObject, children }) => {
 
 export const TextObject: React.FC<TextProps> = ({ textObject }) => {
   const { href, plain_text } = textObject
-  const children = textObject.type === 'mention' ?
-    MentionObject({ textObject, children: StyleObject({ textObject, children: pathBasename(plain_text) }) }) :
-    StyleObject({ textObject, children: plain_text })
+  const children = textObject.type === 'mention'
+    ? MentionObject({ textObject, children: StyleObject({ textObject, children: pathBasename(plain_text) }) })
+    : StyleObject({ textObject, children: plain_text })
 
   if (href === null) {
     return children

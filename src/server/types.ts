@@ -61,27 +61,27 @@ export type DateResponse = {
   time_zone: TimeZoneRequest | null
 }
 export type SelectColor =
-  | "default"
-  | "gray"
-  | "brown"
-  | "orange"
-  | "yellow"
-  | "green"
-  | "blue"
-  | "purple"
-  | "pink"
-  | "red"
+  | 'default'
+  | 'gray'
+  | 'brown'
+  | 'orange'
+  | 'yellow'
+  | 'green'
+  | 'blue'
+  | 'purple'
+  | 'pink'
+  | 'red'
 
 export type SelectColorWithBG = SelectColor
-  | "gray_background"
-  | "brown_background"
-  | "orange_background"
-  | "yellow_background"
-  | "green_background"
-  | "blue_background"
-  | "purple_background"
-  | "pink_background"
-  | "red_background"
+  | 'gray_background'
+  | 'brown_background'
+  | 'orange_background'
+  | 'yellow_background'
+  | 'green_background'
+  | 'blue_background'
+  | 'purple_background'
+  | 'pink_background'
+  | 'red_background'
 
 export type SelectPropertyResponse = {
   id: StringRequest
@@ -92,25 +92,25 @@ export type SelectPropertyResponse = {
 export type UserObjectResponse = GetSelfResponse
 
 export type PartialUserObjectResponse =
-  | { id: IdRequest, object: "user" }
+  | { id: IdRequest, object: 'user' }
   | UserObjectResponse
 
 export type External = {
-  type: "external"
+  type: 'external'
   external: { url: TextRequest }
   caption: Array<RichTextItemResponse>
 }
 
 export type File = {
-  type: "file"
+  type: 'file'
   file: { url: string, expiry_time: string }
   caption: Array<RichTextItemResponse>
 }
 
 export type Icon =
-    | { type: "emoji", emoji: EmojiRequest }
-    | { type: "external", external: { url: TextRequest } }
-    | { type: "file", file: { url: string, expiry_time: string } }
+    | { type: 'emoji', emoji: EmojiRequest }
+    | { type: 'external', external: { url: TextRequest } }
+    | { type: 'file', file: { url: string, expiry_time: string } }
     | null
 
 export type TableBlockObjectResponseEx = TableBlockObjectResponse & {
@@ -130,7 +130,7 @@ export type ChildPageBlockObjectResponseEx = ChildPageBlockObjectResponse & {
 export type ChildDatabaseBlockObjectResponseEx = ChildDatabaseBlockObjectResponse & {
   database: GetDatabaseResponse
 }
-export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & { 
+export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & {
   bookmark: {
     url: string
     caption: Array<RichTextItemResponse>
@@ -145,13 +145,13 @@ export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & {
 export type ImageBlockObjectResponseEx = ImageBlockObjectResponse & {
   image:
   | {
-    type: "external"
+    type: 'external'
     external: { url: TextRequest }
     caption: Array<RichTextItemResponse>
     src: string
   }
   | {
-    type: "file"
+    type: 'file'
     file: { url: string; expiry_time: string }
     caption: Array<RichTextItemResponse>
     src: string
@@ -160,13 +160,13 @@ export type ImageBlockObjectResponseEx = ImageBlockObjectResponse & {
 export type VideoBlockObjectResponseEx = VideoBlockObjectResponse & {
   video:
   | {
-    type: "external"
+    type: 'external'
     external: { url: TextRequest }
     caption: Array<RichTextItemResponse>
     html: string
   }
   | {
-    type: "file"
+    type: 'file'
     file: { url: string; expiry_time: string }
     caption: Array<RichTextItemResponse>
   }
@@ -222,17 +222,17 @@ export type ListBlockChildrenResponseEx = ListBlockChildrenResponse & {
 // Extending by adding src param
 export type GetPageResponseEx = GetPageResponse & {
   cover:
-    | { src: string, type: "external", external: { url: string, expiry_time: string } }
-    | { src: string, type: "file", file: { url: string, expiry_time: string } }
+    | { src: string, type: 'external', external: { url: string, expiry_time: string } }
+    | { src: string, type: 'file', file: { url: string, expiry_time: string } }
   icon:
-    | { src: string, type: "emoji"; emoji: EmojiRequest }
-    | { src: string, type: "external", external: { url: string, expiry_time: string } }
-    | { src: string, type: "file", file: { url: string, expiry_time: string } }
+    | { src: string, type: 'emoji'; emoji: EmojiRequest }
+    | { src: string, type: 'external', external: { url: string, expiry_time: string } }
+    | { src: string, type: 'file', file: { url: string, expiry_time: string } }
   meta?: GetPagePropertyResponse
 }
 
 export type DBPageBase = {
-  object: "page"
+  object: 'page'
   id: string
   created_time: string
   last_edited_time: string
@@ -241,70 +241,70 @@ export type DBPageBase = {
   created_by: PartialUserObjectResponse
   last_edited_by: PartialUserObjectResponse
   parent:
-    | { type: "database_id", database_id: IdRequest }
-    | { type: "page_id", page_id: IdRequest }
-    | { type: "workspace", workspace: true }
+    | { type: 'database_id', database_id: IdRequest }
+    | { type: 'page_id', page_id: IdRequest }
+    | { type: 'workspace', workspace: true }
   icon: Icon
   cover:
-    | { type: "external", external: { url: TextRequest } }
-    | { type: "file", file: { url: string, expiry_time: string } }
+    | { type: 'external', external: { url: TextRequest } }
+    | { type: 'file', file: { url: string, expiry_time: string } }
     | null
   properties: {}
 }
 
 export type DBProperties = Record<
     string,
-    | { type: "title", title: Array<RichTextItemResponse>, id: string }
-    | { type: "rich_text", rich_text: Array<RichTextItemResponse>, id: string }
-    | { type: "number", number: number | null, id: string }
-    | { type: "url", url: string | null, id: string }
-    | { type: "select", select: SelectPropertyResponse | null, id: string }
-    | { type: "multi_select", multi_select: Array<SelectPropertyResponse>, id: string }
-    | { type: "people", people: Array<PartialUserObjectResponse>, id: string }
-    | { type: "email", email: string | null, id: string }
-    | { type: "phone_number", phone_number: string | null, id: string }
-    | { type: "date", date: DateResponse | null, id: string }
-    | { type: "files", files: Array<
-      | { file: { url: string, expiry_time: string }, name: StringRequest, type?: "file" }
-      | { external: { url: TextRequest }, name: StringRequest, type?: "external" }
+    | { type: 'title', title: Array<RichTextItemResponse>, id: string }
+    | { type: 'rich_text', rich_text: Array<RichTextItemResponse>, id: string }
+    | { type: 'number', number: number | null, id: string }
+    | { type: 'url', url: string | null, id: string }
+    | { type: 'select', select: SelectPropertyResponse | null, id: string }
+    | { type: 'multi_select', multi_select: Array<SelectPropertyResponse>, id: string }
+    | { type: 'people', people: Array<PartialUserObjectResponse>, id: string }
+    | { type: 'email', email: string | null, id: string }
+    | { type: 'phone_number', phone_number: string | null, id: string }
+    | { type: 'date', date: DateResponse | null, id: string }
+    | { type: 'files', files: Array<
+      | { file: { url: string, expiry_time: string }, name: StringRequest, type?: 'file' }
+      | { external: { url: TextRequest }, name: StringRequest, type?: 'external' }
       >, id: string }
-    | { type: "checkbox", checkbox: boolean, id: string }
-    | { type: "formula", formula:
-      | { type: "string", string: string | null }
-      | { type: "date", date: DateResponse | null }
-      | { type: "number", number: number | null }
-      | { type: "boolean", boolean: boolean | null }
+    | { type: 'checkbox', checkbox: boolean, id: string }
+    | { type: 'formula', formula:
+      | { type: 'string', string: string | null }
+      | { type: 'date', date: DateResponse | null }
+      | { type: 'number', number: number | null }
+      | { type: 'boolean', boolean: boolean | null }
       , id: string }
-    | { type: "relation", relation: Array<{ id: string }>, id: string }
-    | { type: "created_time", created_time: string, id: string }
-    | { type: "created_by", created_by: PartialUserObjectResponse, id: string }
-    | { type: "last_edited_time", last_edited_time: string, id: string }
-    | { type: "last_edited_by", last_edited_by: PartialUserObjectResponse, id: string }
+    | { type: 'relation', relation: Array<{ id: string }>, id: string }
+    | { type: 'created_time', created_time: string, id: string }
+    | { type: 'created_by', created_by: PartialUserObjectResponse, id: string }
+    | { type: 'last_edited_time', last_edited_time: string, id: string }
+    | { type: 'last_edited_by', last_edited_by: PartialUserObjectResponse, id: string }
   >
 
 // https://github.com/makenotion/notion-sdk-js/blob/d3f6c1b41c0f814e39ed202c6aa3b4a7cfdca582/src/api-endpoints.ts#L10837-L11019
 export type QueryDatabaseResponseResult = | {
   parent:
-    | { type: "database_id", database_id: IdRequest }
-    | { type: "page_id", page_id: IdRequest }
-    | { type: "workspace", workspace: true }
+    | { type: 'database_id', database_id: IdRequest }
+    | { type: 'page_id', page_id: IdRequest }
+    | { type: 'workspace', workspace: true }
   properties: DBProperties
   icon:
-    | { type: "emoji", emoji: EmojiRequest }
-    | { type: "external", external: { url: TextRequest } }
-    | { type: "file", file: { url: string, expiry_time: string } }
+    | { type: 'emoji', emoji: EmojiRequest }
+    | { type: 'external', external: { url: TextRequest } }
+    | { type: 'file', file: { url: string, expiry_time: string } }
     | null
   cover:
-    | { type: "external", external: { url: TextRequest } }
-    | { type: "file", file: { url: string, expiry_time: string } }
+    | { type: 'external', external: { url: TextRequest } }
+    | { type: 'file', file: { url: string, expiry_time: string } }
     | null
-  object: "page"
+  object: 'page'
   id: string
   created_time: string
   last_edited_time: string
   archived: boolean
   url: string
-} | { object: "page"; id: string }
+} | { object: 'page'; id: string }
 
 export type PageObjectResponseEx = PageObjectResponse & {
   property_items: Array<GetPagePropertyResponse>
@@ -313,13 +313,13 @@ export type PageObjectResponseEx = PageObjectResponse & {
 // https://github.com/makenotion/notion-sdk-js/blob/7c5b7645759bf90d71d496dc542a1a912379ee12/src/api-endpoints.ts#L4603-L4632
 export type GetDatabaseResponseEx = GetDatabaseResponse & {
   icon:
-    | { type: "emoji"; emoji: EmojiRequest }
-    | { src: string, type: "external"; external: { url: TextRequest } }
-    | { src: string, type: "file"; file: { url: string; expiry_time: string } }
+    | { type: 'emoji'; emoji: EmojiRequest }
+    | { src: string, type: 'external'; external: { url: TextRequest } }
+    | { src: string, type: 'file'; file: { url: string; expiry_time: string } }
     | null
   cover:
-    | { src: string, type: "external"; external: { url: TextRequest } }
-    | { src: string, type: "file"; file: { url: string; expiry_time: string } }
+    | { src: string, type: 'external'; external: { url: TextRequest } }
+    | { src: string, type: 'file'; file: { url: string; expiry_time: string } }
     | null
 }
 

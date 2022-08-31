@@ -50,7 +50,7 @@ export const Code: React.FC<CodeProps> = ({ children, language = 'text' }) => {
   const codeRef = React.createRef<HTMLPreElement>()
   const highlight = async () => {
     if (codeRef.current) {
-      Prism.highlightElement(codeRef.current as Element);
+      Prism.highlightElement(codeRef.current as Element)
     }
   }
   const cl = `language-${language.toLowerCase()}`

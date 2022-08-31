@@ -24,7 +24,7 @@ export const Blocks: React.FC<BlocksProps> = ({ blocks, link, LinkComp }) => {
   }
   const listTag = Object.keys(listType)
   let isListTag = false
-  let children: JSX.Element[] = []
+  const children: JSX.Element[] = []
   let list: BlockObjectResponse[] = []
 
   results.map((v, i) => {
