@@ -27,10 +27,10 @@ export const ListHandler = ({ name, items, path, slug, LinkComp }: ListHandlerPr
   if (items.object === 'list') {
     const target = items.results[0]
     switch (target.type) {
-      case 'title':
+      case 'title': { // Skip: Unexpected lexical declaration in case block.
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
         return DBTitleField({ payload, path, slug, LinkComp })
-        break
+      }
 
       case 'rich_text':
       case 'people':
@@ -44,30 +44,24 @@ export const ListHandler = ({ name, items, path, slug, LinkComp }: ListHandlerPr
     switch (items.type) {
       case 'date':
         return DBDateField({ payload: items.date })
-        break
 
       case 'rich_text':
         return DBRichTextField({ payload: items })
-        break
 
       case 'multi_select':
         return DBMultiSelectField({ payload: items, path })
-        break
 
       case 'url':
         return DBUrlField({ payload: items.url })
-        break
 
       case 'checkbox':
         return DBCheckboxField({ payload: items.checkbox })
-        break
 
       case 'number':
       case 'select':
       case 'status':
       case 'email':
       case 'phone_number':
-      case 'checkbox':
       case 'files':
       case 'created_by':
       case 'created_time':

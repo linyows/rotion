@@ -42,64 +42,51 @@ export const BlockHandler = ({ block, link, LinkComp }: BlockHandlerProps): JSX.
     case 'quote':
     case 'divider':
     case 'numbered_list_item':
-    case 'bulleted_list_item':
+    case 'bulleted_list_item': {
       const tag = blockType[block.type] as keyof JSX.IntrinsicElements
       // @ts-ignore
       const text = block[block.type]?.rich_text
       return <TextBlock tag={tag} block={text} key={block.id} />
-      break
+    }
 
     case 'image':
       return <ImageBlock block={block} key={block.id} />
-      break
 
     case 'code':
       return <CodeBlock block={block} key={block.id} />
-      break
 
     case 'video':
       return <VideoBlock block={block} key={block.id} />
-      break
 
     case 'embed':
       return <EmbedBlock block={block} key={block.id} />
-      break
 
     case 'bookmark':
       return <BookmarkBlock block={block} key={block.id} />
-      break
 
     case 'link_preview':
       return <LinkpreviewBlock block={block} key={block.id} />
-      break
 
     case 'to_do':
       return <TodoBlock block={block} key={block.id} />
-      break
 
     case 'table':
       return <TableBlock block={block} key={block.id} />
-      break
 
     case 'callout':
       return <CalloutBlock block={block} key={block.id} />
-      break
 
     case 'column_list':
       return <ColumnlistBlock block={block} key={block.id} />
-      break
 
     case 'child_page':
       return <ChildpageBlock block={block} link={link} LinkComp={LinkComp} key={block.id} />
-      break
 
     case 'child_database':
       return <ChilddatabaseBlock block={block} link={link} LinkComp={LinkComp} key={block.id} />
-      break
 
     case 'toggle':
       return <ToggleBlock block={block} key={block.id} />
-      break
 
     default:
       console.log(`still a not supported component: ${block.type}`, block)

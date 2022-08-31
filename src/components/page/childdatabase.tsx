@@ -17,8 +17,6 @@ const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, link, Li
   const icon = ('icon' in block.database) && block.database.icon?.type === 'emoji' ? block.database.icon.emoji : ''
   const title = ('title' in block.database) ? block.database.title : []
   const plainTitle = title.map(v => v.plain_text).join('').toLowerCase()
-  const [path, slugKey] = getLinkPathAndLinkKey(link || '')
-  const file = slugKey === 'id' ? block.database.id : encodeURIComponent(plainTitle.toLowerCase())
 
   const LinkedTitle = ({ block, link, LinkComp }: LinkedTitleProps) => {
     const [path, slugKey] = getLinkPathAndLinkKey(link || '')

@@ -8,7 +8,6 @@ import crypto from 'crypto'
 import { promisify } from 'util'
 import type {
   GetPageResponse,
-  GetPagePropertyResponse,
   QueryDatabaseParameters,
   QueryDatabaseResponse,
   QueryDatabaseResponseEx,
@@ -18,10 +17,11 @@ import type {
   EmbedBlockObjectResponseEx,
   ImageBlockObjectResponseEx,
   GetDatabaseResponseEx,
+  PropertyItemPropertyItemListResponse,
 } from './types'
 
 // @ts-ignore
-https.get[promisify.custom] = function getAsync(options: any) {
+https.get[promisify.custom] = function getAsync (options: any) {
   return new Promise((resolve, reject) => {
     https.get(options, (res) => {
       // @ts-ignore
@@ -98,7 +98,7 @@ const cacheDir = '.cache'
 const docRoot = 'public'
 const imageDir = 'images'
 
-async function getHTTP(reqUrl: string): Promise<string> {
+async function getHTTP (reqUrl: string): Promise<string> {
   let body = ''
   const res = await httpsGet(reqUrl)
   // @ts-ignore
@@ -108,7 +108,7 @@ async function getHTTP(reqUrl: string): Promise<string> {
   return body
 }
 
-async function getJson<T>(reqUrl: string): Promise<T|GetJsonError> {
+async function getJson<T> (reqUrl: string): Promise<T|GetJsonError> {
   try {
     const body = await getHTTP(reqUrl)
     return JSON.parse(body) as T
@@ -129,6 +129,35 @@ const atoh = (a: string): string => {
   const shasum = crypto.createHash('sha1')
   shasum.update(a)
   return shasum.digest('hex')
+}
+
+const createDirWhenNotfound = async (dir: string): Promise<void> => {
+  try {
+    await access(dir, constants.R_OK | constants.W_OK)
+  } catch {
+    await mkdir(dir, { recursive: true })
+    console.log(`created direcotry: ${dir}`)
+  }
+}
+
+const saveImage = async (imageUrl: string): Promise<string> => {
+  const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
+  const basename = path.basename(urlWithoutQuerystring)
+  // const myurl = url.parse(basename)
+  // const extname = path.extname(myurl.pathname as string)
+  const prefix = atoh(urlWithoutQuerystring)
+  const urlPath = `${imageDir}/${prefix}-${basename}`
+  const filePath = `${docRoot}/${urlPath}`
+  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
+  try {
+    const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
+    res.pipe(fs.createWriteStream(filePath))
+    await res.end
+    console.log(`saved image: ${filePath}`)
+  } catch (e) {
+    console.log('saveImage error', e)
+  }
+  return urlPath
 }
 
 const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
@@ -162,7 +191,7 @@ const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc: strin
   } catch (e) {
     console.log(`getHtmlMeta failure: ${reqUrl} -- ${e}`)
   }
-  return { title: '', desc: '', image: '', icon: ''}
+  return { title: '', desc: '', image: '', icon: '' }
 }
 
 const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> => {
@@ -177,8 +206,8 @@ const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> 
       console.log(`getVideoHtml failure: ${json.error}`)
     } else {
       return json.html
-        .replace(/width=\"\d+\"/, 'width="100%"')
-        .replace(/height=\"\d+\"/, 'height="100%"')
+        .replace(/width="\d+"/, 'width="100%"')
+        .replace(/height="\d+"/, 'height="100%"')
     }
   }
   return ''
@@ -195,7 +224,6 @@ const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> 
     } else {
       return json.html
     }
-
   } else if (block.embed && block.embed.url.includes('speakerdeck.com')) {
     const embedUrl = block.embed?.url as string
     const reqUrl = `https://speakerdeck.com/oembed.json?url=${encodeURIComponent(embedUrl)}`
@@ -210,8 +238,8 @@ const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> 
       console.log(`getEmbedHtml failure: ${json.error}`)
     } else {
       return json.html
-        .replace(/width=\"\d+\"/, 'width="100%"')
-        .replace(/height=\"\d+\"/, 'height="100%"')
+        .replace(/width="\d+"/, 'width="100%"')
+        .replace(/height="\d+"/, 'height="100%"')
     }
   }
 
@@ -219,12 +247,14 @@ const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> 
 }
 
 const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<string> => {
+  /* eslint-disable no-unused-vars */
   const { id, last_edited_time, image } = block
   if (image === undefined) {
     return ''
   }
   const imageUrl = image.type === 'file' ? image.file.url : image.external.url
   const basename = path.basename(imageUrl)
+  /* eslint-disable n/no-deprecated-api */
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `${imageDir}/${id}${extname}`
@@ -243,6 +273,7 @@ const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<stri
 
 const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<string> => {
   const basename = path.basename(imageUrl.split('?').shift() || '')
+  /* eslint-disable n/no-deprecated-api */
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `${imageDir}/${idWithKey}${extname}`
@@ -259,35 +290,6 @@ const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<str
   return urlPath
 }
 
-const saveImage = async (imageUrl: string): Promise<string> => {
-  const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
-  const basename = path.basename(urlWithoutQuerystring)
-  const myurl = url.parse(basename)
-  const extname = path.extname(myurl.pathname as string)
-  const prefix = atoh(urlWithoutQuerystring)
-  const urlPath = `${imageDir}/${prefix}-${basename}`
-  const filePath = `${docRoot}/${urlPath}`
-  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
-  try {
-    const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
-    res.pipe(fs.createWriteStream(filePath))
-    await res.end
-    console.log(`saved image: ${filePath}`)
-  } catch (e) {
-    console.log('saveImage error', e)
-  }
-  return urlPath
-}
-
-const createDirWhenNotfound = async (dir: string): Promise<void> => {
-  try {
-    await access(dir, constants.R_OK | constants.W_OK)
-  } catch {
-    await mkdir(dir, { recursive: true })
-    console.log(`created direcotry: ${dir}`)
-  }
-}
-
 export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<QueryDatabaseResponseEx> => {
   const { database_id } = params
   if ('page_size' in params) {
@@ -300,8 +302,8 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
     await createDirWhenNotfound(cacheDir)
   }
   const cacheFile = `${cacheDir}/notion.databases.query-${database_id}${limit !== undefined ? `.limit-${limit}` : ''}`
-  let cursor: undefined|string = undefined
-  let allres: undefined|QueryDatabaseResponseEx = undefined
+  let cursor: undefined|string
+  let allres: undefined|QueryDatabaseResponseEx
 
   if (useCache) {
     try {
@@ -327,12 +329,13 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
       break
     }
 
+    /* eslint-disable no-unused-vars */
     cursor = res.next_cursor
   }
 
   for (const result of allres.results) {
     result.property_items = []
-    for (const [k, v] of Object.entries(result.properties)) {
+    for (const [, v] of Object.entries(result.properties)) {
       const page_id = result.id
       const property_id = v.id
       const props = await notion.pages.properties.retrieve({ page_id, property_id })
@@ -372,11 +375,11 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
     }
   }
 
-  let page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
+  const page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
 
   if ('properties' in page) {
-    let list: undefined|GetPagePropertyResponse = undefined
-    for (const [k, v] of Object.entries(page.properties)) {
+    let list: undefined|PropertyItemPropertyItemListResponse
+    for (const [, v] of Object.entries(page.properties)) {
       const property_id = v.id
       const res = await notion.pages.properties.retrieve({ page_id, property_id })
       if (res.object !== 'list') {
@@ -437,7 +440,7 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
     }
   }
 
-  let list = await notion.blocks.children.list({ block_id }) as ListBlockChildrenResponseEx
+  const list = await notion.blocks.children.list({ block_id }) as ListBlockChildrenResponseEx
 
   if (useCache) {
     for (const block of list.results) {
