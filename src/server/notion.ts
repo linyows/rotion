@@ -8,7 +8,6 @@ import crypto from 'crypto'
 import { promisify } from 'util'
 import type {
   GetPageResponse,
-  GetPagePropertyResponse,
   QueryDatabaseParameters,
   QueryDatabaseResponse,
   QueryDatabaseResponseEx,
@@ -18,6 +17,7 @@ import type {
   EmbedBlockObjectResponseEx,
   ImageBlockObjectResponseEx,
   GetDatabaseResponseEx,
+  PropertyItemPropertyItemListResponse,
 } from './types'
 
 // @ts-ignore
@@ -131,6 +131,35 @@ const atoh = (a: string): string => {
   return shasum.digest('hex')
 }
 
+const createDirWhenNotfound = async (dir: string): Promise<void> => {
+  try {
+    await access(dir, constants.R_OK | constants.W_OK)
+  } catch {
+    await mkdir(dir, { recursive: true })
+    console.log(`created direcotry: ${dir}`)
+  }
+}
+
+const saveImage = async (imageUrl: string): Promise<string> => {
+  const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
+  const basename = path.basename(urlWithoutQuerystring)
+  // const myurl = url.parse(basename)
+  // const extname = path.extname(myurl.pathname as string)
+  const prefix = atoh(urlWithoutQuerystring)
+  const urlPath = `${imageDir}/${prefix}-${basename}`
+  const filePath = `${docRoot}/${urlPath}`
+  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
+  try {
+    const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
+    res.pipe(fs.createWriteStream(filePath))
+    await res.end
+    console.log(`saved image: ${filePath}`)
+  } catch (e) {
+    console.log('saveImage error', e)
+  }
+  return urlPath
+}
+
 const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
   const ogTitleRegex = /<meta\s+property="og:title"\s+content="(.*?)">/
   const ogDescRegex = /<meta\s+property="og:description"\s+content="(.*?)">/
@@ -177,8 +206,8 @@ const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> 
       console.log(`getVideoHtml failure: ${json.error}`)
     } else {
       return json.html
-        .replace(/width=\"\d+\"/, 'width="100%"')
-        .replace(/height=\"\d+\"/, 'height="100%"')
+        .replace(/width="\d+"/, 'width="100%"')
+        .replace(/height="\d+"/, 'height="100%"')
     }
   }
   return ''
@@ -209,8 +238,8 @@ const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> 
       console.log(`getEmbedHtml failure: ${json.error}`)
     } else {
       return json.html
-        .replace(/width=\"\d+\"/, 'width="100%"')
-        .replace(/height=\"\d+\"/, 'height="100%"')
+        .replace(/width="\d+"/, 'width="100%"')
+        .replace(/height="\d+"/, 'height="100%"')
     }
   }
 
@@ -218,13 +247,14 @@ const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> 
 }
 
 const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<string> => {
+  /* eslint-disable no-unused-vars */
   const { id, last_edited_time, image } = block
   if (image === undefined) {
     return ''
   }
   const imageUrl = image.type === 'file' ? image.file.url : image.external.url
   const basename = path.basename(imageUrl)
-  const myurl = url.parse(basename)
+  const myurl = new url.URL(basename)
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `${imageDir}/${id}${extname}`
   const filePath = `${docRoot}/${urlPath}`
@@ -242,7 +272,7 @@ const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<stri
 
 const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<string> => {
   const basename = path.basename(imageUrl.split('?').shift() || '')
-  const myurl = url.parse(basename)
+  const myurl = new url.URL(basename)
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `${imageDir}/${idWithKey}${extname}`
   const filePath = `${docRoot}/${urlPath}`
@@ -256,35 +286,6 @@ const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<str
     console.log('saveImageInPage error', e)
   }
   return urlPath
-}
-
-const saveImage = async (imageUrl: string): Promise<string> => {
-  const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
-  const basename = path.basename(urlWithoutQuerystring)
-  const myurl = url.parse(basename)
-  const extname = path.extname(myurl.pathname as string)
-  const prefix = atoh(urlWithoutQuerystring)
-  const urlPath = `${imageDir}/${prefix}-${basename}`
-  const filePath = `${docRoot}/${urlPath}`
-  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
-  try {
-    const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
-    res.pipe(fs.createWriteStream(filePath))
-    await res.end
-    console.log(`saved image: ${filePath}`)
-  } catch (e) {
-    console.log('saveImage error', e)
-  }
-  return urlPath
-}
-
-const createDirWhenNotfound = async (dir: string): Promise<void> => {
-  try {
-    await access(dir, constants.R_OK | constants.W_OK)
-  } catch {
-    await mkdir(dir, { recursive: true })
-    console.log(`created direcotry: ${dir}`)
-  }
 }
 
 export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<QueryDatabaseResponseEx> => {
@@ -326,12 +327,13 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
       break
     }
 
+    /* eslint-disable no-unused-vars */
     cursor = res.next_cursor
   }
 
   for (const result of allres.results) {
     result.property_items = []
-    for (const [k, v] of Object.entries(result.properties)) {
+    for (const [, v] of Object.entries(result.properties)) {
       const page_id = result.id
       const property_id = v.id
       const props = await notion.pages.properties.retrieve({ page_id, property_id })
@@ -374,8 +376,8 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
   const page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
 
   if ('properties' in page) {
-    let list: undefined|GetPagePropertyResponse
-    for (const [k, v] of Object.entries(page.properties)) {
+    let list: undefined|PropertyItemPropertyItemListResponse
+    for (const [, v] of Object.entries(page.properties)) {
       const property_id = v.id
       const res = await notion.pages.properties.retrieve({ page_id, property_id })
       if (res.object !== 'list') {

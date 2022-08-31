@@ -16,13 +16,10 @@ export const DBTitleField: React.FC<DBTitleProps> = ({ payload, path, slug, Link
     switch (richtext.type) {
       case 'text':
         return richtext.text.content
-        break
       case 'mention':
         return richtext.mention.type
-        break
       default:
         return richtext.equation.expression
-        break
     }
   }).join(',')
   const href = `${path}${slug}`

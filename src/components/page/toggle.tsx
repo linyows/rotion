@@ -9,11 +9,11 @@ export type ToggleBlockProps = {
   block: ToggleBlockObjectResponseEx
 }
 
-type Triangle = {
+type TriangleProps = {
   open: boolean
 }
 
-const Triangle: React.FC<Triangle> = ({ open }) => {
+const Triangle: React.FC<TriangleProps> = ({ open }) => {
   const style = {
     transform: `rotateZ(${open ? 180 : 90}deg)`,
   }

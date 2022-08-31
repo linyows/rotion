@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import type {
-  MultiSelectPropertyItemObjectResponse, SelectPropertyResponse,
+  MultiSelectPropertyItemObjectResponse,
 } from '../../server/types'
 
 export type MultiSelectProps = {

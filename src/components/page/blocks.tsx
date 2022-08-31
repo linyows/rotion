@@ -53,6 +53,7 @@ export const Blocks: React.FC<BlocksProps> = ({ blocks, link, LinkComp }) => {
         children.push(elem)
       }
     }
+    return ''
   })
 
   return (

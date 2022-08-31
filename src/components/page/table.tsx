@@ -53,7 +53,7 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
   }
 
   const rows: JSX.Element[] = []
-  const tw = block.table.table_width
+  // const tw = block.table.table_width
   const ch = block.table.has_column_header
   const rh = block.table.has_row_header
 
@@ -61,20 +61,23 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
     const v = vv as TableRowBlockObjectResponse
     const columns: JSX.Element[] = []
     if (v.table_row === undefined) {
-      return
+      return ''
     }
     v.table_row.cells.map((cells, ii) => {
       cells.map((cell, iii) => {
         const key = `${v.id}-${i}-${ii}-${iii}`
-        if ((i == 0 && ch) || (iii == 0 && rh)) {
+        if ((i === 0 && ch) || (iii === 0 && rh)) {
           columns.push(Th({ cell, key }) || <></>)
         } else {
           columns.push(Td({ cell, key }) || <></>)
         }
+        return ''
       })
+      return ''
     })
     const key = `${block.id}-${i}`
     rows.push(Tr({ children: columns, key }) || <></>)
+    return ''
   })
 
   return (
