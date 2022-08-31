@@ -254,7 +254,8 @@ const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<stri
   }
   const imageUrl = image.type === 'file' ? image.file.url : image.external.url
   const basename = path.basename(imageUrl)
-  const myurl = new url.URL(basename)
+  /* eslint-disable n/no-deprecated-api */
+  const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `${imageDir}/${id}${extname}`
   const filePath = `${docRoot}/${urlPath}`
@@ -272,7 +273,8 @@ const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<stri
 
 const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<string> => {
   const basename = path.basename(imageUrl.split('?').shift() || '')
-  const myurl = new url.URL(basename)
+  /* eslint-disable n/no-deprecated-api */
+  const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `${imageDir}/${idWithKey}${extname}`
   const filePath = `${docRoot}/${urlPath}`
