@@ -31,6 +31,7 @@
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "clean": "rm -rf dist/*",
     "cacheclean": "rm -rf .cache/*",
+    "export": "next build && next export",
     "test": "jest --no-cache"
   },
   "peerDependencies": {
