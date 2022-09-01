@@ -41,8 +41,8 @@
 }
 .notionate-blocks-bookmark-desc {
   color: #999;
-  line-height: 1;
-  font-size: .65rem;
+  line-height: 1.2;
+  font-size: .8rem;
   padding-top: .1rem;
 }
 .notionate-blocks-bookmark-url {
@@ -57,13 +57,25 @@
   margin-right: 10px;
   margin-bottom: 1px;
 }
+@media (max-width: 580px) {
+  .notionate-blocks-bookmark-image {
+    display: none;
+  }
+  .notionate-blocks-bookmark-inner {
+    display: block;
+  }
+  .notionate-blocks-bookmark-url {
+    position: static;
+    padding: 1rem 0 .85rem;
+  }
+}
 
 /* callout */
 .notionate-blocks-callout {
   display: flex;
   padding: 1.2rem;
   padding-left: 1rem;
-  width: 100%;
+  width: calc(100% - 2.4rem);
   border-radius: 3px;
   background-color: rgb(241, 241, 239);
   margin-top: .6rem;
@@ -207,6 +219,7 @@
   color: #888;
   font-size: .8rem;
   background-color: inherit;
+  overflow: hidden;
 }
 .notionate-blocks-linkpreview-a:hover {
   background-color: #eee;
