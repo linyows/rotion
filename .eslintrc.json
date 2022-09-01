@@ -27,6 +27,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "@next/next/no-img-element": "off",
     "react/prop-types": "off",
     "camelcase": "off",
     "no-use-before-define": "off",
