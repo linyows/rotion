@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Notionate" src="https://github.com/linyows/notionate/blob/main/misc/notionate-icon.svg?raw=true" width="300">
+  <img alt="Notionate" src="https://github.com/linyows/notionate/blob/main/misc/notionate-icon.svg?raw=true" width="160">
 </p>
 
 <p align="center">
