@@ -1,7 +1,8 @@
+<br><br><br><br><br>
 <p align="center">
   <img alt="Notionate" src="https://github.com/linyows/notionate/blob/main/misc/notionate-icon.svg?raw=true" width="160">
 </p>
-
+<br><br><br><br><br>
 <p align="center">
   <strong>Notionate</strong>: This is React components that uses the Notion API to display the Notion's database and page.
 </p>
