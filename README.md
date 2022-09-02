@@ -26,43 +26,93 @@ Use API calls and components together. This is database list example:
 
 ```ts
 import type { GetStaticProps, NextPage } from 'next'
-import Link from 'next/link'
-import {
-  FetchDatabase,
-  Querydatabaseresponse,
-} from 'notionate'
-import { DBList } from 'notionate/dist/components'
+import { QueryDatabaseResponseEx, FetchDatabase, QueryDatabaseParameters } from 'notionate'
+import { DBList, TextBlock } from 'notionate/dist/components'
 import 'notionate/dist/styles/notionate.css'
 
-type Props = { blog: QueryDatabaseResponse }
+type Props = {
+  db: QueryDatabaseResponseEx
+}
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const id = process.env.NOTION_DBID as string
-  const blog = await FetchDatabase(id)
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
+  const db = await FetchDatabase({
+    database_id: process.env.NOTION_DBID,
+    filter: {
+      property: 'Published',
+      checkbox: {
+        equals: true
+      },
+    },
+    sorts: [
+      {
+        property: 'Date',
+        direction: 'descending'
+      },
+    ]
+  } as QueryDatabaseParameters)
+
   return {
-    props: { blog }
+    props: {
+      db,
+    }
   }
 }
 
-export default const Home: NextPage<Props> = ({ blog }) => {
+export default const DB: NextPage<Props> = ({ db }) => {
   return (
-    <section>
-      <div className="header">
-        <h1>Blog</h1>
-        <p>This is my blog list.</p>
-      </div>
-
-      <div className="list">
-        <DBList
-          keys={['Name', 'spacer', 'Tags', 'Date']}
-          db={blog}
-          link="/posts/[id]"
-          LinkComp={Link}
-        />
-      </div>
-    </section>
+    <div>
+      <DBList keys={['Name', 'spacer', 'Tags', 'Date']} db={db} link="/database/[id]" />
+    </div>
   )
 }
+```
+
+This is page example:
+
+```ts
+import type { GetStaticProps, NextPage } from 'next'
+import { FetchBlocks, ListBlockChildrenResponseEx } from 'notionate'
+import { Blocks } from 'notionate/dist/components'
+import 'notionate/dist/styles/notionate.css'
+
+type Props = React.PropsWithChildren & {
+  blocks: ListBlockChildrenResponseEx
+}
+
+export const getStaticProps: GetStaticProps<Props> = async (context) => {
+  const blocks = await FetchBlocks(process.env.NOTION_PAGEID)
+  return {
+    props: {
+      blocks,
+    }
+  }
+}
+
+export default const Page: NextPage<Props> = ({ blocks }) => {
+  return (
+    <div>
+      <Blocks blocks={blocks} />
+    </div>
+  )
+}
+```
+
+Set the notion token as environment variable:
+
+```sh
+$ cat .env
+NOTION_TOKEN=secret_vHVKhIeYm95ga1sjOv*************************
+NOTION_CACHE=true
+NOTION_PAGEID=23740912d6ac4018ab76c64e772a342a
+NOTION_DBID=81781536afc6431da21721177e7bf8e0
+# These are optional and the values are defaults.
+# ```
+# project_root/.cache
+#             /public/images
+# ```
+# NOTIONATE_CACHEDIR=.cache
+# NOTIONATE_DOCROOT=public
+# NOTIONATE_IMAGEDIR=images
 ```
 
 API
@@ -70,10 +120,11 @@ API
 
 This is the API available:
 
-- FetchDatabase
-- FetchBlocks
+- FetchDatabase: Returns page list and properties in database
+- FetchPage: Returns page title and properties
+- FetchBlocks: Returns blocks that is the content of the page.
 
-Images are saved locally.
+Images are saved in `NOTIONATE_IMAGEDIR` locally.
 
 Author
 --
