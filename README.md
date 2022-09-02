@@ -26,8 +26,9 @@ Use API calls and components together. This is database list example:
 
 ```ts
 import type { GetStaticProps, NextPage } from 'next'
+import Link from 'next/link'
 import { QueryDatabaseResponseEx, FetchDatabase, QueryDatabaseParameters } from 'notionate'
-import { DBList, TextBlock } from 'notionate/dist/components'
+import { DBList } from 'notionate/dist/components'
 import 'notionate/dist/styles/notionate.css'
 
 type Props = {
@@ -61,7 +62,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 export default const DB: NextPage<Props> = ({ db }) => {
   return (
     <div>
-      <DBList keys={['Name', 'spacer', 'Tags', 'Date']} db={db} link="/database/[id]" />
+      <DBList keys={['Name', 'spacer', 'Tags', 'Date']} db={db} link="/database/[id]" LinkComp={Link} />
     </div>
   )
 }
@@ -75,7 +76,7 @@ import { FetchBlocks, ListBlockChildrenResponseEx } from 'notionate'
 import { Blocks } from 'notionate/dist/components'
 import 'notionate/dist/styles/notionate.css'
 
-type Props = React.PropsWithChildren & {
+type Props = {
   blocks: ListBlockChildrenResponseEx
 }
 
