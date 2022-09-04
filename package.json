@@ -35,8 +35,8 @@
     "test": "jest --no-cache"
   },
   "peerDependencies": {
-    "react": ">= 18.0.0-0",
-    "react-dom": ">= 18.0.0-0"
+    "react": "^17.0.2 || ^18.0.0-0",
+    "react-dom": "^17.0.2 || ^18.0.0-0"
   },
   "dependencies": {
     "@notionhq/client": "^2.1.1",
