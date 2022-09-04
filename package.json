@@ -1,6 +1,6 @@
 {
   "name": "notionate",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "license": "MIT",
   "repository": "linyows/notionate",
   "description": "This is React components that uses the Notion API to display the Notion's database and page.",
@@ -11,10 +11,7 @@
   "files": [
     "LICENSE",
     "README.md",
-    "dist/types/*",
-    "dist/server/*",
-    "dist/styles/*",
-    "dist/components/index.js"
+    "dist/*"
   ],
   "author": {
     "name": "Tomohisa Oda",
