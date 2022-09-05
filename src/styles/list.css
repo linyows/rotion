@@ -94,6 +94,16 @@
   color: #999;
 }
 
+/* db number */
+.notionate-db-number {
+  white-space: nowrap;
+  font-size: .85rem;
+  display: flex;
+  align-items: center;
+  margin: 0 7px;
+  min-width: 20px;
+}
+
 /* db list */
 .notionate-db-list-record {
   display: flex;
