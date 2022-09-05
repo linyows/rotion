@@ -45,18 +45,7 @@ export const DBList: React.FC<DBListProps> = ({ keys, db, link, LinkComp }) => {
         propertyId = v.id
       }
     }
-    const items = page.property_items.find(v => {
-      if (v.type === 'property_item') {
-        if (v.results[0].id === propertyId) {
-          return true
-        }
-      } else {
-        if (v.id === propertyId) {
-          return true
-        }
-      }
-      return false
-    })
+    const items = page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
     const slug = getSlug(slugKey, page)
 
     return ListHandler({ name, items, path, slug, LinkComp })
