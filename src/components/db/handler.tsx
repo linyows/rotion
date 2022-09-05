@@ -34,6 +34,8 @@ export const ListHandler = ({ name, items, path, slug, LinkComp }: ListHandlerPr
       }
 
       case 'rich_text':
+        return DBRichTextField({ payload: target })
+
       case 'people':
       case 'relation':
       case 'rollup':

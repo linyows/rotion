@@ -94,6 +94,19 @@
   color: #999;
 }
 
+/* db richtext */
+.notionate-db-richtext {
+  font-size: .85rem;
+  white-space: nowrap;
+  display: block;
+  margin: 0 .5rem;
+  padding: 0 .5rem;
+  max-width: 25rem;
+  color: #777;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
 /* db number */
 .notionate-db-number {
   white-space: nowrap;
