@@ -6,6 +6,7 @@ export * from './db/multiselect'
 export * from './db/richtext'
 export * from './db/title'
 export * from './db/url'
+export * from './db/number'
 
 export * from './page/blocks'
 export * from './page/bookmark'

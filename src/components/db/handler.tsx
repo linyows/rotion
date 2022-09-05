@@ -10,6 +10,7 @@ import DBRichTextField from './richtext'
 import DBMultiSelectField from './multiselect'
 import DBUrlField from './url'
 import DBCheckboxField from './checkbox'
+import DBNumberField from './number'
 
 export type ListHandlerProps = {
   name: string
@@ -33,6 +34,8 @@ export const ListHandler = ({ name, items, path, slug, LinkComp }: ListHandlerPr
       }
 
       case 'rich_text':
+        return DBRichTextField({ payload: target })
+
       case 'people':
       case 'relation':
       case 'rollup':
@@ -58,6 +61,8 @@ export const ListHandler = ({ name, items, path, slug, LinkComp }: ListHandlerPr
         return DBCheckboxField({ payload: items.checkbox })
 
       case 'number':
+        return DBNumberField({ payload: items })
+
       case 'select':
       case 'status':
       case 'email':

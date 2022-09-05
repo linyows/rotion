@@ -10,7 +10,7 @@ export type RichTextProps = {
 
 export const DBRichTextField: React.FC<RichTextProps> = ({ payload }) => {
   return (
-    <div>
+    <div className="notionate-db-richtext">
       <TextBlock tag="span" block={[payload.rich_text]} />
     </div>
   )
