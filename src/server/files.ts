@@ -132,8 +132,8 @@ export const saveImage = async (imageUrl: string): Promise<string> => {
   // const myurl = url.parse(basename)
   // const extname = path.extname(myurl.pathname as string)
   const prefix = atoh(urlWithoutQuerystring)
-  const urlPath = `${imageDir}/${prefix}-${basename}`
-  const filePath = `${docRoot}/${urlPath}`
+  const urlPath = `/${imageDir}/${prefix}-${basename}`
+  const filePath = `${docRoot}${urlPath}`
   await createDirWhenNotfound(`${docRoot}/${imageDir}`)
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
@@ -243,8 +243,8 @@ export const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promi
   /* eslint-disable n/no-deprecated-api */
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
-  const urlPath = `${imageDir}/${id}${extname}`
-  const filePath = `${docRoot}/${urlPath}`
+  const urlPath = `/${imageDir}/${id}${extname}`
+  const filePath = `${docRoot}${urlPath}`
   await createDirWhenNotfound(`${docRoot}/${imageDir}`)
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
@@ -262,8 +262,8 @@ export const saveImageInPage = async (imageUrl: string, idWithKey: string): Prom
   /* eslint-disable n/no-deprecated-api */
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
-  const urlPath = `${imageDir}/${idWithKey}${extname}`
-  const filePath = `${docRoot}/${urlPath}`
+  const urlPath = `/${imageDir}/${idWithKey}${extname}`
+  const filePath = `${docRoot}${urlPath}`
   await createDirWhenNotfound(`${docRoot}/${imageDir}`)
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
