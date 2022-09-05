@@ -63,7 +63,7 @@ export const DBList: React.FC<DBListProps> = ({ keys, db, link, LinkComp }) => {
   }
 
   return (
-    <div className="notionate">
+    <div className="notionate-db-list">
       {db.results.map((v) => (
         <div key={v.id} className="notionate-db-list-record">
           {keys.map((name, i) => (
