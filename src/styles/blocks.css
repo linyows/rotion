@@ -170,6 +170,10 @@
   color: #888;
   font-size: .95rem;
 }
+.notionate-blocks-embed-twitter {
+  width: 550px;
+  margin: 0 auto;
+}
 
 /* icons */
 .notionate-blocks-icons-figma {
