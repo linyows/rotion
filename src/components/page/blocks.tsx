@@ -57,7 +57,7 @@ export const Blocks: React.FC<BlocksProps> = ({ blocks, link, LinkComp }) => {
   })
 
   return (
-    <div className="notionate">
+    <div className="notionate-blocks">
       {children}
     </div>
   )

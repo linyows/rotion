@@ -136,13 +136,13 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
   if (useCache) {
     if (page.cover !== null) {
       if (page.cover.type === 'external') {
-        page.cover.src = await saveImageInPage(page.cover.external.url, `${page.id}-cover-external`)
+        page.cover.src = await saveImageInPage(page.cover.external.url, `page-${page.id}-cover`)
       } else if (page.cover.type === 'file') {
-        page.cover.src = await saveImageInPage(page.cover.file.url, `${page.id}-cover-file`)
+        page.cover.src = await saveImageInPage(page.cover.file.url, `page-${page.id}-cover`)
       }
     }
     if (page.icon?.type === 'file') {
-      page.icon.src = await saveImageInPage(page.icon.file.url, `${page.id}-icon-file`)
+      page.icon.src = await saveImageInPage(page.icon.file.url, `page-${page.id}-icon`)
     }
     await writeCache(cacheFile, page)
   } else {

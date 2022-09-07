@@ -126,13 +126,11 @@ export const createDirWhenNotfound = async (dir: string): Promise<void> => {
   }
 }
 
-export const saveImage = async (imageUrl: string): Promise<string> => {
+export const saveImage = async (imageUrl: string, prefix?: string): Promise<string> => {
   const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
   const basename = path.basename(urlWithoutQuerystring)
-  // const myurl = url.parse(basename)
-  // const extname = path.extname(myurl.pathname as string)
-  const prefix = atoh(urlWithoutQuerystring)
-  const urlPath = `/${imageDir}/${prefix}-${basename}`
+  const p = (prefix === undefined) ? atoh(urlWithoutQuerystring) : prefix
+  const urlPath = `/${imageDir}/${p}-${basename}`
   const filePath = `${docRoot}${urlPath}`
   await createDirWhenNotfound(`${docRoot}/${imageDir}`)
   try {
@@ -233,14 +231,14 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
 }
 
 export const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<string> => {
-  /* eslint-disable no-unused-vars */
-  const { id, last_edited_time, image } = block
+  const { id, image } = block
   if (image === undefined) {
     return ''
   }
   const imageUrl = image.type === 'file' ? image.file.url : image.external.url
+  /*
   const basename = path.basename(imageUrl)
-  /* eslint-disable n/no-deprecated-api */
+  / * eslint-disable n/no-deprecated-api * /
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `/${imageDir}/${id}${extname}`
@@ -255,11 +253,14 @@ export const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promi
     console.log('saveImageInBlock error', e)
   }
   return urlPath
+  */
+  return await saveImage(imageUrl, `block-${id}`)
 }
 
 export const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<string> => {
+  /*
   const basename = path.basename(imageUrl.split('?').shift() || '')
-  /* eslint-disable n/no-deprecated-api */
+  / * eslint-disable n/no-deprecated-api * /
   const myurl = url.parse(basename)
   const extname = path.extname(myurl.pathname as string)
   const urlPath = `/${imageDir}/${idWithKey}${extname}`
@@ -274,6 +275,8 @@ export const saveImageInPage = async (imageUrl: string, idWithKey: string): Prom
     console.log('saveImageInPage error', e)
   }
   return urlPath
+  */
+  return await saveImage(imageUrl, idWithKey)
 }
 
 export async function readCache<T> (f: string): Promise<T> {
