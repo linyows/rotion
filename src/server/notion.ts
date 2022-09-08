@@ -12,8 +12,6 @@ import type {
 import {
   createDirWhenNotfound,
   saveImage,
-  saveImageInBlock,
-  saveImageInPage,
   readCache,
   writeCache,
   getHtmlMeta,
@@ -85,7 +83,7 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
   const meta = await notion.databases.retrieve({ database_id }) as GetDatabaseResponseEx
   if ('cover' in meta && meta.cover !== null) {
     const imageUrl = (meta.cover.type === 'external') ? meta.cover.external.url : meta.cover.file.url
-    meta.cover.src = await saveImage(imageUrl)
+    meta.cover.src = await saveImage(imageUrl, `database-cover-${database_id}`)
   }
   allres.meta = meta
 
@@ -136,13 +134,13 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
   if (useCache) {
     if (page.cover !== null) {
       if (page.cover.type === 'external') {
-        page.cover.src = await saveImageInPage(page.cover.external.url, `page-${page.id}-cover`)
+        page.cover.src = await saveImage(page.cover.external.url, `page-cover-${page.id}`)
       } else if (page.cover.type === 'file') {
-        page.cover.src = await saveImageInPage(page.cover.file.url, `page-${page.id}-cover`)
+        page.cover.src = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
       }
     }
     if (page.icon?.type === 'file') {
-      page.icon.src = await saveImageInPage(page.icon.file.url, `page-${page.id}-icon`)
+      page.icon.src = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
     }
     await writeCache(cacheFile, page)
   } else {
@@ -203,7 +201,11 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
         } else if (block.type === 'bookmark' && block.bookmark !== undefined) {
           block.bookmark.site = await getHtmlMeta(block.bookmark.url)
         } else if (block.type === 'image' && block.image !== undefined) {
-          block.image.src = await saveImageInBlock(block)
+          const { id, image } = block
+          if (image !== undefined) {
+            const imageUrl = image.type === 'file' ? image.file.url : image.external.url
+            block.image.src = await saveImage(imageUrl, `block-${id}`)
+          }
         } else if (block.type === 'video' && block.video !== undefined && block.video.type === 'external') {
           block.video.html = await getVideoHtml(block)
         } else if (block.type === 'embed' && block.embed !== undefined) {
