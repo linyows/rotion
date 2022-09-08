@@ -2,22 +2,25 @@ import fs from 'fs'
 import { mkdir } from 'node:fs/promises'
 import https from 'https'
 import path from 'path'
-import url from 'url'
 import crypto from 'crypto'
 import { promisify } from 'util'
 import type {
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
-  ImageBlockObjectResponseEx,
 } from './types'
 
 const docRoot = process.env.NOTIONATE_DOCROOT || 'public'
 const imageDir = process.env.NOTIONATE_IMAGEDIR || 'images'
 
 // @ts-ignore
-https.get[promisify.custom] = function getAsync (options: any) {
+https.get[promisify.custom] = function getAsync (url: any) {
   return new Promise((resolve, reject) => {
-    https.get(options, (res) => {
+    const options = {
+      headers: {
+        'User-Agent': 'Notionate',
+      },
+    }
+    https.get(url, options, (res) => {
       // @ts-ignore
       res.end = new Promise((resolve) => res.on('end', resolve))
       resolve(res)
@@ -86,10 +89,6 @@ type TwitterOembedResponse = Oembed & {
   cache_age: string
 }
 
-type GetJsonError = {
-  error: string
-}
-
 const httpsGet = promisify(https.get)
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
@@ -104,13 +103,9 @@ async function getHTTP (reqUrl: string): Promise<string> {
   return body
 }
 
-async function getJson<T> (reqUrl: string): Promise<T|GetJsonError> {
-  try {
-    const body = await getHTTP(reqUrl)
-    return JSON.parse(body) as T
-  } catch (e) {
-    return JSON.parse(`{ "error": "${reqUrl} -- ${e}"}`) as GetJsonError
-  }
+export async function getJson<T> (reqUrl: string): Promise<T> {
+  const body = await getHTTP(reqUrl)
+  return JSON.parse(body) as T
 }
 
 const atoh = (a: string): string => {
@@ -126,23 +121,36 @@ export const createDirWhenNotfound = async (dir: string): Promise<void> => {
   }
 }
 
-export const saveImage = async (imageUrl: string): Promise<string> => {
+export async function readCache<T> (f: string): Promise<T> {
+  return JSON.parse(await readFile(f, 'utf8'))
+}
+
+export async function writeCache (f: string, data: unknown): Promise<void> {
+  return writeFile(f, JSON.stringify(data), 'utf8').catch(() => {})
+}
+
+export const saveImage = async (imageUrl: string, prefix: string, hash?: boolean): Promise<string> => {
   const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
   const basename = path.basename(urlWithoutQuerystring)
-  // const myurl = url.parse(basename)
-  // const extname = path.extname(myurl.pathname as string)
-  const prefix = atoh(urlWithoutQuerystring)
-  const urlPath = `/${imageDir}/${prefix}-${basename}`
+  const p = hash ? `${prefix}-${atoh(urlWithoutQuerystring)}` : prefix
+  const urlPath = `/${imageDir}/${p}-${basename}`
   const filePath = `${docRoot}${urlPath}`
+
   await createDirWhenNotfound(`${docRoot}/${imageDir}`)
+
+  if (fs.existsSync(filePath)) {
+    return urlPath
+  }
+
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(filePath))
     await res.end
     console.log(`saved image: ${filePath}`)
   } catch (e) {
-    console.log('saveImage error', e)
+    console.log(`saveImage error: ${filePath} - ${e}`)
   }
+
   return urlPath
 }
 
@@ -170,9 +178,9 @@ export const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc
     const title = titleMatched ? titleMatched[1] : 'unknown'
     const desc = descMatched ? descMatched[1] : 'unknown'
     const imageUrl = imageMatched ? imageMatched[1] : ''
-    const image = imageUrl !== '' ? await saveImage(imageUrl) : ''
+    const image = imageUrl !== '' ? await saveImage(imageUrl, 'html-image', true) : ''
     const iconUrl = iconMatched ? (iconMatched[1] || iconMatched[2]) : ''
-    const icon = iconUrl !== '' ? await saveImage(iconUrl) : ''
+    const icon = iconUrl !== '' ? await saveImage(iconUrl, 'html-icon', true) : ''
     return { title, desc, image, icon }
   } catch (e) {
     console.log(`getHtmlMeta failure: ${reqUrl} -- ${e}`)
@@ -187,13 +195,13 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
   const extUrl = block.video?.external.url as string
   if (extUrl.includes('youtube.com')) {
     const reqUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(extUrl)}`
-    const json = await getJson<YoutubeOembedResponse>(reqUrl)
-    if ('error' in json) {
-      console.log(`getVideoHtml failure: ${json.error}`)
-    } else {
+    try {
+      const json = await getJson<YoutubeOembedResponse>(reqUrl)
       return json.html
         .replace(/width="\d+"/, 'width="100%"')
         .replace(/height="\d+"/, 'height="100%"')
+    } catch (e) {
+      console.log(`getVideoHtml failure: ${reqUrl} - ${e}`)
     }
   }
   return ''
@@ -204,11 +212,11 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
     const src = block.embed?.url || ''
     const tweetId = path.basename(src.split('?').shift() || '')
     const reqUrl = `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
-    const json = await getJson<TwitterOembedResponse>(reqUrl)
-    if ('error' in json) {
-      console.log(`getEmbedHtml failure: ${json.error}`)
-    } else {
+    try {
+      const json = await getJson<TwitterOembedResponse>(reqUrl)
       return json.html
+    } catch (e) {
+      console.log(`getEmbedHtml failure: ${reqUrl} - ${e}`)
     }
   } else if (block.embed && block.embed.url.includes('speakerdeck.com')) {
     const embedUrl = block.embed?.url as string
@@ -219,67 +227,15 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
      * A bug report has been created
      * https://github.com/nodejs/undici/issues/1412
      */
-    const json = await getJson<SpeakerdeckOembedResponse>(reqUrl)
-    if ('error' in json) {
-      console.log(`getEmbedHtml failure: ${json.error}`)
-    } else {
+    try {
+      const json = await getJson<SpeakerdeckOembedResponse>(reqUrl)
       return json.html
         .replace(/width="\d+"/, 'width="100%"')
         .replace(/height="\d+"/, 'height="100%"')
+    } catch (e) {
+      console.log(`getEmbedHtml failure: ${reqUrl} - ${e}`)
     }
   }
 
   return ''
-}
-
-export const saveImageInBlock = async (block: ImageBlockObjectResponseEx): Promise<string> => {
-  /* eslint-disable no-unused-vars */
-  const { id, last_edited_time, image } = block
-  if (image === undefined) {
-    return ''
-  }
-  const imageUrl = image.type === 'file' ? image.file.url : image.external.url
-  const basename = path.basename(imageUrl)
-  /* eslint-disable n/no-deprecated-api */
-  const myurl = url.parse(basename)
-  const extname = path.extname(myurl.pathname as string)
-  const urlPath = `/${imageDir}/${id}${extname}`
-  const filePath = `${docRoot}${urlPath}`
-  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
-  try {
-    const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
-    res.pipe(fs.createWriteStream(filePath))
-    await res.end
-    console.log(`saved image: ${filePath}`)
-  } catch (e) {
-    console.log('saveImageInBlock error', e)
-  }
-  return urlPath
-}
-
-export const saveImageInPage = async (imageUrl: string, idWithKey: string): Promise<string> => {
-  const basename = path.basename(imageUrl.split('?').shift() || '')
-  /* eslint-disable n/no-deprecated-api */
-  const myurl = url.parse(basename)
-  const extname = path.extname(myurl.pathname as string)
-  const urlPath = `/${imageDir}/${idWithKey}${extname}`
-  const filePath = `${docRoot}${urlPath}`
-  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
-  try {
-    const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
-    res.pipe(fs.createWriteStream(filePath))
-    await res.end
-    console.log(`saved image: ${filePath}`)
-  } catch (e) {
-    console.log('saveImageInPage error', e)
-  }
-  return urlPath
-}
-
-export async function readCache<T> (f: string): Promise<T> {
-  return JSON.parse(await readFile(f, 'utf8'))
-}
-
-export async function writeCache (f: string, data: unknown): Promise<void> {
-  return writeFile(f, JSON.stringify(data), 'utf8').catch(() => {})
 }

@@ -103,18 +103,17 @@ Set the notion token as environment variable:
 ```sh
 $ cat .env
 NOTION_TOKEN=secret_vHVKhIeYm95ga1sjOv*************************
-NOTION_CACHE=true
 NOTION_PAGEID=23740912d6ac4018ab76c64e772a342a
 NOTION_DBID=81781536afc6431da21721177e7bf8e0
-# These are optional and the values are defaults.
-# ```
-# project_root/.cache
-#             /public/images
-# ```
-# NOTIONATE_CACHEDIR=.cache
-# NOTIONATE_DOCROOT=public
-# NOTIONATE_IMAGEDIR=images
 ```
+
+Env name           | Description                                         | Default
+---                | ---                                                 | ---
+NOTION_TOKEN       | Read permission is required in notion's credentials | -
+NOTION_CACHE       | File caching inside notionate                       | true
+NOTIONATE_CACHEDIR | Cache directory name                                | .cache
+NOTIONATE_DOCROOT  | Web server root directory                           | public
+NOTIONATE_IMAGEDIR | Web server image directory                          | images
 
 API
 --
