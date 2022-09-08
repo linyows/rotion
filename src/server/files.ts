@@ -15,9 +15,14 @@ const docRoot = process.env.NOTIONATE_DOCROOT || 'public'
 const imageDir = process.env.NOTIONATE_IMAGEDIR || 'images'
 
 // @ts-ignore
-https.get[promisify.custom] = function getAsync (options: any) {
+https.get[promisify.custom] = function getAsync (url: any) {
   return new Promise((resolve, reject) => {
-    https.get(options, (res) => {
+    const options = {
+      headers: {
+        'User-Agent': 'Notionate',
+      },
+    }
+    https.get(url, options, (res) => {
       // @ts-ignore
       res.end = new Promise((resolve) => res.on('end', resolve))
       resolve(res)
