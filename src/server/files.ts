@@ -91,10 +91,6 @@ type TwitterOembedResponse = Oembed & {
   cache_age: string
 }
 
-type GetJsonError = {
-  error: string
-}
-
 const httpsGet = promisify(https.get)
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
@@ -109,13 +105,9 @@ async function getHTTP (reqUrl: string): Promise<string> {
   return body
 }
 
-async function getJson<T> (reqUrl: string): Promise<T|GetJsonError> {
-  try {
-    const body = await getHTTP(reqUrl)
-    return JSON.parse(body) as T
-  } catch (e) {
-    return JSON.parse(`{ "error": "${reqUrl} -- ${e}"}`) as GetJsonError
-  }
+export async function getJson<T> (reqUrl: string): Promise<T> {
+  const body = await getHTTP(reqUrl)
+  return JSON.parse(body) as T
 }
 
 const atoh = (a: string): string => {
