@@ -139,6 +139,11 @@ export const saveImage = async (imageUrl: string, prefix: string, hash?: boolean
   const filePath = `${docRoot}${urlPath}`
 
   await createDirWhenNotfound(`${docRoot}/${imageDir}`)
+
+  if (fs.existsSync(filePath)) {
+    return urlPath
+  }
+
   try {
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(filePath))
