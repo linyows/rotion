@@ -2,13 +2,11 @@ import fs from 'fs'
 import { mkdir } from 'node:fs/promises'
 import https from 'https'
 import path from 'path'
-import url from 'url'
 import crypto from 'crypto'
 import { promisify } from 'util'
 import type {
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
-  ImageBlockObjectResponseEx,
 } from './types'
 
 const docRoot = process.env.NOTIONATE_DOCROOT || 'public'
