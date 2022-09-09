@@ -14,24 +14,12 @@ const VideoBlock: React.FC<VideoBlockProps> = ({ block }) => {
     return <></>
   }
 
-  // 16:9
-  const baseWidth = 800
-  const ratioW = 16
-  const ratioH = 9
-  const w = `${baseWidth}px`
-  const h = `${ratioH * baseWidth / ratioW}px`
-
-  const html = block.video.html
-    .replace('height="100%"', `height="${h}"`)
-
-  const style = {
-    maxWidth: w,
-  }
+  const providerClass = (block.video.html.includes('youtube')) ? ' notionate-blocks-video-youtube' : ''
 
   return (
     <div className="notionate-blocks-video">
-      <div className="notionate-blocks-video-inner" style={style}>
-        <div className="notionate-blocks-video-html" dangerouslySetInnerHTML={{ __html: html }} />
+      <div className="notionate-blocks-video-inner">
+        <div className={`notionate-blocks-video-html${providerClass}`} dangerouslySetInnerHTML={{ __html: block.video.html }} />
         <div className="notionate-blocks-video-caption">
           <TextBlock tag="span" block={block.video.caption} />
         </div>

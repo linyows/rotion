@@ -198,8 +198,6 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
     try {
       const json = await getJson<YoutubeOembedResponse>(reqUrl)
       return json.html
-        .replace(/width="\d+"/, 'width="100%"')
-        .replace(/height="\d+"/, 'height="100%"')
     } catch (e) {
       console.log(`getVideoHtml failure: ${reqUrl} - ${e}`)
     }
@@ -230,8 +228,6 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
     try {
       const json = await getJson<SpeakerdeckOembedResponse>(reqUrl)
       return json.html
-        .replace(/width="\d+"/, 'width="100%"')
-        .replace(/height="\d+"/, 'height="100%"')
     } catch (e) {
       console.log(`getEmbedHtml failure: ${reqUrl} - ${e}`)
     }
