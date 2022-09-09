@@ -171,8 +171,48 @@
   font-size: .95rem;
 }
 .notionate-blocks-embed-twitter {
-  width: 550px;
+  max-width: 550px;
   margin: 0 auto;
+}
+.notionate-blocks-embed-speakerdeck {
+  padding-bottom: 56.25%; /* 16:9 */
+  position: relative;
+  height: 0;
+}
+.notionate-blocks-embed-speakerdeck iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* video */
+.notionate-blocks-video {
+  width: 100%;
+}
+.notionate-blocks-video-inner {
+  margin: auto;
+}
+.notionate-blocks-video-html {
+  width: 100%;
+  margin: auto;
+  padding-bottom: 56.25%; /* 16:9 */
+  position: relative;
+  height: 0;
+}
+.notionate-blocks-video-html iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.notionate-blocks-video-caption {
+  margin: .3rem .3rem 0;
+  text-align: left;
+  color: #888;
+  font-size: .95rem;
 }
 
 /* icons */
@@ -529,24 +569,6 @@
   backface-visibility: hidden;
   transition: transform 200ms ease-out 0s;
   opacity: 1;
-}
-
-/* video */
-.notionate-blocks-video {
-  width: 100%;
-}
-.notionate-blocks-video-inner {
-  margin: auto;
-}
-.notionate-blocks-video-html {
-  width: 100%;
-  margin: auto;
-}
-.notionate-blocks-video-caption {
-  margin: .3rem .3rem 0;
-  text-align: left;
-  color: #888;
-  font-size: .95rem;
 }
 
 /* prismjs/themes/prism.css */

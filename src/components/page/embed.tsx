@@ -39,9 +39,11 @@ const EmbedBlock: React.FC<EmbedBlockProps> = ({ block }) => {
     )
   }
 
+  const providerClass = block.embed.html.includes('speakerdeck') ? ' notionate-blocks-embed-speakerdeck' : ''
+
   return (
     <div className="notionate-blocks-embed">
-      <div className="notionate-blocks-embed-inner" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
+      <div className={`notionate-blocks-embed-inner${providerClass}`} dangerouslySetInnerHTML={{ __html: block.embed.html }} />
       <div className="notionate-blocks-embed-caption">
         <TextBlock tag="span" block={block.embed.caption} />
       </div>
