@@ -3,16 +3,16 @@ import type {
   NumberPropertyItemObjectResponse,
 } from '../../server/types'
 
-export type NumberProps = {
+export type ListNumberProps = {
   payload: NumberPropertyItemObjectResponse
 }
 
-export const DBNumberField: React.FC<NumberProps> = ({ payload }) => {
+export const ListNumberField: React.FC<ListNumberProps> = ({ payload }) => {
   return (
-    <div className="notionate-db-number">
+    <div className="notionate-list-number">
       {payload.number}
     </div>
   )
 }
 
-export default DBNumberField
+export default ListNumberField

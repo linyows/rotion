@@ -7,14 +7,14 @@ import type {
 import ListHandler from './handler'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
 
-export type DBListProps = React.PropsWithChildren & {
+export type ListProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
   link: string
   LinkComp?: unknown
 }
 
-export const DBList: React.FC<DBListProps> = ({ keys, db, link, LinkComp }) => {
+export const List: React.FC<ListProps> = ({ keys, db, link, LinkComp }) => {
   const getSlug = (key: string, page: GetPageResponse): string => {
     if (!('properties' in page)) {
       return 'not-found-properties'
@@ -52,18 +52,20 @@ export const DBList: React.FC<DBListProps> = ({ keys, db, link, LinkComp }) => {
   }
 
   return (
-    <div className="notionate-db-list">
-      {db.results.map((v) => (
-        <div key={v.id} className="notionate-db-list-record">
-          {keys.map((name, i) => (
-            <div key={`${v.id}${name}`} className={`${name === 'spacer' ? 'notionate-db-list-spacer ' : ''}field${i}`}>
-              {dbf(name, v as PageObjectResponseEx)}
-            </div>
-          ))}
-        </div>
-      ))}
+    <div className="notionate-list">
+      <div className="notionate-list-inner">
+        {db.results.map((v) => (
+          <div key={v.id} className="notionate-list-record">
+            {keys.map((name, i) => (
+              <div key={`${v.id}${name}`} className={`${name === 'spacer' ? 'notionate-list-spacer ' : ''}field${i}`}>
+                {dbf(name, v as PageObjectResponseEx)}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
 
-export default DBList
+export default List

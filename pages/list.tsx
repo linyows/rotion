@@ -10,7 +10,7 @@ import {
 } from '../src/server'
 
 import {
-  DBList,
+  List,
   TextBlock,
 } from '../src/components'
 
@@ -85,7 +85,7 @@ const ListPage: NextPage<Props> = ({ title, desc, icon, image, db }) => {
       </header>
 
       <div className={`${styles.db} ${styles.wrapper}`}>
-        <DBList keys={['Name', 'Note', 'spacer', 'Tags', 'Url', 'Born', 'Date']} db={db} link="/database/[id]" />
+        <List keys={['Name', 'Note', 'spacer', 'Tags', 'Url', 'Born', 'Date']} db={db} link="/database/[id]" />
       </div>
     </>
   )

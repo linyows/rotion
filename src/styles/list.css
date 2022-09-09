@@ -1,5 +1,5 @@
-/* db title */
-.notionate-db-title {
+/* title */
+.notionate-list-title {
   white-space: nowrap;
   display: block;
   max-width: 500px;
@@ -8,20 +8,20 @@
   line-height: 1.4;
   margin: 0 7px;
 }
-.notionate-db-title-a {
+.notionate-list-title-a {
   text-decoration: none;
   border-bottom: 1px solid #ddd;
   color: inherit;
   cursor: pointer;
 }
 
-/* db url */
-.notionate-db-url {
+/* url */
+.notionate-list-url {
   display: flex;
   white-space: nowrap;
   margin: 0 7px;
 }
-.notionate-db-url-a {
+.notionate-list-url-a {
   display: block;
   text-decoration: none;
   cursor: pointer;
@@ -29,19 +29,19 @@
   background: inherit;
   margin-bottom: 2px;
 }
-.notionate-db-url-a:hover {
+.notionate-list-url-a:hover {
   color: rgb(50, 48, 44);
   background: rgb(227, 226, 224) none repeat scroll 0% 0%;
   border-radius: 3px;
 }
-.notionate-db-url-chain {
+.notionate-list-url-chain {
   display: inline;
   width: 12px;
   height: 12px;
   margin-right: 4px;
   vertical-align: middle;
 }
-.notionate-db-url-address {
+.notionate-list-url-address {
   display: inline;
   font-size: .7rem;
   line-height: 1.2;
@@ -52,8 +52,8 @@
   background-size: 100% 1px;
 }
 
-/* db multiselect */
-.notionate-db-multiselect-ul {
+/* multiselect */
+.notionate-list-multiselect-ul {
   list-style-type: none;
   display: flex;
   flex-shrink: 0;
@@ -64,7 +64,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.notionate-db-multiselect-li {
+.notionate-list-multiselect-li {
   font-size: .75rem;
   display: flex;
   align-items: center;
@@ -77,15 +77,15 @@
   margin: 0 6px 0 0;
   cursor: pointer;
 }
-.notionate-db-multiselect-a {
+.notionate-list-multiselect-a {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
   padding: 2px 10px;
 }
 
-/* db date */
-.notionate-db-date {
+/* date */
+.notionate-list-date {
   white-space: nowrap;
   font-size: .85rem;
   display: flex;
@@ -95,8 +95,8 @@
   color: #999;
 }
 
-/* db richtext */
-.notionate-db-richtext {
+/* richtext */
+.notionate-list-richtext {
   font-size: .85rem;
   white-space: nowrap;
   display: block;
@@ -108,8 +108,8 @@
   overflow: hidden;
 }
 
-/* db number */
-.notionate-db-number {
+/* number */
+.notionate-list-number {
   white-space: nowrap;
   font-size: .85rem;
   display: flex;
@@ -118,14 +118,14 @@
   min-width: 20px;
 }
 
-/* db list */
-.notionate-db-list {
+/* list */
+.notionate-list {
   margin: 0 -7px;
   padding: 0;
   width: 100%;
   overflow-x: scroll;
 }
-.notionate-db-list-record {
+.notionate-list-record {
   display: flex;
   margin: 4px 0;
   padding: 4px 0;
@@ -136,10 +136,10 @@
   justify-content: flex-start;
   background-color: inherit;
 }
-.notionate-db-list-record:hover {
+.notionate-list-record:hover {
   background-color: #f5f5f5;
 }
-.notionate-db-list-spacer {
+.notionate-list-spacer {
   width: 100%;
   flex-shrink: 10;
   display: block;

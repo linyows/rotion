@@ -4,16 +4,16 @@ import type {
 } from '../../server/types'
 import TextBlock from '../page/text'
 
-export type RichTextProps = {
+export type ListRichTextProps = {
   payload: RichTextPropertyItemObjectResponse
 }
 
-export const DBRichTextField: React.FC<RichTextProps> = ({ payload }) => {
+export const ListRichTextField: React.FC<ListRichTextProps> = ({ payload }) => {
   return (
-    <div className="notionate-db-richtext">
+    <div className="notionate-list-richtext">
       <TextBlock tag="span" block={[payload.rich_text]} />
     </div>
   )
 }
 
-export default DBRichTextField
+export default ListRichTextField
