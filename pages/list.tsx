@@ -1,28 +1,44 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import styles from '../styles/list.module.css'
+import styles from '../styles/db.module.css'
 
 import {
   QueryDatabaseResponseEx,
   FetchDatabase,
+  FetchPage,
+  FetchBlocks,
   RichTextItemResponse,
   QueryDatabaseParameters,
+  ListBlockChildrenResponseEx,
+  TitlePropertyItemObjectResponse,
 } from '../src/server'
 
 import {
   List,
-  TextBlock,
+  Blocks,
+  TextObject,
 } from '../src/components'
 
 type Props = {
-  title: null|RichTextItemResponse[]
-  desc: null|RichTextItemResponse[]
+  title: null|RichTextItemResponse
   icon: string
   image: string
+  blocks: ListBlockChildrenResponseEx
   db: QueryDatabaseResponseEx
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
+  const id = process.env.NOTION_LISTPAGE_ID as string
+  const page = await FetchPage(id)
+  let title: null|RichTextItemResponse = null
+  if ('meta' in page && page.meta?.object === 'list') {
+    const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
+    title = obj.title
+  }
+  const icon = ('emoji' in page.icon) ? page.icon.emoji : ''
+  const image = page.cover.src
+  const blocks = await FetchBlocks(id)
+
   const params = {
     database_id: process.env.NOTION_TESTDB_ID as string,
     filter: {
@@ -40,23 +56,18 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   } as QueryDatabaseParameters
   const db = await FetchDatabase(params)
 
-  const title = ('title' in db.meta) ? db.meta.title : null
-  const icon = ('icon' in db.meta && db.meta.icon !== null && db.meta.icon.type === 'emoji') ? db.meta.icon.emoji : ''
-  const image = ('cover' in db.meta && db.meta.cover !== null && db.meta.cover.type === 'external') ? db.meta.cover.external.url : ''
-  const desc = ('description' in db.meta) ? db.meta.description : null
-
   return {
     props: {
       title,
-      desc,
       icon,
       image,
+      blocks,
       db,
     }
   }
 }
 
-const ListPage: NextPage<Props> = ({ title, desc, icon, image, db }) => {
+const ListPage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
   const bg = {
     backgroundImage: `url("${image}")`
   }
@@ -76,12 +87,12 @@ const ListPage: NextPage<Props> = ({ title, desc, icon, image, db }) => {
             {icon}
           </div>
           <h1 className={styles.title}>
-            {title && <TextBlock tag="span" block={title} />}
+            {title && <TextObject textObject={title} />}
           </h1>
         </div>
-        <p className={`${styles.desc} ${styles.wrapper}`}>
-          {desc && <TextBlock tag="span" block={desc} />}
-        </p>
+        <div className={`${styles.desc} ${styles.wrapper}`}>
+          <Blocks blocks={blocks} />
+        </div>
       </header>
 
       <div className={`${styles.db} ${styles.wrapper}`}>
