@@ -8,6 +8,7 @@ import type {
   GetPageResponseEx,
   GetDatabaseResponseEx,
   PropertyItemPropertyItemListResponse,
+  PageObjectResponseEx,
 } from './types'
 import {
   createDirWhenNotfound,
@@ -71,12 +72,19 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
   }
 
   for (const result of allres.results) {
-    result.property_items = []
-    for (const [, v] of Object.entries(result.properties)) {
-      const page_id = result.id
+    const page: PageObjectResponseEx = result
+    // Save page cover files
+    if ('cover' in page && page.cover != null) {
+      const imageUrl = (page.cover.type === 'external') ? page.cover.external.url : page.cover.file.url
+      page.cover.src = await saveImage(imageUrl, `page-cover-${page.id}`)
+    }
+    // Set page property items
+    page.property_items = []
+    for (const [, v] of Object.entries(page.properties)) {
+      const page_id = page.id
       const property_id = v.id
       const props = await notion.pages.properties.retrieve({ page_id, property_id })
-      result.property_items.push(props)
+      page.property_items.push(props)
     }
   }
 
