@@ -126,6 +126,16 @@ This is the API available:
 
 Images are saved in `NOTIONATE_IMAGEDIR` locally.
 
+Components
+--
+
+This is the components available:
+
+- [x] Page Blocks
+- [x] Database List View
+- [x] Database Gallery View
+- [ ] Database Table View
+
 Author
 --
 
