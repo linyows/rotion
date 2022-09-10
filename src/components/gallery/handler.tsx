@@ -1,0 +1,84 @@
+import React from 'react'
+import type {
+  GetPagePropertyResponse,
+  TitlePropertyItemObjectResponse,
+} from '../../server/types'
+
+import GalleryTitleField from './title'
+import GalleryDateField from './date'
+//import GalleryRichTextField from './richtext'
+import GalleryMultiSelectField from './multiselect'
+//import GalleryUrlField from './url'
+//import GalleryCheckboxField from './checkbox'
+//import GalleryNumberField from './number'
+
+export type GalleryHandlerProps = {
+  name: string
+  items: GetPagePropertyResponse|undefined
+  path: string
+  slug: string
+  LinkComp?: unknown
+}
+
+export const GalleryHandler = ({ name, items, path, slug, LinkComp }: GalleryHandlerProps) => {
+  if (items === undefined) {
+    return <></>
+  }
+
+  if (items.object === 'list') {
+    const target = items.results[0]
+    switch (target.type) {
+      case 'title':
+        return GalleryTitleField({ payload: items.results as Array<TitlePropertyItemObjectResponse> })
+
+      //case 'rich_text':
+      //  return GalleryRichTextField({ payload: target })
+
+      case 'people':
+      case 'relation':
+      case 'rollup':
+      default:
+        console.log('unsupport database property:', target)
+        break
+    }
+  } else {
+    switch (items.type) {
+      case 'date':
+        return GalleryDateField({ payload: items.date })
+
+      //case 'rich_text':
+      //  return GalleryRichTextField({ payload: items })
+
+      case 'multi_select':
+        return GalleryMultiSelectField({ payload: items, path })
+
+      //case 'url':
+      //  return GalleryUrlField({ payload: items.url })
+
+      //case 'checkbox':
+      //  return GalleryCheckboxField({ payload: items.checkbox })
+
+      //case 'number':
+      //  return GalleryNumberField({ payload: items })
+
+      case 'select':
+      case 'status':
+      case 'email':
+      case 'phone_number':
+      case 'files':
+      case 'created_by':
+      case 'created_time':
+      case 'last_edited_by':
+      case 'last_edited_time':
+      case 'formula':
+      case 'people':
+      case 'relation':
+      case 'rollup':
+      default:
+        console.log('unsupport database property:', items)
+        break
+    }
+  }
+}
+
+export default GalleryHandler

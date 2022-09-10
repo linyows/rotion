@@ -8,6 +8,12 @@ export * from './list/title'
 export * from './list/url'
 export * from './list/number'
 
+export * from './gallery/handler'
+export * from './gallery/gallery'
+export * from './gallery/date'
+export * from './gallery/multiselect'
+export * from './gallery/title'
+
 export * from './page/blocks'
 export * from './page/bookmark'
 export * from './page/callout'
