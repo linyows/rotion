@@ -17,7 +17,7 @@ Example
 --
 
 - Notionate: https://notionate.linyo.ws
-- Original: https://www.notion.so/linyows/Notionate-6d6150cf068f4293a78b6fd9fa8d0181
+- Original: https://linyows.notion.site/Notionate-6d6150cf068f4293a78b6fd9fa8d0181
 
 Usage
 --
