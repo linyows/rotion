@@ -3,7 +3,6 @@ import type {
   QueryDatabaseResponseEx,
   GetPageResponse,
   PageObjectResponseEx,
-  PageObjectResponse,
 } from '../../server/types'
 import GalleryHandler from './handler'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
@@ -63,7 +62,7 @@ type CardProps = {
   keys: string[]
   page: PageObjectResponseEx
   link: string
-  LinkComp: unknown 
+  LinkComp: unknown
   preview?: 'cover' | 'content'
 }
 

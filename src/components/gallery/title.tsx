@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type {
   TitlePropertyItemObjectResponse,
 } from '../../server/types'
