@@ -4,6 +4,7 @@
   width: 100%;
   padding: 10px 10px 0;
 }
+
 /* date */
 .notionate-gallery-date {
   width: 100%;
@@ -13,13 +14,14 @@
   font-size: 12px;
   white-space: nowrap;
 }
+
 /* multiselect */
 .notionate-gallery-multiselect-ul {
   list-style-type: none;
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  padding: 0 0 12px;
+  padding: 0 0 8px;
   margin: 0 0 0 7px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -42,6 +44,73 @@
   color: inherit;
   cursor: pointer;
   padding: 2px 10px;
+}
+
+/* number */
+.notionate-gallery-number {
+  width: 100%;
+  padding: 0 10px 8px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* richtext */
+.notionate-gallery-richtext {
+  width: 260px;
+  padding: 0 10px 8px;
+  display: block;
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.notionate-gallery-small .notionate-gallery-richtext {
+  width: 180px;
+}
+.notionate-gallery-medium .notionate-gallery-richtext {
+  width: 260px;
+}
+.notionate-gallery-large .notionate-gallery-richtext {
+  width: 320px;
+}
+
+/* url */
+.notionate-gallery-url {
+  display: flex;
+  white-space: nowrap;
+  margin: 0 7px;
+}
+.notionate-gallery-url-a {
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+  background: inherit;
+  margin-bottom: 2px;
+}
+.notionate-gallery-url-a:hover {
+  color: rgb(50, 48, 44);
+  background: rgb(227, 226, 224) none repeat scroll 0% 0%;
+  border-radius: 3px;
+}
+.notionate-gallery-url-chain {
+  display: inline;
+  width: 12px;
+  height: 12px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.notionate-gallery-url-address {
+  display: inline;
+  font-size: .7rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  background-image: linear-gradient(to right, rgba(55, 53, 47, 0.16) 0%, rgba(55, 53, 47, 0.16) 100%);
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-size: 100% 1px;
 }
 
 /* gallery */
@@ -77,6 +146,9 @@
 }
 .notionate-gallery-card:hover {
   background: rgba(55, 53, 47, 0.03);
+}
+.notionate-gallery-card-text {
+  padding-bottom: 10px;
 }
 .notionate-gallery-preview {
   aspect-ratio: 16 / 9;
