@@ -203,7 +203,7 @@ export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenRe
         } else if (block.type === 'child_page' && block.child_page !== undefined) {
           block.page = await FetchPage(block.id)
           block.children = await FetchBlocks(block.id)
-        } else if (block.type === 'child_database' && block.child_database !== undefined) {
+        } else if (block.type === 'child_database' && block.child_database !== undefined && block.has_children) {
           const database_id = block.id
           block.database = await notion.databases.retrieve({ database_id })
         } else if (block.type === 'bookmark' && block.bookmark !== undefined) {

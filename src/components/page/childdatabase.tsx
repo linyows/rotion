@@ -14,6 +14,10 @@ export type ChilddatabaseBlockProps = {
 type LinkedTitleProps = ChilddatabaseBlockProps
 
 const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, link, LinkComp }) => {
+  if (!('database' in block)) {
+    return <></>
+  }
+
   const icon = ('icon' in block.database) && block.database.icon?.type === 'emoji' ? block.database.icon.emoji : ''
   const title = ('title' in block.database) ? block.database.title : []
   const plainTitle = title.map(v => v.plain_text).join('').toLowerCase()
