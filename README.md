@@ -17,7 +17,7 @@ Example
 --
 
 - Notionate: https://notionate.linyo.ws
-- Original: https://www.notion.so/linyows/Notionate-6d6150cf068f4293a78b6fd9fa8d0181
+- Original: https://linyows.notion.site/Notionate-6d6150cf068f4293a78b6fd9fa8d0181
 
 Usage
 --
@@ -125,6 +125,16 @@ This is the API available:
 - FetchBlocks: Returns blocks that is the content of the page.
 
 Images are saved in `NOTIONATE_IMAGEDIR` locally.
+
+Components
+--
+
+This is the components available:
+
+- [x] Page Blocks
+- [x] Database List View
+- [x] Database Gallery View
+- [ ] Database Table View
 
 Author
 --

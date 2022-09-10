@@ -3,13 +3,13 @@ import type {
   MultiSelectPropertyItemObjectResponse,
 } from '../../server/types'
 
-export type MultiSelectProps = {
+export type ListMultiSelectProps = {
   payload: MultiSelectPropertyItemObjectResponse
   path: string
   LinkComp?: unknown
 }
 
-export const DBMultiSelectField: React.FC<MultiSelectProps> = ({ payload, path, LinkComp }) => {
+export const ListMultiSelectField: React.FC<ListMultiSelectProps> = ({ payload, path, LinkComp }) => {
   const LinkedTag = (name: string) => {
     const href = `${path}tags/${encodeURIComponent(name)}`
     if (LinkComp) {
@@ -17,7 +17,7 @@ export const DBMultiSelectField: React.FC<MultiSelectProps> = ({ payload, path, 
       return (
         <>
           <Link href={href}>
-            <a className="notionate-db-multiselect-a" title={name}>
+            <a className="notionate-list-multiselect-a" title={name}>
               {name}
             </a>
           </Link>
@@ -25,7 +25,7 @@ export const DBMultiSelectField: React.FC<MultiSelectProps> = ({ payload, path, 
       )
     }
     return (
-      <a className="notionate-db-multiselect-a" href={href} title={name}>
+      <a className="notionate-list-multiselect-a" href={href} title={name}>
         {name}
       </a>
     )
@@ -85,9 +85,9 @@ export const DBMultiSelectField: React.FC<MultiSelectProps> = ({ payload, path, 
   }
 
   return (
-    <ul className="notionate-db-multiselect-ul">
+    <ul className="notionate-list-multiselect-ul">
       {payload.multi_select.map(f => (
-        <li key={f.id} className="notionate-db-multiselect-li" style={listStyle(f.color)}>
+        <li key={f.id} className="notionate-list-multiselect-li" style={listStyle(f.color)}>
           {LinkedTag(f.name)}
         </li>
       ))}
@@ -95,4 +95,4 @@ export const DBMultiSelectField: React.FC<MultiSelectProps> = ({ payload, path, 
   )
 }
 
-export default DBMultiSelectField
+export default ListMultiSelectField

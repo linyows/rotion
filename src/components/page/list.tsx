@@ -2,12 +2,12 @@ import React from 'react'
 import BlockHandler from './handler'
 import type { BlockObjectResponse } from '../../server/types'
 
-export type ListProps = {
+export type ListBlockProps = {
   tag: keyof JSX.IntrinsicElements
   blocks: BlockObjectResponse[]
 }
 
-export const List = ({ tag, blocks }: ListProps) => {
+export const ListBlock = ({ tag, blocks }: ListBlockProps) => {
   const CustomTag = tag
   return (
     <CustomTag className={`notionate-blocks-list-${tag}`} key={tag + blocks[0].id}>
@@ -18,4 +18,4 @@ export const List = ({ tag, blocks }: ListProps) => {
   )
 }
 
-export default List
+export default ListBlock

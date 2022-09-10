@@ -1,5 +1,6 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from '../styles/db.module.css'
 
 import {
@@ -14,7 +15,7 @@ import {
 } from '../src/server'
 
 import {
-  List,
+  Gallery,
   Blocks,
   TextObject,
 } from '../src/components'
@@ -28,7 +29,7 @@ type Props = {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  const id = process.env.NOTION_LISTPAGE_ID as string
+  const id = process.env.NOTION_GALLERYPAGE_ID as string
   const page = await FetchPage(id)
   let title: null|RichTextItemResponse = null
   if ('meta' in page && page.meta?.object === 'list') {
@@ -67,7 +68,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   }
 }
 
-const ListPage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
+const GalleryPage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
   const bg = {
     backgroundImage: `url("${image}")`
   }
@@ -96,10 +97,10 @@ const ListPage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
       </header>
 
       <div className={`${styles.db} ${styles.wrapper}`}>
-        <List keys={['Name', 'Note', 'spacer', 'Tags', 'Url', 'Born', 'Date']} db={db} link="/database/[id]" />
+        <Gallery keys={['Name', 'Date', 'Tags']} db={db} preview="cover" size="large" link="/database/[id]" LinkComp={Link} />
       </div>
     </>
   )
 }
 
-export default ListPage
+export default GalleryPage

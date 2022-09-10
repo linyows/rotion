@@ -4,13 +4,13 @@ import type {
   TitlePropertyItemObjectResponse,
 } from '../../server/types'
 
-import DBTitleField from './title'
-import DBDateField from './date'
-import DBRichTextField from './richtext'
-import DBMultiSelectField from './multiselect'
-import DBUrlField from './url'
-import DBCheckboxField from './checkbox'
-import DBNumberField from './number'
+import ListTitleField from './title'
+import ListDateField from './date'
+import ListRichTextField from './richtext'
+import ListMultiSelectField from './multiselect'
+import ListUrlField from './url'
+import ListCheckboxField from './checkbox'
+import ListNumberField from './number'
 
 export type ListHandlerProps = {
   name: string
@@ -30,11 +30,11 @@ export const ListHandler = ({ name, items, path, slug, LinkComp }: ListHandlerPr
     switch (target.type) {
       case 'title': { // Skip: Unexpected lexical declaration in case block.
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
-        return DBTitleField({ payload, path, slug, LinkComp })
+        return ListTitleField({ payload, path, slug, LinkComp })
       }
 
       case 'rich_text':
-        return DBRichTextField({ payload: target })
+        return ListRichTextField({ payload: target })
 
       case 'people':
       case 'relation':
@@ -46,22 +46,22 @@ export const ListHandler = ({ name, items, path, slug, LinkComp }: ListHandlerPr
   } else {
     switch (items.type) {
       case 'date':
-        return DBDateField({ payload: items.date })
+        return ListDateField({ payload: items.date })
 
       case 'rich_text':
-        return DBRichTextField({ payload: items })
+        return ListRichTextField({ payload: items })
 
       case 'multi_select':
-        return DBMultiSelectField({ payload: items, path })
+        return ListMultiSelectField({ payload: items, path })
 
       case 'url':
-        return DBUrlField({ payload: items.url })
+        return ListUrlField({ payload: items.url })
 
       case 'checkbox':
-        return DBCheckboxField({ payload: items.checkbox })
+        return ListCheckboxField({ payload: items.checkbox })
 
       case 'number':
-        return DBNumberField({ payload: items })
+        return ListNumberField({ payload: items })
 
       case 'select':
       case 'status':

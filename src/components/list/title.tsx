@@ -3,14 +3,14 @@ import type {
   TitlePropertyItemObjectResponse,
 } from '../../server/types'
 
-export type DBTitleProps = {
+export type ListTitleProps = {
   payload: Array<TitlePropertyItemObjectResponse>
   path: string
   slug: string
   LinkComp?: unknown
 }
 
-export const DBTitleField: React.FC<DBTitleProps> = ({ payload, path, slug, LinkComp }) => {
+export const ListTitleField: React.FC<ListTitleProps> = ({ payload, path, slug, LinkComp }) => {
   const title = payload.map(v => {
     const richtext = v.title
     switch (richtext.type) {
@@ -30,7 +30,7 @@ export const DBTitleField: React.FC<DBTitleProps> = ({ payload, path, slug, Link
       return (
         <>
           <Link href={href}>
-            <a className="notionate-db-title-a" title={title}>
+            <a className="notionate-list-title-a" title={title}>
               {title}
             </a>
           </Link>
@@ -39,17 +39,17 @@ export const DBTitleField: React.FC<DBTitleProps> = ({ payload, path, slug, Link
     }
 
     return (
-      <a className="notionate-db-title-a" href={href} title={title}>
+      <a className="notionate-list-title-a" href={href} title={title}>
         {title}
       </a>
     )
   }
 
   return (
-    <div className="notionate-db-title">
+    <div className="notionate-list-title">
       {LinkedTitle()}
     </div>
   )
 }
 
-export default DBTitleField
+export default ListTitleField
