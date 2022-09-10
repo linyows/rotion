@@ -6,11 +6,11 @@ import type {
 
 import GalleryTitleField from './title'
 import GalleryDateField from './date'
-//import GalleryRichTextField from './richtext'
+import GalleryRichTextField from './richtext'
 import GalleryMultiSelectField from './multiselect'
-//import GalleryUrlField from './url'
-//import GalleryCheckboxField from './checkbox'
-//import GalleryNumberField from './number'
+import GalleryUrlField from './url'
+import GalleryCheckboxField from './checkbox'
+import GalleryNumberField from './number'
 
 export type GalleryHandlerProps = {
   name: string
@@ -31,8 +31,8 @@ export const GalleryHandler = ({ name, items, path, slug, LinkComp }: GalleryHan
       case 'title':
         return GalleryTitleField({ payload: items.results as Array<TitlePropertyItemObjectResponse> })
 
-      //case 'rich_text':
-      //  return GalleryRichTextField({ payload: target })
+      case 'rich_text':
+        return GalleryRichTextField({ payload: target })
 
       case 'people':
       case 'relation':
@@ -46,20 +46,20 @@ export const GalleryHandler = ({ name, items, path, slug, LinkComp }: GalleryHan
       case 'date':
         return GalleryDateField({ payload: items.date })
 
-      //case 'rich_text':
-      //  return GalleryRichTextField({ payload: items })
+      case 'rich_text':
+        return GalleryRichTextField({ payload: items })
 
       case 'multi_select':
         return GalleryMultiSelectField({ payload: items, path })
 
-      //case 'url':
-      //  return GalleryUrlField({ payload: items.url })
+      case 'url':
+        return GalleryUrlField({ payload: items.url })
 
-      //case 'checkbox':
-      //  return GalleryCheckboxField({ payload: items.checkbox })
+      case 'checkbox':
+        return GalleryCheckboxField({ payload: items.checkbox })
 
-      //case 'number':
-      //  return GalleryNumberField({ payload: items })
+      case 'number':
+        return GalleryNumberField({ payload: items })
 
       case 'select':
       case 'status':

@@ -92,11 +92,13 @@ const Card: React.FC<CardProps> = ({ keys, page, link, LinkComp, preview }) => {
     <div className="notionate-gallery-card">
       <LinkedCard href={buildHref(page, link)} LinkComp={LinkComp}>
         {preview && <Preview src={page.cover?.src} />}
-        {keys.map((name, i) => (
-          <div key={`${page.id}${name}`} className={`field${i}`}>
-            {GalleryHandler({ name, items: findItems(name, page), path, slug, LinkComp })}
-          </div>
-        ))}
+        <div className="notionate-gallery-card-text">
+          {keys.map((name, i) => (
+            <div key={`${page.id}${name}`} className={`field${i}`}>
+              {GalleryHandler({ name, items: findItems(name, page), path, slug, LinkComp })}
+            </div>
+          ))}
+        </div>
       </LinkedCard>
     </div>
   )
