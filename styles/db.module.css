@@ -1,6 +1,7 @@
 .header {
   width: 100%;
-  margin: 0;
+  height: 30vh;
+  margin: 0 0 200px;
 }
 
 .wrapper {
@@ -11,14 +12,11 @@
 }
 
 .cover {
+  display: block;
+  object-fit: cover;
   width: 100%;
-  height: 434px;
-  margin: 0;
-  position: relative;
-  background-size: cover;
-  background-position: left 40%;
-  background-repeat: no-repeat;
-  background-color: #eee;
+  height: 30vh;
+  object-position: center 70%;
 }
 
 .headerInner {
@@ -26,8 +24,6 @@
   max-width: 1800px;
   margin: -50px auto 0;
   padding: 0 1.5rem;
-  position: relative;
-  z-index: 2;
 }
 
 .title {
@@ -48,5 +44,27 @@
 
 .db {
   margin-top: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
+}
+
+.headerPage {
+  width: 100%;
+  height: 30vh;
+  margin: 0 0 120px;
+}
+
+.headerInnerPage {
+  font-size: 1rem;
+  max-width: 800px;
+  margin: -50px auto 0;
+  padding: 0 1.5rem;
+}
+
+.wrapperPage {
+  max-width: 800px;
+  padding: 0 1.5rem;
+}
+
+.page {
+  margin: 0 auto 5rem;
 }

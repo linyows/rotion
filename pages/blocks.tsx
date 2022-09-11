@@ -1,6 +1,6 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import styles from '../styles/blocks.module.css'
+import styles from '../styles/db.module.css'
 
 import {
   FetchBlocks,
@@ -45,10 +45,9 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 }
 
 const BlocksPage: NextPage<Props> = ({ title, icon, image, blocks }) => {
-  const bg = {
-    backgroundImage: `url("${image}")`
+  const position = {
+    objectPosition: 'center 60%',
   }
-
   return (
     <>
       <Head>
@@ -56,8 +55,9 @@ const BlocksPage: NextPage<Props> = ({ title, icon, image, blocks }) => {
         <link rel="icon" href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${icon}</text></svg>`} />
       </Head>
 
-      <header className={styles.header} style={bg}>
-        <div className={styles.headerInner}>
+      <header className={styles.headerPage}>
+        <img className={styles.cover} src={image} style={position} />
+        <div className={`${styles.headerInnerPage} ${styles.wrapperPage}`}>
           <div className={styles.icon}>
             {icon}
           </div>
@@ -67,7 +67,7 @@ const BlocksPage: NextPage<Props> = ({ title, icon, image, blocks }) => {
         </div>
       </header>
 
-      <div className={styles.page}>
+      <div className={`${styles.page} ${styles.wrapperPage}`}>
         <Blocks blocks={blocks} />
       </div>
     </>
