@@ -97,6 +97,12 @@
 }
 
 /* table */
+.notionate-table {
+  margin: 0;
+  padding: 0 0 10px;
+  width: 100%;
+  overflow-x: scroll;
+}
 .notionate-table-inner {
   position: relative;
   float: left;
