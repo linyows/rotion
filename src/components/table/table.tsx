@@ -160,7 +160,7 @@ const TablePropertyNameAndIcon: React.FC<{ name: string, db: QueryDatabaseRespon
     <div className="notionate-table-cell-inner">
       <TableIcon type={propType} />
       <div className="notionate-table-cell-text">
-        {name} 
+        {name}
       </div>
     </div>
   )
