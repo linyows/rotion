@@ -1,17 +1,20 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
 import styles from '../styles/db.module.css'
 
 import {
-  FetchBlocks,
+  QueryDatabaseResponseEx,
+  FetchDatabase,
   FetchPage,
-  ListBlockChildrenResponseEx,
+  FetchBlocks,
   RichTextItemResponse,
+  QueryDatabaseParameters,
+  ListBlockChildrenResponseEx,
   TitlePropertyItemObjectResponse,
 } from '../src/server'
 
 import {
+  Table,
   Blocks,
   TextObject,
 } from '../src/components'
@@ -21,10 +24,11 @@ type Props = {
   icon: string
   image: string
   blocks: ListBlockChildrenResponseEx
+  db: QueryDatabaseResponseEx
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  const id = process.env.NOTION_TESTROOT_ID as string
+  const id = process.env.NOTION_TABLEPAGE_ID as string
   const page = await FetchPage(id)
   let title: null|RichTextItemResponse = null
   if ('meta' in page && page.meta?.object === 'list') {
@@ -35,30 +39,48 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const image = page.cover.src
   const blocks = await FetchBlocks(id)
 
+  const params = {
+    database_id: process.env.NOTION_TESTDB_ID as string,
+    filter: {
+      property: 'Published',
+      checkbox: {
+        equals: true
+      },
+    },
+    sorts: [
+      {
+        property: 'Date',
+        direction: 'descending'
+      },
+    ]
+  } as QueryDatabaseParameters
+  const db = await FetchDatabase(params)
+
   return {
     props: {
       title,
       icon,
       image,
       blocks,
+      db,
     }
   }
 }
 
-const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
+const TablePage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
   const position = {
-    objectPosition: 'center 30%',
+    objectPosition: 'center 70%',
   }
   return (
     <>
       <Head>
-        <title>Notionate</title>
+        <title>Table - Notionate</title>
         <link rel="icon" href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${icon}</text></svg>`} />
       </Head>
 
-      <header className={styles.headerPage}>
+      <header className={styles.header}>
         <img className={styles.cover} src={image} style={position} />
-        <div className={`${styles.headerInnerPage} ${styles.wrapperPage}`}>
+        <div className={`${styles.headerInner} ${styles.wrapper}`}>
           <div className={styles.icon}>
             {icon}
           </div>
@@ -66,13 +88,16 @@ const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
             {title && <TextObject textObject={title} />}
           </h1>
         </div>
+        <div className={`${styles.desc} ${styles.wrapper}`}>
+          <Blocks blocks={blocks} />
+        </div>
       </header>
 
-      <div className={`${styles.page} ${styles.wrapperPage}`}>
-        <Blocks blocks={blocks} link="/[title]" LinkComp={Link} />
+      <div className={`${styles.db} ${styles.wrapper}`}>
+        <Table keys={['Name', 'Date', 'Tags', 'Url', 'Note', 'Born']} db={db} link="/database/[id]" />
       </div>
     </>
   )
 }
 
-export default Home
+export default TablePage

@@ -134,7 +134,7 @@ This is the components available:
 - [x] Page Blocks
 - [x] Database List View
 - [x] Database Gallery View
-- [ ] Database Table View
+- [x] Database Table View
 
 Author
 --

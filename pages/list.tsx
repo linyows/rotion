@@ -68,10 +68,9 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 }
 
 const ListPage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
-  const bg = {
-    backgroundImage: `url("${image}")`
+  const position = {
+    objectPosition: 'center 0%',
   }
-
   return (
     <>
       <Head>
@@ -80,8 +79,7 @@ const ListPage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
       </Head>
 
       <header className={styles.header}>
-        <div className={styles.cover} style={bg}>
-        </div>
+        <img className={styles.cover} src={image} style={position} />
         <div className={`${styles.headerInner} ${styles.wrapper}`}>
           <div className={styles.icon}>
             {icon}
