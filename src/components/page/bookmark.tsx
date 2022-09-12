@@ -33,7 +33,7 @@ const BookmarkBlock: React.FC<BookmarkBlockProps> = ({ block }) => {
           </div>
         </div>
         <div className="notionate-blocks-bookmark-image">
-          <img src={image} width="200px" alt={`${title} image`} />
+          <img src={image} width="200px" height="auto" alt={`${title} image`} />
         </div>
       </div>
       <div className="notionate-blocks-bookmark-caption">
