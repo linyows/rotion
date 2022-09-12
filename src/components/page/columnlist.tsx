@@ -6,13 +6,15 @@ import type {
 
 export type ColumnlistBlockProps = {
   block: ColumnListBlockObjectResponseEx
+  href?: string
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
-const ColumnlistBlock: React.FC<ColumnlistBlockProps> = ({ block }) => {
+const ColumnlistBlock: React.FC<ColumnlistBlockProps> = ({ block, href, link }) => {
   const columns = block.columns.map((v, i) => {
     return (
       <div key={i} className="notionate-blocks-columnlist-inner">
-        {Blocks({ blocks: v })}
+        {Blocks({ blocks: v, href, link })}
       </div>
     )
   })

@@ -39,7 +39,7 @@ export const Blocks: React.FC<BlocksProps> = ({ blocks, href, link }) => {
         list.push(block)
         if (Object.keys(listType).includes(block.type)) {
           const tag = listType[block.type] as keyof JSX.IntrinsicElements
-          children.push(List({ tag, blocks: list }))
+          children.push(ListBlock({ tag, blocks: list, href, link }))
           list = []
         }
       // first
