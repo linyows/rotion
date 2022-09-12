@@ -27,6 +27,7 @@ export * from './table/multiselect'
 export * from './table/richtext'
 export * from './table/url'
 export * from './table/number'
+export * from './table/icon'
 
 export * from './page/blocks'
 export * from './page/bookmark'
