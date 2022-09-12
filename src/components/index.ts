@@ -49,3 +49,4 @@ export * from './page/video'
 
 export * from './lib/pagination'
 export * from './lib/linkpath'
+export * from './lib/colorstyle'
