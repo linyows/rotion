@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import type {
   GetPagePropertyResponse,
   TitlePropertyItemObjectResponse,
@@ -17,10 +17,10 @@ export type TableHandlerProps = {
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
-  LinkComp?: unknown
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
-export const TableHandler = ({ name, items, path, slug, LinkComp }: TableHandlerProps) => {
+export const TableHandler = ({ name, items, path, slug, link }: TableHandlerProps) => {
   if (items === undefined) {
     return <></>
   }
@@ -30,7 +30,7 @@ export const TableHandler = ({ name, items, path, slug, LinkComp }: TableHandler
     switch (target.type) {
       case 'title': { // Skip: Unexpected lexical declaration in case block.
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
-        return TableTitleField({ payload, path, slug, LinkComp })
+        return TableTitleField({ payload, path, slug, link })
       }
 
       case 'rich_text':

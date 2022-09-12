@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next'
+import React, { ReactElement } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/db.module.css'
@@ -69,7 +70,11 @@ const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
       </header>
 
       <div className={`${styles.page} ${styles.wrapperPage}`}>
-        <Blocks blocks={blocks} link="/[title]" LinkComp={Link} />
+        <Blocks
+          blocks={blocks}
+          href="/[title]"
+          link={Link as React.FC<{ children: ReactElement<'a'>, href: string}>}
+        />
       </div>
     </>
   )

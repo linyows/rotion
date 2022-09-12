@@ -1,5 +1,5 @@
-import React from 'react'
-import List from './list'
+import React, { ReactElement } from 'react'
+import ListBlock from './list'
 import BlockHandler from './handler'
 import type {
   ListBlockChildrenResponseEx,
@@ -8,15 +8,15 @@ import type {
 
 export type BlocksProps = {
   blocks: ListBlockChildrenResponseEx
-  link?: string
-  LinkComp?: unknown
+  href?: string
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
 type ListType = {
   [key: string]: string
 }
 
-export const Blocks: React.FC<BlocksProps> = ({ blocks, link, LinkComp }) => {
+export const Blocks: React.FC<BlocksProps> = ({ blocks, href, link }) => {
   const { results } = blocks
   const listType: ListType = {
     bulleted_list_item: 'ul',
@@ -48,7 +48,7 @@ export const Blocks: React.FC<BlocksProps> = ({ blocks, link, LinkComp }) => {
         list.push(block)
       }
     } else {
-      const elem = BlockHandler({ block, link, LinkComp })
+      const elem = BlockHandler({ block, href, link })
       if (elem !== undefined) {
         children.push(elem)
       }

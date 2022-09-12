@@ -7,10 +7,10 @@ export type TableTitleProps = {
   payload: Array<TitlePropertyItemObjectResponse>
   path: string
   slug: string
-  LinkComp?: unknown
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
-export const TableTitleField: React.FC<TableTitleProps> = ({ payload, path, slug, LinkComp }) => {
+export const TableTitleField: React.FC<TableTitleProps> = ({ payload, path, slug, link }) => {
   const title = payload.map(v => {
     const richtext = v.title
     switch (richtext.type) {
@@ -25,8 +25,8 @@ export const TableTitleField: React.FC<TableTitleProps> = ({ payload, path, slug
   const href = `${path}${slug}`
 
   const LinkedTitle = () => {
-    if (LinkComp) {
-      const Link = LinkComp as React.FC<{ children: ReactElement<'a'>, href: string}>
+    if (link) {
+      const Link = link
       return (
         <>
           <Link href={href}>

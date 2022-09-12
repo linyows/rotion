@@ -6,29 +6,29 @@ import type {
 
 export type ChildpageBlockProps = {
   block: ChildPageBlockObjectResponseEx
-  link?: string
-  LinkComp?: unknown
+  href?: string
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
 type LinkedTitleProps = ChildpageBlockProps
 
-const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block, link, LinkComp }) => {
+const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block, href, link }) => {
   const icon = block.page.icon.type === 'emoji' ? block.page.icon.emoji : ''
   const title = block.child_page.title
 
-  const LinkedTitle = ({ block, link, LinkComp }: LinkedTitleProps) => {
-    const [path, slugKey] = getLinkPathAndLinkKey(link || '')
+  const LinkedTitle = ({ block, href, link }: LinkedTitleProps) => {
+    const [path, slugKey] = getLinkPathAndLinkKey(href || '')
     const file = slugKey === 'id' ? block.page.id : encodeURIComponent(title.toLowerCase())
-    const Link = LinkComp as React.FC<{ children: ReactElement<'a'>, href: string}>
 
-    if (!link) {
+    if (!href) {
       return (
         <span className="notionate-blocks-childpage-title">
           {title}
         </span>
       )
     }
-    if (LinkComp) {
+    if (link) {
+      const Link = link
       return (
         <Link href={`${path}${file}`}>
           <a className="notionate-blocks-childpage-a">
@@ -48,7 +48,7 @@ const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block, link, LinkComp }
     <div className="notionate-blocks-childpage">
       {icon}
       <div>
-        {LinkedTitle({ block, link, LinkComp })}
+        {LinkedTitle({ block, href, link })}
       </div>
     </div>
   )

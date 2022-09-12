@@ -1,4 +1,5 @@
 import type { GetStaticProps, NextPage } from 'next'
+import React, { ReactElement } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/db.module.css'
@@ -95,7 +96,14 @@ const GalleryPage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
       </header>
 
       <div className={`${styles.db} ${styles.wrapper}`}>
-        <Gallery keys={['Name', 'Date', 'Tags']} db={db} preview="cover" size="large" link="/database/[id]" LinkComp={Link} />
+        <Gallery
+          keys={['Name', 'Date', 'Tags']}
+          db={db}
+          preview="cover"
+          size="large"
+          href="/database/[id]"
+          link={Link as React.FC<{ children: ReactElement<'a'>, href: string}>}
+        />
       </div>
     </>
   )

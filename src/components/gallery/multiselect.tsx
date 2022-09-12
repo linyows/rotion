@@ -6,14 +6,14 @@ import type {
 export type GalleryMultiSelectProps = {
   payload: MultiSelectPropertyItemObjectResponse
   path: string
-  LinkComp?: unknown
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
-export const GalleryMultiSelectField: React.FC<GalleryMultiSelectProps> = ({ payload, path, LinkComp }) => {
+export const GalleryMultiSelectField: React.FC<GalleryMultiSelectProps> = ({ payload, path, link }) => {
   const LinkedTag = (name: string) => {
     const href = `${path}tags/${encodeURIComponent(name)}`
-    if (LinkComp) {
-      const Link = LinkComp as React.FC<{ children: ReactElement<'a'>, href: string}>
+    if (link) {
+      const Link = link
       return (
         <>
           <Link href={href}>

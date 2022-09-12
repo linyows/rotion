@@ -35,13 +35,13 @@ const buildHref = (page: PageObjectResponseEx, link?: string) => {
 }
 
 type LinkedCardProps = React.PropsWithChildren & {
-  LinkComp: unknown
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
   href: string
 }
 
-const LinkedCard: React.FC<LinkedCardProps> = ({ children, LinkComp, href }) => {
-  if (LinkComp) {
-    const Link = LinkComp as React.FC<{ children: ReactElement<'a'>, href: string}>
+const LinkedCard: React.FC<LinkedCardProps> = ({ children, link, href }) => {
+  if (link) {
+    const Link = link
     return (
       <Link href={href}>
         <div className="notionate-gallery-a">
@@ -61,8 +61,8 @@ const LinkedCard: React.FC<LinkedCardProps> = ({ children, LinkComp, href }) => 
 type CardProps = {
   keys: string[]
   page: PageObjectResponseEx
-  link: string
-  LinkComp: unknown
+  href: string
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
   preview?: 'cover' | 'content'
 }
 
@@ -74,7 +74,7 @@ const Preview: React.FC<{ src?: string }> = ({ src }) => {
   )
 }
 
-const Card: React.FC<CardProps> = ({ keys, page, link, LinkComp, preview }) => {
+const Card: React.FC<CardProps> = ({ keys, page, href, link, preview }) => {
   const findItems = (name: string, page: PageObjectResponseEx) => {
     let propertyId = ''
     for (const [k, v] of Object.entries(page.properties)) {
@@ -84,17 +84,17 @@ const Card: React.FC<CardProps> = ({ keys, page, link, LinkComp, preview }) => {
     }
     return page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
   }
-  const [path, slugKey] = getLinkPathAndLinkKey(link)
+  const [path, slugKey] = getLinkPathAndLinkKey(href)
   const slug = getSlug(slugKey, page)
 
   return (
     <div className="notionate-gallery-card">
-      <LinkedCard href={buildHref(page, link)} LinkComp={LinkComp}>
+      <LinkedCard href={buildHref(page, href)} link={link}>
         {preview && <Preview src={page.cover?.src} />}
         <div className="notionate-gallery-card-text">
           {keys.map((name, i) => (
             <div key={`${page.id}${name}`} className={`field${i}`}>
-              {GalleryHandler({ name, items: findItems(name, page), path, slug, LinkComp })}
+              {GalleryHandler({ name, items: findItems(name, page), path, slug, link })}
             </div>
           ))}
         </div>
@@ -106,20 +106,20 @@ const Card: React.FC<CardProps> = ({ keys, page, link, LinkComp, preview }) => {
 export type GalleryProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
-  link?: string
-  LinkComp?: unknown
+  href?: string
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
   // page-content is nut supported
   preview?: 'cover' | 'content'
   size?: 'small' | 'medium' | 'large'
   fit?: boolean
 }
 
-export const Gallery: React.FC<GalleryProps> = ({ keys, db, link, LinkComp, preview, size, fit }) => {
+export const Gallery: React.FC<GalleryProps> = ({ keys, db, href, link, preview, size, fit }) => {
   return (
     <div className="notionate-gallery">
       <div className={`notionate-gallery-inner notionate-gallery-${size || 'medium'}`}>
         {db.results.map((v) => (
-          <Card key={v.id} keys={keys} page={v as PageObjectResponseEx} link={link || ''} LinkComp={LinkComp} preview={preview} />
+          <Card key={v.id} keys={keys} page={v as PageObjectResponseEx} href={href || ''} link={link} preview={preview} />
         ))}
       </div>
     </div>

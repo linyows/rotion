@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import type {
   GetPagePropertyResponse,
   TitlePropertyItemObjectResponse,
@@ -17,10 +17,10 @@ export type GalleryHandlerProps = {
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
-  LinkComp?: unknown
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
-export const GalleryHandler = ({ name, items, path, slug, LinkComp }: GalleryHandlerProps) => {
+export const GalleryHandler = ({ name, items, path, slug, link }: GalleryHandlerProps) => {
   if (items === undefined) {
     return <></>
   }

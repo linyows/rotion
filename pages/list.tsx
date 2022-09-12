@@ -94,7 +94,11 @@ const ListPage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
       </header>
 
       <div className={`${styles.db} ${styles.wrapper}`}>
-        <List keys={['Name', 'Note', 'spacer', 'Tags', 'Url', 'Born', 'Date']} db={db} link="/database/[id]" />
+        <List
+          keys={['Name', 'Note', 'spacer', 'Tags', 'Url', 'Born', 'Date']}
+          db={db}
+          href="/database/[id]"
+        />
       </div>
     </>
   )

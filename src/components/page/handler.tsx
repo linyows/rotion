@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import ColumnlistBlock from './columnlist'
 import VideoBlock from './video'
 import EmbedBlock from './embed'
@@ -29,11 +29,11 @@ export const blockType = {
 
 export type BlockHandlerProps = {
   block: BlockObjectResponse
-  link?: string
-  LinkComp?: unknown
+  href?: string
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
-export const BlockHandler = ({ block, link, LinkComp }: BlockHandlerProps): JSX.Element | undefined => {
+export const BlockHandler = ({ block, href, link }: BlockHandlerProps): JSX.Element | undefined => {
   switch (block.type) {
     case 'heading_1':
     case 'heading_2':
@@ -77,13 +77,14 @@ export const BlockHandler = ({ block, link, LinkComp }: BlockHandlerProps): JSX.
       return <CalloutBlock block={block} key={block.id} />
 
     case 'column_list':
-      return <ColumnlistBlock block={block} key={block.id} />
+      // ColumnlistBlock calls blocks
+      return <ColumnlistBlock block={block} href={href} link={link} key={block.id} />
 
     case 'child_page':
-      return <ChildpageBlock block={block} link={link} LinkComp={LinkComp} key={block.id} />
+      return <ChildpageBlock block={block} href={href} link={link} key={block.id} />
 
     case 'child_database':
-      return <ChilddatabaseBlock block={block} link={link} LinkComp={LinkComp} key={block.id} />
+      return <ChilddatabaseBlock block={block} href={href} link={link} key={block.id} />
 
     case 'toggle':
       return <ToggleBlock block={block} key={block.id} />

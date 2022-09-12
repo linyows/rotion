@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import type {
   GetPagePropertyResponse,
   TitlePropertyItemObjectResponse,
@@ -17,10 +17,10 @@ export type ListHandlerProps = {
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
-  LinkComp?: unknown
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
-export const ListHandler = ({ name, items, path, slug, LinkComp }: ListHandlerProps) => {
+export const ListHandler = ({ name, items, path, slug, link }: ListHandlerProps) => {
   if (items === undefined) {
     return <></>
   }
@@ -30,7 +30,7 @@ export const ListHandler = ({ name, items, path, slug, LinkComp }: ListHandlerPr
     switch (target.type) {
       case 'title': { // Skip: Unexpected lexical declaration in case block.
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
-        return ListTitleField({ payload, path, slug, LinkComp })
+        return ListTitleField({ payload, path, slug, link })
       }
 
       case 'rich_text':

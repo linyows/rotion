@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import type {
   QueryDatabaseResponseEx,
   GetPageResponse,
@@ -10,11 +10,11 @@ import { getLinkPathAndLinkKey } from '../lib/linkpath'
 export type ListProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
-  link: string
-  LinkComp?: unknown
+  href: string
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
-export const List: React.FC<ListProps> = ({ keys, db, link, LinkComp }) => {
+export const List: React.FC<ListProps> = ({ keys, db, href, link }) => {
   const getSlug = (key: string, page: GetPageResponse): string => {
     if (!('properties' in page)) {
       return 'not-found-properties'
@@ -33,7 +33,7 @@ export const List: React.FC<ListProps> = ({ keys, db, link, LinkComp }) => {
     return p.rich_text.map(v => v.text.content).join(',')
   }
 
-  const [path, slugKey] = getLinkPathAndLinkKey(link)
+  const [path, slugKey] = getLinkPathAndLinkKey(href)
 
   const dbf = (name: string, page: PageObjectResponseEx) => {
     if (name === 'spacer' || !('property_items' in page) || !('properties' in page)) {
@@ -48,7 +48,7 @@ export const List: React.FC<ListProps> = ({ keys, db, link, LinkComp }) => {
     const items = page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
     const slug = getSlug(slugKey, page)
 
-    return ListHandler({ name, items, path, slug, LinkComp })
+    return ListHandler({ name, items, path, slug, link })
   }
 
   return (

@@ -7,13 +7,13 @@ import type {
 
 export type ChilddatabaseBlockProps = {
   block: ChildDatabaseBlockObjectResponseEx
-  link?: string
-  LinkComp?: unknown
+  href?: string
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
 type LinkedTitleProps = ChilddatabaseBlockProps
 
-const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, link, LinkComp }) => {
+const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, href, link }) => {
   if (!('database' in block)) {
     return <></>
   }
@@ -22,17 +22,17 @@ const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, link, Li
   const title = ('title' in block.database) ? block.database.title : []
   const plainTitle = title.map(v => v.plain_text).join('').toLowerCase()
 
-  const LinkedTitle = ({ block, link, LinkComp }: LinkedTitleProps) => {
-    const [path, slugKey] = getLinkPathAndLinkKey(link || '')
+  const LinkedTitle = ({ block, href, link }: LinkedTitleProps) => {
+    const [path, slugKey] = getLinkPathAndLinkKey(href || '')
     const file = slugKey === 'id' ? block.database.id : encodeURIComponent(plainTitle.toLowerCase())
-    const Link = LinkComp as React.FC<{ children: ReactElement<'a'>, href: string}>
 
-    if (!link) {
+    if (!href) {
       return (
         <TextBlock tag="span" block={title} />
       )
     }
-    if (LinkComp) {
+    if (link) {
+      const Link = link
       return (
         <Link href={`${path}${file}`}>
           <a className="notionate-blocks-childdatabase-a">
@@ -54,7 +54,7 @@ const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, link, Li
         {icon}
       </span>
       <div>
-        {LinkedTitle({ block, link, LinkComp })}
+        {LinkedTitle({ block, href, link })}
       </div>
     </div>
   )

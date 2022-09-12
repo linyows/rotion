@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import type {
   QueryDatabaseResponseEx,
   GetPageResponse,
   PageObjectResponseEx,
 } from '../../server/types'
 import TableHandler from './handler'
+import TableIcon from './icon'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
 
 export type TableProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
-  link: string
-  LinkComp?: unknown
+  href: string
+  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
 const TableIcon: React.FC<{ type: string }> = ({ type }) => {
@@ -166,7 +167,7 @@ const TablePropertyNameAndIcon: React.FC<{ name: string, db: QueryDatabaseRespon
   )
 }
 
-export const Table: React.FC<TableProps> = ({ keys, db, link, LinkComp }) => {
+export const Table: React.FC<TableProps> = ({ keys, db, href, link }) => {
   const getSlug = (key: string, page: GetPageResponse): string => {
     if (!('properties' in page)) {
       return 'not-found-properties'
@@ -185,7 +186,7 @@ export const Table: React.FC<TableProps> = ({ keys, db, link, LinkComp }) => {
     return p.rich_text.map(v => v.text.content).join(',')
   }
 
-  const [path, slugKey] = getLinkPathAndLinkKey(link)
+  const [path, slugKey] = getLinkPathAndLinkKey(href)
 
   const dbf = (name: string, page: PageObjectResponseEx) => {
     if (!('property_items' in page) || !('properties' in page)) {
@@ -200,7 +201,7 @@ export const Table: React.FC<TableProps> = ({ keys, db, link, LinkComp }) => {
     const items = page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
     const slug = getSlug(slugKey, page)
 
-    return TableHandler({ name, items, path, slug, LinkComp })
+    return TableHandler({ name, items, path, slug, link })
   }
 
   return (
