@@ -61,9 +61,13 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
 export default const DB: NextPage<Props> = ({ db }) => {
   return (
-    <div>
-      <DBList keys={['Name', 'spacer', 'Tags', 'Date']} db={db} link="/database/[id]" LinkComp={Link} />
-    </div>
+    <>
+      <DBList
+        keys={['Name', 'spacer', 'Tags', 'Date']}
+        db={db}
+        href="/database/[id]"
+        link={Link as React.FC<{ children: ReactElement<'a'>, href: string}>} />
+    </>
   )
 }
 ```
@@ -91,9 +95,9 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
 export default const Page: NextPage<Props> = ({ blocks }) => {
   return (
-    <div>
+    <>
       <Blocks blocks={blocks} />
-    </div>
+    </>
   )
 }
 ```
@@ -135,6 +139,7 @@ This is the components available:
 - [x] Database List View
 - [x] Database Gallery View
 - [x] Database Table View
+- [ ] Calendar Table View
 
 Author
 --
