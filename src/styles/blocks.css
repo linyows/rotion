@@ -15,6 +15,7 @@
   cursor: pointer;
   position: relative;
   background-color: inherit;
+  overflow: hidden;
 }
 .notionate-blocks-bookmark-inner:hover {
   background-color: #f5f5f5;
