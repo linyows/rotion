@@ -155,6 +155,11 @@
 .notionate-blocks-columnlist-inner {
   margin: 0 0 1rem;
 }
+@media (max-width: 580px) {
+  .notionate-blocks-columnlist {
+    display: block;
+  }
+}
 
 /* embed */
 .notionate-blocks-embed {
