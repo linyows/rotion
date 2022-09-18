@@ -101,6 +101,7 @@ const GalleryPage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
           db={db}
           preview="cover"
           size="large"
+          fit={true}
           href="/database/[id]"
           link={Link as React.FC<{ children: ReactElement<'a'>, href: string}>}
         />

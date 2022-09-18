@@ -116,8 +116,7 @@
 /* gallery */
 .notionate-gallery-inner {
   position: relative;
-  padding-top: 16px;
-  padding-bottom: 4px;
+  padding-bottom: 1rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
@@ -130,6 +129,20 @@
 }
 .notionate-gallery-large {
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+.notionate-gallery-fit img {
+  object-fit: contain;
+  object-position: center 50%;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+.notionate-gallery-fit .notionate-gallery-small img {
+  height: 101.25px;
+}
+.notionate-gallery-fit .notionate-gallery-medium img {
+  height: 146.25px;
+}
+.notionate-gallery-fit .notionate-gallery-large img {
+  height: 180px;
 }
 .notionate-gallery-card {
   display: block;
@@ -151,9 +164,7 @@
   padding-bottom: 10px;
 }
 .notionate-gallery-preview {
-  aspect-ratio: 16 / 9;
   overflow: hidden;
-  margin-bottom: 3px;
 }
 .notionate-gallery-preview img {
   width: 100%;

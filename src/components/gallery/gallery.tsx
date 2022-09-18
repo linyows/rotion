@@ -115,9 +115,11 @@ export type GalleryProps = React.PropsWithChildren & {
 }
 
 export const Gallery: React.FC<GalleryProps> = ({ keys, db, href, link, preview, size, fit }) => {
+  const fitClass = `${fit ? ' notionate-gallery-fit' : ''}`
+  const sizeClass = ` notionate-gallery-${size || 'medium'}`
   return (
-    <div className="notionate-gallery">
-      <div className={`notionate-gallery-inner notionate-gallery-${size || 'medium'}`}>
+    <div className={`notionate-gallery${fitClass}`}>
+      <div className={`notionate-gallery-inner${sizeClass}`}>
         {db.results.map((v) => (
           <Card key={v.id} keys={keys} page={v as PageObjectResponseEx} href={href || ''} link={link} preview={preview} />
         ))}
