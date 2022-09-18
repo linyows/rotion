@@ -164,6 +164,7 @@
   padding-bottom: 10px;
 }
 .notionate-gallery-preview {
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 .notionate-gallery-preview img {
