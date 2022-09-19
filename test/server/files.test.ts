@@ -28,11 +28,12 @@ test('saveImage saves a image correct file name', async () => {
 test('getHtmlMeta returns title and desc', async () => {
   td.replace(console, 'log')
   const { title, desc, image, icon } = await files.getHtmlMeta('https://github.com/linyows')
-  assert.match(title, /linyows/)
+  assert.equal(title, 'linyows - Overview')
   assert.match(desc, /linyows/)
-  assert.equal(image, '')
-  assert.equal(icon, '')
+  assert.equal(image, '/images/html-image-04b64c3611347931ebcf9115fe93698e5073306d-72049')
+  assert.equal(icon, '/images/html-icon-e1aa804744569890b2ad93454db629d8f437fa68-favicon.svg')
 })
+
 
 test('getVideoHtml returns html', async () => {
   td.replace(console, 'log')

@@ -155,12 +155,12 @@ export const saveImage = async (imageUrl: string, prefix: string, hash?: boolean
 }
 
 export const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
-  const ogTitleRegex = /<meta\s+property="og:title"\s+content="(.*?)">/
-  const ogDescRegex = /<meta\s+property="og:description"\s+content="(.*?)">/
-  const ogImageRegex = /<meta\s+property="og:image"\s+content="(.*?)">/
+  const ogTitleRegex = /<meta\s+property="og:title"\s+content="(.*?)"\s?\/?>/
+  const ogDescRegex = /<meta\s+property="og:description"\s+content="(.*?)"\s?\/?>/
+  const ogImageRegex = /<meta\s+property="og:image"\s+content="(.*?)"\s?\/?>/
   const titleRegex = /<title>(.*?)<\/title>/
-  const descRegex = /<meta\s+name="description"\s+content="(.*?)">/
-  const iconRegex = /<link\s+href="(.*?)"\s+rel="icon"\s?\/?>|<link\s+rel="icon"\s+href="(.*?)"\s?\/?>/
+  const descRegex = /<meta\s+name="description"\s+content="(.*?)"\s?\/?>/
+  const iconRegex = /<link\s+href="(.*?)"\s+rel="icon"\s?\/?>|<link\s+rel="icon".*?href="(.*?)"\s?\/?>|<link\s+rel="shortcut icon"\s+type="image\/x-icon"\s+href="(.*?)"\s?\/?>/
   try {
     const body = await getHTTP(reqUrl)
 
@@ -179,7 +179,9 @@ export const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc
     const desc = descMatched ? descMatched[1] : 'unknown'
     const imageUrl = imageMatched ? imageMatched[1] : ''
     const image = imageUrl !== '' ? await saveImage(imageUrl, 'html-image', true) : ''
-    const iconUrl = iconMatched ? (iconMatched[1] || iconMatched[2]) : ''
+    const iconPath = iconMatched ? (iconMatched[1] || iconMatched[2] || iconMatched[3]) : ''
+    const url = new URL(reqUrl)
+    const iconUrl = iconPath !== '' ? `${url.protocol}//${url.hostname}${iconPath}` : ''
     const icon = iconUrl !== '' ? await saveImage(iconUrl, 'html-icon', true) : ''
     return { title, desc, image, icon }
   } catch (e) {
