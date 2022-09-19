@@ -152,3 +152,12 @@
   margin-left: 14px;
   border-top: 1px dashed #999;
 }
+
+@media (prefers-color-scheme: dark) {
+  .notionate-list-title-a {
+    border-color: #444;
+  }
+  .notionate-list-record:hover {
+    background-color: #222;
+  }
+}

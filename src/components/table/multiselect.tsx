@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react'
-import colorStyle from '../lib/colorstyle'
 import type {
   MultiSelectPropertyItemObjectResponse,
 } from '../../server/types'
@@ -35,7 +34,7 @@ export const TableMultiSelectField: React.FC<TableMultiSelectProps> = ({ payload
   return (
     <ul className="notionate-table-multiselect-ul">
       {payload.multi_select.map(f => (
-        <li key={f.id} className="notionate-table-multiselect-li" style={colorStyle(f.color)}>
+        <li key={f.id} className={`notionate-table-multiselect-li notionate-select-${f.color}`}>
           {LinkedTag(f.name)}
         </li>
       ))}

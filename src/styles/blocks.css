@@ -70,6 +70,14 @@
     padding: 1rem 0 .85rem;
   }
 }
+@media (prefers-color-scheme: dark) {
+  .notionate-blocks-bookmark-inner {
+    border-color: rgba(255, 255, 255, 0.13);
+  }
+  .notionate-blocks-bookmark-inner:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+  }
+}
 
 /* callout */
 .notionate-blocks-callout {
@@ -83,6 +91,11 @@
 }
 .notionate-blocks-callout-text {
   margin-left: .6rem;
+}
+@media (prefers-color-scheme: dark) {
+  .notionate-blocks-callout {
+    background-color: rgb(37, 37, 37);
+  }
 }
 
 /* childdatabase */
@@ -109,6 +122,9 @@
   margin: .2rem 0 0;
   padding: .3rem 0;
 }
+.notionate-blocks-childpage:hover {
+  background-color: #f5f5f5;
+}
 .notionate-blocks-childpage-title {
   display: inline;
 }
@@ -117,6 +133,15 @@
   border-bottom: 1px solid #ddd;
   display: inline;
   text-decoration: none;
+}
+@media (prefers-color-scheme: dark) {
+  .notionate-blocks-childpage-a {
+    color: #ddd;
+    border-color: #333;
+  }
+  .notionate-blocks-childpage:hover {
+    background-color: #222;
+  }
 }
 
 /* code */
@@ -312,6 +337,15 @@
   border-spacing: 0;
   font-size: .9rem;
 }
+@media (prefers-color-scheme: dark) {
+  .notionate-blocks-table-td {
+    border-color: rgb(47, 47, 47);
+  }
+  .notionate-blocks-table-th {
+    border-color: rgb(47, 47, 47);
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+}
 
 /* text */
 .notionate-blocks-text-a {
@@ -451,6 +485,38 @@
   margin-right: 0;
   line-height: 1.7;
 }
+@media (prefers-color-scheme: dark) {
+  .notionate-blocks-text-gray-background {
+    background: rgba(47, 47, 47, 1);
+  }
+  .notionate-blocks-text-brown-background {
+    background: rgba(74, 50, 40, 1);
+  }
+  .notionate-blocks-text-orange-background {
+    background: rgba(92, 59, 35, 1);
+  }
+  .notionate-blocks-text-yellow-background {
+    background: rgba(86, 67, 40, 1);
+  }
+  .notionate-blocks-text-green-background {
+    background: rgba(36, 61, 48, 1);
+  }
+  .notionate-blocks-text-blue-background {
+    background: rgba(20, 58, 78, 1);
+  }
+  .notionate-blocks-text-purple-background {
+    background: rgba(60, 45, 73, 1);
+  }
+  .notionate-blocks-text-pink-background {
+    background: rgba(78, 44, 60, 1);
+  }
+  .notionate-blocks-text-red-background {
+    background: rgba(82, 46, 42, 1);
+  }
+  .notionate-blocks-text-hr {
+    border-top-color: #333;
+  }
+}
 
 /* todo */
 .notionate-blocks-checked {
@@ -536,6 +602,11 @@
   text-decoration-color: #999;
   color: #888;
 }
+@media (prefers-color-scheme: dark) {
+  .notionate-blocks-unchecked-checkbox {
+    fill: #eee;
+  }
+}
 
 /* toggle */
 .notionate-blocks-toggle {
@@ -576,6 +647,14 @@
   backface-visibility: hidden;
   transition: transform 200ms ease-out 0s;
   opacity: 1;
+}
+@media (prefers-color-scheme: dark) {
+  .notionate-blocks-toggle-triangle:hover {
+    background-color: #222;
+  }
+  .notionate-blocks-toggle-triangle-svg {
+    fill: white;
+  }
 }
 
 /* prismjs/themes/prism.css */
