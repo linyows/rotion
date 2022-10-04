@@ -146,9 +146,9 @@ export const saveImage = async (imageUrl: string, prefix: string, hash?: boolean
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(filePath))
     await res.end
-    console.log(`saved image: ${filePath}`)
+    console.log(`saved image -- path:${filePath}, url: ${imageUrl}`)
   } catch (e) {
-    console.log(`saveImage error: ${filePath} - ${e}`)
+    console.log(`saveImage error -- path:${filePath}, url: ${imageUrl}, message: ${e}`)
   }
 
   return urlPath
