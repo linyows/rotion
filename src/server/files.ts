@@ -181,7 +181,7 @@ export const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc
     const image = imageUrl !== '' ? await saveImage(imageUrl, 'html-image', true) : ''
     const iconPath = iconMatched ? (iconMatched[1] || iconMatched[2] || iconMatched[3]) : ''
     const url = new URL(reqUrl)
-    const iconUrl = iconPath !== '' ? `${url.protocol}//${url.hostname}${iconPath}` : ''
+    const iconUrl = iconPath !== '' ? (iconPath.includes('http') ? iconPath : `${url.protocol}//${url.hostname}${iconPath}`) : ''
     const icon = iconUrl !== '' ? await saveImage(iconUrl, 'html-icon', true) : ''
     return { title, desc, image, icon }
   } catch (e) {
