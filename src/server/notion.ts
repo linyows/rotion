@@ -34,12 +34,13 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
     params.page_size = 100
   }
   const limit = params.page_size
+  const paramsHash = JSON.stringify(params)
 
   const useCache = process.env.NOTION_CACHE === 'true'
   if (useCache) {
     await createDirWhenNotfound(cacheDir)
   }
-  const cacheFile = `${cacheDir}/notion.databases.query-${database_id}${limit !== undefined ? `.limit-${limit}` : ''}`
+  const cacheFile = `${cacheDir}/notion.databases.query-${paramsHash}${limit !== undefined ? `.limit-${limit}` : ''}`
   let cursor: undefined|string
   let allres: undefined|QueryDatabaseResponseEx
 
