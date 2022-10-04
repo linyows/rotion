@@ -108,7 +108,7 @@ export async function getJson<T> (reqUrl: string): Promise<T> {
   return JSON.parse(body) as T
 }
 
-const atoh = (a: string): string => {
+export const atoh = (a: string): string => {
   const shasum = crypto.createHash('sha1')
   shasum.update(a)
   return shasum.digest('hex')
