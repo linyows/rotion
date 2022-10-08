@@ -31,7 +31,7 @@ test('getHtmlMeta returns title and desc', async () => {
   assert.equal(title, 'linyows - Overview')
   assert.match(desc, /linyows/)
   assert.equal(image, '/images/html-image-04b64c3611347931ebcf9115fe93698e5073306d-72049')
-  assert.equal(icon, '/images/html-icon-e1aa804744569890b2ad93454db629d8f437fa68-favicon.svg')
+  assert.equal(icon, '/images/html-icon-7fc7cee827bf7a7360e7d63a631dc7cb59be9bd0-favicon.svg')
 })
 
 
