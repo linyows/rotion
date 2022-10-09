@@ -31,10 +31,7 @@ const isEmpty = (obj: Object) => {
 
 export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<QueryDatabaseResponseEx> => {
   const { database_id } = params
-  if ('page_size' in params) {
-    params.page_size = 100
-  }
-  const limit = params.page_size
+  const limit = ('page_size' in params) ? params.page_size : undefined
   const paramsHash = atoh(JSON.stringify(params))
 
   const useCache = process.env.NOTION_CACHE === 'true'
