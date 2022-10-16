@@ -40,6 +40,7 @@ import type {
   RichTextItemResponse,
   GetPagePropertyResponse,
   PageObjectResponse,
+  PersonUserObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
 
 export * from '@notionhq/client/build/src/api-endpoints'
@@ -325,4 +326,8 @@ export type GetDatabaseResponseEx = GetDatabaseResponse & {
 export type QueryDatabaseResponseEx = QueryDatabaseResponse & {
   results: Array<PageObjectResponseEx>
   meta: GetDatabaseResponseEx
+}
+
+export type PersonUserObjectResponseEx = PersonUserObjectResponse & {
+  avatar?: string
 }
