@@ -87,9 +87,11 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
       page.property_items.push(props)
       // Save avatar in people property type
       if (v.type === 'people') {
-        const people = v.people as unknown as PersonUserObjectResponseEx
-        if (people.avatar_url !== null) {
-          people.avatar = await saveImage(people.avatar_url, `database-avatar-${people.id}`)
+        const peoples = v.people as unknown as PersonUserObjectResponseEx[]
+        for (const people of peoples) {
+          if (people.avatar_url) {
+            people.avatar = await saveImage(people.avatar_url, `database-avatar-${people.id}`)
+          }
         }
       }
     }
