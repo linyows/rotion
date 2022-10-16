@@ -143,7 +143,8 @@ This is the components available:
 - [x] Database List View
 - [x] Database Gallery View
 - [x] Database Table View
-- [ ] Calendar Table View
+- [ ] Database Calendar View
+- [ ] Database Timeline View
 
 Author
 --
