@@ -170,12 +170,3 @@
 .notionate-gallery-preview img {
   width: 100%;
 }
-@media (prefers-color-scheme: dark) {
-  .notionate-gallery-card {
-    box-shadow: rgb(15 15 15 / 20%) 0px 0px 0px 1px, rgb(15 15 15 / 20%) 0px 2px 4px;
-    background: rgba(255, 255, 255, 0.055);
-  }
-  .notionate-gallery-fit img {
-    border-color: rgba(255, 255, 255, 0.094);
-  }
-}

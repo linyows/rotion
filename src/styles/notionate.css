@@ -2,11 +2,6 @@
   font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-@import url("./blocks.css");
-@import url("./list.css");
-@import url("./gallery.css");
-@import url("./table.css");
-
 .notionate-select-default {
   color: rgb(50, 48, 44);
   background-color: rgba(227, 226, 224, 0.5);
@@ -47,45 +42,8 @@
   color: rgb(93, 23, 21);
   background-color: rgb(255, 226, 221);
 }
-@media (prefers-color-scheme: dark) {
-  .notionate-select-default {
-    color: rgb(255, 255, 255, 0.804);
-    background-color: rgb(55, 55, 55);
-  }
-  .notionate-select-gray {
-    color: rgb(255, 255, 255, 0.804);
-    background-color: rgb(90, 90, 90);
-  }
-  .notionate-select-brown {
-    color: rgba(255, 255, 255, 0.804);
-    background-color: rgb(96, 59, 44);
-  }
-  .notionate-select-orange {
-    color: rgba(255, 255, 255, 0.804);
-    background-color: rgb(133, 76, 29);
-  }
-  .notionate-select-yellow {
-    color: rgba(255, 255, 255, 0.804);
-    background-color: rgb(137, 99, 42);
-  }
-  .notionate-select-green {
-    color: rgba(255, 255, 255, 0.804);
-    background-color: rgb(43, 89, 63);
-  }
-  .notionate-select-blue {
-    color: rgba(255, 255, 255, 0.804);
-    background-color: rgb(40, 69, 108);
-  }
-  .notionate-select-purple {
-    color: rgba(255, 255, 255, 0.804);
-    background-color: rgb(73, 47, 100);
-  }
-  .notionate-select-pink {
-    color: rgba(255, 255, 255, 0.804);
-    background-color: rgb(105, 49, 76);
-  }
-  .notionate-select-red {
-    color: rgba(255, 255, 255, 0.804);
-    background-color: rgb(110, 54, 48);
-  }
-}
+
+@import url("./blocks.css");
+@import url("./list.css");
+@import url("./gallery.css");
+@import url("./table.css");

@@ -30,6 +30,8 @@ import Link from 'next/link'
 import { QueryDatabaseResponseEx, FetchDatabase, QueryDatabaseParameters } from 'notionate'
 import { DBList } from 'notionate/dist/components'
 import 'notionate/dist/styles/notionate.css'
+// Import when enable dark-mode
+import 'notionate/dist/styles/notionate-dark.css'
 
 type Props = {
   db: QueryDatabaseResponseEx
@@ -79,6 +81,8 @@ import type { GetStaticProps, NextPage } from 'next'
 import { FetchBlocks, ListBlockChildrenResponseEx } from 'notionate'
 import { Blocks } from 'notionate/dist/components'
 import 'notionate/dist/styles/notionate.css'
+// Import when enable dark-mode
+import 'notionate/dist/styles/notionate-dark.css'
 
 type Props = {
   blocks: ListBlockChildrenResponseEx

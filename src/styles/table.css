@@ -146,25 +146,3 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-@media (prefers-color-scheme: dark) {
-  .notionate-table-title-a {
-    color: #eee;
-    border-color: rgba(255, 255, 255, 0.094);
-  }
-  .notionate-table-icon {
-    fill: rgba(255, 255, 255, 0.443);
-  }
-  .notionate-table-url-a:hover {
-    color: rgb(227, 226, 224);
-    background: rgb(50, 48, 44) none repeat scroll 0% 0%;
-  }
-  .notionate-table-row {
-    color: rgba(255, 255, 255, 0.443);
-    border-color: rgba(255, 255, 255, 0.094);
-    box-shadow: black -3px 0px 0px, rgba(255, 255, 255, 0.08) 0px 1px 0px;
-  }
-  .notionate-table-cell-inner {
-    border-color: rgba(255, 255, 255, 0.094);
-  }
-}
