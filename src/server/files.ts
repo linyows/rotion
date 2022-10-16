@@ -146,9 +146,9 @@ export const saveImage = async (imageUrl: string, prefix: string, hash?: boolean
     const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
     res.pipe(fs.createWriteStream(filePath))
     await res.end
-    console.log(`saved image -- path:${filePath}, url: ${imageUrl}`)
+    console.log(`saved image -- path: ${filePath}, url: ${imageUrl}`)
   } catch (e) {
-    console.log(`saveImage error -- path:${filePath}, url: ${imageUrl}, message: ${e}`)
+    console.log(`saveImage error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
   }
 
   return urlPath
@@ -231,7 +231,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
       const json = await getJson<SpeakerdeckOembedResponse>(reqUrl)
       return json.html
     } catch (e) {
-      console.log(`getEmbedHtml failure: ${reqUrl} - ${e}`)
+      console.log(`getEmbedHtml failure: ${reqUrl} -- ${e}`)
     }
   }
 
