@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/db.module.css'
+import type { UrlObject } from 'node:url'
 
 import {
   FetchBlocks,
@@ -73,7 +74,7 @@ const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
         <Blocks
           blocks={blocks}
           href="/[title]"
-          link={Link as React.FC<{ children: ReactElement<'a'>, href: string}>}
+          link={Link as React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>}
         />
       </div>
     </>

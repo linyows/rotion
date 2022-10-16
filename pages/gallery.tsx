@@ -1,7 +1,6 @@
 import type { GetStaticProps, NextPage } from 'next'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
 import styles from '../styles/db.module.css'
 
 import {
@@ -103,7 +102,6 @@ const GalleryPage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
           size="large"
           fit={true}
           href="/database/[id]"
-          link={Link as React.FC<{ children: ReactElement<'a'>, href: string}>}
         />
       </div>
     </>
