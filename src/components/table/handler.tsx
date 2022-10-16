@@ -11,6 +11,7 @@ import TableMultiSelectField from './multiselect'
 import TableUrlField from './url'
 import TableCheckboxField from './checkbox'
 import TableNumberField from './number'
+import type { ParsedUrlQueryInput } from 'node:querystring'
 
 export type TableHandlerProps = {
   name: string
@@ -18,9 +19,10 @@ export type TableHandlerProps = {
   path: string
   slug: string
   link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  query?: ParsedUrlQueryInput
 }
 
-export const TableHandler = ({ name, items, path, slug, link }: TableHandlerProps) => {
+export const TableHandler = ({ name, items, path, slug, link, query }: TableHandlerProps) => {
   if (items === undefined) {
     return <></>
   }
@@ -30,7 +32,7 @@ export const TableHandler = ({ name, items, path, slug, link }: TableHandlerProp
     switch (target.type) {
       case 'title': { // Skip: Unexpected lexical declaration in case block.
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
-        return TableTitleField({ payload, path, slug, link })
+        return TableTitleField({ payload, path, slug, link, query })
       }
 
       case 'rich_text':

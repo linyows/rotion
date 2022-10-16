@@ -7,12 +7,14 @@ import type {
 import TableHandler from './handler'
 import TableIcon from './icon'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
+import type { ParsedUrlQueryInput } from 'node:querystring'
 
 export type TableProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
   href: string
   link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  query?: ParsedUrlQueryInput
 }
 
 const TablePropertyNameAndIcon: React.FC<{ name: string, db: QueryDatabaseResponseEx }> = ({ name, db }) => {
@@ -34,7 +36,7 @@ const TablePropertyNameAndIcon: React.FC<{ name: string, db: QueryDatabaseRespon
   )
 }
 
-export const Table: React.FC<TableProps> = ({ keys, db, href, link }) => {
+export const Table: React.FC<TableProps> = ({ keys, db, href, link, query }) => {
   const getSlug = (key: string, page: GetPageResponse): string => {
     if (!('properties' in page)) {
       return 'not-found-properties'
@@ -68,7 +70,7 @@ export const Table: React.FC<TableProps> = ({ keys, db, href, link }) => {
     const items = page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
     const slug = getSlug(slugKey, page)
 
-    return TableHandler({ name, items, path, slug, link })
+    return TableHandler({ name, items, path, slug, link, query })
   }
 
   return (

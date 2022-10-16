@@ -3,16 +3,19 @@ import { getLinkPathAndLinkKey } from '../lib/linkpath'
 import type {
   ChildPageBlockObjectResponseEx,
 } from '../../server/types'
+import type { ParsedUrlQueryInput } from 'node:querystring'
+import type { UrlObject } from 'node:url'
 
 export type ChildpageBlockProps = {
   block: ChildPageBlockObjectResponseEx
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  query?: ParsedUrlQueryInput
 }
 
 type LinkedTitleProps = ChildpageBlockProps
 
-const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block, href, link }) => {
+const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block, href, link, query }) => {
   const icon = block.page.icon.type === 'emoji' ? block.page.icon.emoji : ''
   const title = block.child_page.title
 
@@ -27,7 +30,16 @@ const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block, href, link }) =>
         </span>
       )
     }
-    if (link) {
+    if (link && query) {
+      const Link = link
+      return (
+        <Link href={{ pathname: `${path}${file}`, query }}>
+          <a className="notionate-blocks-childpage-a">
+            {title}
+          </a>
+        </Link>
+      )
+    } else if (link) {
       const Link = link
       return (
         <Link href={`${path}${file}`}>

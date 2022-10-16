@@ -1,3 +1,5 @@
+import type { ParsedUrlQueryInput } from 'node:querystring'
+import type { UrlObject } from 'node:url'
 import React, { ReactElement } from 'react'
 import type {
   MultiSelectPropertyItemObjectResponse,
@@ -6,13 +8,25 @@ import type {
 export type ListMultiSelectProps = {
   payload: MultiSelectPropertyItemObjectResponse
   path: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  query?: ParsedUrlQueryInput
 }
 
-export const ListMultiSelectField: React.FC<ListMultiSelectProps> = ({ payload, path, link }) => {
+export const ListMultiSelectField: React.FC<ListMultiSelectProps> = ({ payload, path, link, query }) => {
   const LinkedTag = (name: string) => {
     const href = `${path}tags/${encodeURIComponent(name)}`
-    if (link) {
+    if (link && query) {
+      const Link = link
+      return (
+        <>
+          <Link href={{ pathname: href, query }}>
+            <a className="notionate-list-multiselect-a" title={name}>
+              {name}
+            </a>
+          </Link>
+        </>
+      )
+    } else if (link) {
       const Link = link
       return (
         <>

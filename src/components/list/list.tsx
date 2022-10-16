@@ -6,15 +6,18 @@ import type {
 } from '../../server/types'
 import ListHandler from './handler'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
+import type { ParsedUrlQueryInput } from 'node:querystring'
+import type { UrlObject } from 'node:url'
 
 export type ListProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
   href: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  query?: ParsedUrlQueryInput
 }
 
-export const List: React.FC<ListProps> = ({ keys, db, href, link }) => {
+export const List: React.FC<ListProps> = ({ keys, db, href, link, query }) => {
   const getSlug = (key: string, page: GetPageResponse): string => {
     if (!('properties' in page)) {
       return 'not-found-properties'
@@ -48,7 +51,7 @@ export const List: React.FC<ListProps> = ({ keys, db, href, link }) => {
     const items = page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
     const slug = getSlug(slugKey, page)
 
-    return ListHandler({ name, items, path, slug, link })
+    return ListHandler({ name, items, path, slug, link, query })
   }
 
   return (

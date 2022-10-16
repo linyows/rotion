@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type {
   GetPagePropertyResponse,
   TitlePropertyItemObjectResponse,
@@ -13,14 +13,11 @@ import GalleryCheckboxField from './checkbox'
 import GalleryNumberField from './number'
 
 export type GalleryHandlerProps = {
-  name: string
   items: GetPagePropertyResponse|undefined
   path: string
-  slug: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
 }
 
-export const GalleryHandler = ({ name, items, path, slug, link }: GalleryHandlerProps) => {
+export const GalleryHandler = ({ items, path }: GalleryHandlerProps) => {
   if (items === undefined) {
     return <></>
   }

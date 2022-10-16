@@ -4,16 +4,19 @@ import { getLinkPathAndLinkKey } from '../lib/linkpath'
 import type {
   ChildDatabaseBlockObjectResponseEx,
 } from '../../server/types'
+import type { ParsedUrlQueryInput } from 'node:querystring'
+import type { UrlObject } from 'node:url'
 
 export type ChilddatabaseBlockProps = {
   block: ChildDatabaseBlockObjectResponseEx
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  query?: ParsedUrlQueryInput
 }
 
 type LinkedTitleProps = ChilddatabaseBlockProps
 
-const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, href, link }) => {
+const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, href, link, query }) => {
   if (!('database' in block)) {
     return <></>
   }
@@ -31,7 +34,16 @@ const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, href, li
         <TextBlock tag="span" block={title} />
       )
     }
-    if (link) {
+    if (link && query) {
+      const Link = link
+      return (
+        <Link href={{ pathname: `${path}${file}`, query }}>
+          <a className="notionate-blocks-childdatabase-a">
+            <TextBlock tag="span" block={title} />
+          </a>
+        </Link>
+      )
+    } else if (link) {
       const Link = link
       return (
         <Link href={`${path}${file}`}>

@@ -5,18 +5,21 @@ import type {
   ListBlockChildrenResponseEx,
   BlockObjectResponse,
 } from '../../server/types'
+import type { ParsedUrlQueryInput } from 'node:querystring'
+import type { UrlObject } from 'node:url'
 
 export type BlocksProps = {
   blocks: ListBlockChildrenResponseEx
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  query?: ParsedUrlQueryInput
 }
 
 type ListType = {
   [key: string]: string
 }
 
-export const Blocks: React.FC<BlocksProps> = ({ blocks, href, link }) => {
+export const Blocks: React.FC<BlocksProps> = ({ blocks, href, link, query }) => {
   const { results } = blocks
   const listType: ListType = {
     bulleted_list_item: 'ul',
@@ -39,7 +42,7 @@ export const Blocks: React.FC<BlocksProps> = ({ blocks, href, link }) => {
         list.push(block)
         if (Object.keys(listType).includes(block.type)) {
           const tag = listType[block.type] as keyof JSX.IntrinsicElements
-          children.push(ListBlock({ tag, blocks: list, href, link }))
+          children.push(ListBlock({ tag, blocks: list, href, link, query }))
           list = []
         }
       // first
@@ -48,7 +51,7 @@ export const Blocks: React.FC<BlocksProps> = ({ blocks, href, link }) => {
         list.push(block)
       }
     } else {
-      const elem = BlockHandler({ block, href, link })
+      const elem = BlockHandler({ block, href, link, query })
       if (elem !== undefined) {
         children.push(elem)
       }

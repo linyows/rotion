@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import type { ParsedUrlQueryInput } from 'node:querystring'
 import type {
   GetPagePropertyResponse,
   TitlePropertyItemObjectResponse,
@@ -11,16 +12,18 @@ import ListMultiSelectField from './multiselect'
 import ListUrlField from './url'
 import ListCheckboxField from './checkbox'
 import ListNumberField from './number'
+import type { UrlObject } from 'node:url'
 
 export type ListHandlerProps = {
   name: string
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  query?: ParsedUrlQueryInput
 }
 
-export const ListHandler = ({ name, items, path, slug, link }: ListHandlerProps) => {
+export const ListHandler = ({ name, items, path, slug, link, query }: ListHandlerProps) => {
   if (items === undefined) {
     return <></>
   }
@@ -30,7 +33,7 @@ export const ListHandler = ({ name, items, path, slug, link }: ListHandlerProps)
     switch (target.type) {
       case 'title': { // Skip: Unexpected lexical declaration in case block.
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
-        return ListTitleField({ payload, path, slug, link })
+        return ListTitleField({ payload, path, slug, link, query })
       }
 
       case 'rich_text':

@@ -14,6 +14,8 @@ import ChildpageBlock from './childpage'
 import ChilddatabaseBlock from './childdatabase'
 import TextBlock from './text'
 import type { BlockObjectResponse } from '../../server/types'
+import type { ParsedUrlQueryInput } from 'node:querystring'
+import type { UrlObject } from 'node:url'
 
 export const blockType = {
   heading_1: 'h1',
@@ -30,10 +32,11 @@ export const blockType = {
 export type BlockHandlerProps = {
   block: BlockObjectResponse
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  query?: ParsedUrlQueryInput
 }
 
-export const BlockHandler = ({ block, href, link }: BlockHandlerProps): JSX.Element | undefined => {
+export const BlockHandler = ({ block, href, link, query }: BlockHandlerProps): JSX.Element | undefined => {
   switch (block.type) {
     case 'heading_1':
     case 'heading_2':
@@ -78,13 +81,13 @@ export const BlockHandler = ({ block, href, link }: BlockHandlerProps): JSX.Elem
 
     case 'column_list':
       // ColumnlistBlock calls blocks
-      return <ColumnlistBlock block={block} href={href} link={link} key={block.id} />
+      return <ColumnlistBlock block={block} href={href} link={link} query={query} key={block.id} />
 
     case 'child_page':
-      return <ChildpageBlock block={block} href={href} link={link} key={block.id} />
+      return <ChildpageBlock block={block} href={href} link={link} query={query} key={block.id} />
 
     case 'child_database':
-      return <ChilddatabaseBlock block={block} href={href} link={link} key={block.id} />
+      return <ChilddatabaseBlock block={block} href={href} link={link} query={query} key={block.id} />
 
     case 'toggle':
       return <ToggleBlock block={block} key={block.id} />

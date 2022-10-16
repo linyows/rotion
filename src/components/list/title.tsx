@@ -1,4 +1,6 @@
 import React, { ReactElement } from 'react'
+import type { ParsedUrlQueryInput } from 'node:querystring'
+import { UrlObject } from 'node:url'
 import type {
   TitlePropertyItemObjectResponse,
 } from '../../server/types'
@@ -7,10 +9,11 @@ export type ListTitleProps = {
   payload: Array<TitlePropertyItemObjectResponse>
   path: string
   slug: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  query?: ParsedUrlQueryInput
 }
 
-export const ListTitleField: React.FC<ListTitleProps> = ({ payload, path, slug, link }) => {
+export const ListTitleField: React.FC<ListTitleProps> = ({ payload, path, slug, link, query }) => {
   const title = payload.map(v => {
     const richtext = v.title
     switch (richtext.type) {
@@ -25,7 +28,18 @@ export const ListTitleField: React.FC<ListTitleProps> = ({ payload, path, slug, 
   const href = `${path}${slug}`
 
   const LinkedTitle = () => {
-    if (link) {
+    if (link && query) {
+      const Link = link
+      return (
+        <>
+          <Link href={{ pathname: href, query }}>
+            <a className="notionate-list-title-a" title={title}>
+              {title}
+            </a>
+          </Link>
+        </>
+      )
+    } else if (link) {
       const Link = link
       return (
         <>
