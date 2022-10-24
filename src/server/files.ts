@@ -129,11 +129,11 @@ export async function writeCache (f: string, data: unknown): Promise<void> {
   return writeFile(f, JSON.stringify(data), 'utf8').catch(() => {})
 }
 
-export const saveImage = async (imageUrl: string, prefix: string, hash?: boolean): Promise<string> => {
+export const saveImage = async (imageUrl: string, prefix: string): Promise<string> => {
   const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
-  const basename = path.basename(urlWithoutQuerystring)
-  const p = hash ? `${prefix}-${atoh(urlWithoutQuerystring)}` : prefix
-  const urlPath = `/${imageDir}/${p}-${basename}`
+  const { ext, name } = path.parse(urlWithoutQuerystring)
+  const basename = `${atoh(name)}${ext}`
+  const urlPath = `/${imageDir}/${prefix}-${basename}`
   const filePath = `${docRoot}${urlPath}`
 
   await createDirWhenNotfound(`${docRoot}/${imageDir}`)
@@ -178,11 +178,11 @@ export const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc
     const title = titleMatched ? titleMatched[1] : 'unknown'
     const desc = descMatched ? descMatched[1] : 'unknown'
     const imageUrl = imageMatched ? imageMatched[1] : ''
-    const image = imageUrl !== '' ? await saveImage(imageUrl, 'html-image', true) : ''
+    const image = imageUrl !== '' ? await saveImage(imageUrl, 'html-image') : ''
     const iconPath = iconMatched ? (iconMatched[1] || iconMatched[2] || iconMatched[3]) : ''
     const url = new URL(reqUrl)
     const iconUrl = iconPath !== '' ? (iconPath.includes('http') ? iconPath : `${url.protocol}//${url.hostname}${iconPath}`) : ''
-    const icon = iconUrl !== '' ? await saveImage(iconUrl, 'html-icon', true) : ''
+    const icon = iconUrl !== '' ? await saveImage(iconUrl, 'html-icon') : ''
     return { title, desc, image, icon }
   } catch (e) {
     console.log(`getHtmlMeta failure: ${reqUrl} -- ${e}`)
