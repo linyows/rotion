@@ -22,7 +22,7 @@ test('saveImage saves a image correct file name', async () => {
   td.replace(console, 'log')
   const url = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
   const path = await files.saveImage(url, 'test')
-  assert.equal(path, '/images/test-GitHub-Mark.png')
+  assert.equal(path, '/images/test-5cb3342120a9a25a65f2790c4d6f2644cd262734.png')
 })
 
 test('getHtmlMeta returns title and desc', async () => {
@@ -30,8 +30,8 @@ test('getHtmlMeta returns title and desc', async () => {
   const { title, desc, image, icon } = await files.getHtmlMeta('https://github.com/linyows')
   assert.equal(title, 'linyows - Overview')
   assert.match(desc, /linyows/)
-  assert.equal(image, '/images/html-image-04b64c3611347931ebcf9115fe93698e5073306d-72049')
-  assert.equal(icon, '/images/html-icon-7fc7cee827bf7a7360e7d63a631dc7cb59be9bd0-favicon.svg')
+  assert.equal(image, '/images/html-image-b9799f95f6f7bdd0914f8c9a53dd2a044be72549')
+  assert.equal(icon, '/images/html-icon-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg')
 })
 
 
