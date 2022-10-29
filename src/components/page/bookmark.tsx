@@ -28,12 +28,12 @@ const BookmarkBlock: React.FC<BookmarkBlockProps> = ({ block }) => {
             {desc}
           </div>
           <div className="notionate-blocks-bookmark-url">
-            <img className="notionate-blocks-bookmark-favicon" src={icon} width="16px" alt={`${title} icon`} />
+            {icon !== '' && <img className="notionate-blocks-bookmark-favicon" src={icon} width="16px" alt="icon" />}
             {url}
           </div>
         </div>
         <div className="notionate-blocks-bookmark-image">
-          <img src={image} width="200px" height="auto" alt={`${title} image`} />
+          {image !== '' && <img src={image} width="200px" height="auto" alt="image" />}
         </div>
       </div>
       <div className="notionate-blocks-bookmark-caption">
