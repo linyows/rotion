@@ -92,10 +92,36 @@ type TwitterOembedResponse = Oembed & {
 const httpsGet = promisify(https.get)
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
+const maxRedirects = 5
 
-async function getHTTP (reqUrl: string): Promise<string> {
+async function httpsGetWithFollowRedirects(reqUrl: string, redirectCount?: number): Promise<HttpGetResponse> {
+  if (!redirectCount) {
+    redirectCount = 0
+  }
+  const res = await httpsGet(reqUrl) as unknown as HttpGetResponse
+  // @ts-ignore
+  if (res.statusCode >= 300 && res.statusCode < 400 && res.rawHeaders.includes('Location')) {
+    // @ts-ignore
+    const i = res.rawHeaders.map((v,i) => v === 'Location' ? i : null).filter(v => v).shift()
+    // @ts-ignore
+    const redirectTo = res.rawHeaders[i + 1]
+    redirectCount++
+    if (maxRedirects < redirectCount) {
+      console.log('maximum number of redirects exceeded')
+      return res
+    }
+    return await httpsGetWithFollowRedirects(redirectTo, redirectCount)
+  } else {
+    return res
+  }
+}
+
+async function getHTTP (reqUrl: string, redirectCount?: number): Promise<string> {
+  if (!redirectCount) {
+    redirectCount = 0
+  }
   let body = ''
-  const res = await httpsGet(reqUrl)
+  const res = await httpsGetWithFollowRedirects(reqUrl)
   // @ts-ignore
   for await (const chunk of res) {
     body += chunk
@@ -143,7 +169,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
   }
 
   try {
-    const res = await httpsGet(imageUrl) as unknown as HttpGetResponse
+    const res = await httpsGetWithFollowRedirects(imageUrl)
     res.pipe(fs.createWriteStream(filePath))
     await res.end
     console.log(`saved image -- path: ${filePath}, url: ${imageUrl}`)
