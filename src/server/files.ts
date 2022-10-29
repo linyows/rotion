@@ -94,7 +94,7 @@ const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 const maxRedirects = 5
 
-async function httpsGetWithFollowRedirects(reqUrl: string, redirectCount?: number): Promise<HttpGetResponse> {
+async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: number): Promise<HttpGetResponse> {
   if (!redirectCount) {
     redirectCount = 0
   }
@@ -102,7 +102,7 @@ async function httpsGetWithFollowRedirects(reqUrl: string, redirectCount?: numbe
   // @ts-ignore
   if (res.statusCode >= 300 && res.statusCode < 400 && res.rawHeaders.includes('Location')) {
     // @ts-ignore
-    const i = res.rawHeaders.map((v,i) => v === 'Location' ? i : null).filter(v => v).shift()
+    const i = res.rawHeaders.map((v, i) => v === 'Location' ? i : null).filter(v => v).shift()
     // @ts-ignore
     const redirectTo = res.rawHeaders[i + 1]
     redirectCount++
