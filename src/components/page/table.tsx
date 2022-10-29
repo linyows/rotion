@@ -29,13 +29,13 @@ const Td: React.FC<ThTdProps> = ({ cell, key }) => {
   )
 }
 
-const Th: React.FC<ThTdProps> = ({ cell, key }) => {
+const TdH: React.FC<ThTdProps> = ({ cell, key }) => {
   return (
-    <th className="notionate-blocks-table-th" key={key}>
-      <div className="notionate-blocks-table-th-inner">
+    <td className="notionate-blocks-table-td-header" key={key}>
+      <div className="notionate-blocks-table-td-header-inner">
         <TextObject textObject={cell} />
       </div>
-    </th>
+    </td>
   )
 }
 
@@ -54,7 +54,9 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
 
   const rows: JSX.Element[] = []
   // const tw = block.table.table_width
+  // column header ||
   const ch = block.table.has_column_header
+  // row header =
   const rh = block.table.has_row_header
 
   block.children.results.map((vv, i) => {
@@ -66,8 +68,8 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
     v.table_row.cells.map((cells, ii) => {
       cells.map((cell, iii) => {
         const key = `${v.id}-${i}-${ii}-${iii}`
-        if ((i === 0 && ch) || (iii === 0 && rh)) {
-          columns.push(Th({ cell, key }) || <></>)
+        if ((i === 0 && rh) || (ii === 0 && ch)) {
+          columns.push(TdH({ cell, key }) || <></>)
         } else {
           columns.push(Td({ cell, key }) || <></>)
         }
