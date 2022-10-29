@@ -31,9 +31,8 @@ test('getHtmlMeta returns title and desc', async () => {
   assert.equal(title, 'linyows - Overview')
   assert.match(desc, /linyows/)
   assert.equal(image, '/images/html-image-b9799f95f6f7bdd0914f8c9a53dd2a044be72549')
-  assert.equal(icon, '/images/html-icon-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg')
+  assert.equal(icon, '/images/html-icon-a59f8cddf7971542aa1a56be606d4a332da787a2-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg')
 })
-
 
 test('getVideoHtml returns html', async () => {
   td.replace(console, 'log')
@@ -58,6 +57,40 @@ test('getEmbedHtml returns html', async () => {
   } as unknown as EmbedBlockObjectResponseEx
   const html = await files.getEmbedHtml(block)
   assert.match(html, /<iframe/)
+})
+
+test('iconRegex matches all favicons', async () => {
+  const examples = [
+    [
+      '<link href="https://example.com/image/upload/front/favicon.ico" rel="icon shortcut" type="image/x-icon"/>',
+      'https://example.com/image/upload/front/favicon.ico',
+    ],
+    [
+      '<link rel="icon" class="favicon" type="image/svg+xml" href="https://example.com/favicons/favicon.svg">',
+      'https://example.com/favicons/favicon.svg',
+    ],
+    [
+      '<link rel="shortcut icon" href=/static/images/favicons/data/favicon.ico>',
+      '/static/images/favicons/data/favicon.ico',
+    ],
+    [
+      '<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96" />',
+      '/assets/img/favicons/favicon-96x96.png',
+    ],
+    [
+      '<link rel="shortcut icon" type="image/x-icon" href="/assets/favicon-test.ico" />',
+      '/assets/favicon-test.ico',
+    ],
+  ]
+  for (const ex of examples) {
+    const m = ex[0].match(files.iconRegex)
+    if (m && m.groups) {
+      const url = m.groups.path1 || m.groups.path2 || m.groups.path3 || m.groups.path4
+      assert.equal(url, ex[1])
+    } else {
+      assert.equal('no matched!', ex[1])
+    }
+  }
 })
 
 test.run()

@@ -180,13 +180,16 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
   return urlPath
 }
 
+export const iconRegex = /<link\s+href="(?<path1>.*?)"\s+rel="icon"\s?\/?>|<link\s+rel="icon".*?href="(?<path2>.*?)"|<link\s+rel="shortcut icon"(\s+type="image\/x-icon")?\s+href="?(?<path3>.*?)"?\s?\/?>|<link\s+href="?(?<path4>.*?)"?\s+rel="(shortcut icon|icon shortcut)"(\s+type="image\/x-icon")?\s?\/?>/
+
 export const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
   const ogTitleRegex = /<meta\s+property="og:title"\s+content="(.*?)"\s?\/?>/
   const ogDescRegex = /<meta\s+property="og:description"\s+content="(.*?)"\s?\/?>/
   const ogImageRegex = /<meta\s+property="og:image"\s+content="(.*?)"\s?\/?>/
-  const titleRegex = /<title>(.*?)<\/title>/
-  const descRegex = /<meta\s+name="description"\s+content="(.*?)"\s?\/?>/
-  const iconRegex = /<link\s+href="(.*?)"\s+rel="icon"\s?\/?>|<link\s+rel="icon".*?href="(.*?)"\s?\/?>|<link\s+rel="shortcut icon"\s+type="image\/x-icon"\s+href="(.*?)"\s?\/?>/
+  const titleRegex = /<title>([\s\S]*?)<\/title>/
+  const descRegex = /<meta\s+name="description"\s+content="([\s\S]*?)"\s?\/?>/
+  const divRegex = /<div.*?>([\s\S]*?)<\/div>/
+  const imageRegex = /src="(.*?)"/
   try {
     const body = await getHTTP(reqUrl)
 
@@ -198,17 +201,28 @@ export const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc
     if (!descMatched) {
       descMatched = body.match(descRegex)
     }
-    const imageMatched = body.match(ogImageRegex)
+    if (!descMatched) {
+      descMatched = body.match(divRegex)
+    }
+    let imageMatched = body.match(ogImageRegex)
+    if (!imageMatched) {
+      const img = body.match(/<img\s(.*?)\s?\/?>/)
+      if (img) {
+        const imgTag = img[1]
+        imageMatched = imgTag.match(imageRegex)
+      }
+    }
     const iconMatched = body.match(iconRegex)
 
-    const title = titleMatched ? titleMatched[1] : 'unknown'
-    const desc = descMatched ? descMatched[1] : 'unknown'
-    const imageUrl = imageMatched ? imageMatched[1] : ''
-    const image = imageUrl !== '' ? await saveImage(imageUrl, 'html-image') : ''
-    const iconPath = iconMatched ? (iconMatched[1] || iconMatched[2] || iconMatched[3]) : ''
+    const title = titleMatched ? titleMatched[1].replaceAll('\n', ' ').trim() : 'unknown'
+    const desc = descMatched ? descMatched[1].replaceAll('\n', ' ').trim().replace(/<[^>]*>?/gm, '') : 'unknown'
+    const imagePath = imageMatched ? imageMatched[1] : ''
     const url = new URL(reqUrl)
+    const imageUrl = imagePath !== '' ? (imagePath.includes('http') ? imagePath : `${url.protocol}//${url.hostname}${imagePath}`) : ''
+    const image = imagePath !== '' ? await saveImage(imageUrl, 'html-image') : ''
+    const iconPath = iconMatched && iconMatched.groups ? (iconMatched.groups.path1 || iconMatched.groups.path2 || iconMatched.groups.path3 || iconMatched.groups.path4) : ''
     const iconUrl = iconPath !== '' ? (iconPath.includes('http') ? iconPath : `${url.protocol}//${url.hostname}${iconPath}`) : ''
-    const icon = iconUrl !== '' ? await saveImage(iconUrl, 'html-icon') : ''
+    const icon = iconUrl !== '' ? await saveImage(iconUrl, `html-icon-${atoh(reqUrl)}`) : ''
     return { title, desc, image, icon }
   } catch (e) {
     console.log(`getHtmlMeta failure: ${reqUrl} -- ${e}`)
