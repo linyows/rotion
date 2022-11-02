@@ -60,6 +60,10 @@
   .notionate-table-cell-inner {
     border-color: rgba(255, 255, 255, 0.094);
   }
+  .notionate-blocks-table-td-header {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgb(47, 47, 47);
+  }
 
   /* GALLERY */
   .notionate-gallery-card {
