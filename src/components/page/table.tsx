@@ -68,7 +68,7 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
     v.table_row.cells.map((cells, ii) => {
       cells.map((cell, iii) => {
         const key = `${v.id}-${i}-${ii}-${iii}`
-        if ((i === 0 && rh) || (ii === 0 && ch)) {
+        if ((i === 0 && ch) || (ii === 0 && rh)) {
           columns.push(TdH({ cell, key }) || <></>)
         } else {
           columns.push(Td({ cell, key }) || <></>)
