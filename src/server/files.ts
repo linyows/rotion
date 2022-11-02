@@ -235,7 +235,7 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
     return ''
   }
   const extUrl = block.video?.external.url as string
-  if (extUrl.includes('youtube.com')) {
+  if (extUrl.includes('youtube.com') || extUrl.includes('youtu.be')) {
     const reqUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(extUrl)}`
     try {
       const json = await getJson<YoutubeOembedResponse>(reqUrl)
