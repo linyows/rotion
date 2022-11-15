@@ -6,7 +6,7 @@ import type {
 export type TableMultiSelectProps = {
   payload: MultiSelectPropertyItemObjectResponse
   path: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string}>
 }
 
 export const TableMultiSelectField: React.FC<TableMultiSelectProps> = ({ payload, path, link }) => {
@@ -16,10 +16,8 @@ export const TableMultiSelectField: React.FC<TableMultiSelectProps> = ({ payload
       const Link = link
       return (
         <>
-          <Link href={href}>
-            <a className="notionate-table-multiselect-a" title={name}>
-              {name}
-            </a>
+          <Link className="notionate-table-multiselect-a" href={href}>
+            {name}
           </Link>
         </>
       )

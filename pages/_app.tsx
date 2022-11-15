@@ -16,8 +16,8 @@ function MyApp ({ Component, pageProps }: AppProps) {
 
       <div className={styles.header}>
         <div className={styles.home}>
-          <Link href="/">
-            <a className={styles.link}>Notionate</a>
+          <Link className={styles.link} href="/">
+            Notionate
           </Link>
         </div>
         <div className={styles.repo}>

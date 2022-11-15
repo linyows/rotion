@@ -13,7 +13,7 @@ export type ListProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
   href: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
   query?: ParsedUrlQueryInput
 }
 

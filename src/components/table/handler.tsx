@@ -18,7 +18,7 @@ export type TableHandlerProps = {
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string}>
   query?: ParsedUrlQueryInput
 }
 

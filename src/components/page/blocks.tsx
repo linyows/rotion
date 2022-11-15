@@ -11,7 +11,7 @@ import type { UrlObject } from 'node:url'
 export type BlocksProps = {
   blocks: ListBlockChildrenResponseEx
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
   query?: ParsedUrlQueryInput
 }
 

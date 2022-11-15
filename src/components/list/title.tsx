@@ -9,7 +9,7 @@ export type ListTitleProps = {
   payload: Array<TitlePropertyItemObjectResponse>
   path: string
   slug: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
   query?: ParsedUrlQueryInput
 }
 
@@ -32,10 +32,8 @@ export const ListTitleField: React.FC<ListTitleProps> = ({ payload, path, slug, 
       const Link = link
       return (
         <>
-          <Link href={{ pathname: href, query }}>
-            <a className="notionate-list-title-a" title={title}>
-              {title}
-            </a>
+          <Link className="notionate-list-title-a" href={{ pathname: href, query }}>
+            {title}
           </Link>
         </>
       )
@@ -43,10 +41,8 @@ export const ListTitleField: React.FC<ListTitleProps> = ({ payload, path, slug, 
       const Link = link
       return (
         <>
-          <Link href={href}>
-            <a className="notionate-list-title-a" title={title}>
-              {title}
-            </a>
+          <Link className="notionate-list-title-a" href={href}>
+            {title}
           </Link>
         </>
       )

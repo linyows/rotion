@@ -9,7 +9,7 @@ export type TableTitleProps = {
   payload: Array<TitlePropertyItemObjectResponse>
   path: string
   slug: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string}>
   query?: ParsedUrlQueryInput
 }
 
@@ -29,13 +29,11 @@ export const TableTitleField: React.FC<TableTitleProps> = ({ payload, path, slug
 
   const LinkedTitle = () => {
     if (link && query) {
-      const Link = link as unknown as React.FC<{ children: ReactElement<'a'>, href: UrlObject}>
+      const Link = link as unknown as React.FC<{ children: ReactElement<'a'> | string, className: string, href: UrlObject}>
       return (
         <>
-          <Link href={{ pathname: href, query }}>
-            <a className="notionate-table-title-a" title={title}>
-              {title}
-            </a>
+          <Link className="notionate-table-title-a" href={{ pathname: href, query }}>
+            {title}
           </Link>
         </>
       )
@@ -43,10 +41,8 @@ export const TableTitleField: React.FC<TableTitleProps> = ({ payload, path, slug
       const Link = link
       return (
         <>
-          <Link href={href}>
-            <a className="notionate-table-title-a" title={title}>
-              {title}
-            </a>
+          <Link className="notionate-table-title-a" href={href}>
+            {title}
           </Link>
         </>
       )

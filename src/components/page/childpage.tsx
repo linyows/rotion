@@ -9,7 +9,7 @@ import type { UrlObject } from 'node:url'
 export type ChildpageBlockProps = {
   block: ChildPageBlockObjectResponseEx
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
   query?: ParsedUrlQueryInput
 }
 
@@ -33,19 +33,15 @@ const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block, href, link, quer
     if (link && query) {
       const Link = link
       return (
-        <Link href={{ pathname: `${path}${file}`, query }}>
-          <a className="notionate-blocks-childpage-a">
-            {title}
-          </a>
+        <Link className="notionate-blocks-childpage-a" href={{ pathname: `${path}${file}`, query }}>
+          {title}
         </Link>
       )
     } else if (link) {
       const Link = link
       return (
-        <Link href={`${path}${file}`}>
-          <a className="notionate-blocks-childpage-a">
-            {title}
-          </a>
+        <Link className="notionate-blocks-childpage-a" href={`${path}${file}`}>
+          {title}
         </Link>
       )
     }

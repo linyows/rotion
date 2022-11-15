@@ -10,7 +10,7 @@ import type { UrlObject } from 'node:url'
 export type ChilddatabaseBlockProps = {
   block: ChildDatabaseBlockObjectResponseEx
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
   query?: ParsedUrlQueryInput
 }
 
@@ -37,19 +37,15 @@ const ChilddatabaseBlock: React.FC<ChilddatabaseBlockProps> = ({ block, href, li
     if (link && query) {
       const Link = link
       return (
-        <Link href={{ pathname: `${path}${file}`, query }}>
-          <a className="notionate-blocks-childdatabase-a">
-            <TextBlock tag="span" block={title} />
-          </a>
+        <Link className="notionate-blocks-childdatabase-a" href={{ pathname: `${path}${file}`, query }}>
+          <TextBlock tag="span" block={title} />
         </Link>
       )
     } else if (link) {
       const Link = link
       return (
-        <Link href={`${path}${file}`}>
-          <a className="notionate-blocks-childdatabase-a">
-            <TextBlock tag="span" block={title} />
-          </a>
+        <Link className="notionate-blocks-childdatabase-a" href={`${path}${file}`}>
+          <TextBlock tag="span" block={title} />
         </Link>
       )
     }

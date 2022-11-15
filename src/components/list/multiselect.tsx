@@ -8,7 +8,7 @@ import type {
 export type ListMultiSelectProps = {
   payload: MultiSelectPropertyItemObjectResponse
   path: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
   query?: ParsedUrlQueryInput
 }
 
@@ -19,10 +19,8 @@ export const ListMultiSelectField: React.FC<ListMultiSelectProps> = ({ payload, 
       const Link = link
       return (
         <>
-          <Link href={{ pathname: href, query }}>
-            <a className="notionate-list-multiselect-a" title={name}>
-              {name}
-            </a>
+          <Link className="notionate-list-multiselect-a" href={{ pathname: href, query }}>
+            {name}
           </Link>
         </>
       )
@@ -30,10 +28,8 @@ export const ListMultiSelectField: React.FC<ListMultiSelectProps> = ({ payload, 
       const Link = link
       return (
         <>
-          <Link href={href}>
-            <a className="notionate-list-multiselect-a" title={name}>
-              {name}
-            </a>
+          <Link className="notionate-list-multiselect-a" href={href}>
+            {name}
           </Link>
         </>
       )

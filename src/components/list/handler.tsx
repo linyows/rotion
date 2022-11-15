@@ -19,7 +19,7 @@ export type ListHandlerProps = {
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>
+  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
   query?: ParsedUrlQueryInput
 }
 

@@ -13,7 +13,7 @@ export type TableProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
   href: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string}>
   query?: ParsedUrlQueryInput
 }
 
