@@ -1,8 +1,9 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 import type {
   GetPagePropertyResponse,
   TitlePropertyItemObjectResponse,
+  Link,
 } from '../../server/types'
 
 import ListTitleField from './title'
@@ -12,14 +13,13 @@ import ListMultiSelectField from './multiselect'
 import ListUrlField from './url'
 import ListCheckboxField from './checkbox'
 import ListNumberField from './number'
-import type { UrlObject } from 'node:url'
 
 export type ListHandlerProps = {
   name: string
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
+  link?: Link
   query?: ParsedUrlQueryInput
 }
 

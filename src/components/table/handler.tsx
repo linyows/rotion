@@ -1,7 +1,8 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type {
   GetPagePropertyResponse,
   TitlePropertyItemObjectResponse,
+  Link,
 } from '../../server/types'
 
 import TableTitleField from './title'
@@ -18,7 +19,7 @@ export type TableHandlerProps = {
   items: GetPagePropertyResponse|undefined
   path: string
   slug: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string}>
+  link?: Link
   query?: ParsedUrlQueryInput
 }
 

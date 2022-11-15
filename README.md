@@ -27,7 +27,12 @@ Use API calls and components together. This is database list example:
 ```ts
 import type { GetStaticProps, NextPage } from 'next'
 import Link from 'next/link'
-import { QueryDatabaseResponseEx, FetchDatabase, QueryDatabaseParameters } from 'notionate'
+import {
+  QueryDatabaseResponseEx,
+  FetchDatabase,
+  QueryDatabaseParameters,
+  Link as NLink,
+} from 'notionate'
 import { DBList } from 'notionate/dist/components'
 import 'notionate/dist/styles/notionate.css'
 // Import when enable dark-mode
@@ -68,7 +73,7 @@ export default const DB: NextPage<Props> = ({ db }) => {
         keys={['Name', 'spacer', 'Tags', 'Date']}
         db={db}
         href="/database/[id]"
-        link={Link as React.FC<{ children: ReactElement<'a'>, href: string}>} />
+        link={Link as NLink} />
     </>
   )
 }

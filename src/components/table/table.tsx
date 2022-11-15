@@ -1,8 +1,9 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type {
   QueryDatabaseResponseEx,
   GetPageResponse,
   PageObjectResponseEx,
+  Link,
 } from '../../server/types'
 import TableHandler from './handler'
 import TableIcon from './icon'
@@ -13,7 +14,7 @@ export type TableProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
   href: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string}>
+  link?: Link
   query?: ParsedUrlQueryInput
 }
 

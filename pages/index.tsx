@@ -1,9 +1,8 @@
 import type { GetStaticProps, NextPage } from 'next'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import styles from '../styles/db.module.css'
-import type { UrlObject } from 'node:url'
 
 import {
   FetchBlocks,
@@ -11,6 +10,7 @@ import {
   ListBlockChildrenResponseEx,
   RichTextItemResponse,
   TitlePropertyItemObjectResponse,
+  Link as NLink,
 } from '../src/server'
 
 import {
@@ -71,11 +71,7 @@ const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
       </header>
 
       <div className={`${styles.page} ${styles.wrapperPage}`}>
-        <Blocks
-          blocks={blocks}
-          href="/[title]"
-          link={Link as React.FC<{ children: ReactElement<'a'>, href: string | UrlObject}>}
-        />
+        <Blocks blocks={blocks} href="/[title]" link={Link as NLink} />
       </div>
     </>
   )

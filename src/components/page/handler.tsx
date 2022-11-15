@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import ColumnlistBlock from './columnlist'
 import VideoBlock from './video'
 import EmbedBlock from './embed'
@@ -13,9 +13,11 @@ import LinkpreviewBlock from './linkpreview'
 import ChildpageBlock from './childpage'
 import ChilddatabaseBlock from './childdatabase'
 import TextBlock from './text'
-import type { BlockObjectResponse } from '../../server/types'
+import type {
+  BlockObjectResponse,
+  Link,
+} from '../../server/types'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { UrlObject } from 'node:url'
 
 export const blockType = {
   heading_1: 'h1',
@@ -32,7 +34,7 @@ export const blockType = {
 export type BlockHandlerProps = {
   block: BlockObjectResponse
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
+  link?: Link
   query?: ParsedUrlQueryInput
 }
 

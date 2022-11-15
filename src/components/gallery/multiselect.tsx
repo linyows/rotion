@@ -1,12 +1,13 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type {
   MultiSelectPropertyItemObjectResponse,
+  Link,
 } from '../../server/types'
 
 export type GalleryMultiSelectProps = {
   payload: MultiSelectPropertyItemObjectResponse
   path: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: Link
 }
 
 export const GalleryMultiSelectField: React.FC<GalleryMultiSelectProps> = ({ payload, path, link }) => {
@@ -16,10 +17,8 @@ export const GalleryMultiSelectField: React.FC<GalleryMultiSelectProps> = ({ pay
       const Link = link
       return (
         <>
-          <Link href={href}>
-            <a className="notionate-gallery-multiselect-a" title={name}>
-              {name}
-            </a>
+          <Link className="notionate-gallery-multiselect-a" href={href}>
+            {name}
           </Link>
         </>
       )

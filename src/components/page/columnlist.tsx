@@ -1,15 +1,15 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import Blocks from './blocks'
 import type {
   ColumnListBlockObjectResponseEx,
+  Link,
 } from '../../server/types'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { UrlObject } from 'node:url'
 
 export type ColumnlistBlockProps = {
   block: ColumnListBlockObjectResponseEx
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
+  link?: Link
   query?: ParsedUrlQueryInput
 }
 

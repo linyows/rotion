@@ -1,14 +1,14 @@
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { UrlObject } from 'node:url'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type {
   MultiSelectPropertyItemObjectResponse,
+  Link,
 } from '../../server/types'
 
 export type ListMultiSelectProps = {
   payload: MultiSelectPropertyItemObjectResponse
   path: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
+  link?: Link
   query?: ParsedUrlQueryInput
 }
 

@@ -42,6 +42,7 @@ import type {
   PageObjectResponse,
   PersonUserObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
+import type { UrlObject } from 'node:url'
 
 export * from '@notionhq/client/build/src/api-endpoints'
 
@@ -331,3 +332,9 @@ export type QueryDatabaseResponseEx = QueryDatabaseResponse & {
 export type PersonUserObjectResponseEx = PersonUserObjectResponse & {
   avatar?: string
 }
+
+export type Link = React.FC<{
+  children: string | React.ReactElement<'a', string | React.JSXElementConstructor<any>>
+  className?: string
+  href: string | UrlObject
+}>

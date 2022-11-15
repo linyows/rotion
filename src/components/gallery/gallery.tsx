@@ -1,13 +1,13 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type {
   QueryDatabaseResponseEx,
   GetPageResponse,
   PageObjectResponseEx,
+  Link,
 } from '../../server/types'
 import GalleryHandler from './handler'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import { UrlObject } from 'node:url'
 
 const getSlug = (key: string, page: GetPageResponse): string => {
   if (!('properties' in page)) {
@@ -37,14 +37,14 @@ const buildHref = (page: PageObjectResponseEx, link?: string) => {
 }
 
 type LinkedCardProps = React.PropsWithChildren & {
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: Link
   query?: ParsedUrlQueryInput
   href: string
 }
 
 const LinkedCard: React.FC<LinkedCardProps> = ({ children, link, query, href }) => {
   if (link && query) {
-    const Link = link as unknown as React.FC<{ children: ReactElement<'a'>, href: UrlObject}>
+    const Link = link as unknown as Link
     return (
       <Link href={{ pathname: href, query }}>
         <div className="notionate-gallery-a">
@@ -74,7 +74,7 @@ type CardProps = {
   keys: string[]
   page: PageObjectResponseEx
   href: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: Link
   query?: ParsedUrlQueryInput
   preview?: 'cover' | 'content'
 }
@@ -119,7 +119,7 @@ export type GalleryProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'>, href: string}>
+  link?: Link
   query?: ParsedUrlQueryInput
   // page-content is nut supported
   preview?: 'cover' | 'content'

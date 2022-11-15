@@ -1,12 +1,13 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type {
   MultiSelectPropertyItemObjectResponse,
+  Link,
 } from '../../server/types'
 
 export type TableMultiSelectProps = {
   payload: MultiSelectPropertyItemObjectResponse
   path: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string}>
+  link?: Link
 }
 
 export const TableMultiSelectField: React.FC<TableMultiSelectProps> = ({ payload, path, link }) => {

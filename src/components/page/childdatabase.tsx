@@ -1,16 +1,16 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import { TextBlock } from './text'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
 import type {
   ChildDatabaseBlockObjectResponseEx,
+  Link,
 } from '../../server/types'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { UrlObject } from 'node:url'
 
 export type ChilddatabaseBlockProps = {
   block: ChildDatabaseBlockObjectResponseEx
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
+  link?: Link
   query?: ParsedUrlQueryInput
 }
 

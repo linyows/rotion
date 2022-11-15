@@ -1,19 +1,19 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type {
   QueryDatabaseResponseEx,
   GetPageResponse,
   PageObjectResponseEx,
+  Link,
 } from '../../server/types'
 import ListHandler from './handler'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { UrlObject } from 'node:url'
 
 export type ListProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
   href: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
+  link?: Link
   query?: ParsedUrlQueryInput
 }
 

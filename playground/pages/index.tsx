@@ -9,11 +9,13 @@ import {
   RichTextItemResponse,
   ListBlockChildrenResponseEx,
   TitlePropertyItemObjectResponse,
+  Link as NLink,
 } from 'notionate'
 import {
   TextObject,
   Blocks,
 } from 'notionate/dist/components'
+import React, { ReactElement } from 'react'
 
 type Props = {
   title: null|RichTextItemResponse
@@ -56,13 +58,13 @@ const Home: NextPage<Props> = ({ title, icon, image, blocks }) => {
             {icon}
           </div>
           <h1 className={styles.title}>
-            <TextObject textObject={title} />
+            <TextObject textObject={title!} />
           </h1>
         </div>
       </header>
 
       <div className={styles.page}>
-        <Blocks blocks={blocks} link="/[title]" LinkComp={Link} />
+        <Blocks blocks={blocks} href="/[title]" link={Link as NLink} />
       </div>
     </div>
   )

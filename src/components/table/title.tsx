@@ -1,15 +1,15 @@
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { UrlObject } from 'node:url'
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type {
   TitlePropertyItemObjectResponse,
+  Link,
 } from '../../server/types'
 
 export type TableTitleProps = {
   payload: Array<TitlePropertyItemObjectResponse>
   path: string
   slug: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string}>
+  link?: Link
   query?: ParsedUrlQueryInput
 }
 
@@ -29,7 +29,7 @@ export const TableTitleField: React.FC<TableTitleProps> = ({ payload, path, slug
 
   const LinkedTitle = () => {
     if (link && query) {
-      const Link = link as unknown as React.FC<{ children: ReactElement<'a'> | string, className: string, href: UrlObject}>
+      const Link = link as Link
       return (
         <>
           <Link className="notionate-table-title-a" href={{ pathname: href, query }}>

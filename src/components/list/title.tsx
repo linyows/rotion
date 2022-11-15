@@ -1,15 +1,15 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import { UrlObject } from 'node:url'
 import type {
   TitlePropertyItemObjectResponse,
+  Link,
 } from '../../server/types'
 
 export type ListTitleProps = {
   payload: Array<TitlePropertyItemObjectResponse>
   path: string
   slug: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
+  link?: Link
   query?: ParsedUrlQueryInput
 }
 

@@ -1,14 +1,16 @@
-import React, { ReactElement } from 'react'
+import React from 'react'
 import BlockHandler from './handler'
-import type { BlockObjectResponse } from '../../server/types'
+import type {
+  BlockObjectResponse,
+  Link,
+} from '../../server/types'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { UrlObject } from 'node:url'
 
 export type ListBlockProps = {
   tag: keyof JSX.IntrinsicElements
   blocks: BlockObjectResponse[]
   href?: string
-  link?: React.FC<{ children: ReactElement<'a'> | string, className: string, href: string | UrlObject}>
+  link?: Link
   query?: ParsedUrlQueryInput
 }
 
