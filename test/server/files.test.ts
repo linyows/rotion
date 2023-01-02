@@ -34,6 +34,30 @@ test('getHtmlMeta returns title and desc', async () => {
   assert.equal(icon, '/images/html-icon-a59f8cddf7971542aa1a56be606d4a332da787a2-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg')
 })
 
+test('findLocationUrl returns url from location header', async () => {
+  td.replace(console, 'log')
+  const header = [
+    'Location',
+    'https://example.com/img/og.png',
+    'Server',
+    'FooBar',
+    'Strict-Transport-Security',
+    'max-age=31536000',
+    'X-Nf-Request-Id',
+    '01GNRVFQ64XPFNNRSHAW2P10SV',
+    'Date',
+    'Mon, 01 Jan 2099 01:23:45 GMT',
+    'Content-Length',
+    '63',
+    'Content-Type',
+    'text/plain; charset=utf-8',
+    'Connection',
+    'close'
+  ]
+  const url = await files.findLocationUrl(header)
+  assert.equal(url, header[1])
+})
+
 test('getVideoHtml returns html', async () => {
   td.replace(console, 'log')
   const block = {
