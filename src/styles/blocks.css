@@ -65,14 +65,10 @@
 }
 .notionate-blocks-bookmark-url {
   font-size: 12px;
-  line-height: 16px;
-  height: 32px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  min-height: 24px;
-  margin-bottom: 2px;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 .notionate-blocks-bookmark-favicon {
   display: inline;
