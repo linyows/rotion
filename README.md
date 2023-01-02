@@ -8,8 +8,8 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/linyows/notionate/actions" title="actions"><img src="https://img.shields.io/github/actions/workflow/status/linyows/notionate/build.yml?branch=main&style=for-the-badge"></a>
   <a href="https://www.npmjs.com/package/notionate" title="npm"><img src="http://img.shields.io/npm/v/notionate.svg?style=for-the-badge"></a>
-  <a href="https://github.com/linyows/notionate/actions" title="actions"><img src="https://img.shields.io/github/workflow/status/linyows/notionate/Build?style=for-the-badge"></a>
   <a href="https://github.com/linyows/notionate/blob/main/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
 </p>
 
