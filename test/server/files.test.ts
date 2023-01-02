@@ -34,6 +34,15 @@ test('getHtmlMeta returns title and desc', async () => {
   assert.equal(icon, '/images/html-icon-a59f8cddf7971542aa1a56be606d4a332da787a2-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg')
 })
 
+test('getHtmlMeta returns correct values when include class', async () => {
+  td.replace(console, 'log')
+  const { title, desc, image, icon } = await files.getHtmlMeta('https://www.notion.so/releases/2022-03-03')
+  assert.equal(title, 'March 3, 2022 – Connect your tools with the API 🧰')
+  assert.equal(desc, 'The API is officially out of beta! We expanded the API’s capabilities to make it even easier to build with Notion — learn more at developers.notion.com.')
+  assert.equal(image, '/images/html-image-ed29a0e7fc0223f62b6c61ed6bdca27accec2567.png')
+  assert.equal(icon, '/images/html-icon-fd5736cc37eed0e7ead5af0d272b87c070164673-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico')
+})
+
 test('findLocationUrl returns url from location header', async () => {
   td.replace(console, 'log')
   const header = [

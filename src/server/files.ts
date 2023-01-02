@@ -192,11 +192,11 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
 export const iconRegex = /<link\s+href="(?<path1>.*?)"\s+rel="icon"\s?\/?>|<link\s+rel="icon".*?href="(?<path2>.*?)"|<link\s+rel="shortcut icon"(\s+type="image\/x-icon")?\s+href="?(?<path3>.*?)"?\s?\/?>|<link\s+href="?(?<path4>.*?)"?\s+rel="(shortcut icon|icon shortcut)"(\s+type="image\/x-icon")?\s?\/?>/
 
 export const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
-  const ogTitleRegex = /<meta\s+property="og:title"\s+content="(.*?)"\s?\/?>/
-  const ogDescRegex = /<meta\s+property="og:description"\s+content="(.*?)"\s?\/?>/
-  const ogImageRegex = /<meta\s+property="og:image"\s+content="(.*?)"\s?\/?>/
+  const ogTitleRegex = /<meta\s+property="og:title"\s+content="(.*?)"\s?(class=".*"\s?)?\/?>/
+  const ogDescRegex = /<meta\s+property="og:description"\s+content="(.*?)"\s?(class=".*"\s?)?\/?>/
+  const ogImageRegex = /<meta\s+property="og:image"\s+content="(.*?)"\s?(class=".*"\s?)?\/?>/
   const titleRegex = /<title>([\s\S]*?)<\/title>/
-  const descRegex = /<meta\s+name="description"\s+content="([\s\S]*?)"\s?\/?>/
+  const descRegex = /<meta\s+name="description"\s+content="([\s\S]*?)"\s?(class=".*"\s?)?\/?>/
   const divRegex = /<div.*?>([\s\S]*?)<\/div>/
   const imageRegex = /src="(.*?)"/
   try {
