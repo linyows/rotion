@@ -27,9 +27,9 @@ type Props = {
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const id = process.env.NOTION_TESTROOT_ID as string
   const page = await FetchPage(id)
-  const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
-  const title = obj.title
-  const icon = page.icon.emoji
+  const obj = 'results' in page.meta!? page.meta!.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse : null
+  const title = obj ? obj.title : obj
+  const icon = page.icon.type === 'emoji' ? page.icon.emoji : ''
   const image = page.cover.src
   const blocks = await FetchBlocks(id)
   const props = {
