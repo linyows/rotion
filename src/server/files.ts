@@ -189,7 +189,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
   return urlPath
 }
 
-export const findHtmlByRegexp = (regexps: RegExp[],html: string): string | null => {
+export const findHtmlByRegexp = (regexps: RegExp[], html: string): string | null => {
   let matched: RegExpMatchArray | null = null
 
   for (let i = 0; i < regexps.length; i++) {
