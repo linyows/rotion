@@ -169,13 +169,8 @@ test('iconRegex matches all favicons', async () => {
     ],
   ]
   for (const ex of examples) {
-    const m = ex[0].match(files.iconRegex)
-    if (m && m.groups) {
-      const url = m.groups.path1 || m.groups.path2 || m.groups.path3 || m.groups.path4
-      assert.equal(url, ex[1])
-    } else {
-      assert.equal('no matched!', ex[1])
-    }
+    const re = files.findHtmlByRegexp(files.iconRegexps, ex[0])
+    assert.equal(ex[1], re)
   }
 })
 
