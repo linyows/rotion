@@ -22,8 +22,23 @@ import {
   getEmbedHtml,
 } from './files'
 
+export const parseNotionCache = (v?: string) => {
+  switch (v) {
+    case '0':
+    case 'n':
+    case 'false':
+      return false
+    case '1':
+    case 'y':
+    case 'true':
+    default:
+      return true
+  }
+}
+
 const cacheDir = process.env.NOTIONATE_CACHEDIR || '.cache'
 const auth = process.env.NOTION_TOKEN
+const cache = parseNotionCache(process.env.NOTION_CACHE)
 const notion = new Client({ auth })
 
 const isEmpty = (obj: Object) => {
@@ -35,7 +50,7 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
   const limit = ('page_size' in params) ? params.page_size : undefined
   const paramsHash = atoh(JSON.stringify(params))
 
-  const useCache = process.env.NOTION_CACHE === 'true'
+  const useCache = cache
   if (useCache) {
     await createDirWhenNotfound(cacheDir)
   }
@@ -112,7 +127,7 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
 }
 
 export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => {
-  const useCache = process.env.NOTION_CACHE === 'true'
+  const useCache = cache
   if (useCache) {
     await createDirWhenNotfound(cacheDir)
   }
@@ -177,7 +192,7 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
 }
 
 export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenResponseEx> => {
-  const useCache = process.env.NOTION_CACHE === 'true'
+  const useCache = cache
   if (useCache) {
     await createDirWhenNotfound(cacheDir)
   }
