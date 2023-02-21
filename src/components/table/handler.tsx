@@ -9,6 +9,7 @@ import TableTitleField from './title'
 import TableDateField from './date'
 import TableRichTextField from './richtext'
 import TableMultiSelectField from './multiselect'
+import TableSelectField from './select'
 import TableUrlField from './url'
 import TableCheckboxField from './checkbox'
 import TableNumberField from './number'
@@ -67,6 +68,8 @@ export const TableHandler = ({ name, items, path, slug, link, query }: TableHand
         return TableNumberField({ payload: items })
 
       case 'select':
+        return TableSelectField({ payload: items, path })
+
       case 'status':
       case 'email':
       case 'phone_number':

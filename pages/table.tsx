@@ -95,7 +95,7 @@ const TablePage: NextPage<Props> = ({ title, icon, image, blocks, db }) => {
 
       <div className={`${styles.db} ${styles.wrapper}`}>
         <Table
-          keys={['Name', 'Date', 'Tags', 'Url', 'Note', 'Born']}
+          keys={['Name', 'Date', 'Tags', 'Url', 'Note', 'Born', 'Category']}
           db={db}
           href="/database/[id]"
         />
