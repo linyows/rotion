@@ -19,7 +19,7 @@ test('getHtmlMeta returns title and desc', async () => {
     [
       'https://github.com',
       'GitHub: Let’s build from here',
-      'GitHub is where over 94 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and feat...',
+      'GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...',
       '/images/html-image-66374a1efda63b1d278e16f4a8cb31e16112c03d.png',
       '/images/html-icon-84b7e44aa54d002eac8d00f5bfa9cc93410f2a48-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg',
     ],
@@ -27,7 +27,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'https://wordpress.org',
       'Blog Tool, Publishing Platform, and CMS - WordPress.org',
       'Open source software which you can use to easily create a beautiful website, blog, or app.',
-      '/images/html-image-b6589fc6ab0dc82cf12099d1c2d40ab994e8410c.jpg',
+      '/images/html-image-9b9f60fe548894b0705cca79567f05195f769820.png',
       '/images/html-icon-5e627442a6a3e12ed6cbbecf1a9a0f3ef9298800-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
     ],
     [
@@ -41,7 +41,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'https://vercel.com/templates/next.js/notion-blog',
       'Notion-backed Next.js Blog – Vercel',
       'A Next.js site using new SSG support with a Notion backed blog',
-      '/images/html-image-4d49bbe39dd846a5fbcf8d7de92dfefc833db0e1',
+      '/images/html-image-7981a4e7e9bdc02180a3c3d1a6b2adf0ba424b1c',
       '/images/html-icon-980b8dde93b046d5802eea7f32ac4a180959aa0b-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
     ],
     [
@@ -49,7 +49,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'The Intuitive Vue Framework',
       'Build your next Vue.js application with confidence using Nuxt. An open source framework making web development simple and powerful.',
       '/images/html-image-1aa787fe0cfb373575fc2c0f6f826e7c6dc9fd41.png',
-      '/images/html-icon-5b7695a0da380c6011550f0097344ad388806506-be36866f8abe539296918d94f065c0ebe2f71ca8.png',
+      '/images/html-icon-5b7695a0da380c6011550f0097344ad388806506-08c83a2cb68c04d4853253d2592db038a7bdd726.png',
     ],
     [
       'https://notionate.linyo.ws/blocks',
