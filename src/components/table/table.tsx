@@ -13,7 +13,7 @@ import type { ParsedUrlQueryInput } from 'node:querystring'
 export type TableProps = React.PropsWithChildren & {
   keys: string[]
   db: QueryDatabaseResponseEx
-  href: string
+  href?: string
   link?: Link
   query?: ParsedUrlQueryInput
 }
@@ -56,7 +56,7 @@ export const Table: React.FC<TableProps> = ({ keys, db, href, link, query }) => 
     return p.rich_text.map(v => v.text.content).join(',')
   }
 
-  const [path, slugKey] = getLinkPathAndLinkKey(href)
+  const [path, slugKey] = href ? getLinkPathAndLinkKey(href) : [undefined, undefined]
 
   const dbf = (name: string, page: PageObjectResponseEx) => {
     if (!('property_items' in page) || !('properties' in page)) {
@@ -69,7 +69,7 @@ export const Table: React.FC<TableProps> = ({ keys, db, href, link, query }) => 
       }
     }
     const items = page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
-    const slug = getSlug(slugKey, page)
+    const slug = slugKey ? getSlug(slugKey, page) : undefined
 
     return TableHandler({ name, items, path, slug, link, query })
   }

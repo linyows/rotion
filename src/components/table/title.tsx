@@ -7,8 +7,8 @@ import type {
 
 export type TableTitleProps = {
   payload: Array<TitlePropertyItemObjectResponse>
-  path: string
-  slug: string
+  path?: string
+  slug?: string
   link?: Link
   query?: ParsedUrlQueryInput
 }
@@ -25,6 +25,7 @@ export const TableTitleField: React.FC<TableTitleProps> = ({ payload, path, slug
         return richtext.equation.expression
     }
   }).join(',')
+
   const href = `${path}${slug}`
 
   const LinkedTitle = () => {
@@ -57,7 +58,7 @@ export const TableTitleField: React.FC<TableTitleProps> = ({ payload, path, slug
 
   return (
     <div className="notionate-table-title">
-      {LinkedTitle()}
+      {(!path && !slug) ? title : LinkedTitle()}
     </div>
   )
 }

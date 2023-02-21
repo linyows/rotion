@@ -6,12 +6,19 @@ import type {
 
 export type TableMultiSelectProps = {
   payload: MultiSelectPropertyItemObjectResponse
-  path: string
+  path?: string
   link?: Link
 }
 
 export const TableMultiSelectField: React.FC<TableMultiSelectProps> = ({ payload, path, link }) => {
   const LinkedTag = (name: string) => {
+    if (!path) {
+      return (
+        <span className="notionate-table-multiselect-span">
+          {name}
+        </span>
+      )
+    }
     const href = `${path}tags/${encodeURIComponent(name)}`
     if (link) {
       const Link = link

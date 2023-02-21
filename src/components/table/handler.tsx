@@ -18,8 +18,8 @@ import type { ParsedUrlQueryInput } from 'node:querystring'
 export type TableHandlerProps = {
   name: string
   items: GetPagePropertyResponse|undefined
-  path: string
-  slug: string
+  path?: string
+  slug?: string
   link?: Link
   query?: ParsedUrlQueryInput
 }
