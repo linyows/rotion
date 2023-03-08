@@ -21,23 +21,8 @@ import {
   getEmbedHtml,
 } from './files'
 
-export const parseNotionCache = (v?: string) => {
-  switch (v) {
-    case '0':
-    case 'n':
-    case 'false':
-      return false
-    case '1':
-    case 'y':
-    case 'true':
-    default:
-      return true
-  }
-}
-
 const cacheDir = process.env.NOTIONATE_CACHEDIR || '.cache'
 const auth = process.env.NOTION_TOKEN
-const cache = parseNotionCache(process.env.NOTION_CACHE)
 const notion = new Client({ auth })
 
 const isEmpty = (obj: Object) => {
@@ -49,23 +34,18 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
   const limit = ('page_size' in params) ? params.page_size : undefined
   const paramsHash = atoh(JSON.stringify(params))
 
-  const useCache = cache
-  if (useCache) {
-    await createDirWhenNotfound(cacheDir)
-  }
+  await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.databases.query-${paramsHash}${limit !== undefined ? `.limit-${limit}` : ''}`
   let allres: undefined|QueryDatabaseResponseEx
   let res: undefined|QueryDatabaseResponseEx
 
-  if (useCache) {
-    try {
-      const list = await readCache<QueryDatabaseResponseEx>(cacheFile)
-      if (!isEmpty(list)) {
-        return list
-      }
-    } catch (_) {
-      /* not fatal */
+  try {
+    const list = await readCache<QueryDatabaseResponseEx>(cacheFile)
+    if (!isEmpty(list)) {
+      return list
     }
+  } catch (_) {
+    /* not fatal */
   }
 
   while (true) {
@@ -119,29 +99,22 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
   }
   allres.meta = meta
 
-  if (useCache) {
-    await writeCache(cacheFile, allres)
-  }
+  await writeCache(cacheFile, allres)
 
   return allres
 }
 
 export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => {
-  const useCache = cache
-  if (useCache) {
-    await createDirWhenNotfound(cacheDir)
-  }
+  await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.pages.retrieve-${page_id}`
 
-  if (useCache) {
-    try {
-      const page = await readCache<GetPageResponse>(cacheFile)
-      if (!isEmpty(page)) {
-        return page as GetPageResponseEx
-      }
-    } catch (_) {
-      /* not fatal */
+  try {
+    const page = await readCache<GetPageResponse>(cacheFile)
+    if (!isEmpty(page)) {
+      return page as GetPageResponseEx
     }
+  } catch (_) {
+    /* not fatal */
   }
 
   const page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
@@ -163,92 +136,72 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
     page.meta = list
   }
 
-  if (useCache) {
-    if (page.cover !== null) {
-      if (page.cover.type === 'external') {
-        page.cover.src = await saveImage(page.cover.external.url, `page-cover-${page.id}`)
-      } else if (page.cover.type === 'file') {
-        page.cover.src = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
-      }
-    }
-    if (page.icon?.type === 'file') {
-      page.icon.src = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
-    }
-    await writeCache(cacheFile, page)
-  } else {
-    if (page.cover !== null) {
-      if (page.cover.type === 'external') {
-        page.cover.src = page.cover.external.url
-      } else if (page.cover.type === 'file') {
-        page.cover.src = page.cover.file.url
-      }
-    }
-    if (page.icon?.type === 'file') {
-      page.icon.src = page.icon.file.url
+  if (page.cover !== null) {
+    if (page.cover.type === 'external') {
+      page.cover.src = await saveImage(page.cover.external.url, `page-cover-${page.id}`)
+    } else if (page.cover.type === 'file') {
+      page.cover.src = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
     }
   }
+  if (page.icon?.type === 'file') {
+    page.icon.src = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
+  }
+  await writeCache(cacheFile, page)
 
   return page
 }
 
 export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenResponseEx> => {
-  const useCache = cache
-  if (useCache) {
-    await createDirWhenNotfound(cacheDir)
-  }
+  await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.blocks.children.list-${block_id}`
 
-  if (useCache) {
-    try {
-      const list = await readCache<ListBlockChildrenResponseEx>(cacheFile)
-      if (!isEmpty(list)) {
-        return list
-      }
-    } catch (_) {
-      /* not fatal */
+  try {
+    const list = await readCache<ListBlockChildrenResponseEx>(cacheFile)
+    if (!isEmpty(list)) {
+      return list
     }
+  } catch (_) {
+    /* not fatal */
   }
 
   const list = await notion.blocks.children.list({ block_id }) as ListBlockChildrenResponseEx
 
-  if (useCache) {
-    for (const block of list.results) {
-      try {
-        if (block.type === 'table' && block.table !== undefined) {
-          block.children = await FetchBlocks(block.id)
-        } else if (block.type === 'toggle' && block.toggle !== undefined) {
-          block.children = await FetchBlocks(block.id)
-        } else if (block.type === 'column_list' && block.column_list !== undefined) {
-          block.children = await FetchBlocks(block.id)
-          block.columns = []
-          for (const b of block.children.results) {
-            block.columns.push(await FetchBlocks(b.id))
-          }
-        } else if (block.type === 'child_page' && block.child_page !== undefined) {
-          block.page = await FetchPage(block.id)
-          block.children = await FetchBlocks(block.id)
-        } else if (block.type === 'child_database' && block.child_database !== undefined && block.has_children) {
-          const database_id = block.id
-          block.database = await notion.databases.retrieve({ database_id })
-        } else if (block.type === 'bookmark' && block.bookmark !== undefined) {
-          block.bookmark.site = await getHtmlMeta(block.bookmark.url)
-        } else if (block.type === 'image' && block.image !== undefined) {
-          const { id, image } = block
-          if (image !== undefined) {
-            const imageUrl = image.type === 'file' ? image.file.url : image.external.url
-            block.image.src = await saveImage(imageUrl, `block-${id}`)
-          }
-        } else if (block.type === 'video' && block.video !== undefined && block.video.type === 'external') {
-          block.video.html = await getVideoHtml(block)
-        } else if (block.type === 'embed' && block.embed !== undefined) {
-          block.embed.html = await getEmbedHtml(block)
+  for (const block of list.results) {
+    try {
+      if (block.type === 'table' && block.table !== undefined) {
+        block.children = await FetchBlocks(block.id)
+      } else if (block.type === 'toggle' && block.toggle !== undefined) {
+        block.children = await FetchBlocks(block.id)
+      } else if (block.type === 'column_list' && block.column_list !== undefined) {
+        block.children = await FetchBlocks(block.id)
+        block.columns = []
+        for (const b of block.children.results) {
+          block.columns.push(await FetchBlocks(b.id))
         }
-      } catch (e) {
-        console.log(`error for ${block.type} contents get`, block, e)
+      } else if (block.type === 'child_page' && block.child_page !== undefined) {
+        block.page = await FetchPage(block.id)
+        block.children = await FetchBlocks(block.id)
+      } else if (block.type === 'child_database' && block.child_database !== undefined && block.has_children) {
+        const database_id = block.id
+        block.database = await notion.databases.retrieve({ database_id })
+      } else if (block.type === 'bookmark' && block.bookmark !== undefined) {
+        block.bookmark.site = await getHtmlMeta(block.bookmark.url)
+      } else if (block.type === 'image' && block.image !== undefined) {
+        const { id, image } = block
+        if (image !== undefined) {
+          const imageUrl = image.type === 'file' ? image.file.url : image.external.url
+          block.image.src = await saveImage(imageUrl, `block-${id}`)
+        }
+      } else if (block.type === 'video' && block.video !== undefined && block.video.type === 'external') {
+        block.video.html = await getVideoHtml(block)
+      } else if (block.type === 'embed' && block.embed !== undefined) {
+        block.embed.html = await getEmbedHtml(block)
       }
+    } catch (e) {
+      console.log(`error for ${block.type} contents get`, block, e)
     }
-    await writeCache(cacheFile, list)
   }
+  await writeCache(cacheFile, list)
 
   return list
 }
