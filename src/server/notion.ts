@@ -2,7 +2,6 @@ import { Client } from '@notionhq/client'
 import type {
   GetPageResponse,
   QueryDatabaseParameters,
-  QueryDatabaseResponse,
   QueryDatabaseResponseEx,
   ListBlockChildrenResponseEx,
   GetPageResponseEx,
@@ -55,8 +54,8 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
     await createDirWhenNotfound(cacheDir)
   }
   const cacheFile = `${cacheDir}/notion.databases.query-${paramsHash}${limit !== undefined ? `.limit-${limit}` : ''}`
-  let cursor: undefined|string
   let allres: undefined|QueryDatabaseResponseEx
+  let res: undefined|QueryDatabaseResponseEx
 
   if (useCache) {
     try {
@@ -70,10 +69,14 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
   }
 
   while (true) {
-    const res: QueryDatabaseResponse = await notion.databases.query(params)
+    if (res && res.next_cursor) {
+      params.start_cursor = res.next_cursor
+    }
+
+    res = await notion.databases.query(params) as QueryDatabaseResponseEx
 
     if (allres === undefined) {
-      allres = res as QueryDatabaseResponseEx
+      allres = res
     } else {
       allres.results.push(...res.results)
     }
@@ -81,9 +84,6 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
     if (res.next_cursor === null || limit !== undefined) {
       break
     }
-
-    /* eslint-disable no-unused-vars */
-    cursor = res.next_cursor
   }
 
   for (const result of allres.results) {
