@@ -31,6 +31,8 @@ https.get[promisify.custom] = function getAsync (url: any) {
 type HttpGetResponse = {
   pipe: Function
   end: Promise<unknown>
+  statusCode: number
+  rawHeaders: string[]
 }
 
 // https://oembed.com/
@@ -112,7 +114,6 @@ async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: numb
   const res = await httpsGet(reqUrl) as unknown as HttpGetResponse
   // @ts-ignore
   if (res.statusCode >= 300 && res.statusCode < 400 && res.rawHeaders.includes('Location')) {
-    // @ts-ignore
     const redirectTo = findLocationUrl(res.rawHeaders)
     redirectCount++
     if (maxRedirects < redirectCount) {
