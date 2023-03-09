@@ -1,6 +1,6 @@
 {
   "name": "notionate",
-  "version": "7.2.1",
+  "version": "7.3.0",
   "license": "MIT",
   "repository": "linyows/notionate",
   "description": "This is React components that uses the Notion API to display the Notion's database and page.",
