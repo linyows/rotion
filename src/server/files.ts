@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { mkdir } from 'node:fs/promises'
 import https from 'https'
+import http from 'http'
 import path from 'path'
 import crypto from 'crypto'
 import { promisify } from 'util'
@@ -25,6 +26,23 @@ const httpOptions = {
 https.get[promisify.custom] = function getAsync (url: any) {
   return new Promise((resolve, reject) => {
     const req = https.get(url, httpOptions, (res) => {
+      // @ts-ignore
+      res.end = new Promise((resolve) => res.on('end', resolve))
+      resolve(res)
+    })
+    req.on('error', reject)
+    req.on('timeout', () => {
+      console.log(`request timed out(${timeout}ms): ${url}`)
+      req.abort()
+      reject
+    })
+  })
+}
+
+// @ts-ignore
+http.get[promisify.custom] = function getAsync (url: any) {
+  return new Promise((resolve, reject) => {
+    const req = http.get(url, httpOptions, (res) => {
       // @ts-ignore
       res.end = new Promise((resolve) => res.on('end', resolve))
       resolve(res)
@@ -102,6 +120,7 @@ type TwitterOembedResponse = Oembed & {
 }
 
 const httpsGet = promisify(https.get)
+const httpGet = promisify(http.get)
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 const maxRedirects = 5
@@ -121,8 +140,10 @@ async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: numb
   if (!redirectCount) {
     redirectCount = 0
   }
-  const res = await httpsGet(reqUrl) as unknown as HttpGetResponse
-  // @ts-ignore
+
+  const httpFunc = (reqUrl.includes('https://')) ? httpsGet : httpGet
+  const res = await httpFunc(reqUrl) as unknown as HttpGetResponse
+
   if (res.statusCode >= 300 && res.statusCode < 400 && res.rawHeaders.includes('Location')) {
     const redirectTo = findLocationUrl(res.rawHeaders)
     redirectCount++
