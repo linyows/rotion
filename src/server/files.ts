@@ -8,23 +8,33 @@ import type {
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
 } from './types'
+import pkg from '../../package.json'
 
 const docRoot = process.env.NOTIONATE_DOCROOT || 'public'
 const imageDir = process.env.NOTIONATE_IMAGEDIR || 'images'
+const timeout = 1500
+const httpOptions = {
+  timeout,
+  headers: {
+    'User-Agent': `${pkg.name}/${pkg.version}`,
+    'Accept': '*/*',
+  },
+}
 
 // @ts-ignore
 https.get[promisify.custom] = function getAsync (url: any) {
   return new Promise((resolve, reject) => {
-    const options = {
-      headers: {
-        'User-Agent': 'Notionate',
-      },
-    }
-    https.get(url, options, (res) => {
+    const req = https.get(url, httpOptions, (res) => {
       // @ts-ignore
       res.end = new Promise((resolve) => res.on('end', resolve))
       resolve(res)
-    }).on('error', reject)
+    })
+    req.on('error', reject)
+    req.on('timeout', () => {
+      console.log(`request timed out(${timeout}ms): ${url}`)
+      req.abort()
+      reject
+    })
   })
 }
 
