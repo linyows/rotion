@@ -18,7 +18,7 @@ const httpOptions = {
   timeout,
   headers: {
     'User-Agent': `${pkg.name}/${pkg.version}`,
-    'Accept': '*/*',
+    Accept: '*/*',
   },
 }
 
@@ -34,7 +34,7 @@ https.get[promisify.custom] = function getAsync (url: any) {
     req.on('timeout', () => {
       console.log(`request timed out(${timeout}ms): ${url}`)
       req.abort()
-      reject
+      return reject
     })
   })
 }
@@ -51,7 +51,7 @@ http.get[promisify.custom] = function getAsync (url: any) {
     req.on('timeout', () => {
       console.log(`request timed out(${timeout}ms): ${url}`)
       req.abort()
-      reject
+      return reject
     })
   })
 }
