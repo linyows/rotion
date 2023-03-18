@@ -298,7 +298,7 @@ export const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc
     const title = findHtmlByRegexp(titleRegexps, body) || ''
     const desc = findHtmlByRegexp(descRegexps, body) || ''
     const imagePath = findHtmlByRegexp(imageRegexps, body) || findImage(body) || ''
-    const iconPath = findHtmlByRegexp(iconRegexps, body) || ''
+    const iconPath = findHtmlByRegexp(iconRegexps, body) || '/favicon.ico'
 
     const url = new URL(reqUrl)
     const imageUrl = imagePath !== '' ? (imagePath.match(/^(https?:|data:)/) ? imagePath : `${url.protocol}//${url.hostname}${imagePath}`) : ''
