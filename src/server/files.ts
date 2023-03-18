@@ -244,9 +244,9 @@ export const findHtmlByRegexp = (regexps: RegExp[], html: string): string | null
 }
 
 export const titleRegexps = [
-  /property="og:title"\s+content="([^"]+)"/,
   /<title>([^"]*?)<\/title>/,
   /<title\s+[^"]+="[^"]+">([^"]*?)<\/title>/,
+  /property="og:title"\s+content="([^"]+)"/,
 ]
 
 export const descRegexps = [
