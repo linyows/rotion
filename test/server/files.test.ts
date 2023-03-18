@@ -18,23 +18,23 @@ test('getHtmlMeta returns title and desc', async () => {
   const tests = [
     [
       'https://github.com',
-      'GitHub: Let’s build from here',
+      'GitHub: Let’s build from here · GitHub',
       'GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...',
       '/images/html-image-66374a1efda63b1d278e16f4a8cb31e16112c03d.png',
       '/images/html-icon-84b7e44aa54d002eac8d00f5bfa9cc93410f2a48-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg',
     ],
     [
       'https://wordpress.org',
-      'Blog Tool, Publishing Platform, and CMS - WordPress.org',
+      'Blog Tool, Publishing Platform, and CMS &#8211; WordPress.org',
       'Open source software which you can use to easily create a beautiful website, blog, or app.',
       '/images/html-image-9b9f60fe548894b0705cca79567f05195f769820.png',
       '/images/html-icon-5e627442a6a3e12ed6cbbecf1a9a0f3ef9298800-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
     ],
     [
       'https://reactjs.org',
-      'React – A JavaScript library for building user interfaces',
-      'A JavaScript library for building user interfaces',
-      '/images/html-image-3193a508d841a4af8f9fcd4d7756171bc20de13b.png',
+      'React – The library for web and native user interfaces',
+      'The library for web and native user interfaces',
+      '/images/html-image-ce7f0c52bc0e232480445462ce8acd6f873e7263.png',
       '/images/html-icon-cf3a9253f8e579b8815743c91cf8474a7ba0a5c3-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
     ],
     [
@@ -46,7 +46,7 @@ test('getHtmlMeta returns title and desc', async () => {
     ],
     [
       'https://nuxtjs.org',
-      'The Intuitive Vue Framework',
+      'Nuxt - The Intuitive Vue Framework',
       'Build your next Vue.js application with confidence using Nuxt. An open source framework making web development simple and powerful.',
       '/images/html-image-1aa787fe0cfb373575fc2c0f6f826e7c6dc9fd41.png',
       '/images/html-icon-5b7695a0da380c6011550f0097344ad388806506-08c83a2cb68c04d4853253d2592db038a7bdd726.png',
@@ -77,7 +77,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'Press release distribution, EDGAR filing, XBRL, regulatory filings | Business Wire',
       'The global leader in press release distribution and regulatory disclosure. Public relations and investor relations professionals rely on Business Wire for broad-based and targeted market reach.',
       '/images/html-image-1ebfeb4b204984939ca889895f01fad24a9e0848.png',
-      '',
+      '/images/html-icon-65fbfcdf2d131a1bd29acc6b5377073a0b10a76f-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
     ]
   ]
 
