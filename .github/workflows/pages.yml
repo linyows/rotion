@@ -1,9 +1,11 @@
 name: Deploy
 
 on:
-  push:
-    branches: ["main"]
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Build"]
+    branches: [main]
+    types: [completed]
 
 concurrency:
   group: "pages"
@@ -12,6 +14,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     env:
       NOTION_CACHE: true
       NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
