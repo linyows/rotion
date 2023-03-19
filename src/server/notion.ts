@@ -21,6 +21,7 @@ import {
 } from './files'
 
 const cacheDir = process.env.NOTIONATE_CACHEDIR || '.cache'
+const incrementalCache = process.env.INCREMENTAL_CACHE === 'true'
 const auth = process.env.NOTION_TOKEN
 const notion = new Client({ auth })
 
@@ -112,14 +113,21 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
  * And create cache that includes filepath of downloaded images.
  * The last_edited_time of 2nd args is for NOTIONATE_INCREMENTAL_CACHE.
  */
-export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => {
+export const FetchPage = async (page_id: string, last_edited_time?: string): Promise<GetPageResponseEx> => {
   await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.pages.retrieve-${page_id}`
 
   try {
     const page = await readCache<GetPageResponseEx>(cacheFile)
     if (!isEmpty(page)) {
-      return page
+      if (incrementalCache && last_edited_time === undefined) {
+        console.log('last_edited_time is required as a FetchPage() args when incremental cache')
+        return page
+      }
+      if (!incrementalCache || ('last_edited_time' in page && page.last_edited_time === last_edited_time)) {
+        return page
+      }
+      console.log(`incremental cache: ${cacheFile}`)
     }
   } catch (_) {
     /* not fatal */
@@ -164,14 +172,21 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
  * And create cache that includes filepath of downloaded images.
  * The last_edited_time of 2nd args is for NOTIONATE_INCREMENTAL_CACHE.
  */
-export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenResponseEx> => {
+export const FetchBlocks = async (block_id: string, last_edited_time?: string): Promise<ListBlockChildrenResponseEx> => {
   await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.blocks.children.list-${block_id}`
 
   try {
     const list = await readCache<ListBlockChildrenResponseEx>(cacheFile)
     if (!isEmpty(list)) {
-      return list
+      if (incrementalCache && last_edited_time === undefined) {
+        console.log('last_edited_time is required as a FetchBlocks() args when incremental cache')
+        return list
+      }
+      if (!incrementalCache || (list.results.map(v => 'last_edited_time' in v ? v.last_edited_time : undefined).sort().filter(v => v).pop() === last_edited_time)) {
+        return list
+      }
+      console.log(`incremental cache: ${cacheFile}`)
     }
   } catch (_) {
     /* not fatal */
