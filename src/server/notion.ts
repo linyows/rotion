@@ -28,6 +28,10 @@ const isEmpty = (obj: Object) => {
   return !Object.keys(obj).length
 }
 
+/**
+ * FetchDatabase retrieves database and download images in from blocks.
+ * And create cache that includes filepath of downloaded images.
+ */
 export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<QueryDatabaseResponseEx> => {
   const { database_id } = params
   const limit = ('page_size' in params) ? params.page_size : undefined
@@ -103,6 +107,11 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
   return allres
 }
 
+/**
+ * FetchPage retrieves page properties and download images in from properties.
+ * And create cache that includes filepath of downloaded images.
+ * The last_edited_time of 2nd args is for NOTIONATE_INCREMENTAL_CACHE.
+ */
 export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => {
   await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.pages.retrieve-${page_id}`
@@ -150,6 +159,11 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
   return page
 }
 
+/**
+ * FetchBlocks retrieves page blocks and download images in from blocks.
+ * And create cache that includes filepath of downloaded images.
+ * The last_edited_time of 2nd args is for NOTIONATE_INCREMENTAL_CACHE.
+ */
 export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenResponseEx> => {
   await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.blocks.children.list-${block_id}`
