@@ -126,6 +126,7 @@ NOTION_TOKEN       | Read permission is required in notion's credentials | -
 NOTIONATE_CACHEDIR | Cache directory name                                | .cache
 NOTIONATE_DOCROOT  | Web server root directory                           | public
 NOTIONATE_IMAGEDIR | Web server image directory                          | images
+NOTIONATE_INCREMENTAL_CACHE | Enable incremental cache                   | false
 
 API
 --
