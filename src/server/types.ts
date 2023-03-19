@@ -1,7 +1,6 @@
 import type {
   QueryDatabaseResponse,
   GetDatabaseResponse,
-  GetPageResponse,
   ListBlockChildrenResponse,
   GetSelfResponse,
   ParagraphBlockObjectResponse,
@@ -41,6 +40,7 @@ import type {
   GetPagePropertyResponse,
   PageObjectResponse,
   PersonUserObjectResponse,
+  PartialPageObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints'
 import type { UrlObject } from 'node:url'
 
@@ -217,7 +217,7 @@ export type ListBlockChildrenResponseEx = ListBlockChildrenResponse & {
 }
 
 // Extending by adding src param
-export type GetPageResponseEx = GetPageResponse & {
+export type GetPageResponseEx = PageObjectResponse & {
   cover:
     | { src: string, type: 'external', external: { url: string, expiry_time: string } }
     | { src: string, type: 'file', file: { url: string, expiry_time: string } }
@@ -226,7 +226,7 @@ export type GetPageResponseEx = GetPageResponse & {
     | { src: string, type: 'external', external: { url: string, expiry_time: string } }
     | { src: string, type: 'file', file: { url: string, expiry_time: string } }
   meta?: GetPagePropertyResponse
-}
+} | PartialPageObjectResponse
 
 export type DBPageBase = {
   object: 'page'

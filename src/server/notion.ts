@@ -1,6 +1,5 @@
 import { Client } from '@notionhq/client'
 import type {
-  GetPageResponse,
   QueryDatabaseParameters,
   QueryDatabaseResponseEx,
   ListBlockChildrenResponseEx,
@@ -109,9 +108,9 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
   const cacheFile = `${cacheDir}/notion.pages.retrieve-${page_id}`
 
   try {
-    const page = await readCache<GetPageResponse>(cacheFile)
+    const page = await readCache<GetPageResponseEx>(cacheFile)
     if (!isEmpty(page)) {
-      return page as GetPageResponseEx
+      return page
     }
   } catch (_) {
     /* not fatal */
@@ -136,14 +135,14 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
     page.meta = list
   }
 
-  if (page.cover !== null) {
+  if ('cover' in page && page.cover !== null) {
     if (page.cover.type === 'external') {
       page.cover.src = await saveImage(page.cover.external.url, `page-cover-${page.id}`)
     } else if (page.cover.type === 'file') {
       page.cover.src = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
     }
   }
-  if (page.icon?.type === 'file') {
+  if ('icon' in page && page.icon?.type === 'file') {
     page.icon.src = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
   }
   await writeCache(cacheFile, page)
