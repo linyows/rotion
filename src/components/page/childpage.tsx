@@ -16,7 +16,7 @@ export type ChildpageBlockProps = {
 type LinkedTitleProps = ChildpageBlockProps
 
 const ChildpageBlock: React.FC<ChildpageBlockProps> = ({ block, href, link, query }) => {
-  const icon = block.page.icon.type === 'emoji' ? block.page.icon.emoji : ''
+  const icon = 'icon' in block.page && block.page.icon.type === 'emoji' ? block.page.icon.emoji : ''
   const title = block.child_page.title
 
   const LinkedTitle = ({ block, href, link }: LinkedTitleProps) => {

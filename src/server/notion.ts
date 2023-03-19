@@ -1,6 +1,5 @@
 import { Client } from '@notionhq/client'
 import type {
-  GetPageResponse,
   QueryDatabaseParameters,
   QueryDatabaseResponseEx,
   ListBlockChildrenResponseEx,
@@ -22,6 +21,7 @@ import {
 } from './files'
 
 const cacheDir = process.env.NOTIONATE_CACHEDIR || '.cache'
+const incrementalCache = process.env.INCREMENTAL_CACHE === 'true'
 const auth = process.env.NOTION_TOKEN
 const notion = new Client({ auth })
 
@@ -29,6 +29,10 @@ const isEmpty = (obj: Object) => {
   return !Object.keys(obj).length
 }
 
+/**
+ * FetchDatabase retrieves database and download images in from blocks.
+ * And create cache that includes filepath of downloaded images.
+ */
 export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<QueryDatabaseResponseEx> => {
   const { database_id } = params
   const limit = ('page_size' in params) ? params.page_size : undefined
@@ -104,14 +108,26 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
   return allres
 }
 
-export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => {
+/**
+ * FetchPage retrieves page properties and download images in from properties.
+ * And create cache that includes filepath of downloaded images.
+ * The last_edited_time of 2nd args is for NOTIONATE_INCREMENTAL_CACHE.
+ */
+export const FetchPage = async (page_id: string, last_edited_time?: string): Promise<GetPageResponseEx> => {
   await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.pages.retrieve-${page_id}`
 
   try {
-    const page = await readCache<GetPageResponse>(cacheFile)
+    const page = await readCache<GetPageResponseEx>(cacheFile)
     if (!isEmpty(page)) {
-      return page as GetPageResponseEx
+      if (incrementalCache && last_edited_time === undefined) {
+        console.log('last_edited_time is required as a FetchPage() args when incremental cache')
+        return page
+      }
+      if (!incrementalCache || ('last_edited_time' in page && page.last_edited_time === last_edited_time)) {
+        return page
+      }
+      console.log(`incremental cache: ${cacheFile}`)
     }
   } catch (_) {
     /* not fatal */
@@ -136,14 +152,14 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
     page.meta = list
   }
 
-  if (page.cover !== null) {
+  if ('cover' in page && page.cover !== null) {
     if (page.cover.type === 'external') {
       page.cover.src = await saveImage(page.cover.external.url, `page-cover-${page.id}`)
     } else if (page.cover.type === 'file') {
       page.cover.src = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
     }
   }
-  if (page.icon?.type === 'file') {
+  if ('icon' in page && page.icon?.type === 'file') {
     page.icon.src = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
   }
   await writeCache(cacheFile, page)
@@ -151,14 +167,26 @@ export const FetchPage = async (page_id: string): Promise<GetPageResponseEx> => 
   return page
 }
 
-export const FetchBlocks = async (block_id: string): Promise<ListBlockChildrenResponseEx> => {
+/**
+ * FetchBlocks retrieves page blocks and download images in from blocks.
+ * And create cache that includes filepath of downloaded images.
+ * The last_edited_time of 2nd args is for NOTIONATE_INCREMENTAL_CACHE.
+ */
+export const FetchBlocks = async (block_id: string, last_edited_time?: string): Promise<ListBlockChildrenResponseEx> => {
   await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.blocks.children.list-${block_id}`
 
   try {
     const list = await readCache<ListBlockChildrenResponseEx>(cacheFile)
     if (!isEmpty(list)) {
-      return list
+      if (incrementalCache && last_edited_time === undefined) {
+        console.log('last_edited_time is required as a FetchBlocks() args when incremental cache')
+        return list
+      }
+      if (!incrementalCache || (list.results.map(v => 'last_edited_time' in v ? v.last_edited_time : undefined).sort().filter(v => v).pop() === last_edited_time)) {
+        return list
+      }
+      console.log(`incremental cache: ${cacheFile}`)
     }
   } catch (_) {
     /* not fatal */
