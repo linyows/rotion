@@ -45,7 +45,7 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
 
   try {
     const list = await readCache<QueryDatabaseResponseEx>(cacheFile)
-    if (!isEmpty(list)) {
+    if (!incrementalCache && !isEmpty(list)) {
       return list
     }
   } catch (_) {
