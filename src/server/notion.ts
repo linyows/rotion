@@ -21,7 +21,7 @@ import {
 } from './files'
 
 const cacheDir = process.env.NOTIONATE_CACHEDIR || '.cache'
-const incrementalCache = process.env.INCREMENTAL_CACHE === 'true'
+const incrementalCache = process.env.NOTIONATE_INCREMENTAL_CACHE === 'true'
 const auth = process.env.NOTION_TOKEN
 const notion = new Client({ auth })
 
