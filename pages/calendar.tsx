@@ -29,15 +29,15 @@ type Props = {
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const id = process.env.NOTION_CALENDARPAGE_ID as string
-  const page = await FetchPage(id)
+  const page = await FetchPage(id, 'force')
   let title: null|RichTextItemResponse = null
   if ('meta' in page && page.meta?.object === 'list') {
     const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
     title = obj.title
   }
-  const icon = ('emoji' in page.icon) ? page.icon.emoji : ''
-  const image = page.cover.src
-  const blocks = await FetchBlocks(id)
+  const icon = ('icon' in page && 'emoji' in page.icon) ? page.icon.emoji : ''
+  const image = ('cover' in page) ? page.cover.src : ''
+  const blocks = await FetchBlocks(id, page.last_edited_time)
 
   const params = {
     database_id: process.env.NOTION_TESTDB_ID as string,
