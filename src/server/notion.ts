@@ -45,8 +45,10 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
 
   try {
     const list = await readCache<QueryDatabaseResponseEx>(cacheFile)
-    if (!incrementalCache && !isEmpty(list)) {
-      return list
+    if (!isEmpty(list)) {
+      if (!incrementalCache) {
+        return list
+      }
     }
   } catch (_) {
     /* not fatal */
@@ -127,7 +129,7 @@ export const FetchPage = async (page_id: string, last_edited_time?: string): Pro
       if (!incrementalCache || ('last_edited_time' in page && page.last_edited_time === last_edited_time)) {
         return page
       }
-      console.log(`incremental cache: ${cacheFile}`)
+      console.log(`incremental page cache: ${cacheFile}`)
     }
   } catch (_) {
     /* not fatal */
@@ -162,6 +164,7 @@ export const FetchPage = async (page_id: string, last_edited_time?: string): Pro
   if ('icon' in page && page.icon?.type === 'file') {
     page.icon.src = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
   }
+
   await writeCache(cacheFile, page)
 
   return page
@@ -183,10 +186,10 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
         console.log('last_edited_time is required as a FetchBlocks() args when incremental cache')
         return list
       }
-      if (!incrementalCache || (list.results.map(v => 'last_edited_time' in v ? v.last_edited_time : undefined).sort().filter(v => v).pop() === last_edited_time)) {
+      if (!incrementalCache || list.last_edited_time === last_edited_time) {
         return list
       }
-      console.log(`incremental cache: ${cacheFile}`)
+      console.log(`incremental block cache: ${cacheFile}`)
     }
   } catch (_) {
     /* not fatal */
@@ -194,21 +197,27 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
 
   const list = await notion.blocks.children.list({ block_id }) as ListBlockChildrenResponseEx
 
+  // With the blocks api, you can get the last modified date of a block,
+  // but not the last modified date of all blocks. So extend the type and add it.
+  if (last_edited_time) {
+    list.last_edited_time = last_edited_time
+  }
+
   for (const block of list.results) {
     try {
       if (block.type === 'table' && block.table !== undefined) {
-        block.children = await FetchBlocks(block.id)
+        block.children = await FetchBlocks(block.id, block.last_edited_time)
       } else if (block.type === 'toggle' && block.toggle !== undefined) {
-        block.children = await FetchBlocks(block.id)
+        block.children = await FetchBlocks(block.id, block.last_edited_time)
       } else if (block.type === 'column_list' && block.column_list !== undefined) {
-        block.children = await FetchBlocks(block.id)
+        block.children = await FetchBlocks(block.id, block.last_edited_time)
         block.columns = []
         for (const b of block.children.results) {
-          block.columns.push(await FetchBlocks(b.id))
+          block.columns.push(await FetchBlocks(b.id, block.last_edited_time))
         }
       } else if (block.type === 'child_page' && block.child_page !== undefined) {
-        block.page = await FetchPage(block.id)
-        block.children = await FetchBlocks(block.id)
+        block.page = await FetchPage(block.id, block.last_edited_time)
+        block.children = await FetchBlocks(block.id, block.last_edited_time)
       } else if (block.type === 'child_database' && block.child_database !== undefined && block.has_children) {
         const database_id = block.id
         block.database = await notion.databases.retrieve({ database_id })
@@ -229,6 +238,7 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
       console.log(`error for ${block.type} contents get`, block, e)
     }
   }
+
   await writeCache(cacheFile, list)
 
   return list
