@@ -42,6 +42,7 @@ jobs:
         with:
           path: |
             .cache
+            public/images
           key: notionate
           restore-keys: notionate
       - name: Install dependencies
