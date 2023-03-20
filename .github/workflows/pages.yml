@@ -16,15 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     env:
-      NOTION_CACHE: true
       NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-      NOTION_TESTROOT_ID: ${{ secrets.NOTION_TESTROOT_ID }}
-      NOTION_TESTPAGE_ID: ${{ secrets.NOTION_TESTPAGE_ID }}
-      NOTION_TESTDB_ID: ${{ secrets.NOTION_TESTDB_ID }}
-      NOTION_LISTPAGE_ID: ${{ secrets.NOTION_LISTPAGE_ID }}
-      NOTION_GALLERYPAGE_ID: ${{ secrets.NOTION_GALLERYPAGE_ID }}
-      NOTION_TABLEPAGE_ID: ${{ secrets.NOTION_TABLEPAGE_ID }}
-      NOTION_CALENDARPAGE_ID: ${{ secrets.NOTION_CALENDARPAGE_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -37,7 +29,7 @@ jobs:
         uses: actions/configure-pages@v2
         with:
           static_site_generator: next
-      - name: Restore cache
+      - name: Restore next cache
         uses: actions/cache@v3
         with:
           path: |
@@ -45,6 +37,13 @@ jobs:
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+      - name: Restore notionate cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            .cache
+          key: notionate
+          restore-keys: notionate
       - name: Install dependencies
         run: npm ci
       - name: Build and Export
