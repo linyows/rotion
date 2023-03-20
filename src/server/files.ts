@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { mkdir } from 'node:fs/promises'
+import { mkdir, stat } from 'node:fs/promises'
 import https from 'https'
 import http from 'http'
 import path from 'path'
@@ -194,6 +194,12 @@ export async function readCache<T> (f: string): Promise<T> {
 
 export async function writeCache (f: string, data: unknown): Promise<void> {
   return writeFile(f, JSON.stringify(data), 'utf8').catch(() => {})
+}
+
+export async function isAvailableCache(f: string, seconds: number): Promise<boolean> {
+  const t = new Date(Date.now() + (seconds * 1000))
+  const stats = await stat(f)
+  return stats.mtime < t
 }
 
 export const saveImage = async (imageUrl: string, prefix: string): Promise<string> => {
