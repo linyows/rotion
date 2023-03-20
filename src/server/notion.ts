@@ -18,6 +18,7 @@ import {
   getHtmlMeta,
   getVideoHtml,
   getEmbedHtml,
+  isAvailableCache,
 } from './files'
 
 const cacheDir = process.env.NOTIONATE_CACHEDIR || '.cache'
@@ -47,6 +48,9 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
     const list = await readCache<QueryDatabaseResponseEx>(cacheFile)
     if (!isEmpty(list)) {
       if (!incrementalCache) {
+        return list
+      }
+      if (await isAvailableCache(cacheFile, 120)) {
         return list
       }
     }
