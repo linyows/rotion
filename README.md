@@ -69,7 +69,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 export default const DB: NextPage<Props> = ({ db }) => {
   return (
     <>
-      <DBList
+      <List
         keys={['Name', 'spacer', 'Tags', 'Date']}
         db={db}
         href="/database/[id]"
