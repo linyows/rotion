@@ -4,18 +4,22 @@ import Link from 'next/link'
 import styles from '../styles/Db.module.css'
 import {
   FetchDatabase,
+  FetchPage,
   // types
   QueryDatabaseResponseEx,
   RichTextItemResponse,
   QueryDatabaseParameters,
+  TitlePropertyItemObjectResponse,
+  Link as NLink,
 } from 'notionate'
 import {
-  DBList,
+  List,
   TextBlock,
+  TextObject,
 } from 'notionate/dist/components'
 
 type Props = {
-  title: null|RichTextItemResponse[]
+  title: null|RichTextItemResponse
   desc:  null|RichTextItemResponse[]
   icon: string
   image: string
@@ -23,8 +27,10 @@ type Props = {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
+  const database_id = process.env.NOTION_TESTDB_ID as string
+  const page_id = process.env.NOTION_LISTPAGE_ID as string
   const params = {
-    database_id: process.env.NOTION_TESTDB_ID as string,
+    database_id,
     filter: {
       property: 'Published',
       checkbox: {
@@ -39,10 +45,15 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     ]
   } as QueryDatabaseParameters
   const db = await FetchDatabase(params)
+  const page = await FetchPage(page_id)
+  const image = ('cover' in page) ? page.cover.src : ''
+  const icon = ('icon' in page && 'emoji' in page.icon) ? page.icon.emoji : ''
+  let title: null|RichTextItemResponse = null
+  if ('meta' in page && page.meta?.object === 'list') {
+    const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
+    title = obj.title
+  }
 
-  const title = ('title' in db.meta) ? db.meta.title : null
-  const icon = ('icon' in db.meta && db.meta.icon !== null && db.meta.icon.type === 'emoji') ?  db.meta.icon.emoji : ''
-  const image = ('cover' in db.meta && db.meta.cover !== null && db.meta.cover.type === 'external') ? db.meta.cover.external.url : ''
   const desc = ('description' in db.meta) ? db.meta.description : null
   const props = {
     title,
@@ -72,7 +83,7 @@ const ListPage: NextPage<Props> = ({ title, desc, icon, image, db }) => {
             {icon}
           </div>
           <h1 className={styles.title}>
-            <TextBlock tag="span" block={title || undefined} />
+            {title && <TextObject textObject={title} />}
           </h1>
         </div>
         <p className={`${styles.desc} ${styles.wrapper}`}>
@@ -81,7 +92,12 @@ const ListPage: NextPage<Props> = ({ title, desc, icon, image, db }) => {
       </header>
 
       <div className={`${styles.db} ${styles.wrapper}`}>
-        <DBList keys={['Name', 'Note', 'spacer', 'Tags', 'Url', 'Born', 'Date']} db={db} link="/database/[id]" LinkComp={Link} />
+        <List
+          keys={['Name', 'Note', 'spacer', 'Tags', 'Url', 'Born', 'Date']}
+          db={db}
+          href="/database/[id]"
+          link={Link as NLink}
+        />
       </div>
     </>
   )
