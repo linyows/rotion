@@ -32,7 +32,7 @@ test('getHtmlMeta returns title and desc', async () => {
     ],
     [
       'https://reactjs.org',
-      'React – The library for web and native user interfaces',
+      'React',
       'The library for web and native user interfaces',
       '/images/html-image-ce7f0c52bc0e232480445462ce8acd6f873e7263.png',
       '/images/html-icon-cf3a9253f8e579b8815743c91cf8474a7ba0a5c3-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
