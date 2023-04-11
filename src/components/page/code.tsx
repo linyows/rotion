@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Prism from 'prismjs'
+import mermaid from 'mermaid'
 import { TextObject } from './text'
 import 'prismjs/components/prism-markup-templating'
 import 'prismjs/components/prism-javascript'
@@ -48,9 +49,13 @@ export type CodeBlockProps = {
 
 export const Code: React.FC<CodeProps> = ({ children, language = 'text' }) => {
   const codeRef = React.createRef<HTMLPreElement>()
-  const highlight = async () => {
+  const highlight = async (language: string) => {
     if (codeRef.current) {
-      Prism.highlightElement(codeRef.current as Element)
+      if (language === 'mermaid') {
+        mermaid.init({}, codeRef.current as HTMLPreElement)
+      } else {
+        Prism.highlightElement(codeRef.current as Element)
+      }
     }
   }
   const cl = `language-${language.toLowerCase()}`
@@ -60,7 +65,7 @@ export const Code: React.FC<CodeProps> = ({ children, language = 'text' }) => {
   const hideLang = () => setShow(false)
 
   useEffect(() => {
-    highlight()
+    highlight(language)
   }, [language, ''])
 
   return (
