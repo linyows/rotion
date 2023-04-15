@@ -21,15 +21,17 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "outDir": "../dist/components",
-    "allowSyntheticDefaultImports": true,
-    "emitDeclarationOnly": true
+    "outDir": "dist/components",
+    "allowSyntheticDefaultImports": true
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "rollup.config.ts"
   ],
   "exclude": [
+    "playground",
+    "test",
     "node_modules"
   ]
 }

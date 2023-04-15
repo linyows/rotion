@@ -20,7 +20,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "npm run clean && npm run lint && npm run transpile && npm run typecheck && npm run declaration && npm run rollup && npm run styles",
-    "rollup": "rollup -c --bundleConfigAsCjs",
+    "rollup": "rollup --config rollup.config.ts --configPlugin typescript",
     "transpile": "babel src/server -D -d dist/server --extensions '.ts,.tsx' --config-file ./babelrc.json",
     "declaration": "tsc -p tsconfig.declaration.json",
     "typecheck": "tsc -p tsconfig.typecheck.json",
@@ -71,7 +71,6 @@
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^5.0.0",
     "rollup-plugin-import-css": "^3.0.3",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
     "testdouble": "^3.16.6",
     "ts-node": "^10.9.1",
     "tslib": "^2.4.0",
