@@ -21,7 +21,7 @@ import type { ParsedUrlQueryInput } from 'node:querystring'
 
 export type ExternalModules = {
   mermaid?: {
-    init: (config?: {}, nodes?: string | HTMLElement | NodeListOf<HTMLElement>, callback?: ((id: string) => unknown) | undefined) => Promise<void>
+    init: (config?: {}, nodes?: string | HTMLElement, callback?: ((id: string) => unknown) | undefined) => Promise<void>
   }
   prism?: {
     highlightElement: (element: Element, async?: boolean | undefined, callback?: (element: Element) => void | undefined) => void
