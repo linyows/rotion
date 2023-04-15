@@ -14,8 +14,10 @@ export default {
   },
   plugins: [
     resolve(),
-    commonjs(),
     json(),
+    commonjs({
+      include: 'node_modules/**'
+    }),
     babel({
       babelHelpers: 'bundled',
       babelrc: false,
