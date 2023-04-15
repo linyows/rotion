@@ -1,6 +1,13 @@
 import type { GetStaticProps, NextPage } from 'next'
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styles from '../styles/db.module.css'
+import mermaid from 'mermaid'
+import prism from 'prismjs'
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-go'
+import 'prismjs/components/prism-typescript'
+import 'prismjs/components/prism-sql'
 
 import {
   FetchBlocks,
@@ -48,6 +55,13 @@ const BlocksPage: NextPage<Props> = ({ title, icon, image, blocks }) => {
   const position = {
     objectPosition: 'center 60%',
   }
+
+  const [exModules, setExModules] = useState({ mermaid, prism })
+  useEffect(() => {
+    mermaid.initialize({ theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'neutral' })
+    setExModules({ mermaid, prism })
+  }, [])
+
   return (
     <>
       <Head>
@@ -68,7 +82,7 @@ const BlocksPage: NextPage<Props> = ({ title, icon, image, blocks }) => {
       </header>
 
       <div className={`${styles.page} ${styles.wrapperPage}`}>
-        <Blocks blocks={blocks} />
+        <Blocks blocks={blocks} modules={exModules} />
       </div>
     </>
   )

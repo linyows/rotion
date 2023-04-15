@@ -32,9 +32,5 @@ export default {
   external: [
     /^react/,
     /^react-dom/,
-    '@notionhq/client',
-    '@types/prismjs',
-    'prismjs',
-    'mermaid',
   ]
 }

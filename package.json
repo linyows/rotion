@@ -33,13 +33,13 @@
   },
   "peerDependencies": {
     "react": "^17.0.2 || ^18.0.0-0",
-    "react-dom": "^17.0.2 || ^18.0.0-0"
-  },
-  "dependencies": {
-    "@notionhq/client": "^2.1.1",
+    "react-dom": "^17.0.2 || ^18.0.0-0",
     "@types/prismjs": "^1.26.0",
     "mermaid": "^10.1.0",
     "prismjs": "^1.25.0"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
