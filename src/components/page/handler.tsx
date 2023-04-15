@@ -19,6 +19,15 @@ import type {
 } from '../../server/types'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 
+export type ExternalModules = {
+  mermaid?: {
+    init: (config?: {}, nodes?: string | HTMLElement, callback?: ((id: string) => unknown) | undefined) => Promise<void>
+  }
+  prism?: {
+    highlightElement: (element: Element, async?: boolean | undefined, callback?: (element: Element) => void | undefined) => void
+  }
+}
+
 export const blockType = {
   heading_1: 'h1',
   heading_2: 'h2',
@@ -36,9 +45,10 @@ export type BlockHandlerProps = {
   href?: string
   link?: Link
   query?: ParsedUrlQueryInput
+  modules?: ExternalModules
 }
 
-export const BlockHandler = ({ block, href, link, query }: BlockHandlerProps): JSX.Element | undefined => {
+export const BlockHandler = ({ block, href, link, query, modules }: BlockHandlerProps): JSX.Element | undefined => {
   switch (block.type) {
     case 'heading_1':
     case 'heading_2':
@@ -58,7 +68,7 @@ export const BlockHandler = ({ block, href, link, query }: BlockHandlerProps): J
       return <ImageBlock block={block} key={block.id} />
 
     case 'code':
-      return <CodeBlock block={block} key={block.id} />
+      return <CodeBlock block={block} key={block.id} modules={modules} />
 
     case 'video':
       return <VideoBlock block={block} key={block.id} />

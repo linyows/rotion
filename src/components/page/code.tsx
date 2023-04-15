@@ -1,37 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Prism from 'prismjs'
-import mermaid from 'mermaid'
 import { TextObject } from './text'
-import 'prismjs/components/prism-markup-templating'
-import 'prismjs/components/prism-javascript'
-import 'prismjs/components/prism-java'
-import 'prismjs/components/prism-css'
-import 'prismjs/components/prism-c'
-import 'prismjs/components/prism-markup'
-import 'prismjs/components/prism-bash'
-import 'prismjs/components/prism-diff'
-import 'prismjs/components/prism-docker'
-import 'prismjs/components/prism-go'
-import 'prismjs/components/prism-graphql'
-import 'prismjs/components/prism-hcl'
-import 'prismjs/components/prism-ignore'
-import 'prismjs/components/prism-json'
-import 'prismjs/components/prism-markdown'
-import 'prismjs/components/prism-makefile'
-import 'prismjs/components/prism-nginx'
-import 'prismjs/components/prism-php'
-import 'prismjs/components/prism-python'
-import 'prismjs/components/prism-perl'
-import 'prismjs/components/prism-puppet'
-import 'prismjs/components/prism-jsx'
-import 'prismjs/components/prism-tsx'
-import 'prismjs/components/prism-regex'
-import 'prismjs/components/prism-ruby'
-import 'prismjs/components/prism-sql'
-import 'prismjs/components/prism-swift'
-import 'prismjs/components/prism-typescript'
-import 'prismjs/components/prism-vim'
-import 'prismjs/components/prism-yaml'
+import type { ExternalModules } from './handler'
 
 import type {
   CodeBlockObjectResponse,
@@ -41,20 +10,24 @@ import type {
 
 export type CodeProps = React.PropsWithChildren & {
   language: string
+  modules?: ExternalModules
 }
 
 export type CodeBlockProps = {
   block: CodeBlockObjectResponse
+  modules?: ExternalModules
 }
 
-export const Code: React.FC<CodeProps> = ({ children, language = 'text' }) => {
+export const Code: React.FC<CodeProps> = ({ children, language = 'text', modules }) => {
   const codeRef = React.createRef<HTMLPreElement>()
   const highlight = async (language: string) => {
     if (codeRef.current) {
-      if (language === 'mermaid') {
-        mermaid.init({}, codeRef.current as HTMLPreElement)
+      if (language === 'mermaid' && modules?.mermaid) {
+        modules.mermaid.init(undefined, codeRef.current as HTMLPreElement)
+      } else if (modules?.prism) {
+        modules.prism.highlightElement(codeRef.current as Element)
       } else {
-        Prism.highlightElement(codeRef.current as Element)
+        console.log('block component require prismjs or mermaidjs modules argument')
       }
     }
   }
@@ -82,11 +55,11 @@ export const Code: React.FC<CodeProps> = ({ children, language = 'text' }) => {
   )
 }
 
-const CodeBlock: React.FC<CodeBlockProps> = ({ block }) => {
+const CodeBlock: React.FC<CodeBlockProps> = ({ block, modules }) => {
   const els = block.code?.rich_text.map((textObject, i) => {
     const text = textObject as TextRichTextItemResponse
     return (
-      <Code language={block.code?.language || ''} key={`${i}`}>
+      <Code language={block.code?.language || ''} key={`${i}`} modules={modules}>
         {text.text.content}
       </Code>
     )

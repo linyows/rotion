@@ -1,6 +1,6 @@
 import React from 'react'
 import ListBlock from './list'
-import BlockHandler from './handler'
+import BlockHandler, { ExternalModules } from './handler'
 import type {
   ListBlockChildrenResponseEx,
   BlockObjectResponse,
@@ -13,13 +13,14 @@ export type BlocksProps = {
   href?: string
   link?: Link
   query?: ParsedUrlQueryInput
+  modules?: ExternalModules
 }
 
 type ListType = {
   [key: string]: string
 }
 
-export const Blocks: React.FC<BlocksProps> = ({ blocks, href, link, query }) => {
+export const Blocks: React.FC<BlocksProps> = ({ blocks, href, link, query, modules }) => {
   const { results } = blocks
   const listType: ListType = {
     bulleted_list_item: 'ul',
@@ -51,7 +52,7 @@ export const Blocks: React.FC<BlocksProps> = ({ blocks, href, link, query }) => 
         list.push(block)
       }
     } else {
-      const elem = BlockHandler({ block, href, link, query })
+      const elem = BlockHandler({ block, href, link, query, modules })
       if (elem !== undefined) {
         children.push(elem)
       }

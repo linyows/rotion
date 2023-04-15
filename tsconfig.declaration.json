@@ -7,11 +7,14 @@
       "esnext"
     ],
     "module": "esnext",
+    "outDir": "dist/types",
     "allowJs": true,
     "jsx": "preserve",
     "declaration": true,
-    "noEmit": true,
+    "emitDeclarationOnly": true,
     "isolatedModules": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "incremental": true,
     "removeComments": true,
     "strict": true,
@@ -24,8 +27,8 @@
     "skipLibCheck": true
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ],
   "exclude": [
     "node_modules"
