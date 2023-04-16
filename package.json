@@ -1,13 +1,13 @@
 {
   "name": "notionate",
-  "version": "8.2.2",
+  "version": "8.2.3",
   "license": "MIT",
   "repository": "linyows/notionate",
   "description": "This is React components that uses the Notion API to display the Notion's database and page.",
-  "main": "dist/server/index.js",
+  "main": "./dist/server/index.js",
   "components": "dist/components/index.js",
   "componentsSrc": "src/components/index.ts",
-  "types": "dist/types/src/index.d.ts",
+  "types": "./dist/types/index.d.ts",
   "files": [
     "LICENSE",
     "README.md",
@@ -19,17 +19,19 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "npm run clean && npm run lint && npm run transpile && npm run typecheck && npm run declaration && npm run rollup && npm run styles",
+    "build": "npm run clean && npm run lint && npm run transpile && npm run typecheck && npm run declaration && npm run rollup && npm run components-declaration && npm run styles",
     "rollup": "rollup --config rollup.config.ts --configPlugin typescript",
     "transpile": "babel src/server -D -d dist/server --extensions '.ts,.tsx' --config-file ./babelrc.json",
-    "declaration": "tsc -p tsconfig.declaration.json",
-    "typecheck": "tsc -p tsconfig.typecheck.json",
+    "declaration": "tsc -p ./src/tsconfig.declaration.json && mv dist/src dist/types",
+    "components-declaration": "cp -r dist/types/* dist/components",
+    "typecheck": "tsc -p ./src/tsconfig.typecheck.json",
     "styles": "cp -r ./src/styles ./dist/",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "clean": "rm -rf dist/*",
     "cacheclean": "rm -rf .cache/*",
     "export": "next build && next export",
-    "test": "uvu -r ts-node/register test"
+    "test": "uvu -r ts-node/register test",
+    "prepublishOnly": "npm install && npm run build && npm test"
   },
   "peerDependencies": {
     "react": "^17.0.2 || ^18.0.0-0",

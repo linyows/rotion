@@ -9,10 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "13.0.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "notionate": "file:.."
+    "mermaid": "^10.1.0",
+    "next": "13.2.4",
+    "notionate": "file:..",
+    "prismjs": "^1.29.0"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",

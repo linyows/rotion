@@ -1,6 +1,13 @@
+import { useEffect, useState } from 'react'
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Page.module.css'
+import mermaid from 'mermaid'
+import prism from 'prismjs'
+import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-go'
+import 'prismjs/components/prism-typescript'
+import 'prismjs/components/prism-sql'
 import {
   FetchPage,
   FetchBlocks,
@@ -24,8 +31,11 @@ type Props = React.PropsWithChildren & {
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const id = process.env.NOTION_TESTPAGE_ID as string
   const page = await FetchPage(id)
-  const obj = page.meta?.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
-  const title = obj.title
+  let title: null|RichTextItemResponse = null
+  if ('meta' in page && page.meta?.object === 'list') {
+    const obj = page.meta?.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
+    title = obj.title
+  }
   const icon = ('emoji' in page.icon) ? page.icon.emoji : ''
   const image = page.cover.src
   const blocks = await FetchBlocks(id)
@@ -42,6 +52,13 @@ const BlocksPage: NextPage<Props> = ({ title, icon, image, blocks }) => {
   const bg = {
     backgroundImage: `url("${image}")`
   }
+
+  const [exModules, setExModules] = useState({ mermaid, prism })
+  useEffect(() => {
+    mermaid.initialize({ theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'neutral' })
+    setExModules({ mermaid, prism })
+  }, [])
+
   return (
     <>
       <Head>
@@ -54,13 +71,13 @@ const BlocksPage: NextPage<Props> = ({ title, icon, image, blocks }) => {
             {icon}
           </div>
           <h1 className={styles.title}>
-            <TextObject textObject={title} />
+            {title && <TextObject textObject={title} />}
           </h1>
         </div>
       </header>
 
       <div className={styles.page}>
-        <Blocks blocks={blocks} />
+        <Blocks blocks={blocks} modules={exModules} />
       </div>
     </>
   )
