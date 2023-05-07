@@ -30,6 +30,10 @@ export const TableHandler = ({ name, items, path, slug, link, query }: TableHand
   }
 
   if (items.object === 'list') {
+    if (items.results.length === 0) {
+      return <></>
+    }
+
     const target = items.results[0]
     switch (target.type) {
       case 'title': { // Skip: Unexpected lexical declaration in case block.
