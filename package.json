@@ -1,6 +1,6 @@
 {
   "name": "notionate",
-  "version": "8.2.3",
+  "version": "8.3.0",
   "license": "MIT",
   "repository": "linyows/notionate",
   "description": "This is React components that uses the Notion API to display the Notion's database and page.",
@@ -29,7 +29,7 @@
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "clean": "rm -rf dist/*",
     "cacheclean": "rm -rf .cache/*",
-    "export": "next build && next export",
+    "export": "next build",
     "test": "uvu -r ts-node/register test",
     "prepublishOnly": "npm install && npm run build && npm test"
   },

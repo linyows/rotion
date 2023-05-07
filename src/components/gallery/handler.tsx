@@ -23,6 +23,10 @@ export const GalleryHandler = ({ items, path }: GalleryHandlerProps) => {
   }
 
   if (items.object === 'list') {
+    if (items.results.length === 0) {
+      return <></>
+    }
+
     const target = items.results[0]
     switch (target.type) {
       case 'title':
