@@ -5,13 +5,13 @@ import type {
 import TextBlock from '../page/text'
 
 export type TableRichTextProps = {
-  payload: RichTextPropertyItemObjectResponse
+  payload?: RichTextPropertyItemObjectResponse
 }
 
 export const TableRichTextField: React.FC<TableRichTextProps> = ({ payload }) => {
   return (
     <div className="notionate-table-richtext">
-      <TextBlock tag="span" block={[payload.rich_text]} />
+      {payload && <TextBlock tag="span" block={[payload.rich_text]} />}
     </div>
   )
 }
