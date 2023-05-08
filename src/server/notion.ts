@@ -43,7 +43,7 @@ const queryDbWithBackoff = async (params: QueryDatabaseParameters): Promise<Quer
         case APIErrorCode.RateLimited:
         case APIErrorCode.InternalServerError:
           console.log(`Backoff -- api error code: ${error.code}`)
-          await new Promise(re => setTimeout(re, waitTimeSecAfterLimit))
+          await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
           db = await notion.databases.query(params) as QueryDatabaseResponseEx
           break
       }
@@ -60,14 +60,14 @@ const getDbWithBackoff = async (database_id: string): Promise<GetDatabaseRespons
   let db: GetDatabaseResponseEx|null = null
   try {
     db = await notion.databases.retrieve({ database_id }) as GetDatabaseResponseEx
-    await new Promise(re => setTimeout(re, waitingTimeSec))
+    await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
   } catch (error: unknown) {
     if (isNotionClientError(error)) {
       switch (error.code) {
         case APIErrorCode.RateLimited:
         case APIErrorCode.InternalServerError:
           console.log(`Backoff -- api error code: ${error.code}`)
-          await new Promise(re => setTimeout(re, waitTimeSecAfterLimit))
+          await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
           db = await notion.databases.retrieve({ database_id }) as GetDatabaseResponseEx
           break
       }
@@ -84,14 +84,14 @@ const getPageWithBackoff = async (page_id: string): Promise<GetPageResponseEx> =
   let page: GetPageResponseEx|null = null
   try {
     page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
-    await new Promise(re => setTimeout(re, waitingTimeSec))
+    await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
   } catch (error: unknown) {
     if (isNotionClientError(error)) {
       switch (error.code) {
         case APIErrorCode.RateLimited:
         case APIErrorCode.InternalServerError:
           console.log(`Backoff -- api error code: ${error.code}`)
-          await new Promise(re => setTimeout(re, waitTimeSecAfterLimit))
+          await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
           page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
           break
       }
@@ -108,14 +108,14 @@ const getListBlockWithBackoff = async (block_id: string): Promise<ListBlockChild
   let list: ListBlockChildrenResponseEx|null = null
   try {
     list = await notion.blocks.children.list({ block_id }) as ListBlockChildrenResponseEx
-    await new Promise(re => setTimeout(re, waitingTimeSec))
+    await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
   } catch (error: unknown) {
     if (isNotionClientError(error)) {
       switch (error.code) {
         case APIErrorCode.RateLimited:
         case APIErrorCode.InternalServerError:
           console.log(`Backoff -- api error code: ${error.code}`)
-          await new Promise(re => setTimeout(re, waitTimeSecAfterLimit))
+          await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
           list = await notion.blocks.children.list({ block_id }) as ListBlockChildrenResponseEx
           break
       }
@@ -132,13 +132,13 @@ const getPagePropertyWithBackoff = async (page_id: string, property_id: string):
   let props: GetPagePropertyResponse|null = null
   try {
     props = await notion.pages.properties.retrieve({ page_id, property_id })
-    await new Promise(re => setTimeout(re, waitingTimeSec))
+    await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
   } catch (error: unknown) {
     if (isNotionClientError(error)) {
       switch (error.code) {
         case APIErrorCode.RateLimited:
         case APIErrorCode.InternalServerError:
-          await new Promise(re => setTimeout(re, waitTimeSecAfterLimit))
+          await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
           props = await notion.pages.properties.retrieve({ page_id, property_id })
           break
       }
