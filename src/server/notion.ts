@@ -1,4 +1,4 @@
-import { Client } from '@notionhq/client'
+import { Client, isNotionClientError, APIErrorCode } from '@notionhq/client'
 import type {
   QueryDatabaseParameters,
   QueryDatabaseResponseEx,
@@ -8,6 +8,7 @@ import type {
   PropertyItemPropertyItemListResponse,
   PageObjectResponseEx,
   PersonUserObjectResponseEx,
+  GetPagePropertyResponse,
 } from './types'
 import {
   atoh,
@@ -25,9 +26,129 @@ const cacheDir = process.env.NOTIONATE_CACHEDIR || '.cache'
 const incrementalCache = process.env.NOTIONATE_INCREMENTAL_CACHE === 'true'
 const auth = process.env.NOTION_TOKEN
 const notion = new Client({ auth })
+const waitingTimeSec = 1 * 1000
+const waitTimeSecAfterLimit = 60 * 1000
 
 const isEmpty = (obj: Object) => {
   return !Object.keys(obj).length
+}
+
+const queryDbWithBackoff = async (params: QueryDatabaseParameters): Promise<QueryDatabaseResponseEx> => {
+  let db: QueryDatabaseResponseEx|null = null
+  try {
+    db = await notion.databases.query(params) as QueryDatabaseResponseEx
+  } catch (error: unknown) {
+    if (isNotionClientError(error)) {
+      switch (error.code) {
+        case APIErrorCode.RateLimited:
+        case APIErrorCode.InternalServerError:
+          console.log(`Backoff -- api error code: ${error.code}`)
+          await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
+          db = await notion.databases.query(params) as QueryDatabaseResponseEx
+          break
+      }
+    }
+    console.error(error)
+  }
+  if (db === null) {
+    throw new Error('notion.databases.query: request to notion api failed')
+  }
+  return db
+}
+
+const getDbWithBackoff = async (database_id: string): Promise<GetDatabaseResponseEx> => {
+  let db: GetDatabaseResponseEx|null = null
+  try {
+    db = await notion.databases.retrieve({ database_id }) as GetDatabaseResponseEx
+    await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
+  } catch (error: unknown) {
+    if (isNotionClientError(error)) {
+      switch (error.code) {
+        case APIErrorCode.RateLimited:
+        case APIErrorCode.InternalServerError:
+          console.log(`Backoff -- api error code: ${error.code}`)
+          await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
+          db = await notion.databases.retrieve({ database_id }) as GetDatabaseResponseEx
+          break
+      }
+    }
+    console.error(error)
+  }
+  if (db === null) {
+    throw new Error('notion.databases.retrieve: request to notion api failed')
+  }
+  return db
+}
+
+const getPageWithBackoff = async (page_id: string): Promise<GetPageResponseEx> => {
+  let page: GetPageResponseEx|null = null
+  try {
+    page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
+    await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
+  } catch (error: unknown) {
+    if (isNotionClientError(error)) {
+      switch (error.code) {
+        case APIErrorCode.RateLimited:
+        case APIErrorCode.InternalServerError:
+          console.log(`Backoff -- api error code: ${error.code}`)
+          await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
+          page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
+          break
+      }
+    }
+    console.error(error)
+  }
+  if (page === null) {
+    throw new Error('notion.pages.retrieve: request to notion api failed')
+  }
+  return page
+}
+
+const getListBlockWithBackoff = async (block_id: string): Promise<ListBlockChildrenResponseEx> => {
+  let list: ListBlockChildrenResponseEx|null = null
+  try {
+    list = await notion.blocks.children.list({ block_id }) as ListBlockChildrenResponseEx
+    await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
+  } catch (error: unknown) {
+    if (isNotionClientError(error)) {
+      switch (error.code) {
+        case APIErrorCode.RateLimited:
+        case APIErrorCode.InternalServerError:
+          console.log(`Backoff -- api error code: ${error.code}`)
+          await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
+          list = await notion.blocks.children.list({ block_id }) as ListBlockChildrenResponseEx
+          break
+      }
+    }
+    console.error(error)
+  }
+  if (list === null) {
+    throw new Error('notion.blocks.children.list: request to notion api failed')
+  }
+  return list
+}
+
+const getPagePropertyWithBackoff = async (page_id: string, property_id: string): Promise<GetPagePropertyResponse> => {
+  let props: GetPagePropertyResponse|null = null
+  try {
+    props = await notion.pages.properties.retrieve({ page_id, property_id })
+    await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
+  } catch (error: unknown) {
+    if (isNotionClientError(error)) {
+      switch (error.code) {
+        case APIErrorCode.RateLimited:
+        case APIErrorCode.InternalServerError:
+          await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
+          props = await notion.pages.properties.retrieve({ page_id, property_id })
+          break
+      }
+    }
+    console.error(error)
+  }
+  if (props === null) {
+    throw new Error('notion.pages.properties.retrieve: request to notion api failed')
+  }
+  return props
 }
 
 /**
@@ -62,15 +183,12 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
     if (res && res.next_cursor) {
       params.start_cursor = res.next_cursor
     }
-
-    res = await notion.databases.query(params) as QueryDatabaseResponseEx
-
+    res = await queryDbWithBackoff(params)
     if (allres === undefined) {
       allres = res
     } else {
       allres.results.push(...res.results)
     }
-
     if (res.next_cursor === null || limit !== undefined) {
       break
     }
@@ -88,7 +206,7 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
     for (const [, v] of Object.entries(page.properties)) {
       const page_id = page.id
       const property_id = v.id
-      const props = await notion.pages.properties.retrieve({ page_id, property_id })
+      const props = await getPagePropertyWithBackoff(page_id, property_id)
       page.property_items.push(props)
       // Save avatar in people property type
       if (v.type === 'people') {
@@ -102,7 +220,7 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
     }
   }
 
-  const meta = await notion.databases.retrieve({ database_id }) as GetDatabaseResponseEx
+  const meta = await getDbWithBackoff(database_id)
   if ('cover' in meta && meta.cover !== null) {
     const imageUrl = (meta.cover.type === 'external') ? meta.cover.external.url : meta.cover.file.url
     meta.cover.src = await saveImage(imageUrl, `database-cover-${database_id}`)
@@ -139,13 +257,13 @@ export const FetchPage = async (page_id: string, last_edited_time?: string): Pro
     /* not fatal */
   }
 
-  const page = await notion.pages.retrieve({ page_id }) as GetPageResponseEx
+  const page = await getPageWithBackoff(page_id)
 
   if ('properties' in page) {
     let list: undefined|PropertyItemPropertyItemListResponse
     for (const [, v] of Object.entries(page.properties)) {
       const property_id = v.id
-      const res = await notion.pages.properties.retrieve({ page_id, property_id })
+      const res = await getPagePropertyWithBackoff(page_id, property_id)
       if (res.object !== 'list') {
         continue
       }
@@ -199,7 +317,7 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
     /* not fatal */
   }
 
-  const list = await notion.blocks.children.list({ block_id }) as ListBlockChildrenResponseEx
+  const list = await getListBlockWithBackoff(block_id)
 
   // With the blocks api, you can get the last modified date of a block,
   // but not the last modified date of all blocks. So extend the type and add it.
@@ -224,7 +342,7 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
         block.children = await FetchBlocks(block.id, block.last_edited_time)
       } else if (block.type === 'child_database' && block.child_database !== undefined && block.has_children) {
         const database_id = block.id
-        block.database = await notion.databases.retrieve({ database_id })
+        block.database = await getDbWithBackoff(database_id)
       } else if (block.type === 'bookmark' && block.bookmark !== undefined) {
         block.bookmark.site = await getHtmlMeta(block.bookmark.url)
       } else if (block.type === 'image' && block.image !== undefined) {
