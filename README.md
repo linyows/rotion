@@ -120,13 +120,15 @@ NOTION_PAGEID=23740912d6ac4018ab76c64e772a342a
 NOTION_DBID=81781536afc6431da21721177e7bf8e0
 ```
 
-Env name           | Description                                         | Default
----                | ---                                                 | ---
-NOTION_TOKEN       | Read permission is required in notion's credentials | -
-NOTIONATE_CACHEDIR | Cache directory name                                | .cache
-NOTIONATE_DOCROOT  | Web server root directory                           | public
-NOTIONATE_IMAGEDIR | Web server image directory                          | images
-NOTIONATE_INCREMENTAL_CACHE | Enable incremental cache                   | false
+Env name                    | Description                                                   | Default
+---                         | ---                                                           | ---
+NOTION_TOKEN                | Read permission is required in notion's credentials           | -
+NOTIONATE_CACHEDIR          | Cache directory name                                          | .cache
+NOTIONATE_DOCROOT           | Web server root directory                                     | public
+NOTIONATE_IMAGEDIR          | Web server image directory                                    | images
+NOTIONATE_INCREMENTAL_CACHE | Enable incremental cache                                      | false
+NOTIONATE_WAITTIME          | milliseconds to wait right after api request due to ratelimit | 0
+NOTIONATE_LIMITED_WAITTIME  | milliseconds to wait before backoff after ratelimit limit     | 60sec
 
 API
 --
