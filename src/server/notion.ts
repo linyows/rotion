@@ -38,9 +38,9 @@ const isEmpty = (obj: Object) => {
   return !Object.keys(obj).length
 }
 
-async function reqAPIWithBackoff<T>(func: Function, args: unknown, count: number): Promise<T> {
+async function reqAPIWithBackoff<T> (func: Function, args: unknown, count: number): Promise<T> {
   if (count < 1) {
-    throw new Error(`backoff count exceeded`)
+    throw new Error('backoff count exceeded')
   }
 
   let res: T|null = null
