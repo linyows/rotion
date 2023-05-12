@@ -76,6 +76,24 @@ async function reqAPIWithBackoff<T> (func: Function, args: unknown, count: numbe
   return res
 }
 
+async function reqAPIWithBackoffAndCache<T> (name: string, func: Function, args: unknown, count: number): Promise<T> {
+  const key = atoh(JSON.stringify({ func: func.name, args }))
+  const cacheFile = `${cacheDir}/${name}-${key}`
+
+  try {
+    const cache = await readCache<T|null>(cacheFile)
+    if (await isAvailableCache(cacheFile, 600)) {
+      return cache as T
+    }
+  } catch (_) {
+    /* not fatal */
+  }
+
+  const res = await reqAPIWithBackoff<T>(func, args, count)
+  await writeCache(cacheFile, res)
+  return res as T
+}
+
 /**
  * FetchDatabase retrieves database and download images in from blocks.
  * And create cache that includes filepath of downloaded images.
@@ -131,7 +149,7 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
     for (const [, v] of Object.entries(page.properties)) {
       const page_id = page.id
       const property_id = v.id
-      const props = await reqAPIWithBackoff<GetPagePropertyResponse>(notion.pages.properties.retrieve, { page_id, property_id }, 3)
+      const props = await reqAPIWithBackoffAndCache<GetPagePropertyResponse>('notion.pages.properties.retrieve', notion.pages.properties.retrieve, { page_id, property_id }, 3)
       page.property_items.push(props)
       // Save avatar in people property type
       if (v.type === 'people') {
@@ -188,7 +206,7 @@ export const FetchPage = async (page_id: string, last_edited_time?: string): Pro
     let list: undefined|PropertyItemPropertyItemListResponse
     for (const [, v] of Object.entries(page.properties)) {
       const property_id = v.id
-      const res = await reqAPIWithBackoff<GetPagePropertyResponse>(notion.pages.properties.retrieve, { page_id, property_id }, 3)
+      const res = await reqAPIWithBackoffAndCache<GetPagePropertyResponse>('notion.pages.properties.retrieve', notion.pages.properties.retrieve, { page_id, property_id }, 3)
       if (res.object !== 'list') {
         continue
       }
@@ -267,7 +285,7 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
         block.children = await FetchBlocks(block.id, block.last_edited_time)
       } else if (block.type === 'child_database' && block.child_database !== undefined && block.has_children) {
         const database_id = block.id
-        block.database = await reqAPIWithBackoff<GetDatabaseResponseEx>(notion.databases.retrieve, { database_id }, 3)
+        block.database = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>('notion.databases.retrieve', notion.databases.retrieve, { database_id }, 3)
       } else if (block.type === 'bookmark' && block.bookmark !== undefined) {
         block.bookmark.site = await getHtmlMeta(block.bookmark.url)
       } else if (block.type === 'image' && block.image !== undefined) {
