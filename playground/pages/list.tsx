@@ -20,7 +20,7 @@ import {
 
 type Props = {
   title: null|RichTextItemResponse
-  desc:  null|RichTextItemResponse[]
+  desc: null|RichTextItemResponse[]
   icon: string
   image: string
   db: QueryDatabaseResponseEx
