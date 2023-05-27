@@ -49,7 +49,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'Nuxt 2 - The Intuitive Vue Framework',
       'Build your Vue 2 application with confidence using Nuxt 2. An open source framework making web development simple and powerful.',
       '/images/html-image-1aa787fe0cfb373575fc2c0f6f826e7c6dc9fd41.webp',
-      '/images/html-icon-5b7695a0da380c6011550f0097344ad388806506-08c83a2cb68c04d4853253d2592db038a7bdd726.png',
+      '/images/html-icon-5b7695a0da380c6011550f0097344ad388806506-08c83a2cb68c04d4853253d2592db038a7bdd726.webp',
     ],
     [
       'https://notionate.linyo.ws/blocks',
@@ -70,7 +70,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'Typeform: People-Friendly Forms and Surveys',
       'Build beautiful, interactive forms — get more responses. No coding needed. Templates for quizzes, research, feedback, lead generation, and more. Sign up FREE.',
       '/images/html-image-8905738008401b6ae505011474b4c6e0a696f809.jpg',
-      '/images/html-icon-239b10b2bb1ad78e45400118cb543275e165075e-c6eac0e9dbd7a24b49444f38a7984d17050ebf67.png',
+      '/images/html-icon-239b10b2bb1ad78e45400118cb543275e165075e-c6eac0e9dbd7a24b49444f38a7984d17050ebf67.webp',
     ],
     [
       'https://www.businesswire.com/',
@@ -100,7 +100,7 @@ test('saveImage saves a image correct file name', async () => {
   td.replace(console, 'log')
   const url = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
   const path = await files.saveImage(url, 'test')
-  assert.equal(path, '/images/test-5cb3342120a9a25a65f2790c4d6f2644cd262734.png')
+  assert.equal(path, '/images/test-5cb3342120a9a25a65f2790c4d6f2644cd262734.webp')
 })
 
 test('findLocationUrl returns url from location header', async () => {
