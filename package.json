@@ -34,14 +34,21 @@
     "prepublishOnly": "npm install && npm run build && npm test"
   },
   "peerDependencies": {
-    "react": "^17.0.2 || ^18.0.0-0",
-    "react-dom": "^17.0.2 || ^18.0.0-0",
     "@types/prismjs": "^1.26.0",
     "mermaid": "^10.1.0",
-    "prismjs": "^1.25.0"
+    "prismjs": "^1.25.0",
+    "react": "^17.0.2 || ^18.0.0-0",
+    "react-dom": "^17.0.2 || ^18.0.0-0"
   },
   "dependencies": {
-    "@notionhq/client": "^2.1.1"
+    "@notionhq/client": "^2.1.1",
+    "@types/imagemin": "^8.0.1",
+    "@types/imagemin-webp": "^7.0.0",
+    "@types/replace-ext": "^2.0.0",
+    "file-type": "^18.4.0",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^8.0.0",
+    "replace-ext": "^2.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
