@@ -225,7 +225,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
     /* Return webp path */
     if (webpQuality > 0) {
       const fType = await fileTypeFromFile(filePath)
-      if (fType != undefined && webpMimes.includes(fType.mime) && fs.existsSync(webpPath)) {
+      if (fType !== undefined && webpMimes.includes(fType.mime) && fs.existsSync(webpPath)) {
         return webpUrlPath
       }
     }
@@ -239,7 +239,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
     /* Convert to webp */
     if (webpQuality > 0) {
       const fType = await fileTypeFromFile(filePath)
-      if (fType != undefined && webpMimes.includes(fType.mime)) {
+      if (fType !== undefined && webpMimes.includes(fType.mime)) {
         const result = await imagemin([filePath], {
           destination: dirPath,
           plugins: [imageminWebp({ quality: webpQuality })],
