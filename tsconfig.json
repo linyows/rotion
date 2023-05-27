@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
@@ -13,16 +13,15 @@
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true
   },
   "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    }
+    "esm": true,
+    "require": ["tsconfig-paths/register"]
   },
   "include": [
     "next-env.d.ts",

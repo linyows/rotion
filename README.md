@@ -129,6 +129,7 @@ NOTIONATE_IMAGEDIR          | Web server image directory                        
 NOTIONATE_INCREMENTAL_CACHE | Enable incremental cache                                      | false
 NOTIONATE_WAITTIME          | milliseconds to wait right after api request due to ratelimit | 0
 NOTIONATE_LIMITED_WAITTIME  | milliseconds to wait before backoff after ratelimit limit     | 60sec
+NOTIONATE_WEBP_QUALITY      | Quality for WebP converting                                   | 95
 
 API
 --

@@ -5,6 +5,10 @@ import http from 'http'
 import path from 'path'
 import crypto from 'crypto'
 import { promisify } from 'util'
+import imagemin from 'imagemin'
+import imageminWebp from 'imagemin-webp'
+import { fileTypeFromFile } from 'file-type'
+import replaceExt from 'replace-ext'
 import type {
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
@@ -21,6 +25,7 @@ const httpOptions = {
     Accept: '*/*',
   },
 }
+const webpQuality = (process.env.NOTIONATE_WEBP_QUALITY || 95) as number
 
 // @ts-ignore
 https.get[promisify.custom] = function getAsync (url: any) {
@@ -208,10 +213,22 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
   const basename = `${atoh(name)}${ext}`
   const urlPath = `/${imageDir}/${prefix}-${basename}`
   const filePath = `${docRoot}${urlPath}`
+  const dirPath = `${docRoot}/${imageDir}`
 
-  await createDirWhenNotfound(`${docRoot}/${imageDir}`)
+  const webpMimes = ['image/jpeg', 'image/png']
+  const webpUrlPath = replaceExt(urlPath, '.webp')
+  const webpPath = `${docRoot}${webpUrlPath}`
+
+  await createDirWhenNotfound(dirPath)
 
   if (fs.existsSync(filePath)) {
+    /* Return webp path */
+    if (webpQuality > 0) {
+      const fType = await fileTypeFromFile(filePath)
+      if (fType !== undefined && webpMimes.includes(fType.mime) && fs.existsSync(webpPath)) {
+        return webpUrlPath
+      }
+    }
     return urlPath
   }
 
@@ -219,7 +236,19 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
     const res = await httpsGetWithFollowRedirects(imageUrl)
     res.pipe(fs.createWriteStream(filePath))
     await res.end
-    console.log(`saved image -- path: ${filePath}, url: ${imageUrl}`)
+    /* Convert to webp */
+    if (webpQuality > 0) {
+      const fType = await fileTypeFromFile(filePath)
+      if (fType !== undefined && webpMimes.includes(fType.mime)) {
+        const result = await imagemin([filePath], {
+          destination: dirPath,
+          plugins: [imageminWebp({ quality: webpQuality })],
+        })
+        if (result && result.length > 0) {
+          return webpUrlPath
+        }
+      }
+    }
   } catch (e) {
     console.log(`saveImage error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
   }
