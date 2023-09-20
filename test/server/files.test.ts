@@ -27,7 +27,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'https://wordpress.org',
       'Blog Tool, Publishing Platform, and CMS &#8211; WordPress.org',
       'Open source software which you can use to easily create a beautiful website, blog, or app.',
-      '/images/html-image-9b9f60fe548894b0705cca79567f05195f769820.webp',
+      '/images/html-image-39391cecbed3a9857659688b3c77ba84155e5e69.webp',
       '/images/html-icon-5e627442a6a3e12ed6cbbecf1a9a0f3ef9298800-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
     ],
     [
@@ -54,7 +54,7 @@ test('getHtmlMeta returns title and desc', async () => {
     [
       'https://notionate.linyo.ws/blocks',
       'Blocks - Notionate',
-      'Notionate',
+      'This is a page for verifying blocks, which are objects that make up a page on notion.',
       '/images/html-image-097f26fa2bf9d587e53b50328b44d229c77026eb.webp',
       '/images/html-icon-20848909d5e8fee8e4fa28fa78ca0cde1586884d-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
     ],
@@ -69,7 +69,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'https://www.typeform.com',
       'Typeform: People-Friendly Forms and Surveys',
       'Build beautiful, interactive forms — get more responses. No coding needed. Templates for quizzes, research, feedback, lead generation, and more. Sign up FREE.',
-      '/images/html-image-8905738008401b6ae505011474b4c6e0a696f809.jpg',
+      '/images/html-image-7741183ef80385ccb4441ac2b39abc9b927e0490.png',
       '/images/html-icon-239b10b2bb1ad78e45400118cb543275e165075e-c6eac0e9dbd7a24b49444f38a7984d17050ebf67.webp',
     ],
     [
@@ -78,6 +78,13 @@ test('getHtmlMeta returns title and desc', async () => {
       'The global leader in press release distribution and regulatory disclosure. Public relations and investor relations professionals rely on Business Wire for broad-based and targeted market reach.',
       '/images/html-image-1ebfeb4b204984939ca889895f01fad24a9e0848.webp',
       '/images/html-icon-65fbfcdf2d131a1bd29acc6b5377073a0b10a76f-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
+    ],
+    [
+      'https://go.dev/conduct',
+      'Go Community Code of Conduct - The Go Programming Language',
+      'Online communities include people from many different backgrounds. The Go contributors are committed to providing a friendly, safe and welcoming environment for all, regardless of gender identity and expression, sexual orientation, disabilities, neurodiversity, physical appearance, body size, ethnicity, nationality, race, age, religion, or similar personal characteristics.',
+      '/images/html-image-dd81b68c375850259cdb26e64618e339c4eec3c3.webp',
+      '/images/html-icon-77014b367198f9878ea91bdccd6bb3fce2a5ee2a-7f5e06b5d5dc8f2fac131fd56215ae5ca767a98c.webp',
     ]
   ]
 

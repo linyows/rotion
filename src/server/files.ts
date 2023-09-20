@@ -289,7 +289,11 @@ export const descRegexps = [
   /content="([^"]+)"\s+property="og:description"/,
   /name="description"\s+content="([^"]+)"/,
   /content="([^"]+)"\s+name="description"/,
-  /<div.*?>([\s\S]*?)<\/div>/,
+  /<main\s.*?<p>([\s\S]*?)<\/p>/,
+  /<p>([\s\S]*?)<\/p>/,
+  /<p\s.*?>([\s\S]*?)<\/p>/,
+  /<div>([\s\S]*?)<\/div>/,
+  /<div\s.*?>([\s\S]*?)<\/div>/,
 ]
 
 export const imageRegexps = [
@@ -297,6 +301,8 @@ export const imageRegexps = [
   /property="og:image"\s+content="([^"]+)"/,
   /content="([^"]+)"\s+property="og:image:secure_url"/,
   /content="([^"]+)"\s+property="og:image"/,
+  /name="og:image"\s+content="([^"]+)"/,
+  /name="twitter:image"\s+content="([^"]+)"/,
 ]
 
 export const iconRegexps = [
