@@ -49,6 +49,10 @@ jobs:
         run: npm ci
       - name: Build and Export
         run: npm run export
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./out
 
   deploy:
     environment:
