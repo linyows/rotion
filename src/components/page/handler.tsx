@@ -61,6 +61,16 @@ export const BlockHandler = ({ block, href, link, query, modules }: BlockHandler
       const tag = blockType[block.type] as keyof JSX.IntrinsicElements
       // @ts-ignore
       const text = block[block.type]?.rich_text
+
+      if (block.has_children) {
+        return (
+          <>
+            <TextBlock tag={tag} block={text} key={block.id} />
+            {block.children.results.map((bb) => (BlockHandler({ block: bb, href, link, query })))}
+          </>
+        )
+      }
+
       return <TextBlock tag={tag} block={text} key={block.id} />
     }
 
