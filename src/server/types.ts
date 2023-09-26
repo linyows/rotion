@@ -110,6 +110,12 @@ export type Icon =
     | { type: 'file', file: { url: string, expiry_time: string } }
     | null
 
+export type BulletedListItemBlockObjectResponseEx = BulletedListItemBlockObjectResponse & {
+  children?: ListBlockChildrenResponseEx
+}
+export type NumberedListItemBlockObjectResponseEx = NumberedListItemBlockObjectResponse & {
+  children?: ListBlockChildrenResponseEx
+}
 export type TableBlockObjectResponseEx = TableBlockObjectResponse & {
   children: ListBlockChildrenResponseEx
 }
@@ -181,8 +187,8 @@ export type BlockObjectResponse =
   | Heading1BlockObjectResponse
   | Heading2BlockObjectResponse
   | Heading3BlockObjectResponse
-  | BulletedListItemBlockObjectResponse
-  | NumberedListItemBlockObjectResponse
+  | BulletedListItemBlockObjectResponseEx
+  | NumberedListItemBlockObjectResponseEx
   | QuoteBlockObjectResponse
   | ToDoBlockObjectResponse
   | ToggleBlockObjectResponseEx
