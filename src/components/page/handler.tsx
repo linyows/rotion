@@ -55,12 +55,44 @@ export const BlockHandler = ({ block, href, link, query, modules }: BlockHandler
     case 'heading_3':
     case 'paragraph':
     case 'quote':
-    case 'divider':
-    case 'numbered_list_item':
+    case 'divider': {
+      const tag = blockType[block.type] as keyof JSX.IntrinsicElements
+      // @ts-ignore
+      const text = block[block.type]?.rich_text
+      return <TextBlock tag={tag} block={text} key={block.id} />
+    }
+
+    case 'numbered_list_item': {
+      const tag = blockType[block.type] as keyof JSX.IntrinsicElements
+      // @ts-ignore
+      const text = block[block.type]?.rich_text
+      if (block.has_children && block.children !== undefined) {
+        return (
+          <>
+            <TextBlock tag={tag} block={text} key={block.id} />
+            {block.children.results.map((bb) => (
+              BlockHandler({ block: (bb as BlockObjectResponse), href, link, query })
+            ))}
+          </>
+        )
+      }
+      return <TextBlock tag={tag} block={text} key={block.id} />
+    }
+
     case 'bulleted_list_item': {
       const tag = blockType[block.type] as keyof JSX.IntrinsicElements
       // @ts-ignore
       const text = block[block.type]?.rich_text
+      if (block.has_children && block.children !== undefined) {
+        return (
+          <>
+            <TextBlock tag={tag} block={text} key={block.id} />
+            {block.children.results.map((bb) => (
+              BlockHandler({ block: (bb as BlockObjectResponse), href, link, query })
+            ))}
+          </>
+        )
+      }
       return <TextBlock tag={tag} block={text} key={block.id} />
     }
 

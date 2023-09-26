@@ -298,6 +298,10 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
         block.video.html = await getVideoHtml(block)
       } else if (block.type === 'embed' && block.embed !== undefined) {
         block.embed.html = await getEmbedHtml(block)
+      } else if (block.type === 'bulleted_list_item' && block.has_children) {
+        block.children = await FetchBlocks(block.id, block.last_edited_time)
+      } else if (block.type === 'numbered_list_item' && block.has_children) {
+        block.children = await FetchBlocks(block.id, block.last_edited_time)
       }
     } catch (e) {
       console.log(`error for ${block.type} contents get`, block, e)
