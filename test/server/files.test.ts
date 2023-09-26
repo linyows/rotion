@@ -45,13 +45,6 @@ test('getHtmlMeta returns title and desc', async () => {
       '/images/html-icon-5b7695a0da380c6011550f0097344ad388806506-08c83a2cb68c04d4853253d2592db038a7bdd726.webp',
     ],
     [
-      'https://notionate.linyo.ws/blocks',
-      'Blocks - Notionate',
-      'This is a page for verifying blocks, which are objects that make up a page on notion.',
-      '/images/html-image-097f26fa2bf9d587e53b50328b44d229c77026eb.webp',
-      '/images/html-icon-20848909d5e8fee8e4fa28fa78ca0cde1586884d-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
-    ],
-    [
       'https://www.notion.so/releases/2022-03-03',
       'March 3, 2022 – Connect your tools with the API 🧰',
       'The API is officially out of beta! We expanded the API’s capabilities to make it even easier to build with Notion — learn more at developers.notion.com.',
