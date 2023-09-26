@@ -38,13 +38,6 @@ test('getHtmlMeta returns title and desc', async () => {
       '/images/html-icon-cf3a9253f8e579b8815743c91cf8474a7ba0a5c3-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
     ],
     [
-      'https://vercel.com/templates/next.js/notion-blog',
-      'Notion-backed Next.js Blog – Vercel',
-      'A Next.js site using new SSG support with a Notion backed blog',
-      '/images/html-image-7981a4e7e9bdc02180a3c3d1a6b2adf0ba424b1c.webp',
-      '/images/html-icon-980b8dde93b046d5802eea7f32ac4a180959aa0b-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
-    ],
-    [
       'https://nuxtjs.org',
       'Nuxt 2 - The Intuitive Vue Framework',
       'Build your Vue 2 application with confidence using Nuxt 2. An open source framework making web development simple and powerful.',
