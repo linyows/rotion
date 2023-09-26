@@ -48,7 +48,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build and Export
-        run: npm run export
+        run: |
+          npm run export
+          ls -la
+          npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
