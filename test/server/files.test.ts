@@ -20,7 +20,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'https://github.com',
       'GitHub: Let’s build from here · GitHub',
       'GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...',
-      '/images/html-image-66374a1efda63b1d278e16f4a8cb31e16112c03d.webp',
+      '/images/html-image-c134a985e5f03a4b5d56525a8cf57b57bf2d227d.webp',
       '/images/html-icon-84b7e44aa54d002eac8d00f5bfa9cc93410f2a48-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg',
     ],
     [
@@ -33,7 +33,7 @@ test('getHtmlMeta returns title and desc', async () => {
     [
       'https://reactjs.org',
       'React',
-      'The library for web and native user interfaces',
+      'React is the library for web and native user interfaces. Build user interfaces out of individual pieces called components written in JavaScript. React is designed to let you seamlessly combine components written by independent people, teams, and organizations.',
       '/images/html-image-ce7f0c52bc0e232480445462ce8acd6f873e7263.webp',
       '/images/html-icon-cf3a9253f8e579b8815743c91cf8474a7ba0a5c3-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
     ],
