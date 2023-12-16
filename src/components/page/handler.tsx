@@ -68,12 +68,12 @@ export const BlockHandler = ({ block, href, link, query, modules }: BlockHandler
       const text = block[block.type]?.rich_text
       if (block.has_children && block.children !== undefined) {
         return (
-          <>
-            <TextBlock tag={tag} block={text} key={block.id} />
+          <div key={block.id}>
+            <TextBlock tag={tag} block={text} key={`text-${block.id}`} />
             {block.children.results.map((bb) => (
               BlockHandler({ block: (bb as BlockObjectResponse), href, link, query })
             ))}
-          </>
+          </div>
         )
       }
       return <TextBlock tag={tag} block={text} key={block.id} />
@@ -85,12 +85,12 @@ export const BlockHandler = ({ block, href, link, query, modules }: BlockHandler
       const text = block[block.type]?.rich_text
       if (block.has_children && block.children !== undefined) {
         return (
-          <>
-            <TextBlock tag={tag} block={text} key={block.id} />
+          <div key={block.id}>
+            <TextBlock tag={tag} block={text} key={`text-${block.id}`} />
             {block.children.results.map((bb) => (
               BlockHandler({ block: (bb as BlockObjectResponse), href, link, query })
             ))}
-          </>
+          </div>
         )
       }
       return <TextBlock tag={tag} block={text} key={block.id} />

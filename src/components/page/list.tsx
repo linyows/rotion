@@ -18,9 +18,7 @@ export const ListBlock = ({ tag, blocks, href, link, query }: ListBlockProps) =>
   const CustomTag = tag
   return (
     <CustomTag className={`notionate-blocks-list-${tag}`} key={tag + blocks[0].id}>
-      {blocks.map(block => (
-        BlockHandler({ block, href, link, query })
-      ))}
+      {blocks.map(block => BlockHandler({ block, href, link, query }))}
     </CustomTag>
   )
 }
