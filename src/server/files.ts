@@ -222,35 +222,56 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
   await createDirWhenNotfound(dirPath)
 
   if (fs.existsSync(filePath)) {
-    /* Return webp path */
     if (webpQuality > 0) {
+      /* Return webp path */
       const fType = await fileTypeFromFile(filePath)
       if (fType !== undefined && webpMimes.includes(fType.mime) && fs.existsSync(webpPath)) {
         return webpUrlPath
       }
+    } else {
+      return urlPath
     }
-    return urlPath
+
+  /* Download image */
+  } else {
+    try {
+      let res: HttpGetResponse
+      res = await httpsGetWithFollowRedirects(imageUrl)
+      if (res.statusCode >= 400 && res.statusCode < 500 && imageDir !== urlWithoutQuerystring) {
+        res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
+        if (res.statusCode >= 400 && res.statusCode < 500) {
+          throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
+        }
+      }
+      res.pipe(fs.createWriteStream(filePath))
+      await res.end
+    } catch (e) {
+      console.log(`saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
+    }
   }
 
+  /* Convert to webp */
   try {
-    const res = await httpsGetWithFollowRedirects(imageUrl)
-    res.pipe(fs.createWriteStream(filePath))
-    await res.end
-    /* Convert to webp */
     if (webpQuality > 0) {
       const fType = await fileTypeFromFile(filePath)
-      if (fType !== undefined && webpMimes.includes(fType.mime)) {
-        const result = await imagemin([filePath], {
-          destination: dirPath,
-          plugins: [imageminWebp({ quality: webpQuality })],
-        })
-        if (result && result.length > 0) {
-          return webpUrlPath
+      if (fType === undefined) {
+        // console.log(`fileTypeFromFile returns undefined -- path: ${filePath}, url: ${imageUrl}`)
+        return urlPath
+
+      } else {
+        if (webpMimes.includes(fType.mime)) {
+          const result = await imagemin([filePath], {
+            destination: dirPath,
+            plugins: [imageminWebp({ quality: webpQuality })],
+          })
+          if (result && result.length > 0) {
+            return webpUrlPath
+          }
         }
       }
     }
   } catch (e) {
-    console.log(`saveImage error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
+    console.log(`saveImage webp convert error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
   }
 
   return urlPath
