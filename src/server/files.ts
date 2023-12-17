@@ -14,7 +14,6 @@ import type {
   EmbedBlockObjectResponseEx,
 } from './types'
 import pkg from '../../package.json'
-import { url } from 'inspector'
 
 const docRoot = process.env.NOTIONATE_DOCROOT || 'public'
 const imageDir = process.env.NOTIONATE_IMAGEDIR || 'images'
@@ -37,10 +36,9 @@ https.get[promisify.custom] = function getAsync (url: any) {
       resolve(res)
     })
     req.on('error', reject)
-    req.on('timeout', () => {
-      console.log(`request timed out(${timeout}ms): ${url}`)
+    req.setTimeout(timeout, () => {
       req.abort()
-      return reject
+      reject(new Error(`request timed out(${timeout}ms): ${url}`))
     })
   })
 }
@@ -54,10 +52,9 @@ http.get[promisify.custom] = function getAsync (url: any) {
       resolve(res)
     })
     req.on('error', reject)
-    req.on('timeout', () => {
-      console.log(`request timed out(${timeout}ms): ${url}`)
+    req.setTimeout(timeout, () => {
       req.abort()
-      return reject
+      reject(new Error(`request timed out(${timeout}ms): ${url}`))
     })
   })
 }
@@ -208,6 +205,10 @@ export async function isAvailableCache (f: string, seconds: number): Promise<boo
   return stats.mtime < t
 }
 
+const sleep = (m: number) => {
+  return new Promise((resolve) => setTimeout(resolve, m))
+}
+
 export const saveImage = async (imageUrl: string, prefix: string): Promise<string> => {
   const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
   const { ext, name } = path.parse(urlWithoutQuerystring)
@@ -223,12 +224,8 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
   await createDirWhenNotfound(dirPath)
 
   if (fs.existsSync(filePath)) {
-    if (webpQuality > 0) {
-      /* Return webp path */
-      const fType = await fileTypeFromFile(filePath)
-      if (fType !== undefined && webpMimes.includes(fType.mime) && fs.existsSync(webpPath)) {
-        return webpUrlPath
-      }
+    if (webpQuality > 0 && fs.existsSync(webpPath)) {
+      return webpUrlPath
     } else {
       return urlPath
     }
@@ -246,6 +243,8 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
       }
       res.pipe(fs.createWriteStream(filePath))
       await res.end
+      // This fix that for fileType do not returns undefined
+      await sleep(10)
     } catch (e) {
       console.log(`saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
     }
@@ -256,7 +255,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
     if (webpQuality > 0) {
       const fType = await fileTypeFromFile(filePath)
       if (fType === undefined) {
-        // console.log(`fileTypeFromFile returns undefined -- path: ${filePath}, url: ${imageUrl}`)
+        console.log(`fileTypeFromFile returns undefined -- path: ${filePath}, url: ${imageUrl}`)
         return urlPath
 
       } else {

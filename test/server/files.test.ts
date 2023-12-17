@@ -14,7 +14,7 @@ type GHRes = {
 }
 
 test('getHtmlMeta returns title and desc', async () => {
-  td.replace(console, 'log')
+  //td.replace(console, 'log')
   const tests = [
     [
       'https://github.com',
