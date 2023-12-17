@@ -14,10 +14,11 @@ import type {
   EmbedBlockObjectResponseEx,
 } from './types'
 import pkg from '../../package.json'
+import { url } from 'inspector'
 
 const docRoot = process.env.NOTIONATE_DOCROOT || 'public'
 const imageDir = process.env.NOTIONATE_IMAGEDIR || 'images'
-const timeout = 1500
+const timeout = process.env.NOTIONATE_TIMEOUT ? parseInt(process.env.NOTIONATE_TIMEOUT) : 1500
 const httpOptions = {
   timeout,
   headers: {
@@ -25,7 +26,7 @@ const httpOptions = {
     Accept: '*/*',
   },
 }
-const webpQuality = (process.env.NOTIONATE_WEBP_QUALITY || 95) as number
+const webpQuality = process.env.NOTIONATE_WEBP_QUALITY ? parseInt(process.env.NOTIONATE_WEBP_QUALITY) : 95
 
 // @ts-ignore
 https.get[promisify.custom] = function getAsync (url: any) {
