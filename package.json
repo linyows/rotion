@@ -45,7 +45,7 @@
     "@types/imagemin": "^8.0.1",
     "@types/imagemin-webp": "^7.0.0",
     "@types/replace-ext": "^2.0.0",
-    "file-type": "^16.5.4",
+    "file-type": "^18.7.0",
     "imagemin": "^7.0.1",
     "imagemin-webp": "^6.1.0",
     "replace-ext": "^2.0.0"
