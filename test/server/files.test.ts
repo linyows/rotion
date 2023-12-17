@@ -14,7 +14,7 @@ type GHRes = {
 }
 
 test('getHtmlMeta returns title and desc', async () => {
-  td.replace(console, 'log')
+  //td.replace(console, 'log')
   const tests = [
     [
       'https://github.com',
@@ -55,7 +55,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'https://www.typeform.com',
       'Typeform: People-Friendly Forms and Surveys',
       'Build beautiful, interactive forms — get more responses. No coding needed. Templates for quizzes, research, feedback, lead generation, and more. Sign up FREE.',
-      '/images/html-image-7741183ef80385ccb4441ac2b39abc9b927e0490.png',
+      '/images/html-image-7741183ef80385ccb4441ac2b39abc9b927e0490.webp',
       '/images/html-icon-239b10b2bb1ad78e45400118cb543275e165075e-c6eac0e9dbd7a24b49444f38a7984d17050ebf67.webp',
     ],
     [

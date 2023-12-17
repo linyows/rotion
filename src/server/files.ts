@@ -7,7 +7,7 @@ import crypto from 'crypto'
 import { promisify } from 'util'
 import imagemin from 'imagemin'
 import imageminWebp from 'imagemin-webp'
-import FileType from 'file-type'
+import { fileTypeFromFile } from 'file-type'
 import replaceExt from 'replace-ext'
 import type {
   VideoBlockObjectResponseEx,
@@ -17,7 +17,7 @@ import pkg from '../../package.json'
 
 const docRoot = process.env.NOTIONATE_DOCROOT || 'public'
 const imageDir = process.env.NOTIONATE_IMAGEDIR || 'images'
-const timeout = 1500
+const timeout = process.env.NOTIONATE_TIMEOUT ? parseInt(process.env.NOTIONATE_TIMEOUT) : 1500
 const httpOptions = {
   timeout,
   headers: {
@@ -25,7 +25,7 @@ const httpOptions = {
     Accept: '*/*',
   },
 }
-const webpQuality = (process.env.NOTIONATE_WEBP_QUALITY || 95) as number
+const webpQuality = process.env.NOTIONATE_WEBP_QUALITY ? parseInt(process.env.NOTIONATE_WEBP_QUALITY) : 95
 
 // @ts-ignore
 https.get[promisify.custom] = function getAsync (url: any) {
@@ -36,10 +36,9 @@ https.get[promisify.custom] = function getAsync (url: any) {
       resolve(res)
     })
     req.on('error', reject)
-    req.on('timeout', () => {
-      console.log(`request timed out(${timeout}ms): ${url}`)
+    req.setTimeout(timeout, () => {
       req.abort()
-      return reject
+      reject(new Error(`request timed out(${timeout}ms): ${url}`))
     })
   })
 }
@@ -53,10 +52,9 @@ http.get[promisify.custom] = function getAsync (url: any) {
       resolve(res)
     })
     req.on('error', reject)
-    req.on('timeout', () => {
-      console.log(`request timed out(${timeout}ms): ${url}`)
+    req.setTimeout(timeout, () => {
       req.abort()
-      return reject
+      reject(new Error(`request timed out(${timeout}ms): ${url}`))
     })
   })
 }
@@ -207,6 +205,10 @@ export async function isAvailableCache (f: string, seconds: number): Promise<boo
   return stats.mtime < t
 }
 
+const sleep = (m: number) => {
+  return new Promise((resolve) => setTimeout(resolve, m))
+}
+
 export const saveImage = async (imageUrl: string, prefix: string): Promise<string> => {
   const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
   const { ext, name } = path.parse(urlWithoutQuerystring)
@@ -222,35 +224,53 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
   await createDirWhenNotfound(dirPath)
 
   if (fs.existsSync(filePath)) {
-    /* Return webp path */
-    if (webpQuality > 0) {
-      const fType = await FileType.fromFile(filePath)
-      if (fType !== undefined && webpMimes.includes(fType.mime) && fs.existsSync(webpPath)) {
-        return webpUrlPath
-      }
+    if (webpQuality > 0 && fs.existsSync(webpPath)) {
+      return webpUrlPath
+    } else {
+      return urlPath
     }
-    return urlPath
+
+  /* Download image */
+  } else {
+    try {
+      let res: HttpGetResponse
+      res = await httpsGetWithFollowRedirects(imageUrl)
+      if (res.statusCode >= 400 && res.statusCode < 500 && imageDir !== urlWithoutQuerystring) {
+        res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
+        if (res.statusCode >= 400 && res.statusCode < 500) {
+          throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
+        }
+      }
+      res.pipe(fs.createWriteStream(filePath))
+      await res.end
+      // This fix that for fileType do not returns undefined
+      await sleep(10)
+    } catch (e) {
+      console.log(`saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
+    }
   }
 
+  /* Convert to webp */
   try {
-    const res = await httpsGetWithFollowRedirects(imageUrl)
-    res.pipe(fs.createWriteStream(filePath))
-    await res.end
-    /* Convert to webp */
     if (webpQuality > 0) {
-      const fType = await FileType.fromFile(filePath)
-      if (fType !== undefined && webpMimes.includes(fType.mime)) {
-        const result = await imagemin([filePath], {
-          destination: dirPath,
-          plugins: [imageminWebp({ quality: webpQuality })],
-        })
-        if (result && result.length > 0) {
-          return webpUrlPath
+      const fType = await fileTypeFromFile(filePath)
+      if (fType === undefined) {
+        // console.log(`fileTypeFromFile returns undefined -- path: ${filePath}, url: ${imageUrl}`)
+        return urlPath
+      } else {
+        if (webpMimes.includes(fType.mime)) {
+          const result = await imagemin([filePath], {
+            destination: dirPath,
+            plugins: [imageminWebp({ quality: webpQuality })],
+          })
+          if (result && result.length > 0) {
+            return webpUrlPath
+          }
         }
       }
     }
   } catch (e) {
-    console.log(`saveImage error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
+    console.log(`saveImage webp convert error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
   }
 
   return urlPath
