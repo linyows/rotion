@@ -257,7 +257,6 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
       if (fType === undefined) {
         // console.log(`fileTypeFromFile returns undefined -- path: ${filePath}, url: ${imageUrl}`)
         return urlPath
-
       } else {
         if (webpMimes.includes(fType.mime)) {
           const result = await imagemin([filePath], {
