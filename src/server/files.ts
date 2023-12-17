@@ -7,7 +7,7 @@ import crypto from 'crypto'
 import { promisify } from 'util'
 import imagemin from 'imagemin'
 import imageminWebp from 'imagemin-webp'
-import FileType from 'file-type'
+import { fileTypeFromFile } from 'file-type'
 import replaceExt from 'replace-ext'
 import type {
   VideoBlockObjectResponseEx,
@@ -224,7 +224,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
   if (fs.existsSync(filePath)) {
     /* Return webp path */
     if (webpQuality > 0) {
-      const fType = await FileType.fileTypeFromFile(filePath)
+      const fType = await fileTypeFromFile(filePath)
       if (fType !== undefined && webpMimes.includes(fType.mime) && fs.existsSync(webpPath)) {
         return webpUrlPath
       }
@@ -238,7 +238,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
     await res.end
     /* Convert to webp */
     if (webpQuality > 0) {
-      const fType = await FileType.fileTypeFromFile(filePath)
+      const fType = await fileTypeFromFile(filePath)
       if (fType !== undefined && webpMimes.includes(fType.mime)) {
         const result = await imagemin([filePath], {
           destination: dirPath,
