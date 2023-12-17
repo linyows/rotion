@@ -255,7 +255,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
     if (webpQuality > 0) {
       const fType = await fileTypeFromFile(filePath)
       if (fType === undefined) {
-        console.log(`fileTypeFromFile returns undefined -- path: ${filePath}, url: ${imageUrl}`)
+        // console.log(`fileTypeFromFile returns undefined -- path: ${filePath}, url: ${imageUrl}`)
         return urlPath
 
       } else {
