@@ -19,7 +19,7 @@ export type ThTdProps = {
   key: string
 }
 
-const Td: React.FC<ThTdProps> = ({ cell, key }) => {
+const Td = ({ cell, key }: ThTdProps) => {
   return (
     <td className="notionate-blocks-table-td" key={key}>
       <div className="notionate-blocks-table-td-inner">
@@ -29,7 +29,7 @@ const Td: React.FC<ThTdProps> = ({ cell, key }) => {
   )
 }
 
-const TdH: React.FC<ThTdProps> = ({ cell, key }) => {
+const TdH = ({ cell, key }: ThTdProps) => {
   return (
     <td className="notionate-blocks-table-td-header" key={key}>
       <div className="notionate-blocks-table-td-header-inner">
@@ -39,7 +39,7 @@ const TdH: React.FC<ThTdProps> = ({ cell, key }) => {
   )
 }
 
-const Tr: React.FC<TrProps> = ({ children, key }) => {
+const Tr = ({ children, key }: TrProps) => {
   return (
     <tr className="notionate-blocks-table-tr" key={key}>
       {children}
