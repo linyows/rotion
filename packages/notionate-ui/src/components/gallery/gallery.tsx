@@ -1,9 +1,9 @@
 import React from 'react'
+import { Link } from '../types'
 import type {
   QueryDatabaseResponseEx,
   GetPageResponse,
   PageObjectResponseEx,
-  Link,
 } from 'notionate-pages'
 import GalleryHandler from './handler'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'

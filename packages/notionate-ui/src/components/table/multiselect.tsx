@@ -1,7 +1,7 @@
 import React from 'react'
+import { Link } from '../types'
 import type {
   MultiSelectPropertyItemObjectResponse,
-  Link,
 } from 'notionate-pages'
 
 export type TableMultiSelectProps = {

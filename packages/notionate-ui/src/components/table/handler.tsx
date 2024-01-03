@@ -1,8 +1,8 @@
 import React from 'react'
+import { Link } from '../types'
 import type {
   GetPagePropertyResponse,
   TitlePropertyItemObjectResponse,
-  Link,
 } from 'notionate-pages'
 
 import TableTitleField from './title'

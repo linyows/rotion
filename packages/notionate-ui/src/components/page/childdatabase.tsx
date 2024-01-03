@@ -1,9 +1,9 @@
 import React from 'react'
 import { TextBlock } from './text'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
+import { Link } from '../types'
 import type {
   ChildDatabaseBlockObjectResponseEx,
-  Link,
 } from 'notionate-pages'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 

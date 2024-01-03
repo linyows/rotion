@@ -1,8 +1,8 @@
 import type { ParsedUrlQueryInput } from 'node:querystring'
 import React from 'react'
+import { Link } from '../types'
 import type {
   TitlePropertyItemObjectResponse,
-  Link,
 } from 'notionate-pages'
 
 export type TableTitleProps = {

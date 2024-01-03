@@ -1,8 +1,8 @@
 import React from 'react'
 import Blocks from './blocks'
+import { Link } from '../types'
 import type {
   ColumnListBlockObjectResponseEx,
-  Link,
 } from 'notionate-pages'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 

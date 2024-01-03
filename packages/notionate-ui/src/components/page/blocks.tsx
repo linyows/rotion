@@ -1,10 +1,10 @@
 import React from 'react'
 import ListBlock from './list'
 import BlockHandler, { ExternalModules } from './handler'
+import { Link } from '../types'
 import type {
   ListBlockChildrenResponseEx,
   BlockObjectResponse,
-  Link,
 } from 'notionate-pages'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 

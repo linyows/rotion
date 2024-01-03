@@ -1,9 +1,9 @@
 import React from 'react'
+import { Link } from '../types'
 import type {
   QueryDatabaseResponseEx,
   GetPageResponse,
   PageObjectResponseEx,
-  Link,
 } from 'notionate-pages'
 import TableHandler from './handler'
 import TableIcon from './icon'

@@ -1,8 +1,8 @@
 import React from 'react'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
+import { Link } from '../types'
 import type {
   ChildPageBlockObjectResponseEx,
-  Link,
 } from 'notionate-pages'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 

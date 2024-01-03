@@ -1,8 +1,8 @@
 import React from 'react'
 import BlockHandler from './handler'
+import { Link } from '../types'
 import type {
   BlockObjectResponse,
-  Link,
 } from 'notionate-pages'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 

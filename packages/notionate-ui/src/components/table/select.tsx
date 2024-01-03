@@ -1,7 +1,7 @@
 import React from 'react'
+import { Link } from '../types'
 import type {
   SelectPropertyItemObjectResponse,
-  Link,
 } from 'notionate-pages'
 
 export type TableSelectProps = {

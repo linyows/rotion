@@ -13,9 +13,9 @@ import LinkpreviewBlock from './linkpreview'
 import ChildpageBlock from './childpage'
 import ChilddatabaseBlock from './childdatabase'
 import TextBlock from './text'
+import { Link } from '../types'
 import type {
   BlockObjectResponse,
-  Link,
 } from 'notionate-pages'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 

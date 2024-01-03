@@ -1,9 +1,9 @@
 import React from 'react'
 import type { ParsedUrlQueryInput } from 'node:querystring'
+import { Link } from '../types'
 import type {
   GetPagePropertyResponse,
   TitlePropertyItemObjectResponse,
-  Link,
 } from 'notionate-pages'
 
 import ListTitleField from './title'
