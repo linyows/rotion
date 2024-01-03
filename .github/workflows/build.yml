@@ -26,5 +26,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: Run builds and deploys with ${{ matrix.node-version }}
+      working-directory: packages/notionate-pages
       run: |
+        npm install
+        npm run build
+    - name: Run builds and deploys with ${{ matrix.node-version }}
+      working-directory: packages/notionate-ui
+      run: |
+        npm install
         npm run build

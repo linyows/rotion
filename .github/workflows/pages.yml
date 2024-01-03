@@ -23,13 +23,14 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "18"
+          node-version: "20"
           cache: npm
       - name: Setup Pages
         uses: actions/configure-pages@v2
         with:
           static_site_generator: next
       - name: Restore next cache
+        working-directory: examples/next-pages-router
         uses: actions/cache@v3
         with:
           path: |
@@ -38,6 +39,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Restore notionate cache
+        working-directory: examples/next-pages-router
         uses: actions/cache@v3
         with:
           path: |
@@ -46,13 +48,16 @@ jobs:
           key: notionate
           restore-keys: notionate
       - name: Install dependencies
+        working-directory: examples/next-pages-router
         run: npm ci
       - name: Build and Export
+        working-directory: examples/next-pages-router
         run: |
           npm run export
           ls -la
           npm run build
       - name: Upload artifact
+        working-directory: examples/next-pages-router
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./out
