@@ -339,9 +339,3 @@ export type QueryDatabaseResponseEx = QueryDatabaseResponse & {
 export type PersonUserObjectResponseEx = PersonUserObjectResponse & {
   avatar?: string
 }
-
-export type Link = React.FC<{
-  children: string | React.ReactElement<'a', string | React.JSXElementConstructor<any>>
-  className?: string
-  href: string | UrlObject
-}>
