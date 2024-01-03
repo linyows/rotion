@@ -42,7 +42,6 @@ import type {
   PersonUserObjectResponse,
   DatabaseObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints.js'
-import type { UrlObject } from 'node:url'
 
 export * from '@notionhq/client/build/src/api-endpoints.js'
 
