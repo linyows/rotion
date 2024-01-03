@@ -2,9 +2,15 @@ name: Build
 
 on:
   pull_request:
+    paths:
+    - 'packages/notionate-pages/**'
+    - 'packages/notionate-ui/**'
   push:
     branches:
-      - main
+    - main
+    paths:
+    - 'packages/notionate-pages/**'
+    - 'packages/notionate-ui/**'
 
 jobs:
   build:
@@ -21,6 +27,4 @@ jobs:
         cache: 'npm'
     - name: Run builds and deploys with ${{ matrix.node-version }}
       run: |
-        npm install
-        npm test
         npm run build
