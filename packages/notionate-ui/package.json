@@ -1,0 +1,65 @@
+{
+  "name": "notionate-ui",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": "linyows/notionate",
+  "description": "This is React components that uses the Notion API to display the Notion's database and page.",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "umd": "dist/umd/index.js",
+  "types": "dist/types.d.ts",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist/*"
+  ],
+  "author": {
+    "name": "Tomohisa Oda",
+    "url": "https://tomohisaoda.com"
+  },
+  "scripts": {
+    "build": "npm run lint && npm run typecheck && npm run rollup && npm run styles",
+    "rollup": "rollup --config rollup.config.ts --configPlugin typescript",
+    "typecheck": "tsc -p tsconfig.typecheck.json",
+    "styles": "cp -r ./src/styles ./dist/",
+    "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
+    "prepublishOnly": "npm install && npm run build"
+  },
+  "peerDependencies": {
+    "mermaid": "^10.6.1",
+    "prismjs": "^1.25.0",
+    "react": "^17.0.2 || ^18.0.0-0",
+    "react-dom": "^17.0.2 || ^18.0.0-0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/node": "^20.10.5",
+    "@types/prismjs": "^1.26.3",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@types/rollup-plugin-peer-deps-external": "^2.2.4",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "eslint": "^8.56.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "http-cache-semantics": ">=4.1.1",
+    "notionate-pages": "^1.0.0",
+    "rollup": "^4.9.1",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-dts": "^6.1.0",
+    "rollup-plugin-import-css": "^3.3.5",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.6.2",
+    "tsm": "^2.3.0",
+    "typescript": "^5.3.3"
+  }
+}

@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+.yarn/install-state.gz
 
 # testing
 /coverage
@@ -14,7 +15,6 @@
 
 # production
 /build
-/dist
 
 # misc
 .DS_Store
@@ -26,24 +26,11 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*.local
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-
-/public
-
-# examples
-/examples/**/.cache
-/examples/**/.next
-/examples/**/out
-/examples/**/public/images
-
-# packages
-/packages/**/dist
+next-env.d.ts

@@ -19,9 +19,10 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "npm run clean && npm run lint && npm run transpile && npm run typecheck && npm run declaration && npm run rollup && npm run components-declaration && npm run styles",
+    "build": "npm run clean && npm run lint && npm run transpile-es && npm run typecheck && npm run declaration && npm run rollup && npm run components-declaration && npm run styles",
     "rollup": "rollup --config rollup.config.ts --configPlugin typescript",
     "transpile": "babel src/server -D -d dist/server --extensions '.ts,.tsx' --config-file ./babelrc.json",
+    "transpile-es": "babel src/server -D -d dist/server --extensions '.ts,.tsx' --config-file ./babelrc.es",
     "declaration": "tsc -p ./src/tsconfig.declaration.json && mv dist/src dist/types",
     "components-declaration": "cp -r dist/types/* dist/components",
     "typecheck": "tsc -p ./src/tsconfig.typecheck.json",
@@ -41,10 +42,12 @@
     "react-dom": "^17.0.2 || ^18.0.0-0"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@notionhq/client": "^2.2.14",
     "@types/imagemin": "^8.0.5",
     "@types/imagemin-webp": "^7.0.3",
     "@types/replace-ext": "^2.0.2",
+    "babel-plugin-add-module-exports": "^1.0.4",
     "file-type": "^18.7.0",
     "imagemin": "^8.0.1",
     "imagemin-webp": "^8.0.0",
@@ -73,6 +76,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.33.2",
+    "http-cache-semantics": ">=4.1.1",
     "next": "^14.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -80,13 +84,12 @@
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-import-css": "^3.3.5",
+    "semver-regex": ">=3.1.4",
     "testdouble": "^3.20.1",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",
     "tsm": "^2.3.0",
     "typescript": "^5.3.3",
-    "uvu": "^0.5.6",
-    "http-cache-semantics": ">=4.1.1",
-    "semver-regex": ">=3.1.4"
+    "uvu": "^0.5.6"
   }
 }
