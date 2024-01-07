@@ -1,6 +1,6 @@
 {
   "name": "notionate-ui",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "repository": "linyows/notionate",
   "description": "This is React components that uses the Notion API to display the Notion's database and page.",
@@ -30,6 +30,7 @@
   "peerDependencies": {
     "mermaid": "^10.6.1",
     "prismjs": "^1.25.0",
+    "katex": "^0.16.9",
     "react": "^17.0.2 || ^18.0.0-0",
     "react-dom": "^17.0.2 || ^18.0.0-0"
   },
@@ -76,8 +77,5 @@
     "tslib": "^2.6.2",
     "tsm": "^2.3.0",
     "typescript": "^5.3.3"
-  },
-  "dependencies": {
-    "katex": "^0.16.9"
   }
 }
