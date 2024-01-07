@@ -1,2 +1,2 @@
 import ListNumberField from './ListNumberField'
-export default ListNumberField
+export { ListNumberField }

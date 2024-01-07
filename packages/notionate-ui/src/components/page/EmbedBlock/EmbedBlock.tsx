@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import TextBlock from '../TextBlock'
+import TextBlock from '../TextBlock/TextBlock'
 import type { EmbedBlockProps } from './EmbedBlock.types'
 
 const TwitterBlock = ({ block }: EmbedBlockProps) => {

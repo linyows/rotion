@@ -1,14 +1,14 @@
 import React from 'react'
 import type { TitlePropertyItemObjectResponse } from 'notionate-pages'
 
-import TableTitleField from './TableTitleField'
-import TableDateField from './TableDateField'
-import TableRichTextField from './TableRichTextField'
-import TableMultiSelectField from './TableMultiSelectField'
-import TableSelectField from './TableSelectField'
-import TableUrlField from './TableUrlField'
-import TableCheckboxField from './TableCheckboxField'
-import TableNumberField from './TableNumberField'
+import TableTitleField from './TableTitleField/TableTitleField'
+import TableDateField from './TableDateField/TableDateField'
+import TableRichTextField from './TableRichTextField/TableRichTextField'
+import TableMultiSelectField from './TableMultiSelectField/TableMultiSelectField'
+import TableSelectField from './TableSelectField/TableSelectField'
+import TableUrlField from './TableUrlField/TableUrlField'
+import TableCheckboxField from './TableCheckboxField/TableCheckboxField'
+import TableNumberField from './TableNumberField/TableNumberField'
 import type { TableHandlerProps } from './TableHandler.types'
 
 const TableHandler = ({ name, items, path, slug, link, query }: TableHandlerProps) => {
@@ -27,10 +27,8 @@ const TableHandler = ({ name, items, path, slug, link, query }: TableHandlerProp
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
         return TableTitleField({ payload, path, slug, link, query })
       }
-
       case 'rich_text':
         return TableRichTextField({ payload: target })
-
       case 'people':
       case 'relation':
       case 'rollup':
@@ -42,25 +40,18 @@ const TableHandler = ({ name, items, path, slug, link, query }: TableHandlerProp
     switch (items.type) {
       case 'date':
         return TableDateField({ payload: items.date })
-
       case 'rich_text':
         return TableRichTextField({ payload: items })
-
       case 'multi_select':
         return TableMultiSelectField({ payload: items, path })
-
       case 'url':
         return TableUrlField({ payload: items.url })
-
       case 'checkbox':
         return TableCheckboxField({ payload: items.checkbox })
-
       case 'number':
         return TableNumberField({ payload: items })
-
       case 'select':
         return TableSelectField({ payload: items, path })
-
       case 'status':
       case 'email':
       case 'phone_number':

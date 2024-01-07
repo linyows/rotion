@@ -1,13 +1,13 @@
 import React from 'react'
 import type { TitlePropertyItemObjectResponse } from 'notionate-pages'
 
-import GalleryTitleField from '../GalleryTitleField'
-import GalleryDateField from '../GalleryDateField'
-import GalleryRichTextField from '../GalleryRichTextField'
-import GalleryMultiSelectField from '../GalleryMultiSelectField'
-import GalleryUrlField from '../GalleryUrlField'
-import GalleryCheckboxField from '../GalleryCheckboxField'
-import GalleryNumberField from '../GalleryNumberField'
+import GalleryTitleField from '../GalleryTitleField/GalleryTitleField'
+import GalleryDateField from '../GalleryDateField/GalleryDateField'
+import GalleryRichTextField from '../GalleryRichTextField/RichTextField'
+import GalleryMultiSelectField from '../GalleryMultiSelectField/GalleryMultiSelectField'
+import GalleryUrlField from '../GalleryUrlField/GalleryUrlField'
+import GalleryCheckboxField from '../GalleryCheckboxField/GalleryCheckboxField'
+import GalleryNumberField from '../GalleryNumberField/GalleryNumberField'
 import type { GalleryHandlerProps } from './GalleryHandler.types'
 
 const GalleryHandler = ({ items, path }: GalleryHandlerProps) => {
@@ -24,10 +24,8 @@ const GalleryHandler = ({ items, path }: GalleryHandlerProps) => {
     switch (target.type) {
       case 'title':
         return GalleryTitleField({ payload: items.results as Array<TitlePropertyItemObjectResponse> })
-
       case 'rich_text':
         return GalleryRichTextField({ payload: target })
-
       case 'people':
       case 'relation':
       case 'rollup':
@@ -39,22 +37,16 @@ const GalleryHandler = ({ items, path }: GalleryHandlerProps) => {
     switch (items.type) {
       case 'date':
         return GalleryDateField({ payload: items.date })
-
       case 'rich_text':
         return GalleryRichTextField({ payload: items })
-
       case 'multi_select':
         return GalleryMultiSelectField({ payload: items, path })
-
       case 'url':
         return GalleryUrlField({ payload: items.url })
-
       case 'checkbox':
         return GalleryCheckboxField({ payload: items.checkbox })
-
       case 'number':
         return GalleryNumberField({ payload: items })
-
       case 'select':
       case 'status':
       case 'email':

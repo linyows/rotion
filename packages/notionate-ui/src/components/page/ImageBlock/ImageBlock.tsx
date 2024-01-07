@@ -1,5 +1,5 @@
 import React from 'react'
-import TextBlock from '../TextBlock'
+import TextBlock from '../TextBlock/TextBlock'
 import type { ImageBlockProps } from './ImageBlock.types'
 
 export const ImageBlock = ({ block }: ImageBlockProps) => {

@@ -3,9 +3,9 @@ import type {
   RichTextItemResponse,
   TextRichTextItemResponse,
 } from 'notionate-pages'
-import RichText from '../TextBlock/RichText'
+import RichText from '../TextBlock/RichText/RichText'
 import type { CodeBlockProps } from './CodeBlock.types'
-import Code from './Code'
+import Code from './Code/Code'
 
 const CodeBlock = ({ block, modules }: CodeBlockProps) => {
   const els = block.code?.rich_text.map((textObject: RichTextItemResponse, i) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import type { PageObjectResponseEx } from 'notionate-pages'
-import GalleryCard from './GalleryCard'
+import GalleryCard from './GalleryCard/GalleryCard'
 import type { GalleryProps } from './Gallery.types'
 
 const Gallery = ({ keys, db, href, link, query, preview, size, fit }: GalleryProps) => {

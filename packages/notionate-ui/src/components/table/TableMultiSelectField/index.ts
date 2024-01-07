@@ -1,2 +1,2 @@
 import TableMultiSelectField from './TableMultiSelectField'
-export default TableMultiSelectField
+export { TableMultiSelectField }

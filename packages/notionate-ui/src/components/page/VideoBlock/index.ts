@@ -1,2 +1,2 @@
 import VideoBlock from './VideoBlock'
-export default VideoBlock
+export { VideoBlock }

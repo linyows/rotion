@@ -1,2 +1,2 @@
 import TableBlock from './TableBlock'
-export default TableBlock
+export { TableBlock }

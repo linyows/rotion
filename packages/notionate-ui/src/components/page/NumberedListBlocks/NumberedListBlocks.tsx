@@ -1,7 +1,7 @@
 import React from 'react'
 import type { BlockObjectResponse } from 'notionate-pages'
 import type { NumberedListBlocksProps } from './NumberedListBlocks.types'
-import TextBlock from '../TextBlock'
+import TextBlock from '../TextBlock/TextBlock'
 import PageHandler, { blockType } from '../PageHandler'
 
 const NumberedListBlocks = ({ block, href, link, query }: NumberedListBlocksProps) => {

@@ -1,6 +1,6 @@
 import React from 'react'
-import UserMention from './UserMention'
-import PageIcon from '../../../PageIcon'
+import UserMention from './UserMention/UserMention'
+import PageIcon from '../../../PageIcon/PageIcon'
 import type { RichTextProps } from '../RichText.types'
 
 const pathBasename = (str: string): string => {

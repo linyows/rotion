@@ -1,2 +1,2 @@
 import ColumnListBlock from './ColumnListBlock'
-export default ColumnListBlock
+export { ColumnListBlock }

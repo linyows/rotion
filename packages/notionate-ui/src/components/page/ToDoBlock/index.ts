@@ -1,2 +1,2 @@
 import ToDoBlock from './ToDoBlock'
-export default ToDoBlock
+export { ToDoBlock }

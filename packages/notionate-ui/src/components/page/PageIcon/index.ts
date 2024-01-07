@@ -1,2 +1,2 @@
 import PageIcon from './PageIcon'
-export default PageIcon
+export { PageIcon }

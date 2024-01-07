@@ -1,7 +1,7 @@
 import React from 'react'
 import type { BlockObjectResponse } from 'notionate-pages'
 import type { BulletedListBlocksProps } from './BulletedListBlocks.types'
-import TextBlock from '../TextBlock'
+import TextBlock from '../TextBlock/TextBlock'
 import PageHandler, { blockType } from '../PageHandler'
 
 const BulletedListBlocks = ({ block, href, link, query }: BulletedListBlocksProps) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import type { RichTextItemResponse } from 'notionate-pages'
-import RichText from '../TextBlock/RichText'
+import RichText from '../TextBlock/RichText/RichText'
 import type { PdfBlockProps } from './PdfBlock.types'
 
 // TODO: Iimplement and design

@@ -1,5 +1,5 @@
 import React from 'react'
-import TableIcon from './TableIcon'
+import TableIcon from './TableIcon/TableIcon'
 import type { TablePropertyNameAndIconProps } from './TablePropertyNameAndIcon.types'
 
 const TablePropertyNameAndIcon = ({ name, db }: TablePropertyNameAndIconProps) => {

@@ -1,2 +1,2 @@
 import Annotation from './Annotation'
-export default Annotation
+export { Annotation }

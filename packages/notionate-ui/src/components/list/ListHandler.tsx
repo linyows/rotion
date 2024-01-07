@@ -2,13 +2,13 @@ import React from 'react'
 import type { TitlePropertyItemObjectResponse } from 'notionate-pages'
 import type { ListHandlerProps } from './ListHandler.types'
 
-import ListTitleField from './ListTitleField'
-import ListDateField from './ListDateField'
-import ListRichTextField from './ListRichTextField'
-import ListMultiSelectField from './ListMultiSelectField'
-import ListUrlField from './ListUrlField'
-import ListCheckboxField from './ListCheckboxField'
-import ListNumberField from './ListNumberField'
+import ListTitleField from './ListTitleField/ListTitleField'
+import ListDateField from './ListDateField/ListDateField'
+import ListRichTextField from './ListRichTextField/ListRichTextField'
+import ListMultiSelectField from './ListMultiSelectField/ListMultiSelectField'
+import ListUrlField from './ListUrlField/ListUrlField'
+import ListCheckboxField from './ListCheckboxField/ListCheckboxField'
+import ListNumberField from './ListNumberField/ListNumberField'
 
 const ListHandler = ({ name, items, path, slug, link, query }: ListHandlerProps) => {
   if (items === undefined) {
@@ -26,10 +26,8 @@ const ListHandler = ({ name, items, path, slug, link, query }: ListHandlerProps)
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
         return ListTitleField({ payload, path, slug, link, query })
       }
-
       case 'rich_text':
         return ListRichTextField({ payload: target })
-
       case 'people':
       case 'relation':
       case 'rollup':
@@ -41,22 +39,16 @@ const ListHandler = ({ name, items, path, slug, link, query }: ListHandlerProps)
     switch (items.type) {
       case 'date':
         return ListDateField({ payload: items.date })
-
       case 'rich_text':
         return ListRichTextField({ payload: items })
-
       case 'multi_select':
         return ListMultiSelectField({ payload: items, path })
-
       case 'url':
         return ListUrlField({ payload: items.url })
-
       case 'checkbox':
         return ListCheckboxField({ payload: items.checkbox })
-
       case 'number':
         return ListNumberField({ payload: items })
-
       case 'select':
       case 'status':
       case 'email':

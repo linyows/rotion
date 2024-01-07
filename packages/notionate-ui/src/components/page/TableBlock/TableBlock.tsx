@@ -1,5 +1,5 @@
 import React from 'react'
-import RichText from '../TextBlock/RichText'
+import RichText from '../TextBlock/RichText/RichText'
 import type { TableRowBlockObjectResponse } from 'notionate-pages'
 import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
 

@@ -1,2 +1,2 @@
 import Mention from './Mention'
-export default Mention
+export { Mention }

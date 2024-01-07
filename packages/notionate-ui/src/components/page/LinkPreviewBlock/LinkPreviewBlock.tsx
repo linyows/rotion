@@ -1,5 +1,5 @@
 import React from 'react'
-import PageIcon from '../PageIcon'
+import PageIcon from '../PageIcon/PageIcon'
 import type { LinkPreviewBlockProps } from './LinkPreviewBlock.types'
 
 const LinkPreviewBlock = ({ block }: LinkPreviewBlockProps) => {

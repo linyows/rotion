@@ -1,2 +1,2 @@
 import ListTitleField from './ListTitleField'
-export default ListTitleField
+export { ListTitleField }

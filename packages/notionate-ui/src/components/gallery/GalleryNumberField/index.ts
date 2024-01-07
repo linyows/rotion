@@ -1,2 +1,2 @@
 import GalleryNumberField from './GalleryNumberField'
-export default GalleryNumberField
+export { GalleryNumberField }

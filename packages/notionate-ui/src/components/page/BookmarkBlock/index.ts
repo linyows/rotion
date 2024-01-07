@@ -1,2 +1,2 @@
 import BookmarkBlock from './BookmarkBlock'
-export default BookmarkBlock
+export { BookmarkBlock }

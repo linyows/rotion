@@ -1,7 +1,7 @@
 import React from 'react'
-import Mention from './Mention'
-import Text from './Text'
-import Equation from './Equation'
+import Mention from './Mention/Mention'
+import Text from './Text/Text'
+import Equation from './Equation/Equation'
 import type { RichTextProps } from './RichText.types'
 
 const RichText = ({ textObject }: RichTextProps) => {

@@ -1,2 +1,2 @@
 import GalleryDateField from './GalleryDateField'
-export default GalleryDateField
+export { GalleryDateField }

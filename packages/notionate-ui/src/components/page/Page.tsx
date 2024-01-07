@@ -1,7 +1,7 @@
 import React from 'react'
 import type { BlockObjectResponse } from 'notionate-pages'
 import type { PageProps, ListType } from './Page.types'
-import ListBlock from './ListBlock'
+import ListBlock from './ListBlock/ListBlock'
 import PageHandler from './PageHandler'
 
 export const Page = ({ blocks, href, link, query, modules }: PageProps) => {

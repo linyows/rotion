@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import TextBlock from '../TextBlock'
+import TextBlock from '../TextBlock/TextBlock'
 import type { ParagraphBlockObjectResponse } from 'notionate-pages'
 import type { ToggleBlockProps } from './ToggleBlock.types'
 

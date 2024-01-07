@@ -1,5 +1,5 @@
 import React from 'react'
-import TextBlock from '../../Page/TextBlock'
+import TextBlock from '../../Page/TextBlock/TextBlock'
 import type { ListRichTextFieldProps } from './ListRichTextField.types'
 
 const ListRichTextField = ({ payload }: ListRichTextFieldProps) => {

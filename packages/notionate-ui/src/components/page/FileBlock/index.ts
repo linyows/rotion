@@ -1,2 +1,2 @@
 import FileBlock from './FileBlock'
-export default FileBlock
+export { FileBlock }

@@ -1,7 +1,7 @@
 import React from 'react'
 import type { RichTextItemResponse } from 'notionate-pages'
 
-import RichText from '../TextBlock/RichText'
+import RichText from '../TextBlock/RichText/RichText'
 import type { FileBlockProps } from './FileBlock.types'
 
 // TODO: Iimplement and design
