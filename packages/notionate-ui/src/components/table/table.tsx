@@ -1,43 +1,14 @@
 import React from 'react'
-import { Link } from '../types'
 import type {
-  QueryDatabaseResponseEx,
   GetPageResponse,
   PageObjectResponseEx,
 } from 'notionate-pages'
-import TableHandler from './handler'
-import TableIcon from './icon'
+import PropertyNameAndIcon from './TablePropertyNameAndIcon'
+import TableHandler from './TableHandler'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
-import type { ParsedUrlQueryInput } from 'node:querystring'
+import type { TableProps } from './Table.types'
 
-export type TableProps = React.PropsWithChildren & {
-  keys: string[]
-  db: QueryDatabaseResponseEx
-  href?: string
-  link?: Link
-  query?: ParsedUrlQueryInput
-}
-
-const TablePropertyNameAndIcon: React.FC<{ name: string, db: QueryDatabaseResponseEx }> = ({ name, db }) => {
-  if (!(name in db.meta.properties)) {
-    return (
-      <>
-        {`Unknown "${name}"`}
-      </>
-    )
-  }
-  const propType = db.meta.properties[name].type
-  return (
-    <div className="notionate-table-cell-inner">
-      <TableIcon type={propType} />
-      <div className="notionate-table-cell-text">
-        {name}
-      </div>
-    </div>
-  )
-}
-
-export const Table: React.FC<TableProps> = ({ keys, db, href, link, query }) => {
+export const Table = ({ keys, db, href, link, query }: TableProps) => {
   const getSlug = (key: string, page: GetPageResponse): string => {
     if (!('properties' in page)) {
       return 'not-found-properties'
@@ -80,7 +51,7 @@ export const Table: React.FC<TableProps> = ({ keys, db, href, link, query }) => 
         <div className="notionate-table-header notionate-table-row">
           {keys.map((name, i) => (
             <div key={`${name}-${i}`} className={`notionate-table-cell notionate-table-column-${i}`}>
-              <TablePropertyNameAndIcon name={name} db={db} />
+              <PropertyNameAndIcon name={name} db={db} />
             </div>
           ))}
         </div>

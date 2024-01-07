@@ -1,23 +1,13 @@
 import React from 'react'
-import { Link } from '../types'
 import type {
-  QueryDatabaseResponseEx,
   GetPageResponse,
   PageObjectResponseEx,
 } from 'notionate-pages'
-import ListHandler from './handler'
+import type { ListProps } from './List.types'
+import ListHandler from './ListHandler'
 import { getLinkPathAndLinkKey } from '../lib/linkpath'
-import type { ParsedUrlQueryInput } from 'node:querystring'
 
-export type ListProps = React.PropsWithChildren & {
-  keys: string[]
-  db: QueryDatabaseResponseEx
-  href: string
-  link?: Link
-  query?: ParsedUrlQueryInput
-}
-
-export const List: React.FC<ListProps> = ({ keys, db, href, link, query }) => {
+const List: React.FC<ListProps> = ({ keys, db, href, link, query }) => {
   const getSlug = (key: string, page: GetPageResponse): string => {
     if (!('properties' in page)) {
       return 'not-found-properties'
