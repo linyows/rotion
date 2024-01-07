@@ -23,7 +23,9 @@
     "typecheck": "tsc -p tsconfig.typecheck.json",
     "styles": "cp -r ./src/styles ./dist/",
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
-    "prepublishOnly": "npm install && npm run build"
+    "prepublishOnly": "npm install && npm run build",
+    "story": "storybook dev -p 6006",
+    "build-story": "storybook build"
   },
   "peerDependencies": {
     "mermaid": "^10.6.1",
@@ -37,6 +39,15 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.5",
+    "@storybook/addon-essentials": "^7.6.7",
+    "@storybook/addon-interactions": "^7.6.7",
+    "@storybook/addon-links": "^7.6.7",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/blocks": "^7.6.7",
+    "@storybook/react": "^7.6.7",
+    "@storybook/react-vite": "^7.6.7",
+    "@storybook/test": "^7.6.7",
+    "@types/katex": "^0.16.7",
     "@types/node": "^20.10.5",
     "@types/prismjs": "^1.26.3",
     "@types/react": "^18.2.45",
@@ -50,16 +61,23 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-storybook": "^0.6.15",
     "http-cache-semantics": ">=4.1.1",
     "notionate-pages": "^1.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rollup": "^4.9.1",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-import-css": "^3.3.5",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "storybook": "^7.6.7",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",
     "tsm": "^2.3.0",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "katex": "^0.16.9"
   }
 }
