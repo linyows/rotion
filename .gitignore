@@ -47,3 +47,7 @@ yarn-error.log*
 
 # packages
 /packages/**/dist
+
+# storybook
+.storybook
+storybook-static
