@@ -38,13 +38,13 @@ const page: GetPageResponseEx = {
   archived: false,
   properties: {
     title: {
-      id: "title",
-      type: "title",
+      id: 'title',
+      type: 'title',
       title: [
         {
-          type: "text",
+          type: 'text',
           text: {
-            content: "Nested",
+            content: 'Nested',
             link: null,
           },
           annotations: {
@@ -53,9 +53,9 @@ const page: GetPageResponseEx = {
             strikethrough: false,
             underline: false,
             code: false,
-            color: "default",
+            color: 'default',
           },
-          plain_text: "Nested",
+          plain_text: 'Nested',
           href: null,
         },
       ],

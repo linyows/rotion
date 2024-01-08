@@ -43,7 +43,7 @@ const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
       <div className="notionate-blocks-childpage">
         <ChildPageLink block={block} href={href} link={link} query={query}>
           <span className="notionate-blocks-childpage-icon">
-            {`️-`}
+            {'️-'}
           </span>
           <div>
             <span className="notionate-blocks-childpage-title">

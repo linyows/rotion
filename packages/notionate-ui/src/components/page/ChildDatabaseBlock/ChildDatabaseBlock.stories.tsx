@@ -6,9 +6,9 @@ import '../../../styles/base.css'
 import '../../../styles/page.css'
 
 const title: RichTextItemResponse[] = [{
-  type: "text",
+  type: 'text',
   text: {
-    content: "My Database",
+    content: 'My Database',
     link: null,
   },
   annotations: {
@@ -17,14 +17,14 @@ const title: RichTextItemResponse[] = [{
     strikethrough: false,
     underline: false,
     code: false,
-    color: "default",
+    color: 'default',
   },
-  plain_text: "My Database",
+  plain_text: 'My Database',
   href: null,
 }]
 
 const description: RichTextItemResponse[] = [{
-  type: "text",
+  type: 'text',
   text: {
     content: "My Database's Description",
     link: null,
@@ -35,7 +35,7 @@ const description: RichTextItemResponse[] = [{
     strikethrough: false,
     underline: false,
     code: false,
-    color: "default",
+    color: 'default',
   },
   plain_text: "My Database's Description",
   href: null,
@@ -74,8 +74,8 @@ const database: GetDatabaseResponseEx = {
   archived: false,
   properties: {
     title: {
-      id: "title",
-      type: "title",
+      id: 'title',
+      type: 'title',
       title: {},
       name: 'title',
     },

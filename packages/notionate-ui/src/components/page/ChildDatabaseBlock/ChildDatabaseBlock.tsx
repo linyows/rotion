@@ -43,7 +43,7 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
       <div className="notionate-blocks-childdatabase">
         <ChildDatabaseLink block={block} href={href} link={link} query={query}>
           <span className="notionate-blocks-childdatabase-icon">
-            {`️-`}
+            {'️-'}
           </span>
           <div>
             <span className="notionate-blocks-childdatabase-title">
