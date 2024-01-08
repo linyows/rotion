@@ -8,3 +8,7 @@ export interface ChildDatabaseBlockProps {
   link?: Link
   query?: ParsedUrlQueryInput
 }
+
+export interface ChildDatabaseLinkProps extends ChildDatabaseBlockProps {
+  children: React.ReactNode
+}
