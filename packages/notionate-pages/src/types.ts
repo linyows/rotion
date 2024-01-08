@@ -130,7 +130,7 @@ export type ChildPageBlockObjectResponseEx = ChildPageBlockObjectResponse & {
   page: GetPageResponseEx
 }
 export type ChildDatabaseBlockObjectResponseEx = ChildDatabaseBlockObjectResponse & {
-  database: GetDatabaseResponse
+  database: GetDatabaseResponseEx
 }
 export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & {
   bookmark: {
