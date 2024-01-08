@@ -81,6 +81,7 @@ const database: GetDatabaseResponseEx = {
   },
   url: '',
   public_url: '',
+  is_inline: false,
 }
 
 const block: ChildDatabaseBlockObjectResponseEx = {

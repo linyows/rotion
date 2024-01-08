@@ -117,8 +117,8 @@ type Story = StoryObj<typeof meta>
 export const Emoji: Story = {}
 
 const icon = structuredClone(block)
-icon.page.icon.type = 'external'
-icon.page.icon.src = 'https://www.notion.so/icons/library_blue.svg?mode=light'
+icon.page.icon!.type = 'external'
+icon.page.icon!.src = 'https://www.notion.so/icons/library_blue.svg?mode=light'
 export const Icon: Story = {
   args: {
     block: icon
