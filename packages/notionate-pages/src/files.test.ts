@@ -5,6 +5,7 @@ import * as files from './files'
 import { EmbedBlockObjectResponseEx, VideoBlockObjectResponseEx } from './types'
 
 test.before(() => {
+  td.replace(console, 'log')
   td.reset()
 })
 
@@ -14,7 +15,6 @@ type GHRes = {
 }
 
 test('getHtmlMeta returns title and desc', async () => {
-  // td.replace(console, 'log')
   const tests = [
     [
       'https://github.com',
@@ -97,7 +97,6 @@ test('saveImage saves a image correct file name', async () => {
 })
 
 test('findLocationUrl returns url from location header', async () => {
-  td.replace(console, 'log')
   const header = [
     'Location',
     'https://example.com/img/og.png',
@@ -121,7 +120,6 @@ test('findLocationUrl returns url from location header', async () => {
 })
 
 test('getVideoHtml returns html', async () => {
-  td.replace(console, 'log')
   const block = {
     video: {
       type: 'external',
@@ -135,7 +133,6 @@ test('getVideoHtml returns html', async () => {
 })
 
 test('getEmbedHtml returns html', async () => {
-  td.replace(console, 'log')
   const block = {
     embed: {
       url: 'https://speakerdeck.com/chrislema/infographics-made-easy',
