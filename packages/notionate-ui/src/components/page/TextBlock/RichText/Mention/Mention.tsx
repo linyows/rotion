@@ -10,6 +10,10 @@ const pathBasename = (str: string): string => {
 }
 
 const Mention = ({ textObject, children }: RichTextProps) => {
+  if (textObject === undefined) {
+    return <></>
+  }
+
   const { plain_text } = textObject
   if (textObject.type === 'mention') {
     if (textObject.mention.type === 'link_preview') {

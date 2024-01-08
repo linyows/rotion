@@ -5,6 +5,10 @@ import Equation from './Equation/Equation'
 import type { RichTextProps } from './RichText.types'
 
 const RichText = ({ textObject }: RichTextProps) => {
+  if (textObject === undefined || textObject === null) {
+    return <></>
+  }
+
   const { type, plain_text } = textObject
 
   switch (type) {

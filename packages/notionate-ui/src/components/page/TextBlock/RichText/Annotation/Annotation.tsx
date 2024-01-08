@@ -2,6 +2,9 @@ import React from 'react'
 import type { RichTextProps } from '../RichText.types'
 
 const Annotation = ({ textObject, children }: RichTextProps) => {
+  if (textObject === undefined) {
+    return <></>
+  }
   const { annotations } = textObject
   const css = ['notionate-blocks-text-annotation']
   css.push(`notionate-blocks-text-${annotations.color.replace('_', '-')}`)
