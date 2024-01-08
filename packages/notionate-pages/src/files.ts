@@ -261,7 +261,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
         if (webpMimes.includes(fType.mime)) {
           const result = await imagemin([filePath], {
             destination: dirPath,
-            plugins: [imageminWebp.default({ quality: webpQuality })],
+            plugins: [imageminWebp({ quality: webpQuality })],
           })
           if (result && result.length > 0) {
             return webpUrlPath
