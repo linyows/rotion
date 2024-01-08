@@ -1,4 +1,3 @@
-import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import type { ChildPageBlockObjectResponseEx, GetPageResponseEx, ListBlockChildrenResponseEx } from 'notionate-pages'
 import ChildPageBlock from './ChildPageBlock'

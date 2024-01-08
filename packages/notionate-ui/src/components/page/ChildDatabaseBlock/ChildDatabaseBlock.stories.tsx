@@ -1,4 +1,3 @@
-import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import type { ChildDatabaseBlockObjectResponseEx, GetDatabaseResponseEx, RichTextItemResponse } from 'notionate-pages'
 import ChildDatabaseBlock from './ChildDatabaseBlock'
