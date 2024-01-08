@@ -38,7 +38,7 @@ const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabase
 
 const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProps) => {
   const title = block.child_database.title
-  if (!('icon' in block.database) || block.database.icon === null) {
+  if (block.database === null || block.database.icon === null) {
     return (
       <div className="notionate-blocks-childdatabase">
         <ChildDatabaseLink block={block} href={href} link={link} query={query}>

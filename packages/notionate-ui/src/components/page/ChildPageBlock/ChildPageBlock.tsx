@@ -38,7 +38,7 @@ const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProp
 
 const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
   const title = block.child_page.title
-  if (!('icon' in block.page) || block.page.icon === null) {
+  if (block.page === null || block.page.icon === null) {
     return (
       <div className="notionate-blocks-childpage">
         <ChildPageLink block={block} href={href} link={link} query={query}>
