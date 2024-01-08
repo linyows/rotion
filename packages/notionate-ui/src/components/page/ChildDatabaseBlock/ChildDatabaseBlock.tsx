@@ -77,7 +77,7 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
     <div className="notionate-blocks-childdatabase">
       <ChildDatabaseLink block={block} href={href} link={link} query={query}>
         <span className="notionate-blocks-childdatabase-icon">
-          <img className="notionate-blocks-childdatabase-file-icon" src={block.page.icon.src} alt="Icon" />
+          <img className="notionate-blocks-childdatabase-file-icon" src={block.database.icon.src} alt="Icon" />
         </span>
         <div>
           <span className="notionate-blocks-childdatabase-title">

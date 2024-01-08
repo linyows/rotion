@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import type { ChildDatabaseBlockObjectResponseEx, GetDatabaseResponse, RichTextItemResponse } from 'notionate-pages'
+import type { ChildDatabaseBlockObjectResponseEx, GetDatabaseResponseEx, RichTextItemResponse } from 'notionate-pages'
 import ChildDatabaseBlock from './ChildDatabaseBlock'
 import '../../../styles/base.css'
 import '../../../styles/page.css'
@@ -41,7 +41,7 @@ const description: RichTextItemResponse[] = [{
   href: null,
 }]
 
-const database: GetDatabaseResponse = {
+const database: GetDatabaseResponseEx = {
   object: 'database',
   id: '',
   title,
@@ -57,6 +57,7 @@ const database: GetDatabaseResponse = {
     id: 'c1400938-a445-438b-be9c-2734e5dc90a6',
   },
   cover: {
+    src: '',
     type: 'external',
     external: {
       url: '',
@@ -124,11 +125,16 @@ type Story = StoryObj<typeof meta>
 
 export const Emoji: Story = {}
 
-// const icon = structuredClone(block)
-// icon.database.icon.type = 'external'
-// icon.database.icon.src = 'https://www.notion.so/icons/library_blue.svg?mode=light'
-// export const Icon: Story = {
-//   args: {
-//     block: icon
-//   }
-// }
+const icon = structuredClone(block)
+icon.database.icon! = {
+  src: 'https://www.notion.so/icons/library_blue.svg?mode=light',
+  type: 'external',
+  external: {
+    url: 'https://www.notion.so/icons/library_blue.svg?mode=light',
+  }
+}
+export const Icon: Story = {
+  args: {
+    block: icon
+  }
+}
