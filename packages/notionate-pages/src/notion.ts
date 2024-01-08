@@ -226,8 +226,12 @@ export const FetchPage = async (page_id: string, last_edited_time?: string): Pro
       page.cover.src = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
     }
   }
-  if ('icon' in page && page.icon?.type === 'file') {
-    page.icon.src = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
+  if ('icon' in page && page.icon !== null) {
+    if (page.icon.type === 'external') {
+      page.icon.src = await saveImage(page.icon.external.url, `page-icon-${page.id}`)
+    } else if (page.icon.type === 'file') {
+      page.icon.src = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
+    }
   }
 
   await writeCache(cacheFile, page)
