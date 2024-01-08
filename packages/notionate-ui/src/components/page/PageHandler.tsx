@@ -51,7 +51,7 @@ export const PageHandler = ({ block, href, link, query, modules }: HandlerProps)
     case 'child_database':
       return <ChildDatabaseBlock block={block} href={href} link={link} query={query} key={block.id} />
     case 'child_page':
-      return <ChildPageBlock block={block} href={href} link={link} query={query} key={block.id} />
+      return <ChildPageBlock block={block} href={href} link={link} key={block.id} />
     case 'code':
       return <CodeBlock block={block} key={block.id} modules={modules} />
     case 'column_list':
