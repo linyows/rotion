@@ -49,8 +49,10 @@ export const PageHandler = ({ block, href, link, query, modules }: HandlerProps)
     case 'callout':
       return <CalloutBlock block={block} key={block.id} />
     case 'child_database':
+      console.log(`debug: ${block.type}`, block)
       return <ChildDatabaseBlock block={block} href={href} link={link} query={query} key={block.id} />
     case 'child_page':
+      console.log(`debug: ${block.type}`, block)
       return <ChildPageBlock block={block} href={href} link={link} key={block.id} />
     case 'code':
       return <CodeBlock block={block} key={block.id} modules={modules} />
