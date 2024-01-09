@@ -5,7 +5,7 @@ import { getLinkPathAndLinkKey, queryToString } from '../../lib'
 const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProps) => {
   const title = block.child_page.title
   const [path, slugKey] = getLinkPathAndLinkKey(href || '')
-  const file = slugKey === 'id' ? block.page.id : encodeURIComponent(title.toLowerCase())
+  const file = slugKey === 'id' ? block.page.id : encodeURIComponent(title.toLowerCase()).replace(/%20/g, '-')
 
   if (!href) {
     return (
