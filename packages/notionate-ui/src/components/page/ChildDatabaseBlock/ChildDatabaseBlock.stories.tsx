@@ -4,7 +4,7 @@ import ChildDatabaseBlock from './ChildDatabaseBlock'
 import '../../../styles/base.css'
 import '../../../styles/page.css'
 
-const title: RichTextItemResponse[] = [{
+const richtext: RichTextItemResponse[] = [{
   type: 'text',
   text: {
     content: 'My Database',
@@ -22,29 +22,11 @@ const title: RichTextItemResponse[] = [{
   href: null,
 }]
 
-const description: RichTextItemResponse[] = [{
-  type: 'text',
-  text: {
-    content: "My Database's Description",
-    link: null,
-  },
-  annotations: {
-    bold: false,
-    italic: false,
-    strikethrough: false,
-    underline: false,
-    code: false,
-    color: 'default',
-  },
-  plain_text: "My Database's Description",
-  href: null,
-}]
-
 const database: GetDatabaseResponseEx = {
   object: 'database',
   id: '',
-  title,
-  description,
+  title: richtext,
+  description: richtext,
   created_time: '2022-08-11T13:02:00.000Z',
   last_edited_time: '2024-01-07T01:36:00.000Z',
   created_by: {
