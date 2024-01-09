@@ -97,7 +97,8 @@ const meta = {
   component: ChildDatabaseBlock,
   args: {
     block,
-    href: '/child-database',
+    href: '/path/to/[slug]',
+    query: { sortby: 'title' },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof ChildDatabaseBlock>
