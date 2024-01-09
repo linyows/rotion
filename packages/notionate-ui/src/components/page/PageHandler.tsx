@@ -42,7 +42,7 @@ export const PageHandler = ({ block, href, link, query, modules }: HandlerProps)
     case 'bookmark':
       return <BookmarkBlock block={block} key={block.id} />
     case 'breadcrumb':
-      console.log(`still a not supported component: ${block.type}`, block)
+      console.log(`still a not supported component: ${block.type}`)
       return <BreadcrumbBlock block={block} key={block.id} />
     case 'bulleted_list_item':
       return <BulletedListBlocks block={block} key={block.id} />
@@ -52,7 +52,6 @@ export const PageHandler = ({ block, href, link, query, modules }: HandlerProps)
       console.log(`debug: ${block.type}`, block)
       return <ChildDatabaseBlock block={block} href={href} link={link} query={query} key={block.id} />
     case 'child_page':
-      console.log(`debug: ${block.type}`, block)
       return <ChildPageBlock block={block} href={href} link={link} key={block.id} />
     case 'code':
       return <CodeBlock block={block} key={block.id} modules={modules} />
@@ -64,7 +63,7 @@ export const PageHandler = ({ block, href, link, query, modules }: HandlerProps)
     case 'equation':
       return <EquationBlock block={block} key={block.id} />
     case 'file':
-      console.log(`still a not supported component: ${block.type}`, block)
+      console.log(`still a not supported component: ${block.type}`)
       return <FileBlock block={block} key={block.id} />
     case 'heading_1':
     case 'heading_2':
@@ -87,7 +86,7 @@ export const PageHandler = ({ block, href, link, query, modules }: HandlerProps)
       console.log(`still a not supported component: ${block.type}`, block)
       return <PdfBlock block={block} key={block.id} />
     case 'synced_block':
-      console.log(`still a not supported component: ${block.type}`, block)
+      console.log(`still a not supported component: ${block.type}`)
       return <SyncedBlock block={block} key={block.id} />
     case 'table':
       return <TableBlock block={block} key={block.id} />
