@@ -1,6 +1,7 @@
 import React from 'react'
 import type { ChildPageBlockProps, ChildPageLinkProps } from './ChildPageBlock.types'
 import { getLinkPathAndLinkKey } from '../../lib/linkpath'
+import { queryToString } from '../../lib'
 
 const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProps) => {
   const title = block.child_page.title
@@ -14,23 +15,19 @@ const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProp
       </div>
     )
   }
-  if (link && query) {
+  if (link) {
     const Link = link
+    if (query === undefined) {
+      query = {}
+    }
     return (
       <Link className="notionate-blocks-childpage-a" href={{ pathname: `${path}${file}`, query }}>
         {children}
       </Link>
     )
-  } else if (link) {
-    const Link = link
-    return (
-      <Link className="notionate-blocks-childpage-a" href={`${path}${file}`}>
-        {children}
-      </Link>
-    )
   }
   return (
-    <a href={`${path}${file}`} className="notionate-blocks-childpage-a">
+    <a href={`${path}${file}${queryToString(query)}`} className="notionate-blocks-childpage-a">
       {children}
     </a>
   )
