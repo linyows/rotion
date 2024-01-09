@@ -106,7 +106,7 @@ const meta = {
   component: ChildPageBlock,
   args: {
     block,
-    href: '/child-page',
+    href: '/path/to/[slug]',
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof ChildPageBlock>
