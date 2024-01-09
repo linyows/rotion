@@ -1,7 +1,6 @@
 import React from 'react'
 import type { ChildDatabaseBlockProps, ChildDatabaseLinkProps } from './ChildDatabaseBlock.types'
-import { getLinkPathAndLinkKey } from '../../lib/linkpath'
-import { queryToString } from '../../lib'
+import { getLinkPathAndLinkKey, queryToString } from '../../lib'
 
 const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabaseLinkProps) => {
   const title = block.child_database.title

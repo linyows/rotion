@@ -5,7 +5,7 @@ import type {
 } from 'notionate-pages'
 import type { ListProps } from './List.types'
 import ListHandler from './ListHandler'
-import { getLinkPathAndLinkKey } from '../lib/linkpath'
+import { getLinkPathAndLinkKey } from '../lib'
 
 const List: React.FC<ListProps> = ({ keys, db, href, link, query }) => {
   const getSlug = (key: string, page: GetPageResponse): string => {

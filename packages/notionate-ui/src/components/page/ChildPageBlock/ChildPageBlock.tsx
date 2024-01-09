@@ -1,7 +1,6 @@
 import React from 'react'
 import type { ChildPageBlockProps, ChildPageLinkProps } from './ChildPageBlock.types'
-import { getLinkPathAndLinkKey } from '../../lib/linkpath'
-import { queryToString } from '../../lib'
+import { getLinkPathAndLinkKey, queryToString } from '../../lib'
 
 const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProps) => {
   const title = block.child_page.title

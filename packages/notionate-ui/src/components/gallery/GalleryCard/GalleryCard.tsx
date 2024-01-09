@@ -4,7 +4,7 @@ import type {
   PageObjectResponseEx,
 } from 'notionate-pages'
 import GalleryHandler from './GalleryHandler'
-import { getLinkPathAndLinkKey } from '../../lib/linkpath'
+import { getLinkPathAndLinkKey } from '../../lib'
 import GalleryLinkedCard from './GalleryLinkedCard'
 import GalleryPreview from './GalleryPreview'
 import type { GalleryCardProps } from './GalleryCard.types'

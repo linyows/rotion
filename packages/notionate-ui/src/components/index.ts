@@ -56,6 +56,5 @@ export * from './Page/ToDoBlock'
 export * from './Page/ToggleBlock'
 export * from './Page/VideoBlock'
 
-export * from './lib/pagination'
-export * from './lib/linkpath'
+export * from './lib'
 export * from './types'

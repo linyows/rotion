@@ -5,7 +5,7 @@ import type {
 } from 'notionate-pages'
 import PropertyNameAndIcon from './TablePropertyNameAndIcon'
 import TableHandler from './TableHandler'
-import { getLinkPathAndLinkKey } from '../lib/linkpath'
+import { getLinkPathAndLinkKey } from '../lib'
 import type { TableProps } from './Table.types'
 
 export const Table = ({ keys, db, href, link, query }: TableProps) => {
