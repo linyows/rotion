@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 
-export function queryToString(q: ParsedUrlQueryInput | undefined) {
+export function queryToString (q: ParsedUrlQueryInput | undefined) {
   if (q === undefined) {
     return ''
   }
