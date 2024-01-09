@@ -5,7 +5,7 @@ import { getLinkPathAndLinkKey, queryToString } from '../../lib'
 const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabaseLinkProps) => {
   const title = block.child_database.title
   const [path, slugKey] = getLinkPathAndLinkKey(href || '')
-  const file = slugKey === 'id' ? block.database.id : encodeURIComponent(title.toLowerCase())
+  const file = slugKey === 'id' ? block.database.id : encodeURIComponent(title.toLowerCase()).replace(/%20/g, '-')
 
   if (!href) {
     return (
