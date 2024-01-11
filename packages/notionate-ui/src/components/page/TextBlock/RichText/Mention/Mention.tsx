@@ -35,7 +35,7 @@ const Mention = ({ textObject, children }: MentionProps) => {
         </span>
       )
     }
-    case 'page':
+    case 'page': {
       const { page } = textObject.mention
       return (
         <span className="notionate-blocks-text-mention-page">
@@ -43,7 +43,8 @@ const Mention = ({ textObject, children }: MentionProps) => {
           <span>{page.name}</span>
         </span>
       )
-    case 'database':
+    }
+    case 'database': {
       const { database } = textObject.mention
       return (
         <span className="notionate-blocks-text-mention-database">
@@ -51,7 +52,7 @@ const Mention = ({ textObject, children }: MentionProps) => {
           <span>{database.name}</span>
         </span>
       )
-
+    }
     case 'template_mention':
     default:
       console.log(`unsupport mention type: ${textObject.mention.type}`)

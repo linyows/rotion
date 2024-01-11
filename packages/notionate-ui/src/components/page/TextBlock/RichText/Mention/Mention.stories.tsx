@@ -122,7 +122,11 @@ export const DateMention: Story = {
 const pageMention = structuredClone(userMention)
 pageMention.mention = {
   type: 'page',
-  page: { id: 'abcdefg', name: 'Child Page' },
+  page: {
+    id: 'abcdefg',
+    name: 'Child Page',
+    icon: { type: 'emoji', emoji: '✌️' }
+  },
 }
 export const PageMention: Story = {
   args: {
@@ -133,7 +137,15 @@ export const PageMention: Story = {
 const databaseMention = structuredClone(userMention)
 databaseMention.mention = {
   type: 'database',
-  database: { id: 'abcdefg', name: 'Child Database' },
+  database: {
+    id: 'abcdefg',
+    name: 'Child Database',
+    icon: {
+      type: 'external',
+      src: 'https://www.notion.so/icons/light-bulb_blue.svg?mode=light',
+      url: 'https://www.notion.so/icons/light-bulb_blue.svg?mode=light',
+    }
+  },
 }
 export const DatabaseMention: Story = {
   args: {
