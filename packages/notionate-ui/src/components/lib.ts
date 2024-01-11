@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { ParsedUrlQueryInput } from 'node:querystring'
+import { ListBlockChildrenResponseEx } from 'notionate-pages'
 
 export function queryToString (q: ParsedUrlQueryInput | undefined) {
   if (q === undefined) {

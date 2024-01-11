@@ -1,11 +1,11 @@
 import React from 'react'
-import type { MentionRichTextItemResponse } from 'notionate-pages'
+import type { MentionRichTextItemResponseEx } from 'notionate-pages'
 import type { Meta, StoryObj } from '@storybook/react'
 import Mention from './Mention'
 import '../../../../../styles/base.css'
 import '../../../../../styles/page.css'
 
-const textObject: MentionRichTextItemResponse = {
+const textObject: MentionRichTextItemResponseEx = {
   type: 'mention',
   mention: {
     type: 'user',
@@ -45,7 +45,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const userMention: MentionRichTextItemResponse = {
+const userMention: MentionRichTextItemResponseEx = {
   type: 'mention',
   mention: {
     type: 'user',
@@ -122,7 +122,7 @@ export const DateMention: Story = {
 const pageMention = structuredClone(userMention)
 pageMention.mention = {
   type: 'page',
-  page: { id: 'abcdefg' },
+  page: { id: 'abcdefg', name: 'Child Page' },
 }
 export const PageMention: Story = {
   args: {
@@ -133,7 +133,7 @@ export const PageMention: Story = {
 const databaseMention = structuredClone(userMention)
 databaseMention.mention = {
   type: 'database',
-  database: { id: 'abcdefg' },
+  database: { id: 'abcdefg', name: 'Child Database' },
 }
 export const DatabaseMention: Story = {
   args: {
