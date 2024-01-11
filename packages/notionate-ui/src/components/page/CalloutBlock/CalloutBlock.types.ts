@@ -1,5 +1,5 @@
-import type { CalloutBlockObjectResponse } from 'notionate-pages'
+import type { CalloutBlockObjectResponseEx } from 'notionate-pages'
 
 export interface CalloutBlockProps {
-  block: CalloutBlockObjectResponse
+  block: CalloutBlockObjectResponseEx
 }
