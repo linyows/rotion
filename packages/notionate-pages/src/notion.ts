@@ -286,6 +286,10 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
           }
           break
         case 'callout':
+          if (block.callout.icon?.type === 'external') {
+            const iconUrl = block.callout.icon.external.url
+            block.callout.icon.src = await saveImage(iconUrl, `block-${block.id}`)
+          }
           break
         case 'child_database':
           // if (block.has_children) {

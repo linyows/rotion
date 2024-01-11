@@ -143,6 +143,16 @@ export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & {
     }
   }
 }
+export type CalloutBlockObjectResponseEx = CalloutBlockObjectResponse & {
+  callout: {
+    rich_text: Array<RichTextItemResponse>
+    color: SelectColorWithBG
+    icon:
+    | { type: 'emoji', emoji: EmojiRequest }
+    | { src: string, type: 'external', external: { url: TextRequest } }
+    | { src: string, type: 'file', file: { url: string, expiry_time: string } }
+  }
+}
 export type ImageBlockObjectResponseEx = ImageBlockObjectResponse & {
   image:
   | {
@@ -196,7 +206,7 @@ export type BlockObjectResponse =
   | ChildDatabaseBlockObjectResponseEx
   | EquationBlockObjectResponse
   | CodeBlockObjectResponse
-  | CalloutBlockObjectResponse
+  | CalloutBlockObjectResponseEx
   | DividerBlockObjectResponse
   | BreadcrumbBlockObjectResponse
   | TableOfContentsBlockObjectResponse
