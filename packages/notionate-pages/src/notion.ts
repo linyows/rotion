@@ -276,10 +276,6 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
     try {
       const { type } = block
       switch (type) {
-        case 'bookmark':
-          break
-        case 'breadcrumb':
-          break
         case 'bulleted_list_item':
           if (block.has_children) {
             block.children = await FetchBlocks(block.id, block.last_edited_time)
@@ -303,8 +299,6 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
           // Unnecessary?
           // block.children = await FetchBlocks(block.id, block.last_edited_time)
           break
-        case 'code':
-          break
         case 'column_list':
           block.children = await FetchBlocks(block.id, block.last_edited_time)
           block.columns = []
@@ -315,18 +309,12 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
         case 'embed':
           block.embed.html = await getEmbedHtml(block)
           break
-        case 'equation':
-          break
-        case 'file':
-          break
         case 'image':
           const { id, image } = block
           if (image !== undefined) {
             const imageUrl = image.type === 'file' ? image.file.url : image.external.url
             block.image.src = await saveImage(imageUrl, `block-${id}`)
           }
-          break
-        case 'link_preview':
           break
         case 'numbered_list_item':
           if (block.has_children) {
@@ -358,18 +346,8 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
             }
           }
           break
-        case 'pdf':
-          break
-        case 'synced_block':
-          break
         case 'table':
           block.children = await FetchBlocks(block.id, block.last_edited_time)
-          break
-        case 'table_of_contents':
-          break
-        case 'template':
-          break
-        case 'to_do':
           break
         case 'toggle':
           block.children = await FetchBlocks(block.id, block.last_edited_time)
@@ -379,8 +357,30 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
             block.video.html = await getVideoHtml(block)
           }
           break
+        case 'audio':
+        case 'bookmark':
+        case 'breadcrumb':
+        case 'code':
+        case 'column':
+        case 'divider':
+        case 'equation':
+        case 'file':
+        case 'heading_1':
+        case 'heading_2':
+        case 'heading_3':
+        case 'link_to_page':
+        case 'link_preview':
+        case 'pdf':
+        case 'quote':
+        case 'synced_block':
+        case 'table_of_contents':
+        case 'table_row':
+        case 'template':
+        case 'to_do':
+        case 'unsupported':
+          break
         default:
-          console.log(`error for ${block.type} contents get`, block)
+          console.log(`unknown block error`, block)
           break
       }
     } catch (e) {
