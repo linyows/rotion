@@ -288,10 +288,11 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
         case 'callout':
           break
         case 'child_database':
-          if (block.has_children) {
-            const database_id = block.id
-            block.database = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>('notion.databases.retrieve', notion.databases.retrieve, { database_id }, 3)
-          }
+          // if (block.has_children) {
+          const database_id = block.id
+          block.database = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>('notion.databases.retrieve', notion.databases.retrieve, { database_id }, 3)
+          console.log(block)
+          // }
           break
         case 'child_page':
           block.page = await FetchPage(block.id, block.last_edited_time)
