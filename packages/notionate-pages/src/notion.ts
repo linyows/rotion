@@ -336,15 +336,16 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
                   const db = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>('notion.databases.retrieve', notion.databases.retrieve, { database_id }, 3)
                   richText.mention.database.name = db.title.map(v => v.plain_text).join('')
                   if (db.icon?.type === 'emoji') {
-                    richText.mention.database.icon = { emoji: db.icon.emoji }
+                    richText.mention.database.icon = { type: 'emoji', emoji: db.icon.emoji }
                   } else if (db.icon?.type === 'external' || db.icon?.type === 'file') {
                     const iconUrl = (db.icon.type === 'external') ? db.icon.external.url : db.icon.file.url
                     const src = await saveImage(iconUrl, `block-${block.id}`)
-                    richText.mention.database.icon = { src, url: src }
+                    richText.mention.database.icon = { type: db.icon.type, src, url: src }
                   }
                 } catch (e) {
                   console.log(`database view mention is unsupported ${block.type}`, block, e)
                   richText.mention.database.name = '--'
+                  richText.mention.database.icon = { type: 'emoji', emoji: '@' }
                 }
                 break
               case 'page':

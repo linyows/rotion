@@ -205,8 +205,8 @@ type TemplateMentionResponse = TemplateMentionDateTemplateMentionResponse | Temp
 type LinkPreviewMentionResponse = {
   url: TextRequest
 }
-type MentionEmoji = { emoji: string }
-type MentionExternalOrFile = { src: string, url: string }
+type MentionEmoji = { type: 'emoji', emoji: string }
+type MentionExternalOrFile = { type: 'external' | 'file', src: string, url: string }
 type MentionIcon = MentionEmoji | MentionExternalOrFile
 export type MentionRichTextItemResponseEx = MentionRichTextItemResponse & {
   mention:
