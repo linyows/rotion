@@ -48,12 +48,12 @@ export function UsePagination<T> (pages: T[], perPage: number): {
 }
 
 // BuildPlainTextByPage builds plain text from a apge as FetchBlocks returns
-export function BuildPlainTextByPage(blocks: ListBlockChildrenResponseEx) {
-  const richText = blocks.results.map(v => 'type' in v && v.type === 'paragraph' ? v.paragraph.rich_text : [] )
+export function BuildPlainTextByPage (blocks: ListBlockChildrenResponseEx) {
+  const richText = blocks.results.map(v => 'type' in v && v.type === 'paragraph' ? v.paragraph.rich_text : [])
   return richText.map(v => v.map(vv => vv.plain_text)).flat().join('')
 }
 
-export function pathBasename(str: string) {
+export function pathBasename (str: string) {
   const u = str.replace(/\/$/, '')
   const l = u.substring(u.lastIndexOf('/') + 1)
   return l.lastIndexOf('?') > 0 ? l.substring(0, l.lastIndexOf('?')) : l

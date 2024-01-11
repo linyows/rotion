@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import type { RichTextItemResponse, TextRichTextItemResponse } from 'notionate-pages'
+import type { RichTextItemResponseEx, TextRichTextItemResponse } from 'notionate-pages'
 import Annotation from './Annotation'
 import '../../../../../styles/base.css'
 import '../../../../../styles/page.css'
@@ -21,7 +21,7 @@ const textObject = {
   },
   plain_text: 'hello',
   href: null,
-} as RichTextItemResponse
+} as RichTextItemResponseEx
 
 const meta = {
   title: 'RichText/Annotation',

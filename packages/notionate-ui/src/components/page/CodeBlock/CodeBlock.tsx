@@ -1,6 +1,7 @@
 import React from 'react'
 import type {
   RichTextItemResponse,
+  RichTextItemResponseEx,
   TextRichTextItemResponse,
 } from 'notionate-pages'
 import RichText from '../TextBlock/RichText/RichText'
@@ -19,7 +20,7 @@ const CodeBlock = ({ block, modules }: CodeBlockProps) => {
 
   const captions = block.code?.caption.map((v, i) => {
     return (
-      <RichText textObject={v as RichTextItemResponse} key={`${i}`} />
+      <RichText textObject={v as RichTextItemResponseEx} key={`${i}`} />
     )
   })
 

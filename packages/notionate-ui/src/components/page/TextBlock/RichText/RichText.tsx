@@ -3,6 +3,7 @@ import Mention from './Mention/Mention'
 import Text from './Text/Text'
 import Equation from './Equation/Equation'
 import type { RichTextProps } from './RichText.types'
+import { MentionRichTextItemResponseEx } from 'notionate-pages'
 
 const RichText = ({ textObject }: RichTextProps) => {
   if (textObject === undefined || textObject === null) {
@@ -20,7 +21,7 @@ const RichText = ({ textObject }: RichTextProps) => {
       )
     case 'mention':
       return (
-        <Mention textObject={textObject}>
+        <Mention textObject={textObject as MentionRichTextItemResponseEx}>
           {plain_text}
         </Mention>
       )

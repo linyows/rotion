@@ -15,15 +15,16 @@ const Mention = ({ textObject, children }: MentionProps) => {
   switch (type) {
     case 'user':
       return UserMention({ children })
-    case 'date':
+    case 'date': {
       console.log(`unsupport mention type: ${textObject.mention.type}`)
       const { start, end, time_zone } = textObject.mention.date
       return (
         <span className="notionate-blocks-text-mention-date">
-          {start} - {end} {time_zone}
+          @{start}{end === null ? '' : ` -> ${end}`}{time_zone === null ? '' : `(${time_zone})`}
         </span>
       )
-    case 'link_preview':
+    }
+    case 'link_preview': {
       const { url } = textObject.mention.link_preview
       return (
         <span className="notionate-blocks-text-mention">
@@ -33,18 +34,19 @@ const Mention = ({ textObject, children }: MentionProps) => {
           {pathBasename(plain_text)}
         </span>
       )
+    }
     case 'page':
       console.log(`unsupport mention type: ${textObject.mention.type}`)
       return (
         <span className="notionate-blocks-text-mention-page">
-          {textObject.mention.page.name}
+          @{textObject.mention.page.name}
         </span>
       )
     case 'database':
       console.log(`unsupport mention type: ${textObject.mention.type}`)
       return (
         <span className="notionate-blocks-text-mention-database">
-          {textObject.mention.database.name}
+          @{textObject.mention.database.name}
         </span>
       )
 
