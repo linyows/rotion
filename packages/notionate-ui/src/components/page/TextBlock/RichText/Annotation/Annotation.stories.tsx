@@ -24,7 +24,7 @@ const textObject = {
 } as RichTextItemResponse
 
 const meta = {
-  title: 'Notionate/Annotation',
+  title: 'RichText/Annotation',
   component: Annotation,
   args: {
     textObject,

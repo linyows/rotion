@@ -26,7 +26,7 @@ const textObject = {
 } as TextRichTextItemResponse
 
 const meta = {
-  title: 'Notionate/LinkIfLinked',
+  title: 'RichText/LinkIfLinked',
   component: LinkIfLinked,
   args: {
     condition: true,

@@ -93,7 +93,7 @@ const block: ChildDatabaseBlockObjectResponseEx = {
 }
 
 const meta = {
-  title: 'Notionate/ChildDatabaseBlock',
+  title: 'Page/ChildDatabaseBlock',
   component: ChildDatabaseBlock,
   args: {
     block,

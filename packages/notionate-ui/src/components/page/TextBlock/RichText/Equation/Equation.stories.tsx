@@ -23,7 +23,7 @@ const textObject = {
 } as EquationRichTextItemResponse
 
 const meta = {
-  title: 'Notionate/Equation',
+  title: 'RichText/Equation',
   component: Equation,
   args: {
     textObject,

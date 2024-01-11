@@ -33,7 +33,7 @@ const textObject: MentionRichTextItemResponse = {
 }
 
 const meta = {
-  title: 'Notionate/Mention',
+  title: 'RichText/Mention',
   component: Mention,
   args: {
     textObject,

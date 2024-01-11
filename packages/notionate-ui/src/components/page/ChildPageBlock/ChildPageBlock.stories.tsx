@@ -102,7 +102,7 @@ const block: ChildPageBlockObjectResponseEx = {
 }
 
 const meta = {
-  title: 'Notionate/ChildPageBlock',
+  title: 'Page/ChildPageBlock',
   component: ChildPageBlock,
   args: {
     block,
