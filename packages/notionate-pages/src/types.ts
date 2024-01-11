@@ -206,7 +206,6 @@ type LinkPreviewMentionResponse = {
   url: TextRequest
 }
 export type MentionRichTextItemResponseEx = MentionRichTextItemResponse & {
-  name: string
   mention:
   | { type: "user", user: PartialUserObjectResponse | UserObjectResponse }
   | { type: "date", date: DateResponse }
