@@ -40,6 +40,9 @@ import type {
   PageObjectResponse,
   PersonUserObjectResponse,
   DatabaseObjectResponse,
+  MentionRichTextItemResponse,
+  TextRichTextItemResponse,
+  EquationRichTextItemResponse,
 } from '@notionhq/client/build/src/api-endpoints.js'
 
 export * from '@notionhq/client/build/src/api-endpoints.js'
@@ -190,8 +193,39 @@ export type EmbedBlockObjectResponseEx = EmbedBlockObjectResponse & {
   }
 }
 
+type TemplateMentionDateTemplateMentionResponse = {
+  type: "template_mention_date"
+  template_mention_date: "today" | "now"
+}
+type TemplateMentionUserTemplateMentionResponse = {
+  type: "template_mention_user"
+  template_mention_user: "me"
+}
+type TemplateMentionResponse = TemplateMentionDateTemplateMentionResponse | TemplateMentionUserTemplateMentionResponse
+type LinkPreviewMentionResponse = {
+  url: TextRequest
+}
+export type MentionRichTextItemResponseEx = MentionRichTextItemResponse & {
+  name: string
+  mention:
+  | { type: "user", user: PartialUserObjectResponse | UserObjectResponse }
+  | { type: "date", date: DateResponse }
+  | { type: "link_preview", link_preview: LinkPreviewMentionResponse }
+  | { type: "template_mention", template_mention: TemplateMentionResponse }
+  | { type: "page", page: { id: IdRequest, name: string } }
+  | { type: "database", database: { id: IdRequest, name: string } }
+}
+
+export type RichTextItemResponseEx = TextRichTextItemResponse | MentionRichTextItemResponseEx | EquationRichTextItemResponse
+export type ParagraphBlockObjectResponseEx = ParagraphBlockObjectResponse & {
+  paragraph: {
+    rich_text: Array<RichTextItemResponseEx>
+    color: SelectColor
+  }
+}
+
 export type BlockObjectResponse =
-  | ParagraphBlockObjectResponse
+  | ParagraphBlockObjectResponseEx
   | Heading1BlockObjectResponse
   | Heading2BlockObjectResponse
   | Heading3BlockObjectResponse

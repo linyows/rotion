@@ -334,6 +334,29 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
           }
           break
         case 'paragraph':
+          for (const richText of block.paragraph.rich_text) {
+            if (richText.type !== 'mention') {
+              continue
+            }
+            switch (richText.mention.type) {
+              case 'database':
+                const database_id = richText.mention.database.id
+                const db = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>('notion.databases.retrieve', notion.databases.retrieve, { database_id }, 3)
+                richText.mention.database.name = db.title.map(v => v.plain_text).join('')
+                break
+              case 'page':
+                const page_id = richText.mention.page.id
+                const page = await reqAPIWithBackoff<GetPageResponseEx>(notion.pages.retrieve, { page_id }, 3)
+                for (const prop of Object.values(page.properties)) {
+                  if (prop.type !== 'title') {
+                    continue
+                  }
+                  richText.mention.page.name = prop.title.map(v => v.plain_text).join('')
+                  break
+                }
+                break
+            }
+          }
           break
         case 'pdf':
           break
