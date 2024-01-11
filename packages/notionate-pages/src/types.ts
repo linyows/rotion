@@ -205,14 +205,17 @@ type TemplateMentionResponse = TemplateMentionDateTemplateMentionResponse | Temp
 type LinkPreviewMentionResponse = {
   url: TextRequest
 }
+type MentionEmoji = { emoji: string }
+type MentionExternalOrFile = { src: string, url: string }
+type MentionIcon = MentionEmoji | MentionExternalOrFile
 export type MentionRichTextItemResponseEx = MentionRichTextItemResponse & {
   mention:
   | { type: "user", user: PartialUserObjectResponse | UserObjectResponse }
   | { type: "date", date: DateResponse }
   | { type: "link_preview", link_preview: LinkPreviewMentionResponse }
   | { type: "template_mention", template_mention: TemplateMentionResponse }
-  | { type: "page", page: { id: IdRequest, name: string } }
-  | { type: "database", database: { id: IdRequest, name: string } }
+  | { type: "page", page: { id: IdRequest, name: string, icon: MentionIcon } }
+  | { type: "database", database: { id: IdRequest, name: string, icon: MentionIcon } }
 }
 
 export type RichTextItemResponseEx = TextRichTextItemResponse | MentionRichTextItemResponseEx | EquationRichTextItemResponse
