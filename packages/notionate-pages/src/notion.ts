@@ -297,7 +297,7 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
         case 'child_page':
           block.page = await FetchPage(block.id, block.last_edited_time)
           // Unnecessary?
-          block.children = await FetchBlocks(block.id, block.last_edited_time)
+          // block.children = await FetchBlocks(block.id, block.last_edited_time)
           break
         case 'code':
           break
