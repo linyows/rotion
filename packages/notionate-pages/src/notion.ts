@@ -274,38 +274,86 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
 
   for (const block of list.results) {
     try {
-      if (block.type === 'table' && block.table !== undefined) {
-        block.children = await FetchBlocks(block.id, block.last_edited_time)
-      } else if (block.type === 'toggle' && block.toggle !== undefined) {
-        block.children = await FetchBlocks(block.id, block.last_edited_time)
-      } else if (block.type === 'column_list' && block.column_list !== undefined) {
-        block.children = await FetchBlocks(block.id, block.last_edited_time)
-        block.columns = []
-        for (const b of block.children.results) {
-          block.columns.push(await FetchBlocks(b.id, block.last_edited_time))
-        }
-      } else if (block.type === 'child_page' && block.child_page !== undefined) {
-        block.page = await FetchPage(block.id, block.last_edited_time)
-        block.children = await FetchBlocks(block.id, block.last_edited_time)
-      } else if (block.type === 'child_database' && block.child_database !== undefined && block.has_children) {
-        const database_id = block.id
-        block.database = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>('notion.databases.retrieve', notion.databases.retrieve, { database_id }, 3)
-      } else if (block.type === 'bookmark' && block.bookmark !== undefined) {
-        block.bookmark.site = await getHtmlMeta(block.bookmark.url)
-      } else if (block.type === 'image' && block.image !== undefined) {
-        const { id, image } = block
-        if (image !== undefined) {
-          const imageUrl = image.type === 'file' ? image.file.url : image.external.url
-          block.image.src = await saveImage(imageUrl, `block-${id}`)
-        }
-      } else if (block.type === 'video' && block.video !== undefined && block.video.type === 'external') {
-        block.video.html = await getVideoHtml(block)
-      } else if (block.type === 'embed' && block.embed !== undefined) {
-        block.embed.html = await getEmbedHtml(block)
-      } else if (block.type === 'bulleted_list_item' && block.has_children) {
-        block.children = await FetchBlocks(block.id, block.last_edited_time)
-      } else if (block.type === 'numbered_list_item' && block.has_children) {
-        block.children = await FetchBlocks(block.id, block.last_edited_time)
+      const { type } = block
+      switch (type) {
+        case 'bookmark':
+          break
+        case 'breadcrumb':
+          break
+        case 'bulleted_list_item':
+          if (block.has_children) {
+            block.children = await FetchBlocks(block.id, block.last_edited_time)
+          }
+          break
+        case 'callout':
+          break
+        case 'child_database':
+          if (block.has_children) {
+            const database_id = block.id
+            block.database = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>('notion.databases.retrieve', notion.databases.retrieve, { database_id }, 3)
+          }
+          break
+        case 'child_page':
+          block.page = await FetchPage(block.id, block.last_edited_time)
+          // Unnecessary?
+          block.children = await FetchBlocks(block.id, block.last_edited_time)
+          break
+        case 'code':
+          break
+        case 'column_list':
+          block.children = await FetchBlocks(block.id, block.last_edited_time)
+          block.columns = []
+          for (const b of block.children.results) {
+            block.columns.push(await FetchBlocks(b.id, block.last_edited_time))
+          }
+          break
+        case 'embed':
+          block.embed.html = await getEmbedHtml(block)
+          break
+        case 'equation':
+          break
+        case 'file':
+          break
+        case 'image':
+          const { id, image } = block
+          if (image !== undefined) {
+            const imageUrl = image.type === 'file' ? image.file.url : image.external.url
+            block.image.src = await saveImage(imageUrl, `block-${id}`)
+          }
+          break
+        case 'link_preview':
+          break
+        case 'numbered_list_item':
+          if (block.has_children) {
+            block.children = await FetchBlocks(block.id, block.last_edited_time)
+          }
+          break
+        case 'paragraph':
+          break
+        case 'pdf':
+          break
+        case 'synced_block':
+          break
+        case 'table':
+          block.children = await FetchBlocks(block.id, block.last_edited_time)
+          break
+        case 'table_of_contents':
+          break
+        case 'template':
+          break
+        case 'to_do':
+          break
+        case 'toggle':
+          block.children = await FetchBlocks(block.id, block.last_edited_time)
+          break
+        case 'video':
+          if (block.video.type === 'external') {
+            block.video.html = await getVideoHtml(block)
+          }
+          break
+        default:
+          console.log(`error for ${block.type} contents get`, block)
+          break
       }
     } catch (e) {
       console.log(`error for ${block.type} contents get`, block, e)
