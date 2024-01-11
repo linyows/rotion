@@ -45,3 +45,9 @@ export function UsePagination<T> (pages: T[], perPage: number): {
 
   return { next, currentData, currentPage, maxPage }
 }
+
+// BuildPlainTextByPage builds plain text from a apge as FetchBlocks returns
+export function BuildPlainTextByPage(blocks: ListBlockChildrenResponseEx) {
+  const richText = blocks.results.map(v => 'type' in v && v.type === 'paragraph' ? v.paragraph.rich_text : [] )
+  return richText.map(v => v.map(vv => vv.plain_text)).flat().join('')
+}
