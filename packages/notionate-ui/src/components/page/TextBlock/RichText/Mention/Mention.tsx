@@ -36,17 +36,19 @@ const Mention = ({ textObject, children }: MentionProps) => {
       )
     }
     case 'page':
-      console.log(`unsupport mention type: ${textObject.mention.type}`)
+      const { page } = textObject.mention
       return (
         <span className="notionate-blocks-text-mention-page">
-          @{textObject.mention.page.name}
+          <span>{page.icon.type === 'emoji' ? page.icon.emoji : <img src={page.icon.src} alt="icon"/>}</span>
+          <span>{page.name}</span>
         </span>
       )
     case 'database':
-      console.log(`unsupport mention type: ${textObject.mention.type}`)
+      const { database } = textObject.mention
       return (
         <span className="notionate-blocks-text-mention-database">
-          @{textObject.mention.database.name}
+          <span>{database.icon.type === 'emoji' ? database.icon.emoji : <img src={database.icon.src} alt="icon"/>}</span>
+          <span>{database.name}</span>
         </span>
       )
 
