@@ -276,6 +276,9 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
     try {
       const { type } = block
       switch (type) {
+        case 'bookmark':
+          block.bookmark.site = await getHtmlMeta(block.bookmark.url)
+          break
         case 'bulleted_list_item':
           if (block.has_children) {
             block.children = await FetchBlocks(block.id, block.last_edited_time)
@@ -358,7 +361,6 @@ export const FetchBlocks = async (block_id: string, last_edited_time?: string): 
           }
           break
         case 'audio':
-        case 'bookmark':
         case 'breadcrumb':
         case 'code':
         case 'column':
