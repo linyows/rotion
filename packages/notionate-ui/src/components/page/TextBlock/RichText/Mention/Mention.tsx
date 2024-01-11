@@ -2,12 +2,7 @@ import React from 'react'
 import UserMention from './UserMention/UserMention'
 import PageIcon from '../../../PageIcon/PageIcon'
 import type { RichTextProps } from '../RichText.types'
-
-const pathBasename = (str: string): string => {
-  const u = str.replace(/\/$/, '')
-  const l = u.substring(u.lastIndexOf('/') + 1)
-  return l.lastIndexOf('?') > 0 ? l.substring(0, l.lastIndexOf('?')) : l
-}
+import { pathBasename } from '../../../../lib'
 
 const Mention = ({ textObject, children }: RichTextProps) => {
   if (textObject === undefined) {

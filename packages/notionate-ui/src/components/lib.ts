@@ -51,3 +51,9 @@ export function BuildPlainTextByPage(blocks: ListBlockChildrenResponseEx) {
   const richText = blocks.results.map(v => 'type' in v && v.type === 'paragraph' ? v.paragraph.rich_text : [] )
   return richText.map(v => v.map(vv => vv.plain_text)).flat().join('')
 }
+
+export function pathBasename(str: string) {
+  const u = str.replace(/\/$/, '')
+  const l = u.substring(u.lastIndexOf('/') + 1)
+  return l.lastIndexOf('?') > 0 ? l.substring(0, l.lastIndexOf('?')) : l
+}
