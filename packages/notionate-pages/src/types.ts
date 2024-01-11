@@ -1,6 +1,5 @@
 import type {
   QueryDatabaseResponse,
-  GetDatabaseResponse,
   ListBlockChildrenResponse,
   GetSelfResponse,
   ParagraphBlockObjectResponse,
