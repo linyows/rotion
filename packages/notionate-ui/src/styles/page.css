@@ -99,6 +99,10 @@
   background-color: rgb(241, 241, 239);
   margin-top: .6rem;
 }
+.notionate-blocks-callout-icon {
+  width: 24px;
+  height: 24px;
+}
 .notionate-blocks-callout-text {
   margin-left: .6rem;
 }
@@ -118,7 +122,7 @@
   align-items: top;
 }
 .notionate-blocks-childdatabase-a:hover {
-  background-color: #f5f5f5;
+  background-color: rgba(55, 53, 47, 0.08);
   border-radius: 4px;
 }
 .notionate-blocks-childdatabase-icon {
@@ -140,13 +144,13 @@
   grid-template: repeat(1, 1fr) / 1.5rem 1fr;
   gap: .4rem;
   margin: .2rem 0 0;
-  padding: .6rem .3rem;
+  padding: .2rem;
   text-decoration: none;
   color: #333;
   align-items: top;
 }
 .notionate-blocks-childpage-a:hover {
-  background-color: #f5f5f5;
+  background-color: rgba(55, 53, 47, 0.08);
   border-radius: 4px;
 }
 .notionate-blocks-childpage-icon {

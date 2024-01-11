@@ -94,12 +94,19 @@
     background-color: rgb(37, 37, 37);
   }
 
+  .notionate-blocks-childdatabase-a {
+    color: #ddd;
+    border-color: #333;
+  }
+  .notionate-blocks-childdatabase:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+  }
   .notionate-blocks-childpage-a {
     color: #ddd;
     border-color: #333;
   }
   .notionate-blocks-childpage:hover {
-    background-color: #222;
+    background-color: rgba(255, 255, 255, 0.055);
   }
 
   .notionate-blocks-linkpreview-a {
