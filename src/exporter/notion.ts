@@ -27,10 +27,10 @@ import {
   isAvailableCache,
 } from './files.js'
 
-const cacheDir = process.env.NOTIONATE_CACHEDIR || '.cache'
-const incrementalCache = process.env.NOTIONATE_INCREMENTAL_CACHE === 'true'
-const waitingTimeSec = (process.env.NOTIONATE_WAITTIME || 0) as number
-const waitTimeSecAfterLimit = (process.env.NOTIONATE_LIMITED_WAITTIME || 60 * 1000) as number
+const cacheDir = process.env.ROTION_CACHEDIR || '.cache'
+const incrementalCache = process.env.ROTION_INCREMENTAL_CACHE === 'true'
+const waitingTimeSec = (process.env.ROTION_WAITTIME || 0) as number
+const waitTimeSecAfterLimit = (process.env.ROTION_LIMITED_WAITTIME || 60 * 1000) as number
 const auth = process.env.NOTION_TOKEN
 const notion = new Client({ auth })
 
@@ -178,7 +178,7 @@ export const FetchDatabase = async (params: QueryDatabaseParameters): Promise<Qu
 /**
  * FetchPage retrieves page properties and download images in from properties.
  * And create cache that includes filepath of downloaded images.
- * The last_edited_time of 2nd args is for NOTIONATE_INCREMENTAL_CACHE.
+ * The last_edited_time of 2nd args is for ROTION_INCREMENTAL_CACHE.
  */
 export const FetchPage = async (page_id: string, last_edited_time?: string): Promise<GetPageResponseEx> => {
   await createDirWhenNotfound(cacheDir)
@@ -242,7 +242,7 @@ export const FetchPage = async (page_id: string, last_edited_time?: string): Pro
 /**
  * FetchBlocks retrieves page blocks and download images in from blocks.
  * And create cache that includes filepath of downloaded images.
- * The last_edited_time of 2nd args is for NOTIONATE_INCREMENTAL_CACHE.
+ * The last_edited_time of 2nd args is for ROTION_INCREMENTAL_CACHE.
  */
 export const FetchBlocks = async (block_id: string, last_edited_time?: string): Promise<ListBlockChildrenResponseEx> => {
   await createDirWhenNotfound(cacheDir)

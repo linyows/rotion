@@ -15,9 +15,9 @@ import type {
 } from './types.js'
 import pkg from '../../package.json' assert { type: 'json' }
 
-const docRoot = process.env.NOTIONATE_DOCROOT || 'public'
-const imageDir = process.env.NOTIONATE_IMAGEDIR || 'images'
-const timeout = process.env.NOTIONATE_TIMEOUT ? parseInt(process.env.NOTIONATE_TIMEOUT) : 1500
+const docRoot = process.env.ROTION_DOCROOT || 'public'
+const imageDir = process.env.ROTION_IMAGEDIR || 'images'
+const timeout = process.env.ROTION_TIMEOUT ? parseInt(process.env.ROTION_TIMEOUT) : 1500
 const httpOptions = {
   timeout,
   headers: {
@@ -25,7 +25,7 @@ const httpOptions = {
     Accept: '*/*',
   },
 }
-const webpQuality = process.env.NOTIONATE_WEBP_QUALITY ? parseInt(process.env.NOTIONATE_WEBP_QUALITY) : 95
+const webpQuality = process.env.ROTION_WEBP_QUALITY ? parseInt(process.env.ROTION_WEBP_QUALITY) : 95
 
 // @ts-ignore
 https.get[promisify.custom] = function getAsync (url: any) {
