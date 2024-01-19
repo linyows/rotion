@@ -1,0 +1,30 @@
+{
+  "name": "exporter",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "repository": "linyows/notionate",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist/*"
+  ],
+  "author": {
+    "name": "Tomohisa Oda",
+    "url": "https://tomohisaoda.com"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "extends": "@tsconfig/node-lts-strictest-esm",
+  "ts-node": {
+    "esm": true
+  }
+}
