@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "declaration": true,
+    "declarationDir": "dist/exporter",
+    "sourceMap": true,
+    "rootDir": "src/exporter",
+    "outDir": "dist/exporter",
+    "resolveJsonModule": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "emitDeclarationOnly": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/exporter/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "examples",
+    "dist",
+    "src/ui",
+    "**/*.test.ts"
+  ]
+}

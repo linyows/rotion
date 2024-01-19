@@ -37,7 +37,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-/public
+public
 
 # examples
 /examples/**/.cache
