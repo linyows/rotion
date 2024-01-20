@@ -1,0 +1,31 @@
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 708px 1fr;
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+  margin: 8rem 0 0;
+}
+
+.title {
+  padding: 0;
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.desc {
+  margin-top: .5rem;
+  font-size: 1rem;
+}
+
+.icon {
+  padding: 3rem 0;
+  width: 78px;
+  height: 78px;
+}
+
+.page {
+  margin: 0 auto 5rem;
+}

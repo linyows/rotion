@@ -1,0 +1,297 @@
+@media (prefers-color-scheme: dark) {
+  .notionate-select-default {
+    color: rgb(255, 255, 255, 0.804);
+    background-color: rgb(55, 55, 55);
+  }
+  .notionate-select-gray {
+    color: rgb(255, 255, 255, 0.804);
+    background-color: rgb(90, 90, 90);
+  }
+  .notionate-select-brown {
+    color: rgba(255, 255, 255, 0.804);
+    background-color: rgb(96, 59, 44);
+  }
+  .notionate-select-orange {
+    color: rgba(255, 255, 255, 0.804);
+    background-color: rgb(133, 76, 29);
+  }
+  .notionate-select-yellow {
+    color: rgba(255, 255, 255, 0.804);
+    background-color: rgb(137, 99, 42);
+  }
+  .notionate-select-green {
+    color: rgba(255, 255, 255, 0.804);
+    background-color: rgb(43, 89, 63);
+  }
+  .notionate-select-blue {
+    color: rgba(255, 255, 255, 0.804);
+    background-color: rgb(40, 69, 108);
+  }
+  .notionate-select-purple {
+    color: rgba(255, 255, 255, 0.804);
+    background-color: rgb(73, 47, 100);
+  }
+  .notionate-select-pink {
+    color: rgba(255, 255, 255, 0.804);
+    background-color: rgb(105, 49, 76);
+  }
+  .notionate-select-red {
+    color: rgba(255, 255, 255, 0.804);
+    background-color: rgb(110, 54, 48);
+  }
+
+  /* TABLE */
+  .notionate-table-title-a {
+    color: #eee;
+    border-color: rgba(255, 255, 255, 0.094);
+  }
+  .notionate-table-icon {
+    fill: rgba(255, 255, 255, 0.443);
+  }
+  .notionate-table-url-a:hover {
+    color: rgb(227, 226, 224);
+    background: rgb(50, 48, 44) none repeat scroll 0% 0%;
+  }
+  .notionate-table-row {
+    color: rgba(255, 255, 255, 0.443);
+    border-color: rgba(255, 255, 255, 0.094);
+    box-shadow: black -3px 0px 0px, rgba(255, 255, 255, 0.08) 0px 1px 0px;
+  }
+  .notionate-table-cell-inner {
+    border-color: rgba(255, 255, 255, 0.094);
+  }
+  .notionate-blocks-table-td-header {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgb(47, 47, 47);
+  }
+
+  /* GALLERY */
+  .notionate-gallery-card {
+    box-shadow: rgb(15 15 15 / 20%) 0px 0px 0px 1px, rgb(15 15 15 / 20%) 0px 2px 4px;
+    background: rgba(255, 255, 255, 0.055);
+  }
+  .notionate-gallery-fit img {
+    border-color: rgba(255, 255, 255, 0.094);
+  }
+
+  /* LIST */
+  .notionate-list-title-a {
+    border-color: #444;
+  }
+  .notionate-list-record:hover {
+    background-color: #222;
+  }
+
+  /* BLOCKS */
+  .notionate-blocks-bookmark-inner {
+    border-color: rgba(255, 255, 255, 0.13);
+  }
+  .notionate-blocks-bookmark-inner:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+  }
+
+  .notionate-blocks-callout {
+    background-color: rgb(37, 37, 37);
+  }
+
+  .notionate-blocks-childdatabase-a {
+    color: #ddd;
+    border-color: #333;
+  }
+  .notionate-blocks-childdatabase:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+  }
+  .notionate-blocks-childpage-a {
+    color: #ddd;
+    border-color: #333;
+  }
+  .notionate-blocks-childpage:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+  }
+
+  .notionate-blocks-linkpreview-a {
+    border-color: rgba(255, 255, 255, 0.13);
+  }
+  .notionate-blocks-linkpreview-a:hover {
+    background-color: rgba(255, 255, 255, 0.055);
+  }
+  .notionate-blocks-icons-github {
+    fill: #fff;
+  }
+
+  .notionate-blocks-table-td {
+    border-color: rgb(47, 47, 47);
+  }
+  .notionate-blocks-table-th {
+    border-color: rgb(47, 47, 47);
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  .notionate-blocks-text-usermention {
+    color: #ccc;
+  }
+  .notionate-blocks-text-anchor {
+    border-color: #444;
+    color: #ccc;
+  }
+  .notionate-blocks-text-gray-background {
+    background: rgba(47, 47, 47, 1);
+  }
+  .notionate-blocks-text-brown-background {
+    background: rgba(74, 50, 40, 1);
+  }
+  .notionate-blocks-text-orange-background {
+    background: rgba(92, 59, 35, 1);
+  }
+  .notionate-blocks-text-yellow-background {
+    background: rgba(86, 67, 40, 1);
+  }
+  .notionate-blocks-text-green-background {
+    background: rgba(36, 61, 48, 1);
+  }
+  .notionate-blocks-text-blue-background {
+    background: rgba(20, 58, 78, 1);
+  }
+  .notionate-blocks-text-purple-background {
+    background: rgba(60, 45, 73, 1);
+  }
+  .notionate-blocks-text-pink-background {
+    background: rgba(78, 44, 60, 1);
+  }
+  .notionate-blocks-text-red-background {
+    background: rgba(82, 46, 42, 1);
+  }
+  .notionate-blocks-text-hr {
+    border-top-color: #333;
+  }
+
+  .notionate-blocks-unchecked-checkbox {
+    fill: #eee;
+  }
+
+  .notionate-blocks-toggle-triangle:hover {
+    background-color: #222;
+  }
+  .notionate-blocks-toggle-triangle-svg {
+    fill: white;
+  }
+
+  /* CODE */
+  .notionate-blocks-code-caption {
+    color: #999;
+  }
+  .notionate-blocks-code {
+    background-color: #2d2d2d;
+  }
+  .notionate-blocks-code-lang {
+    color: #999;
+  }
+
+  code[class*="language-"],
+  pre[class*="language-"] {
+    color: #ccc;
+    background: none;
+    text-shadow: 0 1px black;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+  }
+
+  /* Code blocks */
+  pre[class*="language-"] {
+    padding: 1em;
+    margin: .5em 0;
+    overflow: auto;
+  }
+
+  :not(pre) > code[class*="language-"],
+  pre[class*="language-"] {
+    background: #2d2d2d;
+  }
+
+  /* Inline code */
+  :not(pre) > code[class*="language-"] {
+    padding: .1em;
+    border-radius: .3em;
+    white-space: normal;
+  }
+
+  .token.comment,
+  .token.block-comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #999;
+  }
+
+  .token.punctuation {
+    color: #ccc;
+  }
+
+  .token.tag,
+  .token.attr-name,
+  .token.namespace,
+  .token.deleted {
+    color: #e2777a;
+  }
+
+  .token.function-name {
+    color: #6196cc;
+  }
+
+  .token.boolean,
+  .token.number,
+  .token.function {
+    color: #f08d49;
+  }
+
+  .token.property,
+  .token.class-name,
+  .token.constant,
+  .token.symbol {
+    color: #f8c555;
+  }
+
+  .token.selector,
+  .token.important,
+  .token.atrule,
+  .token.keyword,
+  .token.builtin {
+    color: #cc99cd;
+  }
+
+  .token.string,
+  .token.char,
+  .token.attr-value,
+  .token.regex,
+  .token.variable {
+    color: #7ec699;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url {
+    color: #67cdcc;
+    background: none;
+  }
+
+  .token.important,
+  .token.bold {
+    font-weight: bold;
+  }
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.entity {
+    cursor: help;
+  }
+
+  .token.inserted {
+    color: green;
+  }
+}

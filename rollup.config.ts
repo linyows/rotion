@@ -1,38 +1,58 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from '@rollup/plugin-typescript'
-import babel from '@rollup/plugin-babel'
 import json from '@rollup/plugin-json'
-import pkg from './package.json' assert { type: 'json' }
+// import terser from '@rollup/plugin-terser'
+import peerDepsExternal from 'rollup-plugin-peer-deps-external'
+import del from 'rollup-plugin-delete'
+import dts from 'rollup-plugin-dts'
 
-export default {
-  input: pkg.componentsSrc,
-  output: {
-    file: pkg.components,
-    format: 'cjs',
-    sourcemap: true
+export default [
+  {
+    input: './src/ui/index.ts',
+    output: [
+      {
+        intro: "'use client';",
+        file: './dist/ui/cjs/index.js',
+        format: 'cjs',
+        sourcemap: true
+      },
+      {
+        intro: "'use client';",
+        file: './dist/ui/esm/index.js',
+        format: 'esm',
+        sourcemap: true
+      },
+      {
+        intro: "'use client';",
+        file: './dist/ui/umd/index.js',
+        format: 'umd',
+        name: 'Notionate UI',
+        sourcemap: true,
+      },
+    ],
+    plugins: [
+      del({ targets: './dist/ui/*' }),
+      peerDepsExternal(),
+      resolve(),
+      json(),
+      commonjs(),
+      typescript(),
+      // terser(),
+    ],
+    external: [
+      'react',
+      'react-dom',
+    ],
   },
-  plugins: [
-    resolve(),
-    json(),
-    commonjs({
-      include: 'node_modules/**'
-    }),
-    babel({
-      babelHelpers: 'bundled',
-      babelrc: false,
-      presets: [
-        '@babel/preset-env',
-        '@babel/preset-react',
-        '@babel/preset-typescript'
-      ]
-    }),
-    typescript({
-      tsconfig: 'tsconfig.rollup.json',
-    }),
-  ],
-  external: [
-    /^react/,
-    /^react-dom/,
-  ]
-}
+  {
+    input: './src/ui/index.ts',
+    output: [{
+      file: './dist/ui/types.d.ts',
+      format: 'esm',
+    }],
+    plugins: [
+      dts(),
+    ],
+  },
+]

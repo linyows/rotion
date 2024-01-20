@@ -37,10 +37,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-/public
+public
 
-# playground
-/playground/.cache
-/playground/.next
-/playground/out
-/playground/public/images
+# examples
+/examples/**/.cache
+/examples/**/.next
+/examples/**/out
+/examples/**/public/images
+
+# packages
+/packages/**/dist
+
+# storybook
+.storybook
+storybook-static
