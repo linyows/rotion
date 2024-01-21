@@ -73,12 +73,11 @@
     "prismjs": "^1.25.0"
   },
   "devDependencies": {
+    "@types/node": "^20.10.5",
     "@types/imagemin": "^8.0.5",
     "@types/imagemin-webp": "^7.0.3",
     "@types/replace-ext": "^2.0.2",
-    "@types/prismjs": "^1.26.3",
     "@tsconfig/node-lts-strictest-esm": "^18.12.1",
-    "@types/node": "^20.10.5",
     "testdouble": "^3.20.1",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",
@@ -100,7 +99,6 @@
     "@storybook/react-vite": "^7.6.7",
     "@storybook/test": "^7.6.7",
     "@types/katex": "^0.16.7",
-    "@types/node": "^20.10.5",
     "@types/prismjs": "^1.26.3",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
