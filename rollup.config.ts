@@ -15,20 +15,23 @@ export default [
         intro: "'use client';",
         file: './dist/ui/cjs/index.js',
         format: 'cjs',
-        sourcemap: true
+        sourcemap: true,
+        globals: { react: 'React' },
       },
       {
         intro: "'use client';",
         file: './dist/ui/esm/index.js',
         format: 'esm',
-        sourcemap: true
+        sourcemap: true,
+        globals: { react: 'React' },
       },
       {
         intro: "'use client';",
         file: './dist/ui/umd/index.js',
         format: 'umd',
-        name: 'Notionate UI',
+        name: 'NotionateUI',
         sourcemap: true,
+        globals: { react: 'React' },
       },
     ],
     plugins: [
