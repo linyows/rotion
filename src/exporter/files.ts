@@ -59,7 +59,7 @@ http.get[promisify.custom] = function getAsync (url: any) {
   })
 }
 
-type HttpGetResponse = {
+interface HttpGetResponse {
   pipe: Function
   end: Promise<unknown>
   statusCode: number
@@ -67,7 +67,7 @@ type HttpGetResponse = {
 }
 
 // https://oembed.com/
-type Oembed = {
+interface Oembed {
   type: 'photo'|'video'|'link'|'rich'
   version: number
   title?: string
@@ -81,7 +81,7 @@ type Oembed = {
   thumbnail_height?: number
 }
 
-type SpeakerdeckOembedResponse = Oembed & {
+interface SpeakerdeckOembedResponse extends Oembed {
   type: 'rich'
   title: string
   author_name: string
@@ -94,7 +94,7 @@ type SpeakerdeckOembedResponse = Oembed & {
   html: string
 }
 
-type YoutubeOembedResponse = Oembed & {
+interface YoutubeOembedResponse extends Oembed {
   type: 'video'
   title: string
   author_name: string
@@ -109,7 +109,7 @@ type YoutubeOembedResponse = Oembed & {
   html: string
 }
 
-type TwitterOembedResponse = Oembed & {
+interface TwitterOembedResponse extends Oembed {
   type: 'rich'
   author_name: string
   author_url: string
