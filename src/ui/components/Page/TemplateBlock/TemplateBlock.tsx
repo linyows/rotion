@@ -1,7 +1,7 @@
 import React from 'react'
 import type { RichTextItemResponse } from '../../../../exporter'
 import type { TemplateBlockProps } from './TemplateBlock.types'
-import RichText from '../TextBlock/RichText/RichText'
+import RichText from '../RichText/RichText'
 
 // TODO: Iimplement and design
 const TemplateBlock = ({ block }: TemplateBlockProps) => {

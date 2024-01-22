@@ -1,5 +1,5 @@
 import React from 'react'
-import RichText from './RichText/RichText'
+import RichText from '../RichText/RichText'
 import type { TextBlockProps } from './TextBlock.types'
 
 const TextBlock = ({ tag, block }: TextBlockProps) => {

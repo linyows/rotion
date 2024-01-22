@@ -1,7 +1,7 @@
 import React from 'react'
 import type { RichTextItemResponse } from '../../../../exporter'
 
-import RichText from '../TextBlock/RichText/RichText'
+import RichText from '../RichText/RichText'
 import type { FileBlockProps } from './FileBlock.types'
 
 // TODO: Iimplement and design

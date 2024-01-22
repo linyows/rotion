@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import type { MentionRichTextItemResponseEx } from '../../../../../../exporter'
+import type { MentionRichTextItemResponseEx } from '../../../../../exporter'
 
 export interface MentionProps {
   textObject?: MentionRichTextItemResponseEx
