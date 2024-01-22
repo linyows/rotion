@@ -193,29 +193,30 @@ export type EmbedBlockObjectResponseEx = EmbedBlockObjectResponse & {
   }
 }
 
-type TemplateMentionDateTemplateMentionResponse = {
+export type TemplateMentionDateTemplateMentionResponse = {
   type: "template_mention_date"
   template_mention_date: "today" | "now"
 }
-type TemplateMentionUserTemplateMentionResponse = {
+export type TemplateMentionUserTemplateMentionResponse = {
   type: "template_mention_user"
   template_mention_user: "me"
 }
-type TemplateMentionResponse = TemplateMentionDateTemplateMentionResponse | TemplateMentionUserTemplateMentionResponse
-type LinkPreviewMentionResponse = {
+export type TemplateMentionResponse = TemplateMentionDateTemplateMentionResponse | TemplateMentionUserTemplateMentionResponse
+export type LinkPreviewMentionResponse = {
   url: TextRequest
 }
-type MentionEmoji = { type: 'emoji', emoji: string }
-type MentionExternalOrFile = { type: 'external' | 'file', src: string, url: string }
-type MentionIcon = MentionEmoji | MentionExternalOrFile
+export type MentionEmoji = { type: 'emoji', emoji: string }
+export type MentionExternalOrFile = { type: 'external' | 'file', src: string, url: string }
+export type MentionIcon = MentionEmoji | MentionExternalOrFile
+export type PageOrDatabaseMention = { id: IdRequest, name: string, icon: MentionIcon }
 export type MentionRichTextItemResponseEx = MentionRichTextItemResponse & {
   mention:
   | { type: "user", user: PartialUserObjectResponse | UserObjectResponse }
   | { type: "date", date: DateResponse }
   | { type: "link_preview", link_preview: LinkPreviewMentionResponse }
   | { type: "template_mention", template_mention: TemplateMentionResponse }
-  | { type: "page", page: { id: IdRequest, name: string, icon: MentionIcon } }
-  | { type: "database", database: { id: IdRequest, name: string, icon: MentionIcon } }
+  | { type: "page", page: PageOrDatabaseMention }
+  | { type: "database", database: PageOrDatabaseMention }
 }
 
 export type RichTextItemResponseEx = TextRichTextItemResponse | MentionRichTextItemResponseEx | EquationRichTextItemResponse
@@ -385,3 +386,9 @@ export type QueryDatabaseResponseEx = QueryDatabaseResponse & {
 export type PersonUserObjectResponseEx = PersonUserObjectResponse & {
   avatar?: string
 }
+
+export type Parent = 
+| { type: "database_id"; database_id: string }
+| { type: "page_id"; page_id: string }
+| { type: "block_id"; block_id: string }
+| { type: "workspace"; workspace: true }

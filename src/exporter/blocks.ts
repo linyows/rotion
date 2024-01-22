@@ -163,17 +163,24 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                     args: { page_id },
                     count: 3,
                   })
-                  if (page.icon?.type === 'emoji') {
-                    richText.mention.page.icon = { type: 'emoji', emoji: page.icon.emoji }
-                  } else if (page.icon?.type === 'external' || page.icon?.type === 'file') {
-                    const iconUrl = (page.icon.type === 'external') ? page.icon.external.url : page.icon.file.url
-                    const src = await saveImage(iconUrl, `block-${block.id}`)
-                    richText.mention.page.icon = { type: page.icon.type, src, url: src }
-                  }
                   for (const prop of Object.values(page.properties)) {
                     if (prop.type === 'title') {
                       richText.mention.page.name = prop.title.map(v => v.plain_text).join('')
                       break
+                    }
+                  }
+                  if (page.icon?.type === 'emoji') {
+                    richText.mention.page.icon = {
+                      type: page.icon.type,
+                      emoji: page.icon.emoji,
+                    }
+                  } else if (page.icon?.type === 'external' || page.icon?.type === 'file') {
+                    const iconUrl = (page.icon.type === 'external') ? page.icon.external.url : page.icon.file.url
+                    const src = await saveImage(iconUrl, `block-${block.id}`)
+                    richText.mention.page.icon = {
+                      type: page.icon.type,
+                      src,
+                      url: src,
                     }
                   }
                 } catch (e) {
@@ -230,40 +237,3 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
 
   return list
 }
-
-/*
-interface FetchBreadcrumbsProps {
-  type: 'page_id' | 'database_id' | 'block_id'
-  id: string
-}
-interface Breadcrumbs {
-  name: string
-  icon: {}
-}
-
-export const FetchBreadcrumbs = async ({ type, id }: FetchBreadcrumbsProps): Promise<Breadcrumbs[]> => {
-  let breadcrumbs: Breadcrumbs[] = []
-  const max = 10
-  let count = 0
-  let nextType = type
-
-  while (count < max) {
-    switch (nextType) {
-      case 'block_id':
-        break
-      case 'page_id':
-        const page = await FetchPage(id)
-        id = page.parent.page_id
-        break
-      case 'database_id':
-        id = page.parent.database_id
-        break
-      case 'workspace':
-        count = max
-        break
-    }
-  }
-
-  return breadcrumbs
-}
-*/
