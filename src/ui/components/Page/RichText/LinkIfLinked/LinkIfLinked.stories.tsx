@@ -1,5 +1,5 @@
 import React from 'react'
-import type { TextRichTextItemResponse } from '../../../../../../exporter'
+import type { TextRichTextItemResponse } from '../../../../../exporter'
 import type { Meta, StoryObj } from '@storybook/react'
 import LinkIfLinked from './LinkIfLinked'
 import '../../../../../styles/base.css'

@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import type { RichTextItemResponseEx, TextRichTextItemResponse } from '../../../../../../exporter'
+import type { RichTextItemResponseEx, TextRichTextItemResponse } from '../../../../../exporter'
 import Annotation from './Annotation'
 import '../../../../../styles/base.css'
 import '../../../../../styles/page.css'
