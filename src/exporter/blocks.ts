@@ -23,6 +23,7 @@ import type {
   GetPageResponseEx,
   GetDatabaseResponseEx,
 } from './types.js'
+import { FetchBreadcrumbs } from './breadcrumbs.js'
 
 export interface FetchBlocksArgs {
   block_id: string
@@ -80,6 +81,9 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
           if (block.has_children) {
             block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
           }
+          break
+        case 'breadcrumb':
+          block.list = await FetchBreadcrumbs({ id: block_id, type: 'page_id' })
           break
         case 'callout':
           if (block.callout.icon?.type === 'external') {
@@ -204,7 +208,6 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
           }
           break
         case 'audio':
-        case 'breadcrumb':
         case 'code':
         case 'column':
         case 'divider':

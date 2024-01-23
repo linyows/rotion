@@ -8,6 +8,7 @@ export interface PageProps {
   link?: Link
   query?: ParsedUrlQueryInput
   modules?: ExternalModules
+  breadcrumb_hrefs?: string[]
 }
 
 export interface ListType {

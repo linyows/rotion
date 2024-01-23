@@ -8,4 +8,5 @@ export interface HandlerProps {
   link?: Link
   query?: ParsedUrlQueryInput
   modules?: ExternalModules
+  breadcrumb_hrefs?: string[]
 }

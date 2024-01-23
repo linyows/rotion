@@ -226,6 +226,14 @@ export type ParagraphBlockObjectResponseEx = ParagraphBlockObjectResponse & {
     color: SelectColor
   }
 }
+export type Breadcrumb = {
+  id: string
+  name: string
+  icon: MentionIcon
+}
+export type BreadcrumbBlockObjectResponseEx = BreadcrumbBlockObjectResponse & {
+  list: Breadcrumb[]
+}
 
 export type BlockObjectResponse =
   | ParagraphBlockObjectResponseEx
@@ -245,7 +253,7 @@ export type BlockObjectResponse =
   | CodeBlockObjectResponse
   | CalloutBlockObjectResponseEx
   | DividerBlockObjectResponse
-  | BreadcrumbBlockObjectResponse
+  | BreadcrumbBlockObjectResponseEx
   | TableOfContentsBlockObjectResponse
   | ColumnListBlockObjectResponseEx
   | ColumnBlockObjectResponse

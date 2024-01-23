@@ -37,13 +37,12 @@ export const blockType = {
   quote: 'blockquote',
 }
 
-export const PageHandler = ({ block, href, link, query, modules }: HandlerProps) => {
+export const PageHandler = ({ block, href, link, query, modules, breadcrumb_hrefs }: HandlerProps) => {
   switch (block.type) {
     case 'bookmark':
       return <BookmarkBlock block={block} key={block.id} />
     case 'breadcrumb':
-      console.log(`still a not supported component: ${block.type}`)
-      return <BreadcrumbBlock block={block} key={block.id} />
+      return <BreadcrumbBlock block={block} hrefs={breadcrumb_hrefs} link={link} query={query} key={block.id} />
     case 'bulleted_list_item':
       return <BulletedListBlocks block={block} key={block.id} />
     case 'callout':

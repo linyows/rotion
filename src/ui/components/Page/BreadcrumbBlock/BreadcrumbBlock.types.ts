@@ -1,5 +1,19 @@
-import type { BreadcrumbBlockObjectResponse } from '../../../../exporter'
+import type { ReactNode } from 'react'
+import type { ParsedUrlQueryInput } from 'node:querystring'
+import type { Link } from '../../types'
+import type { Breadcrumb, BreadcrumbBlockObjectResponseEx } from '../../../../exporter'
+
+export interface BreadcrumbLinkProps {
+  breadcrumb: Breadcrumb
+  link?: Link
+  href?: string
+  query?: ParsedUrlQueryInput
+  children?: ReactNode
+}
 
 export interface BreadcrumbBlockProps {
-  block: BreadcrumbBlockObjectResponse,
+  block: BreadcrumbBlockObjectResponseEx
+  link?: Link
+  hrefs?: string[]
+  query?: ParsedUrlQueryInput
 }

@@ -4,7 +4,7 @@ import type { PageProps, ListType } from './Page.types'
 import ListBlock from './ListBlock/ListBlock'
 import PageHandler from './PageHandler'
 
-export const Page = ({ blocks, href, link, query, modules }: PageProps) => {
+export const Page = ({ blocks, href, link, query, modules, breadcrumb_hrefs }: PageProps) => {
   const { results } = blocks
   const listType: ListType = {
     bulleted_list_item: 'ul',
@@ -36,7 +36,7 @@ export const Page = ({ blocks, href, link, query, modules }: PageProps) => {
         list.push(block)
       }
     } else {
-      const elem = PageHandler({ block, href, link, query, modules })
+      const elem = PageHandler({ block, href, link, query, modules, breadcrumb_hrefs })
       if (elem !== undefined) {
         children.push(elem)
       }
