@@ -89,6 +89,32 @@
   }
 }
 
+/* breadcrumb */
+.notionate-blocks-breadcrumb {
+  padding-left: .5rem;
+}
+.notionate-blocks-breadcrumb-a {
+  text-decoration: none;
+  color: #333;
+  font-size: .9rem;
+  padding: .2rem .3rem;
+  border-radius: 4px;
+}
+.notionate-blocks-breadcrumb-a:hover {
+  color: #666;
+  background-color: #fff;
+}
+.notionate-blocks-breadcrumb-icon {
+  vertical-align: middle;
+  padding-right: .4rem;
+  padding-bottom: .2rem;
+}
+.notionate-blocks-breadcrumb-slash {
+  font-size: .9rem;
+  opacity: .5;
+  padding: 0 .3rem;
+}
+
 /* callout */
 .notionate-blocks-callout {
   display: flex;
