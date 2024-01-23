@@ -26,9 +26,9 @@ import ToggleBlock from './ToggleBlock/ToggleBlock'
 import VideoBlock from './VideoBlock/VideoBlock'
 
 export const blockType = {
-  heading_1: 'h1',
-  heading_2: 'h2',
-  heading_3: 'h3',
+  heading_1: 'h2',
+  heading_2: 'h3',
+  heading_3: 'h4',
   bulleted_list_item: 'li',
   numbered_list_item: 'li',
   divider: 'hr',
