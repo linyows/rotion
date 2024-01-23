@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import type { BreadcrumbBlockObjectResponse } from '../../../../exporter'
+import type { BreadcrumbBlockObjectResponseEx } from '../../../../exporter'
 import BreadcrumbBlock from './BreadcrumbBlock'
 import '../../../styles/base.css'
 import '../../../styles/page.css'
@@ -89,7 +89,7 @@ still a not supported component: synced_block {
 }
 */
 
-const block: BreadcrumbBlockObjectResponse = {
+const block: BreadcrumbBlockObjectResponseEx = {
   object: 'block',
   id: '',
   parent: {
@@ -110,6 +110,26 @@ const block: BreadcrumbBlockObjectResponse = {
   archived: false,
   type: 'breadcrumb',
   breadcrumb: {},
+  list: [
+    {
+      id: 'aaaaaaaaaaaaaaa',
+      name: 'Foo Bar',
+      icon: {
+        type: 'external',
+        src: 'https://www.notion.so/icons/rocket_blue.svg?mode=light',
+        url: 'https://www.notion.so/icons/rocket_blue.svg?mode=light',
+      },
+    },
+    {
+      id: 'bbbbbbbbbbbbbbbb',
+      name: 'Alice',
+      icon: {
+        type: 'external',
+        src: 'https://www.notion.so/icons/library_blue.svg?mode=light',
+        url: 'https://www.notion.so/icons/library_blue.svg?mode=light',
+      },
+    }
+  ],
 }
 
 const meta = {

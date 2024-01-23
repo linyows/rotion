@@ -43,7 +43,7 @@ const BreadcrumbBlock = ({ block, link, hrefs, query }: BreadcrumbBlockProps) =>
           <span className="notionate-blocks-breadcrumb-title">
             {v.name}
           </span>
-          {i+1 < max && <span className="notionate-blocks-breadcrumb-slash">/</span>}
+          {i + 1 < max && <span className="notionate-blocks-breadcrumb-slash">/</span>}
         </BreadcrumbLink>
       ))}
     </div>
