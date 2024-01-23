@@ -363,6 +363,11 @@ export type PageObjectResponseEx = PageObjectResponse & {
     | { src: string, type: 'external'; external: { url: TextRequest } }
     | { src: string, type: 'file'; file: { url: string; expiry_time: string } }
     | null
+  icon:
+    | { type: 'emoji', emoji: EmojiRequest }
+    | { src: string, type: 'external'; external: { url: TextRequest } }
+    | { src: string, type: 'file'; file: { url: string; expiry_time: string } }
+    | null
 }
 
 // https://github.com/makenotion/notion-sdk-js/blob/7c5b7645759bf90d71d496dc542a1a912379ee12/src/api-endpoints.ts#L4603-L4632

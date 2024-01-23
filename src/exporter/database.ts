@@ -24,6 +24,10 @@ import type {
   PersonUserObjectResponseEx,
   GetPagePropertyResponse,
 } from './types.js'
+import {
+  savePageCover,
+  savePageIcon,
+} from './page.js'
 
 export interface FetchDatabaseArgs extends QueryDatabaseParameters {
 }
@@ -80,11 +84,8 @@ export const FetchDatabase = async (params: FetchDatabaseArgs): Promise<FetchDat
 
   for (const result of allres.results) {
     const page: PageObjectResponseEx = result
-    // Save page cover files
-    if ('cover' in page && page.cover != null) {
-      const imageUrl = (page.cover.type === 'external') ? page.cover.external.url : page.cover.file.url
-      page.cover.src = await saveImage(imageUrl, `page-cover-${page.id}`)
-    }
+    await savePageCover(page)
+    await savePageIcon(page)
     // Set page property items
     page.property_items = []
     for (const [, v] of Object.entries(page.properties)) {
@@ -114,13 +115,33 @@ export const FetchDatabase = async (params: FetchDatabaseArgs): Promise<FetchDat
     args: { database_id },
     count: 3,
   })
-  if ('cover' in meta && meta.cover !== null) {
-    const imageUrl = (meta.cover.type === 'external') ? meta.cover.external.url : meta.cover.file.url
-    meta.cover.src = await saveImage(imageUrl, `database-cover-${database_id}`)
-  }
+  await saveDatabaseCover(meta)
+  await saveDatabaseIcon(meta)
   allres.meta = meta
 
   await writeCache(cacheFile, allres)
 
   return allres
+}
+
+export async function saveDatabaseCover(db: GetDatabaseResponseEx) {
+  if (db.cover === undefined || db.cover === null) {
+    return
+  }
+  if (db.cover.type === 'external') {
+    db.cover.src = await saveImage(db.cover.external.url, `database-cover-${db.id}`)
+  } else if (db.cover.type === 'file') {
+    db.cover.src = await saveImage(db.cover.file.url, `database-cover-${db.id}`)
+  }
+}
+
+export async function saveDatabaseIcon(db: GetDatabaseResponseEx) {
+  if (db.icon === undefined || db.icon === null) {
+    return
+  }
+  if (db.icon.type === 'external') {
+    db.icon.src = await saveImage(db.icon.external.url, `database-icon-${db.id}`)
+  } else if (db.icon.type === 'file') {
+    db.icon.src = await saveImage(db.icon.file.url, `database-icon-${db.id}`)
+  }
 }

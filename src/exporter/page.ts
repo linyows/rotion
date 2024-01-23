@@ -18,6 +18,7 @@ import type {
   GetPageResponseEx,
   PropertyItemPropertyItemListResponse,
   GetPagePropertyResponse,
+  PageObjectResponseEx,
 } from './types.js'
 
 export interface FetchPageArgs {
@@ -81,22 +82,31 @@ export const FetchPage = async ({ page_id, last_edited_time }: FetchPageArgs): P
     page.meta = list
   }
 
-  if ('cover' in page && page.cover !== null) {
-    if (page.cover.type === 'external') {
-      page.cover.src = await saveImage(page.cover.external.url, `page-cover-${page.id}`)
-    } else if (page.cover.type === 'file') {
-      page.cover.src = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
-    }
-  }
-  if ('icon' in page && page.icon !== null) {
-    if (page.icon.type === 'external') {
-      page.icon.src = await saveImage(page.icon.external.url, `page-icon-${page.id}`)
-    } else if (page.icon.type === 'file') {
-      page.icon.src = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
-    }
-  }
-
+  await savePageCover(page)
+  await savePageIcon(page)
   await writeCache(cacheFile, page)
 
   return page
+}
+
+export async function savePageCover(page: GetPageResponseEx | PageObjectResponseEx) {
+  if (page.cover === undefined || page.cover === null) {
+    return
+  }
+  if (page.cover.type === 'external') {
+    page.cover.src = await saveImage(page.cover.external.url, `page-cover-${page.id}`)
+  } else if (page.cover.type === 'file') {
+    page.cover.src = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
+  }
+}
+
+export async function savePageIcon(page: GetPageResponseEx | PageObjectResponseEx) {
+  if (page.icon === undefined || page.icon === null) {
+    return
+  }
+  if (page.icon.type === 'external') {
+    page.icon.src = await saveImage(page.icon.external.url, `page-icon-${page.id}`)
+  } else if (page.icon.type === 'file') {
+    page.icon.src = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
+  }
 }

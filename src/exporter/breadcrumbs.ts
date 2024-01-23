@@ -1,5 +1,13 @@
-import { reqAPIWithBackoff, notion } from './api.js'
-import type { GetBlockResponse, GetPageResponseEx, GetDatabaseResponseEx, MentionIcon, Parent } from './types.js'
+import { notion, reqAPIWithBackoffAndCache } from './api.js'
+import { savePageIcon } from './page.js'
+import { saveDatabaseIcon } from './database.js'
+import type {
+  GetBlockResponse,
+  GetPageResponseEx,
+  GetDatabaseResponseEx,
+  MentionIcon,
+  Parent,
+} from './types.js'
 
 export interface FetchBreadcrumbsProps {
   type: 'page_id' | 'database_id' | 'block_id' | 'workspace'
@@ -39,7 +47,8 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
   while (count < max && isNext) {
     switch (nextType) {
       case 'block_id': {
-        const res = await reqAPIWithBackoff<GetBlockResponse>({
+        const res = await reqAPIWithBackoffAndCache<GetBlockResponse>({
+          name: 'notion.blocks.retrieve',
           func: notion.blocks.retrieve,
           args: { block_id: nextID },
           count: 3,
@@ -53,11 +62,14 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
         break
       }
       case 'page_id': {
-        const page = await reqAPIWithBackoff<GetPageResponseEx>({
+        const page = await reqAPIWithBackoffAndCache<GetPageResponseEx>({
+          name: 'notion.page.retrieve',
           func: notion.pages.retrieve,
           args: { page_id: nextID },
           count: 3,
         })
+        await savePageIcon(page)
+
         nextType = page.parent.type
         nextID = getID(page.parent)
         const name = page.properties.title.type === 'title' ? page.properties.title.title.map(v => v.plain_text).join('') : ''
@@ -84,11 +96,14 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
         break
       }
       case 'database_id': {
-        const db = await reqAPIWithBackoff<GetDatabaseResponseEx>({
+        const db = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>({
+          name: 'notion.database.retrieve',
           func: notion.databases.retrieve,
           args: { database_id: nextID },
           count: 3,
         })
+        await saveDatabaseIcon(db)
+
         nextType = db.parent.type
         nextID = getID(db.parent)
         const name = db.title.map(v => v.plain_text).join('')
