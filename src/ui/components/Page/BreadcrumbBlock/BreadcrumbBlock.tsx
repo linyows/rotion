@@ -53,8 +53,8 @@ const BreadcrumbBlock = ({ block, link, hrefs, query }: BreadcrumbBlockProps) =>
   return (
     <div className="notionate-blocks-breadcrumb">
       {block.list.map((v: Breadcrumb, i: number) => (
-        <>
-          <BreadcrumbLink key={`crumb-${i}`} breadcrumb={v} href={hrefs === undefined ? undefined : hrefs[i]} link={link} query={query}>
+        <span key={`crumb-${i}`}>
+          <BreadcrumbLink breadcrumb={v} href={hrefs === undefined ? undefined : hrefs[i]} link={link} query={query}>
             {v.icon.type === 'emoji' && <span className="notionate-blocks-breadcrumb-emoji">{v.icon.emoji}</span>}
             {v.icon.type !== 'emoji' && <img className="notionate-blocks-breadcrumb-icon" src={v.icon.src} width={20} height={20} alt={v.name} />}
             <span className="notionate-blocks-breadcrumb-title">
@@ -62,7 +62,7 @@ const BreadcrumbBlock = ({ block, link, hrefs, query }: BreadcrumbBlockProps) =>
             </span>
           </BreadcrumbLink>
           {i + 1 < max && <span className="notionate-blocks-breadcrumb-slash">/</span>}
-        </>
+        </span>
       ))}
     </div>
   )
