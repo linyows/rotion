@@ -15,6 +15,7 @@ import {
   timeout,
   webpQuality,
   httpOptions,
+  debug,
 } from './variables.js'
 import type {
   VideoBlockObjectResponseEx,
@@ -129,7 +130,9 @@ export const findLocationUrl = (rawHeaders: string[]): string => {
       return rawHeaders[i + next]
     }
   }
-  console.log('location header url is not found', rawHeaders)
+  if (debug) {
+    console.log('location header url is not found', rawHeaders)
+  }
   return ''
 }
 
@@ -145,7 +148,9 @@ async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: numb
     const redirectTo = findLocationUrl(res.rawHeaders)
     redirectCount++
     if (maxRedirects < redirectCount) {
-      console.log('maximum number of redirects exceeded')
+      if (debug) {
+        console.log('maximum number of redirects exceeded')
+      }
       return res
     }
     return await httpsGetWithFollowRedirects(redirectTo, redirectCount)
@@ -181,7 +186,9 @@ export const atoh = (a: string): string => {
 export const createDirWhenNotfound = async (dir: string): Promise<void> => {
   if (!fs.existsSync(dir)) {
     await mkdir(dir, { recursive: true })
-    console.log(`created direcotry: ${dir}`)
+    if (debug) {
+      console.log(`created direcotry: ${dir}`)
+    }
   }
 }
 
@@ -240,7 +247,9 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
       // This fix that for fileType do not returns undefined
       await sleep(10)
     } catch (e) {
-      console.log(`saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
+      if (debug) {
+        console.log(`saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
+      }
     }
   }
 
@@ -249,7 +258,9 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
     if (webpQuality > 0) {
       const fType = await fileTypeFromFile(filePath)
       if (fType === undefined) {
-        // console.log(`fileTypeFromFile returns undefined -- path: ${filePath}, url: ${imageUrl}`)
+        if (debug) {
+          console.log(`fileTypeFromFile returns undefined -- path: ${filePath}, url: ${imageUrl}`)
+        }
         return urlPath
       } else {
         if (webpMimes.includes(fType.mime)) {
@@ -265,7 +276,9 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
       }
     }
   } catch (e) {
-    console.log(`saveImage webp convert error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
+    if (debug) {
+      console.log(`saveImage webp convert error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
+    }
   }
 
   return urlPath
@@ -364,7 +377,9 @@ export const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc
 
     return { title, desc, image, icon }
   } catch (e) {
-    console.log(`getHtmlMeta failure: ${reqUrl} -- ${e}`)
+    if (debug) {
+      console.log(`getHtmlMeta failure: ${reqUrl} -- ${e}`)
+    }
   }
   return { title: '', desc: '', image: '', icon: '' }
 }
@@ -380,7 +395,9 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
       const json = await getJson<YoutubeOembedResponse>(reqUrl)
       return json.html
     } catch (e) {
-      console.log(`getVideoHtml failure: ${reqUrl} - ${e}`)
+      if (debug) {
+        console.log(`getVideoHtml failure: ${reqUrl} - ${e}`)
+      }
     }
   }
   return ''
@@ -395,7 +412,9 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
       const json = await getJson<TwitterOembedResponse>(reqUrl)
       return json.html
     } catch (e) {
-      console.log(`getEmbedHtml failure: ${reqUrl} - ${e}`)
+      if (debug) {
+        console.log(`getEmbedHtml failure: ${reqUrl} - ${e}`)
+      }
     }
   } else if (block.embed && block.embed.url.includes('speakerdeck.com')) {
     const embedUrl = block.embed?.url as string
@@ -410,7 +429,9 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
       const json = await getJson<SpeakerdeckOembedResponse>(reqUrl)
       return json.html
     } catch (e) {
-      console.log(`getEmbedHtml failure: ${reqUrl} -- ${e}`)
+      if (debug) {
+        console.log(`getEmbedHtml failure: ${reqUrl} -- ${e}`)
+      }
     }
   }
 

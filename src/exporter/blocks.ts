@@ -6,6 +6,7 @@ import {
 import {
   cacheDir,
   incrementalCache,
+  debug,
 } from './variables.js'
 import { FetchPage } from './page.js'
 import {
@@ -46,13 +47,17 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
     const list = await readCache<ListBlockChildrenResponseEx>(cacheFile)
     if (!isEmpty(list)) {
       if (incrementalCache && last_edited_time === undefined) {
-        console.log('last_edited_time is required as a FetchBlocks() args when incremental cache')
+        if (debug) {
+          console.log('last_edited_time is required as a FetchBlocks() args when incremental cache')
+        }
         return list
       }
       if (!incrementalCache || list.last_edited_time === last_edited_time) {
         return list
       }
-      console.log(`incremental block cache: ${cacheFile}`)
+      if (debug) {
+        console.log(`incremental block cache: ${cacheFile}`)
+      }
     }
   } catch (_) {
     /* not fatal */
@@ -100,7 +105,6 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
             args: { database_id },
             count: 3,
           })
-          console.log(block)
           // }
           break
         case 'child_page':
@@ -154,7 +158,9 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                     richText.mention.database.icon = { type: db.icon.type, src, url: src }
                   }
                 } catch (e) {
-                  console.log(`database view mention is unsupported ${block.type}`, block, e)
+                  if (debug) {
+                    console.log(`database view mention is unsupported ${block.type}`, block, e)
+                  }
                   richText.mention.database.name = '--'
                   richText.mention.database.icon = { type: 'emoji', emoji: '@' }
                 }
@@ -188,7 +194,9 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                     }
                   }
                 } catch (e) {
-                  console.log(`page mention is unsupported ${block.type}`, block, e)
+                  if (debug) {
+                    console.log(`page mention is unsupported ${block.type}`, block, e)
+                  }
                   richText.mention.page.name = '--'
                   richText.mention.page.icon = { type: 'emoji', emoji: '@' }
                 }
@@ -228,11 +236,15 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
         case 'unsupported':
           break
         default:
-          console.log(`unknown block error`, block)
+          if (debug) {
+            console.log(`unknown block error`, block)
+          }
           break
       }
     } catch (e) {
-      console.log(`error for ${block.type} contents get`, block, e)
+      if (debug) {
+        console.log(`error for ${block.type} contents get`, block, e)
+      }
     }
   }
 

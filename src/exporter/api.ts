@@ -15,6 +15,7 @@ import {
   waitingTimeSec,
   waitTimeSecAfterLimit,
   auth,
+  debug,
 } from './variables.js'
 
 export const notion = new Client({ auth })
@@ -44,7 +45,9 @@ export async function reqAPIWithBackoff<T> ({ func, args, count }: reqAPIWithBac
         case APIErrorCode.InternalServerError:
         case ClientErrorCode.ResponseError:
         case ClientErrorCode.RequestTimeout:
-          console.log(`backoff(${count}) -- error code: ${error.code}`)
+          if (debug) {
+            console.log(`reqAPIWithBackoff backoff(${count}) -- error code: ${error.code}`)
+          }
           if (waitTimeSecAfterLimit > 0) {
             await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
           }
@@ -52,8 +55,9 @@ export async function reqAPIWithBackoff<T> ({ func, args, count }: reqAPIWithBac
           break
       }
     }
-    console.error('error:', error)
-    console.error('args:', args)
+    if (debug) {
+      console.error(`reqAPIWithBackoff error -- func: ${func.name}, args: ${args}, error: ${error}`)
+    }
   }
 
   if (res === null) {

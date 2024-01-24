@@ -48,7 +48,6 @@ export const PageHandler = ({ block, href, link, query, modules, breadcrumb_href
     case 'callout':
       return <CalloutBlock block={block} key={block.id} />
     case 'child_database':
-      console.log(`debug: ${block.type}`, block)
       return <ChildDatabaseBlock block={block} href={href} link={link} query={query} key={block.id} />
     case 'child_page':
       return <ChildPageBlock block={block} href={href} link={link} key={block.id} />

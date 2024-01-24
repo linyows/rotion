@@ -6,6 +6,7 @@ import {
 import {
   cacheDir,
   incrementalCache,
+  debug,
 } from './variables.js'
 import {
   createDirWhenNotfound,
@@ -42,13 +43,17 @@ export const FetchPage = async ({ page_id, last_edited_time }: FetchPageArgs): P
     const page = await readCache<GetPageResponseEx>(cacheFile)
     if (!isEmpty(page)) {
       if (incrementalCache && last_edited_time === undefined) {
-        console.log('last_edited_time is required as a FetchPage() args when incremental cache')
+        if (debug) {
+          console.log('last_edited_time is required as a FetchPage() args when incremental cache')
+        }
         return page
       }
       if (!incrementalCache || ('last_edited_time' in page && page.last_edited_time === last_edited_time)) {
         return page
       }
-      console.log(`incremental page cache: ${cacheFile}`)
+      if (debug) {
+        console.log(`incremental page cache: ${cacheFile}`)
+      }
     }
   } catch (_) {
     /* not fatal */
