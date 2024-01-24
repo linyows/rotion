@@ -3,7 +3,7 @@ import { getLinkPathAndLinkKey, queryToString } from '../../lib'
 import type { Breadcrumb } from '../../../../exporter'
 import type { BreadcrumbBlockProps, BreadcrumbLinkProps } from './BreadcrumbBlock.types'
 
-function buildPathname(id: string, name: string, href?: string) {
+function buildPathname (id: string, name: string, href?: string) {
   if (href === '/') {
     return href
   }
