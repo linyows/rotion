@@ -103,6 +103,7 @@
 .notionate-blocks-breadcrumb-a:hover {
   color: #666;
   background-color: #fff;
+  cursor: pointer;
 }
 .notionate-blocks-breadcrumb-icon {
   vertical-align: middle;
