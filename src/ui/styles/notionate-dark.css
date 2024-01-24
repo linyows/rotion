@@ -90,6 +90,13 @@
     background-color: rgba(255, 255, 255, 0.055);
   }
 
+  .notionate-blocks-breadcrumb-a {
+    color: #ddd;
+  }
+  .notionate-blocks-breadcrumb-a:hover {
+    background-color: rgb(37, 37, 37);
+  }
+
   .notionate-blocks-callout {
     background-color: rgb(37, 37, 37);
   }

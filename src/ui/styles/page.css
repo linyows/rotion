@@ -90,9 +90,6 @@
 }
 
 /* breadcrumb */
-.notionate-blocks-breadcrumb {
-  padding-left: .5rem;
-}
 .notionate-blocks-breadcrumb-a {
   text-decoration: none;
   color: #333;
@@ -101,8 +98,7 @@
   border-radius: 4px;
 }
 .notionate-blocks-breadcrumb-a:hover {
-  color: #666;
-  background-color: #fff;
+  background-color: rgba(55, 53, 47, 0.08);
   cursor: pointer;
 }
 .notionate-blocks-breadcrumb-icon {
