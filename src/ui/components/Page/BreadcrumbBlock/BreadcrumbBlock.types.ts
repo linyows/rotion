@@ -11,6 +11,13 @@ export interface BreadcrumbLinkProps {
   children?: ReactNode
 }
 
+export interface BreadcrumbsProps {
+  list: Breadcrumb[]
+  link?: Link
+  hrefs?: string[]
+  query?: ParsedUrlQueryInput
+}
+
 export interface BreadcrumbBlockProps {
   block: BreadcrumbBlockObjectResponseEx
   link?: Link

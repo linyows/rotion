@@ -1,2 +1,2 @@
-import BreadcrumbBlock from './BreadcrumbBlock'
-export { BreadcrumbBlock }
+import BreadcrumbBlock, { Breadcrumbs } from './BreadcrumbBlock'
+export { BreadcrumbBlock, Breadcrumbs }

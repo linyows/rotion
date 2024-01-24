@@ -1,7 +1,7 @@
 import React from 'react'
 import { getLinkPathAndLinkKey, queryToString } from '../../lib'
 import type { Breadcrumb } from '../../../../exporter'
-import type { BreadcrumbBlockProps, BreadcrumbLinkProps } from './BreadcrumbBlock.types'
+import type { BreadcrumbBlockProps, BreadcrumbLinkProps, BreadcrumbsProps } from './BreadcrumbBlock.types'
 
 function buildPathname (id: string, name: string, href?: string) {
   if (href === '/') {
@@ -48,11 +48,11 @@ const BreadcrumbLink = ({ breadcrumb, link, href, query, children }: BreadcrumbL
   )
 }
 
-const BreadcrumbBlock = ({ block, link, hrefs, query }: BreadcrumbBlockProps) => {
-  const max = block.list.length
+export const Breadcrumbs = ({ list, link, hrefs, query }: BreadcrumbsProps) => {
+  const max = list.length
   return (
     <div className="notionate-blocks-breadcrumb">
-      {block.list.map((v: Breadcrumb, i: number) => (
+      {list.map((v: Breadcrumb, i: number) => (
         <span key={`crumb-${i}`}>
           <BreadcrumbLink breadcrumb={v} href={hrefs === undefined ? undefined : hrefs[i]} link={link} query={query}>
             {v.icon.type === 'emoji' && <span className="notionate-blocks-breadcrumb-emoji">{v.icon.emoji}</span>}
@@ -66,6 +66,10 @@ const BreadcrumbBlock = ({ block, link, hrefs, query }: BreadcrumbBlockProps) =>
       ))}
     </div>
   )
+}
+
+const BreadcrumbBlock = ({ block, link, hrefs, query }: BreadcrumbBlockProps) => {
+  return <Breadcrumbs list={block.list} link={link} hrefs={hrefs} query={query} />
 }
 
 export default BreadcrumbBlock
