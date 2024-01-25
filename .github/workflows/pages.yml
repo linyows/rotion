@@ -30,15 +30,16 @@ jobs:
         with:
           static_site_generator: next
       - name: Restore next cache
-        working-directory: examples/nextjs
-        uses: actions/cache@v3
+        uses: actions/cache@v4.0.0
         with:
-          path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+          path: |
+            .next/cache
+          key: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Restore rotion cache
-        working-directory: examples/nextjs
-        uses: actions/cache@v3
+        uses: actions/cache@v4.0.0
         with:
           path: |
             .cache
@@ -53,7 +54,6 @@ jobs:
         run: |
           npm run build
       - name: Upload artifact
-        working-directory: examples/nextjs
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./out
