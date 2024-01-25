@@ -1,7 +1,6 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
-import { useState, useEffect } from 'react'
-import Header, { Breadcrumb } from '@/components/Header'
+import Header from '@/components/Header'
 import Head from 'next/head'
 import styles from '@/styles/Page.module.css'
 
@@ -12,6 +11,7 @@ import {
   RichTextItemResponse,
   TitlePropertyItemObjectResponse,
   FetchBreadcrumbs,
+  Breadcrumb,
 } from 'rotion'
 
 import {
