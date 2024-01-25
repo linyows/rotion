@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import Head from 'next/head'
-import styles from '@/styles/db.module.css'
+import styles from '@/styles/Db.module.css'
 import Header from '@/components/Header'
 
 import {
