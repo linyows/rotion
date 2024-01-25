@@ -3,6 +3,7 @@ import {
   isNotionClientError,
   APIErrorCode,
   ClientErrorCode,
+  LogLevel,
 } from '@notionhq/client'
 import {
   atoh,
@@ -18,7 +19,7 @@ import {
   debug,
 } from './variables.js'
 
-export const notion = new Client({ auth })
+export const notion = new Client({ auth, logLevel: debug ? LogLevel.DEBUG : LogLevel.ERROR })
 
 export interface reqAPIWithBackoffArgs {
   func: Function
