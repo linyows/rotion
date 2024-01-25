@@ -1,7 +1,8 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import Header, { Breadcrumb } from '@/components/Header'
+import Header from '@/components/Header'
 import Head from 'next/head'
 import styles from '@/styles/Page.module.css'
 import mermaid from 'mermaid'
@@ -17,6 +18,8 @@ import {
   ListBlockChildrenResponseEx,
   RichTextItemResponse,
   TitlePropertyItemObjectResponse,
+  FetchBreadcrumbs,
+  Breadcrumb,
 } from 'rotion'
 
 import {
@@ -33,18 +36,15 @@ type Props = React.PropsWithChildren & {
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const id = process.env.NOTION_TESTPAGE_ID as string
-  const page = await FetchPage(id, 'force')
+  const page = await FetchPage({ page_id: id, last_edited_time: 'force' })
   let title: null|RichTextItemResponse = null
   if ('meta' in page && page.meta?.object === 'list') {
     const obj = page.meta?.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
     title = obj.title
   }
   const icon = page.icon!.src
-  const blocks = await FetchBlocks(id, page.last_edited_time)
-  const breadcrumbs = [
-    { name: 'Notionate', icon, href: '/' },
-    { name: 'Block', icon, href: '/block' },
-  ]
+  const blocks = await FetchBlocks({ block_id: id, last_edited_time: page.last_edited_time })
+  const breadcrumbs = await FetchBreadcrumbs({ id, type: 'page_id' })
 
   return {
     props: {
@@ -62,15 +62,16 @@ const BlocksPage: NextPage<Props> = ({ title, icon, blocks, breadcrumbs }) => {
     mermaid.initialize({ theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'neutral' })
     setExModules({ mermaid, prism })
   }, [])
+  const hrefs = ['/', '/[name]']
 
   return (
     <>
       <Head>
-        <title>Block - Notionate</title>
+        <title>Block - Rotion</title>
         <link rel="icon" type="image/svg+xml" href={icon} />
       </Head>
 
-      <Header breadcrumbs={breadcrumbs} />
+      <Header breadcrumbs={breadcrumbs} breadcrumb_hrefs={hrefs} />
 
       <div className={styles.layout}>
         <span></span>
@@ -85,7 +86,7 @@ const BlocksPage: NextPage<Props> = ({ title, icon, blocks, breadcrumbs }) => {
           </header>
 
           <div className={`${styles.page} ${styles.wrapperPage}`}>
-            <Page blocks={blocks} modules={exModules} />
+            <Page blocks={blocks} modules={exModules} link={Link} breadcrumb_hrefs={hrefs} />
           </div>
         </div>
         <span></span>

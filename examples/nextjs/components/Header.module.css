@@ -13,27 +13,6 @@
 .breadcrumbs {
   padding-left: .5rem;
 }
-.link {
-  text-decoration: none;
-  color: rgb(35, 131, 226);
-  font-size: .9rem;
-  padding: .2rem .3rem;
-  border-radius: 4px;
-}
-.link:hover {
-  color: #666;
-  background-color: #fff;
-}
-.link img {
-  vertical-align: middle;
-  padding-right: .4rem;
-  padding-bottom: .2rem;
-}
-.slash {
-  font-size: .9rem;
-  opacity: .5;
-  padding: 0 .3rem;
-}
 
 .repo {
   text-align: right;

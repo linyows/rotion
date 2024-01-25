@@ -3,17 +3,19 @@ import Image from 'next/image'
 import React from 'react'
 import Head from 'next/head'
 import styles from '@/styles/Db.module.css'
-import Header, { Breadcrumb } from '@/components/Header'
+import Header from '@/components/Header'
 
 import {
-  QueryDatabaseResponseEx,
   FetchDatabase,
+  FetchDatabaseArgs,
+  FetchDatabaseRes,
   FetchPage,
   FetchBlocks,
+  FetchBlocksRes,
   RichTextItemResponse,
-  QueryDatabaseParameters,
-  ListBlockChildrenResponseEx,
   TitlePropertyItemObjectResponse,
+  FetchBreadcrumbs,
+  Breadcrumb,
 } from 'rotion'
 
 import {
@@ -25,27 +27,24 @@ import {
 type Props = {
   title: null|RichTextItemResponse
   icon: string
-  blocks: ListBlockChildrenResponseEx
-  db: QueryDatabaseResponseEx
+  blocks: FetchBlocksRes
+  db: FetchDatabaseRes
   breadcrumbs: Breadcrumb[]
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const id = process.env.NOTION_GALLERYPAGE_ID as string
-  const page = await FetchPage(id, 'force')
+  const page = await FetchPage({ page_id: id, last_edited_time: 'force' })
   let title: null|RichTextItemResponse = null
   if ('meta' in page && page.meta?.object === 'list') {
     const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
     title = obj.title
   }
   const icon = page.icon!.src
-  const blocks = await FetchBlocks(id, page.last_edited_time)
-  const breadcrumbs = [
-    { name: 'Notionate', icon, href: '/' },
-    { name: 'Gallery', icon, href: '/gallery' },
-  ]
+  const blocks = await FetchBlocks({ block_id: id, last_edited_time: page.last_edited_time })
+  const breadcrumbs = await FetchBreadcrumbs({ id, type: 'page_id' })
 
-  const params = {
+  const params: FetchDatabaseArgs = {
     database_id: process.env.NOTION_TESTDB_ID as string,
     filter: {
       property: 'Published',
@@ -59,7 +58,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
         direction: 'descending'
       },
     ]
-  } as QueryDatabaseParameters
+  }
   const db = await FetchDatabase(params)
 
   return {
@@ -77,11 +76,11 @@ const GalleryPage: NextPage<Props> = ({ title, icon, blocks, db, breadcrumbs }) 
   return (
     <>
       <Head>
-        <title>Gallery - Notionate</title>
+        <title>Gallery - Rotioin</title>
         <link rel="icon" type="image/svg+xml" href={icon} />
       </Head>
 
-      <Header breadcrumbs={breadcrumbs} />
+      <Header breadcrumbs={breadcrumbs} breadcrumb_hrefs={['/', '/[name]']} />
 
       <div className={styles.layout}>
         <div></div>

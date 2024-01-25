@@ -8,9 +8,10 @@ import styles from '@/styles/Page.module.css'
 import {
   FetchBlocks,
   FetchPage,
-  ListBlockChildrenResponseEx,
+  FetchBlocksRes,
   RichTextItemResponse,
   TitlePropertyItemObjectResponse,
+  FetchBreadcrumbs,
 } from 'rotion'
 
 import {
@@ -21,24 +22,21 @@ import {
 type Props = React.PropsWithChildren & {
   title: null|RichTextItemResponse
   icon: string
-  blocks: ListBlockChildrenResponseEx
+  blocks: FetchBlocksRes
   breadcrumbs: Breadcrumb[]
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
   const id = process.env.NOTION_RICHTEXT_PAGEID as string
-  const page = await FetchPage(id, 'force')
+  const page = await FetchPage({ page_id: id, last_edited_time: 'force' })
   let title: null|RichTextItemResponse = null
   if ('meta' in page && page.meta?.object === 'list') {
     const obj = page.meta?.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
     title = obj.title
   }
   const icon = page.icon!.src
-  const blocks = await FetchBlocks(id, page.last_edited_time)
-  const breadcrumbs = [
-    { name: 'Notionate', icon, href: '/' },
-    { name: 'Rich Text', icon, href: '/rich-text' },
-  ]
+  const blocks = await FetchBlocks({ block_id: id, last_edited_time: page.last_edited_time })
+  const breadcrumbs = await FetchBreadcrumbs({ id, type: 'page_id' })
 
   return {
     props: {
@@ -54,11 +52,11 @@ const RichTextPage: NextPage<Props> = ({ title, icon, blocks, breadcrumbs }) => 
   return (
     <>
       <Head>
-        <title>Rich Text - Notionate</title>
+        <title>Rich Text - Rotion</title>
         <link rel="icon" type="image/svg+xml" href={icon} />
       </Head>
 
-      <Header breadcrumbs={breadcrumbs} />
+      <Header breadcrumbs={breadcrumbs} breadcrumb_hrefs={['/', '/[name]']} />
 
       <div className={styles.layout}>
         <span></span>
