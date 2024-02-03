@@ -205,6 +205,22 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
             }
           }
           break
+        case 'pdf':
+          const url = block.pdf.type === 'external' ? block.pdf.external.url : block.pdf.file.url
+          const { src, size } = await saveFile(url, `block-${block.id}`)
+          block.pdf.src = src
+          block.pdf.size = size
+          break
+        case 'synced_block':
+          if (block.has_children) {
+            if (block.synced_block.synced_from === null) {
+              block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
+            } else if (block.synced_block.synced_from.type === 'block_id') {
+              const block_id = block.synced_block.synced_from.block_id
+              block.children = await FetchBlocks({ block_id, last_edited_time: block.last_edited_time })
+            }
+          }
+          break
         case 'table':
           block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
           break
@@ -227,9 +243,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
         case 'heading_3':
         case 'link_to_page':
         case 'link_preview':
-        case 'pdf':
         case 'quote':
-        case 'synced_block':
         case 'table_of_contents':
         case 'table_row':
         case 'template':
