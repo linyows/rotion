@@ -12,6 +12,7 @@ import replaceExt from 'replace-ext'
 import {
   docRoot,
   imageDir,
+  fileDir,
   timeout,
   webpQuality,
   httpOptions,
