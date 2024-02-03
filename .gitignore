@@ -48,6 +48,3 @@ public
 # packages
 /packages/**/dist
 
-# storybook
-.storybook
-storybook-static
