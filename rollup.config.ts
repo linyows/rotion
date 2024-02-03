@@ -6,6 +6,7 @@ import json from '@rollup/plugin-json'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import del from 'rollup-plugin-delete'
 import dts from 'rollup-plugin-dts'
+import stylexPlugin from '@stylexjs/rollup-plugin'
 
 export default [
   {
@@ -42,6 +43,7 @@ export default [
       commonjs(),
       typescript(),
       // terser(),
+      stylexPlugin({ fileName: 'stylex.css' }),
     ],
     external: [
       'react',
