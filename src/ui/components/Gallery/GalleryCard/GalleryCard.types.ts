@@ -9,4 +9,6 @@ export interface GalleryCardProps {
   link?: Link
   query?: ParsedUrlQueryInput
   preview?: 'cover' | 'content'
+  size: 'small' | 'medium' | 'large'
+  fit: boolean
 }

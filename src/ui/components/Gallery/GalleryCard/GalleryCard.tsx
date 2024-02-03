@@ -8,8 +8,48 @@ import { getLinkPathAndLinkKey } from '../../lib'
 import GalleryLinkedCard from './GalleryLinkedCard'
 import GalleryPreview from './GalleryPreview'
 import type { GalleryCardProps } from './GalleryCard.types'
+import Stylex from '@stylexjs/stylex'
+import { fontFamily } from '../../tokens.stylex'
 
-const getSlug = (key: string, page: GetPageResponse): string => {
+const style = Stylex.create({
+  wrapper: {
+    fontFamily: fontFamily.sansserif,
+    display: 'block',
+    color: 'inherit',
+    textDecoration: 'none',
+    boxShadow: 'rgb(15 15 15 / 10%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 2px 4px',
+    borderRadius: '3px',
+    background: {
+      default: 'white',
+      ':hover': 'rgba(55, 53, 47, 0.03)',
+    },
+    overflow: 'hidden',
+    transition: 'background 100ms ease-out 0s',
+    position: 'static',
+    height: '100%',
+    cursor: 'pointer',
+  },
+  inner: {
+    position: 'relative',
+    paddingBottom: '1rem',
+    display: 'grid',
+    gap: '16px',
+  },
+  small: {
+    gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+  },
+  medium: {
+    gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+  },
+  large: {
+    gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+  },
+  text: {
+    paddingBottom: '10px',
+  },
+})
+
+function getSlug (key: string, page: GetPageResponse) {
   if (!('properties' in page)) {
     return 'not-found-properties'
   }
@@ -27,8 +67,8 @@ const getSlug = (key: string, page: GetPageResponse): string => {
   return p.rich_text.map(v => v.text.content).join(',')
 }
 
-const buildHref = (page: PageObjectResponseEx, link?: string) => {
-  if (link === undefined) {
+function buildHref (page: PageObjectResponseEx, link?: string) {
+  if (!link) {
     return ''
   }
   const [path, slugKey] = getLinkPathAndLinkKey(link)
@@ -36,26 +76,27 @@ const buildHref = (page: PageObjectResponseEx, link?: string) => {
   return `${path}${slug}`
 }
 
-const GalleryCard = ({ keys, page, href, link, query, preview }: GalleryCardProps) => {
-  const findItems = (name: string, page: PageObjectResponseEx) => {
-    let propertyId = ''
-    for (const [k, v] of Object.entries(page.properties)) {
-      if (k === name) {
-        propertyId = v.id
-      }
+function findItems (name: string, page: PageObjectResponseEx) {
+  let propertyId = ''
+  for (const [k, v] of Object.entries(page.properties)) {
+    if (k === name) {
+      propertyId = v.id
     }
-    return page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
   }
+  return page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
+}
+
+const GalleryCard = ({ keys, page, href, link, query, preview, size, fit }: GalleryCardProps) => {
   const path = getLinkPathAndLinkKey(href)[0]
 
   return (
-    <div className="notionate-gallery-card">
+    <div className={`rotion-gallery-card ${Stylex(style.wrapper)}`}>
       <GalleryLinkedCard href={buildHref(page, href)} link={link}>
-        {preview && <GalleryPreview src={page.cover?.src} />}
-        <div className="notionate-gallery-card-text">
+        {preview && <GalleryPreview src={page.cover?.src} size={size} fit={fit} />}
+        <div className={`rotion-gallery-card-text ${Stylex(style.text)}`}>
           {keys.map((name, i) => (
             <div key={`${page.id}${name}`} className={`field${i}`}>
-              {GalleryHandler({ items: findItems(name, page), path })}
+              <GalleryHandler items={findItems(name, page)} path={path} size={size} />
             </div>
           ))}
         </div>

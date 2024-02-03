@@ -1,10 +1,10 @@
-import type { QueryDatabaseResponseEx } from '../../../exporter'
+import type { FetchDatabaseRes } from '../../../exporter'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 import type { Link } from '../types'
 
 export interface GalleryProps {
   keys: string[]
-  db: QueryDatabaseResponseEx
+  db: FetchDatabaseRes
   href?: string
   link?: Link
   query?: ParsedUrlQueryInput

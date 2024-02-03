@@ -10,8 +10,8 @@ import GalleryCheckboxField from '../GalleryCheckboxField/GalleryCheckboxField'
 import GalleryNumberField from '../GalleryNumberField/GalleryNumberField'
 import type { GalleryHandlerProps } from './GalleryHandler.types'
 
-const GalleryHandler = ({ items, path }: GalleryHandlerProps) => {
-  if (items === undefined) {
+const GalleryHandler = ({ items, path, size }: GalleryHandlerProps) => {
+  if (!items) {
     return <></>
   }
 
@@ -23,9 +23,9 @@ const GalleryHandler = ({ items, path }: GalleryHandlerProps) => {
     const target = items.results[0]
     switch (target.type) {
       case 'title':
-        return GalleryTitleField({ payload: items.results as Array<TitlePropertyItemObjectResponse> })
+        return <GalleryTitleField payload={items.results as Array<TitlePropertyItemObjectResponse>} />
       case 'rich_text':
-        return GalleryRichTextField({ payload: target })
+        return <GalleryRichTextField payload={target} />
       case 'people':
       case 'relation':
       case 'rollup':
@@ -36,17 +36,17 @@ const GalleryHandler = ({ items, path }: GalleryHandlerProps) => {
   } else {
     switch (items.type) {
       case 'date':
-        return GalleryDateField({ payload: items.date })
+        return <GalleryDateField payload={items.date} />
       case 'rich_text':
-        return GalleryRichTextField({ payload: items })
+        return <GalleryRichTextField payload={items} size={size} />
       case 'multi_select':
-        return GalleryMultiSelectField({ payload: items, path })
+        return <GalleryMultiSelectField payload={items} path={path} />
       case 'url':
-        return GalleryUrlField({ payload: items.url })
+        return <GalleryUrlField payload={items.url} />
       case 'checkbox':
-        return GalleryCheckboxField({ payload: items.checkbox })
+        return <GalleryCheckboxField payload={items.checkbox} />
       case 'number':
-        return GalleryNumberField({ payload: items })
+        return <GalleryNumberField payload={items} />
       case 'select':
       case 'status':
       case 'email':
@@ -65,6 +65,8 @@ const GalleryHandler = ({ items, path }: GalleryHandlerProps) => {
         break
     }
   }
+
+  return <></>
 }
 
 export default GalleryHandler

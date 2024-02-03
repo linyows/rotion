@@ -3,7 +3,7 @@ import type { GalleryCheckboxFieldProps } from './GalleryCheckboxField.types'
 
 const GalleryCheckboxField = ({ payload }: GalleryCheckboxFieldProps) => {
   return (
-    <div className="notionate-gallery-checkbox">
+    <div className={`rotion-gallery-checkbox`}>
       {payload}
     </div>
   )
