@@ -12,6 +12,7 @@ import { FetchPage } from './page.js'
 import {
   createDirWhenNotfound,
   saveImage,
+  saveFile,
   readCache,
   writeCache,
   getHtmlMeta,
