@@ -1,6 +1,18 @@
-import type { RichTextItemResponse } from '../../../../exporter'
+import type {
+  ParagraphBlockObjectResponseEx,
+  Heading1BlockObjectResponse,
+  Heading2BlockObjectResponse,
+  Heading3BlockObjectResponse,
+  QuoteBlockObjectResponse,
+  DividerBlockObjectResponse,
+} from '../../../../exporter'
 
 export interface TextBlockProps {
   tag: keyof JSX.IntrinsicElements
-  block: RichTextItemResponse[] | undefined
+  block: ParagraphBlockObjectResponseEx
+    | Heading1BlockObjectResponse
+    | Heading2BlockObjectResponse
+    | Heading3BlockObjectResponse
+    | QuoteBlockObjectResponse
+    | DividerBlockObjectResponse
 }

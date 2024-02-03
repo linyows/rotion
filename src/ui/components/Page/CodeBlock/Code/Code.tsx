@@ -1,5 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import type { CodeProps } from './Code.types'
+import Stylex from '@stylexjs/stylex'
+
+const style = Stylex.create({
+  wrapper: {
+    borderRadius: '3px',
+    padding: '.6rem 1rem',
+    backgroundColor: '#f5f2f0',
+    margin: '1rem 0',
+    fontSize: '.8rem',
+    position: 'relative',
+    top: 0,
+    left: 0,
+  },
+  lang: {
+    position: 'absolute',
+    top: '.5rem',
+    left: '.8rem',
+    color: '#999',
+    fontSize: '.75rem',
+    textTransform: 'capitalize',
+    display: 'block',
+  },
+})
 
 const Code = ({ children, language = 'text', modules }: CodeProps) => {
   const codeRef = React.createRef<HTMLPreElement>()
@@ -25,8 +48,8 @@ const Code = ({ children, language = 'text', modules }: CodeProps) => {
   }, [language, ''])
 
   return (
-    <div className="notionate-blocks-code" onMouseOver={showLang} onMouseOut={hideLang}>
-      {show && <div className="notionate-blocks-code-lang">
+    <div className={`rotion-code-text ${Stylex(style.wrapper)}`} onMouseOver={showLang} onMouseOut={hideLang}>
+      {show && <div className={`rotion-code-lang ${Stylex(style.lang)}`}>
         {language}
       </div>}
       <pre className={cl}>

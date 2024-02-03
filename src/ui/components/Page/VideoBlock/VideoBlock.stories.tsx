@@ -1,11 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import type { CalloutBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter'
-import CalloutBlock from './CalloutBlock'
+import type { VideoBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter'
+import VideoBlock from './VideoBlock'
 
+/* RICH TEXT */
 const richText: RichTextItemResponse = {
   type: 'text',
   text: {
-    content: 'This is callout block',
+    content: 'This video is cool.',
     link: null,
   },
   annotations: {
@@ -16,11 +17,12 @@ const richText: RichTextItemResponse = {
     code: false,
     color: 'default',
   },
-  plain_text: 'This is callout block',
+  plain_text: 'This video is cool.',
   href: null,
 }
 
-const block: CalloutBlockObjectResponseEx = {
+/* VIDEO BLOCK */
+const block: VideoBlockObjectResponseEx = {
   object: 'block',
   id: '12345678-1234-1234-1234-1234567890ab',
   parent: {
@@ -39,41 +41,27 @@ const block: CalloutBlockObjectResponseEx = {
   },
   has_children: false,
   archived: false,
-  type: 'callout',
-  callout: {
-    rich_text: [richText],
-    color: 'default',
-    icon: {
-      type: 'emoji',
-      emoji: '💡',
-    }
+  type: 'video',
+  video: {
+    caption: [richText],
+    type: 'external',
+    external: {
+      url: 'https://youtu.be/2ncpb3auHOw?si=egykqR6viQTM9fNR',
+    },
+    html: '<iframe width="560" height="315" src="https://www.youtube.com/embed/2ncpb3auHOw?si=egykqR6viQTM9fNR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
   },
 }
 
 const meta = {
-  title: 'Page/CalloutBlock',
-  component: CalloutBlock,
+  title: 'Page/VideoBlock',
+  component: VideoBlock,
   args: {
     block,
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof CalloutBlock>
+} satisfies Meta<typeof VideoBlock>
 
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Emoji: Story = {}
-
-const icon = structuredClone(block)
-icon.callout.icon! = {
-  type: 'external',
-  external: {
-    url: 'https://www.notion.so/icons/light-bulb_blue.svg?mode=light',
-  },
-  src: 'https://www.notion.so/icons/light-bulb_blue.svg?mode=light',
-}
-export const Icon: Story = {
-  args: {
-    block: icon
-  }
-}
+export const Youtube: Story = {}

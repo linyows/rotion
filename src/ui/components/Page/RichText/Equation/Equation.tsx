@@ -1,6 +1,13 @@
 import React, { useMemo } from 'react'
 import Katex from 'katex'
 import type { EquationProps } from './Equation.types'
+import Stylex from '@stylexjs/stylex'
+
+const style = Stylex.create({
+  wrapper: {
+    display: 'block',
+  }
+})
 
 const Equation = ({ textObject }: EquationProps) => {
   const { equation } = textObject
@@ -14,7 +21,7 @@ const Equation = ({ textObject }: EquationProps) => {
   }, [formula])
 
   return (
-    <span className="notionate-equation" dangerouslySetInnerHTML={{ __html: html }} />
+    <span className={`rotion-equation-html ${Stylex(style.wrapper)}`} dangerouslySetInnerHTML={{ __html: html }} />
   )
 }
 

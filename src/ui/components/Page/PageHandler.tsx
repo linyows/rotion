@@ -3,7 +3,7 @@ import type { HandlerProps } from './PageHandler.types'
 
 import BookmarkBlock from './BookmarkBlock/BookmarkBlock'
 import BreadcrumbBlock from './BreadcrumbBlock/BreadcrumbBlock'
-import BulletedListBlocks from './BulletedListBlocks/BulletedListBlocks'
+import BulletedListBlocks from './BulletedListBlock/BulletedListBlock'
 import CalloutBlock from './CalloutBlock/CalloutBlock'
 import ChildDatabaseBlock from './ChildDatabaseBlock/ChildDatabaseBlock'
 import ChildPageBlock from './ChildPageBlock/ChildPageBlock'
@@ -15,12 +15,11 @@ import FileBlock from './FileBlock/FileBlock'
 import TextBlock from './TextBlock/TextBlock'
 import ImageBlock from './ImageBlock/ImageBlock'
 import LinkPreviewBlock from './LinkPreviewBlock/LinkPreviewBlock'
-import NumberedListBlocks from './NumberedListBlocks/NumberedListBlocks'
+import NumberedListBlocks from './NumberedListBlocks/NumberedListBlock'
 import PdfBlock from './PdfBlock/PdfBlock'
 import SyncedBlock from './SyncedBlock/SyncedBlock'
 import TableBlock from './TableBlock/TableBlock'
 import TableOfContentsBlock from './TableOfContentsBlock/TableOfContentsBlock'
-import TemplateBlock from './TemplateBlock/TemplateBlock'
 import ToDoBlock from './ToDoBlock/ToDoBlock'
 import ToggleBlock from './ToggleBlock/ToggleBlock'
 import VideoBlock from './VideoBlock/VideoBlock'
@@ -70,9 +69,7 @@ export const PageHandler = ({ block, href, link, query, modules, breadcrumb_href
     case 'quote':
     case 'divider': {
       const tag = blockType[block.type] as keyof JSX.IntrinsicElements
-      // @ts-ignore
-      const text = block[block.type]?.rich_text
-      return <TextBlock tag={tag} block={text} key={block.id} />
+      return <TextBlock tag={tag} block={block} key={block.id} />
     }
     case 'image':
       return <ImageBlock block={block} key={block.id} />
@@ -91,9 +88,6 @@ export const PageHandler = ({ block, href, link, query, modules, breadcrumb_href
     case 'table_of_contents':
       console.log(`still a not supported component: ${block.type}`, block)
       return <TableOfContentsBlock block={block} key={block.id} />
-    case 'template':
-      console.log(`still a not supported component: ${block.type}`, block)
-      return <TemplateBlock block={block} key={block.id} />
     case 'to_do':
       return <ToDoBlock block={block} key={block.id} />
     case 'toggle':

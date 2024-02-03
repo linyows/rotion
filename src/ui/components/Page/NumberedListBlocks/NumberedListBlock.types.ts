@@ -2,7 +2,7 @@ import type { NumberedListItemBlockObjectResponseEx } from '../../../../exporter
 import type { ParsedUrlQueryInput } from 'node:querystring'
 import type { Link } from '../../types'
 
-export interface NumberedListBlocksProps {
+export interface NumberedListBlockProps {
   block: NumberedListItemBlockObjectResponseEx
   href?: string
   link?: Link

@@ -2,7 +2,7 @@ import React from 'react'
 import UserMention from './UserMention/UserMention'
 import type { MentionProps } from './Mention.types'
 import { PageMention } from './PageMention'
-import { LinkPreviewMention } from './LinkPreviewMemtion'
+import { LinkPreviewMention } from './LinkPreviewMention'
 import { DateMention } from './DateMention'
 import { TemplateMention } from './TemplateMention'
 

@@ -2,6 +2,34 @@ import React from 'react'
 import { getLinkPathAndLinkKey, queryToString } from '../../lib'
 import type { Breadcrumb } from '../../../../exporter'
 import type { BreadcrumbBlockProps, BreadcrumbLinkProps, BreadcrumbsProps } from './BreadcrumbBlock.types'
+import Stylex from '@stylexjs/stylex'
+import { fontFamily } from '../../tokens.stylex'
+
+const style = Stylex.create({
+  link: {
+    fontFamily: fontFamily.sansserif,
+    textDecoration: 'none',
+    color: '#333',
+    fontSize: '.9rem',
+    padding: '.2rem .3rem',
+    borderRadius: '4px',
+    backgroundColor: {
+      default: 'inherit',
+      ':hover': 'rgba(55, 53, 47, 0.08)',
+    },
+    cursor: 'pointer',
+  },
+  icon: {
+    verticalAlign: 'middle',
+    paddingRight: '.4rem',
+    paddingBottom: '.2rem',
+  },
+  slash: {
+    fontSize: '.9rem',
+    opacity: '.5',
+    padding: '0 .3rem',
+  },
+})
 
 function buildPathname (id: string, name: string, href?: string) {
   if (href === '/') {
@@ -27,7 +55,7 @@ const BreadcrumbLink = ({ breadcrumb, link, href, query, children }: BreadcrumbL
   if (link && href) {
     const Link = link
     return (
-      <Link className="notionate-blocks-breadcrumb-a" href={{ pathname, query }}>
+      <Link className={`rotion-blocks-breadcrumb-a ${Stylex(style.link)}`} href={{ pathname, query }}>
         {children}
       </Link>
     )
@@ -35,14 +63,14 @@ const BreadcrumbLink = ({ breadcrumb, link, href, query, children }: BreadcrumbL
 
   if (href) {
     return (
-      <a className="notionate-blocks-breadcrumb-a" href={`${pathname}${queryToString(query)}`}>
+      <a className={`rotion-blocks-breadcrumb-a ${Stylex(style.link)}`} href={`${pathname}${queryToString(query)}`}>
         {children}
       </a>
     )
   }
 
   return (
-    <span className="notionate-blocks-breadcrumb-a">
+    <span className={`rotion-blocks-breadcrumb-a ${Stylex(style.link)}`}>
       {children}
     </span>
   )
@@ -56,12 +84,12 @@ export const Breadcrumbs = ({ list, link, hrefs, query }: BreadcrumbsProps) => {
         <span key={`crumb-${i}`}>
           <BreadcrumbLink breadcrumb={v} href={hrefs === undefined ? undefined : hrefs[i]} link={link} query={query}>
             {v.icon.type === 'emoji' && <span className="notionate-blocks-breadcrumb-emoji">{v.icon.emoji}</span>}
-            {v.icon.type !== 'emoji' && <img className="notionate-blocks-breadcrumb-icon" src={v.icon.src} width={20} height={20} alt={v.name} />}
+            {v.icon.type !== 'emoji' && <img className={`rotion-blocks-breadcrumb-icon ${Stylex(style.icon)}`} src={v.icon.src} width={20} height={20} alt={v.name} />}
             <span className="notionate-blocks-breadcrumb-title">
               {v.name}
             </span>
           </BreadcrumbLink>
-          {i + 1 < max && <span className="notionate-blocks-breadcrumb-slash">/</span>}
+          {i + 1 < max && <span className={`rotion-blocks-breadcrumb-slash ${Stylex(style.slash)}`}>/</span>}
         </span>
       ))}
     </div>

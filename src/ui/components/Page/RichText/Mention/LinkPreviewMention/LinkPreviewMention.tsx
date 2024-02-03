@@ -5,7 +5,7 @@ import type { LinkPreviewMemtionProps } from './LinkPreviewMention.types'
 
 const LinkPreviewMention = ({ url, text, children }: LinkPreviewMemtionProps) => {
   return (
-    <span className="notionate-blocks-text-mention">
+    <span className={'rotion-mention-linkpreview'}>
       {url.includes('github.com') && <PageIcon name='github' />}
       {url.includes('slack.com') && <PageIcon name='slack' />}
       {url.includes('figma.com') && <PageIcon name='figma' />}

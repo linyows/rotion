@@ -2,7 +2,7 @@ import type { Link } from '../../types'
 import type { BlockObjectResponse } from '../../../../exporter'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 
-export interface ListBlockProps {
+export interface ListBlocksProps {
   tag: keyof JSX.IntrinsicElements
   blocks: BlockObjectResponse[]
   href?: string

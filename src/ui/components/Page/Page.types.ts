@@ -14,3 +14,5 @@ export interface PageProps {
 export interface ListType {
   [key: string]: string
 }
+
+export type ULOL = 'ul' | 'ol'

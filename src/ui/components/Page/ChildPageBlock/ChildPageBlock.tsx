@@ -1,6 +1,38 @@
 import React from 'react'
 import type { ChildPageBlockProps, ChildPageLinkProps } from './ChildPageBlock.types'
 import { getLinkPathAndLinkKey, queryToString } from '../../lib'
+import Stylex from '@stylexjs/stylex'
+import { fontFamily } from '../../tokens.stylex'
+
+const style = Stylex.create({
+  wrapper: {
+    fontFamily: fontFamily.sansserif,
+    width: '100%',
+  },
+  link: {
+    display: 'grid',
+    gridTemplate: 'repeat(1, 1fr) / 1.5rem 1fr',
+    gap: '.4rem',
+    margin: '.2rem 0 0',
+    padding: '.6rem .3rem',
+    textDecoration: 'none',
+    color: '#333',
+    alignItems: 'top',
+    backgroundColor: {
+      default: 'inhirit',
+      ':hover': 'rgba(55, 53, 47, 0.08)',
+    },
+    borderRadius: '4px',
+  },
+  title: {
+    borderBottom: '1px solid #ddd',
+    verticalAlign: 'top',
+  },
+  icon: {
+    height: '24px',
+    overflow: 'hidden',
+  },
+})
 
 const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProps) => {
   const title = block.child_page.title
@@ -9,7 +41,7 @@ const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProp
 
   if (!href) {
     return (
-      <div className="notionate-blocks-childpage-a">
+      <div className={`rotion-childpage-link ${Stylex(style.link)}`}>
         {children}
       </div>
     )
@@ -20,13 +52,13 @@ const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProp
       query = {}
     }
     return (
-      <Link className="notionate-blocks-childpage-a" href={{ pathname: `${path}${file}`, query }}>
+      <Link className={`rotion-childpage-link ${Stylex(style.link)}`} href={{ pathname: `${path}${file}`, query }}>
         {children}
       </Link>
     )
   }
   return (
-    <a href={`${path}${file}${queryToString(query)}`} className="notionate-blocks-childpage-a">
+    <a className={`rotion-childpage-link ${Stylex(style.link)}`} href={`${path}${file}${queryToString(query)}`}>
       {children}
     </a>
   )
@@ -40,13 +72,13 @@ const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
   const title = block.child_page.title
   if (block.page === null || block.page.icon === undefined || block.page.icon === null) {
     return (
-      <div className="notionate-blocks-childpage">
+      <div className={`rotion-childpage ${Stylex(style.wrapper)}`}>
         <ChildPageLink block={block} href={href} link={link} query={query}>
-          <span className="notionate-blocks-childpage-icon">
+          <span className={`rotion-childpage-icon ${Stylex(style.icon)}`}>
             {'️-'}
           </span>
           <div>
-            <span className="notionate-blocks-childpage-title">
+            <span className={`rotion-childpage-title ${Stylex(style.title)}`}>
               {title}
             </span>
           </div>
@@ -57,13 +89,13 @@ const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
 
   if (block.page.icon.type === 'emoji') {
     return (
-      <div className="notionate-blocks-childpage">
+      <div className={`rotion-childpage ${Stylex(style.wrapper)}`}>
         <ChildPageLink block={block} href={href} link={link} query={query}>
-          <span className="notionate-blocks-childpage-icon">
+          <span className={`rotion-childpage-icon ${Stylex(style.icon)}`}>
             {block.page.icon.emoji}
           </span>
           <div>
-            <span className="notionate-blocks-childpage-title">
+            <span className={`rotion-childpage-title ${Stylex(style.title)}`}>
               {title}
             </span>
           </div>
@@ -74,13 +106,13 @@ const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
 
   // type external or file
   return (
-    <div className="notionate-blocks-childpage">
+    <div className={`rotion-childpage ${Stylex(style.wrapper)}`}>
       <ChildPageLink block={block} href={href} link={link} query={query}>
-        <span className="notionate-blocks-childpage-icon">
-          <img className="notionate-blocks-childpage-file-icon" src={block.page.icon.src} alt="Icon" />
+        <span className={`rotion-childpage-icon ${Stylex(style.icon)}`}>
+          <img className="rotion-childpage-icon-img" src={block.page.icon.src} alt="Icon" />
         </span>
         <div>
-          <span className="notionate-blocks-childpage-title">
+          <span className={`rotion-childpage-title ${Stylex(style.title)}`}>
             {title}
           </span>
         </div>

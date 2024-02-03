@@ -6,7 +6,7 @@ import type { RichTextProps } from './RichText.types'
 import { MentionRichTextItemResponseEx } from '../../../../exporter'
 
 const RichText = ({ textObject }: RichTextProps) => {
-  if (textObject === undefined || textObject === null) {
+  if (!textObject) {
     return <></>
   }
 

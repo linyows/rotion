@@ -2,8 +2,6 @@ import React from 'react'
 import type { MentionRichTextItemResponseEx } from '../../../../../exporter'
 import type { Meta, StoryObj } from '@storybook/react'
 import Mention from './Mention'
-import '../../../../../styles/base.css'
-import '../../../../../styles/page.css'
 
 const textObject: MentionRichTextItemResponseEx = {
   type: 'mention',

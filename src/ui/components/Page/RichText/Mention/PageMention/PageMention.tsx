@@ -4,7 +4,7 @@ import type { PageMentionProps } from './PageMention.types'
 
 const PageMention = ({ mention, children }: PageMentionProps) => {
   return (
-    <span className="notionate-blocks-text-mention-page">
+    <span className={'rotion-mention-page'}>
       <span>
         {mention.icon.type === 'emoji' ? mention.icon.emoji : <img src={mention.icon.src} alt="icon"/>}
         <PageIcon name='link' />

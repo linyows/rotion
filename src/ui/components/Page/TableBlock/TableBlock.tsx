@@ -2,11 +2,47 @@ import React from 'react'
 import RichText from '../RichText/RichText'
 import type { TableRowBlockObjectResponse } from '../../../../exporter'
 import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
+import Stylex from '@stylexjs/stylex'
+import { fontFamily } from '../../tokens.stylex'
+
+const style = Stylex.create({
+  wrapper: {
+    fontFamily: fontFamily.sansserif,
+    paddingTop: '.6rem',
+  },
+  table: {
+    borderCollapse: 'collapse',
+    borderSpacing: 0,
+    fontSize: '.9rem',
+  },
+  td: {
+    border: '1px solid #E5E5E5',
+    margin: 0,
+    padding: '.3rem',
+  },
+  tdInner: {
+    padding: '.2rem .8rem',
+  },
+  tdHeader: {
+    border: '1px solid #E5E5E5',
+    backgroundColor: '#F5F5F5',
+    margin: 0,
+    padding: '.3rem',
+    fontWeight: 500,
+    textAlign: 'left',
+  },
+  tdHeaderInner: {
+    padding: '.2rem .8rem',
+  },
+  tr: {
+    margin: 0,
+  },
+})
 
 const Td = ({ cell, key }: ThTdProps) => {
   return (
-    <td className="notionate-blocks-table-td" key={key}>
-      <div className="notionate-blocks-table-td-inner">
+    <td className={`rotion-table-td ${Stylex(style.td)}`} key={key}>
+      <div className={`rotion-table-td-inner ${Stylex(style.tdInner)}`}>
         <RichText textObject={cell} />
       </div>
     </td>
@@ -15,8 +51,8 @@ const Td = ({ cell, key }: ThTdProps) => {
 
 const TdH = ({ cell, key }: ThTdProps) => {
   return (
-    <td className="notionate-blocks-table-td-header" key={key}>
-      <div className="notionate-blocks-table-td-header-inner">
+    <td className={`rotiona-table-td-header ${Stylex(style.tdHeader)}`} key={key}>
+      <div className={`rotion-table-td-header-inner ${Stylex(style.tdHeaderInner)}`}>
         <RichText textObject={cell} />
       </div>
     </td>
@@ -25,7 +61,7 @@ const TdH = ({ cell, key }: ThTdProps) => {
 
 const Tr = ({ children, key }: TrProps) => {
   return (
-    <tr className="notionate-blocks-table-tr" key={key}>
+    <tr className={`rotion-table-tr ${Stylex(style.tr)}`} key={key}>
       {children}
     </tr>
   )
@@ -67,8 +103,8 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
   })
 
   return (
-    <div className="notionate-blocks-table">
-      <table className="notionate-blocks-table-table">
+    <div className={`rotion-table ${Stylex(style.wrapper)}`}>
+      <table className={`rotion-table-table ${Stylex(style.table)}`}>
         <tbody>
           {rows}
         </tbody>

@@ -1,5 +1,5 @@
-import type { PdfBlockObjectResponse } from '../../../../exporter'
+import type { PdfBlockObjectResponseEx } from '../../../../exporter'
 
 export interface PdfBlockProps {
-  block: PdfBlockObjectResponse,
+  block: PdfBlockObjectResponseEx,
 }
