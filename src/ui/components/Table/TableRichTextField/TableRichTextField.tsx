@@ -1,11 +1,14 @@
 import React from 'react'
-import TextBlock from '../../Page/TextBlock/TextBlock'
+import { RichText } from '../../Page/RichText'
 import type { TableRichTextFieldProps } from './TableRichTextField.types'
 
 const TableRichTextField = ({ payload }: TableRichTextFieldProps) => {
+  if (!payload) {
+    return <></>
+  }
   return (
-    <div className="notionate-table-richtext">
-      {payload && <TextBlock tag="span" block={[payload.rich_text]} />}
+    <div className="rotion-table-richtext">
+      <RichText textObject={payload.rich_text} />
     </div>
   )
 }

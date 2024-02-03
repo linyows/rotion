@@ -1,11 +1,11 @@
 import React from 'react'
-import TextBlock from '../../Page/TextBlock/TextBlock'
+import { RichText } from '../../Page/RichText'
 import type { ListRichTextFieldProps } from './ListRichTextField.types'
 
 const ListRichTextField = ({ payload }: ListRichTextFieldProps) => {
   return (
-    <div className="notionate-list-richtext">
-      <TextBlock tag="span" block={[payload.rich_text]} />
+    <div className="rotion-list-richtext">
+      <RichText textObject={payload.rich_text} />
     </div>
   )
 }
