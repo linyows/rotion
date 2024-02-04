@@ -43,7 +43,7 @@ export default [
       commonjs(),
       typescript(),
       // terser(),
-      stylexPlugin({ fileName: 'stylex.css' }),
+      stylexPlugin({ fileName: 'style.css' }),
     ],
     external: [
       'react',

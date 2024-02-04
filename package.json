@@ -15,6 +15,7 @@
       "import": "./dist/ui/esm/index.js",
       "require": "./dist/ui/cjs/index.js"
     },
+    "./style.css": "./dist/ui/esm/style.css",
     "./styles/*": "./dist/ui/styles/*",
     "./package.json": "./package.json",
     "./README.md": "./README.md",
