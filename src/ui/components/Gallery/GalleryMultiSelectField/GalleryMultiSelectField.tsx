@@ -1,5 +1,6 @@
 import React from 'react'
 import type { GalleryMultiSelectFieldProps } from './GalleryMultiSelectField.types'
+import LinkedTag from './LinkedTag'
 import Stylex from '@stylexjs/stylex'
 import { fontFamily, color } from '../../tokens.stylex'
 
@@ -84,37 +85,20 @@ const style = Stylex.create({
   },
 })
 
-const GalleryMultiSelectField = ({ payload, path, link }: GalleryMultiSelectFieldProps) => {
-  const LinkedTag = (name: string) => {
-    const href = `${path}tags/${encodeURIComponent(name)}`
-    if (link) {
-      const Link = link
-      return (
-        <Link className={`rotion-gallery-multiselect-link ${Stylex(style.link)}`} href={href}>
-          {name}
-        </Link>
-      )
-    }
-    return (
-      <a className={`rotion-gallery-multiselect-link ${Stylex(style.link)}`} href={href} title={name}>
-        {name}
-      </a>
-    )
-  }
+const GalleryMultiSelectField = ({ payload, path, link, query }: GalleryMultiSelectFieldProps) => {
+  const { multi_select } = payload
 
-  const css = (color: string) => {
+  const liClassName = (color: string) => {
     // @ts-ignore
     const s = Stylex(style[color])
     return `rotion-gallery-multiselect-li rotion-select-${color} ${Stylex(style.li)} ${s}`
   }
 
-  const { multi_select } = payload
-
   return (
     <ul className={`rotion-gallery-multiselect-ul ${Stylex(style.ul)}`}>
       {multi_select.map(v => (
-        <li key={v.id} className={css(v.color)}>
-          {LinkedTag(v.name)}
+        <li key={v.id} className={liClassName(v.color)}>
+          <LinkedTag name={v.name} path={path} link={link} query={query} />
         </li>
       ))}
     </ul>

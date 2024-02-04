@@ -91,12 +91,12 @@ const GalleryCard = ({ keys, page, href, link, query, preview, size, fit }: Gall
 
   return (
     <div className={`rotion-gallery-card ${Stylex(style.wrapper)}`}>
-      <GalleryLinkedCard href={buildHref(page, href)} link={link}>
+      <GalleryLinkedCard href={buildHref(page, href)} link={link} query={query}>
         {preview && <GalleryPreview src={page.cover?.src} size={size} fit={fit} />}
         <div className={`rotion-gallery-card-text ${Stylex(style.text)}`}>
           {keys.map((name, i) => (
             <div key={`${page.id}${name}`} className={`field${i}`}>
-              <GalleryHandler items={findItems(name, page)} path={path} size={size} />
+              <GalleryHandler items={findItems(name, page)} path={path} query={query} size={size} />
             </div>
           ))}
         </div>

@@ -10,7 +10,7 @@ import GalleryCheckboxField from '../GalleryCheckboxField/GalleryCheckboxField'
 import GalleryNumberField from '../GalleryNumberField/GalleryNumberField'
 import type { GalleryHandlerProps } from './GalleryHandler.types'
 
-const GalleryHandler = ({ items, path, size }: GalleryHandlerProps) => {
+const GalleryHandler = ({ items, path, link, query, size }: GalleryHandlerProps) => {
   if (!items) {
     return <></>
   }
@@ -40,7 +40,7 @@ const GalleryHandler = ({ items, path, size }: GalleryHandlerProps) => {
       case 'rich_text':
         return <GalleryRichTextField payload={items} size={size} />
       case 'multi_select':
-        return <GalleryMultiSelectField payload={items} path={path} />
+        return <GalleryMultiSelectField payload={items} path={path} link={link} query={query} />
       case 'url':
         return <GalleryUrlField payload={items.url} />
       case 'checkbox':
