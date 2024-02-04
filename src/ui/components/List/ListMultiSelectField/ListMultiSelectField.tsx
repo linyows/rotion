@@ -1,40 +1,43 @@
 import React from 'react'
 import type { ListMultiSelectFieldProps } from './ListMultiSelectField.types'
+import LinkedTagIfLinked from './LinkedTagIfLinked'
+import Stylex from '@stylexjs/stylex'
+import { fontFamily } from '../../tokens.stylex'
+
+const style = Stylex.create({
+  wrapper: {
+    fontFamily: fontFamily.sansserif,
+    listStyleType: 'none',
+    display: 'flex',
+    flexShrink: 0,
+    alignItems: 'center',
+    padding: 0,
+    margin: '0 7px',
+    maxWidth: '400px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  li: {
+    fontSize: '.75rem',
+    display: 'flex',
+    alignItems: 'center',
+    flexShrink: 0,
+    minWidth: 0,
+    padding: 0,
+    margin: '0 6px 0 0',
+  },
+})
 
 const ListMultiSelectField = ({ payload, path, link, query }: ListMultiSelectFieldProps) => {
-  const LinkedTag = (name: string) => {
-    const href = `${path}tags/${encodeURIComponent(name)}`
-    if (link && query) {
-      const Link = link
-      return (
-        <>
-          <Link className="notionate-list-multiselect-a" href={{ pathname: href, query }}>
-            {name}
-          </Link>
-        </>
-      )
-    } else if (link) {
-      const Link = link
-      return (
-        <>
-          <Link className="notionate-list-multiselect-a" href={href}>
-            {name}
-          </Link>
-        </>
-      )
-    }
-    return (
-      <a className="notionate-list-multiselect-a" href={href} title={name}>
-        {name}
-      </a>
-    )
-  }
+  const { multi_select } = payload
 
   return (
-    <ul className="notionate-list-multiselect-ul">
-      {payload.multi_select.map(f => (
-        <li key={f.id} className={`notionate-list-multiselect-li notionate-select-${f.color}`}>
-          {LinkedTag(f.name)}
+    <ul className={`rotion-list-multiselect-ul ${Stylex(style.wrapper)}`}>
+      {multi_select.map(v => (
+        <li key={v.id} className={`rotion-list-multiselect-li ${Stylex(style.li)}`}>
+          <LinkedTagIfLinked pathname={`${path}tags/${encodeURIComponent(v.name)}`} color={v.color} link={link} query={query}>
+            {v.name}
+          </LinkedTagIfLinked>
         </li>
       ))}
     </ul>

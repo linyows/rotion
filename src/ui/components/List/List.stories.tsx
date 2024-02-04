@@ -7,7 +7,7 @@ const meta = {
   title: 'Database/List',
   component: List,
   args: {
-    keys: ['Name', 'spacer', 'Note', 'Date', 'Published', 'Url', 'Tags'],
+    keys: ['Name', 'spacer', 'Note', 'Published', 'Tags', 'Url', 'Born', 'Date'],
     db: response as FetchDatabaseRes,
     href: '/blog/[id]',
     link: undefined,
@@ -20,3 +20,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+export const Dashed: Story = {
+  args: {
+    keys: ['Name', 'Note', 'dashed', 'Published', 'Tags', 'Url', 'Born', 'Date'],
+    db: response as FetchDatabaseRes,
+    href: '/blog/[id]',
+  }
+}

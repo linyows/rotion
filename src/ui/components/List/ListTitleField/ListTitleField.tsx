@@ -1,5 +1,21 @@
 import React from 'react'
 import type { ListTitleFieldProps } from './ListTitleField.types'
+import Stylex from '@stylexjs/stylex'
+import { fontFamily } from '../../tokens.stylex'
+import LinkedTitle from './LinkedTitle'
+
+const style = Stylex.create({
+  wrapper: {
+    fontFamily: fontFamily.sansserif,
+    whiteSpace: 'nowrap',
+    display: 'block',
+    maxWidth: '500px',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    lineHeight: 1.4,
+    margin: '0 7px',
+  },
+})
 
 const ListTitleField = ({ payload, path, slug, link, query }: ListTitleFieldProps) => {
   const title = payload.map(v => {
@@ -13,39 +29,12 @@ const ListTitleField = ({ payload, path, slug, link, query }: ListTitleFieldProp
         return richtext.equation.expression
     }
   }).join(',')
+
   const href = `${path}${slug}`
 
-  const LinkedTitle = () => {
-    if (link && query) {
-      const Link = link
-      return (
-        <>
-          <Link className="notionate-list-title-a" href={{ pathname: href, query }}>
-            {title}
-          </Link>
-        </>
-      )
-    } else if (link) {
-      const Link = link
-      return (
-        <>
-          <Link className="notionate-list-title-a" href={href}>
-            {title}
-          </Link>
-        </>
-      )
-    }
-
-    return (
-      <a className="notionate-list-title-a" href={href} title={title}>
-        {title}
-      </a>
-    )
-  }
-
   return (
-    <div className="notionate-list-title">
-      {LinkedTitle()}
+    <div className={`rotion-list-title ${Stylex(style.wrapper)}`}>
+      <LinkedTitle title={title} href={href} link={link} query={query} />
     </div>
   )
 }

@@ -1,57 +1,80 @@
 import React from 'react'
-import type {
-  GetPageResponse,
-  PageObjectResponseEx,
-} from '../../../exporter'
+import Column from './Column'
+import type { PageObjectResponseEx } from '../../../exporter'
 import type { ListProps } from './List.types'
-import ListHandler from './ListHandler'
-import { getLinkPathAndLinkKey } from '../lib'
+import Stylex from '@stylexjs/stylex'
+import { fontFamily } from '../tokens.stylex'
 
-const List: React.FC<ListProps> = ({ keys, db, href, link, query }) => {
-  const getSlug = (key: string, page: GetPageResponse): string => {
-    if (!('properties' in page)) {
-      return 'not-found-properties'
-    }
-    if (key === 'id') {
-      return page.id
-    }
-    if (!(key in page.properties)) {
-      return 'not-found-key-in-page-properties'
-    }
-    const p = page.properties[key]
-    if (!('rich_text' in p)) {
-      return 'not-found-richtext-in-key'
-    }
-    // @ts-ignore
-    return p.rich_text.map(v => v.text.content).join(',')
+const style = Stylex.create({
+  wrapper: {
+    fontFamily: fontFamily.sansserif,
+    margin: 0,
+    padding: 0,
+    overflowX: 'scroll',
+  },
+  inner: {
+    margin: 0,
+    padding: '0 0 .8rem',
+    maxWidth: '100%',
+    minWidth: '1200px',
+  },
+  line: {
+    display: 'flex',
+    margin: '4px 0',
+    padding: '4px 0',
+    userSelect: 'none',
+    transition: 'background 20ms ease-in 0s',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    backgroundColor: {
+      default: 'inherit',
+      ':hover': '#f5f5f5',
+    },
+  },
+  spacer: {
+    width: '100%',
+    flexShrink: 10,
+    display: 'block',
+    marginLeft: '14px',
+  },
+  dashed: {
+    width: '100%',
+    flexShrink: 10,
+    display: 'block',
+    marginLeft: '14px',
+    borderTop: '1px dashed #999',
+  },
+})
+
+function columnClassName (name: string, i: number) {
+  const classArray = [`rotion-list-column${i}`]
+  switch (name) {
+    case 'spacer':
+      classArray.push('rotion-list-spacer')
+      classArray.push(Stylex(style.spacer))
+      break
+    case 'dashed':
+      classArray.push('rotion-list-dashed')
+      classArray.push(Stylex(style.dashed))
+      break
   }
+  return classArray.join(' ')
+}
 
-  const [path, slugKey] = getLinkPathAndLinkKey(href)
+export interface ListHeaderProps {
+  keys: string[]
+}
 
-  const dbf = (name: string, page: PageObjectResponseEx) => {
-    if (name === 'spacer' || !('property_items' in page) || !('properties' in page)) {
-      return <></>
-    }
-    let propertyId = ''
-    for (const [k, v] of Object.entries(page.properties)) {
-      if (k === name) {
-        propertyId = v.id
-      }
-    }
-    const items = page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
-    const slug = getSlug(slugKey, page)
-
-    return ListHandler({ name, items, path, slug, link, query })
-  }
-
+const List = ({ keys, db, href, link, query }: ListProps) => {
   return (
-    <div className="notionate-list">
-      <div className="notionate-list-inner">
-        {db.results.map((v) => (
-          <div key={v.id} className="notionate-list-record">
+    <div className={`rotion-list ${Stylex(style.wrapper)}`}>
+      <div className={`rotion-list-inner ${Stylex(style.inner)}`}>
+        {db.results.map((v: PageObjectResponseEx) => (
+          <div key={v.id} className={`rotion-list-line ${Stylex(style.line)}`}>
             {keys.map((name, i) => (
-              <div key={`${v.id}${name}`} className={`${name === 'spacer' ? 'notionate-list-spacer ' : ''}field${i}`}>
-                {dbf(name, v as PageObjectResponseEx)}
+              <div key={`${v.id}${name}`} className={columnClassName(name, i)}>
+                <Column name={name} page={v} href={href} link={link} query={query} />
               </div>
             ))}
           </div>
