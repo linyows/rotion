@@ -36,7 +36,7 @@ export interface GalleryPreviewProps {
 }
 
 const GalleryPreview = ({ src, size, fit }: GalleryPreviewProps) => {
-  let classArray = [Stylex(style[size])]
+  const classArray = [Stylex(style[size])]
   if (fit) {
     classArray.push(Stylex(style.fit))
   } else {

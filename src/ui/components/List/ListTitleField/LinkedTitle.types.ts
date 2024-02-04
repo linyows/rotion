@@ -1,4 +1,3 @@
-
 import type { ParsedUrlQueryInput } from 'node:querystring'
 import type { Link } from '../../types'
 

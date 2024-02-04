@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import type { TableBlockObjectResponseEx, RichTextItemResponse, ListBlockChildrenResponse } from '../../../../exporter'
+import type { TableBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter'
 import TableBlock from './TableBlock'
 
 /* RICH TEXT */
