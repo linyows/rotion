@@ -63,6 +63,14 @@ const LinkedTagIfLinked = ({ color, pathname, link, query, children }: LinkedTag
     return `rotion-list-multiselect-link rotion-list-select-${color} ${Stylex(style.wrapper)} ${s}`
   }
 
+  if (href === '') {
+    return (
+      <span className={className(color)}>
+        {children}
+      </span>
+    )
+  }
+
   if (link) {
     const Link = link
     return (

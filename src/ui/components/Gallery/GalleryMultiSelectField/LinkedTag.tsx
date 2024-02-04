@@ -1,5 +1,5 @@
 import React from 'react'
-import type { LinkedTagProps } from './LinkedTag.types'
+import type { LinkedTagIfLinkedProps } from './LinkedTag.types'
 import Stylex from '@stylexjs/stylex'
 import { fontFamily } from '../../tokens.stylex'
 
@@ -13,24 +13,31 @@ const style = Stylex.create({
   },
 })
 
-const LinkedTag = ({ name, path, link, query }: LinkedTagProps) => {
-  const pathname = `${path}tags/${encodeURIComponent(name)}`
+const LinkedTagIfLinked = ({ pathname, link, query, children }: LinkedTagIfLinkedProps) => {
   const href = query ? { pathname, query } : pathname
+
+  if (href === '') {
+    return (
+      <span className={`rotion-gallery-multiselect-link ${Stylex(style.wrapper)}`}>
+        {children}
+      </span>
+    )
+  }
 
   if (link) {
     const Link = link
     return (
       <Link className={`rotion-gallery-multiselect-link ${Stylex(style.wrapper)}`} href={href}>
-        {name}
+        {children}
       </Link>
     )
   }
 
   return (
-    <a className={`rotion-gallery-multiselect-link ${Stylex(style.wrapper)}`} href={pathname} title={name}>
-      {name}
+    <a className={`rotion-gallery-multiselect-link ${Stylex(style.wrapper)}`} href={pathname}>
+      {children}
     </a>
   )
 }
 
-export default LinkedTag
+export default LinkedTagIfLinked

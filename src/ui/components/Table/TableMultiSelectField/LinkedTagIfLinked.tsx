@@ -53,8 +53,7 @@ const style = Stylex.create({
   },
 })
 
-const LinkedTagIfLinked = ({ name, color, path, link, query, children }: LinkedTagIfLinkedProps) => {
-  const pathname = `${path}tags/${encodeURIComponent(name)}`
+const LinkedTagIfLinked = ({ color, pathname, link, query, children }: LinkedTagIfLinkedProps) => {
   const href = query ? { pathname, query } : pathname
 
   const className = (color: string) => {
@@ -63,7 +62,7 @@ const LinkedTagIfLinked = ({ name, color, path, link, query, children }: LinkedT
     return `rotion-table-multiselect-link rotion-table-multiselect-${color} ${Stylex(style.wrapper)} ${s}`
   }
 
-  if (!path) {
+  if (href === '') {
     return (
       <span className={className(color)}>
         {children}

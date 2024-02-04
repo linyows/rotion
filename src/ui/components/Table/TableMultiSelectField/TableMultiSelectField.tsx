@@ -32,7 +32,7 @@ const TableMultiSelectField = ({ payload, path, link, query }: TableMultiSelectF
     <ul className={`rotion-table-multiselect-ul ${Stylex(style.wrapper)}`}>
       {payload.multi_select.map(v => (
         <li key={v.id} className={`rotion-table-multiselect-li ${Stylex(style.li)}`}>
-          <LinkedTagIfLinked pathname={`${path}tags/${encodeURIComponent(v.name)}`} color={v.color} link={link} query={query}>
+          <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(v.name)}` : ''} color={v.color} link={link} query={query}>
             {v.name}
           </LinkedTagIfLinked>
         </li>

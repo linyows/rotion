@@ -29,7 +29,7 @@ const TableSelectField = ({ payload, path, link, query }: TableSelectFieldProps)
 
   return (
     <div className={`rotion-table-select ${Stylex(style.wrapper)}`}>
-      <LinkedTagIfLinked pathname={`${path}tags/${encodeURIComponent(select.name)}`} color={select.color} link={link} query={query}>
+      <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(select.name)}` : ''} color={select.color} link={link} query={query}>
         {select.name}
       </LinkedTagIfLinked>
     </div>

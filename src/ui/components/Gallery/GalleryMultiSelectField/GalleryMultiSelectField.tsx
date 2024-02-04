@@ -1,8 +1,8 @@
 import React from 'react'
 import type { GalleryMultiSelectFieldProps } from './GalleryMultiSelectField.types'
-import LinkedTag from './LinkedTag'
 import Stylex from '@stylexjs/stylex'
 import { fontFamily, color } from '../../tokens.stylex'
+import LinkedTagIfLinked from './LinkedTag'
 
 const style = Stylex.create({
   wrapper: {
@@ -98,7 +98,9 @@ const GalleryMultiSelectField = ({ payload, path, link, query }: GalleryMultiSel
     <ul className={`rotion-gallery-multiselect-ul ${Stylex(style.ul)}`}>
       {multi_select.map(v => (
         <li key={v.id} className={liClassName(v.color)}>
-          <LinkedTag name={v.name} path={path} link={link} query={query} />
+          <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(v.name)}` : ''} link={link} query={query}>
+            {v.name}
+          </LinkedTagIfLinked>
         </li>
       ))}
     </ul>

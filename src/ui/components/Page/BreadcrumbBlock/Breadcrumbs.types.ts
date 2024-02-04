@@ -1,10 +1,10 @@
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { ReactNode } from 'react'
 import type { Link } from '../../types'
+import type { Breadcrumb } from '../../../../exporter'
 
-export interface LinkedTagIfLinkedProps {
-  pathname: string
+export interface BreadcrumbsProps {
+  list: Breadcrumb[]
   link?: Link
+  hrefs?: string[]
   query?: ParsedUrlQueryInput
-  children?: ReactNode
 }
