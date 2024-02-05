@@ -7,9 +7,9 @@ import { fontFamily } from '../../tokens.stylex'
 const style = Stylex.create({
   wrapper: {
     fontFamily: fontFamily.sansserif,
-    lineHeight: 1.7,
-    padding: '1rem 0 0 1rem',
-    margin: '0 0 0 .3rem',
+    lineHeight: 1.5,
+    padding: '.2rem 0 .2rem 1rem',
+    margin: 0,
   },
 })
 
