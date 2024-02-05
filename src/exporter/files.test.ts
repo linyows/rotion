@@ -60,8 +60,8 @@ test('getHtmlMeta returns title and desc', async () => {
     ],
     [
       'https://www.businesswire.com/',
-      'Press release distribution, EDGAR filing, XBRL, regulatory filings | Business Wire',
-      'The global leader in press release distribution and regulatory disclosure. Public relations and investor relations professionals rely on Business Wire for broad-based and targeted market reach.',
+      'Global Press Release &amp; Newswire Distribution Services | Business Wire',
+      'Explore Business Wire for premium press release &amp; newswire distribution services, offering global reach and tailored solutions for businesses worldwide. Expand your reach today.',
       '/images/html-image-1ebfeb4b204984939ca889895f01fad24a9e0848.webp',
       '/images/html-icon-65fbfcdf2d131a1bd29acc6b5377073a0b10a76f-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
     ],
