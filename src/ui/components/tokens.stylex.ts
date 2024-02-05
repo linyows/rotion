@@ -15,7 +15,20 @@ export const fontFamily = Stylex.defineVars({
   ].join(','),
 })
 
-export const color = Stylex.defineVars({
+const DARK = '@media (prefers-color-scheme: dark)'
+
+interface Color {
+  [index:string]: string
+}
+
+interface ColorWithMediaQuery {
+  [index:string]: {
+    default: string
+    [index:string]: string
+  }
+}
+
+const lightColor: Color = {
   default: 'rgb(50, 48, 44)',
   bgDefault: 'rgba(227, 226, 224, 0.5)',
   gray: 'rgb(50, 48, 44)',
@@ -36,4 +49,39 @@ export const color = Stylex.defineVars({
   bgPink: 'rgb(245, 224, 233)',
   red: 'rgb(93, 23, 21)',
   bgRed: 'rgb(255, 226, 221)',
-})
+}
+
+const darkColor: Color = {
+  default: 'rgb(255, 255, 255, 0.804)',
+  bgDefault: 'rgb(55, 55, 55)',
+  gray: 'rgb(255, 255, 255, 0.804)',
+  bgGray: 'rgb(90, 90, 90)',
+  brown: 'rgba(255, 255, 255, 0.804)',
+  bgBrown: 'rgb(96, 59, 44)',
+  orage: 'rgba(255, 255, 255, 0.804)',
+  bgOrage: 'rgb(133, 76, 29)',
+  yellow: 'rgba(255, 255, 255, 0.804)',
+  bgYellow: 'rgb(137, 99, 42)',
+  green: 'rgba(255, 255, 255, 0.804)',
+  bgGreen: 'rgb(43, 89, 63)',
+  blue: 'rgba(255, 255, 255, 0.804)',
+  bgBlue: 'rgb(40, 69, 108)',
+  purple: 'rgba(255, 255, 255, 0.804)',
+  bgPurple: 'rgb(73, 47, 100)',
+  pink: 'rgba(255, 255, 255, 0.804)',
+  bgPink: 'rgb(105, 49, 76)',
+  red: 'rgba(255, 255, 255, 0.804)',
+  bgRed: 'rgb(110, 54, 48)',
+}
+
+export const color = Stylex.defineVars(lightColor)
+
+const lightAndDark: ColorWithMediaQuery = {}
+for (const key in lightColor) {
+  lightAndDark[key] = {
+    default: lightColor[key],
+    [DARK]: darkColor[key],
+  }
+}
+
+export const withDarkColor = Stylex.defineVars(lightAndDark)
