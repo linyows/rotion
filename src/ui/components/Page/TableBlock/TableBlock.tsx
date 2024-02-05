@@ -14,25 +14,26 @@ const style = Stylex.create({
     borderCollapse: 'collapse',
     borderSpacing: 0,
     fontSize: '.9rem',
+    width: '100%',
   },
   td: {
-    border: '1px solid #E5E5E5',
+    border: '1px solid rgb(233, 233, 231)',
     margin: 0,
     padding: '.3rem',
   },
   tdInner: {
-    padding: '.2rem .8rem',
+    padding: '.2rem .4rem',
   },
   tdHeader: {
-    border: '1px solid #E5E5E5',
-    backgroundColor: '#F5F5F5',
+    border: '1px solid rgb(233, 233, 231)',
+    backgroundColor: 'rgb(247, 246, 243)',
     margin: 0,
     padding: '.3rem',
     fontWeight: 500,
     textAlign: 'left',
   },
   tdHeaderInner: {
-    padding: '.2rem .8rem',
+    padding: '.2rem .4rem',
   },
   tr: {
     margin: 0,
