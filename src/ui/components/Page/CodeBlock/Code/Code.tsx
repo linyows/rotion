@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import type { CodeProps } from './Code.types'
 import Stylex from '@stylexjs/stylex'
+import mermaid from 'mermaid'
+import prism from 'prismjs'
 
 const style = Stylex.create({
   wrapper: {
-    borderRadius: '3px',
+    borderRadius: '4px',
     padding: '.6rem 1rem',
     backgroundColor: '#f5f2f0',
     margin: '1rem 0',
@@ -24,16 +26,14 @@ const style = Stylex.create({
   },
 })
 
-const Code = ({ children, language = 'text', modules }: CodeProps) => {
+const Code = ({ children, language = 'text' }: CodeProps) => {
   const codeRef = React.createRef<HTMLPreElement>()
   const highlight = async (language: string) => {
     if (codeRef.current) {
-      if (language === 'mermaid' && modules?.mermaid) {
-        modules.mermaid.init(undefined, codeRef.current as HTMLPreElement)
-      } else if (modules?.prism) {
-        modules.prism.highlightElement(codeRef.current as Element)
+      if (language === 'mermaid') {
+        mermaid.init(undefined, codeRef.current as HTMLPreElement)
       } else {
-        console.log('block component require prismjs or mermaidjs modules argument')
+        prism.highlightElement(codeRef.current as Element)
       }
     }
   }

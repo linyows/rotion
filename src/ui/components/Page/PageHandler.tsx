@@ -36,7 +36,7 @@ export const blockType = {
   quote: 'blockquote',
 }
 
-export const PageHandler = ({ block, href, link, query, modules, breadcrumb_hrefs }: HandlerProps) => {
+export const PageHandler = ({ block, href, link, query, breadcrumb_hrefs }: HandlerProps) => {
   switch (block.type) {
     case 'bookmark':
       return <BookmarkBlock block={block} key={block.id} />
@@ -51,7 +51,7 @@ export const PageHandler = ({ block, href, link, query, modules, breadcrumb_href
     case 'child_page':
       return <ChildPageBlock block={block} href={href} link={link} key={block.id} />
     case 'code':
-      return <CodeBlock block={block} key={block.id} modules={modules} />
+      return <CodeBlock block={block} key={block.id} />
     case 'column_list':
       // ColumnlistBlock calls blocks
       return <ColumnListBlock block={block} href={href} link={link} query={query} key={block.id} />

@@ -23,11 +23,11 @@ const style = Stylex.create({
   },
 })
 
-const CodeBlock = ({ block, modules }: CodeBlockProps) => {
+const CodeBlock = ({ block }: CodeBlockProps) => {
   const els = block.code?.rich_text.map((textObject: RichTextItemResponse, i) => {
     const text = textObject as TextRichTextItemResponse
     return (
-      <Code language={block.code?.language || ''} key={`${i}`} modules={modules}>
+      <Code language={block.code?.language || ''} key={`${i}`}>
         {text.text.content}
       </Code>
     )
