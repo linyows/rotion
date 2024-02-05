@@ -60,7 +60,6 @@ export const PageHandler = ({ block, href, link, query, modules, breadcrumb_href
     case 'equation':
       return <EquationBlock block={block} key={block.id} />
     case 'file':
-      console.log(`still a not supported component: ${block.type}`)
       return <FileBlock block={block} key={block.id} />
     case 'heading_1':
     case 'heading_2':
@@ -78,10 +77,8 @@ export const PageHandler = ({ block, href, link, query, modules, breadcrumb_href
     case 'numbered_list_item':
       return <NumberedListBlocks block={block} key={block.id} />
     case 'pdf':
-      console.log(`still a not supported component: ${block.type}`, block)
       return <PdfBlock block={block} key={block.id} />
     case 'synced_block':
-      console.log(`still a not supported component: ${block.type}`)
       return <SyncedBlock block={block} key={block.id} />
     case 'table':
       return <TableBlock block={block} key={block.id} />
