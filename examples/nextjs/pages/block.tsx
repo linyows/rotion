@@ -1,12 +1,13 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
 import Header from '@/components/Header'
 import Head from 'next/head'
 import styles from '@/styles/Page.module.css'
-import mermaid from 'mermaid'
 import prism from 'prismjs'
+import mermaid from 'mermaid'
+
+import 'prismjs/themes/prism.min.css'
 import 'prismjs/components/prism-bash'
 import 'prismjs/components/prism-go'
 import 'prismjs/components/prism-typescript'
@@ -57,11 +58,6 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 }
 
 const BlocksPage: NextPage<Props> = ({ title, icon, blocks, breadcrumbs }) => {
-  const [exModules, setExModules] = useState({ mermaid, prism })
-  useEffect(() => {
-    mermaid.initialize({ theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'neutral' })
-    setExModules({ mermaid, prism })
-  }, [])
   const hrefs = ['/', '/[name]']
 
   return (
@@ -86,7 +82,7 @@ const BlocksPage: NextPage<Props> = ({ title, icon, blocks, breadcrumbs }) => {
           </header>
 
           <div className={`${styles.page} ${styles.wrapperPage}`}>
-            <Page blocks={blocks} modules={exModules} link={Link} breadcrumb_hrefs={hrefs} />
+            <Page blocks={blocks} link={Link} breadcrumb_hrefs={hrefs} />
           </div>
         </div>
         <span></span>
