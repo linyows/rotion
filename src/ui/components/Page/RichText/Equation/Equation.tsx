@@ -20,9 +20,7 @@ const Equation = ({ textObject }: EquationProps) => {
     })
   }, [formula])
 
-  return (
-    <span className={`rotion-equation-html ${Stylex(style.wrapper)}`} dangerouslySetInnerHTML={{ __html: html }} />
-  )
+  return <span className={`rotion-equation-html ${Stylex(style.wrapper)}`} dangerouslySetInnerHTML={{ __html: html }} />
 }
 
 export default Equation
