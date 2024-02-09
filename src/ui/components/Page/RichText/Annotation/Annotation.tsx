@@ -1,8 +1,12 @@
 import React from 'react'
 import type { RichTextProps } from '../RichText.types'
 import Stylex from '@stylexjs/stylex'
+import { tokens } from '../../../tokens.stylex'
 
 const style = Stylex.create({
+  wrapper: {
+    fontFamily: tokens.fontFamily,
+  },
   bold: {
     fontWeight: 'bold',
   },
@@ -19,8 +23,8 @@ const style = Stylex.create({
     color: '#EB5757',
     fontFamily: '"SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace',
     background: 'rgba(135, 131, 120, 0.15)',
-    borderRadius: '3px',
-    fontSize: '.8rem',
+    borderRadius: tokens.borderRadius,
+    fontSize: '.85rem',
     padding: '.1rem .2rem',
   },
   default: {
@@ -53,34 +57,34 @@ const style = Stylex.create({
   red: {
     color: 'rgba(212, 76, 71, 1)',
   },
-  defaultbackground: {
-    background: 'inherit',
+  default_background: {
+    backgroundColor: 'inherit',
   },
-  graybackground: {
+  gray_background: {
     background: 'rgba(241, 241, 239, 1)',
   },
-  brownbackground: {
+  brown_background: {
     background: 'rgba(244, 238, 238, 1)',
   },
-  orangebackground: {
+  orange_background: {
     background: 'rgba(251, 236, 221, 1)',
   },
-  yellowbackground: {
+  yellow_background: {
     background: 'rgba(251, 243, 219, 1)',
   },
-  greenbackground: {
+  green_background: {
     background: 'rgba(237, 243, 236, 1)',
   },
-  bluebackground: {
+  blue_background: {
     background: 'rgba(231, 243, 248, 1)',
   },
-  purplebackground: {
+  purple_background: {
     background: 'rgba(244, 240, 247, 0.8)',
   },
-  pinkbackground: {
+  pink_background: {
     background: 'rgba(249, 238, 243, 0.8)',
   },
-  redbackground: {
+  red_background: {
     background: 'rgba(253, 235, 236, 1)',
   },
 })

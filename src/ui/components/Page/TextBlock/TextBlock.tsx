@@ -17,32 +17,27 @@ const style = Stylex.create({
     width: '100%',
     height: '1px',
   },
-  header_1: {
-    lineHeight: 1.5,
+  heading_1: {
+    lineHeight: 1.3,
     margin: 0,
-    padding: '3rem 0 0',
+    padding: '3rem 0 3px',
   },
-  header_2: {
-    lineHeight: 1.5,
+  heading_2: {
+    lineHeight: 1.3,
     margin: 0,
-    padding: '2rem 0 0',
+    padding: '2rem 0 3px',
   },
-  header_3: {
-    lineHeight: 1.5,
+  heading_3: {
+    lineHeight: 1.3,
     margin: 0,
-    padding: '1.6rem 0 0',
+    padding: '1.6rem 0 3px',
   },
   paragraph: {
-    padding: '.6rem 0 .4rem',
+    padding: '.6rem 0',
     margin: 0,
     lineHeight: 1.5,
   },
-  bulleted_list_item: {
-    padding: '.1rem 0 .1rem .3rem',
-    margin: 0,
-    lineHeight: 1.5,
-  },
-  blockquote: {
+  quote: {
     borderLeft: '3px solid currentcolor',
     paddingLeft: '1rem',
     marginLeft: 0,

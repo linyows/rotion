@@ -23,8 +23,8 @@ const style = Stylex.create({
     cursor: 'pointer',
     position: 'relative',
     backgroundColor: {
-      default: 'inherit',
-      ':hover': '#f5f5f5',
+      default: link.backgroundColor,
+      ':hover': link.backgroundColorHover,
     },
     overflow: 'hidden',
   },

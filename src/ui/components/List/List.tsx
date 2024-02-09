@@ -28,8 +28,8 @@ const style = Stylex.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     backgroundColor: {
-      default: 'inherit',
-      ':hover': '#f5f5f5',
+      default: link.backgroundColor,
+      ':hover': link.backgroundColorHover,
     },
   },
   spacer: {

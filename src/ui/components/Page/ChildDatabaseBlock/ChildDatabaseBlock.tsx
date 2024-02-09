@@ -15,14 +15,17 @@ const style = Stylex.create({
     gap: '.4rem',
     margin: '.2rem 0 0',
     padding: '.6rem .3rem',
-    textDecoration: 'none',
-    color: '#333',
+    textDecoration: link.textDecoration,
+    color: {
+      default: link.color,
+      ':hover': link.colorHover,
+    },
     alignItems: 'top',
     backgroundColor: {
-      default: 'inhirit',
-      ':hover': 'rgba(55, 53, 47, 0.08)',
+      default: link.backgroundColor,
+      ':hover': link.backgroundColorHover,
     },
-    borderRadius: '4px',
+    borderRadius: tokens.borderRadius,
   },
   title: {
     borderBottom: '1px solid #ddd',

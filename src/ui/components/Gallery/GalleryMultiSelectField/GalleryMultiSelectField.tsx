@@ -15,9 +15,9 @@ const style = Stylex.create({
     whiteSpace: 'nowrap',
   },
   link: {
-    textDecoration: 'none',
+    textDecoration: link.textDecoration,
     color: 'inherit',
-    cursor: 'pointer',
+    cursor: link.cursor,
     padding: '2px 10px',
   },
   ul: {
