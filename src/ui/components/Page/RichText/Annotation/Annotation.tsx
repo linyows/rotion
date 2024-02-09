@@ -96,20 +96,25 @@ const Annotation = ({ textObject, children }: RichTextProps) => {
   const { annotations } = textObject
   const { color } = annotations
   const css = ['rotion-text-annotation']
-  const coloring = color.replace('_', '')
+  css.push(Stylex(style.wrapper))
   // @ts-ignore
-  css.push(`rotion-text-${coloring} ${Stylex(style[coloring])}`)
+  css.push(`rotion-text-${color} ${annotations.code ? '' : Stylex(style[color])}`)
   if (annotations.bold) css.push(`rotion-text-bold ${Stylex(style.bold)}`)
   if (annotations.italic) css.push(`rotion-text-italic ${Stylex(style.italic)}`)
   if (annotations.strikethrough) css.push(`rotion-text-strikethrough ${Stylex(style.strikethrough)}`)
   if (annotations.underline) css.push(`rotion-text-underline ${Stylex(style.underline)}`)
   if (annotations.code) css.push(`rotion-text-code ${Stylex(style.code)}`)
 
-  return (
-    <span className={css.join(' ')}>
-      {children}
-    </span>
-  )
+  if (children) {
+    return (
+      <span className={css.join(' ')}>
+        {children}
+      </span>
+    )
+  }
+
+  const html = textObject.plain_text.replace(/\n/g, '<br />')
+  return <span className={css.join(' ')} dangerouslySetInnerHTML={{ __html: html }} />
 }
 
 export default Annotation
