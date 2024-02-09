@@ -1,5 +1,5 @@
-import { FileBlockObjectResponse } from '../../../../exporter'
+import { FileBlockObjectResponseEx } from '../../../../exporter'
 
 export interface FileBlockProps {
-  block: FileBlockObjectResponse,
+  block: FileBlockObjectResponseEx,
 }
