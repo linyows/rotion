@@ -83,7 +83,6 @@ export const PageHandler = ({ block, href, link, query, breadcrumb_hrefs }: Hand
     case 'table':
       return <TableBlock block={block} key={block.id} />
     case 'table_of_contents':
-      console.log(`still a not supported component: ${block.type}`, block)
       return <TableOfContentsBlock block={block} key={block.id} />
     case 'to_do':
       return <ToDoBlock block={block} key={block.id} />
