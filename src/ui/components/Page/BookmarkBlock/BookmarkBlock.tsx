@@ -105,9 +105,26 @@ const BookmarkBlock = ({ block }: BookmarkBlockProps) => {
     return <></>
   }
 
-  const jump = () => window.open(block.bookmark?.url, '_blank', 'noreferrer')
   const { title, desc, icon, image } = block.bookmark.site
+  const jump = () => window.open(block.bookmark?.url, '_blank', 'noreferrer')
   const url = block.bookmark.url
+
+  if (title === '' && desc === '' && image === '') {
+    return (
+      <div className={`rotion-bookmark ${Stylex(style.bookmark)}`}>
+        <div className={`rotion-bookmark-box ${Stylex(style.box)}`} onClick={jump}>
+          <div className={`rotion-bookmark-text ${Stylex(style.text)}`}>
+            <div className={`rotion-bookmark-title ${Stylex(style.title)}`}>
+              {url.substring(url.lastIndexOf('/') + 1)}
+            </div>
+            <div className={`rotion-bookmark-desc ${Stylex(style.desc)}`}>
+              {url}
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={`rotion-bookmark ${Stylex(style.bookmark)}`}>
