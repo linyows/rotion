@@ -1,7 +1,5 @@
-import type { ReactNode } from 'react'
 import { PageOrDatabaseMention } from '../../../../../../exporter'
 
-export interface PageMentionProps {
+export interface PageOrDatabaseMentionProps {
   mention: PageOrDatabaseMention
-  children?: ReactNode
 }
