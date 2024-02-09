@@ -236,6 +236,28 @@ export type BreadcrumbBlockObjectResponseEx = BreadcrumbBlockObjectResponse & {
 }
 
 /* Add src and size */
+export type FileBlockObjectResponseEx = FileBlockObjectResponse & {
+  file: {
+    type: "external",
+    external: {
+      url: TextRequest,
+    },
+    caption: Array<RichTextItemResponse>,
+    src: string,
+    size: number,
+  } | {
+    type: 'file',
+    file: {
+      url: string,
+      expiry_time: string,
+    },
+    caption: Array<RichTextItemResponse>,
+    src: string,
+    size: number,
+  }
+}
+
+/* Add src and size */
 export type PdfBlockObjectResponseEx = PdfBlockObjectResponse & {
   pdf: {
     type: "external",
@@ -292,7 +314,7 @@ export type BlockObjectResponse =
   | ImageBlockObjectResponseEx
   | VideoBlockObjectResponseEx
   | PdfBlockObjectResponseEx
-  | FileBlockObjectResponse
+  | FileBlockObjectResponseEx
   | AudioBlockObjectResponse
   | LinkPreviewBlockObjectResponse
   | UnsupportedBlockObjectResponse
