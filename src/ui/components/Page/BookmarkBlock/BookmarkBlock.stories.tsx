@@ -24,11 +24,11 @@ const block: BookmarkBlockObjectResponseEx = {
   last_edited_time: '2024-01-07T01:52:00.000Z',
   created_by: {
     object: 'user',
-    id: ''
+    id: '12345678-1234-1234-1234-1234567890ab'
   },
   last_edited_by: {
     object: 'user',
-    id: ''
+    id: '12345678-1234-1234-1234-1234567890ab'
   },
   has_children: false,
   archived: false,
@@ -47,3 +47,13 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+const emptyBookmark = structuredClone(block)
+emptyBookmark.bookmark.site.title = ''
+emptyBookmark.bookmark.site.desc = ''
+emptyBookmark.bookmark.site.image = ''
+export const Empty: Story = {
+  args: {
+    block: emptyBookmark,
+  },
+}
