@@ -2,21 +2,24 @@ import React from 'react'
 import { getLinkPathAndLinkKey, queryToString } from '../../lib'
 import type { LinkedBreadcrumbIfLinkedProps } from './LinkedBreadcrumbIfLinked.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens, link } from '../../tokens.stylex'
 
 const style = Stylex.create({
   link: {
-    fontFamily: fontFamily.sansserif,
-    textDecoration: 'none',
-    color: '#333',
     fontSize: '.9rem',
     padding: '.2rem .3rem',
-    borderRadius: '4px',
+    fontFamily: tokens.fontFamily,
+    borderRadius: tokens.borderRadius,
     backgroundColor: {
-      default: 'inherit',
-      ':hover': 'rgba(55, 53, 47, 0.08)',
+      default: link.backgroundColor,
+      ':hover': link.backgroundColorHover,
     },
-    cursor: 'pointer',
+    cursor: link.cursor,
+    textDecoration: link.textDecoration,
+    color: {
+      default: link.color,
+      ':hover': link.colorHover,
+    },
   },
 })
 

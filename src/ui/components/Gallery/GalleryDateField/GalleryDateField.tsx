@@ -1,11 +1,11 @@
 import React from 'react'
 import type { GalleryDateFieldProps } from './DateField.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     width: '100%',
     padding: '8px 10px',
     display: 'flex',

@@ -1,19 +1,19 @@
 import React from 'react'
 import type { TextLinkProps, LinkIfLinkedProps } from './LinkIfLinked.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../../tokens.stylex'
+import { tokens, link } from '../../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
-    textDecoration: 'none',
+    fontFamily: tokens.fontFamily,
+    textDecoration: link.textDecoration,
     borderBottom: {
-      default: '1px solid #999',
-      ':hover': '1px solid #ddd',
+      default: link.borderBottom,
+      ':hover': link.borderBottomHover,
     },
     color: {
-      default: '#666',
-      ':hover': '#ddd',
+      default: link.color,
+      ':hover': link.colorHover,
     },
   },
 })

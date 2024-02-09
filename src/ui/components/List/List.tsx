@@ -3,11 +3,11 @@ import Column from './Column'
 import type { PageObjectResponseEx } from '../../../exporter'
 import type { ListProps } from './List.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../tokens.stylex'
+import { tokens, link } from '../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     margin: 0,
     padding: 0,
     overflowX: 'scroll',

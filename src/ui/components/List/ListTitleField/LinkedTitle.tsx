@@ -1,15 +1,15 @@
 import React from 'react'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens, link } from '../../tokens.stylex'
 import type { LinkedTitleProps } from './LinkedTitle.types'
 
 const style = Stylex.create({
   link: {
-    fontFamily: fontFamily.sansserif,
-    textDecoration: 'none',
-    borderBottom: '1px solid #ddd',
+    fontFamily: tokens.fontFamily,
+    textDecoration: link.textDecoration,
+    borderBottom: link.borderBottom,
     color: 'inherit',
-    cursor: 'pointer',
+    cursor: link.cursor,
   },
 })
 

@@ -3,11 +3,11 @@ import type { PageObjectResponseEx } from '../../../exporter'
 import GalleryCard from './GalleryCard/GalleryCard'
 import type { GalleryProps } from './Gallery.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../tokens.stylex'
+import { tokens } from '../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
   },
   inner: {
     position: 'relative',

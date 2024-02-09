@@ -2,18 +2,18 @@ import React from 'react'
 import { RichText } from '../RichText'
 import type { BookmarkBlockProps } from './BookmarkBlock.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens, link } from '../../tokens.stylex'
 
 const style = Stylex.create({
   bookmark: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     padding: '.5rem 0',
     lineHeight: 1,
     marginTop: '.4rem',
   },
   box: {
     border: '1px solid #EEE',
-    borderRadius: '3px',
+    borderRadius: tokens.borderRadius,
     fontSize: '.75rem',
     padding: 0,
     display: {

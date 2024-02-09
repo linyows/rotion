@@ -1,11 +1,11 @@
 import React from 'react'
 import type { GalleryNumberFieldProps } from './GalleryNumberField.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     width: '100%',
     padding: '0 10px 8px',
     display: 'flex',

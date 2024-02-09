@@ -1,14 +1,14 @@
 import React from 'react'
 import type { LinkedTagIfLinkedProps } from './LinkedTag.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens, link } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
-    textDecoration: 'none',
+    fontFamily: tokens.fontFamily,
+    textDecoration: link.textDecoration,
     color: 'inherit',
-    cursor: 'pointer',
+    cursor: link.cursor,
     padding: '2px 10px',
   },
 })

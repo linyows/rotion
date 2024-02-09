@@ -1,12 +1,12 @@
 import React from 'react'
 import type { ListTitleFieldProps } from './ListTitleField.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 import LinkedTitle from './LinkedTitle'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     whiteSpace: 'nowrap',
     display: 'block',
     maxWidth: '500px',

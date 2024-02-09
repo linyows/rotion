@@ -2,11 +2,11 @@ import React from 'react'
 import { RichText } from '../RichText'
 import type { ImageBlockProps } from './ImageBlock.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     textAlign: 'center',
     margin: 0,
     padding: '0 0 .5rem',

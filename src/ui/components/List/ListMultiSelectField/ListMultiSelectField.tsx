@@ -2,11 +2,11 @@ import React from 'react'
 import type { ListMultiSelectFieldProps } from './ListMultiSelectField.types'
 import LinkedTagIfLinked from './LinkedTagIfLinked'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     listStyleType: 'none',
     display: 'flex',
     flexShrink: 0,

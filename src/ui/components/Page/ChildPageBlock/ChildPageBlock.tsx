@@ -2,11 +2,11 @@ import React from 'react'
 import type { ChildPageBlockProps, ChildPageLinkProps } from './ChildPageBlock.types'
 import { getLinkPathAndLinkKey, queryToString } from '../../lib'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens, link } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     width: '100%',
   },
   link: {

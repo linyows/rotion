@@ -2,11 +2,11 @@ import React from 'react'
 import PageHandler from '../PageHandler'
 import type { ListBlocksProps } from './ListBlocks.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     lineHeight: 1.5,
     padding: '.2rem 0 .2rem 1rem',
     margin: 0,

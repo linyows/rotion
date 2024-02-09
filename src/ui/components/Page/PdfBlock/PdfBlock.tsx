@@ -4,11 +4,11 @@ import RichText from '../RichText/RichText'
 import type { PdfBlockProps } from './PdfBlock.types'
 import { PageIcon } from '../PageIcon'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens, link } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
   },
   link: {
     display: 'grid',

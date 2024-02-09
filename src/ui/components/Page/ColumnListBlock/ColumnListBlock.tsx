@@ -2,11 +2,11 @@ import React from 'react'
 import Page from '../Page'
 import type { ColumnListBlockProps } from './ColumnListBlock.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     width: '100%',
     margin: '1rem 0',
     display: {

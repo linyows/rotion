@@ -2,11 +2,11 @@ import React from 'react'
 import type { TableSelectFieldProps } from './TableSelectField.types'
 import LinkedTagIfLinked from './LinkedTagIfLinked'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     fontSize: '.75rem',
     display: 'flex',
     alignItems: 'center',

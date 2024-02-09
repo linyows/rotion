@@ -3,11 +3,11 @@ import RichText from '../RichText/RichText'
 import type { TableRowBlockObjectResponse } from '../../../../exporter'
 import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     paddingTop: '.6rem',
   },
   table: {

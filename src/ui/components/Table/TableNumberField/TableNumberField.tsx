@@ -1,11 +1,11 @@
 import React from 'react'
 import type { TableNumberFieldProps } from './TableNumberField.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     whiteSpace: 'nowrap',
     fontSize: '.85rem',
     display: 'block',

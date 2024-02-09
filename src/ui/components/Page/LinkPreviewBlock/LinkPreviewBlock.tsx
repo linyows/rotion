@@ -2,24 +2,27 @@ import React from 'react'
 import PageIcon from '../PageIcon/PageIcon'
 import type { LinkPreviewBlockProps } from './LinkPreviewBlock.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens, link } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     margin: '1rem 0',
   },
   link: {
     display: 'block',
-    textDecoration: 'none',
+    textDecoration: link.textDecoration,
     border: '1px solid #ddd',
     padding: '1rem',
-    color: '#888',
+    color: {
+      default: link.color,
+      ':hover': link.colorHover,
+    },
     fontSize: '.8rem',
-    borderRadius: '4px',
+    borderRadius: tokens.borderRadius,
     backgroundColor: {
-      default: 'inherit',
-      ':hover': '#eee',
+      default: link.backgroundColor,
+      ':hover': link.backgroundColorHover,
     },
     overflow: 'hidden',
   },

@@ -3,11 +3,11 @@ import type { BlockObjectResponse } from '../../../../exporter'
 import type { SyncedBlockProps } from './SyncedBlock.types'
 import PageHandler from '../PageHandler'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     padding: '.5rem 0',
   },
 })

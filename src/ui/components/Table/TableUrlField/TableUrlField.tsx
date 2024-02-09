@@ -1,28 +1,28 @@
 import React from 'react'
 import type { TableUrlFieldProps } from './TableUrlField.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens, link } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
     display: 'flex',
     whiteSpace: 'nowrap',
     margin: 0,
   },
   link: {
     display: 'block',
-    textDecoration: 'none',
-    cursor: 'pointer',
+    textDecoration: link.textDecoration,
+    cursor: link.cursor,
     color: {
-      default: 'inherit',
-      ':hover': 'rgb(50, 48, 44)',
+      default: link.color,
+      ':hover': link.colorHover,
     },
     background: {
       default: 'inherit',
       ':hover': 'rgb(227, 226, 224) none repeat scroll 0% 0%',
     },
-    borderRadius: '3px',
+    borderRadius: tokens.borderRadius,
     padding: '0 5px 2px',
   },
   address: {

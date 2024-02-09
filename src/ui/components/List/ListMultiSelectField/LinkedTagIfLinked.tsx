@@ -1,56 +1,56 @@
 import React from 'react'
 import type { LinkedTagIfLinkedProps } from './LinkedTagIfLinked.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily, color } from '../../tokens.stylex'
+import { tokens, colors, link } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
-    textDecoration: 'none',
+    fontFamily: tokens.fontFamily,
+    textDecoration: link.textDecoration,
     color: 'inherit',
-    cursor: 'pointer',
+    cursor: link.cursor,
     padding: '2px 10px',
-    borderRadius: '3px',
+    borderRadius: tokens.borderRadius,
   },
   default: {
-    color: color.default,
-    backgroundColor: color.bgDefault,
+    color: colors.default,
+    backgroundColor: colors.bgDefault,
   },
   gray: {
-    color: color.gray,
-    backgroundColor: color.bgGray,
+    color: colors.gray,
+    backgroundColor: colors.bgGray,
   },
   brown: {
-    color: color.brown,
-    backgroundColor: color.bgBrown,
+    color: colors.brown,
+    backgroundColor: colors.bgBrown,
   },
   orange: {
-    color: color.orange,
-    backgroundColor: color.bgOrange,
+    color: colors.orange,
+    backgroundColor: colors.bgOrange,
   },
   yellow: {
-    color: color.yellow,
-    backgroundColor: color.bgYellow,
+    color: colors.yellow,
+    backgroundColor: colors.bgYellow,
   },
   green: {
-    color: color.green,
-    backgroundColor: color.bgGreen,
+    color: colors.green,
+    backgroundColor: colors.bgGreen,
   },
   blue: {
-    color: color.blue,
-    backgroundColor: color.bgBlue,
+    color: colors.blue,
+    backgroundColor: colors.bgBlue,
   },
   purple: {
-    color: color.purple,
-    backgroundColor: color.bgPurple,
+    color: colors.purple,
+    backgroundColor: colors.bgPurple,
   },
   pink: {
-    color: color.orange,
-    backgroundColor: color.bgOrange,
+    color: colors.orange,
+    backgroundColor: colors.bgOrange,
   },
   red: {
-    color: color.red,
-    backgroundColor: color.bgRed,
+    color: colors.red,
+    backgroundColor: colors.bgRed,
   },
 })
 

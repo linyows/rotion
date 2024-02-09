@@ -1,22 +1,5 @@
 import Stylex from '@stylexjs/stylex'
 
-export const fontFamily = Stylex.defineVars({
-  sansserif: [
-    'ui-sans-serif',
-    '-apple-system',
-    'BlinkMacSystemFont',
-    '"Segoe UI"',
-    'Helvetica',
-    '"Apple Color Emoji"',
-    'Arial',
-    'sans-serif',
-    '"Segoe UI Emoji"',
-    '"Segoe UI Symbol"',
-  ].join(','),
-})
-
-const DARK = '@media (prefers-color-scheme: dark)'
-
 interface Color {
   [index:string]: string
 }
@@ -27,6 +10,19 @@ interface ColorWithMediaQuery {
     [index:string]: string
   }
 }
+
+const sansSerifFamily = [
+  'ui-sans-serif',
+  '-apple-system',
+  'BlinkMacSystemFont',
+  '"Segoe UI"',
+  'Helvetica',
+  '"Apple Color Emoji"',
+  'Arial',
+  'sans-serif',
+  '"Segoe UI Emoji"',
+  '"Segoe UI Symbol"',
+].join(',')
 
 const lightColor: Color = {
   default: 'rgb(50, 48, 44)',
@@ -74,8 +70,7 @@ const darkColor: Color = {
   bgRed: 'rgb(110, 54, 48)',
 }
 
-export const color = Stylex.defineVars(lightColor)
-
+const DARK = '@media (prefers-color-scheme: dark)'
 const lightAndDark: ColorWithMediaQuery = {}
 for (const key in lightColor) {
   lightAndDark[key] = {
@@ -84,4 +79,22 @@ for (const key in lightColor) {
   }
 }
 
-export const withDarkColor = Stylex.defineVars(lightAndDark)
+export const tokens = Stylex.defineVars({
+  fontFamily: sansSerifFamily,
+  borderRadius: '4px',
+  secondaryText: 'rgba(55, 53, 47, 0.65)',
+  thirdText: 'rgba(55, 53, 47, 0.3)',
+})
+
+export const link = Stylex.defineVars({
+  color: 'rgb(50, 48, 44, 0.8)',
+  colorHover: 'rgb(50, 48, 44, 0.6)',
+  borderBottom: '1px solid rgb(50, 48, 44, 0.4)',
+  borderBottomHover: '1px solid rgb(50, 48, 44, 0.2)',
+  backgroundColor: 'inherit',
+  backgroundColorHover: 'rgba(227, 226, 224, 0.5)',
+  textDecoration: 'none',
+  cursor: 'pointer',
+})
+
+export const colors = Stylex.defineVars(lightColor)

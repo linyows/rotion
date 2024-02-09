@@ -3,11 +3,11 @@ import LinkedBreadcrumbIfLinked from './LinkedBreadcrumbIfLinked'
 import type { Breadcrumb } from '../../../../exporter'
 import type { BreadcrumbsProps } from './Breadcrumbs.types'
 import Stylex from '@stylexjs/stylex'
-import { fontFamily } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    fontFamily: fontFamily.sansserif,
+    fontFamily: tokens.fontFamily,
   },
   icon: {
     verticalAlign: 'middle',
