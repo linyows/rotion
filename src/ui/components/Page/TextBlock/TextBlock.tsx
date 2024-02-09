@@ -55,16 +55,16 @@ const TextBlock = ({ tag, block }: TextBlockProps) => {
   }
 
   const CustomTag = tag
-  let css = ''
-  if (tag in style) {
+  let css = [Stylex(style.wrapper)]
+  if (block.type in style) {
     const styleKey = block.type as keyof typeof style
-    css = ` ${Stylex(style[styleKey])}`
+    css.push(`${Stylex(style[styleKey])}`)
   }
   // @ts-ignore
   const richText: RichTextItemResponse[] = block[block.type].rich_text
 
   return (
-    <CustomTag className={`rotion-text-${tag}${css}`}>
+    <CustomTag className={`rotion-text-${tag} ${css.join(' ')}`}>
       {richText.map((v, i) => (
         <RichText textObject={v} key={`richtext-${i}`} />
       ))}
