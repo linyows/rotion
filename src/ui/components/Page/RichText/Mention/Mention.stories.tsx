@@ -1,4 +1,3 @@
-import React from 'react'
 import type { MentionRichTextItemResponseEx } from '../../../../../exporter'
 import type { Meta, StoryObj } from '@storybook/react'
 import Mention from './Mention'

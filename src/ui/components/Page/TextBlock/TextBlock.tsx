@@ -55,7 +55,7 @@ const TextBlock = ({ tag, block }: TextBlockProps) => {
   }
 
   const CustomTag = tag
-  let css = [Stylex(style.wrapper)]
+  const css = [Stylex(style.wrapper)]
   if (block.type in style) {
     const styleKey = block.type as keyof typeof style
     css.push(`${Stylex(style[styleKey])}`)

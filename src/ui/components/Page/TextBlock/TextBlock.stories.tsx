@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type {
-    DividerBlockObjectResponse,
+  DividerBlockObjectResponse,
   Heading1BlockObjectResponse,
   Heading2BlockObjectResponse,
   Heading3BlockObjectResponse,
