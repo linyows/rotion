@@ -1,9 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { ChildPageBlockObjectResponseEx, GetPageResponseEx, ListBlockChildrenResponseEx } from '../../../../exporter'
 import ChildPageBlock from './ChildPageBlock'
-import '../../../styles/notionate-dark.css'
-import '../../../styles/base.css'
-import '../../../styles/page.css'
 
 /* Next is Database
 {

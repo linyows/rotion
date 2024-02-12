@@ -1,6 +1,41 @@
 import React from 'react'
 import type { ChildDatabaseBlockProps, ChildDatabaseLinkProps } from './ChildDatabaseBlock.types'
 import { getLinkPathAndLinkKey, queryToString } from '../../lib'
+import Stylex from '@stylexjs/stylex'
+import { tokens, link } from '../../tokens.stylex'
+
+const style = Stylex.create({
+  wrapper: {
+    fontFamily: tokens.fontFamily,
+    width: '100%',
+  },
+  link: {
+    display: 'grid',
+    gridTemplate: 'repeat(1, 1fr) / 1.5rem 1fr',
+    gap: '.4rem',
+    margin: '.2rem 0 0',
+    padding: '.6rem .3rem',
+    textDecoration: link.textDecoration,
+    color: {
+      default: link.color,
+      ':hover': link.colorHover,
+    },
+    alignItems: 'top',
+    backgroundColor: {
+      default: link.backgroundColor,
+      ':hover': link.backgroundColorHover,
+    },
+    borderRadius: tokens.borderRadius,
+  },
+  title: {
+    borderBottom: '1px solid #ddd',
+    verticalAlign: 'top',
+  },
+  icon: {
+    height: '24px',
+    overflow: 'hidden',
+  },
+})
 
 const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabaseLinkProps) => {
   const title = block.child_database.title
@@ -9,7 +44,7 @@ const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabase
 
   if (!href) {
     return (
-      <div className="notionate-blocks-childdatabase-a">
+      <div className={`rotion-childdatabase-link ${Stylex(style.link)}`}>
         {children}
       </div>
     )
@@ -20,14 +55,14 @@ const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabase
       query = {}
     }
     return (
-      <Link className="notionate-blocks-childdatabase-a" href={{ pathname: `${path}${file}`, query }}>
+      <Link className={`rotion-childdatabase-link ${Stylex(style.link)}`} href={{ pathname: `${path}${file}`, query }}>
         {children}
       </Link>
     )
   }
 
   return (
-    <a href={`${path}${file}${queryToString(query)}`} className="notionate-blocks-childdatabase-a">
+    <a className={`rotion-childdatabase-link ${Stylex(style.link)}`} href={`${path}${file}${queryToString(query)}`}>
       {children}
     </a>
   )
@@ -41,13 +76,13 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
   const title = block.child_database.title
   if (block.database === null || block.database.icon === undefined || block.database.icon === null) {
     return (
-      <div className="notionate-blocks-childdatabase">
+      <div className={`rotion-childdatabase ${Stylex(style.wrapper)}`}>
         <ChildDatabaseLink block={block} href={href} link={link} query={query}>
-          <span className="notionate-blocks-childdatabase-icon">
+          <span className={`rotion-childdatabase-icon ${Stylex(style.icon)}`}>
             {'️-'}
           </span>
           <div>
-            <span className="notionate-blocks-childdatabase-title">
+            <span className={`rotion-childdatabase-title ${Stylex(style.title)}`}>
               {title}
             </span>
           </div>
@@ -58,13 +93,13 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
 
   if (block.database.icon.type === 'emoji') {
     return (
-      <div className="notionate-blocks-childdatabase">
+      <div className={`rotion-childdatabase ${Stylex(style.wrapper)}`}>
         <ChildDatabaseLink block={block} href={href} link={link} query={query}>
-          <span className="notionate-blocks-childdatabase-icon">
+          <span className={`rotion-childdatabase-icon ${Stylex(style.icon)}`}>
             {block.database.icon.emoji}
           </span>
           <div>
-            <span className="notionate-blocks-childdatabase-title">
+            <span className={`rotion-childdatabase-title ${Stylex(style.title)}`}>
               {title}
             </span>
           </div>
@@ -75,13 +110,13 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
 
   // type external or file
   return (
-    <div className="notionate-blocks-childdatabase">
+    <div className={`rotion-childdatabase ${Stylex(style.wrapper)}`}>
       <ChildDatabaseLink block={block} href={href} link={link} query={query}>
-        <span className="notionate-blocks-childdatabase-icon">
-          <img className="notionate-blocks-childdatabase-file-icon" src={block.database.icon.src} alt="Icon" />
+        <span className={`rotion-childdatabase-icon ${Stylex(style.icon)}`}>
+          <img className="rotion-childdatabase-icon-img" src={block.database.icon.src} alt="Icon" />
         </span>
         <div>
-          <span className="notionate-blocks-childdatabase-title">
+          <span className={`rotion-childdatabase-title ${Stylex(style.title)}`}>
             {title}
           </span>
         </div>

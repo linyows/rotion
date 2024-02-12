@@ -235,6 +235,55 @@ export type BreadcrumbBlockObjectResponseEx = BreadcrumbBlockObjectResponse & {
   list: Breadcrumb[]
 }
 
+/* Add src and size */
+export type FileBlockObjectResponseEx = FileBlockObjectResponse & {
+  file: {
+    type: "external",
+    external: {
+      url: TextRequest,
+    },
+    caption: Array<RichTextItemResponse>,
+    src: string,
+    size: number,
+  } | {
+    type: 'file',
+    file: {
+      url: string,
+      expiry_time: string,
+    },
+    caption: Array<RichTextItemResponse>,
+    src: string,
+    size: number,
+  }
+}
+
+/* Add src and size */
+export type PdfBlockObjectResponseEx = PdfBlockObjectResponse & {
+  pdf: {
+    type: "external",
+    external: {
+      url: TextRequest,
+    },
+    caption: Array<RichTextItemResponse>,
+    src: string,
+    size: number,
+  } | {
+    type: 'file',
+    file: {
+      url: string,
+      expiry_time: string,
+    },
+    caption: Array<RichTextItemResponse>,
+    src: string,
+    size: number,
+  }
+}
+
+/* Add children */
+export type SyncedBlockBlockObjectResponseEx = SyncedBlockBlockObjectResponse & {
+  children?: ListBlockChildrenResponseEx
+}
+
 export type BlockObjectResponse =
   | ParagraphBlockObjectResponseEx
   | Heading1BlockObjectResponse
@@ -246,7 +295,7 @@ export type BlockObjectResponse =
   | ToDoBlockObjectResponse
   | ToggleBlockObjectResponseEx
   | TemplateBlockObjectResponse
-  | SyncedBlockBlockObjectResponse
+  | SyncedBlockBlockObjectResponseEx
   | ChildPageBlockObjectResponseEx
   | ChildDatabaseBlockObjectResponseEx
   | EquationBlockObjectResponse
@@ -264,8 +313,8 @@ export type BlockObjectResponse =
   | BookmarkBlockObjectResponseEx
   | ImageBlockObjectResponseEx
   | VideoBlockObjectResponseEx
-  | PdfBlockObjectResponse
-  | FileBlockObjectResponse
+  | PdfBlockObjectResponseEx
+  | FileBlockObjectResponseEx
   | AudioBlockObjectResponse
   | LinkPreviewBlockObjectResponse
   | UnsupportedBlockObjectResponse

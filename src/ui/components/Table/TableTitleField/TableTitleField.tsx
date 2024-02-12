@@ -1,6 +1,14 @@
 import React from 'react'
 import type { TableTitleFieldProps } from './TableTitleField.types'
-import type { Link } from '../../types'
+import LinkedTitleIfLinked from './LinkedTitleIfLinked'
+import Stylex from '@stylexjs/stylex'
+import { tokens } from '../../tokens.stylex'
+
+const style = Stylex.create({
+  wrapper: {
+    fontFamily: tokens.fontFamily,
+  },
+})
 
 const TableTitleField = ({ payload, path, slug, link, query }: TableTitleFieldProps) => {
   const title = payload.map(v => {
@@ -15,39 +23,11 @@ const TableTitleField = ({ payload, path, slug, link, query }: TableTitleFieldPr
     }
   }).join(',')
 
-  const href = `${path}${slug}`
-
-  const LinkedTitle = () => {
-    if (link && query) {
-      const Link = link as Link
-      return (
-        <>
-          <Link className="notionate-table-title-a" href={{ pathname: href, query }}>
-            {title}
-          </Link>
-        </>
-      )
-    } else if (link) {
-      const Link = link
-      return (
-        <>
-          <Link className="notionate-table-title-a" href={href}>
-            {title}
-          </Link>
-        </>
-      )
-    }
-
-    return (
-      <a className="notionate-table-title-a" href={href} title={title}>
-        {title}
-      </a>
-    )
-  }
-
   return (
-    <div className="notionate-table-title">
-      {(!path && !slug) ? title : LinkedTitle()}
+    <div className={`rotion-table-title ${Stylex(style.wrapper)}`}>
+      <LinkedTitleIfLinked path={path} slug={slug} link={link} query={query}>
+        {title}
+      </LinkedTitleIfLinked>
     </div>
   )
 }

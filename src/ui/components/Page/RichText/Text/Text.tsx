@@ -4,13 +4,11 @@ import Annotation from '../Annotation/Annotation'
 import type { TextProps } from './Text.types'
 
 const Text = ({ textObject }: TextProps) => {
-  const { href, plain_text } = textObject
+  const { href } = textObject
 
   return (
     <LinkIfLinked condition={href !== null} textObject={textObject}>
-      <Annotation textObject={textObject}>
-        {plain_text}
-      </Annotation>
+      <Annotation textObject={textObject} />
     </LinkIfLinked>
   )
 }

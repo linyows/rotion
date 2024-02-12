@@ -3,7 +3,7 @@ import type { TemplateMentionProps } from './TemplateMention.types'
 
 const TemplateMention = ({ text, children }: TemplateMentionProps) => {
   return (
-    <span>
+    <span className={'rotion-mention-template'}>
       {text}
       {children}
     </span>

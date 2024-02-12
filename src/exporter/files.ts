@@ -12,6 +12,7 @@ import replaceExt from 'replace-ext'
 import {
   docRoot,
   imageDir,
+  fileDir,
   timeout,
   webpQuality,
   httpOptions,
@@ -208,6 +209,52 @@ export async function isAvailableCache (f: string, seconds: number): Promise<boo
 
 const sleep = (m: number) => {
   return new Promise((resolve) => setTimeout(resolve, m))
+}
+
+export async function saveFile (fileUrl: string, prefix: string) {
+  const urlWithoutQuerystring = fileUrl.split('?').shift() || ''
+  const { ext, name } = path.parse(urlWithoutQuerystring)
+  const basename = `${atoh(name)}${ext}`
+  const urlPath = `/${fileDir}/${prefix}-${basename}`
+  const filePath = `${docRoot}${urlPath}`
+  const dirPath = `${docRoot}/${fileDir}`
+
+  await createDirWhenNotfound(dirPath)
+
+  if (fs.existsSync(filePath)) {
+    const stats = await stat(filePath)
+    return {
+      src: urlPath,
+      size: stats.size,
+    }
+
+  /* Download file */
+  } else {
+    try {
+      let res: HttpGetResponse
+      res = await httpsGetWithFollowRedirects(fileUrl)
+      if (res.statusCode >= 400 && res.statusCode < 500 && imageDir !== urlWithoutQuerystring) {
+        res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
+        if (res.statusCode >= 400 && res.statusCode < 500) {
+          throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
+        }
+      }
+      res.pipe(fs.createWriteStream(filePath))
+      await res.end
+      // This fix that for fileType do not returns undefined
+      await sleep(10)
+    } catch (e) {
+      if (debug) {
+        console.log(`saveFile download error -- path: ${filePath}, url: ${fileUrl}, message: ${e}`)
+      }
+    }
+  }
+
+  const stats = await stat(filePath)
+  return {
+    src: urlPath,
+    size: stats.size,
+  }
 }
 
 export const saveImage = async (imageUrl: string, prefix: string): Promise<string> => {

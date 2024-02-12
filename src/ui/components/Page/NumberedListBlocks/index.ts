@@ -1,2 +1,2 @@
-import NumberedListBlocks from './NumberedListBlocks'
-export { NumberedListBlocks }
+import NumberedListBlock from './NumberedListBlock'
+export { NumberedListBlock }

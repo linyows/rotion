@@ -1,9 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import type { RichTextItemResponseEx, TextRichTextItemResponse } from '../../../../../exporter'
+import type { RichTextItemResponseEx } from '../../../../../exporter'
 import Annotation from './Annotation'
-import '../../../../../styles/base.css'
-import '../../../../../styles/page.css'
 
 const textObject = {
   type: 'text',
@@ -78,6 +76,86 @@ export const Code: Story = {
   }
 }
 
+const gray = structuredClone(textObject)
+gray.annotations.color = 'gray'
+export const Gray: Story = {
+  args: {
+    textObject: gray,
+  }
+}
+
+const bgGray = structuredClone(textObject)
+bgGray.annotations.color = 'gray_background'
+export const BgGray: Story = {
+  args: {
+    textObject: bgGray,
+  }
+}
+
+const brown = structuredClone(textObject)
+brown.annotations.color = 'brown'
+export const Brown: Story = {
+  args: {
+    textObject: brown,
+  }
+}
+
+const bgBrown = structuredClone(textObject)
+bgBrown.annotations.color = 'brown_background'
+export const BgBrown: Story = {
+  args: {
+    textObject: bgBrown,
+  }
+}
+
+const orange = structuredClone(textObject)
+orange.annotations.color = 'orange'
+export const Orange: Story = {
+  args: {
+    textObject: orange,
+  }
+}
+
+const bgOrange = structuredClone(textObject)
+bgOrange.annotations.color = 'orange_background'
+export const BgOrange: Story = {
+  args: {
+    textObject: bgOrange,
+  }
+}
+
+const yellow = structuredClone(textObject)
+yellow.annotations.color = 'yellow'
+export const Yellow: Story = {
+  args: {
+    textObject: yellow,
+  }
+}
+
+const bgYellow = structuredClone(textObject)
+bgYellow.annotations.color = 'yellow_background'
+export const BgYellow: Story = {
+  args: {
+    textObject: bgYellow,
+  }
+}
+
+const green = structuredClone(textObject)
+green.annotations.color = 'green'
+export const Green: Story = {
+  args: {
+    textObject: green,
+  }
+}
+
+const bgGreen = structuredClone(textObject)
+bgGreen.annotations.color = 'green_background'
+export const BgGreen: Story = {
+  args: {
+    textObject: bgGreen,
+  }
+}
+
 const blue = structuredClone(textObject)
 blue.annotations.color = 'blue'
 export const Blue: Story = {
@@ -86,12 +164,58 @@ export const Blue: Story = {
   }
 }
 
-const linked = structuredClone(textObject) as TextRichTextItemResponse
-linked.text.link = { url: 'https://github.com' }
-linked.href = 'https://github.com'
-export const Linked: Story = {
+const bgBlue = structuredClone(textObject)
+bgBlue.annotations.color = 'blue_background'
+export const BgBlue: Story = {
   args: {
-    textObject: linked,
-    children: <>GitHub</>,
+    textObject: bgBlue,
+  }
+}
+
+const purple = structuredClone(textObject)
+purple.annotations.color = 'purple'
+export const Purple: Story = {
+  args: {
+    textObject: purple,
+  }
+}
+
+const bgPurple = structuredClone(textObject)
+bgPurple.annotations.color = 'purple_background'
+export const BgPurple: Story = {
+  args: {
+    textObject: bgPurple,
+  }
+}
+
+const pink = structuredClone(textObject)
+pink.annotations.color = 'pink'
+export const Pink: Story = {
+  args: {
+    textObject: pink,
+  }
+}
+
+const bgPink = structuredClone(textObject)
+bgPink.annotations.color = 'pink_background'
+export const BgPink: Story = {
+  args: {
+    textObject: bgPink,
+  }
+}
+
+const red = structuredClone(textObject)
+red.annotations.color = 'red'
+export const Red: Story = {
+  args: {
+    textObject: red,
+  }
+}
+
+const bgRed = structuredClone(textObject)
+bgRed.annotations.color = 'red_background'
+export const BgRed: Story = {
+  args: {
+    textObject: bgRed,
   }
 }

@@ -6,7 +6,7 @@ import type { RichTextProps } from './RichText.types'
 import { MentionRichTextItemResponseEx } from '../../../../exporter'
 
 const RichText = ({ textObject }: RichTextProps) => {
-  if (textObject === undefined || textObject === null) {
+  if (!textObject) {
     return <></>
   }
 
@@ -14,11 +14,7 @@ const RichText = ({ textObject }: RichTextProps) => {
 
   switch (type) {
     case 'text':
-      return (
-        <Text textObject={textObject}>
-          {plain_text}
-        </Text>
-      )
+      return <Text textObject={textObject} />
     case 'mention':
       return (
         <Mention textObject={textObject as MentionRichTextItemResponseEx}>
@@ -26,11 +22,7 @@ const RichText = ({ textObject }: RichTextProps) => {
         </Mention>
       )
     case 'equation':
-      return (
-        <Equation textObject={textObject}>
-          {plain_text}
-        </Equation>
-      )
+      return <Equation textObject={textObject} />
     default:
       return <></>
   }

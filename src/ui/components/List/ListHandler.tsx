@@ -24,10 +24,10 @@ const ListHandler = ({ name, items, path, slug, link, query }: ListHandlerProps)
     switch (target.type) {
       case 'title': { // Skip: Unexpected lexical declaration in case block.
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
-        return ListTitleField({ payload, path, slug, link, query })
+        return <ListTitleField payload={payload} path={path} slug={slug} link={link} query={query} />
       }
       case 'rich_text':
-        return ListRichTextField({ payload: target })
+        return <ListRichTextField payload={target} />
       case 'people':
       case 'relation':
       case 'rollup':
@@ -38,17 +38,17 @@ const ListHandler = ({ name, items, path, slug, link, query }: ListHandlerProps)
   } else {
     switch (items.type) {
       case 'date':
-        return ListDateField({ payload: items.date })
+        return <ListDateField payload={items.date} />
       case 'rich_text':
-        return ListRichTextField({ payload: items })
+        return <ListRichTextField payload={items} />
       case 'multi_select':
-        return ListMultiSelectField({ payload: items, path })
+        return <ListMultiSelectField payload={items} path={path} />
       case 'url':
-        return ListUrlField({ payload: items.url })
+        return <ListUrlField payload={items.url} />
       case 'checkbox':
-        return ListCheckboxField({ payload: items.checkbox })
+        return <ListCheckboxField payload={items.checkbox} />
       case 'number':
-        return ListNumberField({ payload: items })
+        return <ListNumberField payload={items} />
       case 'select':
       case 'status':
       case 'email':

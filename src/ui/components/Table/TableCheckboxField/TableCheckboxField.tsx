@@ -3,7 +3,7 @@ import type { TableCheckboxFieldProps } from './TableCheckboxField.types'
 
 export const TableCheckboxField = ({ payload }: TableCheckboxFieldProps) => {
   return (
-    <div className="notionate-table-checkbox">
+    <div className={'rotion-table-checkbox'}>
       {payload}
     </div>
   )

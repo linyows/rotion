@@ -11,8 +11,8 @@ import TableCheckboxField from './TableCheckboxField/TableCheckboxField'
 import TableNumberField from './TableNumberField/TableNumberField'
 import type { TableHandlerProps } from './TableHandler.types'
 
-const TableHandler = ({ name, items, path, slug, link, query }: TableHandlerProps) => {
-  if (items === undefined) {
+const TableHandler = ({ items, path, slug, link, query }: TableHandlerProps) => {
+  if (!items) {
     return <></>
   }
 
@@ -25,10 +25,10 @@ const TableHandler = ({ name, items, path, slug, link, query }: TableHandlerProp
     switch (target.type) {
       case 'title': { // Skip: Unexpected lexical declaration in case block.
         const payload = items.results as Array<TitlePropertyItemObjectResponse>
-        return TableTitleField({ payload, path, slug, link, query })
+        return <TableTitleField payload={payload} path={path} slug={slug} link={link} query={query} />
       }
       case 'rich_text':
-        return TableRichTextField({ payload: target })
+        return <TableRichTextField payload={target} />
       case 'people':
       case 'relation':
       case 'rollup':
@@ -39,19 +39,19 @@ const TableHandler = ({ name, items, path, slug, link, query }: TableHandlerProp
   } else {
     switch (items.type) {
       case 'date':
-        return TableDateField({ payload: items.date })
+        return <TableDateField payload={items.date} />
       case 'rich_text':
-        return TableRichTextField({ payload: items })
+        return <TableRichTextField payload={items} />
       case 'multi_select':
-        return TableMultiSelectField({ payload: items, path })
+        return <TableMultiSelectField payload={items} path={path} query={query} />
       case 'url':
-        return TableUrlField({ payload: items.url })
+        return <TableUrlField payload={items.url} />
       case 'checkbox':
-        return TableCheckboxField({ payload: items.checkbox })
+        return <TableCheckboxField payload={items.checkbox} />
       case 'number':
-        return TableNumberField({ payload: items })
+        return <TableNumberField payload={items} />
       case 'select':
-        return TableSelectField({ payload: items, path })
+        return <TableSelectField payload={items} path={path} query={query} />
       case 'status':
       case 'email':
       case 'phone_number':

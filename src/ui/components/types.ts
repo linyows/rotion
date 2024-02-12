@@ -6,12 +6,3 @@ export interface Link extends React.FC<{
   className?: string
   href: string | UrlObject
 }> {}
-
-export interface ExternalModules {
-  mermaid?: {
-    init: (config?: {}, nodes?: string | HTMLElement, callback?: ((id: string) => unknown) | undefined) => Promise<void>
-  }
-  prism?: {
-    highlightElement: (element: Element, async?: boolean | undefined, callback?: (element: Element) => void | undefined) => void
-  }
-}

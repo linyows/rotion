@@ -1,43 +1,39 @@
 import React from 'react'
 import type { TableSelectFieldProps } from './TableSelectField.types'
+import LinkedTagIfLinked from './LinkedTagIfLinked'
+import Stylex from '@stylexjs/stylex'
+import { tokens } from '../../tokens.stylex'
 
-const TableSelectField = ({ payload, path, link }: TableSelectFieldProps) => {
-  const LinkedTag = (name: string) => {
-    if (!path) {
-      return (
-        <span className="notionate-table-select-span">
-          {name}
-        </span>
-      )
-    }
+const style = Stylex.create({
+  wrapper: {
+    fontFamily: tokens.fontFamily,
+    fontSize: '.75rem',
+    display: 'flex',
+    alignItems: 'center',
+    flexShrink: 0,
+    minwidth: 0,
+    borderRadius: '3px',
+    padding: 0,
+    color: 'rgb(24, 51, 71)',
+    background: 'rgb(211, 229, 239) none repeat scroll 0% 0%',
+    margin: '0 6px 0 0',
+  },
+})
 
-    const href = `${path}tags/${encodeURIComponent(name)}`
-    if (link) {
-      const Link = link
-      return (
-        <>
-          <Link className="notionate-table-select-a" href={href}>
-            {name}
-          </Link>
-        </>
-      )
-    }
-    return (
-      <a className="notionate-table-select-a" href={href} title={name}>
-        {name}
-      </a>
-    )
+const TableSelectField = ({ payload, path, link, query }: TableSelectFieldProps) => {
+  const { select } = payload
+
+  if (!select) {
+    return <></>
   }
 
-  if (payload.select) {
-    return (
-      <div className={`notionate-table-select-div notionate-select-${payload.select.color}`}>
-        {LinkedTag(payload.select.name)}
-      </div>
-    )
-  }
-
-  return <></>
+  return (
+    <div className={`rotion-table-select ${Stylex(style.wrapper)}`}>
+      <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(select.name)}` : ''} color={select.color} link={link} query={query}>
+        {select.name}
+      </LinkedTagIfLinked>
+    </div>
+  )
 }
 
 export default TableSelectField
