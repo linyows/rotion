@@ -50,10 +50,10 @@
     "ui:typecheck": "tsc -p src/ui/tsconfig.typecheck.json",
     "ui:styles": "cp -r ./src/ui/styles ./dist/ui/",
     "ui:lint": "eslint ./src/ui/components --ext .js,.jsx,.ts,.tsx -c ./src/ui/.eslintrc.json",
-    "ui:test": "npm run ui:lint && npm run ui:typecheck",
+    "ui:test": "uvu -r tsm ./src/ui/components/lib",
     "story": "storybook dev -p 6006",
     "build-story": "storybook build",
-    "prepublishOnly": "npm install && npm run exporter:build && npm run exporter:test && npm run ui:build"
+    "prepublishOnly": "npm install && npm run test && npm run build"
   },
   "peerDependencies": {
     "react": "^17.0.2 || ^18.0.0-0",
