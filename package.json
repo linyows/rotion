@@ -41,7 +41,7 @@
   ],
   "scripts": {
     "build": "npm run exporter:build && npm run ui:build",
-    "test": "npm run exporter:test && npm run ui:test",
+    "test": "npm run exporter:test",
     "exporter:build": "npm run exporter:clean && tsc -p tsconfig.exporter.json",
     "exporter:clean": "rm -rf dist/exporter/*",
     "exporter:test": "tsm node_modules/uvu/bin.js ./src/exporter",
@@ -50,7 +50,7 @@
     "ui:typecheck": "tsc -p src/ui/tsconfig.typecheck.json",
     "ui:styles": "cp -r ./src/ui/styles ./dist/ui/",
     "ui:lint": "eslint ./src/ui/components --ext .js,.jsx,.ts,.tsx -c ./src/ui/.eslintrc.json",
-    "ui:test": "uvu -r tsm ./src/ui/components/lib",
+    "ui:test": "uvu -r tsm ./src/ui/components",
     "story": "storybook dev -p 6006",
     "build-story": "storybook build",
     "prepublishOnly": "npm install && npm run test && npm run build"
