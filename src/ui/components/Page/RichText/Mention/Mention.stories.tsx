@@ -1,6 +1,7 @@
 import type { MentionRichTextItemResponseEx } from '../../../../../exporter'
 import type { Meta, StoryObj } from '@storybook/react'
 import Mention from './Mention'
+import { cdate } from 'cdate'
 
 const textObject: MentionRichTextItemResponseEx = {
   type: 'mention',
@@ -150,6 +151,23 @@ periodDateMention.mention = {
 export const PeriodDateMention: Story = {
   args: {
     textObject: periodDateMention,
+  }
+}
+
+/* YESTERDAY MENTION */
+const yesterday = cdate().add(-1, 'day').format('YYYY-MM-DDT00:00:00.000+09:00')
+const yesterdayMention = structuredClone(textObject)
+yesterdayMention.mention = {
+  type: 'date',
+  date: {
+    start: yesterday.toString(),
+    end: null,
+    time_zone: null,
+  },
+}
+export const YesterdayMention: Story = {
+  args: {
+    textObject: yesterdayMention,
   }
 }
 

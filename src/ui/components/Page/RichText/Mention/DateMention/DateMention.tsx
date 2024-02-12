@@ -1,8 +1,9 @@
 import React from 'react'
 import type { DateMentionProps } from './DateMention.types'
-import { cdate } from 'cdate'
 import Stylex from '@stylexjs/stylex'
 import { tokens } from '../../../../tokens.stylex'
+import { cdate } from 'cdate'
+import { plugin } from 'cdate-schedule'
 
 const styles = Stylex.create({
   wrapper: {
@@ -23,13 +24,14 @@ const DateOrDateTime = ({ dateOrDateTime, prefix }: endMentionProps) => {
   if (!dateOrDateTime) {
     return <></>
   }
-  const dateFormat = 'MMMM D, YYYY'
-  const dateTimeFormat = 'MMMM D, YYYY h:mm A'
-  const cleared = '00:00:00.000'
-  const format = dateOrDateTime.substring(11, 23) === cleared ? dateFormat : dateTimeFormat
+
+  const sdate = cdate().plugin(plugin).scheduleFn()
   return (
     <span>
-      {prefix}{cdate(dateOrDateTime).format(format)}
+      {prefix}
+      <span title={sdate(dateOrDateTime).format()}>
+        {sdate(dateOrDateTime).schedule()}
+      </span>
     </span>
   )
 }
