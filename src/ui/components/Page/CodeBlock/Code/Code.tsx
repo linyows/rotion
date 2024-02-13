@@ -40,7 +40,7 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
       }
     }
   }
-  const cl = `language-${language.toLowerCase()}`
+  const cl = language === 'mermaid' ? 'mermaid' : `language-${language.toLowerCase()}`
 
   const [show, setShow] = useState(false)
   const showLang = () => setShow(true)
