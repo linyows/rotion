@@ -112,7 +112,6 @@
     "rollup": "^4.9.1",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^6.1.0",
-    "rollup-plugin-import-css": "^3.4.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^7.6.12",
     "testdouble": "^3.20.1",

@@ -7,7 +7,6 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import del from 'rollup-plugin-delete'
 import dts from 'rollup-plugin-dts'
 import stylexPlugin from '@stylexjs/rollup-plugin'
-import css from 'rollup-plugin-import-css'
 
 export default [
   {
@@ -40,7 +39,6 @@ export default [
       del({ targets: './dist/ui/*' }),
       peerDepsExternal(),
       resolve(),
-      css(),
       json(),
       commonjs(),
       typescript(),
