@@ -4,14 +4,12 @@ import Link from 'next/link'
 import Header from '@/components/Header'
 import Head from 'next/head'
 import styles from '@/styles/Page.module.css'
-import prism from 'prismjs'
-import mermaid from 'mermaid'
-
+import Prism from 'prismjs'
 import 'prismjs/themes/prism.min.css'
-import 'prismjs/components/prism-bash'
-import 'prismjs/components/prism-go'
-import 'prismjs/components/prism-typescript'
-import 'prismjs/components/prism-sql'
+import 'prismjs/plugins/autoloader/prism-autoloader'
+if (Prism.plugins.autoloader) {
+  Prism.plugins.autoloader.languages_path = 'https://unpkg.com/prismjs@1.29.0/components/'
+}
 
 import {
   FetchBlocks,
