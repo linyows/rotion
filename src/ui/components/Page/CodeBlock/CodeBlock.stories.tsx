@@ -1,12 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { CodeBlockObjectResponse, RichTextItemResponse } from '../../../../exporter'
 import CodeBlock from './CodeBlock'
+import Prism from 'prismjs'
 
-import 'prismjs/components/prism-bash'
-import 'prismjs/components/prism-go'
-import 'prismjs/components/prism-typescript'
-import 'prismjs/components/prism-sql'
 import 'prismjs/themes/prism.min.css'
+import 'prismjs/plugins/autoloader/prism-autoloader'
+if (Prism.plugins.autoloader) {
+  Prism.plugins.autoloader.languages_path = 'https://unpkg.com/prismjs@1.29.0/components/'
+}
 
 const examples = {
   typescript: `type Text = {

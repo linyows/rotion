@@ -17,14 +17,14 @@ export default [
         file: './dist/ui/cjs/index.js',
         format: 'cjs',
         sourcemap: true,
-        globals: { react: 'React', mermaid: 'mermaid', prismjs: 'prism' },
+        globals: { react: 'React', mermaid: 'mermaid', prismjs: 'Prism' },
       },
       {
         intro: "'use client';",
         file: './dist/ui/esm/index.js',
         format: 'esm',
         sourcemap: true,
-        globals: { react: 'React', mermaid: 'mermaid', prismjs: 'prism' },
+        globals: { react: 'React', mermaid: 'mermaid', prismjs: 'Prism' },
       },
       {
         intro: "'use client';",
@@ -32,7 +32,7 @@ export default [
         format: 'umd',
         name: 'NotionateUI',
         sourcemap: true,
-        globals: { react: 'React', mermaid: 'mermaid', prismjs: 'prism' },
+        globals: { react: 'React', mermaid: 'mermaid', prismjs: 'Prism' },
       },
     ],
     plugins: [

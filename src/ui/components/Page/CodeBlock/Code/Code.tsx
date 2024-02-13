@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import type { CodeProps } from './Code.types'
 import Stylex from '@stylexjs/stylex'
 import mermaid from 'mermaid'
-import prism from 'prismjs'
+import Prism from 'prismjs'
 
 const style = Stylex.create({
   wrapper: {
@@ -33,11 +33,11 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
       if (language === 'mermaid') {
         mermaid.init(undefined, codeRef.current as HTMLPreElement)
       } else {
-        prism.highlightElement(codeRef.current as Element)
+        Prism.highlightElement(codeRef.current as Element)
       }
     }
   }
-  const cl = `language-${language.toLowerCase()}`
+  const cl = language === 'mermaid' ? 'mermaid' : `language-${language.toLowerCase()}`
 
   const [show, setShow] = useState(false)
   const showLang = () => setShow(true)

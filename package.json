@@ -1,6 +1,6 @@
 {
   "name": "rotion",
-  "version": "0.0.10",
+  "version": "0.0.14",
   "license": "MIT",
   "repository": "linyows/rotion",
   "description": "This is react components that uses the notion API to display the notion's database and page.",
@@ -112,7 +112,6 @@
     "rollup": "^4.9.1",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^6.1.0",
-    "rollup-plugin-import-css": "^3.3.5",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "storybook": "^7.6.12",
     "testdouble": "^3.20.1",
