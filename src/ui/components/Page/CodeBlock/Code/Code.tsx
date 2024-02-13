@@ -3,11 +3,6 @@ import type { CodeProps } from './Code.types'
 import Stylex from '@stylexjs/stylex'
 import mermaid from 'mermaid'
 import Prism from 'prismjs'
-import 'prismjs/themes/prism.min.css'
-import 'prismjs/plugins/autoloader/prism-autoloader'
-if (Prism.plugins.autoloader) {
-  Prism.plugins.autoloader.languages_path = 'https://unpkg.com/prismjs@1.29.0/components/'
-}
 
 const style = Stylex.create({
   wrapper: {
