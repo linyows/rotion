@@ -2,12 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import type { CodeBlockObjectResponse, RichTextItemResponse } from '../../../../exporter'
 import CodeBlock from './CodeBlock'
 
-import 'prismjs/components/prism-bash'
-import 'prismjs/components/prism-go'
-import 'prismjs/components/prism-typescript'
-import 'prismjs/components/prism-sql'
-import 'prismjs/themes/prism.min.css'
-
 const examples = {
   typescript: `type Text = {
   href: string
