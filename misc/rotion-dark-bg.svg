@@ -3,11 +3,17 @@
 <svg width="100%" height="100%" viewBox="0 0 1890 1890" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
     <g transform="matrix(1,0,0,1,0,12.6747)">
         <g transform="matrix(1,0,0,1,-5.13204,-32.3778)">
-            <circle cx="942.321" cy="964.585" r="397.864" style="fill:rgb(35,31,32);stroke:rgb(35,31,32);stroke-width:25px;"/>
+            <circle cx="942.321" cy="964.585" r="397.864" style="fill:white;stroke:white;stroke-width:37.5px;"/>
+        </g>
+        <g transform="matrix(0.934416,0,0,0.9188,48.5388,-171.986)">
+            <path d="M1689.81,1080.7L1689.81,1350.44C1689.81,1380.61 1665.73,1405.1 1636.07,1405.1L282.436,1405.1C252.777,1405.1 228.699,1380.61 228.699,1350.44L228.699,1080.7C228.699,1050.54 252.777,1026.05 282.436,1026.05L1636.07,1026.05C1665.73,1026.05 1689.81,1050.54 1689.81,1080.7Z" style="fill:rgb(35,31,32);stroke:white;stroke-width:35.97px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-5.13204,-32.3778)">
+            <circle cx="942.321" cy="964.585" r="397.864" style="fill:rgb(9,0,2);stroke:rgb(10,0,2);stroke-width:25px;"/>
         </g>
         <g transform="matrix(1,0,0,1,-0.642444,81.2623)">
             <g transform="matrix(0.934416,0,0,0.9188,49.1813,-253.248)">
-                <path d="M1689.81,1080.7L1689.81,1350.44C1689.81,1380.61 1665.73,1405.1 1636.07,1405.1L282.436,1405.1C252.777,1405.1 228.699,1380.61 228.699,1350.44L228.699,1080.7C228.699,1050.54 252.777,1026.05 282.436,1026.05L1636.07,1026.05C1665.73,1026.05 1689.81,1050.54 1689.81,1080.7Z" style="fill:white;stroke:rgb(35,31,32);stroke-width:26.98px;"/>
+                <path d="M1689.81,1080.7L1689.81,1350.44C1689.81,1380.61 1665.73,1405.1 1636.07,1405.1L282.436,1405.1C252.777,1405.1 228.699,1380.61 228.699,1350.44L228.699,1080.7C228.699,1050.54 252.777,1026.05 282.436,1026.05L1636.07,1026.05C1665.73,1026.05 1689.81,1050.54 1689.81,1080.7Z" style="fill:white;stroke:black;stroke-width:26.98px;"/>
             </g>
             <g transform="matrix(1,0,0,1,5.25489,4.15106)">
                 <g transform="matrix(1.15023,0,0,1.09923,-442.874,-635.074)">
