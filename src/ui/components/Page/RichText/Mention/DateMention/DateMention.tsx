@@ -3,7 +3,7 @@ import type { DateMentionProps } from './DateMention.types'
 import Stylex from '@stylexjs/stylex'
 import { tokens } from '../../../../tokens.stylex'
 import { cdate } from 'cdate'
-import { plugin } from 'cdate-schedule'
+import { relative } from 'cdate-relative'
 
 const styles = Stylex.create({
   wrapper: {
@@ -25,12 +25,12 @@ const DateOrDateTime = ({ dateOrDateTime, prefix }: endMentionProps) => {
     return <></>
   }
 
-  const sdate = cdate().plugin(plugin).scheduleFn()
+  const rdate = cdate().handler(relative).cdateFn()
   return (
     <span>
       {prefix}
-      <span title={sdate(dateOrDateTime).format()}>
-        {sdate(dateOrDateTime).schedule()}
+      <span title={rdate(dateOrDateTime).format()}>
+        {rdate(dateOrDateTime).format(dateOrDateTime.length > 10 ? 'R HH:mm A' : 'R')}
       </span>
     </span>
   )
