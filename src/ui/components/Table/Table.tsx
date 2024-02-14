@@ -18,6 +18,7 @@ const style = Stylex.create({
     position: 'relative',
     float: 'left',
     minWidth: '100%',
+    borderRight: 'none',
   },
   header: {
   },

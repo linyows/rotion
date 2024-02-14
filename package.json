@@ -62,7 +62,7 @@
   "dependencies": {
     "@notionhq/client": "^2.2.14",
     "cdate": "^0.0.7",
-    "cdate-schedule": "^0.0.1",
+    "cdate-relative": "^0.0.1",
     "file-type": "^18.7.0",
     "imagemin": "^8.0.1",
     "imagemin-webp": "^8.0.0",
