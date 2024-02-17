@@ -1,12 +1,14 @@
 <p align="center">
   <a href="https://rotion.linyo.ws">
-    <picture>
+    <picture><br><br><br>
       <source media="(prefers-color-scheme: dark)" srcset="https://github.com/linyows/rotion/blob/main/misc/rotion-dark-bg.svg?raw=true">
       <img alt="Rotion" src="https://github.com/linyows/rotion/blob/main/misc/rotion.svg?raw=true" width="300">
-    </picture>
-    <h1 align="center">Rotion</h1>
+    </picture><br><br><br>
   </a>
 </p>
+
+<strong>Rotion</strong> makes it easy to generate a Static Website using React and the Notion API.
+Therefore, images and other necessary files are stored locally. Basically, it is designed to use Next.js, but it will work with other frameworks as well.
 
 <p align="center">
   <a href="https://github.com/linyows/rotion/actions" title="actions">
@@ -16,9 +18,6 @@
     <img alt="NPM" src="http://img.shields.io/npm/v/rotion.svg?style=for-the-badge&labelColor=000000">
   </a>
 </p>
-
-<strong>Rotion</strong> makes it easy to generate a Static Website using React and the Notion API.
-Therefore, images and other necessary files are stored locally. Basically, it is designed to use Next.js, but it will work with other frameworks as well.
 
 Example
 --
