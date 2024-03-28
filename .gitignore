@@ -48,3 +48,5 @@ public
 # packages
 /packages/**/dist
 
+
+*storybook.log
