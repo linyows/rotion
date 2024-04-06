@@ -10,9 +10,11 @@ const style = Stylex.create({
     padding: '.5rem 0',
     lineHeight: 1,
     marginTop: '.4rem',
+    color: tokens.secondaryText,
   },
   box: {
     border: '1px solid #EEE',
+    borderColor: tokens.borderColor,
     borderRadius: tokens.borderRadius,
     fontSize: '.75rem',
     padding: 0,
@@ -56,6 +58,7 @@ const style = Stylex.create({
     height: '100%',
   },
   title: {
+    color: tokens.primaryText,
     fontSize: '.9rem',
     width: '100%',
     whiteSpace: 'nowrap',
@@ -65,13 +68,13 @@ const style = Stylex.create({
     marginBottom: '2px',
   },
   desc: {
-    color: '#999',
     lineHeight: '16px',
     fontSize: '12px',
     height: '32px',
     overflow: 'hidden',
   },
   url: {
+    color: tokens.primaryText,
     fontSize: '12px',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
@@ -95,7 +98,7 @@ const style = Stylex.create({
   caption: {
     margin: '.3rem .3rem 0',
     textAlign: 'left',
-    color: '#888',
+    color: tokens.thirdText,
     fontSize: '.8rem',
   },
 })
@@ -127,25 +130,25 @@ const BookmarkBlock = ({ block }: BookmarkBlockProps) => {
   }
 
   return (
-    <div className={`rotion-bookmark ${Stylex(style.bookmark)}`}>
-      <div className={`rotion-bookmark-box ${Stylex(style.box)}`} onClick={jump}>
-        <div className={`rotion-bookmark-text ${Stylex(style.text)}`}>
-          <div className={`rotion-bookmark-title ${Stylex(style.title)}`}>
+    <div className="rotion-bookmark" {...Stylex.props(style.bookmark)}>
+      <div className="rotion-bookmark-box" {...Stylex.props(style.box)} onClick={jump}>
+        <div className="rotion-bookmark-text" {...Stylex.props(style.text)}>
+          <div className="rotion-bookmark-title" {...Stylex.props(style.title)}>
             {title}
           </div>
-          <div className={`rotion-bookmark-desc ${Stylex(style.desc)}`}>
+          <div className="rotion-bookmark-desc" {...Stylex.props(style.desc)}>
             {desc}
           </div>
-          <div className={`rotion-bookmark-url ${Stylex(style.url)}`}>
-            {icon !== '' && <img className={`rotion-bookmark-favicon ${Stylex(style.favicon)}`} src={icon} width="16px" alt="icon" />}
+          <div className="rotion-bookmark-url" {...Stylex.props(style.url)}>
+            {icon !== '' && <img className="rotion-bookmark-favicon" {...Stylex.props(style.favicon)} src={icon} width="16px" alt="icon" />}
             {url}
           </div>
         </div>
-        <div className={`rotion-bookmark-image ${Stylex(style.image)}`}>
-          {image !== '' && <img className={`rotion-bookmark-img ${Stylex(style.img)}`} src={image} width="200px" height="auto" alt="image" />}
+        <div className="rotion-bookmark-image" {...Stylex.props(style.image)}>
+          {image !== '' && <img className="rotion-bookmark-img" {...Stylex.props(style.img)} src={image} width="200px" height="auto" alt="image" />}
         </div>
       </div>
-      <div className={`rotion-bookmark-caption ${Stylex(style.caption)}`}>
+      <div className="rotion-bookmark-caption" {...Stylex.props(style.caption)}>
         {block.bookmark.caption.map((v, i) => (
           <RichText textObject={v} key={`richtext-${i}`} />
         ))}

@@ -12,7 +12,25 @@ const block: BookmarkBlockObjectResponseEx = {
   },
   bookmark: {
     url: 'https://github.com',
-    caption: [],
+    caption: [
+      {
+        type: 'text',
+        text: {
+          content: 'GitHub is very cool website.',
+          link: null,
+        },
+        annotations: {
+          bold: false,
+          italic: false,
+          strikethrough: false,
+          underline: false,
+          code: false,
+          color: 'default',
+        },
+        plain_text: 'GitHub is very cool website.',
+        href: null,
+      },
+    ],
     site: {
       title: 'GitHub: Let’s build from here',
       desc: 'GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...',
