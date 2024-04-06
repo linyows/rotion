@@ -82,8 +82,22 @@ for (const key in lightColor) {
 export const tokens = Stylex.defineVars({
   fontFamily: sansSerifFamily,
   borderRadius: '4px',
-  secondaryText: 'rgba(55, 53, 47, 0.65)',
-  thirdText: 'rgba(55, 53, 47, 0.3)',
+  borderColor: {
+    default: 'rgba(220, 220, 220, 0.8)',
+    [DARK]: 'rgba(80, 80, 80, 0.8)',
+  },
+  primaryText: {
+    default: 'rgb(35, 45, 55)',
+    [DARK]: 'rgb(230, 230, 230)',
+  },
+  secondaryText: {
+    default: 'rgb(130, 140, 150)',
+    [DARK]: 'rgb(130, 130, 130)',
+  },
+  thirdText: {
+    default: 'rgb(160, 170, 180)',
+    [DARK]: 'rgb(100, 100, 100)',
+  },
 })
 
 export const link = Stylex.defineVars({
@@ -92,7 +106,10 @@ export const link = Stylex.defineVars({
   borderBottom: '1px solid rgb(50, 48, 44, 0.4)',
   borderBottomHover: '1px solid rgb(50, 48, 44, 0.2)',
   backgroundColor: 'inherit',
-  backgroundColorHover: 'rgba(227, 226, 224, 0.5)',
+  backgroundColorHover: {
+    default: 'rgba(150, 150, 150, 0.1)',
+    [DARK]: 'rgba(255, 255, 255, 0.15)',
+  },
   textDecoration: 'none',
   cursor: 'pointer',
 })
