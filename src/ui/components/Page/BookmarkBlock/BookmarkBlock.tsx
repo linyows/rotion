@@ -114,13 +114,13 @@ const BookmarkBlock = ({ block }: BookmarkBlockProps) => {
 
   if (title === '' && desc === '' && image === '') {
     return (
-      <div className={`rotion-bookmark ${Stylex(style.bookmark)}`}>
-        <div className={`rotion-bookmark-box ${Stylex(style.box)}`} onClick={jump}>
-          <div className={`rotion-bookmark-text ${Stylex(style.text)}`}>
-            <div className={`rotion-bookmark-title ${Stylex(style.title)}`}>
+      <div className="rotion-bookmark" {...Stylex.props(style.bookmark)}>
+        <div className="rotion-bookmark-box" {...Stylex.props(style.box)} onClick={jump}>
+          <div className="rotion-bookmark-text" {...Stylex.props(style.text)}>
+            <div className="rotion-bookmark-title" {...Stylex.props(style.title)}>
               {url.substring(url.lastIndexOf('/') + 1)}
             </div>
-            <div className={`rotion-bookmark-desc ${Stylex(style.desc)}`}>
+            <div className="rotion-bookmark-desc" {...Stylex.props(style.desc)}>
               {url}
             </div>
           </div>
