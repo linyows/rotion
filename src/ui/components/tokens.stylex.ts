@@ -48,10 +48,22 @@ export const tokens = Stylex.defineVars({
 })
 
 export const link = Stylex.defineVars({
-  color: 'rgb(50, 48, 44, 0.8)',
-  colorHover: 'rgb(50, 48, 44, 0.6)',
-  borderBottom: '1px solid rgb(50, 48, 44, 0.4)',
-  borderBottomHover: '1px solid rgb(50, 48, 44, 0.2)',
+  color: {
+    default: 'rgb(50, 48, 44)',
+    [DARK]: 'rgb(225, 223, 219)',
+  },
+  colorHover: {
+    default: 'rgba(50, 48, 44, 0.6)',
+    [DARK]: 'rgba(225, 223, 219, 0.6)',
+  },
+  borderBottom: {
+    default: '1px solid rgba(50, 48, 44, 0.4)',
+    [DARK]: '1px solid rgba(205, 203, 199, 0.4)',
+  },
+  borderBottomHover: {
+    default: '1px solid rgba(50, 48, 44, 0.2)',
+    [DARK]: '1px solid rgba(205, 203, 199, 0.2)',
+  },
   backgroundColor: 'inherit',
   backgroundColorHover: {
     default: 'rgba(150, 150, 150, 0.1)',
