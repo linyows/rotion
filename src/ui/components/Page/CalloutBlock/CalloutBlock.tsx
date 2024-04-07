@@ -2,7 +2,7 @@ import React from 'react'
 import { RichText } from '../RichText'
 import type { CalloutBlockProps } from './CalloutBlock.types'
 import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
+import { colors, tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
@@ -23,76 +23,84 @@ const style = Stylex.create({
     marginTop: '.15rem',
   },
   default: {
-    color: 'rgb(55, 53, 47)',
-    backgroundColor: 'rgb(241, 241, 239)',
+    color: colors.default,
+    backgroundColor: colors.bgDefault,
   },
   default_background: {
-    color: 'rgb(55, 53, 47)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: colors.default,
+    backgroundColor: colors.bgDefault,
   },
   gray: {
-    color: 'rgb(120, 119, 116)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: colors.gray,
+    border: colors.border,
   },
   gray_background: {
-    backgroundColor: 'rgb(241, 241, 239)',
+    color: colors.default,
+    backgroundColor: colors.bgDefault,
   },
   brown: {
-    color: 'rgb(159, 107, 83)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: colors.brown,
+    border: colors.border,
   },
   brown_background: {
-    backgroundColor: 'rgb(244, 238, 238)',
+    color: tokens.primaryText,
+    backgroundColor: colors.bgBrown,
   },
   orange: {
-    color: 'rgb(217, 115, 13)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: colors.orange,
+    border: colors.border,
   },
   orange_background: {
-    backgroundColor: 'rgb(251, 236, 221)',
+    color: tokens.primaryText,
+    backgroundColor: colors.bgOrange,
   },
   yellow: {
-    color: 'rgb(203, 145, 47)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: colors.yellow,
+    border: colors.border,
   },
   yellow_background: {
-    backgroundColor: 'rgb(251, 243, 219)',
+    color: tokens.primaryText,
+    backgroundColor: colors.bgYellow,
   },
   green: {
-    color: 'rgb(68, 131, 97)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
-    backgroundColor: 'inherit',
+    color: colors.green,
+    border: colors.border,
   },
   green_background: {
-    backgroundColor: 'rgb(237, 243, 236)',
+    color: tokens.primaryText,
+    backgroundColor: colors.bgGreen,
   },
   blue: {
-    color: 'rgb(51, 126, 169)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: colors.blue,
+    border: colors.border,
   },
   blue_background: {
-    backgroundColor: 'rgb(231, 243, 248)',
+    color: tokens.primaryText,
+    backgroundColor: colors.bgBlue,
   },
   purple: {
-    color: 'rgb(144, 101, 176)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: colors.purple,
+    border: colors.border,
   },
   purple_background: {
-    backgroundColor: 'rgba(244, 240, 247, 0.8)',
+    color: tokens.primaryText,
+    backgroundColor: colors.bgPurple,
   },
   pink: {
-    color: 'rgb(193, 76, 138)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: colors.pink,
+    border: colors.border,
   },
   pink_background: {
-    backgroundColor: 'rgba(249, 238, 243, 0.8)',
+    color: tokens.primaryText,
+    backgroundColor: colors.bgPink,
   },
   red: {
-    color: 'rgb(212, 76, 71)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: colors.red,
+    border: colors.border,
   },
   red_background: {
-    backgroundColor: 'rgb(253, 235, 236)',
+    color: tokens.primaryText,
+    backgroundColor: colors.bgRed,
   },
 })
 
@@ -117,11 +125,11 @@ const CalloutBlock = ({ block }: CalloutBlockProps) => {
   const { color, rich_text } = block.callout
 
   return (
-    <div className={`rotion-callout rotion-callout-color-${color} ${Stylex(style.wrapper)} ${Stylex(style[color])}`}>
-      <div className={`rotion-callout-icon ${Stylex(style.icon)}`}>
+    <div className={`rotion-callout rotion-callout-color-${color}`} {...Stylex.props(style.wrapper, style[color])}>
+      <div className="rotion-callout-icon" {...Stylex.props(style.icon)}>
         <Icon block={block} />
       </div>
-      <div className={`rotion-callout-text ${Stylex(style.text)}`}>
+      <div className="rotion-callout-text" {...Stylex.props(style.text)}>
         {rich_text.map((v, i) => (
           <RichText textObject={v} key={`richtext-${i}`} />
         ))}
