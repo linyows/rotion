@@ -11,14 +11,9 @@ const style = Stylex.create({
       default: link.borderBottom,
       ':hover': link.borderBottomHover,
     },
-    color: {
-      default: link.color,
-      ':hover': link.colorHover,
-    },
   },
   nolink: {
     fontFamily: tokens.fontFamily,
-    color: link.color,
   },
 })
 

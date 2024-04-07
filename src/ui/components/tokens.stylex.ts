@@ -76,7 +76,11 @@ export const link = Stylex.defineVars({
 export const colors = Stylex.defineVars({
   default: {
     default: 'rgb(50, 48, 44)',
-    [DARK]: 'rgb(255, 255, 255, 0.8)',
+    [DARK]: 'rgb(235, 233, 228)',
+  },
+  border: {
+    default: '1px solid rgba(50, 48, 44, 0.3)',
+    [DARK]: '1px solid rgba(205, 203, 199, 0.3)',
   },
   bgDefault: {
     default: 'rgba(227, 226, 224, 0.5)',

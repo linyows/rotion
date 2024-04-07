@@ -30,7 +30,7 @@ const style = Stylex.create({
     color: '#EB5757',
   },
   default: {
-    color: colors.default,
+    color: 'inherit',
   },
   gray: {
     color: colors.gray,
