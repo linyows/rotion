@@ -8,6 +8,7 @@ import { tokens } from '../../tokens.stylex'
 const style = Stylex.create({
   wrapper: {
     fontFamily: tokens.fontFamily,
+    color: tokens.primaryText,
   },
   hr: {
     margin: '1rem 0',
