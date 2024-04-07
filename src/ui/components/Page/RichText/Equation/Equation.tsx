@@ -2,10 +2,12 @@ import React, { useMemo } from 'react'
 import Katex from 'katex'
 import type { EquationProps } from './Equation.types'
 import Stylex from '@stylexjs/stylex'
+import { tokens } from '../../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
     display: 'block',
+    color: tokens.primaryText,
   }
 })
 
@@ -20,7 +22,7 @@ const Equation = ({ textObject }: EquationProps) => {
     })
   }, [formula])
 
-  return <span className={`rotion-equation-html ${Stylex(style.wrapper)}`} dangerouslySetInnerHTML={{ __html: html }} />
+  return <span className="rotion-equation-html" {...Stylex.props(style.wrapper)} dangerouslySetInnerHTML={{ __html: html }} />
 }
 
 export default Equation

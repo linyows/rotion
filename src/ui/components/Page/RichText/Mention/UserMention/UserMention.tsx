@@ -21,16 +21,16 @@ const UserMention = ({ payload }: UserMentionProps) => {
 
   if ('type' in user) {
     return (
-      <span className={`rotion-mention-user ${Stylex(styles.wrapper)}`}>
-        <span className={`rotion-mention-atsign ${Stylex(styles.atsign)}`}>@</span>
+      <span className="rotion-mention-user" {...Stylex.props(styles.wrapper)}>
+        <span className="rotion-mention-atsign" {...Stylex.props(styles.atsign)}>@</span>
         {user.name}
       </span>
     )
   }
 
   return (
-    <span className={`rotion-mention-user ${Stylex(styles.wrapper)}`}>
-      <span className={`rotion-mention-atsign ${Stylex(styles.atsign)}`}>@</span>
+    <span className="rotion-mention-user" {...Stylex.props(styles.wrapper)}>
+      <span className="rotion-mention-atsign" {...Stylex.props(styles.atsign)}>@</span>
       {payload.plain_text.replace('@', '')}
     </span>
   )

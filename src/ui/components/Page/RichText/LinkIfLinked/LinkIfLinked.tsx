@@ -16,17 +16,29 @@ const style = Stylex.create({
       ':hover': link.colorHover,
     },
   },
+  nolink: {
+    fontFamily: tokens.fontFamily,
+    color: link.color,
+  },
 })
 
 export const TextLink = ({ textObject, children }: TextLinkProps) => {
   return (
-    <a className={`rotion-text-link ${Stylex(style.wrapper)}`} href={textObject.href as string} rel="noreferrer" target="_blank">
+    <a className="rotion-text-link" {...Stylex.props(style.wrapper)} href={textObject.href as string} rel="noreferrer" target="_blank">
       {children}
     </a>
   )
 }
 
+const TextNoLink = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <span {...Stylex.props(style.nolink)}>
+      {children}
+    </span>
+  )
+}
+
 // Conditional Wrapper
-const LinkIfLinked = ({ condition, textObject, children }: LinkIfLinkedProps) => condition ? TextLink({ textObject, children }) : children
+const LinkIfLinked = ({ condition, textObject, children }: LinkIfLinkedProps) => condition ? TextLink({ textObject, children }) : TextNoLink({ children })
 
 export default LinkIfLinked
