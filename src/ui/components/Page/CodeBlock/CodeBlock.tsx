@@ -18,7 +18,7 @@ const style = Stylex.create({
   caption: {
     margin: '.3rem .3rem 0',
     textAlign: 'left',
-    color: '#888',
+    color: tokens.secondaryText,
     fontSize: '.95rem',
   },
 })
@@ -40,9 +40,9 @@ const CodeBlock = ({ block }: CodeBlockProps) => {
   })
 
   return (
-    <div className={`rotion-code ${Stylex(style.wrapper)}`}>
+    <div className="rotion-code" {...Stylex.props(style.wrapper)}>
       {els}
-      <div className={`rotion-code-caption ${Stylex(style.caption)}`}>
+      <div className="rotion-code-caption" {...Stylex.props(style.caption)}>
         {captions}
       </div>
     </div>

@@ -3,12 +3,13 @@ import type { CodeProps } from './Code.types'
 import Stylex from '@stylexjs/stylex'
 import mermaid from 'mermaid'
 import Prism from 'prismjs'
+import { tokens, code } from '../../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
-    borderRadius: '4px',
+    borderRadius: tokens.borderRadius,
     padding: '.6rem 1rem',
-    backgroundColor: '#f5f2f0',
+    backgroundColor: code.backgroundColor,
     margin: '1rem 0',
     fontSize: '.8rem',
     position: 'relative',
@@ -19,7 +20,7 @@ const style = Stylex.create({
     position: 'absolute',
     top: '.5rem',
     left: '.8rem',
-    color: '#999',
+    color: tokens.primaryText,
     fontSize: '.75rem',
     textTransform: 'capitalize',
     display: 'block',
@@ -27,10 +28,12 @@ const style = Stylex.create({
 })
 
 const Code = ({ children, language = 'text' }: CodeProps) => {
+  const isDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
   const codeRef = React.createRef<HTMLPreElement>()
   const highlight = async (language: string) => {
     if (codeRef.current) {
       if (language === 'mermaid') {
+        mermaid.initialize({ theme: isDark() ? 'dark' : 'neutral' })
         mermaid.init(undefined, codeRef.current as HTMLPreElement)
       } else {
         Prism.highlightElement(codeRef.current as Element)
@@ -48,8 +51,8 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
   }, [language, ''])
 
   return (
-    <div className={`rotion-code-text ${Stylex(style.wrapper)}`} onMouseOver={showLang} onMouseOut={hideLang}>
-      {show && <div className={`rotion-code-lang ${Stylex(style.lang)}`}>
+    <div className="rotion-code-text" {...Stylex.props(style.wrapper)} onMouseOver={showLang} onMouseOut={hideLang}>
+      {show && <div className="rotion-code-lang" {...Stylex.props(style.lang)}>
         {language}
       </div>}
       <pre className={cl}>
