@@ -44,7 +44,7 @@ const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabase
 
   if (!href) {
     return (
-      <div className={`rotion-childdatabase-link ${Stylex(style.link)}`}>
+      <div className="rotion-childdatabase-link" {...Stylex.props(style.link)}>
         {children}
       </div>
     )
@@ -55,14 +55,14 @@ const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabase
       query = {}
     }
     return (
-      <Link className={`rotion-childdatabase-link ${Stylex(style.link)}`} href={{ pathname: `${path}${file}`, query }}>
+      <Link className="rotion-childdatabase-link" {...Stylex.props(style.link)} href={{ pathname: `${path}${file}`, query }}>
         {children}
       </Link>
     )
   }
 
   return (
-    <a className={`rotion-childdatabase-link ${Stylex(style.link)}`} href={`${path}${file}${queryToString(query)}`}>
+    <a className="rotion-childdatabase-link" {...Stylex.props(style.link)} href={`${path}${file}${queryToString(query)}`}>
       {children}
     </a>
   )
@@ -76,13 +76,13 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
   const title = block.child_database.title
   if (block.database === null || block.database.icon === undefined || block.database.icon === null) {
     return (
-      <div className={`rotion-childdatabase ${Stylex(style.wrapper)}`}>
+      <div className="rotion-childdatabase" {...Stylex.props(style.wrapper)}>
         <ChildDatabaseLink block={block} href={href} link={link} query={query}>
-          <span className={`rotion-childdatabase-icon ${Stylex(style.icon)}`}>
+          <span className="rotion-childdatabase-icon" {...Stylex.props(style.icon)}>
             {'️-'}
           </span>
           <div>
-            <span className={`rotion-childdatabase-title ${Stylex(style.title)}`}>
+            <span className="rotion-childdatabase-title" {...Stylex.props(style.title)}>
               {title}
             </span>
           </div>
@@ -93,13 +93,13 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
 
   if (block.database.icon.type === 'emoji') {
     return (
-      <div className={`rotion-childdatabase ${Stylex(style.wrapper)}`}>
+      <div className="rotion-childdatabase" {...Stylex.props(style.wrapper)}>
         <ChildDatabaseLink block={block} href={href} link={link} query={query}>
-          <span className={`rotion-childdatabase-icon ${Stylex(style.icon)}`}>
+          <span className="rotion-childdatabase-icon" {...Stylex.props(style.icon)}>
             {block.database.icon.emoji}
           </span>
           <div>
-            <span className={`rotion-childdatabase-title ${Stylex(style.title)}`}>
+            <span className="rotion-childdatabase-title" {...Stylex.props(style.title)}>
               {title}
             </span>
           </div>
@@ -110,13 +110,13 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
 
   // type external or file
   return (
-    <div className={`rotion-childdatabase ${Stylex(style.wrapper)}`}>
+    <div className="rotion-childdatabase" {...Stylex.props(style.wrapper)}>
       <ChildDatabaseLink block={block} href={href} link={link} query={query}>
-        <span className={`rotion-childdatabase-icon ${Stylex(style.icon)}`}>
+        <span className="rotion-childdatabase-icon" {...Stylex.props(style.icon)}>
           <img className="rotion-childdatabase-icon-img" src={block.database.icon.src} alt="Icon" />
         </span>
         <div>
-          <span className={`rotion-childdatabase-title ${Stylex(style.title)}`}>
+          <span className="rotion-childdatabase-title" {...Stylex.props(style.title)}>
             {title}
           </span>
         </div>
