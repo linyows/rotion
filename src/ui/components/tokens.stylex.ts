@@ -47,6 +47,13 @@ export const tokens = Stylex.defineVars({
   },
 })
 
+export const code = Stylex.defineVars({
+  backgroundColor: {
+    default: '#f5f2f0',
+    [DARK]: '#2d2d2d',
+  },
+})
+
 export const link = Stylex.defineVars({
   color: {
     default: 'rgb(50, 48, 44)',
