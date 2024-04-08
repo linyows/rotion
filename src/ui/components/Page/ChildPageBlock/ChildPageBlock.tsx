@@ -44,7 +44,7 @@ const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProp
 
   if (!href) {
     return (
-      <div className={`rotion-childpage-link ${Stylex(style.link)}`}>
+      <div className="rotion-childpage-link" {...Stylex.props(style.link)}>
         {children}
       </div>
     )
@@ -55,13 +55,13 @@ const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProp
       query = {}
     }
     return (
-      <Link className={`rotion-childpage-link ${Stylex(style.link)}`} href={{ pathname: `${path}${file}`, query }}>
+      <Link className="rotion-childpage-link" {...Stylex.props(style.link)} href={{ pathname: `${path}${file}`, query }}>
         {children}
       </Link>
     )
   }
   return (
-    <a className={`rotion-childpage-link ${Stylex(style.link)}`} href={`${path}${file}${queryToString(query)}`}>
+    <a className="rotion-childpage-link" {...Stylex.props(style.link)} href={`${path}${file}${queryToString(query)}`}>
       {children}
     </a>
   )
@@ -75,13 +75,13 @@ const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
   const title = block.child_page.title
   if (block.page === null || block.page.icon === undefined || block.page.icon === null) {
     return (
-      <div className={`rotion-childpage ${Stylex(style.wrapper)}`}>
+      <div className="rotion-childpage" {...Stylex.props(style.wrapper)}>
         <ChildPageLink block={block} href={href} link={link} query={query}>
-          <span className={`rotion-childpage-icon ${Stylex(style.icon)}`}>
+          <span className="rotion-childpage-icon" {...Stylex.props(style.icon)}>
             {'️-'}
           </span>
           <div>
-            <span className={`rotion-childpage-title ${Stylex(style.title)}`}>
+            <span className="rotion-childpage-title" {...Stylex.props(style.title)}>
               {title}
             </span>
           </div>
@@ -92,13 +92,13 @@ const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
 
   if (block.page.icon.type === 'emoji') {
     return (
-      <div className={`rotion-childpage ${Stylex(style.wrapper)}`}>
+      <div className="rotion-childpage" {...Stylex.props(style.wrapper)}>
         <ChildPageLink block={block} href={href} link={link} query={query}>
-          <span className={`rotion-childpage-icon ${Stylex(style.icon)}`}>
+          <span className="rotion-childpage-icon" {...Stylex.props(style.icon)}>
             {block.page.icon.emoji}
           </span>
           <div>
-            <span className={`rotion-childpage-title ${Stylex(style.title)}`}>
+            <span className="rotion-childpage-title" {...Stylex.props(style.title)}>
               {title}
             </span>
           </div>
@@ -109,13 +109,13 @@ const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
 
   // type external or file
   return (
-    <div className={`rotion-childpage ${Stylex(style.wrapper)}`}>
+    <div className="rotion-childpage" {...Stylex.props(style.wrapper)}>
       <ChildPageLink block={block} href={href} link={link} query={query}>
-        <span className={`rotion-childpage-icon ${Stylex(style.icon)}`}>
+        <span className="rotion-childpage-icon" {...Stylex.props(style.icon)}>
           <img className="rotion-childpage-icon-img" src={block.page.icon.src} alt="Icon" />
         </span>
         <div>
-          <span className={`rotion-childpage-title ${Stylex(style.title)}`}>
+          <span className="rotion-childpage-title" {...Stylex.props(style.title)}>
             {title}
           </span>
         </div>
