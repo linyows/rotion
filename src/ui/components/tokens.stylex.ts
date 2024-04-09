@@ -29,6 +29,7 @@ const sansSerifFamily = [
 export const tokens = Stylex.defineVars({
   fontFamily: sansSerifFamily,
   borderRadius: '4px',
+  lineHeight: '1.5',
   borderColor: {
     default: 'rgba(220, 220, 220, 0.8)',
     [DARK]: 'rgba(80, 80, 80, 0.8)',
