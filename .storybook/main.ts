@@ -8,7 +8,6 @@ const config: StorybookConfig = {
   ],
   addons: [
     "storybook-dark-mode",
-    "@storybook/addon-backgrounds",
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
