@@ -33,9 +33,9 @@ const styles = Stylex.create({
 const LinkPreviewMention = ({ url, text }: LinkPreviewMemtionProps) => {
   if (url.includes('slack.com')) {
     return (
-      <a className="rotion-mention-linkpreview" {...Stylex.props(styles.wrapper)} href={url} rel="noreferrer" target="_blank">
-        <PageIcon name='slack' {...Stylex.props(styles.icon)} width='17px' height='17px' />
-        <span className="rotion-mention-linkprevew-text" {...Stylex.props(styles.text)}>
+      <a className={`rotion-mention-linkpreview ${Stylex(styles.wrapper)}`} href={url} rel="noreferrer" target="_blank">
+        <PageIcon name="slack" className={Stylex(styles.icon)} width='17px' height='17px' />
+        <span className={`rotion-mention-linkprevew-text ${Stylex(styles.text)}`}>
           Message in Slack
         </span>
       </a>
@@ -44,9 +44,9 @@ const LinkPreviewMention = ({ url, text }: LinkPreviewMemtionProps) => {
 
   if (url.includes('figma.com')) {
     return (
-      <a className="rotion-mention-linkpreview" {...Stylex.props(styles.wrapper)} href={url} rel="noreferrer" target="_blank">
-        <PageIcon name='figma' {...Stylex.props(styles.icon)} width='10px' height='16px' />
-        <span className="rotion-mention-linkprevew-text" {...Stylex.props(styles.text)}>
+      <a className={`rotion-mention-linkpreview ${Stylex(styles.wrapper)}`} href={url} rel="noreferrer" target="_blank">
+        <PageIcon name='figma' className={Stylex(styles.icon)} width='10px' height='16px' />
+        <span className={`rotion-mention-linkprevew-text ${Stylex(styles.text)}`}>
           {pathBasename(text).replace(/-/g, ' ')}
         </span>
       </a>
@@ -54,9 +54,9 @@ const LinkPreviewMention = ({ url, text }: LinkPreviewMemtionProps) => {
   }
 
   return (
-    <a className="rotion-mention-linkpreview" {...Stylex.props(styles.wrapper)} href={url} rel="noreferrer" target="_blank">
-      {url.includes('github.com') && <PageIcon name='github' {...Stylex.props(styles.icon)} width='17px' height='17px' />}
-      <span className="rotion-mention-linkprevew-text" {...Stylex.props(styles.text)}>
+    <a className={`rotion-mention-linkpreview ${Stylex(styles.wrapper)}`} href={url} rel="noreferrer" target="_blank">
+      {url.includes('github.com') && <PageIcon name='github' className={Stylex(styles.icon)} width='17px' height='17px' />}
+      <span className={`rotion-mention-linkprevew-text ${Stylex(styles.text)}`}>
         {pathBasename(text)}
       </span>
     </a>

@@ -51,8 +51,8 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
   }, [language, ''])
 
   return (
-    <div className="rotion-code-text" {...Stylex.props(style.wrapper)} onMouseOver={showLang} onMouseOut={hideLang}>
-      {show && <div className="rotion-code-lang" {...Stylex.props(style.lang)}>
+    <div className={`rotion-code-text ${Stylex(style.wrapper)}`} onMouseOver={showLang} onMouseOut={hideLang}>
+      {show && <div className={`rotion-code-lang ${Stylex(style.lang)}`}>
         {language}
       </div>}
       <pre className={cl}>

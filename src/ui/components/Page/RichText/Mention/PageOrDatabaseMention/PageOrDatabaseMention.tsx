@@ -23,7 +23,7 @@ const styles = Stylex.create({
     width: '.7em',
     height: '.7em',
     display: 'block',
-    fill: 'rgba(55, 53, 47, 1)',
+    fill: tokens.primaryText,
     flexShrink: 0,
     position: 'absolute',
     right: '-0.1em',
@@ -36,13 +36,13 @@ const styles = Stylex.create({
 
 const PageOrDatabaseMention = ({ mention }: PageOrDatabaseMentionProps) => {
   return (
-    <span className="rotion-mention-page" {...Stylex.props(styles.wrapper)}>
-      <span className="rotion-mention-page-icon" {...Stylex.props(styles.icon)}>
+    <span className={`rotion-mention-page ${Stylex(styles.wrapper)}`}>
+      <span className={`rotion-mention-page-icon ${Stylex(styles.icon)}`}>
         {mention.icon.type === 'emoji' && mention.icon.emoji}
-        {mention.icon.type !== 'emoji' && <img src={mention.icon.src} className="rotion-mention-page-icon" alt='icon' {...Stylex.props(styles.img)} />}
-        <PageIcon name='link' className="rotion-mention-page-arrow" {...Stylex.props(styles.arrow)} />
+        {mention.icon.type !== 'emoji' && <img src={mention.icon.src} className={`rotion-mention-page-icon ${Stylex(styles.img)}`} alt="icon" />}
+        <PageIcon name="link" className={`rotion-mention-page-arrow ${Stylex(styles.arrow)}`} />
       </span>
-      <span className="rotion-mention-page-title" {...Stylex.props(styles.text)}>
+      <span className={`rotion-mention-page-title ${Stylex(styles.text)}`}>
         {mention.name}
       </span>
     </span>

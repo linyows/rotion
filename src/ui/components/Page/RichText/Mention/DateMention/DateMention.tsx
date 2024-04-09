@@ -39,8 +39,8 @@ const DateOrDateTime = ({ dateOrDateTime, prefix }: endMentionProps) => {
 const DateMention = ({ date }: DateMentionProps) => {
   const { start, end, time_zone } = date
   return (
-    <span className="rotion-mention-date" {...Stylex.props(styles.wrapper)}>
-      <span className="rotion-mention-atsign" {...Stylex.props(styles.atsign)}>
+    <span className={`rotion-mention-date ${Stylex(styles.wrapper)}`}>
+      <span className={`rotion-mention-atsign ${Stylex(styles.atsign)}`}>
         @
       </span>
       <DateOrDateTime dateOrDateTime={start} />

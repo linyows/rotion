@@ -40,9 +40,9 @@ const CodeBlock = ({ block }: CodeBlockProps) => {
   })
 
   return (
-    <div className="rotion-code" {...Stylex.props(style.wrapper)}>
+    <div className={`rotion-code ${Stylex(style.wrapper)}`}>
       {els}
-      <div className="rotion-code-caption" {...Stylex.props(style.caption)}>
+      <div className={`rotion-code-caption ${Stylex(style.caption)}`}>
         {captions}
       </div>
     </div>

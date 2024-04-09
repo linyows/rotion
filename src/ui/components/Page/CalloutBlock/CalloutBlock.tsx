@@ -125,11 +125,11 @@ const CalloutBlock = ({ block }: CalloutBlockProps) => {
   const { color, rich_text } = block.callout
 
   return (
-    <div className={`rotion-callout rotion-callout-color-${color}`} {...Stylex.props(style.wrapper, style[color])}>
-      <div className="rotion-callout-icon" {...Stylex.props(style.icon)}>
+    <div className={`rotion-callout rotion-callout-color-${color} ${Stylex(style.wrapper, style[color])}`}>
+      <div className={`rotion-callout-icon ${Stylex(style.icon)}`}>
         <Icon block={block} />
       </div>
-      <div className="rotion-callout-text" {...Stylex.props(style.text)}>
+      <div className={`rotion-callout-text ${Stylex(style.text)}`}>
         {rich_text.map((v, i) => (
           <RichText textObject={v} key={`richtext-${i}`} />
         ))}

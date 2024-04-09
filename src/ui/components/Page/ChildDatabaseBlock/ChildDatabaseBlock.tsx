@@ -14,12 +14,9 @@ const style = Stylex.create({
     gridTemplate: 'repeat(1, 1fr) / 1.5rem 1fr',
     gap: '.4rem',
     margin: '.2rem 0 0',
-    padding: '.6rem .3rem',
+    padding: '.3rem',
     textDecoration: link.textDecoration,
-    color: {
-      default: link.color,
-      ':hover': link.colorHover,
-    },
+    color: link.color,
     alignItems: 'top',
     backgroundColor: {
       default: link.backgroundColor,
@@ -28,11 +25,10 @@ const style = Stylex.create({
     borderRadius: tokens.borderRadius,
   },
   title: {
-    borderBottom: '1px solid #ddd',
+    borderBottom: link.borderBottom,
     verticalAlign: 'top',
   },
   icon: {
-    height: '24px',
     overflow: 'hidden',
   },
 })
@@ -44,7 +40,7 @@ const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabase
 
   if (!href) {
     return (
-      <div className="rotion-childdatabase-link" {...Stylex.props(style.link)}>
+      <div className={`rotion-childdatabase-link ${Stylex(style.link)}`}>
         {children}
       </div>
     )
@@ -55,14 +51,14 @@ const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabase
       query = {}
     }
     return (
-      <Link className="rotion-childdatabase-link" {...Stylex.props(style.link)} href={{ pathname: `${path}${file}`, query }}>
+      <Link className={`rotion-childdatabase-link ${Stylex(style.link)}`} href={{ pathname: `${path}${file}`, query }}>
         {children}
       </Link>
     )
   }
 
   return (
-    <a className="rotion-childdatabase-link" {...Stylex.props(style.link)} href={`${path}${file}${queryToString(query)}`}>
+    <a className={`rotion-childdatabase-link ${Stylex(style.link)}`} href={`${path}${file}${queryToString(query)}`}>
       {children}
     </a>
   )
@@ -76,13 +72,13 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
   const title = block.child_database.title
   if (block.database === null || block.database.icon === undefined || block.database.icon === null) {
     return (
-      <div className="rotion-childdatabase" {...Stylex.props(style.wrapper)}>
+      <div className={`rotion-childdatabase ${Stylex(style.wrapper)}`}>
         <ChildDatabaseLink block={block} href={href} link={link} query={query}>
-          <span className="rotion-childdatabase-icon" {...Stylex.props(style.icon)}>
+          <span className={`rotion-childdatabase-icon ${Stylex(style.icon)}`}>
             {'️-'}
           </span>
           <div>
-            <span className="rotion-childdatabase-title" {...Stylex.props(style.title)}>
+            <span className={`rotion-childdatabase-title ${Stylex(style.title)}`}>
               {title}
             </span>
           </div>
@@ -93,13 +89,13 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
 
   if (block.database.icon.type === 'emoji') {
     return (
-      <div className="rotion-childdatabase" {...Stylex.props(style.wrapper)}>
+      <div className={`rotion-childdatabase ${Stylex(style.wrapper)}`}>
         <ChildDatabaseLink block={block} href={href} link={link} query={query}>
-          <span className="rotion-childdatabase-icon" {...Stylex.props(style.icon)}>
+          <span className={`rotion-childdatabase-icon ${Stylex(style.icon)}`}>
             {block.database.icon.emoji}
           </span>
           <div>
-            <span className="rotion-childdatabase-title" {...Stylex.props(style.title)}>
+            <span className={`rotion-childdatabase-title ${Stylex(style.title)}`}>
               {title}
             </span>
           </div>
@@ -110,13 +106,13 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
 
   // type external or file
   return (
-    <div className="rotion-childdatabase" {...Stylex.props(style.wrapper)}>
+    <div className={`rotion-childdatabase ${Stylex(style.wrapper)}`}>
       <ChildDatabaseLink block={block} href={href} link={link} query={query}>
-        <span className="rotion-childdatabase-icon" {...Stylex.props(style.icon)}>
+        <span className={`rotion-childdatabase-icon ${Stylex(style.icon)}`}>
           <img className="rotion-childdatabase-icon-img" src={block.database.icon.src} alt="Icon" />
         </span>
         <div>
-          <span className="rotion-childdatabase-title" {...Stylex.props(style.title)}>
+          <span className={`rotion-childdatabase-title ${Stylex(style.title)}`}>
             {title}
           </span>
         </div>

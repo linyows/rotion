@@ -19,7 +19,7 @@ const style = Stylex.create({
 
 export const TextLink = ({ textObject, children }: TextLinkProps) => {
   return (
-    <a className="rotion-text-link" {...Stylex.props(style.wrapper)} href={textObject.href as string} rel="noreferrer" target="_blank">
+    <a className={`rotion-text-link ${Stylex(style.wrapper)}`} href={textObject.href as string} rel="noreferrer" target="_blank">
       {children}
     </a>
   )
@@ -27,7 +27,7 @@ export const TextLink = ({ textObject, children }: TextLinkProps) => {
 
 const TextNoLink = ({ children }: { children: React.ReactNode }) => {
   return (
-    <span {...Stylex.props(style.nolink)}>
+    <span className={Stylex(style.nolink)}>
       {children}
     </span>
   )

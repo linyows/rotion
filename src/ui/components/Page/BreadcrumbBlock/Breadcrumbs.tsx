@@ -14,31 +14,35 @@ const style = Stylex.create({
     paddingRight: '.4rem',
     paddingBottom: '.2rem',
   },
+  emoji: {
+    verticalAlign: 'middle',
+    paddingRight: '.4rem',
+    paddingBottom: '.25rem',
+  },
   slash: {
     fontSize: '.9rem',
     opacity: '.5',
     padding: '0 .3rem',
     color: tokens.secondaryText,
   },
-  title: {
-  },
+  title: {},
 })
 
 // Note: This omponent cut out from BreadcrumbBlock. To call the breadcrumb list from other than Page. So, Don't integrate.
 const Breadcrumbs = ({ list, link, hrefs, query }: BreadcrumbsProps) => {
   const max = list.length
   return (
-    <div className="rotion-breadcrumb" {...Stylex.props(style.wrapper)}>
+    <div className={`rotion-breadcrumb ${Stylex(style.wrapper)}`}>
       {list.map((v: Breadcrumb, i: number) => (
         <span key={`crumb-${i}`}>
           <LinkedBreadcrumbIfLinked breadcrumb={v} href={hrefs === undefined ? undefined : hrefs[i]} link={link} query={query}>
-            {v.icon.type === 'emoji' && <span className="rotion-breadcrumb-emoji">{v.icon.emoji}</span>}
-            {v.icon.type !== 'emoji' && <img className="rotion-breadcrumb-icon" {...Stylex.props(style.icon)} src={v.icon.src} width={20} height={20} alt={v.name} />}
-            <span className="rotion-breadcrumb-title" {...Stylex.props(style.title)}>
+            {v.icon.type === 'emoji' && <span className={`rotion-breadcrumb-emoji ${Stylex(style.emoji)}`}>{v.icon.emoji}</span>}
+            {v.icon.type !== 'emoji' && <img className={`rotion-breadcrumb-icon ${Stylex(style.icon)}`} src={v.icon.src} width={20} height={20} alt={v.name} />}
+            <span className={`rotion-breadcrumb-title ${Stylex(style.title)}`}>
               {v.name}
             </span>
           </LinkedBreadcrumbIfLinked>
-          {i + 1 < max && <span className="rotion-breadcrumb-slash" {...Stylex.props(style.slash)}>/</span>}
+          {i + 1 < max && <span className={`rotion-breadcrumb-slash ${Stylex(style.slash)}`}>/</span>}
         </span>
       ))}
     </div>
