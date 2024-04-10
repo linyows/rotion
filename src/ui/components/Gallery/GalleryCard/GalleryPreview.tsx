@@ -1,30 +1,29 @@
 import React from 'react'
 import Stylex from '@stylexjs/stylex'
+import { gallery } from '../../tokens.stylex'
+
+const heightList = {
+  small: '100px',
+  medium: '146px',
+  large: '180px',
+}
 
 const style = Stylex.create({
   wrapper: {
     aspectRatio: '16 / 9',
     overflow: 'hidden',
+    borderBottom: gallery.imageBorderBottom,
+    width: '100%',
   },
   fit: {
     objectFit: 'contain',
     objectPosition: 'center 50%',
-    borderBottom: '1px solid rgba(55, 53, 47, 0.09)',
   },
   nofit: {
     objectFit: 'cover',
-    objectPosition: 'top 50%',
+    objectPosition: 'top center',
   },
-  small: {
-    height: '101.25px',
-    width: '100%',
-  },
-  medium: {
-    height: '146.25px',
-    width: '100%',
-  },
-  large: {
-    height: '180px',
+  image: {
     width: '100%',
   },
 })
@@ -36,15 +35,10 @@ export interface GalleryPreviewProps {
 }
 
 const GalleryPreview = ({ src, size, fit }: GalleryPreviewProps) => {
-  const classArray = [Stylex(style[size])]
-  if (fit) {
-    classArray.push(Stylex(style.fit))
-  } else {
-    classArray.push(Stylex(style.nofit))
-  }
+  const height = heightList[size]
   return (
-    <div className={`rotion-gallery-preview ${Stylex(style.wrapper)}`}>
-      {src && <img src={src} className={classArray.join(' ')} />}
+    <div className={`rotion-gallery-preview ${Stylex(style.wrapper)}`} style={{ height }}>
+      {src && <img src={src} className={Stylex(style.image, fit ? style.fit : style.nofit)} style={{ height }} />}
     </div>
   )
 }

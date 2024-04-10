@@ -23,3 +23,42 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+export const ImageFit: Story = {
+  args: {
+    keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags'],
+    db: response as FetchDatabaseRes,
+    href: '/blog/[id]',
+    link: undefined,
+    query: undefined,
+    preview: 'cover',
+    size: undefined,
+    fit: false,
+  }
+}
+
+export const SmallSize: Story = {
+  args: {
+    keys: ['Name', 'Tags'],
+    db: response as FetchDatabaseRes,
+    href: '/blog/[id]',
+    link: undefined,
+    query: undefined,
+    preview: 'cover',
+    size: 'small',
+    fit: true,
+  }
+}
+
+export const SmallLarge: Story = {
+  args: {
+    keys: ['Name', 'Tags'],
+    db: response as FetchDatabaseRes,
+    href: '/blog/[id]',
+    link: undefined,
+    query: undefined,
+    preview: 'cover',
+    size: 'large',
+    fit: true,
+  }
+}

@@ -178,3 +178,25 @@ export const colors = Stylex.defineVars({
     [DARK]: 'rgb(82, 46, 42)',
   },
 })
+
+export const gallery = Stylex.defineVars({
+  boxShadow: {
+    default: 'rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px',
+    [DARK]: 'rgba(15, 15, 15, 0.2) 0px 0px 0px 1px, rgba(15, 15, 15, 0.2) 0px 2px 4px',
+  },
+  background: {
+    default: 'rgba(55, 53, 47, 0.005)',
+    [DARK]: 'rgba(255, 255, 255, 0.1)',
+  },
+  backgroundHover: {
+    default: 'rgba(55, 53, 47, 0.03)',
+    [DARK]:  'rgb(47, 47, 47)',
+  },
+  imageBorderBottom: {
+    default: '1px solid rgba(55, 53, 47, 0.1)',
+    [DARK]: '1px solid rgba(255, 255, 255, 0.1)',
+  },
+  gridTemplateColumnsSmall: 'repeat(auto-fill, minmax(180px, 1fr))',
+  gridTemplateColumnsMedium: 'repeat(auto-fill, minmax(260px, 1fr))',
+  gridTemplateColumnsLarge: 'repeat(auto-fill, minmax(320px, 1fr))',
+})

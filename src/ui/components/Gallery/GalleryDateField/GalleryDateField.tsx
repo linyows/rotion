@@ -7,10 +7,10 @@ const style = Stylex.create({
   wrapper: {
     fontFamily: tokens.fontFamily,
     width: '100%',
-    padding: '8px 10px',
+    padding: '5px 10px 0',
     display: 'flex',
     alignItems: 'center',
-    fontSize: '12px',
+    fontSize: '.8rem',
     whiteSpace: 'nowrap',
   },
 })

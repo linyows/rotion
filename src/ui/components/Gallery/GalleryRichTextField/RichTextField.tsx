@@ -7,7 +7,7 @@ import { tokens } from '../../tokens.stylex'
 const style = Stylex.create({
   wrapper: {
     fontFamily: tokens.fontFamily,
-    padding: '0 10px 8px',
+    padding: '5px 10px 0',
     display: 'block',
     fontSize: '13px',
     overflow: 'hidden',
