@@ -34,6 +34,10 @@ export const tokens = Stylex.defineVars({
     default: 'rgba(220, 220, 220, 0.8)',
     [DARK]: 'rgba(80, 80, 80, 0.8)',
   },
+  border: {
+    default: '1px solid rgb(230, 230, 230)',
+    [DARK]: '1px solid rgb(70, 70, 70)',
+  },
   primaryText: {
     default: 'rgb(35, 45, 55)',
     [DARK]: 'rgb(230, 230, 230)',
@@ -52,6 +56,13 @@ export const code = Stylex.defineVars({
   backgroundColor: {
     default: '#f5f2f0',
     [DARK]: '#2d2d2d',
+  },
+})
+
+export const table = Stylex.defineVars({
+  headerBackgroundColor: {
+    default: 'rgba(150, 150, 150, 0.1)',
+    [DARK]: 'rgba(255, 255, 255, 0.15)',
   },
 })
 
