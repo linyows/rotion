@@ -3,7 +3,7 @@ import { RichText } from '../RichText'
 import type { ParagraphBlockObjectResponse } from '../../../../exporter'
 import type { ToggleBlockProps } from './ToggleBlock.types'
 import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
+import { link, tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
@@ -13,6 +13,7 @@ const style = Stylex.create({
     width: '100%',
     marginTop: '.6rem',
     lineHeight: 1.8,
+    color: tokens.primaryText,
   },
   triangle: {
     transition: 'background 20ms ease-in 0s',
@@ -23,13 +24,13 @@ const style = Stylex.create({
     justifyContent: 'center',
     width: '24px',
     height: '24px',
-    borderRadius: '3px',
-    padding: '4px',
+    borderRadius: tokens.borderRadius,
+    padding: '2px',
     marginTop: 0,
     marginRight: '4px',
     backgroundColor: {
       default: 'inherit',
-      ':hover': '#eee',
+      ':hover': link.backgroundColorHover,
     },
   },
   text: {
@@ -38,7 +39,7 @@ const style = Stylex.create({
     width: '0.6875em',
     height: '0.6875em',
     display: 'block',
-    fill: 'inherit',
+    fill: tokens.primaryText,
     flexShrink: 0,
     backfaceVisibility: 'hidden',
     transition: 'transform 200ms ease-out 0s',

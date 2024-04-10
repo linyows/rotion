@@ -3,12 +3,13 @@ import RichText from '../RichText/RichText'
 import type { TableRowBlockObjectResponse } from '../../../../exporter'
 import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
 import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
+import { table, tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
     fontFamily: tokens.fontFamily,
     paddingTop: '.6rem',
+    color: tokens.primaryText,
   },
   table: {
     borderCollapse: 'collapse',
@@ -17,7 +18,7 @@ const style = Stylex.create({
     width: '100%',
   },
   td: {
-    border: '1px solid rgb(233, 233, 231)',
+    border: tokens.border,
     margin: 0,
     padding: '.3rem',
   },
@@ -25,8 +26,8 @@ const style = Stylex.create({
     padding: '.2rem .4rem',
   },
   tdHeader: {
-    border: '1px solid rgb(233, 233, 231)',
-    backgroundColor: 'rgb(247, 246, 243)',
+    border: tokens.border,
+    backgroundColor: table.headerBackgroundColor,
     margin: 0,
     padding: '.3rem',
     fontWeight: 500,

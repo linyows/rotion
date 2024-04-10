@@ -7,6 +7,7 @@ const style = Stylex.create({
   wrapper: {
     fontFamily: tokens.fontFamily,
     textDecoration: link.textDecoration,
+    color: link.color,
     borderBottom: {
       default: link.borderBottom,
       ':hover': link.borderBottomHover,

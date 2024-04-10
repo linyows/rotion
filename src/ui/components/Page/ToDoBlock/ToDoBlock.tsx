@@ -29,6 +29,7 @@ const style = Stylex.create({
     minWidth: '1px',
     display: 'flex',
     flexDirection: 'column',
+    color: tokens.primaryText,
   },
   textInner: {
     maxWidth: '100%',
@@ -40,8 +41,8 @@ const style = Stylex.create({
   },
   textInnerChecked: {
     textDecorationLine: 'line-through',
-    textDecorationColor: '#999',
-    color: '#888',
+    textDecorationColor: tokens.thirdText,
+    color: tokens.secondaryText,
   },
   checked: {
     width: '16px',
@@ -85,7 +86,7 @@ const style = Stylex.create({
     width: '100%',
     height: '100%',
     display: 'block',
-    fill: 'inherit',
+    fill: tokens.primaryText,
     flexShrink: 0,
     backfaceVisibility: 'hidden',
   },

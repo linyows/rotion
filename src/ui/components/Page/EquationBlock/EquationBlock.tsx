@@ -9,6 +9,7 @@ const style = Stylex.create({
     fontFamily: tokens.fontFamily,
     width: '100%',
     textAlign: 'center',
+    color: tokens.primaryText,
   },
   html: {
     margin: '.5rem auto',
