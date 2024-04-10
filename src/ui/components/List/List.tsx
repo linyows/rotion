@@ -11,6 +11,7 @@ const style = Stylex.create({
     margin: 0,
     padding: 0,
     overflowX: 'scroll',
+    color: tokens.primaryText,
   },
   inner: {
     margin: 0,
@@ -43,7 +44,7 @@ const style = Stylex.create({
     flexShrink: 10,
     display: 'block',
     marginLeft: '14px',
-    borderTop: '1px dashed #999',
+    borderTop: `1px dashed ${tokens.thirdText}`,
   },
 })
 
