@@ -58,3 +58,14 @@ export function pathBasename (str: string) {
   const l = u.substring(u.lastIndexOf('/') + 1)
   return l.lastIndexOf('?') > 0 ? l.substring(0, l.lastIndexOf('?')) : l
 }
+
+export function splitUrl(url: string) {
+  const withoutScheme = url.replace(/https?:\/\//, '')
+  const arrayPath = withoutScheme.split('/')
+  const domain = `${arrayPath.shift()}`
+  const path = arrayPath.join('/')
+  return {
+    domain,
+    omittedPath: `/${path.length > 12 ? `${path.substring(0, 3)}...${path.substring(path.length - 6)}` : path}`
+  }
+}
