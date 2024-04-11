@@ -32,6 +32,7 @@ const style = Stylex.create({
       default: link.backgroundColor,
       ':hover': link.backgroundColorHover,
     },
+    overflow: 'hidden',
   },
   spacer: {
     width: '100%',
