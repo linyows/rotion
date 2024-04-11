@@ -1,10 +1,11 @@
 import React from 'react'
 import type { GalleryCheckboxFieldProps } from './GalleryCheckboxField.types'
+import { Checkbox } from '../../Checkbox'
 
 const GalleryCheckboxField = ({ payload }: GalleryCheckboxFieldProps) => {
   return (
     <div className={'rotion-gallery-checkbox'}>
-      {payload}
+      <Checkbox bool={payload} />
     </div>
   )
 }

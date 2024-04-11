@@ -26,7 +26,7 @@ const style = Stylex.create({
     flexShrink: 0,
     alignItems: 'center',
     padding: 0,
-    margin: '5px 0 0 7px',
+    margin: '8px 0 0 7px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
