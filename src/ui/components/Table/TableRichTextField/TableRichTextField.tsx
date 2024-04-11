@@ -12,7 +12,7 @@ const style = Stylex.create({
     display: 'block',
     margin: 0,
     padding: 0,
-    color: '#777',
+    color: tokens.primaryText,
     textOverflow: 'ellipsis',
     overflow: 'hidden',
   },

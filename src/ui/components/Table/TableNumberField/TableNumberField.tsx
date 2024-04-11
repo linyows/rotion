@@ -6,6 +6,7 @@ import { tokens } from '../../tokens.stylex'
 const style = Stylex.create({
   wrapper: {
     fontFamily: tokens.fontFamily,
+    color: tokens.primaryText,
     whiteSpace: 'nowrap',
     fontSize: '.85rem',
     display: 'block',

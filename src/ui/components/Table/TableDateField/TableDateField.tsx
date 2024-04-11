@@ -1,7 +1,9 @@
 import React from 'react'
+import { cdate } from 'cdate'
 import type { TableDateFieldProps } from './TableDateField.types'
 import Stylex from '@stylexjs/stylex'
 import { tokens } from '../../tokens.stylex'
+import { getDatetimeFormat } from '../../lib'
 
 const style = Stylex.create({
   wrapper: {
@@ -11,14 +13,21 @@ const style = Stylex.create({
     display: 'flex',
     alignItems: 'center',
     minWidth: '20px',
-    color: '#999',
+    color: tokens.primaryText,
   },
 })
 
 const TableDateField = ({ payload }: TableDateFieldProps) => {
+  if (payload === null) {
+    return <></>
+  }
+
+  const { start, end } = payload
+  const { dateF, timeF } = getDatetimeFormat()
   return (
     <div className={`rotion-table-date ${Stylex(style.wrapper)}`}>
-      {payload?.start}
+      {cdate(start).format(start.length > 10 ? `${dateF} ${timeF}` : dateF)}
+      {end && ` → ${cdate(end).format(end.length > 10 ? `${dateF} ${timeF}` : dateF)}`}
     </div>
   )
 }
