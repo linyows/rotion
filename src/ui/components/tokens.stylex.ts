@@ -64,6 +64,22 @@ export const table = Stylex.defineVars({
     default: 'rgba(150, 150, 150, 0.1)',
     [DARK]: 'rgba(255, 255, 255, 0.15)',
   },
+  border: {
+    default: '1px solid rgba(55, 53, 47, 0.09)',
+    [DARK]: '1px solid rgb(47, 47, 47)',
+  },
+  iconFill: {
+    default: 'rgba(55, 53, 47, 0.45)',
+    [DARK]: 'rgba(255, 253, 247, 0.45)',
+  },
+  boxShadow: {
+    default: 'white -3px 0px 0px, rgb(233 233 231) 0px 1px 0px',
+    [DARK]: 'rgb(25, 25, 25) -3px 0px 0px, rgb(47, 47, 47) 0px 1px 0px',
+  },
+  linkBgHover: {
+    default: 'rgb(227, 226, 224) none repeat scroll 0% 0%',
+    [DARK]: 'rgb(28, 29, 31) none repeat scroll 0% 0%',
+  },
 })
 
 export const link = Stylex.defineVars({
