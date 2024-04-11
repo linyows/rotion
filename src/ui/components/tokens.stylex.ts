@@ -109,89 +109,91 @@ export const link = Stylex.defineVars({
 })
 
 export const colors = Stylex.defineVars({
-  default: {
-    default: 'rgb(50, 48, 44)',
-    [DARK]: 'rgb(235, 233, 228)',
-  },
   border: {
     default: '1px solid rgba(50, 48, 44, 0.3)',
     [DARK]: '1px solid rgba(205, 203, 199, 0.3)',
   },
+  // light gray
+  default: {
+    default: 'rgb(50, 48, 44)',
+    [DARK]: 'rgba(255, 255, 255, 0.804)',
+  },
+  // background light gray
   bgDefault: {
     default: 'rgba(227, 226, 224, 0.5)',
     [DARK]: 'rgb(55, 55, 55)',
   },
   gray: {
     default: 'rgb(50, 48, 44)',
-    [DARK]: 'rgb(155, 155, 155)',
+    [DARK]: 'rgba(255, 255, 255, 0.804)',
   },
   bgGray: {
-    default: 'rgb(155, 155, 155)',
-    [DARK]: 'rgb(47, 47, 47)',
+    default: 'rgb(227, 226, 224)',
+    [DARK]: 'rgb(90, 90, 90)',
   },
   brown: {
     default: 'rgb(68, 42, 30)',
-    [DARK]: 'rgb(186, 133, 111)',
+    [DARK]: 'rgba(255, 255, 255, 0.804)',
   },
   bgBrown: {
     default: 'rgb(238, 224, 218)',
-    [DARK]: 'rgb(74, 50, 40)',
+    [DARK]: 'rgb(96, 59, 44)',
   },
   orange: {
     default: 'rgb(73, 41, 14)',
-    [DARK]: 'rgb(199, 125, 72)',
+    [DARK]: 'rgba(255, 255, 255, 0.804)',
   },
   bgOrange: {
     default: 'rgb(250, 222, 201)',
-    [DARK]: 'rgb(92, 59, 35)',
+    [DARK]: 'rgb(133, 76, 29)',
   },
   yellow: {
     default: 'rgb(64, 44, 27)',
-    [DARK]: 'rgb(202, 152, 73)',
+    [DARK]: 'rgba(255, 255, 255, 0.804)',
   },
   bgYellow: {
     default: 'rgb(253, 236, 200)',
-    [DARK]: 'rgb(86, 67, 40)',
+    [DARK]: 'rgb(137, 99, 42)',
   },
   green: {
     default: 'rgb(28, 56, 41)',
-    [DARK]: 'rgb(82, 158, 114)',
+    [DARK]: 'rgba(255, 255, 255, 0.804)',
   },
   bgGreen: {
     default: 'rgb(219, 237, 219)',
-    [DARK]: 'rgb(36, 61, 48)',
+    [DARK]: 'rgb(43, 89, 63)',
   },
   blue: {
     default: 'rgb(24, 51, 71)',
-    [DARK]: 'rgb(94, 135, 201)',
+    [DARK]: 'rgba(255, 255, 255, 0.804)',
   },
   bgBlue: {
     default: 'rgb(211, 229, 239)',
-    [DARK]: 'rgb(20, 58, 78)',
+    [DARK]: 'rgb(40, 69, 108)',
   },
   purple: {
     default: 'rgb(65, 36, 84)',
-    [DARK]: 'rgb(157, 104, 211)',
+    [DARK]: 'rgba(255, 255, 255, 0.804)',
   },
   bgPurple: {
     default: 'rgb(232, 222, 238)',
-    [DARK]: 'rgb(60, 45, 73)',
+    [DARK]: 'rgb(73, 47, 100)',
   },
   pink: {
     default: 'rgb(76, 35, 55)',
-    [DARK]: 'rgb(209, 87, 150)',
+    [DARK]: 'rgba(255, 255, 255, 0.804)',
   },
   bgPink: {
     default: 'rgb(245, 224, 233)',
-    [DARK]: 'rgb(78, 44, 60)',
+    [DARK]: 'rgb(105, 49, 76)',
   },
   red: {
     default: 'rgb(93, 23, 21)',
-    [DARK]: 'rgb(223, 84, 82)',
+    [DARK]: 'rgba(255, 255, 255, 0.804)',
   },
   bgRed: {
     default: 'rgb(255, 226, 221)',
-    [DARK]: 'rgb(82, 46, 42)',
+    [DARK]: 'rgb(110, 54, 48)',
   },
 })
 
