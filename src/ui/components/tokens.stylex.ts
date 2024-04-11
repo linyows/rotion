@@ -1,16 +1,5 @@
 import Stylex from '@stylexjs/stylex'
 
-interface Color {
-  [index:string]: string
-}
-
-interface ColorWithMediaQuery {
-  [index:string]: {
-    default: string
-    [index:string]: string
-  }
-}
-
 const DARK = '@media (prefers-color-scheme: dark)'
 
 const sansSerifFamily = [
