@@ -59,7 +59,7 @@ export function pathBasename (str: string) {
   return l.lastIndexOf('?') > 0 ? l.substring(0, l.lastIndexOf('?')) : l
 }
 
-export function getDatetimeFormat() {
+export function getDatetimeFormat () {
   const lang = window.navigator.language
   let dateF = 'MMMM D, YYYY'
   let timeF = 'h:mm A'
@@ -70,7 +70,7 @@ export function getDatetimeFormat() {
   return { dateF, timeF }
 }
 
-export function splitUrl(url: string) {
+export function splitUrl (url: string) {
   const withoutScheme = url.replace(/https?:\/\//, '')
   const arrayPath = withoutScheme.split('/')
   const domain = `${arrayPath.shift()}`

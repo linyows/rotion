@@ -208,7 +208,7 @@ export const gallery = Stylex.defineVars({
   },
   backgroundHover: {
     default: 'rgba(55, 53, 47, 0.03)',
-    [DARK]:  'rgb(47, 47, 47)',
+    [DARK]: 'rgb(47, 47, 47)',
   },
   imageBorderBottom: {
     default: '1px solid rgba(55, 53, 47, 0.1)',
