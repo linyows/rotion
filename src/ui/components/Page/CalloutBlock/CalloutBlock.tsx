@@ -2,7 +2,7 @@ import React from 'react'
 import { RichText } from '../RichText'
 import type { CalloutBlockProps } from './CalloutBlock.types'
 import Stylex from '@stylexjs/stylex'
-import { colors, tokens } from '../../tokens.stylex'
+import { callout, tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
@@ -23,84 +23,84 @@ const style = Stylex.create({
     marginTop: '.15rem',
   },
   default: {
-    color: colors.default,
-    backgroundColor: colors.bgDefault,
+    color: callout.default,
+    backgroundColor: callout.bgDefault,
   },
   default_background: {
-    color: colors.default,
-    backgroundColor: colors.bgDefault,
+    color: callout.default,
+    backgroundColor: callout.bgDefault,
   },
   gray: {
-    color: colors.gray,
-    border: colors.border,
+    color: callout.gray,
+    border: callout.border,
   },
   gray_background: {
-    color: colors.default,
-    backgroundColor: colors.bgDefault,
+    color: callout.default,
+    backgroundColor: callout.bgDefault,
   },
   brown: {
-    color: colors.brown,
-    border: colors.border,
+    color: callout.brown,
+    border: callout.border,
   },
   brown_background: {
     color: tokens.primaryText,
-    backgroundColor: colors.bgBrown,
+    backgroundColor: callout.bgBrown,
   },
   orange: {
-    color: colors.orange,
-    border: colors.border,
+    color: callout.orange,
+    border: callout.border,
   },
   orange_background: {
     color: tokens.primaryText,
-    backgroundColor: colors.bgOrange,
+    backgroundColor: callout.bgOrange,
   },
   yellow: {
-    color: colors.yellow,
-    border: colors.border,
+    color: callout.yellow,
+    border: callout.border,
   },
   yellow_background: {
     color: tokens.primaryText,
-    backgroundColor: colors.bgYellow,
+    backgroundColor: callout.bgYellow,
   },
   green: {
-    color: colors.green,
-    border: colors.border,
+    color: callout.green,
+    border: callout.border,
   },
   green_background: {
     color: tokens.primaryText,
-    backgroundColor: colors.bgGreen,
+    backgroundColor: callout.bgGreen,
   },
   blue: {
-    color: colors.blue,
-    border: colors.border,
+    color: callout.blue,
+    border: callout.border,
   },
   blue_background: {
     color: tokens.primaryText,
-    backgroundColor: colors.bgBlue,
+    backgroundColor: callout.bgBlue,
   },
   purple: {
-    color: colors.purple,
-    border: colors.border,
+    color: callout.purple,
+    border: callout.border,
   },
   purple_background: {
     color: tokens.primaryText,
-    backgroundColor: colors.bgPurple,
+    backgroundColor: callout.bgPurple,
   },
   pink: {
-    color: colors.pink,
-    border: colors.border,
+    color: callout.pink,
+    border: callout.border,
   },
   pink_background: {
     color: tokens.primaryText,
-    backgroundColor: colors.bgPink,
+    backgroundColor: callout.bgPink,
   },
   red: {
-    color: colors.red,
-    border: colors.border,
+    color: callout.red,
+    border: callout.border,
   },
   red_background: {
     color: tokens.primaryText,
-    backgroundColor: colors.bgRed,
+    backgroundColor: callout.bgRed,
   },
 })
 

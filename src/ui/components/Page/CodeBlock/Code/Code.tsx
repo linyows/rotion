@@ -3,13 +3,13 @@ import type { CodeProps } from './Code.types'
 import Stylex from '@stylexjs/stylex'
 import mermaid from 'mermaid'
 import Prism from 'prismjs'
-import { tokens, code } from '../../../tokens.stylex'
+import { tokens } from '../../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
     borderRadius: tokens.borderRadius,
     padding: '.6rem 1rem',
-    backgroundColor: code.backgroundColor,
+    backgroundColor: tokens.codeBgColor,
     margin: '1rem 0',
     fontSize: '.8rem',
     position: 'relative',

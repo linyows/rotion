@@ -10,8 +10,8 @@ const styles = Stylex.create({
     fontFamily: tokens.fontFamily,
     color: link.color,
     backgroundColor: {
-      default: link.backgroundColor,
-      ':hover': link.backgroundColorHover,
+      default: link.bgColor,
+      ':hover': link.bgColorHover,
     },
     padding: '.1rem .2rem',
     borderRadius: tokens.borderRadius,

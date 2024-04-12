@@ -8,7 +8,7 @@ const style = Stylex.create({
   wrapper: {
     margin: '0 .3rem',
     padding: '0 .3rem',
-    backgroundColor: link.backgroundColor,
+    backgroundColor: link.bgColor,
   },
 })
 

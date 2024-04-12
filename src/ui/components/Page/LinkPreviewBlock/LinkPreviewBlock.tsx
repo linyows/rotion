@@ -21,8 +21,8 @@ const style = Stylex.create({
     fontSize: '.8rem',
     borderRadius: tokens.borderRadius,
     backgroundColor: {
-      default: link.backgroundColor,
-      ':hover': link.backgroundColorHover,
+      default: link.bgColor,
+      ':hover': link.bgColorHover,
     },
     overflow: 'hidden',
   },

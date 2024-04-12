@@ -3,7 +3,7 @@ import RichText from '../RichText/RichText'
 import type { TableRowBlockObjectResponse } from '../../../../exporter'
 import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
 import Stylex from '@stylexjs/stylex'
-import { table, tokens } from '../../tokens.stylex'
+import { tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
@@ -27,7 +27,7 @@ const style = Stylex.create({
   },
   tdHeader: {
     border: tokens.border,
-    backgroundColor: table.headerBackgroundColor,
+    backgroundColor: tokens.tableHeaderBgColor,
     margin: 0,
     padding: '.3rem',
     fontWeight: 500,

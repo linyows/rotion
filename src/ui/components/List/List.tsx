@@ -29,8 +29,8 @@ const style = Stylex.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     backgroundColor: {
-      default: link.backgroundColor,
-      ':hover': link.backgroundColorHover,
+      default: link.bgColor,
+      ':hover': link.bgColorHover,
     },
     overflow: 'hidden',
   },

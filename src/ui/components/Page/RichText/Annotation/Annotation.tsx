@@ -1,7 +1,7 @@
 import React from 'react'
 import type { RichTextProps } from '../RichText.types'
 import Stylex from '@stylexjs/stylex'
-import { tokens, colors } from '../../../tokens.stylex'
+import { tokens, callout } from '../../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
@@ -33,64 +33,64 @@ const style = Stylex.create({
     color: 'inherit',
   },
   gray: {
-    color: colors.gray,
+    color: callout.gray,
   },
   brown: {
-    color: colors.brown,
+    color: callout.brown,
   },
   orange: {
-    color: colors.orange,
+    color: callout.orange,
   },
   yellow: {
-    color: colors.yellow,
+    color: callout.yellow,
   },
   green: {
-    color: colors.green,
+    color: callout.green,
   },
   blue: {
-    color: colors.blue,
+    color: callout.blue,
   },
   purple: {
-    color: colors.purple,
+    color: callout.purple,
   },
   pink: {
-    color: colors.pink,
+    color: callout.pink,
   },
   red: {
-    color: colors.red,
+    color: callout.red,
   },
   default_background: {
-    color: colors.default,
+    color: callout.default,
   },
   gray_background: {
-    backgroundColor: colors.bgGray,
+    backgroundColor: callout.bgGray,
   },
   brown_background: {
-    backgroundColor: colors.bgBrown,
+    backgroundColor: callout.bgBrown,
   },
   orange_background: {
-    backgroundColor: colors.bgOrange,
+    backgroundColor: callout.bgOrange,
   },
   yellow_background: {
-    backgroundColor: colors.bgYellow,
+    backgroundColor: callout.bgYellow,
   },
   green_background: {
-    backgroundColor: colors.bgGreen,
+    backgroundColor: callout.bgGreen,
   },
   blue_background: {
-    backgroundColor: colors.bgBlue,
+    backgroundColor: callout.bgBlue,
   },
   purple_background: {
-    backgroundColor: colors.bgPurple,
+    backgroundColor: callout.bgPurple,
   },
   pink_background: {
-    backgroundColor: colors.bgPink,
+    backgroundColor: callout.bgPink,
   },
   red_background: {
-    backgroundColor: colors.bgRed,
+    backgroundColor: callout.bgRed,
   },
   nocode_background: {
-    color: colors.default,
+    color: callout.default,
   },
 })
 

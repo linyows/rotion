@@ -22,7 +22,7 @@ const style = Stylex.create({
     },
     background: {
       default: 'inherit',
-      ':hover': link.backgroundColorHover,
+      ':hover': link.bgColorHover,
     },
     borderRadius: tokens.borderRadius,
   },

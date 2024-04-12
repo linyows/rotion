@@ -30,7 +30,7 @@ const style = Stylex.create({
     marginRight: '4px',
     backgroundColor: {
       default: 'inherit',
-      ':hover': link.backgroundColorHover,
+      ':hover': link.bgColorHover,
     },
   },
   text: {

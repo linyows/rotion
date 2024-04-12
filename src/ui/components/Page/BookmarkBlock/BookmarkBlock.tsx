@@ -25,8 +25,8 @@ const style = Stylex.create({
     cursor: 'pointer',
     position: 'relative',
     backgroundColor: {
-      default: link.backgroundColor,
-      ':hover': link.backgroundColorHover,
+      default: link.bgColor,
+      ':hover': link.bgColorHover,
     },
     overflow: 'hidden',
   },

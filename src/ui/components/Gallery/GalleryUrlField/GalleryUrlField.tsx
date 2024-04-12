@@ -21,7 +21,7 @@ const style = Stylex.create({
     },
     background: {
       default: 'inherit',
-      ':hover': link.backgroundColorHover,
+      ':hover': link.bgColorHover,
     },
     marginBottom: 0,
     padding: '0 2px 3px',
