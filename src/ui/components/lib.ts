@@ -59,22 +59,22 @@ export function pathBasename (str: string) {
   return l.lastIndexOf('?') > 0 ? l.substring(0, l.lastIndexOf('?')) : l
 }
 
-function useLang() {
+function useLang () {
   const [language, setLanguage] = useState(() => {
-    if (window.navigator !== undefined){
-     return window.navigator.language
-    } else{
-     return 'en'
+    if (window.navigator !== undefined) {
+      return window.navigator.language
+    } else {
+      return 'en'
     }
   })
 
   useEffect(() => {
-    function handleLanguageChange() {
+    function handleLanguageChange () {
       setLanguage(window.navigator.language)
     }
-    window.addEventListener("languagechange", handleLanguageChange);
+    window.addEventListener('languagechange', handleLanguageChange)
     return () => {
-      window.removeEventListener("languagechange", handleLanguageChange);
+      window.removeEventListener('languagechange', handleLanguageChange)
     }
   })
 
