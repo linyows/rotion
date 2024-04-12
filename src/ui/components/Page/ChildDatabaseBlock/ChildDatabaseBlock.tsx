@@ -27,6 +27,7 @@ const style = Stylex.create({
   title: {
     borderBottom: link.borderBottom,
     verticalAlign: 'top',
+    lineHeight: tokens.lineHeight,
   },
   icon: {
     overflow: 'hidden',
