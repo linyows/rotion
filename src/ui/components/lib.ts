@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 import type { ListBlockChildrenResponseEx } from '../../exporter'
 
@@ -59,8 +59,30 @@ export function pathBasename (str: string) {
   return l.lastIndexOf('?') > 0 ? l.substring(0, l.lastIndexOf('?')) : l
 }
 
+function useLang() {
+  const [language, setLanguage] = useState(() => {
+    if (window.navigator !== undefined){
+     return window.navigator.language
+    } else{
+     return 'en'
+    }
+  })
+
+  useEffect(() => {
+    function handleLanguageChange() {
+      setLanguage(window.navigator.language)
+    }
+    window.addEventListener("languagechange", handleLanguageChange);
+    return () => {
+      window.removeEventListener("languagechange", handleLanguageChange);
+    }
+  })
+
+  return language
+}
+
 export function getDatetimeFormat () {
-  const lang = window.navigator.language
+  const lang = useLang()
   let dateF = 'MMMM D, YYYY'
   let timeF = 'h:mm A'
   if (lang.includes('ja')) {
