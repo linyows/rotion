@@ -10,8 +10,8 @@ const styles = Stylex.create({
     fontFamily: tokens.fontFamily,
     color: link.color,
     backgroundColor: {
-      default: link.backgroundColor,
-      ':hover': link.backgroundColorHover,
+      default: link.bgColor,
+      ':hover': link.bgColorHover,
     },
     padding: '.1rem .2rem',
     borderRadius: tokens.borderRadius,
@@ -34,7 +34,7 @@ const LinkPreviewMention = ({ url, text }: LinkPreviewMemtionProps) => {
   if (url.includes('slack.com')) {
     return (
       <a className={`rotion-mention-linkpreview ${Stylex(styles.wrapper)}`} href={url} rel="noreferrer" target="_blank">
-        <PageIcon name='slack' className={Stylex(styles.icon)} width='17px' height='17px' />
+        <PageIcon name="slack" className={Stylex(styles.icon)} width='17px' height='17px' />
         <span className={`rotion-mention-linkprevew-text ${Stylex(styles.text)}`}>
           Message in Slack
         </span>

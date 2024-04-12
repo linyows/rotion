@@ -58,3 +58,28 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+const emoji = structuredClone(block)
+emoji.list = [
+  {
+    id: '12345678-1234-1234-1234-1234567890ab',
+    name: 'Foo Bar',
+    icon: {
+      type: 'emoji',
+      emoji: '🚀',
+    },
+  },
+  {
+    id: '12345678-1234-1234-1234-1234567890ab',
+    name: 'Alice',
+    icon: {
+      type: 'emoji',
+      emoji: '🏛️',
+    },
+  }
+]
+export const Emoji: Story = {
+  args: {
+    block: emoji,
+  }
+}

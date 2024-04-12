@@ -3,7 +3,7 @@ import type { PageObjectResponseEx } from '../../../exporter'
 import GalleryCard from './GalleryCard/GalleryCard'
 import type { GalleryProps } from './Gallery.types'
 import Stylex from '@stylexjs/stylex'
-import { tokens } from '../tokens.stylex'
+import { gallery, tokens } from '../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
@@ -16,13 +16,13 @@ const style = Stylex.create({
     gap: '16px',
   },
   small: {
-    gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+    gridTemplateColumns: gallery.gridTemplateColumnsSmall,
   },
   medium: {
-    gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+    gridTemplateColumns: gallery.gridTemplateColumnsMedium,
   },
   large: {
-    gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+    gridTemplateColumns: gallery.gridTemplateColumnsLarge,
   },
 })
 

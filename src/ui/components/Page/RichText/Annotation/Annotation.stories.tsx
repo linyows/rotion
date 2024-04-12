@@ -6,7 +6,7 @@ import Annotation from './Annotation'
 const textObject = {
   type: 'text',
   text: {
-    content: 'hello',
+    content: 'Text Style',
     link: null,
   },
   annotations: {
@@ -17,7 +17,7 @@ const textObject = {
     code: false,
     color: 'default',
   },
-  plain_text: 'hello',
+  plain_text: 'Text Style',
   href: null,
 } as RichTextItemResponseEx
 
@@ -73,6 +73,24 @@ code.annotations.code = true
 export const Code: Story = {
   args: {
     textObject: code,
+  }
+}
+
+const codeBlue = structuredClone(textObject)
+codeBlue.annotations.code = true
+codeBlue.annotations.color = 'blue'
+export const CodeBlue: Story = {
+  args: {
+    textObject: codeBlue,
+  }
+}
+
+const codeBgBlue = structuredClone(textObject)
+codeBgBlue.annotations.code = true
+codeBgBlue.annotations.color = 'blue_background'
+export const CodeBgBlue: Story = {
+  args: {
+    textObject: codeBgBlue,
   }
 }
 

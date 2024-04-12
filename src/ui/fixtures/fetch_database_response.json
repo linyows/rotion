@@ -813,7 +813,7 @@
           "type": "date",
           "id": "y%60Hh",
           "date": {
-            "start": "2022-09-09",
+            "start": "2022-09-09T12:00:00.000+09:00",
             "end": null,
             "time_zone": null
           },
@@ -1082,7 +1082,7 @@
           "id": "y%60Hh",
           "date": {
             "start": "2022-08-16",
-            "end": null,
+            "end": "2023-12-11",
             "time_zone": null
           },
           "request_id": "5eaff2b2-028f-482f-8819-99ec28b8d62e"

@@ -148,6 +148,15 @@ This is the components available:
 - [ ] Database Calendar View
 - [ ] Database Timeline View
 
+Storybook
+--
+
+Check the display of components in Storybook:
+
+```sh
+$ npm run story
+```
+
 Author
 --
 

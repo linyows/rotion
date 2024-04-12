@@ -4,7 +4,7 @@ import TableIcon from './TableIcon/TableIcon'
 import Column from './Column'
 import type { TableProps } from './Table.types'
 import Stylex from '@stylexjs/stylex'
-import { tokens } from '../tokens.stylex'
+import { table, tokens } from '../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
@@ -26,10 +26,10 @@ const style = Stylex.create({
     display: 'inline-flex',
     background: 'inherit',
     height: '33px',
-    color: 'rgba(55, 53, 47, 0.65)',
-    borderTop: '1px solid rgb(233, 233, 231)',
-    boxShadow: 'white -3px 0px 0px, rgb(233 233 231) 0px 1px 0px',
-    minWidth: 'calc((100% - 192px) - 0px)',
+    color: tokens.secondaryText,
+    borderTop: table.border,
+    boxShadow: table.boxShadow,
+    // minWidth: 'calc((100% - 192px) - 0px)',
   },
   cell: {
     display: 'flex',
@@ -42,8 +42,8 @@ const style = Stylex.create({
     overflow: 'hidden',
     fontSize: '14px',
     padding: '5px 8px',
-    width: '174px',
-    borderRight: '1px solid rgba(55, 53, 47, 0.09)',
+    width: '220px',
+    // borderRight: table.border,
   },
   cellText: {
     whiteSpace: 'nowrap',
@@ -54,7 +54,7 @@ const style = Stylex.create({
     width: '14px',
     height: '14px',
     display: 'block',
-    fill: 'rgba(55, 53, 47, 0.45)',
+    fill: table.iconFill,
     flexshrink: 0,
     backfaceVisibility: 'hidden',
     marginTop: '4px',

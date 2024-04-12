@@ -17,21 +17,18 @@ const style = Stylex.create({
     margin: '.2rem 0 0',
     padding: '.6rem .3rem',
     textDecoration: link.textDecoration,
-    color: {
-      default: link.color,
-      ':hover': link.colorHover,
-    },
+    color: link.color,
     alignItems: 'top',
     backgroundColor: {
-      default: link.backgroundColor,
-      ':hover': link.backgroundColorHover,
+      default: link.bgColor,
+      ':hover': link.bgColorHover,
     },
     borderRadius: tokens.borderRadius,
   },
   size: {
     fontSize: '.8rem',
     paddingLeft: '.5rem',
-    color: '#888',
+    color: tokens.thirdText,
   },
 })
 

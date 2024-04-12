@@ -22,7 +22,7 @@ const style = Stylex.create({
   caption: {
     margin: '.3rem .3rem 0',
     textAlign: 'left',
-    color: '#888',
+    color: tokens.thirdText,
     fontSize: '.95rem',
   },
   youtube: {

@@ -1,7 +1,8 @@
 import React from 'react'
 import type { TableUrlFieldProps } from './TableUrlField.types'
 import Stylex from '@stylexjs/stylex'
-import { tokens, link } from '../../tokens.stylex'
+import { tokens, link, table } from '../../tokens.stylex'
+import { splitUrl } from '../../lib'
 
 const style = Stylex.create({
   wrapper: {
@@ -20,19 +21,21 @@ const style = Stylex.create({
     },
     background: {
       default: 'inherit',
-      ':hover': 'rgb(227, 226, 224) none repeat scroll 0% 0%',
+      ':hover': table.linkBgHover,
     },
     borderRadius: tokens.borderRadius,
     padding: '0 5px 2px',
   },
-  address: {
+  domain: {
     display: 'inline',
     fontSize: '.8rem',
     whiteSpace: 'nowrap',
-    backgroundImage: 'linear-gradient(to right, rgba(55, 53, 47, 0.16) 0%, rgba(55, 53, 47, 0.16) 100%)',
-    backgroundRepeat: 'repeat-x',
-    backgroundPosition: '0 100%',
-    backgroundSize: '100% 1px',
+  },
+  path: {
+    display: 'inline',
+    fontSize: '.8rem',
+    whiteSpace: 'nowrap',
+    color: tokens.thirdText,
   },
 })
 
@@ -40,12 +43,15 @@ const TableUrlField = ({ payload }: TableUrlFieldProps) => {
   if (!payload) {
     return <></>
   }
-
+  const { domain, omittedPath } = splitUrl(payload)
   return (
     <div className={`rotion-table-url ${Stylex(style.wrapper)}`}>
       <a className={`rotion-table-url-link ${Stylex(style.link)}`} href={payload} rel="noreferrer" target="_blank">
-        <span className={`rotion-table-url-address ${Stylex(style.address)}`}>
-          {payload}
+        <span className={`rotion-table-url-domain ${Stylex(style.domain)}`}>
+          {domain}
+        </span>
+        <span className={`rotion-table-url-path ${Stylex(style.path)}`}>
+          {omittedPath}
         </span>
       </a>
     </div>

@@ -13,7 +13,7 @@ const style = Stylex.create({
     margin: '0 .5rem',
     padding: '0 .5rem',
     maxWidth: '25rem',
-    color: '#777',
+    color: tokens.thirdText,
     textOverflow: 'ellipsis',
     overflow: 'hidden',
   },

@@ -14,25 +14,22 @@ const style = Stylex.create({
     gridTemplate: 'repeat(1, 1fr) / 1.5rem 1fr',
     gap: '.4rem',
     margin: '.2rem 0 0',
-    padding: '.6rem .3rem',
+    padding: '.3rem',
     textDecoration: link.textDecoration,
-    color: {
-      default: link.color,
-      ':hover': link.colorHover,
-    },
+    color: link.color,
     alignItems: 'top',
     backgroundColor: {
-      default: link.backgroundColor,
-      ':hover': link.backgroundColorHover,
+      default: link.bgColor,
+      ':hover': link.bgColorHover,
     },
     borderRadius: tokens.borderRadius,
   },
   title: {
-    borderBottom: '1px solid #ddd',
+    borderBottom: link.borderBottom,
     verticalAlign: 'top',
+    lineHeight: tokens.lineHeight,
   },
   icon: {
-    height: '24px',
     overflow: 'hidden',
   },
 })

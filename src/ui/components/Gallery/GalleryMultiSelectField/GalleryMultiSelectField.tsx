@@ -1,7 +1,7 @@
 import React from 'react'
 import type { GalleryMultiSelectFieldProps } from './GalleryMultiSelectField.types'
 import Stylex from '@stylexjs/stylex'
-import { tokens, colors, link } from '../../tokens.stylex'
+import { tokens, tag, link } from '../../tokens.stylex'
 import LinkedTagIfLinked from './LinkedTag'
 
 const style = Stylex.create({
@@ -25,8 +25,8 @@ const style = Stylex.create({
     display: 'flex',
     flexShrink: 0,
     alignItems: 'center',
-    padding: '0 0 8px',
-    margin: '0 0 0 7px',
+    padding: 0,
+    margin: '8px 0 0 7px',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   },
@@ -44,44 +44,44 @@ const style = Stylex.create({
     cursor: 'pointer',
   },
   default: {
-    color: colors.default,
-    backgroundColor: colors.bgDefault,
+    color: tag.default,
+    backgroundColor: tag.bgDefault,
   },
   gray: {
-    color: colors.gray,
-    backgroundColor: colors.bgGray,
+    color: tag.gray,
+    backgroundColor: tag.bgGray,
   },
   brown: {
-    color: colors.brown,
-    backgroundColor: colors.bgBrown,
+    color: tag.brown,
+    backgroundColor: tag.bgBrown,
   },
   orange: {
-    color: colors.orange,
-    backgroundColor: colors.bgOrange,
+    color: tag.orange,
+    backgroundColor: tag.bgOrange,
   },
   yellow: {
-    color: colors.yellow,
-    backgroundColor: colors.bgYellow,
+    color: tag.yellow,
+    backgroundColor: tag.bgYellow,
   },
   green: {
-    color: colors.green,
-    backgroundColor: colors.bgGreen,
+    color: tag.green,
+    backgroundColor: tag.bgGreen,
   },
   blue: {
-    color: colors.blue,
-    backgroundColor: colors.bgBlue,
+    color: tag.blue,
+    backgroundColor: tag.bgBlue,
   },
   purple: {
-    color: colors.purple,
-    backgroundColor: colors.bgPurple,
+    color: tag.purple,
+    backgroundColor: tag.bgPurple,
   },
   pink: {
-    color: colors.orange,
-    backgroundColor: colors.bgOrange,
+    color: tag.orange,
+    backgroundColor: tag.bgOrange,
   },
   red: {
-    color: colors.red,
-    backgroundColor: colors.bgRed,
+    color: tag.red,
+    backgroundColor: tag.bgRed,
   },
 })
 

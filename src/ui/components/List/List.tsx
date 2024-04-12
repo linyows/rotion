@@ -11,6 +11,7 @@ const style = Stylex.create({
     margin: 0,
     padding: 0,
     overflowX: 'scroll',
+    color: tokens.primaryText,
   },
   inner: {
     margin: 0,
@@ -28,9 +29,10 @@ const style = Stylex.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     backgroundColor: {
-      default: link.backgroundColor,
-      ':hover': link.backgroundColorHover,
+      default: link.bgColor,
+      ':hover': link.bgColorHover,
     },
+    overflow: 'hidden',
   },
   spacer: {
     width: '100%',
@@ -43,7 +45,7 @@ const style = Stylex.create({
     flexShrink: 10,
     display: 'block',
     marginLeft: '14px',
-    borderTop: '1px dashed #999',
+    borderTop: `1px dashed ${tokens.thirdText}`,
   },
 })
 

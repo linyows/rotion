@@ -2,7 +2,7 @@ import React from 'react'
 import { RichText } from '../RichText'
 import type { CalloutBlockProps } from './CalloutBlock.types'
 import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
+import { callout, tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
@@ -23,76 +23,84 @@ const style = Stylex.create({
     marginTop: '.15rem',
   },
   default: {
-    color: 'rgb(55, 53, 47)',
-    backgroundColor: 'rgb(241, 241, 239)',
+    color: callout.default,
+    backgroundColor: callout.bgDefault,
   },
   default_background: {
-    color: 'rgb(55, 53, 47)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: callout.default,
+    backgroundColor: callout.bgDefault,
   },
   gray: {
-    color: 'rgb(120, 119, 116)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: callout.gray,
+    border: callout.border,
   },
   gray_background: {
-    backgroundColor: 'rgb(241, 241, 239)',
+    color: callout.default,
+    backgroundColor: callout.bgDefault,
   },
   brown: {
-    color: 'rgb(159, 107, 83)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: callout.brown,
+    border: callout.border,
   },
   brown_background: {
-    backgroundColor: 'rgb(244, 238, 238)',
+    color: tokens.primaryText,
+    backgroundColor: callout.bgBrown,
   },
   orange: {
-    color: 'rgb(217, 115, 13)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: callout.orange,
+    border: callout.border,
   },
   orange_background: {
-    backgroundColor: 'rgb(251, 236, 221)',
+    color: tokens.primaryText,
+    backgroundColor: callout.bgOrange,
   },
   yellow: {
-    color: 'rgb(203, 145, 47)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: callout.yellow,
+    border: callout.border,
   },
   yellow_background: {
-    backgroundColor: 'rgb(251, 243, 219)',
+    color: tokens.primaryText,
+    backgroundColor: callout.bgYellow,
   },
   green: {
-    color: 'rgb(68, 131, 97)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
-    backgroundColor: 'inherit',
+    color: callout.green,
+    border: callout.border,
   },
   green_background: {
-    backgroundColor: 'rgb(237, 243, 236)',
+    color: tokens.primaryText,
+    backgroundColor: callout.bgGreen,
   },
   blue: {
-    color: 'rgb(51, 126, 169)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: callout.blue,
+    border: callout.border,
   },
   blue_background: {
-    backgroundColor: 'rgb(231, 243, 248)',
+    color: tokens.primaryText,
+    backgroundColor: callout.bgBlue,
   },
   purple: {
-    color: 'rgb(144, 101, 176)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: callout.purple,
+    border: callout.border,
   },
   purple_background: {
-    backgroundColor: 'rgba(244, 240, 247, 0.8)',
+    color: tokens.primaryText,
+    backgroundColor: callout.bgPurple,
   },
   pink: {
-    color: 'rgb(193, 76, 138)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: callout.pink,
+    border: callout.border,
   },
   pink_background: {
-    backgroundColor: 'rgba(249, 238, 243, 0.8)',
+    color: tokens.primaryText,
+    backgroundColor: callout.bgPink,
   },
   red: {
-    color: 'rgb(212, 76, 71)',
-    border: '1px solid rgba(55, 53, 47, 0.16)',
+    color: callout.red,
+    border: callout.border,
   },
   red_background: {
-    backgroundColor: 'rgb(253, 235, 236)',
+    color: tokens.primaryText,
+    backgroundColor: callout.bgRed,
   },
 })
 
@@ -117,7 +125,7 @@ const CalloutBlock = ({ block }: CalloutBlockProps) => {
   const { color, rich_text } = block.callout
 
   return (
-    <div className={`rotion-callout rotion-callout-color-${color} ${Stylex(style.wrapper)} ${Stylex(style[color])}`}>
+    <div className={`rotion-callout rotion-callout-color-${color} ${Stylex(style.wrapper, style[color])}`}>
       <div className={`rotion-callout-icon ${Stylex(style.icon)}`}>
         <Icon block={block} />
       </div>

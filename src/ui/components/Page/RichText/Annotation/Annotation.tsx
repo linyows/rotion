@@ -1,7 +1,7 @@
 import React from 'react'
 import type { RichTextProps } from '../RichText.types'
 import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../../tokens.stylex'
+import { tokens, callout } from '../../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
@@ -20,72 +20,77 @@ const style = Stylex.create({
     textDecoration: 'underline',
   },
   code: {
-    color: '#EB5757',
     fontFamily: '"SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace',
     background: 'rgba(135, 131, 120, 0.15)',
     borderRadius: tokens.borderRadius,
     fontSize: '.85rem',
     padding: '.1rem .2rem',
   },
+  codeDefault: {
+    color: '#EB5757',
+  },
   default: {
     color: 'inherit',
   },
   gray: {
-    color: 'rgba(120, 119, 116, 1)',
+    color: callout.gray,
   },
   brown: {
-    color: 'rgba(159, 107, 83, 1)',
+    color: callout.brown,
   },
   orange: {
-    color: 'rgba(217, 115, 13, 1)',
+    color: callout.orange,
   },
   yellow: {
-    color: 'rgba(203, 145, 47, 1)',
+    color: callout.yellow,
   },
   green: {
-    color: 'rgba(68, 131, 97, 1)',
+    color: callout.green,
   },
   blue: {
-    color: 'rgba(51, 126, 169, 1)',
+    color: callout.blue,
   },
   purple: {
-    color: 'rgba(144, 101, 176, 1)',
+    color: callout.purple,
   },
   pink: {
-    color: 'rgba(193, 76, 138, 1)',
+    color: callout.pink,
   },
   red: {
-    color: 'rgba(212, 76, 71, 1)',
+    color: callout.red,
   },
   default_background: {
-    backgroundColor: 'inherit',
+    color: callout.default,
   },
   gray_background: {
-    background: 'rgba(241, 241, 239, 1)',
+    backgroundColor: callout.bgGray,
   },
   brown_background: {
-    background: 'rgba(244, 238, 238, 1)',
+    backgroundColor: callout.bgBrown,
   },
   orange_background: {
-    background: 'rgba(251, 236, 221, 1)',
+    backgroundColor: callout.bgOrange,
   },
   yellow_background: {
-    background: 'rgba(251, 243, 219, 1)',
+    backgroundColor: callout.bgYellow,
   },
   green_background: {
-    background: 'rgba(237, 243, 236, 1)',
+    backgroundColor: callout.bgGreen,
   },
   blue_background: {
-    background: 'rgba(231, 243, 248, 1)',
+    backgroundColor: callout.bgBlue,
   },
   purple_background: {
-    background: 'rgba(244, 240, 247, 0.8)',
+    backgroundColor: callout.bgPurple,
   },
   pink_background: {
-    background: 'rgba(249, 238, 243, 0.8)',
+    backgroundColor: callout.bgPink,
   },
   red_background: {
-    background: 'rgba(253, 235, 236, 1)',
+    backgroundColor: callout.bgRed,
+  },
+  nocode_background: {
+    color: callout.default,
   },
 })
 
@@ -98,12 +103,13 @@ const Annotation = ({ textObject, children }: RichTextProps) => {
   const css = ['rotion-text-annotation']
   css.push(Stylex(style.wrapper))
   // @ts-ignore
-  css.push(`rotion-text-${color} ${annotations.code ? '' : Stylex(style[color])}`)
+  css.push(`rotion-text-${color} ${annotations.code && color === 'default' ? '' : Stylex(style[color])}`)
   if (annotations.bold) css.push(`rotion-text-bold ${Stylex(style.bold)}`)
   if (annotations.italic) css.push(`rotion-text-italic ${Stylex(style.italic)}`)
   if (annotations.strikethrough) css.push(`rotion-text-strikethrough ${Stylex(style.strikethrough)}`)
   if (annotations.underline) css.push(`rotion-text-underline ${Stylex(style.underline)}`)
-  if (annotations.code) css.push(`rotion-text-code ${Stylex(style.code)}`)
+  if (annotations.code) css.push(`rotion-text-code ${Stylex(style.code)} ${color === 'default' || color.includes('background') ? Stylex(style.codeDefault) : ''}`)
+  if (!annotations.code && color.includes('background')) css.push(Stylex(style.nocode_background))
 
   if (children) {
     return (

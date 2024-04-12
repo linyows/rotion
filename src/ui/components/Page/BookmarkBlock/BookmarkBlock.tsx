@@ -10,9 +10,11 @@ const style = Stylex.create({
     padding: '.5rem 0',
     lineHeight: 1,
     marginTop: '.4rem',
+    color: tokens.secondaryText,
   },
   box: {
     border: '1px solid #EEE',
+    borderColor: tokens.borderColor,
     borderRadius: tokens.borderRadius,
     fontSize: '.75rem',
     padding: 0,
@@ -23,8 +25,8 @@ const style = Stylex.create({
     cursor: 'pointer',
     position: 'relative',
     backgroundColor: {
-      default: link.backgroundColor,
-      ':hover': link.backgroundColorHover,
+      default: link.bgColor,
+      ':hover': link.bgColorHover,
     },
     overflow: 'hidden',
   },
@@ -56,6 +58,7 @@ const style = Stylex.create({
     height: '100%',
   },
   title: {
+    color: tokens.primaryText,
     fontSize: '.9rem',
     width: '100%',
     whiteSpace: 'nowrap',
@@ -65,13 +68,13 @@ const style = Stylex.create({
     marginBottom: '2px',
   },
   desc: {
-    color: '#999',
     lineHeight: '16px',
     fontSize: '12px',
     height: '32px',
     overflow: 'hidden',
   },
   url: {
+    color: tokens.primaryText,
     fontSize: '12px',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
@@ -95,7 +98,7 @@ const style = Stylex.create({
   caption: {
     margin: '.3rem .3rem 0',
     textAlign: 'left',
-    color: '#888',
+    color: tokens.thirdText,
     fontSize: '.8rem',
   },
 })

@@ -18,7 +18,7 @@ const style = Stylex.create({
   caption: {
     margin: '.3rem .3rem 0',
     textAlign: 'left',
-    color: '#888',
+    color: tokens.secondaryText,
     fontSize: '.95rem',
   },
 })

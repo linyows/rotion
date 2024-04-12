@@ -7,7 +7,7 @@ import { tokens } from '../../tokens.stylex'
 const style = Stylex.create({
   wrapper: {
     fontFamily: tokens.fontFamily,
-    lineHeight: 1.5,
+    lineHeight: tokens.lineHeight,
     padding: '.2rem 0 .2rem 1rem',
     margin: 0,
   },

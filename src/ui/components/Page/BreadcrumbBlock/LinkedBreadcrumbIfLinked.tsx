@@ -11,8 +11,8 @@ const style = Stylex.create({
     fontFamily: tokens.fontFamily,
     borderRadius: tokens.borderRadius,
     backgroundColor: {
-      default: link.backgroundColor,
-      ':hover': link.backgroundColorHover,
+      default: link.bgColor,
+      ':hover': link.bgColorHover,
     },
     cursor: link.cursor,
     textDecoration: link.textDecoration,

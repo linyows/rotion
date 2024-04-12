@@ -27,7 +27,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'https://wordpress.org',
       'Blog Tool, Publishing Platform, and CMS &#8211; WordPress.org',
       'Open source software which you can use to easily create a beautiful website, blog, or app.',
-      '/images/html-image-39391cecbed3a9857659688b3c77ba84155e5e69.webp',
+      '/images/html-image-3a3090603f6bdfe020ebfadbcda88269e7ff9fba.webp',
       '/images/html-icon-5e627442a6a3e12ed6cbbecf1a9a0f3ef9298800-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
     ],
     [

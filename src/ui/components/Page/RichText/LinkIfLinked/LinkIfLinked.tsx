@@ -7,14 +7,14 @@ const style = Stylex.create({
   wrapper: {
     fontFamily: tokens.fontFamily,
     textDecoration: link.textDecoration,
+    color: link.color,
     borderBottom: {
       default: link.borderBottom,
       ':hover': link.borderBottomHover,
     },
-    color: {
-      default: link.color,
-      ':hover': link.colorHover,
-    },
+  },
+  nolink: {
+    fontFamily: tokens.fontFamily,
   },
 })
 
@@ -26,7 +26,15 @@ export const TextLink = ({ textObject, children }: TextLinkProps) => {
   )
 }
 
+const TextNoLink = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <span className={Stylex(style.nolink)}>
+      {children}
+    </span>
+  )
+}
+
 // Conditional Wrapper
-const LinkIfLinked = ({ condition, textObject, children }: LinkIfLinkedProps) => condition ? TextLink({ textObject, children }) : children
+const LinkIfLinked = ({ condition, textObject, children }: LinkIfLinkedProps) => condition ? TextLink({ textObject, children }) : TextNoLink({ children })
 
 export default LinkIfLinked

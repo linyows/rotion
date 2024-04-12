@@ -9,19 +9,19 @@ import GalleryLinkedCard from './GalleryLinkedCard'
 import GalleryPreview from './GalleryPreview'
 import type { GalleryCardProps } from './GalleryCard.types'
 import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
+import { gallery, tokens } from '../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
     fontFamily: tokens.fontFamily,
     display: 'block',
-    color: 'inherit',
+    color: tokens.primaryText,
     textDecoration: 'none',
-    boxShadow: 'rgb(15 15 15 / 10%) 0px 0px 0px 1px, rgb(15 15 15 / 10%) 0px 2px 4px',
-    borderRadius: '3px',
+    boxShadow: gallery.boxShadow,
+    borderRadius: tokens.borderRadius,
     background: {
-      default: 'white',
-      ':hover': 'rgba(55, 53, 47, 0.03)',
+      default: gallery.background,
+      ':hover': gallery.backgroundHover,
     },
     overflow: 'hidden',
     transition: 'background 100ms ease-out 0s',
@@ -36,16 +36,16 @@ const style = Stylex.create({
     gap: '16px',
   },
   small: {
-    gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+    gridTemplateColumns: gallery.gridTemplateColumnsSmall,
   },
   medium: {
-    gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+    gridTemplateColumns: gallery.gridTemplateColumnsMedium,
   },
   large: {
-    gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+    gridTemplateColumns: gallery.gridTemplateColumnsLarge,
   },
   text: {
-    paddingBottom: '10px',
+    paddingBottom: '1rem',
   },
 })
 

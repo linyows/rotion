@@ -8,12 +8,11 @@ import { tokens } from '../../tokens.stylex'
 const style = Stylex.create({
   wrapper: {
     fontFamily: tokens.fontFamily,
+    color: tokens.primaryText,
   },
   hr: {
     margin: '1rem 0',
-    borderTopColor: '#ddd',
-    borderTopStyle: 'solid',
-    borderTopWidth: '1px',
+    borderTop: tokens.border,
     width: '100%',
     height: '1px',
   },
@@ -35,10 +34,11 @@ const style = Stylex.create({
   paragraph: {
     padding: '.6rem 0',
     margin: 0,
-    lineHeight: 1.5,
+    lineHeight: tokens.lineHeight,
   },
   quote: {
-    borderLeft: '3px solid currentcolor',
+    borderLeft: tokens.border,
+    borderLeftWidth: '3px',
     paddingLeft: '1rem',
     marginLeft: 0,
     marginRight: 0,

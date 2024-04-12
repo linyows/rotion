@@ -2,10 +2,12 @@ import React, { useMemo } from 'react'
 import Katex from 'katex'
 import type { EquationProps } from './Equation.types'
 import Stylex from '@stylexjs/stylex'
+import { tokens } from '../../../tokens.stylex'
 
 const style = Stylex.create({
   wrapper: {
     display: 'block',
+    color: tokens.primaryText,
   }
 })
 

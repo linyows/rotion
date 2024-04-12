@@ -9,6 +9,7 @@ const style = Stylex.create({
   wrapper: {
     fontFamily: tokens.fontFamily,
     padding: '.5rem 0',
+    color: tokens.primaryText,
   },
 })
 

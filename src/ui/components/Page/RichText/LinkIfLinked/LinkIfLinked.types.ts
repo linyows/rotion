@@ -10,5 +10,5 @@ export interface TextLinkProps {
 export interface LinkIfLinkedProps {
   condition: boolean
   textObject: RichTextItemResponse
-  children: React.ReactNode
+  children: ReactNode
 }

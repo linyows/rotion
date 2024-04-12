@@ -12,7 +12,7 @@ const style = Stylex.create({
   link: {
     display: 'block',
     textDecoration: link.textDecoration,
-    border: '1px solid #ddd',
+    border: link.borderBottom,
     padding: '1rem',
     color: {
       default: link.color,
@@ -21,8 +21,8 @@ const style = Stylex.create({
     fontSize: '.8rem',
     borderRadius: tokens.borderRadius,
     backgroundColor: {
-      default: link.backgroundColor,
-      ':hover': link.backgroundColorHover,
+      default: link.bgColor,
+      ':hover': link.bgColorHover,
     },
     overflow: 'hidden',
   },
@@ -34,22 +34,14 @@ const style = Stylex.create({
   icon: {
     height: '100%',
   },
-  repo: {
-    display: 'block',
-    fontSize: '1.1rem',
-  },
   title: {
     display: 'block',
-    fontSize: '1rem',
+    fontSize: '.9rem',
   },
-  domain: {
+  desc: {
     display: 'block',
     fontSize: '.8rem',
-    color: '#888',
-  },
-  figma: {
-    display: 'block',
-    fontSize: '1rem',
+    color: tokens.thirdText,
   },
 })
 
@@ -66,8 +58,9 @@ const Github = ({ url }: Props) => {
       <span className={`rotion-linkpreview-icon ${Stylex(style.icon)}`}>
         <PageIcon name='github' width='32px' height='32px' />
       </span>
-      <span className={`rotion-linkpreview-github-repo ${Stylex(style.repo)}`}>
-        {user}/{repo}
+      <span>
+        <span className={`rotion-linkpreview-github-repo ${Stylex(style.title)}`}>{user}/{repo}</span>
+        <span className={`rotion-linkpreview-github-repo ${Stylex(style.desc)}`}>Repository in Github</span>
       </span>
     </span>
   )
@@ -82,20 +75,24 @@ const Slack = ({ url }: Props) => {
       </span>
       <span>
         <span className={`rotion-linkpreview-slack-title ${Stylex(style.title)}`}>Message in Slack</span>
-        <span className={`rotion-linkpreview-slack-domain ${Stylex(style.domain)}`}>{domain}</span>
+        <span className={`rotion-linkpreview-slack-domain ${Stylex(style.desc)}`}>{domain}</span>
       </span>
     </span>
   )
 }
 
 const Figma = ({ url }: Props) => {
+  const arrayUrl = url.split('/')
+  const basename = arrayUrl[arrayUrl.length - 1]
+  const title = basename.split('?')[0].replace('-', ' ')
   return (
     <span className={`rotion-linkpreview-figma ${Stylex(style.box)}`}>
       <span className={`rotion-linkpreview-icon ${Stylex(style.icon)}`}>
         <PageIcon name='figma' width='21px' height='32px' />
       </span>
-      <span className={`rotion-linkpreview-figma-url ${Stylex(style.figma)}`}>
-        {url}
+      <span>
+        <span className={`rotion-linkpreview-figma-title ${Stylex(style.title)}`}>{title}</span>
+        <span className={`rotion-linkpreview-figma-desc ${Stylex(style.desc)}`}>Assets in Figma</span>
       </span>
     </span>
   )
