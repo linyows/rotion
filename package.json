@@ -16,7 +16,6 @@
       "require": "./dist/ui/cjs/index.js"
     },
     "./style.css": "./dist/ui/esm/style.css",
-    "./styles/*": "./dist/ui/styles/*",
     "./package.json": "./package.json",
     "./README.md": "./README.md",
     "./LICENSE": "./LICENSE"
@@ -45,10 +44,9 @@
     "exporter:build": "npm run exporter:clean && tsc -p tsconfig.exporter.json",
     "exporter:clean": "rm -rf dist/exporter/*",
     "exporter:test": "tsm node_modules/uvu/bin.js ./src/exporter",
-    "ui:build": "npm run ui:lint && npm run ui:typecheck && npm run ui:rollup && npm run ui:styles",
+    "ui:build": "npm run ui:lint && npm run ui:typecheck && npm run ui:rollup",
     "ui:rollup": "rollup --config rollup.config.ts --configPlugin typescript",
     "ui:typecheck": "tsc -p src/ui/tsconfig.typecheck.json",
-    "ui:styles": "cp -r ./src/ui/styles ./dist/ui/",
     "ui:lint": "eslint ./src/ui/components --ext .js,.jsx,.ts,.tsx -c ./src/ui/.eslintrc.json",
     "ui:test": "uvu -r tsm ./src/ui/components",
     "story": "storybook dev -p 6006",
