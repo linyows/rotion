@@ -34,13 +34,12 @@ const style = Stylex.create({
 
 const FileBlock = ({ block }: FileBlockProps) => {
   const { file } = block
-  const url = (file.type === 'external') ? file.external.url : file.file.url
   // Byte to KB or MB
   const size = file.size > 9999 ? `${(Math.ceil(file.size / 1024 / 1000 * 10) / 10).toFixed(1)}MB` : `${(Math.ceil(file.size / 1024 * 10) / 10).toFixed(1)}KB`
 
   return (
     <div className={`rotion-file ${Stylex(style.wrapper)}`}>
-      <a href={url} target="_blank" className={`rotion-file-link ${Stylex(style.link)}`} rel="noreferrer">
+      <a href={file.src} target="_blank" className={`rotion-file-link ${Stylex(style.link)}`} rel="noreferrer">
         <PageIcon name='file' />
         <span>
           {file.name}
