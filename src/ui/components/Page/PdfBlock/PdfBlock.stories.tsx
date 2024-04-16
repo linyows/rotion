@@ -27,7 +27,25 @@ const block: PdfBlockObjectResponseEx = {
     external: {
       url: 'https://www.africau.edu/images/default/sample.pdf',
     },
-    caption: [],
+    caption: [
+      {
+        type: 'text',
+        text: {
+          content: 'This is sample file',
+          link: null,
+        },
+        annotations: {
+          bold: false,
+          italic: false,
+          strikethrough: false,
+          underline: false,
+          code: false,
+          color: 'default',
+        },
+        plain_text: 'This is sample file',
+        href: null,
+      },
+    ],
     src: 'https://www.africau.edu/images/default/sample.pdf',
     size: 3028,
   },

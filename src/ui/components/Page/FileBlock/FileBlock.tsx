@@ -30,17 +30,21 @@ const style = Stylex.create({
     paddingLeft: '.5rem',
     color: tokens.thirdText,
   },
+  caption: {
+    color: tokens.thirdText,
+    paddingTop: '.1rem',
+    paddingLeft: '.4rem',
+  },
 })
 
 const FileBlock = ({ block }: FileBlockProps) => {
   const { file } = block
-  const url = (file.type === 'external') ? file.external.url : file.file.url
   // Byte to KB or MB
   const size = file.size > 9999 ? `${(Math.ceil(file.size / 1024 / 1000 * 10) / 10).toFixed(1)}MB` : `${(Math.ceil(file.size / 1024 * 10) / 10).toFixed(1)}KB`
 
   return (
     <div className={`rotion-file ${Stylex(style.wrapper)}`}>
-      <a href={url} target="_blank" className={`rotion-file-link ${Stylex(style.link)}`} rel="noreferrer">
+      <a href={file.src} target="_blank" className={`rotion-file-link ${Stylex(style.link)}`} rel="noreferrer">
         <PageIcon name='file' />
         <span>
           {file.name}
@@ -48,10 +52,12 @@ const FileBlock = ({ block }: FileBlockProps) => {
             {size}
           </span>
         </span>
+      </a>
+      {file.caption.length > 0 && <div className={`rotion-file-caption ${Stylex(style.caption)}`}>
         {file.caption.map((v: RichTextItemResponse, i) => (
           <RichText textObject={v} key={`richtext-${i}`} />
         ))}
-      </a>
+      </div>}
     </div>
   )
 }
