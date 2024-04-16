@@ -30,6 +30,11 @@ const style = Stylex.create({
     paddingLeft: '.5rem',
     color: tokens.thirdText,
   },
+  caption: {
+    color: tokens.thirdText,
+    paddingTop: '.1rem',
+    paddingLeft: '.4rem',
+  },
 })
 
 const FileBlock = ({ block }: FileBlockProps) => {
@@ -47,10 +52,12 @@ const FileBlock = ({ block }: FileBlockProps) => {
             {size}
           </span>
         </span>
+      </a>
+      {file.caption.length > 0 && <div className={`rotion-file-caption ${Stylex(style.caption)}`}>
         {file.caption.map((v: RichTextItemResponse, i) => (
           <RichText textObject={v} key={`richtext-${i}`} />
         ))}
-      </a>
+      </div>}
     </div>
   )
 }
