@@ -1,0 +1,41 @@
+:root {
+  --rotion-font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --rotion-border-radius: 4px;
+  --rotion-line-height: 1.5;
+
+  /* TEXT */
+  --rotion-primary-text: rgb(35, 45, 55);
+  --rotion-dark-primary-text: rgb(230, 230, 230);
+  --rotion-secondary-text: rgb(130, 140, 150);
+  --rotion-dark-secondary-text: rgb(130, 130, 130);
+  --rotion-tertiary-text: rgb(160, 170, 180);
+  --rotion-dark-tertiary-text: rgb(100, 100, 100);
+
+  /* BORDER */
+  --rotion-border-color: rgba(220, 220, 220, 0.8);
+  --rotion-dark-border-color: rgba(80, 80, 80, 0.8);
+  --rotion-border: 1px solid rgb(230, 230, 230);
+  --rotion-dark-border: 1px solid rgb(70, 70, 70);
+
+  /* CODE and TABLE */
+  --rotion-code-bg-color: #f5f2f0;
+  --rotion-dark-code-bg-color: #2d2d2d;
+  --rotion-table-header-bg-color: rgba(150, 150, 150, 0.1);
+  --rotion-dark-table-header-bg-color: rgba(255, 255, 255, 0.15);
+
+  /* LINK */
+  --rotion-link-text-decoration: none;
+  --rotion-link-cursor: pointer;
+  --rotion-link-color: rgb(50, 48, 44);
+  --rotion-dark-link-color: rgb(225, 223, 219);
+  --rotion-link-hover-color: rgba(50, 48, 44, 0.6);
+  --rotion-dark-link-hover-color: rgba(225, 223, 219, 0.6);
+  --rotion-link-border-bottom: 1px solid rgba(50, 48, 44, 0.4);
+  --rotion-dark-link-border-bottom: 1px solid rgba(205, 203, 199, 0.4);
+  --rotion-link-hover-border-bottom: 1px solid rgba(50, 48, 44, 0.2);
+  --rotion-dark-link-hover-border-bottom: 1px solid rgba(205, 203, 199, 0.2);
+  --rotion-link-bg-color: inherit;
+  --rotion-dark-link-bg-color: inherit;
+  --rotion-link-hover-bg-color: rgba(150, 150, 150, 0.1);
+  --rotion-dark-link-hover-bg-color: rgba(255, 255, 255, 0.15);
+}
