@@ -51,7 +51,7 @@
     "ui:lint": "eslint ./src/ui/components --ext .js,.jsx,.ts,.tsx -c ./src/ui/.eslintrc.json",
     "ui:test": "uvu -r tsm ./src/ui/components",
     "ui:withoutdark": "sed 's/@media (prefers-color-scheme: dark).*//g' ./dist/ui/esm/style.css > ./dist/ui/esm/style-without-dark.css",
-    "story": "storybook dev -p 6006",
+    "story": "storybook dev -p 6006 --ci",
     "build-story": "storybook build",
     "prepublishOnly": "npm install && npm run test && npm run build"
   },
