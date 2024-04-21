@@ -6,7 +6,6 @@ import terser from '@rollup/plugin-terser'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import del from 'rollup-plugin-delete'
 import dts from 'rollup-plugin-dts'
-import stylexPlugin from '@stylexjs/rollup-plugin'
 
 export default [
   {
@@ -43,7 +42,6 @@ export default [
       commonjs(),
       typescript(),
       terser(),
-      stylexPlugin({ fileName: 'style.css' }),
     ],
     external: [
       'react',
