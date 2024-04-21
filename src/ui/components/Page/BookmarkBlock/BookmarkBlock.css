@@ -1,0 +1,135 @@
+.rotion-bookmark {
+  font-family: var(--rotion-font-family);
+  padding: .5rem 0;
+  color: var(--rotion-secondary-text);
+  line-height: 1;
+  margin-top: .4rem;
+}
+
+.rotion-bookmark-area {
+  border: var(--rotion-border);
+  border-radius: var(--rotion-border-radius);
+  font-size: .75rem;
+  padding: 0;
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--rotion-link-bg-color);
+}
+.rotion-bookmark-area:hover {
+  background-color: var(--rotion-link-hover-bg-color);
+}
+
+.rotion-bookmark-text {
+  flex: 4 1 180px;
+  padding: .7rem 1rem 0;
+  line-height: 1.7;
+  align-self: start;
+  overflow: hidden;
+}
+
+.rotion-bookmark-image {
+  flex: 1 1 180px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  overflow: hidden;
+  height: 108px;
+  display: block;
+}
+
+.rotion-bookmark-img {
+  display: block;
+  object-fit: cover;
+  border-radius: 1px;
+  background: rgb(25, 25, 25);
+  width: 100%;
+  height: 100%;
+}
+
+.rotion-bookmark-title {
+  color: var(--rotion-primary-text);
+  font-size: .9rem;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.rotion-bookmark-desc {
+  line-height: 16px;
+  font-size: 12px;
+  height: 32px;
+  overflow: hidden;
+}
+
+.rotion-bookmark-url {
+  color: var(--rotion-primary-text);
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-top: 8px;
+  position: relative;
+  padding: 0;
+}
+
+.rotion-bookmark-favicon {
+  display: inline;
+  vertical-align: bottom;
+  margin-right: 10px;
+  margin-bottom: 1px;
+}
+
+.rotion-bookmark-caption {
+  margin: .3rem .3rem 0;
+  text-align: left;
+  color: var(--rotion-tertiary-text);
+  font-size: .8rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 580px) {
+  .rotion-bookmark-area {
+    display: block;
+  }
+
+  .rotion-bookmark-image {
+    display: none;
+  }
+
+  .rotion-bookmark-url {
+    position: static;
+    padding: 1rem 0 .85rem;
+  }
+}
+
+/* DARK */
+@media (prefers-color-scheme: dark) {
+  .rotion-bookmark {
+    color: var(--rotion-dark-secondary-text);
+  }
+
+  .rotion-bookmark-area {
+    border: var(--rotion-dark-border);
+    background-color: var(--rotion-dark-link-bg-color);
+  }
+  .rotion-bookmark-area:hover {
+    background-color: var(--rotion-dark-link-hover-bg-color);
+  }
+
+  .rotion-bookmark-title {
+    color: var(--rotion-dark-primary-text);
+  }
+
+  .rotion-bookmark-url {
+    color: var(--rotion-dark-primary-text);
+  }
+
+  .rotion-bookmark-caption {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}
