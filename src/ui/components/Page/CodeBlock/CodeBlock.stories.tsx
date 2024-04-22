@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react'
 import type { CodeBlockObjectResponse, RichTextItemResponse } from '../../../../exporter'
 import CodeBlock from './CodeBlock'
 
+import './Code/Code.css'
+import './CodeBlock.css'
 
 const examples = {
   typescript: `type Text = {

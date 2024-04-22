@@ -1,0 +1,17 @@
+.rotion-code {
+  font-family: var(--rotion-font-family);
+  width: 100%;
+}
+
+.rotion-code-caption {
+  margin: .3rem .3rem 0;
+  text-align: left;
+  color: var(--rotion-secondary-text);
+  font-size: .95rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-code-caption {
+    color: var(--rotion-dark-secondary-text);
+  }
+}

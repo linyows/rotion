@@ -1,35 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import type { CodeProps } from './Code.types'
-import Stylex from '@stylexjs/stylex'
 import mermaid from 'mermaid'
 import Prism from 'prismjs'
-import { tokens } from '../../../tokens.stylex'
 import 'prismjs/plugins/autoloader/prism-autoloader'
 if (Prism.plugins.autoloader) {
   Prism.plugins.autoloader.languages_path = 'https://unpkg.com/prismjs@1.29.0/components/'
 }
-
-const style = Stylex.create({
-  wrapper: {
-    borderRadius: tokens.borderRadius,
-    padding: '.6rem 1rem',
-    backgroundColor: tokens.codeBgColor,
-    margin: '1rem 0',
-    fontSize: '.8rem',
-    position: 'relative',
-    top: 0,
-    left: 0,
-  },
-  lang: {
-    position: 'absolute',
-    top: '.5rem',
-    left: '.8rem',
-    color: tokens.primaryText,
-    fontSize: '.75rem',
-    textTransform: 'capitalize',
-    display: 'block',
-  },
-})
 
 const Code = ({ children, language = 'text' }: CodeProps) => {
   const isDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -71,8 +47,8 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
   }, [language, ''])
 
   return (
-    <div className={`rotion-code-text ${Stylex(style.wrapper)}`} onMouseOver={showLang} onMouseOut={hideLang}>
-      {show && <div className={`rotion-code-lang ${Stylex(style.lang)}`}>
+    <div className="rotion-code-area" onMouseOver={showLang} onMouseOut={hideLang}>
+      {show && <div className="rotion-code-lang">
         {language}
       </div>}
       <pre className={cl}>

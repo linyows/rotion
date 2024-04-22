@@ -7,21 +7,6 @@ import type {
 import RichText from '../RichText/RichText'
 import type { CodeBlockProps } from './CodeBlock.types'
 import Code from './Code/Code'
-import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    width: '100%',
-  },
-  caption: {
-    margin: '.3rem .3rem 0',
-    textAlign: 'left',
-    color: tokens.secondaryText,
-    fontSize: '.95rem',
-  },
-})
 
 const CodeBlock = ({ block }: CodeBlockProps) => {
   const els = block.code?.rich_text.map((textObject: RichTextItemResponse, i) => {
@@ -40,9 +25,9 @@ const CodeBlock = ({ block }: CodeBlockProps) => {
   })
 
   return (
-    <div className={`rotion-code ${Stylex(style.wrapper)}`}>
+    <div className="rotion-code">
       {els}
-      <div className={`rotion-code-caption ${Stylex(style.caption)}`}>
+      <div className="rotion-code-caption">
         {captions}
       </div>
     </div>
