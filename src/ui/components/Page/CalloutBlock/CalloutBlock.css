@@ -1,0 +1,214 @@
+.rotion-callout {
+  font-family: var(--rotion-font-family);
+  display: flex;
+  padding: 1.2rem;
+  padding-left: 1rem;
+  width: calc(100% - 2.2rem);
+  border-radius: var(--rotion-border-radius);
+  margin-top: .6rem;
+}
+
+.rotion-callout-icon {
+  width: 24px;
+  height: 24px;
+  margin-top: -1px;
+}
+
+.rotion-callout-text {
+  margin-left: .6rem;
+  margin-top: .15rem;
+}
+
+.rotion-callout-default,
+.rotion-callout-default-background {
+  color: var(--rotion-annot-default);
+  background-color: var(--rotion-annot-bg-default);
+}
+
+.rotion-callout-gray {
+  color: var(--rotion-annot-gray);
+  border: var(--rotion-annot-border);
+}
+
+.rotion-callout-gray-bg {
+  color: var(--rotion-annot-default);
+  background-color: var(--rotion-annot-bg-default);
+}
+
+.rotion-callout-brown {
+  color: var(--rotion-annot-brown);
+  border: var(--rotion-annot-border);
+}
+
+.rotion-callout-brown-bg {
+  color: var(--rotion-annot-default);
+  background-color: var(--rotion-annot-bg-brown);
+}
+
+.rotion-callout-orange {
+  color: var(--rotion-annot-orange);
+  border: var(--rotion-annot-border);
+}
+
+.rotion-callout-orange-bg {
+  color: var(--rotion-annot-default);
+  background-color: var(--rotion-annot-bg-orange);
+}
+
+.rotion-callout-yellow {
+  color: var(--rotion-annot-yellow);
+  border: var(--rotion-annot-border);
+}
+
+.rotion-callout-yellow-bg {
+  color: var(--rotion-annot-default);
+  background-color: var(--rotion-annot-bg-yellow);
+}
+
+.rotion-callout-green {
+  color: var(--rotion-annot-green);
+  border: var(--rotion-annot-border);
+}
+
+.rotion-callout-green-bg {
+  color: var(--rotion-annot-default);
+  background-color: var(--rotion-annot-bg-green);
+}
+
+.rotion-callout-blue {
+  color: var(--rotion-annot-blue);
+  border: var(--rotion-annot-border);
+}
+
+.rotion-callout-blue-bg {
+  color: var(--rotion-annot-default);
+  background-color: var(--rotion-annot-bg-blue);
+}
+
+.rotion-callout-purple {
+  color: var(--rotion-annot-purple);
+  border: var(--rotion-annot-border);
+}
+
+.rotion-callout-purple-bg {
+  color: var(--rotion-annot-default);
+  background-color: var(--rotion-annot-bg-purple);
+}
+
+.rotion-callout-pink {
+  color: var(--rotion-annot-pink);
+  border: var(--rotion-annot-border);
+}
+
+.rotion-callout-pink-bg {
+  color: var(--rotion-annot-default);
+  background-color: var(--rotion-annot-bg-pink);
+}
+
+.rotion-callout-red {
+  color: var(--rotion-annot-red);
+  border: var(--rotion-annot-border);
+}
+
+.rotion-callout-red-bg {
+  color: var(--rotion-annot-default);
+  background-color: var(--rotion-annot-bg-red);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-callout-default,
+  .rotion-callout-default-background {
+    color: var(--rotion-dark-annot-default);
+    background-color: var(--rotion-dark-annot-bg-default);
+  }
+
+  .rotion-callout-gray {
+    color: var(--rotion-dark-annot-gray);
+    border: var(--rotion-dark-annot-border);
+  }
+
+  .rotion-callout-gray-bg {
+    color: var(--rotion-dark-annot-default);
+    background-color: var(--rotion-dark-annot-bg-default);
+  }
+
+  .rotion-callout-brown {
+    color: var(--rotion-dark-annot-brown);
+    border: var(--rotion-dark-annot-border);
+  }
+
+  .rotion-callout-brown-bg {
+    color: var(--rotion-dark-annot-default);
+    background-color: var(--rotion-dark-annot-bg-brown);
+  }
+
+  .rotion-callout-orange {
+    color: var(--rotion-dark-annot-orange);
+    border: var(--rotion-dark-annot-border);
+  }
+
+  .rotion-callout-orange-bg {
+    color: var(--rotion-dark-annot-default);
+    background-color: var(--rotion-dark-annot-bg-orange);
+  }
+
+  .rotion-callout-yellow {
+    color: var(--rotion-dark-annot-yellow);
+    border: var(--rotion-dark-annot-border);
+  }
+
+  .rotion-callout-yellow-bg {
+    color: var(--rotion-dark-annot-default);
+    background-color: var(--rotion-dark-annot-bg-yellow);
+  }
+
+  .rotion-callout-green {
+    color: var(--rotion-dark-annot-green);
+    border: var(--rotion-dark-annot-border);
+  }
+
+  .rotion-callout-green-bg {
+    color: var(--rotion-dark-annot-default);
+    background-color: var(--rotion-dark-annot-bg-green);
+  }
+
+  .rotion-callout-blue {
+    color: var(--rotion-dark-annot-blue);
+    border: var(--rotion-dark-annot-border);
+  }
+
+  .rotion-callout-blue-bg {
+    color: var(--rotion-dark-annot-default);
+    background-color: var(--rotion-dark-annot-bg-blue);
+  }
+
+  .rotion-callout-purple {
+    color: var(--rotion-dark-annot-purple);
+    border: var(--rotion-dark-annot-border);
+  }
+
+  .rotion-callout-purple-bg {
+    color: var(--rotion-dark-annot-default);
+    background-color: var(--rotion-dark-annot-bg-purple);
+  }
+
+  .rotion-callout-pink {
+    color: var(--rotion-dark-annot-pink);
+    border: var(--rotion-dark-annot-border);
+  }
+
+  .rotion-callout-pink-bg {
+    color: var(--rotion-dark-annot-default);
+    background-color: var(--rotion-dark-annot-bg-pink);
+  }
+
+  .rotion-callout-red {
+    color: var(--rotion-dark-annot-red);
+    border: var(--rotion-dark-annot-border);
+  }
+
+  .rotion-callout-red-bg {
+    color: var(--rotion-dark-annot-default);
+    background-color: var(--rotion-dark-annot-bg-red);
+  }
+}
