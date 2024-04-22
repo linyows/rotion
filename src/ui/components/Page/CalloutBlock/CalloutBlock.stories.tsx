@@ -82,7 +82,7 @@ export const Icon: Story = {
 const gray = structuredClone(icon)
 gray.callout.color = 'gray'
 // @ts-ignore
-gray.callout.icon.src = 'https://www.notion.so/icons/light-bulb_lightgray.svg'
+gray.callout.icon.src = 'https://www.notion.so/icons/light-bulb_gray.svg'
 export const Gray: Story = {
   args: {
     block: gray
