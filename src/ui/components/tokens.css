@@ -38,4 +38,48 @@
   --rotion-dark-link-bg-color: inherit;
   --rotion-link-hover-bg-color: rgba(150, 150, 150, 0.1);
   --rotion-dark-link-hover-bg-color: rgba(255, 255, 255, 0.15);
+
+  /* ANNOTATION and CALLOUT */
+  --rotion-annot-default: rgb(50, 48, 44);
+  --rotion-dark-annot-default: rgb(235, 233, 228);
+  --rotion-annot-bg-default: rgba(227, 226, 224, 0.5);
+  --rotion-dark-annot-bg-default: rgb(55, 55, 55);
+  --rotion-annot-gray: rgb(50, 48, 44);
+  --rotion-dark-annot-gray: rgb(155, 155, 155);
+  --rotion-annot-bg-gray: rgb(155, 155, 155);
+  --rotion-dark-annot-bg-gray: rgb(47, 47, 47);
+  --rotion-annot-brown: rgb(68, 42, 30);
+  --rotion-dark-annot-brown: rgb(186, 133, 111);
+  --rotion-annot-bg-brown: rgb(238, 224, 218);
+  --rotion-dark-annot-bg-brown: rgb(74, 50, 40);
+  --rotion-annot-orange: rgb(73, 41, 14);
+  --rotion-dark-annot-orange: rgb(199, 125, 72);
+  --rotion-annot-bg-orange: rgb(250, 222, 201);
+  --rotion-dark-annot-bg-orange: rgb(92, 59, 35);
+  --rotion-annot-yellow: rgb(64, 44, 27);
+  --rotion-dark-annot-yellow: rgb(202, 152, 73);
+  --rotion-annot-bg-yellow: rgb(253, 236, 200);
+  --rotion-dark-annot-bg-yellow: rgb(86, 67, 40);
+  --rotion-annot-green: rgb(28, 56, 41);
+  --rotion-dark-annot-green: rgb(82, 158, 114);
+  --rotion-annot-bg-green: rgb(219, 237, 219);
+  --rotion-dark-annot-bg-green: rgb(36, 61, 48);
+  --rotion-annot-blue: rgb(24, 51, 71);
+  --rotion-dark-annot-blue: rgb(94, 135, 201);
+  --rotion-annot-bg-blue: rgb(211, 229, 239);
+  --rotion-dark-annot-bg-blue: rgb(20, 58, 78);
+  --rotion-annot-purple: rgb(65, 36, 84);
+  --rotion-dark-annot-purple: rgb(157, 104, 211);
+  --rotion-annot-bg-purple: rgb(232, 222, 238);
+  --rotion-dark-annot-bg-purple: rgb(60, 45, 73);
+  --rotion-annot-pink: rgb(76, 35, 55);
+  --rotion-dark-annot-pink: rgb(209, 87, 150);
+  --rotion-annot-bg-pink: rgb(245, 224, 233);
+  --rotion-dark-annot-bg-pink: rgb(78, 44, 60);
+  --rotion-annot-red: rgb(93, 23, 21);
+  --rotion-dark-annot-red: rgb(223, 84, 82);
+  --rotion-annot-bg-red: rgb(255, 226, 221);
+  --rotion-dark-annot-bg-red: rgb(82, 46, 42);
+  --rotion-annot-border: 1px solid rgba(50, 48, 44, 0.3);
+  --rotion-dark-annot-border: 1px solid rgba(205, 203, 199, 0.3);
 }
