@@ -1,0 +1,51 @@
+.rotion-childpage {
+  font-family: var(--rotion-font-family);
+  width: 100%;
+}
+
+.rotion-childpage-link {
+  display: grid;
+  grid-template: repeat(1, 1fr) / 1.5rem 1fr;
+  gap: .4rem;
+  margin: .2rem 0 0;
+  padding: .3rem;
+  text-decoration: var(--rotion-link-text-decoration);
+  color: var(--rotion-link-color);
+  align-items: top;
+  background-color: var(--rotion-link-bg-color);
+  border-radius: var(--rotion-border-radius);
+}
+.rotion-childpage-link:hover {
+  background-color: var(--rotion-link-hover-bg-color);
+}
+
+.rotion-childpage-title {
+  border-bottom: var(--rotion-link-border-bottom);
+  vertical-align: top;
+  line-height: var(--rotion-line-height);
+}
+
+.rotion-childpage-emoji {
+  overflow: hidden;
+  font-size: .95rem;
+  margin-top: -2px;
+  margin-left: 3px;
+}
+
+.rotion-childpage-icon {
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-childpage-link {
+    color: var(--rotion-dark-link-color);
+    background-color: var(--rotion-dark-link-bg-color);
+  }
+  .rotion-childpage-link:hover {
+    background-color: var(--rotion-dark-link-hover-bg-color);
+  }
+  
+  .rotion-childpage-title {
+    border-bottom: var(--rotion-dark-link-border-bottom);
+  }
+}
