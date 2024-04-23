@@ -1,21 +1,6 @@
 import React, { useMemo } from 'react'
 import Katex from 'katex'
 import type { EquationBlockProps } from './EquationBlock.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    width: '100%',
-    textAlign: 'center',
-    color: tokens.primaryText,
-  },
-  html: {
-    margin: '.5rem auto',
-    fontSize: '1.7rem',
-  },
-})
 
 const EquationBlock = ({ block }: EquationBlockProps) => {
   const { equation } = block
@@ -29,8 +14,8 @@ const EquationBlock = ({ block }: EquationBlockProps) => {
   }, [formula])
 
   return (
-    <div className={`rotion-equation ${Stylex(style.wrapper)}`}>
-      <div className={`rotion-equation-html ${Stylex(style.html)}`} dangerouslySetInnerHTML={{ __html: html }} />
+    <div className="rotion-equation">
+      <div className="rotion-equation-html" dangerouslySetInnerHTML={{ __html: html }} />
     </div>
   )
 }
