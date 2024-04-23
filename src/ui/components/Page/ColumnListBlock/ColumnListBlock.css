@@ -1,0 +1,17 @@
+.rotion-columnlist {
+  font-family: var(--rotion-font-family);
+  width: 100%;
+  margin: 1rem 0;
+  display: grid;
+  gap: 5%;
+}
+
+.rotion-columnlist-column {
+  margin: 0 0 1rem;
+}
+
+@media (max-width: 580px) {
+  .rotion-columnlist {
+    display: block;
+  }
+}
