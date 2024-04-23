@@ -16,8 +16,22 @@
   font-size: .95rem;
 }
 
+.rotion-embed-instagram {
+  max-width: 540px;
+  margin: 0 auto;
+}
+.rotion-embed-instagram iframe {
+  max-height: 590px;
+  overflow: hidden;
+}
+
 .rotion-embed-twitter {
   max-width: 550px;
+  margin: 0 auto;
+}
+
+.rotion-embed-applemusic {
+  max-width: 660px;
   margin: 0 auto;
 }
 

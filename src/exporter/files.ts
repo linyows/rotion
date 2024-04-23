@@ -451,7 +451,13 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
 }
 
 export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> => {
-  if (block.embed && block.embed.url.includes('twitter.com')) {
+  if (block.embed && block.embed.url.includes('instagram.com')) {
+    const src = block.embed?.url || ''
+    const link = src.split('?').shift()
+    // Instagram oEmbed API is authentication required. So hard-coding.
+    return `<blockquote class="instagram-media" data-instgrm-permalink="${link}?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"> </blockquote> <script async src="//www.instagram.com/embed.js"></script>`
+
+  } else if (block.embed && block.embed.url.includes('twitter.com')) {
     const src = block.embed?.url || ''
     const tweetId = path.basename(src.split('?').shift() || '')
     const reqUrl = `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
@@ -463,6 +469,36 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
         console.log(`getEmbedHtml failure: ${reqUrl} - ${e}`)
       }
     }
+
+  } else if (block.embed && block.embed.url.includes('music.apple.com')) {
+    const src = block.embed?.url || ''
+    // Example: https://music.apple.com/us/album/paracosm-bonus-track-version/655768700
+    const m = src.match(/([a-z]+)\/album\/([0-9A-z-]+)\/(\d+)/)
+    if (m) {
+      const contry = m[1]
+      const albumName = m[2]
+      const musicId = m[3]
+      return `<iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/${contry}/album/${albumName}/${musicId}"></iframe>`
+    }
+    console.log(`music url mismatched: ${src}`)
+
+  } else if (block.embed && block.embed.url.includes('www.google.com/maps/')) {
+    const src = block.embed?.url || ''
+    if (process.env.GOOGLEMAP_EKY) {
+      const key = process.env.GOOGLEMAP_EKY
+      // Example: https://www.google.com/maps/@33.5838302,130.3657052,14z?entry=ttu
+      const m = src.match(/@([0-9\.]+),([0-9\.]+),(\d+)z/)
+      if (m) {
+        const latitude = m[1]
+        const longitude = m[2]
+        const zoom = m[3]
+        return `<iframe src="https://www.google.com/maps/embed/v1/view?key=${key}&amp;center=${latitude},${longitude}&amp;zoom=${zoom}" frameborder="0" sandbox="allow-scripts allow-popups allow-forms allow-same-origin" allowfullscreen="" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px; pointer-events: auto; background-color: white;"></iframe>`
+      }
+      console.log(`map url mismatched: ${src}`)
+    } else {
+      console.log('map is required: GOOGLEMAP_KEY')
+    }
+
   } else if (block.embed && block.embed.url.includes('speakerdeck.com')) {
     const embedUrl = block.embed?.url as string
     const reqUrl = `https://speakerdeck.com/oembed.json?url=${encodeURIComponent(embedUrl)}`
