@@ -1,37 +1,6 @@
 import React, { useEffect } from 'react'
 import { RichText } from '../RichText'
 import type { EmbedBlockProps } from './EmbedBlock.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    width: '100%',
-    textAlign: 'center',
-  },
-  html: {
-    width: '100%',
-    textAlign: 'center',
-  },
-  caption: {
-    margin: '.3rem .3rem 0',
-    textAlign: 'left',
-    color: tokens.thirdText,
-    fontSize: '.95rem',
-  },
-  twitter: {
-    maxWidth: '550px',
-    margin: '0 auto',
-  },
-  speakerdeck: {
-    maxWidth: '710px',
-    margin: '0 auto',
-    paddingBottom: '56.25%', /* 16:9 */
-    position: 'relative',
-    height: 0,
-  },
-})
 
 const Twitter = ({ block }: EmbedBlockProps) => {
   const htmlWithRemovedScript = block.embed.html.replace(/<script>.*/, '')
@@ -44,14 +13,14 @@ const Twitter = ({ block }: EmbedBlockProps) => {
   }, [])
 
   return (
-    <div className={`rotion-embed ${Stylex(style.wrapper)}`}>
-      <div className={`rotion-embed-twitter ${Stylex(style.twitter)}`}>
-        <div className={`${embedClass} ${Stylex(style.html)}`} dangerouslySetInnerHTML={{ __html: htmlWithRemovedScript }} />
-        <div className={`rotion-embed-caption ${Stylex(style.caption)}`}>
-          {block.embed.caption.map((v, i) => (
-            <RichText textObject={v} key={`richtext-${i}`} />
-          ))}
-        </div>
+    <div className="rotion-embed">
+      <div className="rotion-embed-twitter">
+        <div className={embedClass} dangerouslySetInnerHTML={{ __html: htmlWithRemovedScript }} />
+      </div>
+      <div className="rotion-embed-caption">
+        {block.embed.caption.map((v, i) => (
+          <RichText textObject={v} key={`richtext-${i}`} />
+        ))}
       </div>
     </div>
   )
@@ -59,14 +28,14 @@ const Twitter = ({ block }: EmbedBlockProps) => {
 
 const Speakerdeck = ({ block }: EmbedBlockProps) => {
   return (
-    <div className={`rotion-embed ${Stylex(style.wrapper)}`}>
-      <div className={`rotion-embed-speakerdeck ${Stylex(style.speakerdeck)}`}>
-        <div className={`rotion-embed-html ${Stylex(style.html)}`} dangerouslySetInnerHTML={{ __html: block.embed.html }} />
-        <div className={`rotion-embed-caption ${Stylex(style.caption)}`}>
-          {block.embed.caption.map((v, i) => (
-            <RichText textObject={v} key={`richtext-${i}`} />
-          ))}
-        </div>
+    <div className="rotion-embed">
+      <div className="rotion-embed-speakerdeck">
+        <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
+      </div>
+      <div className="rotion-embed-caption">
+        {block.embed.caption.map((v, i) => (
+          <RichText textObject={v} key={`richtext-${i}`} />
+        ))}
       </div>
     </div>
   )
@@ -87,8 +56,8 @@ const EmbedBlock = ({ block }: EmbedBlockProps) => {
   }
 
   return (
-    <div className={`rotion-embed ${Stylex(style.wrapper)}`}>
-      <div className={'rotion-embed-html'} dangerouslySetInnerHTML={{ __html: block.embed.html }} />
+    <div className="rotion-embed">
+      <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
       <div className="rotion-embed-caption">
         {block.embed.caption.map((v, i) => (
           <RichText textObject={v} key={`richtext-${i}`} />

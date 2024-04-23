@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { EmbedBlockObjectResponseEx } from '../../../../exporter'
 import EmbedBlock from './EmbedBlock'
+import './EmbedBlock.css'
 
 const block: EmbedBlockObjectResponseEx = {
   object: 'block',
