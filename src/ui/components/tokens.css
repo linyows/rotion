@@ -14,8 +14,8 @@
   /* BORDER */
   --rotion-border-color: rgba(220, 220, 220, 0.8);
   --rotion-dark-border-color: rgba(80, 80, 80, 0.8);
-  --rotion-border: 1px solid rgb(230, 230, 230);
-  --rotion-dark-border: 1px solid rgb(70, 70, 70);
+  --rotion-border: 1px solid var(--rotion-border-color);
+  --rotion-dark-border: 1px solid var(--rotion-dark-border-color);
 
   /* CODE and TABLE */
   --rotion-code-bg-color: #f5f2f0;
