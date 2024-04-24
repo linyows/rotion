@@ -2,49 +2,11 @@ import React from 'react'
 import RichText from '../RichText/RichText'
 import type { TableRowBlockObjectResponse } from '../../../../exporter'
 import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    paddingTop: '.6rem',
-    color: tokens.primaryText,
-  },
-  table: {
-    borderCollapse: 'collapse',
-    borderSpacing: 0,
-    fontSize: '.9rem',
-    width: '100%',
-  },
-  td: {
-    border: tokens.border,
-    margin: 0,
-    padding: '.3rem',
-  },
-  tdInner: {
-    padding: '.2rem .4rem',
-  },
-  tdHeader: {
-    border: tokens.border,
-    backgroundColor: tokens.tableHeaderBgColor,
-    margin: 0,
-    padding: '.3rem',
-    fontWeight: 500,
-    textAlign: 'left',
-  },
-  tdHeaderInner: {
-    padding: '.2rem .4rem',
-  },
-  tr: {
-    margin: 0,
-  },
-})
 
 const Td = ({ cell, key }: ThTdProps) => {
   return (
-    <td className={`rotion-table-td ${Stylex(style.td)}`} key={key}>
-      <div className={`rotion-table-td-inner ${Stylex(style.tdInner)}`}>
+    <td className="rotion-table-td" key={key}>
+      <div className="rotion-table-td-inner">
         <RichText textObject={cell} />
       </div>
     </td>
@@ -53,8 +15,8 @@ const Td = ({ cell, key }: ThTdProps) => {
 
 const TdH = ({ cell, key }: ThTdProps) => {
   return (
-    <td className={`rotiona-table-td-header ${Stylex(style.tdHeader)}`} key={key}>
-      <div className={`rotion-table-td-header-inner ${Stylex(style.tdHeaderInner)}`}>
+    <td className="rotion-table-td-header" key={key}>
+      <div className="rotion-table-td-header-inner">
         <RichText textObject={cell} />
       </div>
     </td>
@@ -63,7 +25,7 @@ const TdH = ({ cell, key }: ThTdProps) => {
 
 const Tr = ({ children, key }: TrProps) => {
   return (
-    <tr className={`rotion-table-tr ${Stylex(style.tr)}`} key={key}>
+    <tr className="rotion-table-tr" key={key}>
       {children}
     </tr>
   )
@@ -105,8 +67,8 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
   })
 
   return (
-    <div className={`rotion-table ${Stylex(style.wrapper)}`}>
-      <table className={`rotion-table-table ${Stylex(style.table)}`}>
+    <div className="rotion-table">
+      <table className="rotion-table-area">
         <tbody>
           {rows}
         </tbody>
