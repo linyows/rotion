@@ -1,0 +1,54 @@
+.rotion-todo {
+  font-family: var(--rotion-font-family);
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  padding: 4px 0 1px 2px;
+  line-height: 1.7;
+}
+
+.rotion-todo-checkbox {
+  user-select: none;
+  margin-right: 4px;
+  width: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  min-height: calc(1.5em + 3px + 3px);
+}
+
+.rotion-todo-text {
+  flex: 1 1 0;
+  min-width: 1px;
+  display: flex;
+  flex-direction: column;
+  color: var(--rotion-primary-text);
+}
+
+.rotion-todo-text-inner {
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 1px 2px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.rotion-todo-text-inner-checked {
+  text-decoration-line: line-through;
+  text-decoration-color: var(--rotion-tertiary-text);
+  color: var(--rotion-secondary-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-todo-text {
+    color: var(--rotion-dark-primary-text);
+  }
+
+  .rotion-todo-text-inner-checked {
+    text-decoration-color: var(--rotion-dark-tertiary-text);
+    color: var(--rotion-dark-secondary-text);
+  }
+}
