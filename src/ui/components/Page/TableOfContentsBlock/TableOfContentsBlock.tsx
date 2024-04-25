@@ -5,7 +5,7 @@ import type { TableOfContentsBlockProps } from './TableOfContentsBlock.types'
 const TableOfContentsBlock = ({ block }: TableOfContentsBlockProps) => {
   const { table_of_contents } = block
   return (
-    <div className={'rotion-tableofcontents'}>
+    <div className="rotion-tableofcontents">
      {table_of_contents.color}
     </div>
   )
