@@ -1,0 +1,58 @@
+.rotion-toggle {
+  font-family: var(--rotion-font-family);
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: .6rem;
+  line-height: 1.8;
+  color: var(--rotion-primary-text);
+}
+
+.rotion-toggle-triangle {
+  transition: background 20ms ease-in 0s;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--rotion-border-radius);
+  padding: 2px;
+  margin-top: 0;
+  margin-right: 4px;
+  background-color: inherit;
+}
+
+.rotion-toggle-triangle:hover {
+  background-color: var(--rotion-toggle-hover-bg-color);
+}
+
+.rotion-toggle-text {
+  width: 100%;
+}
+
+.rotion-toggle-icon {
+  width: 0.6875em;
+  height: 0.6875em;
+  display: block;
+  fill: var(--rotion-primary-text);
+  flex-shrink: 0;
+  backface-visibility: hidden;
+  transition: 'transform 200ms ease-out 0s';
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-toggle {
+    color: var(--rotion-dark-primary-text);
+  }
+
+  .rotion-toggle-icon {
+    fill: var(--rotion-dark-primary-text);
+  }
+
+  .rotion-toggle-triangle:hover {
+    background-color: var(--rotion-dark-toggle-hover-bg-color);
+  }
+}

@@ -22,6 +22,8 @@
   --rotion-dark-code-bg-color: #2d2d2d;
   --rotion-table-header-bg-color: rgba(150, 150, 150, 0.1);
   --rotion-dark-table-header-bg-color: rgba(255, 255, 255, 0.15);
+  --rotion-toggle-hover-bg-color: #f5f2f0;
+  --rotion-dark-toggle-hover-bg-color: #2d2d2d;
 
   /* LINK */
   --rotion-link-text-decoration: none;
