@@ -17,13 +17,15 @@
   --rotion-border: 1px solid var(--rotion-border-color);
   --rotion-dark-border: 1px solid var(--rotion-dark-border-color);
 
-  /* CODE and TABLE */
+  /* CODE, TABLE and TOGGLE */
   --rotion-code-bg-color: #f5f2f0;
   --rotion-dark-code-bg-color: #2d2d2d;
   --rotion-table-header-bg-color: rgba(150, 150, 150, 0.1);
   --rotion-dark-table-header-bg-color: rgba(255, 255, 255, 0.15);
   --rotion-toggle-hover-bg-color: #f5f2f0;
   --rotion-dark-toggle-hover-bg-color: #2d2d2d;
+  --rotion-quote-border-color: #2d2d2d;
+  --rotion-dark-quote-border-color: #f5f2f0;
 
   /* LINK */
   --rotion-link-text-decoration: none;
