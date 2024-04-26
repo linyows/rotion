@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { VideoBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter'
 import VideoBlock from './VideoBlock'
+import './VideoBlock.css'
 
 /* RICH TEXT */
 const richText: RichTextItemResponse = {
