@@ -1,5 +1,5 @@
 import React from 'react'
-import RichText from '../RichText/RichText'
+import RichText from '../../RichText/RichText'
 import type { RichTextItemResponse } from '../../../../exporter'
 import type { TextBlockProps } from './TextBlock.types'
 

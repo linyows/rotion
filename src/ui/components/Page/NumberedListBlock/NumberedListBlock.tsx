@@ -1,6 +1,6 @@
 import React from 'react'
 import type { NumberedListBlockProps } from './NumberedListBlock.types'
-import { RichText } from '../RichText'
+import { RichText } from '../../RichText'
 import { blockType } from '../PageHandler'
 import Page from '../Page'
 

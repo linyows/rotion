@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { RichText } from '../RichText'
+import { RichText } from '../../RichText'
 import type { ParagraphBlockObjectResponse } from '../../../../exporter'
 import type { ToggleBlockProps } from './ToggleBlock.types'
 

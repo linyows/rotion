@@ -1,5 +1,5 @@
 import React from 'react'
-import { RichText } from '../RichText'
+import { RichText } from '../../RichText'
 import type { CalloutBlockProps } from './CalloutBlock.types'
 
 const Icon = ({ block }: CalloutBlockProps) => {

@@ -4,7 +4,7 @@ import type {
   RichTextItemResponseEx,
   TextRichTextItemResponse,
 } from '../../../../exporter'
-import RichText from '../RichText/RichText'
+import RichText from '../../RichText/RichText'
 import type { CodeBlockProps } from './CodeBlock.types'
 import Code from './Code/Code'
 

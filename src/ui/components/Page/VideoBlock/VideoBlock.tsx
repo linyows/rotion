@@ -1,5 +1,5 @@
 import React from 'react'
-import { RichText } from '../RichText'
+import { RichText } from '../../RichText'
 import type { VideoBlockProps } from './VideoBlock.types'
 
 const css = `

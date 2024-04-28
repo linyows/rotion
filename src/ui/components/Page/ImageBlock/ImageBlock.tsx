@@ -1,5 +1,5 @@
 import React from 'react'
-import { RichText } from '../RichText'
+import { RichText } from '../../RichText'
 import type { ImageBlockProps } from './ImageBlock.types'
 
 export const ImageBlock = ({ block }: ImageBlockProps) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { RichText } from '../../Page/RichText'
+import { RichText } from '../../RichText'
 import type { ListRichTextFieldProps } from './ListRichTextField.types'
 import Stylex from '@stylexjs/stylex'
 import { tokens } from '../../tokens.stylex'

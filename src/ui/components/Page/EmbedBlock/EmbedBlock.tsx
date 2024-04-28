@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { RichText } from '../RichText'
+import { RichText } from '../../RichText'
 import type { EmbedBlockProps } from './EmbedBlock.types'
 
 declare global {

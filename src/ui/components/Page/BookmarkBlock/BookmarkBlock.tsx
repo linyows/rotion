@@ -1,5 +1,5 @@
 import React from 'react'
-import { RichText } from '../RichText'
+import { RichText } from '../../RichText'
 import type { BookmarkBlockProps } from './BookmarkBlock.types'
 
 const BookmarkBlock = ({ block }: BookmarkBlockProps) => {

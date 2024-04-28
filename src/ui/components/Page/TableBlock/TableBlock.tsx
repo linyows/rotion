@@ -1,5 +1,5 @@
 import React from 'react'
-import RichText from '../RichText/RichText'
+import RichText from '../../RichText/RichText'
 import type { TableRowBlockObjectResponse } from '../../../../exporter'
 import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import type { RichTextItemResponse } from '../../../../exporter'
-import RichText from '../RichText/RichText'
+import RichText from '../../RichText/RichText'
 import type { PdfBlockProps } from './PdfBlock.types'
 import { PageIcon } from '../PageIcon'
 
