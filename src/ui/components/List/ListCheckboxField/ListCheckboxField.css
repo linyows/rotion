@@ -1,0 +1,11 @@
+.rotion-list-checkbox {
+  margin: 0 .3rem;
+  padding: 0 .3rem;
+  background-color: var(--rotion-link-bg-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-list-checkbox {
+    background-color: var(--rotion-dark-link-bg-color);
+  }
+}

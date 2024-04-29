@@ -1,0 +1,14 @@
+.rotion-list-title-link {
+  font-family: var(--rotion-font-family);
+  text-decoration: var(--rotion-link-text-decoration);
+  border-bottom: var(--rotion-link-border-bottom);
+  color: var(--rotion-primary-text);
+  cursor: var(--rotion-link-cursor);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-list-title-link {
+    border-bottom: var(--rotion-dark-link-border-bottom);
+    color: var(--rotion-dark-primary-text);
+  }
+}

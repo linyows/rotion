@@ -1,0 +1,22 @@
+.rotion-list-multiselect-ul {
+  font-family: var(--rotion-font-family);
+  list-style-type: none;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 0;
+  margin: 0 7px;
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rotion-list-multiselect-li {
+  font-size: .75rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0 6px 0 0;
+}

@@ -1,23 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { cdate } from 'cdate'
 import type { ListDateFieldProps } from './ListDateField.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
 import { getDatetimeFormat } from '../../lib'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    whiteSpace: 'nowrap',
-    fontSize: '.85rem',
-    display: 'flex',
-    margin: '0 7px',
-    minWidth: '20px',
-    color: tokens.thirdText,
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-  },
-})
 
 const ListDateField = ({ payload }: ListDateFieldProps) => {
   if (payload === null) {
@@ -37,7 +21,7 @@ const ListDateField = ({ payload }: ListDateFieldProps) => {
   }, [startDate, endDate])
 
   return (
-    <div className={`rotion-list-date ${Stylex(style.wrapper)}`}>
+    <div className="rotion-list-date">
       {startDate}
       {end && ` → ${endDate}`}
     </div>
