@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import type { FileBlockObjectResponseEx } from '../../../../exporter'
 import FileBlock from './FileBlock'
 import './FileBlock.css'
+import '../../Icon/Icon.css'
 
 const block: FileBlockObjectResponseEx = {
   object: 'block',

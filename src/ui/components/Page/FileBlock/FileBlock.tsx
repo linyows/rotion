@@ -2,7 +2,7 @@ import React from 'react'
 import type { RichTextItemResponse } from '../../../../exporter'
 import RichText from '../../RichText/RichText'
 import type { FileBlockProps } from './FileBlock.types'
-import { PageIcon } from '../PageIcon'
+import { Icon } from '../../Icon'
 
 const FileBlock = ({ block }: FileBlockProps) => {
   const { file } = block
@@ -12,7 +12,7 @@ const FileBlock = ({ block }: FileBlockProps) => {
   return (
     <div className="rotion-file">
       <a href={file.src} target="_blank" className="rotion-file-link" rel="noreferrer">
-        <PageIcon name='file' />
+        <Icon name='file' />
         <span>
           {file.name}
           <span className="rotion-file-size">

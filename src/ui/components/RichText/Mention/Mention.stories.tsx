@@ -6,6 +6,7 @@ import './DateMention/DateMention.css'
 import './LinkPreviewMention/LinkPreviewMention.css'
 import './UserMention/UserMention.css'
 import './PageOrDatabaseMention/PageOrDatabaseMention.css'
+import '../../Icon/Icon.css'
 
 const textObject: MentionRichTextItemResponseEx = {
   type: 'mention',

@@ -1,5 +1,5 @@
 import React from 'react'
-import PageIcon from '../PageIcon/PageIcon'
+import { Icon } from '../../Icon'
 import type { LinkPreviewBlockProps } from './LinkPreviewBlock.types'
 
 interface Props {
@@ -13,7 +13,7 @@ const Github = ({ url }: Props) => {
   return (
     <span className="rotion-linkpreview-area rotion-linkpreview-github">
       <span className="rotion-linkpreview-icon">
-        <PageIcon name='github' width='32px' height='32px' />
+        <Icon name='github' width='32px' height='32px' />
       </span>
       <span>
         <span className="rotion-linkpreview-title">{user}/{repo}</span>
@@ -28,7 +28,7 @@ const Slack = ({ url }: Props) => {
   return (
     <span className="rotion-linkpreview-area rotion-linkpreview-slack">
       <span className="rotion-linkpreview-icon">
-        <PageIcon name='slack' width='32px' height='32px' />
+        <Icon name='slack' width='32px' height='32px' />
       </span>
       <span>
         <span className="rotion-linkpreview-title">Message in Slack</span>
@@ -45,7 +45,7 @@ const Figma = ({ url }: Props) => {
   return (
     <span className="rotion-linkpreview-area rotion-linkpreview-figma">
       <span className="rotion-linkpreview-icon">
-        <PageIcon name='figma' width='21px' height='32px' />
+        <Icon name='figma' width='21px' height='32px' />
       </span>
       <span>
         <span className="rotion-linkpreview-title">{title}</span>

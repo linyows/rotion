@@ -2,7 +2,7 @@ import React from 'react'
 import type { RichTextItemResponse } from '../../../../exporter'
 import RichText from '../../RichText/RichText'
 import type { PdfBlockProps } from './PdfBlock.types'
-import { PageIcon } from '../PageIcon'
+import { Icon } from '../../Icon'
 
 const PdfBlock = ({ block }: PdfBlockProps) => {
   const { pdf } = block
@@ -13,7 +13,7 @@ const PdfBlock = ({ block }: PdfBlockProps) => {
   return (
     <div className="rotion-pdf">
       <a href={pdf.src} target="_blank" className="rotion-pdf-link" rel="noreferrer">
-        <PageIcon name='file' />
+        <Icon name='file' />
         <span>
           {fileName}
           <span className="rotion-pdf-size">
