@@ -1,0 +1,7 @@
+.rotion-gallery-tag {
+  font-family: var(--rotion-font-family);
+  text-decoration: var(--rotion-text-decoration);
+  color: inherit;
+  cursor: var(--rotion-link-cursor);
+  padding: 2px 10px;
+}

@@ -1,16 +1,5 @@
 import React from 'react'
 import type { GalleryTitleFieldProps } from './GalleryTitleField.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    fontSize: '.9rem',
-    width: '100%',
-    padding: '10px 10px 0',
-  }
-})
 
 const GalleryTitleField = ({ payload }: GalleryTitleFieldProps) => {
   const title = payload.map(v => {
@@ -26,7 +15,7 @@ const GalleryTitleField = ({ payload }: GalleryTitleFieldProps) => {
   }).join(',')
 
   return (
-    <div className={`rotion-gallery-title ${Stylex(style.wrapper)}`}>
+    <div className="rotion-gallery-title">
       {title}
     </div>
   )

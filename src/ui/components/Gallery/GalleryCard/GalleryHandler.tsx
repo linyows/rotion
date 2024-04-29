@@ -3,7 +3,7 @@ import type { TitlePropertyItemObjectResponse } from '../../../../exporter'
 
 import GalleryTitleField from '../GalleryTitleField/GalleryTitleField'
 import GalleryDateField from '../GalleryDateField/GalleryDateField'
-import GalleryRichTextField from '../GalleryRichTextField/RichTextField'
+import GalleryRichTextField from '../GalleryRichTextField/GalleryRichTextField'
 import GalleryMultiSelectField from '../GalleryMultiSelectField/GalleryMultiSelectField'
 import GalleryUrlField from '../GalleryUrlField/GalleryUrlField'
 import GalleryCheckboxField from '../GalleryCheckboxField/GalleryCheckboxField'

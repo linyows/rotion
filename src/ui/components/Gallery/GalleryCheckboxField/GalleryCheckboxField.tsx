@@ -4,7 +4,7 @@ import { Checkbox } from '../../Checkbox'
 
 const GalleryCheckboxField = ({ payload }: GalleryCheckboxFieldProps) => {
   return (
-    <div className={'rotion-gallery-checkbox'}>
+    <div className="rotion-gallery-checkbox">
       <Checkbox bool={payload} />
     </div>
   )
