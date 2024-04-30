@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { BookmarkBlockObjectResponseEx } from '../../../../exporter'
 import BookmarkBlock from './BookmarkBlock'
-import './BookmarkBlock.css';
+import './BookmarkBlock.css'
 
 const block: BookmarkBlockObjectResponseEx = {
   object: 'block',

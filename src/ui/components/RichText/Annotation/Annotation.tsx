@@ -10,10 +10,10 @@ const Annotation = ({ textObject, children }: RichTextProps) => {
   const css = ['rotion-richtext-annot']
   // @ts-ignore
   css.push(annotations.code && color === 'default' ? '' : `rotion-richtext-${color.replace('_background', '-bg')}`)
-  if (annotations.bold) css.push(`rotion-richtext-bold`)
-  if (annotations.italic) css.push(`rotion-richtext-italic`)
-  if (annotations.strikethrough) css.push(`rotion-richtext-strikethrough`)
-  if (annotations.underline) css.push(`rotion-richtext-underline`)
+  if (annotations.bold) css.push('rotion-richtext-bold')
+  if (annotations.italic) css.push('rotion-richtext-italic')
+  if (annotations.strikethrough) css.push('rotion-richtext-strikethrough')
+  if (annotations.underline) css.push('rotion-richtext-underline')
   if (annotations.code) css.push(`rotion-richtext-code ${color === 'default' || color.includes('background') ? 'rotion-richtext-code-color' : ''}`)
   if (!annotations.code && color.includes('background')) css.push('rotion-richtext-nocode-bg')
 

@@ -26,7 +26,7 @@ const column: BlockObjectResponse = {
   column: {},
 }
 
-const columnObject: ListBlockChildrenResponseEx  = {
+const columnObject: ListBlockChildrenResponseEx = {
   object: 'list',
   results: [
     {
@@ -175,4 +175,3 @@ export const FiveColumns: Story = {
     block: five,
   },
 }
-

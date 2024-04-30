@@ -2,12 +2,6 @@ import React, { useEffect } from 'react'
 import { RichText } from '../../RichText'
 import type { EmbedBlockProps } from './EmbedBlock.types'
 
-declare global {
-  interface Window {
-    instgrm?: { Embeds: { process: () => void } }
-  }
-}
-
 const Instagram = ({ block }: EmbedBlockProps) => {
   const htmlWithRemovedScript = block.embed.html.replace(/<script>.*/, '')
   const embedClass = 'rotion-embed-html'
@@ -16,7 +10,9 @@ const Instagram = ({ block }: EmbedBlockProps) => {
     const script = document.createElement('script')
     script.src = 'https://www.instagram.com/embed.js'
     document.getElementsByClassName(embedClass)[0].appendChild(script)
+    // @ts-ignore
     if (window.instgrm) {
+      // @ts-ignore
       window.instgrm.Embeds.process()
     }
   }, [])
