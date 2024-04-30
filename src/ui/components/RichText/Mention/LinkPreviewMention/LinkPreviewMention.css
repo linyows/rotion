@@ -14,7 +14,9 @@
 
 .rotion-richtext-linkpreview-icon {
   vertical-align: middle;
-  padding-right: .3rem;
+  padding-right: .35rem;
+  padding-left: .1rem;
+  margin-top: -2.4px;
 }
 
 .rotion-richtext-linkpreview-text {
