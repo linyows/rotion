@@ -88,8 +88,6 @@
     "@storybook/react-vite": "^8.0.6",
     "@storybook/test": "^8.0.6",
     "@storybook/theming": "^8.0.6",
-    "@stylexjs/rollup-plugin": "^0.4.1",
-    "@stylexjs/stylex": "^0.4.1",
     "@tsconfig/node-lts-strictest-esm": "^18.12.1",
     "@types/imagemin": "^8.0.5",
     "@types/imagemin-webp": "^7.0.3",
@@ -123,8 +121,7 @@
     "tslib": "^2.6.2",
     "tsm": "^2.3.0",
     "typescript": "^5.3.3",
-    "uvu": "^0.5.6",
-    "vite-plugin-stylex-dev": "^0.2.5"
+    "uvu": "^0.5.6"
   },
   "extends": "@tsconfig/node-lts-strictest-esm",
   "ts-node": {
