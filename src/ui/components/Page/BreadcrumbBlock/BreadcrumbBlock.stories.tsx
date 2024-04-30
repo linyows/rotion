@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import type { BreadcrumbBlockObjectResponseEx } from '../../../../exporter'
 import BreadcrumbBlock from './BreadcrumbBlock'
 import './BreadcrumbBlock.css'
+import './LinkedBreadcrumbIfLinked.css'
 
 const block: BreadcrumbBlockObjectResponseEx = {
   object: 'block',
