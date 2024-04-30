@@ -1,0 +1,15 @@
+.rotion-table-date {
+  font-family: var(--rotion-font-family);
+  white-space: nowrap;
+  font-size: .85rem;
+  display: flex;
+  align-items: center;
+  min-width: 20px;
+  color: var(--rotion-primary-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-table-date {
+    color: var(--rotion-dark-primary-text);
+  }
+}

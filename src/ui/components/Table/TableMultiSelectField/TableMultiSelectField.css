@@ -1,0 +1,21 @@
+.rotion-table-multiselect-ul {
+  font-family: var(--rotion-font-family);
+  list-style-type: none;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rotion-table-multiselect-li {
+  font-size: .75rem;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0 6px 0 0;
+}

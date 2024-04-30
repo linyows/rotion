@@ -151,4 +151,14 @@
   --rotion-dark-tag-red: rgba(255, 255, 255, 0.804);
   --rotion-tag-bg-red: rgb(255, 226, 221);
   --rotion-dark-tag-bg-red: rgb(110, 54, 48);
+
+  /* TABLE */
+  --rotion-table-border: 1px solid rgba(55, 53, 47, 0.09);
+  --rotion-dark-table-border: 1px solid rgb(47, 47, 47);
+  --rotion-table-icon-fill: rgba(55, 53, 47, 0.45);
+  --rotion-dark-table-icon-fill: rgba(255, 253, 247, 0.45);
+  --rotion-table-box-shadow: white -3px 0px 0px, rgb(233 233 231) 0px 1px 0px;
+  --rotion-dark-table-box-shadow: rgb(25, 25, 25) -3px 0px 0px, rgb(47, 47, 47) 0px 1px 0px;
+  --rotion-table-link-hover-bg: rgb(227, 226, 224) none repeat scroll 0% 0%;
+  --rotion-dark-table-link-hover-bg: rgb(28, 29, 31) none repeat scroll 0% 0%;
 }

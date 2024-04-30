@@ -1,0 +1,17 @@
+.rotion-table-richtext {
+  font-family: var(--rotion-font-family);
+  font-size: .85rem;
+  white-space: nowrap;
+  display: block;
+  margin: 0;
+  padding: 0;
+  color: var(--rotion-primary-text);
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-table-richtext {
+    color: var(--rotion-dark-primary-text);
+  }
+}

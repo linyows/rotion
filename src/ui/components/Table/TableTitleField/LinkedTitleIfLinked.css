@@ -1,0 +1,22 @@
+.rotion-table-title-link {
+  color: var(--rotion-link-color);
+  text-decoration: var(--rotion-link-text-decoration);
+  border-bottom: var(--rotion-link-border-bottom);
+}
+
+.rotion-table-title-link:hover {
+  color: var(--rotion-link-hover-color);
+  border-bottom: var(--rotion-link-hover-border-bottom);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-table-title-link {
+    color: var(--rotion-dark-link-color);
+    border-bottom: var(--rotion-dark-link-border-bottom);
+  }
+
+  .rotion-table-title-link:hover {
+    color: var(--rotion-dark-link-hover-color);
+    border-bottom: var(--rotion-dark-link-hover-border-bottom);
+  }
+}
