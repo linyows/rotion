@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Breadcrumb } from 'rotion'
-import { PageIcon, Breadcrumbs } from 'rotion/ui'
+import { Icon, Breadcrumbs } from 'rotion/ui'
 import styles from '@/components/Header.module.css'
 
 export interface HeaderProps {
@@ -17,7 +17,7 @@ const Header = ({ breadcrumbs, breadcrumb_hrefs }: HeaderProps) => {
       </div>
       <div className={styles.repo}>
         <a className={styles.github} href="https://github.com/linyows/notionate" target="_blank" rel="noreferrer">
-          <PageIcon name='github' />
+          <Icon name='github' />
           GitHub
         </a>
       </div>
