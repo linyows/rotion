@@ -1,0 +1,110 @@
+.rotion-list-multiselect-link {
+  font-family: var(--rotion-font-family);
+  text-decoration: var(--rotion-link-text-decoration);
+  color: inherit;
+  cursor: var(--rotion-link-cursor);
+  padding: 2px 10px;
+  border-radius: var(--rotion-border-radius);
+}
+
+.rotion-list-multiselect-default {
+  color: var(--rotion-tag-default);
+  background-color: var(--rotion-tag-bg-default);
+}
+
+.rotion-list-multiselect-gray {
+  color: var(--rotion-tag-gray);
+  background-color: var(--rotion-tag-bg-gray);
+}
+
+.rotion-list-multiselect-brown {
+  color: var(--rotion-tag-brown);
+  background-color: var(--rotion-tag-bg-brown);
+}
+
+.rotion-list-multiselect-orange {
+  color: var(--rotion-tag-orange);
+  background-color: var(--rotion-tag-bg-orange);
+}
+
+.rotion-list-multiselect-yellow {
+  color: var(--rotion-tag-yellow);
+  background-color: var(--rotion-tag-bg-yellow);
+}
+
+.rotion-list-multiselect-green {
+  color: var(--rotion-tag-green);
+  background-color: var(--rotion-tag-bg-green);
+}
+
+.rotion-list-multiselect-blue {
+  color: var(--rotion-tag-blue);
+  background-color: var(--rotion-tag-bg-blue);
+}
+
+.rotion-list-multiselect-purple {
+  color: var(--rotion-tag-purple);
+  background-color: var(--rotion-tag-bg-purple);
+}
+
+.rotion-list-multiselect-pink {
+  color: var(--rotion-tag-orange);
+  background-color: var(--rotion-tag-bg-orange);
+}
+
+.rotion-list-multiselect-red {
+  color: var(--rotion-tag-red);
+  background-color: var(--rotion-tag-bg-red);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-list-multiselect-default {
+    color: var(--rotion-dark-tag-default);
+    background-color: var(--rotion-dark-tag-bg-default);
+  }
+
+  .rotion-list-multiselect-gray {
+    color: var(--rotion-dark-tag-gray);
+    background-color: var(--rotion-dark-tag-bg-gray);
+  }
+
+  .rotion-list-multiselect-brown {
+    color: var(--rotion-dark-tag-brown);
+    background-color: var(--rotion-dark-tag-bg-brown);
+  }
+
+  .rotion-list-multiselect-orange {
+    color: var(--rotion-dark-tag-orange);
+    background-color: var(--rotion-dark-tag-bg-orange);
+  }
+
+  .rotion-list-multiselect-yellow {
+    color: var(--rotion-dark-tag-yellow);
+    background-color: var(--rotion-dark-tag-bg-yellow);
+  }
+
+  .rotion-list-multiselect-green {
+    color: var(--rotion-dark-tag-green);
+    background-color: var(--rotion-dark-tag-bg-green);
+  }
+
+  .rotion-list-multiselect-blue {
+    color: var(--rotion-dark-tag-blue);
+    background-color: var(--rotion-dark-tag-bg-blue);
+  }
+
+  .rotion-list-multiselect-purple {
+    color: var(--rotion-dark-tag-purple);
+    background-color: var(--rotion-dark-tag-bg-purple);
+  }
+
+  .rotion-list-multiselect-pink {
+    color: var(--rotion-dark-tag-orange);
+    background-color: var(--rotion-dark-tag-bg-orange);
+  }
+
+  .rotion-list-multiselect-red {
+    color: var(--rotion-dark-tag-red);
+    background-color: var(--rotion-dark-tag-bg-red);
+  }
+}

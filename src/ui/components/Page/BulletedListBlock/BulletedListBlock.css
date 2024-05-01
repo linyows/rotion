@@ -1,0 +1,6 @@
+.rotion-bulleted-list {
+  font-family: var(--rotion-font-family);
+  line-height: var(--rotion-line-height);
+  padding: .2rem 0 .2rem .3rem;
+  margin: 0;
+}

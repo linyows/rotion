@@ -1,0 +1,21 @@
+.rotion-gallery-richtext {
+  font-family: var(--rotion-font-family);
+  padding: 5px 10px 0;
+  display: block;
+  font-size: 13px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.rotion-gallery-richtext-small {
+  width: 180px;
+}
+
+.rotion-gallery-richtext-medium {
+  width: 260px;
+}
+
+.rotion-gallery-richtext-large {
+  width: 320px;
+}

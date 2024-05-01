@@ -1,0 +1,6 @@
+.rotion-gallery-title {
+  font-family: var(--rotion-font-family);
+  font-size: .9rem;
+  width: 100%;
+  padding: 10px 10px 0;
+}

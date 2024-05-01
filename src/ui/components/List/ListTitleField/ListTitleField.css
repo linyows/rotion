@@ -1,0 +1,10 @@
+.rotion-list-title {
+  font-family: var(--rotion-font-family);
+  white-space: nowrap;
+  display: block;
+  max-width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  margin: 0 7px;
+}

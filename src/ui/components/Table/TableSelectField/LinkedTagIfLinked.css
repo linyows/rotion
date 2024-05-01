@@ -1,0 +1,108 @@
+.rotion-table-select-link {
+  font-family: var(--rotion-font-family);
+  text-decoration: none;
+  color: inherit;
+  padding: 2px 10px;
+}
+
+.rotion-table-select-default {
+  color: var(--rotion-tag-default);
+  background-color: var(--rotion-tag-default);
+}
+
+.rotion-table-select-gray {
+  color: var(--rotion-tag-gray);
+  background-color: var(--rotion-tag-gray);
+}
+
+.rotion-table-select-brown {
+  color: var(--rotion-tag-brown);
+  background-color: var(--rotion-tag-brown);
+}
+
+.rotion-table-select-orange {
+  color: var(--rotion-tag-orange);
+  background-color: var(--rotion-tag-orange);
+}
+
+.rotion-table-select-yellow {
+  color: var(--rotion-tag-yellow);
+  background-color: var(--rotion-tag-yellow);
+}
+
+.rotion-table-select-green {
+  color: var(--rotion-tag-green);
+  background-color: var(--rotion-tag-green);
+}
+
+.rotion-table-select-blue {
+  color: var(--rotion-tag-blue);
+  background-color: var(--rotion-tag-blue);
+}
+
+.rotion-table-select-purple {
+  color: var(--rotion-tag-purple);
+  background-color: var(--rotion-tag-purple);
+}
+
+.rotion-table-select-pink {
+  color: var(--rotion-tag-orange);
+  background-color: var(--rotion-tag-orange);
+}
+
+.rotion-table-select-red {
+  color: var(--rotion-tag-red);
+  background-color: var(--rotion-tag-red);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-table-select-default {
+    color: var(--rotion-dark-tag-default);
+    background-color: var(--rotion-dark-tag-default);
+  }
+
+  .rotion-table-select-gray {
+    color: var(--rotion-dark-tag-gray);
+    background-color: var(--rotion-dark-tag-gray);
+  }
+
+  .rotion-table-select-brown {
+    color: var(--rotion-dark-tag-brown);
+    background-color: var(--rotion-dark-tag-brown);
+  }
+
+  .rotion-table-select-orange {
+    color: var(--rotion-dark-tag-orange);
+    background-color: var(--rotion-dark-tag-orange);
+  }
+
+  .rotion-table-select-yellow {
+    color: var(--rotion-dark-tag-yellow);
+    background-color: var(--rotion-dark-tag-yellow);
+  }
+
+  .rotion-table-select-green {
+    color: var(--rotion-dark-tag-green);
+    background-color: var(--rotion-dark-tag-green);
+  }
+
+  .rotion-table-select-blue {
+    color: var(--rotion-dark-tag-blue);
+    background-color: var(--rotion-dark-tag-blue);
+  }
+
+  .rotion-table-select-purple {
+    color: var(--rotion-dark-tag-purple);
+    background-color: var(--rotion-dark-tag-purple);
+  }
+
+  .rotion-table-select-pink {
+    color: var(--rotion-dark-tag-orange);
+    background-color: var(--rotion-dark-tag-orange);
+  }
+
+  .rotion-table-select-red {
+    color: var(--rotion-dark-tag-red);
+    background-color: var(--rotion-dark-tag-red);
+  }
+}

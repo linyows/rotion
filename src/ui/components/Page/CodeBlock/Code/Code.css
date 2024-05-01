@@ -1,0 +1,30 @@
+.rotion-code-area {
+  border-radius: var(--rotion-border-radius);
+  padding: .6rem 1rem;
+  background-color: #f5f2f0;
+  margin: 1rem 0;
+  font-size: .8rem;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.rotion-code-lang {
+  position: absolute;
+  top: .5rem;
+  left: .8rem;
+  color: var(--rotion-primary-text);
+  font-size: .75rem;
+  text-transform: capitalize;
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-code-area {
+    background-color: #2d2d2d;
+  }
+
+  .rotion-code-lang {
+    color: var(--rotion-dark-primary-text);
+  }
+}

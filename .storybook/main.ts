@@ -1,5 +1,4 @@
 import type { StorybookConfig } from "@storybook/react-vite";
-import { stylexPlugin } from "vite-plugin-stylex-dev";
 
 const config: StorybookConfig = {
   stories: [
@@ -21,18 +20,6 @@ const config: StorybookConfig = {
   staticDirs: ['../examples/nextjs/public'],
   docs: {
     autodocs: "tag",
-  },
-  async viteFinal(config) {
-    const { plugins = [] } = config;
-    plugins.push(
-      stylexPlugin({
-        unstable_moduleResolution: {
-          type: 'commonJS',
-          rootDir: process.cwd()
-        }
-      })
-    )
-    return config
   },
 };
 export default config;

@@ -1,0 +1,66 @@
+.rotion-linkpreview {
+  font-family: var(--rotion-font-family);
+  margin: 1rem 0;
+}
+
+.rotion-linkpreview-link {
+  display: block;
+  text-decoration: var(--rotion-link-text-decoration);
+  border: var(--rotion-border);
+  padding: .7rem 1rem;
+  color: var(--rotion-link-color);
+  border-radius: var(--rotion-border-radius);
+  background-color: var(--rotion-link-bg-color);
+  overflow: hidden;
+}
+
+.rotion-linkpreview-link:hover {
+  color: var(--rotion-link-hover-color);
+  background-color: var(--rotion-link-hover-bg-color);
+}
+
+.rotion-linkpreview-area {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 10px;
+}
+
+.rotion-linkpreview-icon {
+  height: 100%;
+}
+.rotion-linkpreview-slack .rotion-linkpreview-icon {
+  padding-top: 3px;
+  margin-bottom: -3px;
+}
+.rotion-linkpreview-figma .rotion-linkpreview-icon {
+  padding-left: 6px;
+}
+
+.rotion-linkpreview-title {
+  display: block;
+  font-size: .85rem;
+}
+
+.rotion-linkpreview-desc {
+  padding-top: 3px;
+  display: block;
+  font-size: .8rem;
+  color: var(--rotion-tertiary-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-linkpreview-link {
+    border: var(--rotion-dark-border);
+    color: var(--rotion-dark-link-color);
+    background-color: var(--rotion-dark-link-bg-color);
+  }
+
+  .rotion-linkpreview-link:hover {
+    color: var(--rotion-dark-link-hover-color);
+    background-color: var(--rotion-dark-link-hover-bg-color);
+  }
+
+  .rotion-linkpreview-desc {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}

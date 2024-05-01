@@ -1,0 +1,11 @@
+.rotion-syncedblock {
+  font-family: var(--rotion-font-family);
+  padding: .5rem 0;
+  color: var(--rotion-primary-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-syncedblock {
+    color: var(--rotion-dark-primary-text);
+  }
+}

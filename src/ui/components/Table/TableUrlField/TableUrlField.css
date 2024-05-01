@@ -1,0 +1,49 @@
+.rotion-table-url {
+  font-family: var(--rotion-font-family);
+  display: flex;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.rotion-table-url-link {
+  display: block;
+  text-decoration: var(--rotion-link-text-decoration);
+  cursor: var(--rotion-link-cursor);
+  color: var(--rotion-link-color);
+  background: inherit;
+  border-radius: var(--rotion-border-radius);
+  padding: 0 5px 2px;
+}
+
+.rotion-table-url-link:hover {
+  color: var(--rotion-link-hover-color);
+  background: var(--rotion-link-hover-bg-color);
+}
+
+.rotion-table-url-domain {
+  display: inline;
+  font-size: .8rem;
+  white-space: nowrap;
+}
+
+.rotion-table-url-domain {
+  display: inline;
+  font-size: .8rem;
+  white-space: nowrap;
+  color: var(--rotion-tertiary-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-table-url-link {
+    color: var(--rotion-dark-link-color);
+  }
+  
+  .rotion-table-url-link:hover {
+    color: var(--rotion-dark-link-hover-color);
+    background: var(--rotion-dark-link-hover-bg-color);
+  }
+  
+  .rotion-table-url-domain {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}

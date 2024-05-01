@@ -1,0 +1,17 @@
+.rotion-list-date {
+  font-family: var(--rotion-font-family);
+  white-space: nowrap;
+  font-size: .85rem;
+  display: flex;
+  margin: 0 7px;
+  min-width: 20px;
+  color: var(--rotion-tertiary-text);
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-list-date {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}

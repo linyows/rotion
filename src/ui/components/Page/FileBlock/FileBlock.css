@@ -1,0 +1,53 @@
+.rotion-file {
+  font-family: var(--rotion-font-family);
+}
+
+.rotion-file-link {
+  display: grid;
+  grid-template: repeat(1, 1fr) / 1.5rem 1fr;
+  gap: .1rem;
+  margin: .2rem 0 0;
+  padding: .6rem .3rem;
+  text-decoration: var(--rotion-link-text-decoration);
+  color: var(--rotion-link-color);
+  align-items: top;
+  background-color: var(--rotion-link-bg-color);
+  border-radius: var(--rotion-border-radius);
+}
+
+.rotion-file-link:hover {
+  background-color: var(--rotion-link-hover-bg-color);
+}
+
+.rotion-file-size {
+  color: var(--rotion-tertiary-text);
+  font-size: .8rem;
+  padding-left: .5rem;
+}
+
+.rotion-file-caption {
+  color: var(--rotion-tertiary-text);
+  font-size: .9rem;
+  padding-top: .2rem;
+  padding-left: .4rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-file-link {
+    text-decoration: var(--rotion-dark-link-text-decoration);
+    color: var(--rotion-dark-link-color);
+    background-color: var(--rotion-dark-link-bg-color);
+  }
+
+  .rotion-file-link:hover {
+    background-color: var(--rotion-dark-link-hover-bg-color);
+  }
+
+  .rotion-file-size {
+    color: var(--rotion-dark-tertiary-text);
+  }
+
+  .rotion-file-caption {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}

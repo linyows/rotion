@@ -1,21 +1,7 @@
 import React from 'react'
 import type { ListTitleFieldProps } from './ListTitleField.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
 import LinkedTitle from './LinkedTitle'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    whiteSpace: 'nowrap',
-    display: 'block',
-    maxWidth: '500px',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    lineHeight: 1.4,
-    margin: '0 7px',
-  },
-})
+import './ListTitleField.css'
 
 const ListTitleField = ({ payload, path, slug, link, query }: ListTitleFieldProps) => {
   const title = payload.map(v => {
@@ -33,7 +19,7 @@ const ListTitleField = ({ payload, path, slug, link, query }: ListTitleFieldProp
   const href = `${path}${slug}`
 
   return (
-    <div className={`rotion-list-title ${Stylex(style.wrapper)}`}>
+    <div className="rotion-list-title">
       <LinkedTitle title={title} href={href} link={link} query={query} />
     </div>
   )

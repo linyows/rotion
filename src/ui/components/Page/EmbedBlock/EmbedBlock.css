@@ -1,0 +1,55 @@
+.rotion-embed {
+  font-family: var(--rotion-font-family);
+  width: 100%;
+  text-align: center;
+}
+
+.rotion-embed-html {
+  width: 100%;
+  text-align: center;
+}
+
+.rotion-embed-caption {
+  margin: .3rem .3rem 0;
+  text-align: left;
+  color: var(--rotion-tertiary-text);
+  font-size: .95rem;
+}
+
+.rotion-embed-instagram {
+  max-width: 540px;
+  margin: 0 auto;
+}
+.rotion-embed-instagram iframe {
+  max-height: 590px;
+  overflow: hidden;
+}
+
+.rotion-embed-twitter {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.rotion-embed-applemusic {
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.rotion-embed-speakerdeck {
+  width: 100%;
+  margin: 0 auto .8rem;
+  padding-bottom: 56.25%; /* 16:9 */
+  position: relative;
+  height: 0;
+}
+
+.rotion-embed-speakerdeck iframe {
+  width: 100%;
+  height: 56.25%; /* 16:9 */
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-embed-caption {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}

@@ -1,0 +1,33 @@
+.rotion-video {
+  font-family: var(--rotion-font-family);
+  width: 100%;
+}
+
+.rotion-video-inner {
+  margin: auto;
+}
+
+.rotion-video-html {
+  width: 100%;
+  margin: auto;
+  padding-bottom: 56.25%; /* 16:9 */
+  position: relative;
+  height: 0,
+}
+
+.rotion-video-caption {
+  margin: .3rem .3rem 0;
+  text-align: left;
+  color: var(--rotion-tertiary-text);
+  font-size: .95rem;
+}
+
+.rotion-video-youtube {
+  margin: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-video-caption {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}

@@ -1,0 +1,9 @@
+.rotion-list-number {
+  font-family: var(--rotion-font-family);
+  white-space: nowrap;
+  font-size: .85rem;
+  display: flex;
+  align-items: center;
+  margin: 0 7px;
+  min-width: 20px;
+}

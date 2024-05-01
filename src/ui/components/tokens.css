@@ -1,0 +1,164 @@
+:root {
+  --rotion-font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, 'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --rotion-border-radius: 4px;
+  --rotion-line-height: 1.5;
+
+  /* TEXT */
+  --rotion-primary-text: rgb(35, 45, 55);
+  --rotion-dark-primary-text: rgb(230, 230, 230);
+  --rotion-secondary-text: rgb(130, 140, 150);
+  --rotion-dark-secondary-text: rgb(130, 130, 130);
+  --rotion-tertiary-text: rgb(160, 170, 180);
+  --rotion-dark-tertiary-text: rgb(100, 100, 100);
+
+  /* BORDER */
+  --rotion-border-color: rgba(220, 220, 220, 0.8);
+  --rotion-dark-border-color: rgba(80, 80, 80, 0.8);
+  --rotion-border: 1px solid var(--rotion-border-color);
+  --rotion-dark-border: 1px solid var(--rotion-dark-border-color);
+
+  /* CODE, TABLE and TOGGLE */
+  --rotion-code-bg-color: rgba(135, 131, 120, .15);
+  --rotion-dark-code-bg-color: rgba(135, 131, 120, .3);
+  --rotion-table-header-bg-color: rgba(150, 150, 150, 0.1);
+  --rotion-dark-table-header-bg-color: rgba(255, 255, 255, 0.15);
+  --rotion-toggle-hover-bg-color: #f5f2f0;
+  --rotion-dark-toggle-hover-bg-color: #2d2d2d;
+  --rotion-quote-border-color: #2d2d2d;
+  --rotion-dark-quote-border-color: #f5f2f0;
+
+  /* LINK */
+  --rotion-link-text-decoration: none;
+  --rotion-link-cursor: pointer;
+  --rotion-link-color: rgb(50, 48, 44);
+  --rotion-dark-link-color: rgb(225, 223, 219);
+  --rotion-link-hover-color: rgba(50, 48, 44, 0.6);
+  --rotion-dark-link-hover-color: rgba(225, 223, 219, 0.6);
+  --rotion-link-border-bottom: 1px solid rgba(50, 48, 44, 0.4);
+  --rotion-dark-link-border-bottom: 1px solid rgba(205, 203, 199, 0.4);
+  --rotion-link-hover-border-bottom: 1px solid rgba(50, 48, 44, 0.2);
+  --rotion-dark-link-hover-border-bottom: 1px solid rgba(205, 203, 199, 0.2);
+  --rotion-link-bg-color: inherit;
+  --rotion-dark-link-bg-color: inherit;
+  --rotion-link-hover-bg-color: rgba(150, 150, 150, 0.1);
+  --rotion-dark-link-hover-bg-color: rgba(255, 255, 255, 0.15);
+
+  /* ANNOTATION and CALLOUT */
+  --rotion-annot-default: rgb(50, 48, 44);
+  --rotion-dark-annot-default: rgb(235, 233, 228);
+  --rotion-annot-bg-default: rgba(227, 226, 224, 0.5);
+  --rotion-dark-annot-bg-default: rgb(55, 55, 55);
+  /* --rotion-annot-gray: rgb(50, 48, 44); */
+  --rotion-annot-gray: rgb(120, 119, 116);
+  --rotion-dark-annot-gray: rgb(155, 155, 155);
+  /* --rotion-annot-bg-gray: rgb(155, 155, 155); */
+  --rotion-annot-bg-gray: rgb(241, 241, 239);
+  --rotion-dark-annot-bg-gray: rgb(47, 47, 47);
+  /* --rotion-annot-brown: rgb(68, 42, 30); */
+  --rotion-annot-brown: rgb(159, 107, 83);
+  --rotion-dark-annot-brown: rgb(186, 133, 111);
+  --rotion-annot-bg-brown: rgb(238, 224, 218);
+  --rotion-dark-annot-bg-brown: rgb(74, 50, 40);
+  /* --rotion-annot-orange: rgb(73, 41, 14); */
+  --rotion-annot-orange: rgb(217, 115, 13);
+  --rotion-dark-annot-orange: rgb(199, 125, 72);
+  --rotion-annot-bg-orange: rgb(250, 222, 201);
+  --rotion-dark-annot-bg-orange: rgb(92, 59, 35);
+  /* --rotion-annot-yellow: rgb(64, 44, 27); */
+  --rotion-annot-yellow: rgb(203, 145, 47);
+  --rotion-dark-annot-yellow: rgb(202, 152, 73);
+  --rotion-annot-bg-yellow: rgb(253, 236, 200);
+  --rotion-dark-annot-bg-yellow: rgb(86, 67, 40);
+  /* --rotion-annot-green: rgb(28, 56, 41); */
+  --rotion-annot-green: rgb(68, 131, 97);
+  --rotion-dark-annot-green: rgb(82, 158, 114);
+  /* --rotion-annot-bg-green: rgb(219, 237, 219); */
+  --rotion-annot-bg-green: rgb(237, 243, 236);
+  --rotion-dark-annot-bg-green: rgb(36, 61, 48);
+  /* --rotion-annot-blue: rgb(24, 51, 71); */
+  --rotion-annot-blue: rgb(51, 126, 169);
+  --rotion-dark-annot-blue: rgb(94, 135, 201);
+  --rotion-annot-bg-blue: rgb(211, 229, 239);
+  --rotion-dark-annot-bg-blue: rgb(20, 58, 78);
+  /* --rotion-annot-purple: rgb(65, 36, 84); */
+  --rotion-annot-purple: rgb(144, 101, 176);
+  --rotion-dark-annot-purple: rgb(157, 104, 211);
+  --rotion-annot-bg-purple: rgb(232, 222, 238);
+  --rotion-dark-annot-bg-purple: rgb(60, 45, 73);
+  /* --rotion-annot-pink: rgb(76, 35, 55); */
+  --rotion-annot-pink: rgb(193, 76, 138);
+  --rotion-dark-annot-pink: rgb(209, 87, 150);
+  --rotion-annot-bg-pink: rgb(245, 224, 233);
+  --rotion-dark-annot-bg-pink: rgb(78, 44, 60);
+  /* --rotion-annot-red: rgb(93, 23, 21); */
+  --rotion-annot-red: rgb(212, 76, 71);
+  --rotion-dark-annot-red: rgb(223, 84, 82);
+  --rotion-annot-bg-red: rgb(255, 226, 221);
+  --rotion-dark-annot-bg-red: rgb(82, 46, 42);
+  --rotion-annot-border: 1px solid rgba(50, 48, 44, 0.3);
+  --rotion-dark-annot-border: 1px solid rgba(205, 203, 199, 0.3);
+
+  /* GALLERY */
+  --rotion-gallery-box-shadow: rgba(15, 15, 15, 0.1) 0px 0px 0px 1px, rgba(15, 15, 15, 0.1) 0px 2px 4px;
+  --rotion-dark-gallery-box-shadow: rgba(15, 15, 15, 0.2) 0px 0px 0px 1px, rgba(15, 15, 15, 0.2) 0px 2px 4px;
+  --rotion-gallery-bg: rgba(55, 53, 47, 0.005);
+  --rotion-dark-gallery-bg: rgba(255, 255, 255, 0.1);
+  --rotion-gallery-hover-bg: rgba(55, 53, 47, 0.03);
+  --rotion-dark-gallery-hover-bg: rgb(47, 47, 47);
+  --rotion-gallery-image-border-bottom: 1px solid rgba(55, 53, 47, 0.1);
+  --rotion-dark-gallery-image-border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  --rotion-gallery-grid-template-columns-small: repeat(auto-fill, minmax(180px, 1fr));
+  --rotion-gallery-grid-template-columns-medium: repeat(auto-fill, minmax(260px, 1fr));
+  --rotion-gallery-grid-template-columns-large: repeat(auto-fill, minmax(320px, 1fr));
+  /* TAGS */
+  --rotion-tag-default: rgb(50, 48, 44);
+  --rotion-dark-tag-default: rgba(255, 255, 255, 0.804);
+  --rotion-tag-bg-default: rgba(227, 226, 224, 0.5);
+  --rotion-dark-tag-bg-default: rgb(55, 55, 55);
+  --rotion-tag-gray: rgb(50, 48, 44);
+  --rotion-dark-tag-gray: rgba(255, 255, 255, 0.804);
+  --rotion-tag-bg-gray: rgb(227, 226, 224);
+  --rotion-dark-tag-bg-gray: rgb(90, 90, 90);
+  --rotion-tag-brown: rgb(68, 42, 30);
+  --rotion-dark-tag-brown: rgba(255, 255, 255, 0.804);
+  --rotion-tag-bg-brown: rgb(238, 224, 218);
+  --rotion-dark-tag-bg-brown: rgb(96, 59, 44);
+  --rotion-tag-orange: rgb(73, 41, 14);
+  --rotion-dark-tag-orange:rgba(255, 255, 255, 0.804);
+  --rotion-tag-bg-orange: rgb(250, 222, 201);
+  --rotion-dark-tag-bg-orange: rgb(133, 76, 29);
+  --rotion-tag-yellow: rgb(64, 44, 27);
+  --rotion-dark-tag-yellow: rgba(255, 255, 255, 0.804);
+  --rotion-tag-bg-yellow: rgb(253, 236, 200);
+  --rotion-dark-tag-bg-yellow: rgb(137, 99, 42);
+  --rotion-tag-green: rgb(28, 56, 41);
+  --rotion-dark-tag-green: rgba(255, 255, 255, 0.804);
+  --rotion-tag-bg-green: rgb(219, 237, 219);
+  --rotion-dark-tag-bg-green: rgb(43, 89, 63);
+  --rotion-tag-blue: rgb(24, 51, 71);
+  --rotion-dark-tag-blue: rgba(255, 255, 255, 0.804);
+  --rotion-tag-bg-blue: rgb(211, 229, 239);
+  --rotion-dark-tag-bg-blue: rgb(40, 69, 108);
+  --rotion-tag-purple: rgb(65, 36, 84);
+  --rotion-dark-tag-purple: rgba(255, 255, 255, 0.804);
+  --rotion-tag-bg-purple: rgb(232, 222, 238);
+  --rotion-dark-tag-bg-purple: rgb(73, 47, 100);
+  --rotion-tag-pink: rgb(76, 35, 55);
+  --rotion-dark-tag-pink: rgba(255, 255, 255, 0.804);
+  --rotion-tag-bg-pink: rgb(245, 224, 233);
+  --rotion-dark-tag-bg-pink: rgb(105, 49, 76);
+  --rotion-tag-red: rgb(93, 23, 21);
+  --rotion-dark-tag-red: rgba(255, 255, 255, 0.804);
+  --rotion-tag-bg-red: rgb(255, 226, 221);
+  --rotion-dark-tag-bg-red: rgb(110, 54, 48);
+
+  /* TABLE */
+  --rotion-table-border: 1px solid rgba(55, 53, 47, 0.09);
+  --rotion-dark-table-border: 1px solid rgb(47, 47, 47);
+  --rotion-table-icon-fill: rgba(55, 53, 47, 0.45);
+  --rotion-dark-table-icon-fill: rgba(255, 253, 247, 0.45);
+  --rotion-table-box-shadow: white -3px 0px 0px, rgb(233 233 231) 0px 1px 0px;
+  --rotion-dark-table-box-shadow: rgb(25, 25, 25) -3px 0px 0px, rgb(47, 47, 47) 0px 1px 0px;
+  --rotion-table-link-hover-bg: rgb(227, 226, 224) none repeat scroll 0% 0%;
+  --rotion-dark-table-link-hover-bg: rgb(28, 29, 31) none repeat scroll 0% 0%;
+}

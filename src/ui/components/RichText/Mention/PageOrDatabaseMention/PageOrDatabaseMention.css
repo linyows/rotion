@@ -1,0 +1,42 @@
+.rotion-richtext-pageordb {
+  font-family: var(--rotion-font-family);
+}
+
+.rotion-richtext-pageordb-icon {
+  position: relative;
+  margin-right: .5rem;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.rotion-richtext-pageordb-img {
+  width: 1.4rem;
+  height: 1.4rem;
+  vertical-align: middle;
+  margin-top: -3px;
+}
+
+.rotion-richtext-pageordb-arrow {
+  width: .7em;
+  height: .7em;
+  display: block;
+  fill: var(--rotion-primary-text);
+  flex-shrink: 0;
+  position: absolute;
+  right: -0.1em;
+  bottom: -0.2em;
+}
+
+.rotion-richtext-pageordb-text {
+  color: var(--rotion-primary-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-richtext-pageordb-arrow {
+    fill: var(--rotion-dark-primary-text);
+  }
+
+  .rotion-richtext-pageordb-text {
+    color: var(--rotion-dark-primary-text);
+  }
+}

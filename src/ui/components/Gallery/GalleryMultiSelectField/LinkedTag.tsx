@@ -1,24 +1,13 @@
 import React from 'react'
 import type { LinkedTagIfLinkedProps } from './LinkedTag.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens, link } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    textDecoration: link.textDecoration,
-    color: 'inherit',
-    cursor: link.cursor,
-    padding: '2px 10px',
-  },
-})
+import './LinkedTag.css'
 
 const LinkedTagIfLinked = ({ pathname, link, query, children }: LinkedTagIfLinkedProps) => {
   const href = query ? { pathname, query } : pathname
 
   if (href === '') {
     return (
-      <span className={`rotion-gallery-multiselect-link ${Stylex(style.wrapper)}`}>
+      <span className="rotion-gallery-tag">
         {children}
       </span>
     )
@@ -27,14 +16,14 @@ const LinkedTagIfLinked = ({ pathname, link, query, children }: LinkedTagIfLinke
   if (link) {
     const Link = link
     return (
-      <Link className={`rotion-gallery-multiselect-link ${Stylex(style.wrapper)}`} href={href}>
+      <Link className="rotion-gallery-tag" href={href}>
         {children}
       </Link>
     )
   }
 
   return (
-    <a className={`rotion-gallery-multiselect-link ${Stylex(style.wrapper)}`} href={pathname}>
+    <a className="rotion-gallery-tag" href={pathname}>
       {children}
     </a>
   )

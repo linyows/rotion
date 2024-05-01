@@ -1,23 +1,10 @@
 import React from 'react'
 import type { ListNumberFieldProps } from './ListNumberField.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    whiteSpace: 'nowrap',
-    fontSize: '.85rem',
-    display: 'flex',
-    alignItems: 'center',
-    margin: '0 7px',
-    minWidth: '20px',
-  },
-})
+import './ListNumberField.css'
 
 const ListNumberField = ({ payload }: ListNumberFieldProps) => {
   return (
-    <div className={`rotion-list-number ${Stylex(style.wrapper)}`}>
+    <div className="rotion-list-number">
       {payload.number}
     </div>
   )

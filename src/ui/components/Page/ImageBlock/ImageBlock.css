@@ -1,0 +1,29 @@
+.rotion-image {
+  font-family: var(--rotion-font-family);
+  text-align: center;
+  margin: 0;
+  padding: 0 0 .5rem;
+}
+
+.rotion-image-area {
+  display: flex;
+}
+
+.rotion-image-img {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.rotion-image-caption {
+  margin: .3rem .3rem 0;
+  text-align: left;
+  color: var(--rotion-tertiary-text);
+  font-size: .95rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-image-caption {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}

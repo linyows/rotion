@@ -1,0 +1,17 @@
+.rotion-icon-github {
+  fill: var(--rotion-primary-text);
+}
+
+.rotion-icon-file {
+  fill: var(--rotion-primary-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-icon-github {
+    fill: var(--rotion-dark-primary-text);
+  }
+
+  .rotion-icon-file {
+    fill: var(--rotion-dark-primary-text);
+  }
+}

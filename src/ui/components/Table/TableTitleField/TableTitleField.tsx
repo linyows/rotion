@@ -1,14 +1,7 @@
 import React from 'react'
 import type { TableTitleFieldProps } from './TableTitleField.types'
 import LinkedTitleIfLinked from './LinkedTitleIfLinked'
-import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-  },
-})
+import './TableTitleField.css'
 
 const TableTitleField = ({ payload, path, slug, link, query }: TableTitleFieldProps) => {
   const title = payload.map(v => {
@@ -24,7 +17,7 @@ const TableTitleField = ({ payload, path, slug, link, query }: TableTitleFieldPr
   }).join(',')
 
   return (
-    <div className={`rotion-table-title ${Stylex(style.wrapper)}`}>
+    <div className="rotion-table-title">
       <LinkedTitleIfLinked path={path} slug={slug} link={link} query={query}>
         {title}
       </LinkedTitleIfLinked>

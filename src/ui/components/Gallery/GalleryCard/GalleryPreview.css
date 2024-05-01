@@ -1,0 +1,26 @@
+.rotion-gallery-preview {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: var(--rotion-gallery-image-border-bottom);
+  width: 100%;
+}
+
+.rotion-gallery-preview-fit {
+  object-fit: contain;
+  object-position: center 50%;
+}
+
+.rotion-gallery-preview-nofit {
+  object-fit: cover;
+  object-position: top center;
+}
+
+.rotion-gallery-preview-img {
+  width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-gallery-preview {
+    border-bottom: var(--rotion-dark-gallery-image-border-bottom);
+  }
+}

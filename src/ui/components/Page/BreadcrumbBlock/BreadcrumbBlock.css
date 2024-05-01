@@ -1,0 +1,37 @@
+.rotion-breadcrumb {
+  font-family: var(--rotion-font-family);
+}
+
+.rotion-breadcrumb-icon {
+  vertical-align: middle;
+  padding-right: .29rem;
+  padding-bottom: .2rem;
+}
+
+.rotion-breadcrumb-emoji {
+  vertical-align: middle;
+  padding-right: .4rem;
+  padding-bottom: .2rem;
+  margin-top: -4px;
+  display: inline-block;
+}
+
+.rotion-breadcrumb-slash {
+  font-size: .9rem;
+  opacity: .5;
+  padding: 0 .3rem;
+  color: var(--rotion-secondary-text);
+}
+
+.rotion-breadcrumb-text {
+  color: var(--rotion-primary-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-breadcrumb-slash {
+    color: var(--rotion-dark-secondary-text);
+  }
+  .rotion-breadcrumb-text {
+    color: var(--rotion-dark-primary-text);
+  }
+}

@@ -3,64 +3,8 @@ import type { PageObjectResponseEx } from '../../../exporter'
 import TableIcon from './TableIcon/TableIcon'
 import Column from './Column'
 import type { TableProps } from './Table.types'
-import Stylex from '@stylexjs/stylex'
-import { table, tokens } from '../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    margin: 0,
-    padding: '0 0 10px',
-    width: '100%',
-    overflowX: 'scroll',
-  },
-  inner: {
-    position: 'relative',
-    float: 'left',
-    minWidth: '100%',
-    borderRight: 'none',
-  },
-  header: {
-  },
-  row: {
-    display: 'inline-flex',
-    background: 'inherit',
-    height: '33px',
-    color: tokens.secondaryText,
-    borderTop: table.border,
-    boxShadow: table.boxShadow,
-    // minWidth: 'calc((100% - 192px) - 0px)',
-  },
-  cell: {
-    display: 'flex',
-    flexDirection: 'row',
-    lineHeight: 1.5,
-  },
-  cellInner: {
-    display: 'flex',
-    flexShrink: 0,
-    overflow: 'hidden',
-    fontSize: '14px',
-    padding: '5px 8px',
-    width: '220px',
-    // borderRight: table.border,
-  },
-  cellText: {
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-  icon: {
-    width: '14px',
-    height: '14px',
-    display: 'block',
-    fill: table.iconFill,
-    flexshrink: 0,
-    backfaceVisibility: 'hidden',
-    marginTop: '4px',
-    marginRight: '7px',
-  }
-})
+import '../tokens.css'
+import './Table.css'
 
 export const Table = ({ keys, db, href, link, query }: TableProps) => {
   const propType = (name: string) => {
@@ -68,14 +12,14 @@ export const Table = ({ keys, db, href, link, query }: TableProps) => {
   }
 
   return (
-    <div className={`rotion-table ${Stylex(style.wrapper)}`}>
-      <div className={`rotion-table-inner ${Stylex(style.inner)}`}>
-        <div className={`rotion-table-header rotion-table-row ${Stylex(style.header)} ${Stylex(style.row)}`}>
+    <div className="rotion-table">
+      <div className="rotion-table-inner">
+        <div className="rotion-table-header rotion-table-row">
           {keys.map((name, i) => (
-            <div key={`${name}-${i}`} className={`rotion-table-cell rotion-table-column${i} ${Stylex(style.cell)}`}>
-              <div className={`rotion-table-cell-inner ${Stylex(style.cellInner)}`}>
-                <TableIcon type={propType(name)} className={`rotion-table-header-icon ${Stylex(style.icon)}`} />
-                <div className={`rotion-table-cell-text ${Stylex(style.cellText)}`}>
+            <div key={`${name}-${i}`} className={`rotion-table-cell rotion-table-column${i}`}>
+              <div className="rotion-table-cell-inner">
+                <TableIcon type={propType(name)} className="rotion-table-header-icon" />
+                <div className="rotion-table-header-text">
                   {name}
                 </div>
               </div>
@@ -83,10 +27,10 @@ export const Table = ({ keys, db, href, link, query }: TableProps) => {
           ))}
         </div>
         {db.results.map((v: PageObjectResponseEx) => (
-          <div key={v.id} className={`rotion-table-row ${Stylex(style.row)}`}>
+          <div key={v.id} className="rotion-table-row">
             {keys.map((name, i) => (
-              <div key={`${v.id}${name}`} className={`rotion-table-cell rotion-table-column${i} ${Stylex(style.cell)}`}>
-                <div className={`rotion-table-cell-inner ${Stylex(style.cellInner)}`}>
+              <div key={`${v.id}${name}`} className={`rotion-table-cell rotion-table-column${i}`}>
+                <div className="rotion-table-cell-inner">
                   <Column name={name} page={v} href={href} link={link} query={query} />
                 </div>
               </div>

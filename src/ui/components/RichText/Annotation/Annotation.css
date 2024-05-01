@@ -1,0 +1,214 @@
+.rotion-richtext-annot {
+  font-family: var(--rotion-font-family);
+}
+
+.rotion-richtext-bold {
+  font-weight: bold;
+}
+
+.rotion-richtext-italic {
+  font-style: italic;
+}
+
+.rotion-richtext-strikethrough {
+  text-decoration: line-through;
+}
+
+.rotion-richtext-underline {
+  text-decoration: underline;
+}
+
+.rotion-richtext-code {
+  font-family: SFMono-Regular, Menlo, Consolas, 'PT Mono', 'Liberation Mono', Courier, monospace;
+  background-color: var(--rotion-code-bg-color);
+  border-radius: var(--rotion-border-radius);
+  font-size: .85rem;
+  padding: .1rem .2rem;
+}
+
+.rotion-richtext-code-color {
+  color: #EB5757;
+}
+
+.rotion-richtext-default {
+  color: var(--rotion-annot-default);
+}
+
+.rotion-richtext-gray {
+  color: var(--rotion-annot-gray);
+}
+
+.rotion-richtext-brown {
+  color: var(--rotion-annot-brown);
+}
+
+.rotion-richtext-orange {
+  color: var(--rotion-annot-orange);
+}
+
+.rotion-richtext-yellow {
+  color: var(--rotion-annot-yellow);
+}
+
+.rotion-richtext-green {
+  color: var(--rotion-annot-green);
+}
+
+.rotion-richtext-blue {
+  color: var(--rotion-annot-blue);
+}
+
+.rotion-richtext-purple {
+  color: var(--rotion-annot-purple);
+}
+
+.rotion-richtext-pink {
+  color: var(--rotion-annot-pink);
+}
+
+.rotion-richtext-red {
+  color: var(--rotion-annot-red);
+}
+
+.rotion-richtext-default-bg {
+  color: var(--rotion-annot-default);
+}
+
+.rotion-richtext-gray-bg {
+  background-color: var(--rotion-annot-bg-gray);
+}
+
+.rotion-richtext-brown-bg {
+  background-color: var(--rotion-annot-bg-brown);
+}
+
+.rotion-richtext-orange-bg {
+  background-color: var(--rotion-annot-bg-orange);
+}
+
+.rotion-richtext-yellow-bg {
+  background-color: var(--rotion-annot-bg-yellow);
+}
+
+.rotion-richtext-green-bg {
+  background-color: var(--rotion-annot-bg-green);
+}
+
+.rotion-richtext-blue-bg {
+  background-color: var(--rotion-annot-bg-blue);
+}
+
+.rotion-richtext-purple-bg {
+  background-color: var(--rotion-annot-bg-purple);
+}
+
+.rotion-richtext-pink-bg {
+  background-color: var(--rotion-annot-bg-pink);
+}
+
+.rotion-richtext-red-bg {
+  background-color: var(--rotion-annot-bg-red);
+}
+
+.rotion-richtext-nocode-bg {
+ color: var(--rotion-annot-default);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-richtext-code {
+    background-color: var(--rotion-dark-code-bg-color);
+  }
+
+  .rotion-richtext-default {
+    color: var(--rotion-dark-annot-default);
+  }
+
+  .rotion-richtext-gray {
+    color: var(--rotion-dark-annot-gray);
+  }
+
+  .rotion-richtext-brown {
+    color: var(--rotion-dark-annot-brown);
+  }
+
+  .rotion-richtext-orange {
+    color: var(--rotion-dark-annot-orange);
+  }
+
+  .rotion-richtext-yellow {
+    color: var(--rotion-dark-annot-yellow);
+  }
+
+  .rotion-richtext-green {
+    color: var(--rotion-dark-annot-green);
+  }
+
+  .rotion-richtext-blue {
+    color: var(--rotion-dark-annot-blue);
+  }
+
+  .rotion-richtext-purple {
+    color: var(--rotion-dark-annot-purple);
+  }
+
+  .rotion-richtext-pink {
+    color: var(--rotion-dark-annot-pink);
+  }
+
+  .rotion-richtext-red {
+    color: var(--rotion-dark-annot-red);
+  }
+
+  .rotion-richtext-default-bg {
+    color: var(--rotion-annot-default);
+  }
+
+  .rotion-richtext-default-bg {
+    color: var(--rotion-dark-annot-default);
+  }
+
+  .rotion-richtext-gray-bg {
+    color: var(--rotion-dark-primary-text);
+    background-color: var(--rotion-dark-annot-bg-gray);
+  }
+
+  .rotion-richtext-brown-bg {
+    color: var(--rotion-dark-primary-text);
+    background-color: var(--rotion-dark-annot-bg-brown);
+  }
+
+  .rotion-richtext-orange-bg {
+    color: var(--rotion-dark-primary-text);
+    background-color: var(--rotion-dark-annot-bg-orange);
+  }
+
+  .rotion-richtext-yellow-bg {
+    color: var(--rotion-dark-primary-text);
+    background-color: var(--rotion-dark-annot-bg-yellow);
+  }
+
+  .rotion-richtext-green-bg {
+    color: var(--rotion-dark-primary-text);
+    background-color: var(--rotion-dark-annot-bg-green);
+  }
+
+  .rotion-richtext-blue-bg {
+    color: var(--rotion-dark-primary-text);
+    background-color: var(--rotion-dark-annot-bg-blue);
+  }
+
+  .rotion-richtext-purple-bg {
+    color: var(--rotion-dark-primary-text);
+    background-color: var(--rotion-dark-annot-bg-purple);
+  }
+
+  .rotion-richtext-pink-bg {
+    color: var(--rotion-dark-primary-text);
+    background-color: var(--rotion-dark-annot-bg-pink);
+  }
+
+  .rotion-richtext-red-bg {
+    color: var(--rotion-dark-primary-text);
+    background-color: var(--rotion-dark-annot-bg-red);
+  }
+}

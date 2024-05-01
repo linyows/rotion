@@ -1,0 +1,27 @@
+.rotion-breadcrumb-link {
+  font-family: var(--rotion-font-family);
+  border-radius: var(--rotion-border-radius);
+  font-size: .9rem;
+  padding: .2rem .3rem;
+  color: var(--rotion-link-color);
+  background-color: var(--rotion-link-bg-color);
+  cursor: var(--rotion-link-cursor);
+  text-decoration: var(--rotion-link-text-decoration);
+}
+
+.rotion-breadcrumb-link:hover {
+  color: var(--rotion-link-hover-color);
+  background-color: var(--rotion-link-hover-bg-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-breadcrumb-link {
+    color: var(--rotion-dark-link-color);
+    background-color: var(--rotion-dark-link-bg-color);
+  }
+
+  .rotion-breadcrumb-link:hover {
+    color: var(--rotion-dark-link-hover-color);
+    background-color: var(--rotion-dark-link-hover-bg-color);
+  }
+}

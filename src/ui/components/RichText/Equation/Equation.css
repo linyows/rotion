@@ -1,0 +1,10 @@
+.rotion-richtext-equation {
+  display: block;
+  color: var(--rotion-primary-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-richtext-equation {
+    color: var(--rotion-dark-primary-text);
+  }
+}

@@ -1,22 +1,7 @@
 import React from 'react'
-import { RichText } from '../../Page/RichText'
+import { RichText } from '../../RichText'
 import type { TableRichTextFieldProps } from './TableRichTextField.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    fontSize: '.85rem',
-    whiteSpace: 'nowrap',
-    display: 'block',
-    margin: 0,
-    padding: 0,
-    color: tokens.primaryText,
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-  },
-})
+import './TableRichTextField.css'
 
 const TableRichTextField = ({ payload }: TableRichTextFieldProps) => {
   if (!payload) {
@@ -24,7 +9,7 @@ const TableRichTextField = ({ payload }: TableRichTextFieldProps) => {
   }
 
   return (
-    <div className={`rotion-table-richtext ${Stylex(style.wrapper)}`}>
+    <div className="rotion-table-richtext">
       <RichText textObject={payload.rich_text} />
     </div>
   )

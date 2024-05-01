@@ -1,0 +1,22 @@
+.rotion-gallery {
+  font-family: var(--rotion-font-family);
+}
+
+.rotion-gallery-inner {
+  position: relative;
+  padding-bottom: 1rem;
+  display: grid;
+  gap: 16px;
+}
+
+.rotion-gallery-small {
+  grid-template-columns: var(--rotion-gallery-grid-template-columns-small);
+}
+
+.rotion-gallery-medium {
+  grid-template-columns: var(--rotion-gallery-grid-template-columns-medium);
+}
+
+.rotion-gallery-large {
+  grid-template-columns: var(--rotion-gallery-grid-template-columns-large);
+}

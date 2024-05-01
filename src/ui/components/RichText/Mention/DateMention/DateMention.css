@@ -1,0 +1,18 @@
+.rotion-richtext-date {
+  font-family: var(--rotion-font-family);
+  color: var(--rotion-secondary-text);
+}
+
+.rotion-richtext-atsign {
+  color: var(--rotion-tertiary-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-richtext-date {
+    color: var(--rotion-dark-secondary-text);
+  }
+  
+  .rotion-richtext-atsign {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}

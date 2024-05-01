@@ -1,0 +1,18 @@
+.rotion-list-richtext {
+  font-family: var(--rotion-font-family);
+  font-size: .85rem;
+  white-space: nowrap;
+  display: block;
+  margin: 0 .5rem;
+  padding: 0 .5rem;
+  max-width: 25rem;
+  color: var(--rotion-tertiary-text);
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-list-richtext {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}

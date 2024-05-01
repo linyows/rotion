@@ -1,0 +1,17 @@
+.rotion-equation {
+  font-family: var(--rotion-font-family);
+  width: 100%;
+  text-align: center;
+  color: var(--rotion-primary-text);
+}
+
+.rotion-equation-html {
+  margin: .5rem auto;
+  font-size: 1.7rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-equation {
+    color: var(--rotion-dark-primary-text);
+  }
+}

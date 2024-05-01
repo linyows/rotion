@@ -1,37 +1,37 @@
 import React, { useEffect } from 'react'
-import { RichText } from '../RichText'
+import { RichText } from '../../RichText'
 import type { EmbedBlockProps } from './EmbedBlock.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens } from '../../tokens.stylex'
+import '../../tokens.css'
+import './EmbedBlock.css'
 
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    width: '100%',
-    textAlign: 'center',
-  },
-  html: {
-    width: '100%',
-    textAlign: 'center',
-  },
-  caption: {
-    margin: '.3rem .3rem 0',
-    textAlign: 'left',
-    color: tokens.thirdText,
-    fontSize: '.95rem',
-  },
-  twitter: {
-    maxWidth: '550px',
-    margin: '0 auto',
-  },
-  speakerdeck: {
-    maxWidth: '710px',
-    margin: '0 auto',
-    paddingBottom: '56.25%', /* 16:9 */
-    position: 'relative',
-    height: 0,
-  },
-})
+const Instagram = ({ block }: EmbedBlockProps) => {
+  const htmlWithRemovedScript = block.embed.html.replace(/<script>.*/, '')
+  const embedClass = 'rotion-embed-html'
+
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://www.instagram.com/embed.js'
+    document.getElementsByClassName(embedClass)[0].appendChild(script)
+    // @ts-ignore
+    if (window.instgrm) {
+      // @ts-ignore
+      window.instgrm.Embeds.process()
+    }
+  }, [])
+
+  return (
+    <div className="rotion-embed">
+      <div className="rotion-embed-instagram">
+        <div className={embedClass} dangerouslySetInnerHTML={{ __html: htmlWithRemovedScript }} />
+        <div className="rotion-embed-caption">
+          {block.embed.caption.map((v, i) => (
+            <RichText textObject={v} key={`richtext-${i}`} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const Twitter = ({ block }: EmbedBlockProps) => {
   const htmlWithRemovedScript = block.embed.html.replace(/<script>.*/, '')
@@ -44,10 +44,10 @@ const Twitter = ({ block }: EmbedBlockProps) => {
   }, [])
 
   return (
-    <div className={`rotion-embed ${Stylex(style.wrapper)}`}>
-      <div className={`rotion-embed-twitter ${Stylex(style.twitter)}`}>
-        <div className={`${embedClass} ${Stylex(style.html)}`} dangerouslySetInnerHTML={{ __html: htmlWithRemovedScript }} />
-        <div className={`rotion-embed-caption ${Stylex(style.caption)}`}>
+    <div className="rotion-embed">
+      <div className="rotion-embed-twitter">
+        <div className={embedClass} dangerouslySetInnerHTML={{ __html: htmlWithRemovedScript }} />
+        <div className="rotion-embed-caption">
           {block.embed.caption.map((v, i) => (
             <RichText textObject={v} key={`richtext-${i}`} />
           ))}
@@ -59,10 +59,25 @@ const Twitter = ({ block }: EmbedBlockProps) => {
 
 const Speakerdeck = ({ block }: EmbedBlockProps) => {
   return (
-    <div className={`rotion-embed ${Stylex(style.wrapper)}`}>
-      <div className={`rotion-embed-speakerdeck ${Stylex(style.speakerdeck)}`}>
-        <div className={`rotion-embed-html ${Stylex(style.html)}`} dangerouslySetInnerHTML={{ __html: block.embed.html }} />
-        <div className={`rotion-embed-caption ${Stylex(style.caption)}`}>
+    <div className="rotion-embed">
+      <div className="rotion-embed-speakerdeck">
+        <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
+        <div className="rotion-embed-caption">
+          {block.embed.caption.map((v, i) => (
+            <RichText textObject={v} key={`richtext-${i}`} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const Applemusic = ({ block }: EmbedBlockProps) => {
+  return (
+    <div className="rotion-embed">
+      <div className="rotion-embed-applemusic">
+        <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
+        <div className="rotion-embed-caption">
           {block.embed.caption.map((v, i) => (
             <RichText textObject={v} key={`richtext-${i}`} />
           ))}
@@ -78,6 +93,10 @@ const EmbedBlock = ({ block }: EmbedBlockProps) => {
     return <></>
   }
 
+  if (block.embed.html.includes('instagram')) {
+    return <Instagram block={block} />
+  }
+
   if (block.embed.html.includes('twitter')) {
     return <Twitter block={block} />
   }
@@ -86,9 +105,13 @@ const EmbedBlock = ({ block }: EmbedBlockProps) => {
     return <Speakerdeck block={block} />
   }
 
+  if (block.embed.html.includes('music.apple.com')) {
+    return <Applemusic block={block} />
+  }
+
   return (
-    <div className={`rotion-embed ${Stylex(style.wrapper)}`}>
-      <div className={'rotion-embed-html'} dangerouslySetInnerHTML={{ __html: block.embed.html }} />
+    <div className="rotion-embed">
+      <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
       <div className="rotion-embed-caption">
         {block.embed.caption.map((v, i) => (
           <RichText textObject={v} key={`richtext-${i}`} />

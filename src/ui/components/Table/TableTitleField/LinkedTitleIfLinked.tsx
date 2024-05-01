@@ -1,27 +1,11 @@
 import React from 'react'
 import type { LinkedTitleIfLinkedProps } from './LinkedTitleIfLinked.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens, link } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    color: {
-      default: link.color,
-      ':hover': link.colorHover,
-    },
-    textDecoration: link.textDecoration,
-    borderBottom: {
-      default: link.borderBottom,
-      ':hover': link.borderBottomHover,
-    },
-  },
-})
+import './LinkedTitleIfLinked.css'
 
 const LinkedTitleIfLinked = ({ path, slug, link, query, children }: LinkedTitleIfLinkedProps) => {
   if (!path && !slug) {
     return (
-      <span className={`rotion-table-title-link ${Stylex(style.wrapper)}`}>
+      <span className="rotion-table-title-link">
         {children}
       </span>
     )
@@ -32,14 +16,14 @@ const LinkedTitleIfLinked = ({ path, slug, link, query, children }: LinkedTitleI
   if (link) {
     const Link = link
     return (
-      <Link className={`rotion-table-title-link ${Stylex(style.wrapper)}`} href={href}>
+      <Link className="rotion-table-title-link" href={href}>
         {children}
       </Link>
     )
   }
 
   return (
-    <a className={`rotion-table-title-link ${Stylex(style.wrapper)}`} href={pathname}>
+    <a className="rotion-table-title-link" href={pathname}>
       {children}
     </a>
   )

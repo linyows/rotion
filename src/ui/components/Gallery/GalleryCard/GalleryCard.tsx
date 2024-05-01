@@ -8,46 +8,7 @@ import { getLinkPathAndLinkKey } from '../../lib'
 import GalleryLinkedCard from './GalleryLinkedCard'
 import GalleryPreview from './GalleryPreview'
 import type { GalleryCardProps } from './GalleryCard.types'
-import Stylex from '@stylexjs/stylex'
-import { gallery, tokens } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  wrapper: {
-    fontFamily: tokens.fontFamily,
-    display: 'block',
-    color: tokens.primaryText,
-    textDecoration: 'none',
-    boxShadow: gallery.boxShadow,
-    borderRadius: tokens.borderRadius,
-    background: {
-      default: gallery.background,
-      ':hover': gallery.backgroundHover,
-    },
-    overflow: 'hidden',
-    transition: 'background 100ms ease-out 0s',
-    position: 'static',
-    height: '100%',
-    cursor: 'pointer',
-  },
-  inner: {
-    position: 'relative',
-    paddingBottom: '1rem',
-    display: 'grid',
-    gap: '16px',
-  },
-  small: {
-    gridTemplateColumns: gallery.gridTemplateColumnsSmall,
-  },
-  medium: {
-    gridTemplateColumns: gallery.gridTemplateColumnsMedium,
-  },
-  large: {
-    gridTemplateColumns: gallery.gridTemplateColumnsLarge,
-  },
-  text: {
-    paddingBottom: '1rem',
-  },
-})
+import './GalleryCard.css'
 
 function getSlug (key: string, page: GetPageResponse) {
   if (!('properties' in page)) {
@@ -90,10 +51,10 @@ const GalleryCard = ({ keys, page, href, link, query, preview, size, fit }: Gall
   const path = getLinkPathAndLinkKey(href)[0]
 
   return (
-    <div className={`rotion-gallery-card ${Stylex(style.wrapper)}`}>
+    <div className="rotion-gallery-card">
       <GalleryLinkedCard href={buildHref(page, href)} link={link} query={query}>
         {preview && <GalleryPreview src={page.cover?.src} size={size} fit={fit} />}
-        <div className={`rotion-gallery-card-text ${Stylex(style.text)}`}>
+        <div className="rotion-gallery-card-text">
           {keys.map((name, i) => (
             <div key={`${page.id}${name}`} className={`field${i}`}>
               <GalleryHandler items={findItems(name, page)} path={path} query={query} size={size} />

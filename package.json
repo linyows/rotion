@@ -1,6 +1,6 @@
 {
   "name": "rotion",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "license": "MIT",
   "repository": "linyows/rotion",
   "description": "This is react components that uses the notion API to display the notion's database and page.",
@@ -15,8 +15,8 @@
       "import": "./dist/ui/esm/index.js",
       "require": "./dist/ui/cjs/index.js"
     },
-    "./style.css": "./dist/ui/esm/style.css",
-    "./style-without-dark.css": "./dist/ui/esm/style-without-dark.css",
+    "./style.css": "./dist/ui/esm/index.css",
+    "./style-without-dark.css": "./dist/ui/style-without-dark.css",
     "./package.json": "./package.json",
     "./README.md": "./README.md",
     "./LICENSE": "./LICENSE"
@@ -45,13 +45,12 @@
     "exporter:build": "npm run exporter:clean && tsc -p tsconfig.exporter.json",
     "exporter:clean": "rm -rf dist/exporter/*",
     "exporter:test": "tsm node_modules/uvu/bin.js ./src/exporter",
-    "ui:build": "npm run ui:lint && npm run ui:typecheck && npm run ui:rollup && npm run ui:withoutdark",
+    "ui:build": "npm run ui:lint && npm run ui:typecheck && npm run ui:rollup",
     "ui:rollup": "rollup --config rollup.config.ts --configPlugin typescript",
     "ui:typecheck": "tsc -p src/ui/tsconfig.typecheck.json",
     "ui:lint": "eslint ./src/ui/components --ext .js,.jsx,.ts,.tsx -c ./src/ui/.eslintrc.json",
     "ui:test": "uvu -r tsm ./src/ui/components",
-    "ui:withoutdark": "sed 's/@media (prefers-color-scheme: dark).*//g' ./dist/ui/esm/style.css > ./dist/ui/esm/style-without-dark.css",
-    "story": "storybook dev -p 6006",
+    "story": "storybook dev -p 6006 --ci",
     "build-story": "storybook build",
     "prepublishOnly": "npm install && npm run test && npm run build"
   },
@@ -88,8 +87,6 @@
     "@storybook/react-vite": "^8.0.6",
     "@storybook/test": "^8.0.6",
     "@storybook/theming": "^8.0.6",
-    "@stylexjs/rollup-plugin": "^0.4.1",
-    "@stylexjs/stylex": "^0.4.1",
     "@tsconfig/node-lts-strictest-esm": "^18.12.1",
     "@types/imagemin": "^8.0.5",
     "@types/imagemin-webp": "^7.0.3",
@@ -116,6 +113,7 @@
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^6.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
     "storybook": "^8.0.6",
     "storybook-dark-mode": "^4.0.1",
     "testdouble": "^3.20.1",
@@ -123,8 +121,7 @@
     "tslib": "^2.6.2",
     "tsm": "^2.3.0",
     "typescript": "^5.3.3",
-    "uvu": "^0.5.6",
-    "vite-plugin-stylex-dev": "^0.2.5"
+    "uvu": "^0.5.6"
   },
   "extends": "@tsconfig/node-lts-strictest-esm",
   "ts-node": {

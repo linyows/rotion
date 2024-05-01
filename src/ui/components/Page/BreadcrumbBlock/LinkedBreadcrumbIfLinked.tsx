@@ -1,27 +1,7 @@
 import React from 'react'
 import { getLinkPathAndLinkKey, queryToString } from '../../lib'
 import type { LinkedBreadcrumbIfLinkedProps } from './LinkedBreadcrumbIfLinked.types'
-import Stylex from '@stylexjs/stylex'
-import { tokens, link } from '../../tokens.stylex'
-
-const style = Stylex.create({
-  link: {
-    fontSize: '.9rem',
-    padding: '.2rem .3rem',
-    fontFamily: tokens.fontFamily,
-    borderRadius: tokens.borderRadius,
-    backgroundColor: {
-      default: link.bgColor,
-      ':hover': link.bgColorHover,
-    },
-    cursor: link.cursor,
-    textDecoration: link.textDecoration,
-    color: {
-      default: link.color,
-      ':hover': link.colorHover,
-    },
-  },
-})
+import './LinkedBreadcrumbIfLinked.css'
 
 function buildPathname (id: string, name: string, href?: string) {
   if (href === '/') {
@@ -47,7 +27,7 @@ const LinkedBreadcrumbIfLinked = ({ breadcrumb, link, href, query, children }: L
   if (link && href) {
     const Link = link
     return (
-      <Link className={`rotion-blocks-breadcrumb-a ${Stylex(style.link)}`} href={{ pathname, query }}>
+      <Link className="rotion-breadcrumb-link" href={{ pathname, query }}>
         {children}
       </Link>
     )
@@ -55,14 +35,14 @@ const LinkedBreadcrumbIfLinked = ({ breadcrumb, link, href, query, children }: L
 
   if (href) {
     return (
-      <a className={`rotion-blocks-breadcrumb-a ${Stylex(style.link)}`} href={`${pathname}${queryToString(query)}`}>
+      <a className="rotion-breadcrumb-link" href={`${pathname}${queryToString(query)}`}>
         {children}
       </a>
     )
   }
 
   return (
-    <span className={`rotion-blocks-breadcrumb-a ${Stylex(style.link)}`}>
+    <span className="rotion-breadcrumb-link">
       {children}
     </span>
   )

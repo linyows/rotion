@@ -1,0 +1,61 @@
+.rotion-gallery-url {
+  font-family: var(--rotion-font-family);
+  display: flex;
+  white-space: nowrap;
+  margin: 4px 7px 0;
+}
+
+.rotion-gallery-url-link {
+  display: block;
+  text-decoration: var(--rotion-link-text-decoration);
+  cursor: var(--rotion-link-cursor);
+  color: var(--rotion-link-color);
+  background: inherit;
+  margin-bottom: 0;
+  padding: 0 2px 3px;
+  border-radius: var(--rotion-border-radius);
+}
+
+.rotion-gallery-url-link:hover {
+  color: var(--rotion-link-hover-color);
+  background: var(--rotion-link-hover-bg-color);
+}
+
+.rotion-gallery-url-chain {
+  display: inline;
+  width: 12px;
+  height: 12px;
+  margin-top: 2px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+
+.rotion-gallery-url-domain {
+  display: inline;
+  font-size: .7rem;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.rotion-gallery-url-path {
+  display: inline;
+  font-size: .7rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--rotion-tertiary-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-gallery-url-link {
+    color: var(--rotion-dark-link-color);
+  }
+
+  .rotion-gallery-url-link:hover {
+    color: var(--rotion-dark-link-hover-color);
+    background: var(--rotion-dark-link-hover-bg-color);
+  }
+
+  .rotion-gallery-url-path {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}
