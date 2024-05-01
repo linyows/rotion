@@ -1,6 +1,7 @@
 import React from 'react'
 import { RichText } from '../../RichText'
 import type { TableRichTextFieldProps } from './TableRichTextField.types'
+import './TableRichTextField.css'
 
 const TableRichTextField = ({ payload }: TableRichTextFieldProps) => {
   if (!payload) {

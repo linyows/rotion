@@ -1,4 +1,5 @@
 import React from 'react'
+import './GalleryPreview.css'
 
 export interface GalleryPreviewProps {
   src?: string

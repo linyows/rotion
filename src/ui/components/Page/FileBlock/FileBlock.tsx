@@ -3,6 +3,9 @@ import type { RichTextItemResponse } from '../../../../exporter'
 import RichText from '../../RichText/RichText'
 import type { FileBlockProps } from './FileBlock.types'
 import { Icon } from '../../Icon'
+import '../../tokens.css'
+import './FileBlock.css'
+import '../../Icon/Icon.css'
 
 const FileBlock = ({ block }: FileBlockProps) => {
   const { file } = block

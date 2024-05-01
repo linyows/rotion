@@ -1,5 +1,6 @@
 import React from 'react'
 import type { GalleryTitleFieldProps } from './GalleryTitleField.types'
+import './GalleryTitleField.css'
 
 const GalleryTitleField = ({ payload }: GalleryTitleFieldProps) => {
   const title = payload.map(v => {

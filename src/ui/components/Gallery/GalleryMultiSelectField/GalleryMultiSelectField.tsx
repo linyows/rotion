@@ -1,6 +1,7 @@
 import React from 'react'
 import type { GalleryMultiSelectFieldProps } from './GalleryMultiSelectField.types'
 import LinkedTagIfLinked from './LinkedTag'
+import './GalleryMultiSelectField.css'
 
 const GalleryMultiSelectField = ({ payload, path, link, query }: GalleryMultiSelectFieldProps) => {
   const { multi_select } = payload

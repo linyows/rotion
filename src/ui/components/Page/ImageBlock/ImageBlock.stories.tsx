@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { ImageBlockObjectResponseEx } from '../../../../exporter'
 import ImageBlock from './ImageBlock'
-import './ImageBlock.css'
 
 const block: ImageBlockObjectResponseEx = {
   object: 'block',

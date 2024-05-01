@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { PdfBlockObjectResponseEx } from '../../../../exporter'
 import PdfBlock from './PdfBlock'
-import './PdfBlock.css'
-import '../../Icon/Icon.css'
 
 const block: PdfBlockObjectResponseEx = {
   object: 'block',

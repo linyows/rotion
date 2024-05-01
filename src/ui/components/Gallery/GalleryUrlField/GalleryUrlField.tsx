@@ -1,6 +1,7 @@
 import React from 'react'
 import type { GalleryUrlFieldProps } from './GalleryUrlField.types'
 import { splitUrl } from '../../lib'
+import './GalleryUrlField.css'
 
 const GalleryUrlField = ({ payload }: GalleryUrlFieldProps) => {
   if (!payload) {

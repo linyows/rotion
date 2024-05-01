@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { cdate } from 'cdate'
 import type { ListDateFieldProps } from './ListDateField.types'
 import { getDatetimeFormat } from '../../lib'
+import './ListDateField.css'
 
 const ListDateField = ({ payload }: ListDateFieldProps) => {
   if (payload === null) {

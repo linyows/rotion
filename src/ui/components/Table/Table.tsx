@@ -3,6 +3,8 @@ import type { PageObjectResponseEx } from '../../../exporter'
 import TableIcon from './TableIcon/TableIcon'
 import Column from './Column'
 import type { TableProps } from './Table.types'
+import '../tokens.css'
+import './Table.css'
 
 export const Table = ({ keys, db, href, link, query }: TableProps) => {
   const propType = (name: string) => {

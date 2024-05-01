@@ -1,5 +1,6 @@
 import React from 'react'
 import { LinkedTagIfLinkedProps } from './LinkedTagIfLinked.types'
+import './LinkedTagIfLinked.css'
 
 const LinkedTagIfLinked = ({ color, pathname, link, query, children }: LinkedTagIfLinkedProps) => {
   const href = query ? { pathname, query } : pathname

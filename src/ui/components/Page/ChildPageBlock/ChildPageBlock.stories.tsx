@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { ChildPageBlockObjectResponseEx, GetPageResponseEx, ListBlockChildrenResponseEx } from '../../../../exporter'
 import ChildPageBlock from './ChildPageBlock'
-import './ChildPageBlock.css'
 
 /* Next is Database
 {

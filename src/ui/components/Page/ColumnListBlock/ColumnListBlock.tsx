@@ -1,6 +1,8 @@
 import React from 'react'
 import Page from '../Page'
 import type { ColumnListBlockProps } from './ColumnListBlock.types'
+import '../../tokens.css'
+import './ColumnListBlock.css'
 
 const ColumnListBlock = ({ block, href, link, query }: ColumnListBlockProps) => {
   const columns = block.columns.map((v, i) => {

@@ -2,6 +2,8 @@ import React from 'react'
 import { RichText } from '../../RichText'
 import type { ToDoBlockProps } from './ToDoBlock.types'
 import { Checkbox } from '../../Checkbox'
+import '../../tokens.css'
+import './ToDoBlock.css'
 
 const ToDoBlock = ({ block }: ToDoBlockProps) => {
   if (!block.to_do) {

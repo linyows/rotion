@@ -2,7 +2,6 @@ import React from 'react'
 import type { TextRichTextItemResponse } from '../../../../exporter'
 import type { Meta, StoryObj } from '@storybook/react'
 import LinkIfLinked from './LinkIfLinked'
-import './LinkIfLinked.css'
 
 const textObject = {
   type: 'text',

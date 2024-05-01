@@ -1,5 +1,6 @@
 import React from 'react'
 import type { ListNumberFieldProps } from './ListNumberField.types'
+import './ListNumberField.css'
 
 const ListNumberField = ({ payload }: ListNumberFieldProps) => {
   return (

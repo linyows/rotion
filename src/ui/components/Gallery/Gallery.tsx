@@ -2,6 +2,8 @@ import React from 'react'
 import type { PageObjectResponseEx } from '../../../exporter'
 import GalleryCard from './GalleryCard/GalleryCard'
 import type { GalleryProps } from './Gallery.types'
+import '../tokens.css'
+import './Gallery.css'
 
 const Gallery = ({ keys, db, href, link, query, preview, size = 'medium', fit = true }: GalleryProps) => {
   return (

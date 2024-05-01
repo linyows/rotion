@@ -2,7 +2,6 @@ import React from 'react'
 import type { EquationRichTextItemResponse } from '../../../../exporter'
 import type { Meta, StoryObj } from '@storybook/react'
 import Equation from './Equation'
-import './Equation.css'
 
 const textObject = {
   type: 'equation',

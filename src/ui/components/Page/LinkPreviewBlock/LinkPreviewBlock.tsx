@@ -1,6 +1,9 @@
 import React from 'react'
 import { Icon } from '../../Icon'
 import type { LinkPreviewBlockProps } from './LinkPreviewBlock.types'
+import '../../tokens.css'
+import './LinkPreviewBlock.css'
+import '../../Icon/Icon.css'
 
 interface Props {
   url: string

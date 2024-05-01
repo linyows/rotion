@@ -5,6 +5,7 @@ import { PageOrDatabaseMention } from './PageOrDatabaseMention'
 import { LinkPreviewMention } from './LinkPreviewMention'
 import { DateMention } from './DateMention'
 import { TemplateMention } from './TemplateMention'
+import '../../tokens.css'
 
 const Mention = ({ textObject, children }: MentionProps) => {
   if (!textObject) {

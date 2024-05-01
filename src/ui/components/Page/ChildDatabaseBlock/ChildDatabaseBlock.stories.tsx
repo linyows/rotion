@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { ChildDatabaseBlockObjectResponseEx, GetDatabaseResponseEx, RichTextItemResponse } from '../../../../exporter'
 import ChildDatabaseBlock from './ChildDatabaseBlock'
-import './ChildDatabaseBlock.css'
 
 const richtext: RichTextItemResponse[] = [{
   type: 'text',

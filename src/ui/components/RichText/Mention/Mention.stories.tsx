@@ -2,11 +2,6 @@ import type { MentionRichTextItemResponseEx } from '../../../../exporter'
 import type { Meta, StoryObj } from '@storybook/react'
 import Mention from './Mention'
 import { cdate } from 'cdate'
-import './DateMention/DateMention.css'
-import './LinkPreviewMention/LinkPreviewMention.css'
-import './UserMention/UserMention.css'
-import './PageOrDatabaseMention/PageOrDatabaseMention.css'
-import '../../Icon/Icon.css'
 
 const textObject: MentionRichTextItemResponseEx = {
   type: 'mention',

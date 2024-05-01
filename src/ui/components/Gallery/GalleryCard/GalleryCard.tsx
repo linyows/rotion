@@ -8,6 +8,7 @@ import { getLinkPathAndLinkKey } from '../../lib'
 import GalleryLinkedCard from './GalleryLinkedCard'
 import GalleryPreview from './GalleryPreview'
 import type { GalleryCardProps } from './GalleryCard.types'
+import './GalleryCard.css'
 
 function getSlug (key: string, page: GetPageResponse) {
   if (!('properties' in page)) {

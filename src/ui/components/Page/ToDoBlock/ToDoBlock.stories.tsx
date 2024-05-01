@@ -3,7 +3,6 @@ import type {
   ToDoBlockObjectResponse,
 } from '../../../../exporter'
 import ToDoBlock from './ToDoBlock'
-import './ToDoBlock.css'
 
 /* TODO BLOCK */
 const block = {

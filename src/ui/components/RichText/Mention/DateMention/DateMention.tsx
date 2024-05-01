@@ -2,6 +2,7 @@ import React from 'react'
 import type { DateMentionProps } from './DateMention.types'
 import { cdate } from 'cdate'
 import { relative } from 'cdate-relative'
+import './DateMention.css'
 
 interface endMentionProps {
   dateOrDateTime?: string

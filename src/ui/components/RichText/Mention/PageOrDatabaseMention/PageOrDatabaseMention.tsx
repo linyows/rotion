@@ -1,6 +1,7 @@
 import React from 'react'
 import { Icon } from '../../../Icon'
 import type { PageOrDatabaseMentionProps } from './PageOrDatabaseMention.types'
+import './PageOrDatabaseMention.css'
 
 const PageOrDatabaseMention = ({ mention }: PageOrDatabaseMentionProps) => {
   return (

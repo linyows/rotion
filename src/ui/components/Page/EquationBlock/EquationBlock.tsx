@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react'
 import Katex from 'katex'
 import type { EquationBlockProps } from './EquationBlock.types'
+import '../../tokens.css'
+import './EquationBlock.css'
 
 const EquationBlock = ({ block }: EquationBlockProps) => {
   const { equation } = block

@@ -1,6 +1,8 @@
 import React from 'react'
 import { RichText } from '../../RichText'
 import type { CalloutBlockProps } from './CalloutBlock.types'
+import '../../tokens.css'
+import './CalloutBlock.css'
 
 const Icon = ({ block }: CalloutBlockProps) => {
   if (!block.callout.icon) {

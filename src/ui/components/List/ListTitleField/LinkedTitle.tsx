@@ -1,5 +1,6 @@
 import React from 'react'
 import type { LinkedTitleProps } from './LinkedTitle.types'
+import './LinkedTitle.css'
 
 const LinkedTitle = ({ title, href, link, query }: LinkedTitleProps) => {
   if (link && query) {

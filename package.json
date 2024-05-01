@@ -15,8 +15,8 @@
       "import": "./dist/ui/esm/index.js",
       "require": "./dist/ui/cjs/index.js"
     },
-    "./style.css": "./dist/ui/esm/style.css",
-    "./style-without-dark.css": "./dist/ui/esm/style-without-dark.css",
+    "./style.css": "./dist/ui/esm/index.css",
+    "./style-without-dark.css": "./dist/ui/style-without-dark.css",
     "./package.json": "./package.json",
     "./README.md": "./README.md",
     "./LICENSE": "./LICENSE"
@@ -45,12 +45,11 @@
     "exporter:build": "npm run exporter:clean && tsc -p tsconfig.exporter.json",
     "exporter:clean": "rm -rf dist/exporter/*",
     "exporter:test": "tsm node_modules/uvu/bin.js ./src/exporter",
-    "ui:build": "npm run ui:lint && npm run ui:typecheck && npm run ui:rollup && npm run ui:withoutdark",
+    "ui:build": "npm run ui:lint && npm run ui:typecheck && npm run ui:rollup",
     "ui:rollup": "rollup --config rollup.config.ts --configPlugin typescript",
     "ui:typecheck": "tsc -p src/ui/tsconfig.typecheck.json",
     "ui:lint": "eslint ./src/ui/components --ext .js,.jsx,.ts,.tsx -c ./src/ui/.eslintrc.json",
     "ui:test": "uvu -r tsm ./src/ui/components",
-    "ui:withoutdark": "sed 's/@media (prefers-color-scheme: dark).*//g' ./dist/ui/esm/style.css > ./dist/ui/esm/style-without-dark.css",
     "story": "storybook dev -p 6006 --ci",
     "build-story": "storybook build",
     "prepublishOnly": "npm install && npm run test && npm run build"

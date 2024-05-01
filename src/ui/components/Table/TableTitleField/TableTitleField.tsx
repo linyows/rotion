@@ -1,6 +1,7 @@
 import React from 'react'
 import type { TableTitleFieldProps } from './TableTitleField.types'
 import LinkedTitleIfLinked from './LinkedTitleIfLinked'
+import './TableTitleField.css'
 
 const TableTitleField = ({ payload, path, slug, link, query }: TableTitleFieldProps) => {
   const title = payload.map(v => {

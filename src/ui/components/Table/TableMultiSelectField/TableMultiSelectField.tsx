@@ -1,6 +1,7 @@
 import React from 'react'
 import LinkedTagIfLinked from './LinkedTagIfLinked'
 import type { TableMultiSelectFieldProps } from './TableMultiSelectField.types'
+import './TableMultiSelectField.css'
 
 const TableMultiSelectField = ({ payload, path, link, query }: TableMultiSelectFieldProps) => {
   return (

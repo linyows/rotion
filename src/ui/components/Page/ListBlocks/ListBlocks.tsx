@@ -1,6 +1,8 @@
 import React from 'react'
 import PageHandler from '../PageHandler'
 import type { ListBlocksProps } from './ListBlocks.types'
+import '../../tokens.css'
+import './ListBlocks.css'
 
 export const ListBlocks = ({ tag, blocks, href, link, query }: ListBlocksProps) => {
   const CustomTag = tag

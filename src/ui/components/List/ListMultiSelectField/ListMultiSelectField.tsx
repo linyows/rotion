@@ -1,6 +1,7 @@
 import React from 'react'
 import type { ListMultiSelectFieldProps } from './ListMultiSelectField.types'
 import LinkedTagIfLinked from './LinkedTagIfLinked'
+import './ListMultiSelectField.css'
 
 const ListMultiSelectField = ({ payload, path, link, query }: ListMultiSelectFieldProps) => {
   const { multi_select } = payload

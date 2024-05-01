@@ -1,6 +1,7 @@
 import React from 'react'
 import { RichText } from '../../RichText'
 import type { ListRichTextFieldProps } from './ListRichTextField.types'
+import './ListRichTextField.css'
 
 const ListRichTextField = ({ payload }: ListRichTextFieldProps) => {
   return (

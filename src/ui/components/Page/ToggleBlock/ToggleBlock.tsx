@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { RichText } from '../../RichText'
 import type { ParagraphBlockObjectResponse } from '../../../../exporter'
 import type { ToggleBlockProps } from './ToggleBlock.types'
+import '../../tokens.css'
+import './ToggleBlock.css'
 
 interface TriangleProps {
   open: boolean

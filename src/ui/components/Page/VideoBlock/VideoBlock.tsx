@@ -1,6 +1,8 @@
 import React from 'react'
 import { RichText } from '../../RichText'
 import type { VideoBlockProps } from './VideoBlock.types'
+import '../../tokens.css'
+import './VideoBlock.css'
 
 const css = `
 .rotion-video-youtube iframe {

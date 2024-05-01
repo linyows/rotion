@@ -1,5 +1,7 @@
 import React from 'react'
 import type { TextLinkProps, LinkIfLinkedProps } from './LinkIfLinked.types'
+import '../../tokens.css'
+import './LinkIfLinked.css'
 
 export const TextLink = ({ textObject, children }: TextLinkProps) => {
   return (

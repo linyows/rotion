@@ -3,7 +3,6 @@ import type {
   SyncedBlockBlockObjectResponseEx,
 } from '../../../../exporter'
 import SyncedBlock from './SyncedBlock'
-import './SyncedBlock.css'
 
 /* PARAGRAPH BLOCK */
 const p = {

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { TableBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter'
 import TableBlock from './TableBlock'
-import './TableBlock.css'
 
 /* RICH TEXT */
 const richText: RichTextItemResponse = {

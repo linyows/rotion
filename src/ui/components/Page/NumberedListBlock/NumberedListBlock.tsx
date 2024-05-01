@@ -3,6 +3,8 @@ import type { NumberedListBlockProps } from './NumberedListBlock.types'
 import { RichText } from '../../RichText'
 import { blockType } from '../PageHandler'
 import Page from '../Page'
+import '../../tokens.css'
+import './NumberedListBlock.css'
 
 const NumberedListBlock = ({ block, href, link, query }: NumberedListBlockProps) => {
   const CustomTag = blockType[block.type] as keyof JSX.IntrinsicElements

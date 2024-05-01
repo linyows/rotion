@@ -1,5 +1,6 @@
 import React from 'react'
 import type { UserMentionProps } from './UserMention.types'
+import './UserMention.css'
 
 const UserMention = ({ payload }: UserMentionProps) => {
   if (payload.mention.type !== 'user') {

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { ColumnListBlockObjectResponseEx, ListBlockChildrenResponseEx, BlockObjectResponse } from '../../../../exporter'
 import ColumnListBlock from './ColumnListBlock'
-import './ColumnListBlock.css'
 
 const column: BlockObjectResponse = {
   object: 'block',

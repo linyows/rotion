@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { LinkPreviewBlockObjectResponse } from '../../../../exporter'
 import LinkPreviewBlock from './LinkPreviewBlock'
-import './LinkPreviewBlock.css'
-import '../../Icon/Icon.css'
 
 const block: LinkPreviewBlockObjectResponse = {
   object: 'block',

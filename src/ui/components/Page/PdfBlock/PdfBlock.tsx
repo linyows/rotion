@@ -3,6 +3,9 @@ import type { RichTextItemResponse } from '../../../../exporter'
 import RichText from '../../RichText/RichText'
 import type { PdfBlockProps } from './PdfBlock.types'
 import { Icon } from '../../Icon'
+import '../../tokens.css'
+import './PdfBlock.css'
+import '../../Icon/Icon.css'
 
 const PdfBlock = ({ block }: PdfBlockProps) => {
   const { pdf } = block

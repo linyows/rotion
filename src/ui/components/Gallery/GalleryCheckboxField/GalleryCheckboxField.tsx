@@ -1,6 +1,7 @@
 import React from 'react'
 import type { GalleryCheckboxFieldProps } from './GalleryCheckboxField.types'
 import { Checkbox } from '../../Checkbox'
+import './GalleryCheckboxField.css'
 
 const GalleryCheckboxField = ({ payload }: GalleryCheckboxFieldProps) => {
   return (

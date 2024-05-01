@@ -1,4 +1,5 @@
 import React from 'react'
+import './Icon.css'
 
 export interface IconProps {
   name: 'figma' | 'slack' | 'github' | 'file' | 'link'

@@ -91,7 +91,6 @@
   font-size: .8rem;
 }
 
-/* RESPONSIVE */
 @media (max-width: 580px) {
   .rotion-bookmark-area {
     display: block;
@@ -107,7 +106,6 @@
   }
 }
 
-/* DARK */
 @media (prefers-color-scheme: dark) {
   .rotion-bookmark {
     color: var(--rotion-dark-secondary-text);
@@ -117,6 +115,7 @@
     border: var(--rotion-dark-border);
     background-color: var(--rotion-dark-link-bg-color);
   }
+
   .rotion-bookmark-area:hover {
     background-color: var(--rotion-dark-link-hover-bg-color);
   }

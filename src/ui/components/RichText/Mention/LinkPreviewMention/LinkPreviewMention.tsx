@@ -2,6 +2,7 @@ import React from 'react'
 import { pathBasename } from '../../../lib'
 import { Icon } from '../../../Icon'
 import type { LinkPreviewMemtionProps } from './LinkPreviewMention.types'
+import './LinkPreviewMention.css'
 
 const LinkPreviewMention = ({ url, text }: LinkPreviewMemtionProps) => {
   if (url.includes('slack.com')) {

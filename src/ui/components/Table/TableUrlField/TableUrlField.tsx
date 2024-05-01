@@ -1,6 +1,7 @@
 import React from 'react'
 import type { TableUrlFieldProps } from './TableUrlField.types'
 import { splitUrl } from '../../lib'
+import './TableUrlField.css'
 
 const TableUrlField = ({ payload }: TableUrlFieldProps) => {
   if (!payload) {

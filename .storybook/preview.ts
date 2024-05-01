@@ -1,6 +1,5 @@
 import type { Preview } from "@storybook/react";
 import { themes } from '@storybook/theming';
-import '../src/ui/components/tokens.css';
 
 const preview: Preview = {
   parameters: {

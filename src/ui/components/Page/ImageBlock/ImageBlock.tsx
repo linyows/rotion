@@ -1,6 +1,8 @@
 import React from 'react'
 import { RichText } from '../../RichText'
 import type { ImageBlockProps } from './ImageBlock.types'
+import '../../tokens.css'
+import './ImageBlock.css'
 
 export const ImageBlock = ({ block }: ImageBlockProps) => {
   return (

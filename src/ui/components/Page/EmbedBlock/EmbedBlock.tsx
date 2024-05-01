@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { RichText } from '../../RichText'
 import type { EmbedBlockProps } from './EmbedBlock.types'
+import '../../tokens.css'
+import './EmbedBlock.css'
 
 const Instagram = ({ block }: EmbedBlockProps) => {
   const htmlWithRemovedScript = block.embed.html.replace(/<script>.*/, '')

@@ -1,5 +1,6 @@
 import React from 'react'
 import type { LinkedTitleIfLinkedProps } from './LinkedTitleIfLinked.types'
+import './LinkedTitleIfLinked.css'
 
 const LinkedTitleIfLinked = ({ path, slug, link, query, children }: LinkedTitleIfLinkedProps) => {
   if (!path && !slug) {

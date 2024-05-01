@@ -3,6 +3,8 @@ import type { BulletedListBlockProps } from './BulletedListBlock.types'
 import { RichText } from '../../RichText'
 import { blockType } from '../PageHandler'
 import Page from '../Page'
+import '../../tokens.css'
+import './BulletedListBlock.css'
 
 const BulletedListBlock = ({ block, href, link, query }: BulletedListBlockProps) => {
   const CustomTag = blockType[block.type] as keyof JSX.IntrinsicElements

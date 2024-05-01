@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { EquationBlockObjectResponse } from '../../../../exporter'
 import EquationBlock from './EquationBlock'
-import './EquationBlock.css'
 
 const block: EquationBlockObjectResponse = {
   object: 'block',

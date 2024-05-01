@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import type { CodeProps } from './Code.types'
+import './Code.css'
 import mermaid from 'mermaid'
 import Prism from 'prismjs'
 import 'prismjs/plugins/autoloader/prism-autoloader'

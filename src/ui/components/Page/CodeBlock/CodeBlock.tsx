@@ -7,6 +7,8 @@ import type {
 import RichText from '../../RichText/RichText'
 import type { CodeBlockProps } from './CodeBlock.types'
 import Code from './Code/Code'
+import '../../tokens.css'
+import './CodeBlock.css'
 
 const CodeBlock = ({ block }: CodeBlockProps) => {
   const els = block.code?.rich_text.map((textObject: RichTextItemResponse, i) => {

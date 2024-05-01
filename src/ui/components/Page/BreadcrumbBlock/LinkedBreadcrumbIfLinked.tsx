@@ -1,6 +1,7 @@
 import React from 'react'
 import { getLinkPathAndLinkKey, queryToString } from '../../lib'
 import type { LinkedBreadcrumbIfLinkedProps } from './LinkedBreadcrumbIfLinked.types'
+import './LinkedBreadcrumbIfLinked.css'
 
 function buildPathname (id: string, name: string, href?: string) {
   if (href === '/') {

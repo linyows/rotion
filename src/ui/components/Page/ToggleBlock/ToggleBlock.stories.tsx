@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { ToggleBlockObjectResponseEx } from '../../../../exporter'
 import ToggleBlock from './ToggleBlock'
-import './ToggleBlock.css'
 
 /* PARAGRAPH BLOCK */
 const p = {

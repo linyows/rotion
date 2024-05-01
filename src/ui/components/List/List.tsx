@@ -2,6 +2,8 @@ import React from 'react'
 import Column from './Column'
 import type { PageObjectResponseEx } from '../../../exporter'
 import type { ListProps } from './List.types'
+import '../tokens.css'
+import './List.css'
 
 function columnClassName (name: string, i: number) {
   const classArray = [`rotion-list-column${i}`]

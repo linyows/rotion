@@ -2,6 +2,8 @@ import React from 'react'
 import RichText from '../../RichText/RichText'
 import type { RichTextItemResponse } from '../../../../exporter'
 import type { TextBlockProps } from './TextBlock.types'
+import '../../tokens.css'
+import './TextBlock.css'
 
 const TextBlock = ({ tag, block }: TextBlockProps) => {
   if (block.type === 'divider') {

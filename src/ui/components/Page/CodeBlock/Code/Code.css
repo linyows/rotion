@@ -1,7 +1,7 @@
 .rotion-code-area {
   border-radius: var(--rotion-border-radius);
   padding: .6rem 1rem;
-  background-color: var(--rotion-code-bg-color);
+  background-color: #f5f2f0;
   margin: 1rem 0;
   font-size: .8rem;
   position: relative;
@@ -21,7 +21,7 @@
 
 @media (prefers-color-scheme: dark) {
   .rotion-code-area {
-    background-color: var(--rotion-dark-code-bg-color);
+    background-color: #2d2d2d;
   }
 
   .rotion-code-lang {

@@ -6,9 +6,6 @@ import type {
   NumberedListItemBlockObjectResponseEx,
 } from '../../../../exporter'
 import ListBlocks from './ListBlocks'
-import '../BulletedListBlock/BulletedListBlock.css'
-import '../NumberedListBlock/NumberedListBlock.css'
-import './ListBlocks.css'
 
 const list1 = ['Coffee', 'Milk', 'Cinnamon']
 const list2 = ['Light', 'Medium', 'Dark']

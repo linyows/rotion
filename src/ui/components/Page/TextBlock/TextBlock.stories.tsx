@@ -9,7 +9,6 @@ import type {
   RichTextItemResponse,
 } from '../../../../exporter'
 import TextBlock from './TextBlock'
-import './TextBlock.css'
 
 const richText: RichTextItemResponse = {
   type: 'text',

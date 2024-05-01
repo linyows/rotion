@@ -1,6 +1,7 @@
 import React from 'react'
 import type { ListTitleFieldProps } from './ListTitleField.types'
 import LinkedTitle from './LinkedTitle'
+import './ListTitleField.css'
 
 const ListTitleField = ({ payload, path, slug, link, query }: ListTitleFieldProps) => {
   const title = payload.map(v => {

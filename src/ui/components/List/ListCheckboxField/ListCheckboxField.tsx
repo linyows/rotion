@@ -1,6 +1,7 @@
 import React from 'react'
 import type { ListCheckboxFieldProps } from './ListCheckboxField.types'
 import { Checkbox } from '../../Checkbox'
+import './ListCheckboxField.css'
 
 const ListCheckboxField = ({ payload }: ListCheckboxFieldProps) => {
   return (

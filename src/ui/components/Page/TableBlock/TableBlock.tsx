@@ -2,6 +2,8 @@ import React from 'react'
 import RichText from '../../RichText/RichText'
 import type { TableRowBlockObjectResponse } from '../../../../exporter'
 import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
+import '../../tokens.css'
+import './TableBlock.css'
 
 const Td = ({ cell, key }: ThTdProps) => {
   return (

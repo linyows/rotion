@@ -1,6 +1,8 @@
 import React from 'react'
 import { RichText } from '../../RichText'
 import type { BookmarkBlockProps } from './BookmarkBlock.types'
+import '../../tokens.css'
+import './BookmarkBlock.css'
 
 const BookmarkBlock = ({ block }: BookmarkBlockProps) => {
   if (!block.bookmark) {

@@ -7,6 +7,19 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import del from 'rollup-plugin-delete'
 import dts from 'rollup-plugin-dts'
 import postcss from 'rollup-plugin-postcss'
+import { plugin } from 'postcss'
+import path from 'path'
+
+// Remove Darkmode styles
+const removeDark = plugin('remove-dark', () => {
+  return (root) => {
+    root.walkAtRules('media', rule => {
+      if (rule.params.includes('prefers-color-scheme:')) {
+        rule.remove()
+      }
+    })
+  }
+})
 
 export default [
   {
@@ -43,7 +56,10 @@ export default [
       commonjs(),
       typescript(),
       terser(),
-      postcss({ inject: true }),
+      postcss({
+        extract: true,
+        minimize: true,
+      }),
     ],
     external: [
       'react',
@@ -60,6 +76,11 @@ export default [
     }],
     plugins: [
       dts(),
+      postcss({
+        extract: path.resolve('dist/ui/style-without-dark.css'),
+        minimize: true,
+        plugins: [removeDark],
+      }),
     ],
   },
 ]

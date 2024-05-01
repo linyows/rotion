@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type { CalloutBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter'
 import CalloutBlock from './CalloutBlock'
-import './CalloutBlock.css'
 
 const richText: RichTextItemResponse = {
   type: 'text',

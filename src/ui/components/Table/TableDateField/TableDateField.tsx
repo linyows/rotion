@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { cdate } from 'cdate'
 import type { TableDateFieldProps } from './TableDateField.types'
 import { getDatetimeFormat } from '../../lib'
+import './TableDateField.css'
 
 const TableDateField = ({ payload }: TableDateFieldProps) => {
   if (payload === null) {

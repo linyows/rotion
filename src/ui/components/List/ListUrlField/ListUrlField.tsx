@@ -1,6 +1,7 @@
 import React from 'react'
 import type { ListUrlFieldProps } from './ListUrlField.types'
 import { splitUrl } from '../../lib'
+import './ListUrlField.css'
 
 const ListUrlField = ({ payload }: ListUrlFieldProps) => {
   if (!payload) {

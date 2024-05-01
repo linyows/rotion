@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { cdate } from 'cdate'
-import type { GalleryDateFieldProps } from './DateField.types'
+import type { GalleryDateFieldProps } from './GalleryDateField.types'
 import { getDatetimeFormat } from '../../lib'
+import './GalleryDateField.css'
 
 const GalleryDateField = ({ payload }: GalleryDateFieldProps) => {
   if (payload === null) {
