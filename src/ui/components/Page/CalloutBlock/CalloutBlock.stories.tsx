@@ -42,7 +42,7 @@ const block: CalloutBlockObjectResponseEx = {
   type: 'callout',
   callout: {
     rich_text: [richText],
-    color: 'default',
+    color: 'gray_background',
     icon: {
       type: 'emoji',
       emoji: '💡',
@@ -64,6 +64,7 @@ type Story = StoryObj<typeof meta>
 
 export const Emoji: Story = {}
 
+/* ICON */
 const icon = structuredClone(block)
 icon.callout.icon! = {
   type: 'external',
@@ -78,11 +79,29 @@ export const Icon: Story = {
   }
 }
 
+/* DEFAULT */
+const defcolor = structuredClone(icon)
+defcolor.callout.color = 'default'
+// @ts-ignore
+defcolor.callout.icon.src = 'https://www.notion.so/icons/light-bulb_gray.svg'
+export const Default: Story = {
+  args: {
+    block: defcolor
+  }
+}
+const bgDefault = structuredClone(defcolor)
+bgDefault.callout.color = 'default'
+export const BgDefault: Story = {
+  args: {
+    block: bgDefault
+  }
+}
+
 /* GRAY */
 const gray = structuredClone(icon)
 gray.callout.color = 'gray'
 // @ts-ignore
-gray.callout.icon.src = 'https://www.notion.so/icons/light-bulb_gray.svg'
+gray.callout.icon.src = 'https://www.notion.so/icons/light-bulb_lightgray.svg'
 export const Gray: Story = {
   args: {
     block: gray

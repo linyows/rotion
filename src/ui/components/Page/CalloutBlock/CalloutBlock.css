@@ -21,8 +21,8 @@
 
 .rotion-callout-default,
 .rotion-callout-default-background {
-  color: var(--rotion-annot-default);
-  background-color: var(--rotion-annot-bg-default);
+  color: inherit;
+  border: var(--rotion-annot-border);
 }
 
 .rotion-callout-gray {

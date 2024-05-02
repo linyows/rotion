@@ -1,7 +1,3 @@
-.rotion-richtext-annot {
-  font-family: var(--rotion-font-family);
-}
-
 .rotion-richtext-bold {
   font-weight: bold;
 }
@@ -31,7 +27,7 @@
 }
 
 .rotion-richtext-default {
-  color: var(--rotion-annot-default);
+  color: inherit;
 }
 
 .rotion-richtext-gray {
@@ -117,10 +113,6 @@
 @media (prefers-color-scheme: dark) {
   .rotion-richtext-code {
     background-color: var(--rotion-dark-code-bg-color);
-  }
-
-  .rotion-richtext-default {
-    color: var(--rotion-dark-annot-default);
   }
 
   .rotion-richtext-gray {
