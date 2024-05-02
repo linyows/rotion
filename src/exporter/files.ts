@@ -17,6 +17,7 @@ import {
   webpQuality,
   httpOptions,
   debug,
+  googleMapKey,
 } from './variables.js'
 import type {
   VideoBlockObjectResponseEx,
@@ -484,15 +485,14 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
 
   } else if (block.embed && block.embed.url.includes('www.google.com/maps/')) {
     const src = block.embed?.url || ''
-    if (process.env.GOOGLEMAP_EKY) {
-      const key = process.env.GOOGLEMAP_EKY
+    if (googleMapKey) {
       // Example: https://www.google.com/maps/@33.5838302,130.3657052,14z?entry=ttu
       const m = src.match(/@([0-9\.]+),([0-9\.]+),(\d+)z/)
       if (m) {
         const latitude = m[1]
         const longitude = m[2]
         const zoom = m[3]
-        return `<iframe src="https://www.google.com/maps/embed/v1/view?key=${key}&amp;center=${latitude},${longitude}&amp;zoom=${zoom}" frameborder="0" sandbox="allow-scripts allow-popups allow-forms allow-same-origin" allowfullscreen="" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px; pointer-events: auto; background-color: white;"></iframe>`
+        return `<iframe src="https://www.google.com/maps/embed/v1/view?key=${googleMapKey}&amp;center=${latitude},${longitude}&amp;zoom=${zoom}" frameborder="0" sandbox="allow-scripts allow-popups allow-forms allow-same-origin" allowfullscreen="" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px; pointer-events: auto; background-color: white;"></iframe>`
       }
       console.log(`map url mismatched: ${src}`)
     } else {

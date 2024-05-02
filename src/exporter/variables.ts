@@ -5,6 +5,7 @@ export const waitingTimeSec = (process.env.ROTION_WAITTIME || 0) as number
 export const waitTimeSecAfterLimit = (process.env.ROTION_LIMITED_WAITTIME || 60 * 1000) as number
 export const incrementalCache = process.env.ROTION_INCREMENTAL_CACHE === 'true'
 export const auth = process.env.NOTION_TOKEN
+export const googleMapKey = process.env.GOOGLEMAP_KEY
 export const docRoot = process.env.ROTION_DOCROOT || 'public'
 export const imageDir = process.env.ROTION_IMAGEDIR || 'images'
 export const fileDir = process.env.ROTION_FILEDIR || 'files'
