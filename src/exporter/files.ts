@@ -483,16 +483,37 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
     }
     console.log(`music url mismatched: ${src}`)
 
-  } else if (block.embed && block.embed.url.includes('www.google.com/maps/')) {
+  } else if (block.embed && block.embed.url.includes('https://www.google')) {
     const src = block.embed?.url || ''
     if (googleMapKey) {
-      // Example: https://www.google.com/maps/@33.5838302,130.3657052,14z?entry=ttu
-      const m = src.match(/@([0-9\.]+),([0-9\.]+),(\d+)z/)
+      // Example:
+      // https://www.google.com/maps/@33.5838302,130.3657052,14z?entry=ttu
+      // https://www.google.com/maps/place/%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%BD%B9%E6%89%80/@33.5902469,130.3992059,17z/data=!3m2!4b1!5s0x3541918112202223:0x6cba44d6a8d62d97!4m6!3m5!1s0x35419191c6bf9d81:0x5999335c14be57dc!8m2!3d33.5902425!4d130.4017862!16s%2Fg%2F1tdmbp2k?hl=ja&entry=ttu
+      // https://www.google.co.jp/maps/place/%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82/@33.6501493,130.0988255,11z/data=!3m1!4b1!4m6!3m5!1s0x3541eda1e9848429:0xf60a729936398783!8m2!3d33.5901838!4d130.4016888!16zL20vMGdxa2Q?hl=ja&entry=ttu
+      // https://www.google.co.jp/maps/dir/%E5%A4%A9%E7%A5%9E%E3%80%81%E3%80%92810-0001+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E4%B8%AD%E5%A4%AE%E5%8C%BA/%E7%A6%8F%E5%B2%A1%E7%A9%BA%E6%B8%AF%E3%80%81%E3%80%92812-0003+%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%8D%9A%E5%A4%9A%E5%8C%BA%E4%B8%8B%E8%87%BC%E4%BA%95%EF%BC%97%EF%BC%97%EF%BC%98%E2%88%92%EF%BC%91/@33.5728608,130.4138763,14z/data=!3m1!4b1!4m14!4m13!1m5!1m1!1s0x3541918dd8b0a675:0x43ab58c2e521e67!2m2!1d130.399409!2d33.5916163!1m5!1m1!1s0x35419016426901ad:0x16e67f46584e1fb7!2m2!1d130.4438542!2d33.5845874!3e3?hl=ja&entry=ttu
+      const regex = /maps\/((view|place|dir)\/(.*)\/)?\@([0-9\.]+),([0-9\.]+),(\d+)z/
+      const m = src.match(regex)
       if (m) {
-        const latitude = m[1]
-        const longitude = m[2]
-        const zoom = m[3]
-        return `<iframe src="https://www.google.com/maps/embed/v1/view?key=${googleMapKey}&amp;center=${latitude},${longitude}&amp;zoom=${zoom}" frameborder="0" sandbox="allow-scripts allow-popups allow-forms allow-same-origin" allowfullscreen="" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; border-radius: 1px; pointer-events: auto; background-color: white;"></iframe>`
+        const mode = m[2]
+        const data = m[3]
+        const latitude = m[4]
+        const longitude = m[5]
+        const zoom = m[6]
+        let url = 'https://www.google.com/maps/embed/v1'
+        switch (mode) {
+          case 'dir':
+            const arrayData = data.split('/')
+            url = `${url}/directions?key=${googleMapKey}&origin=${arrayData[0]}&destination=${arrayData[1]}`
+            break
+          case 'place':
+            url = `${url}/place?key=${googleMapKey}&q=${data}&center=${latitude},${longitude}&zoom=${zoom}`
+            break
+          case 'view':
+          default:
+            url = `${url}/view?key=${googleMapKey}&center=${latitude},${longitude}&zoom=${zoom}`
+            break
+        }
+        return `<iframe width="100%" height="450" frameborder="0" style="border:0" referrerpolicy="no-referrer-when-downgrade" src="${url}" allowfullscreen> </iframe>`
       }
       console.log(`map url mismatched: ${src}`)
     } else {

@@ -88,9 +88,13 @@ export const AppleMusic: Story = {
   },
 }
 
+const googleMapKey = ''
+const latitude = '33.5838302'
+const longitude = '130.3657052'
 const gm = structuredClone(block)
 gm.embed.url = 'https://www.google.com/maps/@33.5838302,130.3657052,14z?entry=ttu'
-gm.embed.html = '<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d26590.619248412073!2d130.36570519170849!3d33.583830136431574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1713846123049!5m2!1sja!2sjp" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>'
+gm.embed.html = `<iframe width="100%" height="100%" frameborder="0" style="border:0" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/view?key=${googleMapKey}&center=${latitude},${longitude}&zoom=14" allowfullscreen> </iframe>`
+// gm.embed.html = `<iframe width="100%" height="450" frameborder="0" style="border:0" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=${googleMapKey}&q=%E7%A6%8F%E5%B2%A1%E5%B8%82%E5%BD%B9%E6%89%80" allowfullscreen> </iframe>`
 export const GoogleMaps: Story = {
   args: {
     block: gm,

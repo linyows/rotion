@@ -87,6 +87,21 @@ const Applemusic = ({ block }: EmbedBlockProps) => {
   )
 }
 
+const Googlemap = ({ block }: EmbedBlockProps) => {
+  return (
+    <div className="rotion-embed">
+      <div className="rotion-embed-googlemap">
+        <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
+        <div className="rotion-embed-caption">
+          {block.embed.caption.map((v, i) => (
+            <RichText textObject={v} key={`richtext-${i}`} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 const EmbedBlock = ({ block }: EmbedBlockProps) => {
   if (block.embed?.html === undefined) {
     console.log('The html property for this embed block was undefined:', block)
@@ -107,6 +122,10 @@ const EmbedBlock = ({ block }: EmbedBlockProps) => {
 
   if (block.embed.html.includes('music.apple.com')) {
     return <Applemusic block={block} />
+  }
+
+  if (block.embed.html.includes('google')) {
+    return <Googlemap block={block} />
   }
 
   return (
