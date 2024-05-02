@@ -35,7 +35,7 @@ test('getHtmlMeta returns title and desc', async () => {
       'React',
       'React is the library for web and native user interfaces. Build user interfaces out of individual pieces called components written in JavaScript. React is designed to let you seamlessly combine components written by independent people, teams, and organizations.',
       '/images/html-image-ce7f0c52bc0e232480445462ce8acd6f873e7263.webp',
-      '/images/html-icon-cf3a9253f8e579b8815743c91cf8474a7ba0a5c3-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
+      '/images/html-icon-cf3a9253f8e579b8815743c91cf8474a7ba0a5c3-c6eac0e9dbd7a24b49444f38a7984d17050ebf67.webp',
     ],
     [
       'https://nuxtjs.org',
