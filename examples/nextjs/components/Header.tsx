@@ -11,7 +11,7 @@ export interface HeaderProps {
 
 const Header = ({ breadcrumbs, breadcrumb_hrefs }: HeaderProps) => {
   return (
-    <div className={styles.layout}>
+    <div className={styles.globalHeader}>
       <div className={styles.breadcrumbs}>
         <Breadcrumbs list={breadcrumbs} link={Link} hrefs={breadcrumb_hrefs} />
       </div>

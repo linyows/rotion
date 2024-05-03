@@ -1,23 +1,33 @@
-.layout {
+.globalHeader {
+  margin: 0;
   padding: .7rem 0;
   display: grid;
-  grid-template: 50% 1fr / 50% 1fr;
+  grid-template-columns: 1fr 90px;
   color: rgb(35, 131, 226);
   background-color: rgba(35, 131, 226, 0.07);
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
+  line-height: 1.5;
 }
 
 .breadcrumbs {
-  padding-left: .5rem;
+  padding-left: 1.2rem;
 }
 
 .repo {
   text-align: right;
-  padding-right: .5rem;
+  padding-right: 1.5rem;
 }
+
+.repo svg {
+  margin-top: -5px;
+  vertical-align: middle;
+  margin-right: 3px;
+}
+
 .github {
   text-decoration: none;
   color: #666;
@@ -25,7 +35,18 @@
   padding: .2rem .3rem;
   border-radius: 4px;
 }
+
 .github:hover {
   color: #666;
   background-color: #fff;
+}
+
+@media only screen and (max-width: 600px) {
+  .breadcrumbs {
+    padding-left: .2rem;
+  }
+
+  .repo {
+    padding-right: .5rem;
+  }
 }

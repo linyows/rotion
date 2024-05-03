@@ -30,3 +30,21 @@
   margin-top: 1.5rem;
   margin-bottom: 5rem;
 }
+
+@media only screen and (max-width: 600px) {
+  .layout {
+    display: block;
+    width: 100%;
+  }
+
+  .header {
+    margin-top: 3rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .db {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}
