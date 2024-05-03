@@ -88,7 +88,8 @@ export const AppleMusic: Story = {
   },
 }
 
-const googleMapKey = ''
+// @ts-ignore
+const googleMapKey = import.meta.env.STORYBOOK_GOOGLEMAP_KEY
 const latitude = '33.5838302'
 const longitude = '130.3657052'
 const gm = structuredClone(block)
