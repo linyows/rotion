@@ -12,10 +12,10 @@ const Icon = ({ block }: CalloutBlockProps) => {
   const { type } = block.callout.icon
   switch (type) {
     case 'emoji':
-      return <>{block.callout.icon.emoji}</>
+      return <span className="rotion-callout-emoji">{block.callout.icon.emoji}</span>
     case 'external':
     case 'file':
-      return <img src={block.callout.icon.src} alt="Icon" />
+      return <img className="rotion-callout-img" src={block.callout.icon.src} alt="Icon" />
     default:
       return <></>
   }
