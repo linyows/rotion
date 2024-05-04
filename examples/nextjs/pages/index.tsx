@@ -1,4 +1,7 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type {
+  GetStaticProps,
+  InferGetStaticPropsType,
+} from 'next'
 import Image from 'next/image'
 import React from 'react'
 import Head from 'next/head'
@@ -25,6 +28,7 @@ import {
 type Props = {
   title: null | RichTextItemResponse
   icon: string
+  logo: string
   blocks: FetchBlocksRes
   breadcrumbs: Breadcrumb[]
 }
@@ -37,6 +41,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
     title = obj.title
   }
+  const logo = page.cover?.src || ''
   const icon = page.icon!.src
   const blocks = await FetchBlocks({ block_id: id, last_edited_time: page.last_edited_time })
   const breadcrumbs = await FetchBreadcrumbs({ id, type: 'page_id' })
@@ -45,13 +50,14 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     props: {
       title,
       icon,
+      logo,
       blocks,
       breadcrumbs,
     }
   }
 }
 
-const Home: NextPage<Props> = ({ title, icon, blocks, breadcrumbs }) => {
+export default function Home({ title, logo, icon, blocks, breadcrumbs }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Head>
@@ -65,12 +71,9 @@ const Home: NextPage<Props> = ({ title, icon, blocks, breadcrumbs }) => {
         <span></span>
         <div>
           <header className={styles.header}>
-            <div className={styles.icon}>
-              <Image src={icon} width={78} height={78} alt="Icon" />
+            <div className={styles.logo}>
+              <h1><Image src={logo} width={360} height={360} alt="Rotion" /></h1>
             </div>
-            <h1 className={styles.title}>
-              {title && <RichText textObject={title} />}
-            </h1>
           </header>
 
           <div className={styles.page}>
@@ -82,5 +85,3 @@ const Home: NextPage<Props> = ({ title, icon, blocks, breadcrumbs }) => {
     </>
   )
 }
-
-export default Home
