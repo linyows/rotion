@@ -107,7 +107,7 @@ export default function BlockPage({ title, icon, blocks, breadcrumbs }: InferGet
   return (
     <>
       <Head>
-        <title>Rotion</title>
+        <title>{title?.plain_text} Block - Rotion</title>
         <link rel="icon" type="image/svg+xml" href={icon} />
       </Head>
 

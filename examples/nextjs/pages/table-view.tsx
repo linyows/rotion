@@ -75,7 +75,7 @@ const TablePage: NextPage<Props> = ({ title, icon, blocks, db, breadcrumbs }) =>
   return (
     <>
       <Head>
-        <title>Table - Rotion</title>
+        <title>Table view - Rotion</title>
         <link rel="icon" type="image/svg+xml" href={icon} />
       </Head>
 

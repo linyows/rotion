@@ -75,7 +75,7 @@ const ListPage: NextPage<Props> = ({ title, icon, blocks, db, breadcrumbs }) => 
   return (
     <>
       <Head>
-        <title>List - Rotion</title>
+        <title>List view - Rotion</title>
         <link rel="icon" type="image/svg+xml" href={icon} />
       </Head>
 

@@ -75,7 +75,7 @@ const TimelinePage: NextPage<Props> = ({ title, icon, blocks, db, breadcrumbs })
   return (
     <>
       <Head>
-        <title>Timeline - Rotion</title>
+        <title>Timeline view - Rotion</title>
         <link rel="icon" type="image/svg+xml" href={icon} />
       </Head>
 

@@ -76,7 +76,7 @@ const GalleryPage: NextPage<Props> = ({ title, icon, blocks, db, breadcrumbs }) 
   return (
     <>
       <Head>
-        <title>Gallery - Rotioin</title>
+        <title>Gallery view - Rotioin</title>
         <link rel="icon" type="image/svg+xml" href={icon} />
       </Head>
 
