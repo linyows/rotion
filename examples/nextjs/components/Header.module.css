@@ -11,6 +11,8 @@
   right: 0;
   width: 100%;
   line-height: 1.5;
+  z-index: 999;
+  backdrop-filter: blur(10px);
 }
 
 .breadcrumbs {
