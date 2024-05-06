@@ -132,7 +132,7 @@
   .rotion-callout-default,
   .rotion-callout-default-background {
     color: var(--rotion-dark-annot-default);
-    background-color: var(--rotion-dark-annot-bg-default);
+    border: var(--rotion-dark-annot-border);
   }
 
   .rotion-callout-gray {
