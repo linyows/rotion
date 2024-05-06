@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs'
-const pkg = JSON.parse(readFileSync('../../package.json').toString())
+const pkg = JSON.parse(readFileSync('./package.json').toString())
 
 export const cacheDir = process.env.ROTION_CACHEDIR || '.cache'
 export const waitingTimeSec = (process.env.ROTION_WAITTIME || 0) as number
