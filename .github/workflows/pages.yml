@@ -6,6 +6,8 @@ on:
     workflows: ["Build"]
     branches: [main]
     types: [completed]
+  schedule:
+    - cron: 0 0 * * *
 
 concurrency:
   group: "pages"
