@@ -17,7 +17,7 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
-  staticDirs: ['../examples/nextjs/public'],
+  staticDirs: ['../website/public'],
   docs: {
     autodocs: "tag",
   },

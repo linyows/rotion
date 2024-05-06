@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: "20"
           cache: npm
+          cache-dependency-path: website/package-lock.json
       - name: Setup pages
         uses: actions/configure-pages@v2
         with:
@@ -34,7 +35,7 @@ jobs:
         uses: actions/cache@v4.0.0
         with:
           path: |
-            .next/cache
+            website/.next/cache
           key: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
@@ -43,21 +44,21 @@ jobs:
         uses: actions/cache@v4.0.0
         with:
           path: |
-            .cache
-            public/images
+            website/.cache
+            website/public/images
           key: rotion
           restore-keys: rotion
       - name: Install dependencies
-        working-directory: examples/nextjs
+        working-directory: website
         run: npm ci
       - name: Build and Export
-        working-directory: examples/nextjs
+        working-directory: website
         run: |
           npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./examples/nextjs/out
+          path: ./website/out
 
   deploy:
     environment:
