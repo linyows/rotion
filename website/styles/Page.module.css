@@ -41,6 +41,12 @@
   margin: 0;
 }
 
+@media (prefers-color-scheme: dark) {
+  .logo {
+    filter: invert(1) drop-shadow(0 0 0 #666);
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .layout {
     display: block;
