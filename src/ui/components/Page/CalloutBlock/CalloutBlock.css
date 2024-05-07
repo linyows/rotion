@@ -24,8 +24,7 @@
 }
 
 .rotion-callout-text {
-  display: flex;
-  flex-direction: column;
+  display: block;
   margin-left: 8px;
   width: 100%;
   white-space: pre-wrap;

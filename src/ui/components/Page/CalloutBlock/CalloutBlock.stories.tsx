@@ -79,6 +79,22 @@ export const Icon: Story = {
   }
 }
 
+/* LONG TEXT */
+const long = structuredClone(block)
+long.callout.rich_text = [richText, richText, richText, richText, richText, richText, richText, richText]
+long.callout.icon! = {
+  type: 'external',
+  external: {
+    url: 'https://www.notion.so/icons/light-bulb_default.svg?mode=light',
+  },
+  src: 'https://www.notion.so/icons/light-bulb_gray.svg?mode=light',
+}
+export const LongText: Story = {
+  args: {
+    block: long
+  }
+}
+
 /* DEFAULT */
 const defcolor = structuredClone(icon)
 defcolor.callout.color = 'default'
