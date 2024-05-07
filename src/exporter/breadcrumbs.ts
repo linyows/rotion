@@ -77,14 +77,13 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
               }
             })
           } else if (page.icon?.type === 'external' || page.icon?.type === 'file') {
-            const src = page.icon.type === 'external' ? page.icon.external.url : page.icon.file.url 
             breadcrumbs.unshift({
               id: page.id,
               name,
               icon: {
                 type: page.icon.type,
-                src,
-                url: src,
+                src: page.icon.src,
+                url: page.icon.type === 'external' ? page.icon.external.url : page.icon.file.url,
               }
             })
           }
@@ -113,14 +112,13 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
               }
             })
           } else if (db.icon?.type === 'external' || db.icon?.type === 'file') {
-            const src = db.icon.type === 'external' ? db.icon.external.url : db.icon.file.url 
             breadcrumbs.unshift({
               id: db.id,
               name,
               icon: {
                 type: db.icon.type,
-                src,
-                url: src,
+                src: db.icon.src,
+                url: db.icon.type === 'external' ? db.icon.external.url : db.icon.file.url,
               }
             })
           }
