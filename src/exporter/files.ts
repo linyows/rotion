@@ -5,8 +5,7 @@ import http from 'http'
 import path from 'path'
 import crypto from 'crypto'
 import { promisify } from 'util'
-import imagemin from 'imagemin'
-import imageminWebp from 'imagemin-webp'
+import sharp from 'sharp'
 import { fileTypeFromFile } from 'file-type'
 import replaceExt from 'replace-ext'
 import {
@@ -312,14 +311,8 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
         return urlPath
       } else {
         if (webpMimes.includes(fType.mime)) {
-          const result = await imagemin([filePath], {
-            destination: dirPath,
-            // @ts-ignore
-            plugins: [imageminWebp({ quality: webpQuality })],
-          })
-          if (result && result.length > 0) {
-            return webpUrlPath
-          }
+          await sharp(filePath).webp({ quality: webpQuality }).toFile(webpPath)
+          return webpUrlPath
         }
       }
     }
