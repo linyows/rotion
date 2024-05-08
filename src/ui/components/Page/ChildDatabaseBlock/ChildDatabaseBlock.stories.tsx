@@ -57,6 +57,7 @@ const database: GetDatabaseResponseEx = {
       type: 'title',
       title: {},
       name: 'title',
+      description: '',
     },
   },
   url: '',
