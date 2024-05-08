@@ -6,6 +6,7 @@ import {
 import {
   cacheDir,
   incrementalCache,
+  debug,
 } from './variables.js'
 import {
   atoh,
@@ -53,10 +54,19 @@ export const FetchDatabase = async (params: FetchDatabaseArgs): Promise<FetchDat
     const list = await readCache<QueryDatabaseResponseEx>(cacheFile)
     if (!isEmpty(list)) {
       if (!incrementalCache) {
+        if (debug) {
+          console.log(`use cache in FetchDatabase() with no-incremental-cache: ${cacheFile}`)
+        }
         return list
       }
       if (await isAvailableCache(cacheFile)) {
+        if (debug) {
+          console.log(`use available cache in FetchDatabase(): ${cacheFile}`)
+        }
         return list
+      }
+      if (debug) {
+        console.log(`requesting to API because an old cache file was found in FetchDatabase(): ${cacheFile}`)
       }
     }
   } catch (_) {

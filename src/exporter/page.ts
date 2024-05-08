@@ -44,15 +44,18 @@ export const FetchPage = async ({ page_id, last_edited_time }: FetchPageArgs): P
     if (!isEmpty(page)) {
       if (incrementalCache && last_edited_time === undefined) {
         if (debug) {
-          console.log('last_edited_time is required as a FetchPage() args when incremental cache')
+          console.log(`use cache in FetchPage(): ${cacheFile}, last_edited_time is required as a FetchPage() args when incremental cache`)
         }
         return page
       }
       if (!incrementalCache || ('last_edited_time' in page && page.last_edited_time === last_edited_time)) {
+        if (debug) {
+          console.log(`use cache so same last-edited-time in FetchPage(): ${cacheFile}`)
+        }
         return page
       }
       if (debug) {
-        console.log(`incremental page cache: ${cacheFile}`)
+        console.log(`requesting to API because an old cache file was found in FetchPage(): ${cacheFile}`)
       }
     }
   } catch (_) {

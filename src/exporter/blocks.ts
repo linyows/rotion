@@ -49,15 +49,18 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
     if (!isEmpty(list)) {
       if (incrementalCache && last_edited_time === undefined) {
         if (debug) {
-          console.log('last_edited_time is required as a FetchBlocks() args when incremental cache')
+          console.log(`use cache in FetchBlocks(): ${cacheFile}, last_edited_time is required as a FetchBlocks() args when incremental cache`)
         }
         return list
       }
       if (!incrementalCache || list.last_edited_time === last_edited_time) {
+        if (debug) {
+          console.log(`use cache so same last-edited-time in FetchBlocks(): ${cacheFile}`)
+        }
         return list
       }
       if (debug) {
-        console.log(`incremental block cache: ${cacheFile}`)
+        console.log(`requesting to API because an old cache file was found in FetchBlocks(): ${cacheFile}`)
       }
     }
   } catch (_) {
