@@ -1,6 +1,6 @@
 {
   "name": "rotion",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "repository": "linyows/rotion",
   "description": "This is react components that uses the notion API to display the notion's database and page.",
@@ -63,12 +63,11 @@
     "cdate": "^0.0.7",
     "cdate-relative": "^0.0.1",
     "file-type": "^19.0.0",
-    "imagemin": "^9.0.0",
-    "imagemin-webp": "^8.0.0",
     "katex": "^0.16.9",
     "mermaid": "^10.6.1",
     "prismjs": "^1.25.0",
-    "replace-ext": "^2.0.0"
+    "replace-ext": "^2.0.0",
+    "sharp": "^0.33.3"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.3.1",
