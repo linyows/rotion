@@ -55,7 +55,7 @@ export const FetchDatabase = async (params: FetchDatabaseArgs): Promise<FetchDat
       if (!incrementalCache) {
         return list
       }
-      if (await isAvailableCache(cacheFile, 120)) {
+      if (await isAvailableCache(cacheFile)) {
         return list
       }
     }

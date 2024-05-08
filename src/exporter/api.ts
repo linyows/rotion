@@ -81,7 +81,7 @@ export async function reqAPIWithBackoffAndCache<T> ( { name, func, args, count }
 
   try {
     const cache = await readCache<T|null>(cacheFile)
-    if (await isAvailableCache(cacheFile, 600)) {
+    if (await isAvailableCache(cacheFile)) {
       return cache as T
     }
   } catch (_) {

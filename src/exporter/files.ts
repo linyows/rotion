@@ -17,6 +17,7 @@ import {
   httpOptions,
   debug,
   googleMapKey,
+  cacheAvailableDuration,
 } from './variables.js'
 import type {
   VideoBlockObjectResponseEx,
@@ -201,8 +202,8 @@ export async function writeCache (f: string, data: unknown): Promise<void> {
   return writeFile(f, JSON.stringify(data), 'utf8').catch(() => {})
 }
 
-export async function isAvailableCache (f: string, seconds: number): Promise<boolean> {
-  const t = new Date(Date.now() + (seconds * 1000))
+export async function isAvailableCache (f: string): Promise<boolean> {
+  const t = new Date(Date.now() + cacheAvailableDuration)
   const stats = await stat(f)
   return stats.mtime < t
 }
