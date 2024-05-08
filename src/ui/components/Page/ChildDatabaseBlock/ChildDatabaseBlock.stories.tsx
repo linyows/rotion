@@ -62,6 +62,7 @@ const database: GetDatabaseResponseEx = {
   url: '',
   public_url: '',
   is_inline: false,
+  in_trash: false,
 }
 
 const block: ChildDatabaseBlockObjectResponseEx = {
@@ -88,6 +89,7 @@ const block: ChildDatabaseBlockObjectResponseEx = {
     title: 'My Database',
   },
   database,
+  in_trash: false,
 }
 
 const meta = {

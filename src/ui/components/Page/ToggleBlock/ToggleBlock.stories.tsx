@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import type { ToggleBlockObjectResponseEx } from '../../../../exporter'
+import type { BlockObjectResponse, ToggleBlockObjectResponseEx } from '../../../../exporter'
 import ToggleBlock from './ToggleBlock'
 
 /* PARAGRAPH BLOCK */
-const p = {
+const p: BlockObjectResponse = {
   object: 'block',
   id: '12345678-1234-1234-1234-1234567890ab',
   parent: {
@@ -45,10 +45,11 @@ const p = {
     ],
     color: 'default',
   },
+  in_trash: false,
 }
 
 /* TOGGLE BLOCK */
-const block = {
+const block: ToggleBlockObjectResponseEx = {
   object: 'block',
   id: '12345678-1234-1234-1234-1234567890ab',
   created_time: '',
@@ -98,7 +99,8 @@ const block = {
     children: undefined,
     last_edited_time: undefined,
   },
-} as ToggleBlockObjectResponseEx
+  in_trash: false,
+}
 
 const meta = {
   title: 'Page/ToggleBlock',

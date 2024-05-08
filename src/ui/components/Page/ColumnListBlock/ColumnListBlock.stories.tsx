@@ -23,6 +23,7 @@ const column: BlockObjectResponse = {
   has_children: true,
   type: 'column',
   column: {},
+  in_trash: false,
 }
 
 const columnObject: ListBlockChildrenResponseEx = {
@@ -69,6 +70,7 @@ const columnObject: ListBlockChildrenResponseEx = {
         is_toggleable: false,
         color: 'default',
       },
+      in_trash: false,
     },
     {
       object: 'block',
@@ -110,6 +112,7 @@ const columnObject: ListBlockChildrenResponseEx = {
         }],
         color: 'default',
       },
+      in_trash: false,
     },
   ],
   next_cursor: null,
@@ -150,6 +153,7 @@ const block: ColumnListBlockObjectResponseEx = {
   },
   has_children: false,
   archived: false,
+  in_trash: false,
 }
 
 const meta = {

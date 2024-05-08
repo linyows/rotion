@@ -11,7 +11,7 @@ const list1 = ['Coffee', 'Milk', 'Cinnamon']
 const list2 = ['Light', 'Medium', 'Dark']
 const list3 = ['Paper filter', 'Espresso']
 
-const baseBlock = {
+const baseBlock: unknown = {
   object: 'block',
   id: '12345678-1234-1234-1234-1234567890ab',
   created_time: '',
@@ -57,7 +57,7 @@ const richText1: TextRichTextItemResponse = {
 }
 
 function makeBulletedList (v: string) {
-  const bulletedListItem1 = structuredClone(baseBlock) as unknown as BulletedListItemBlockObjectResponseEx
+  const bulletedListItem1 = structuredClone(baseBlock) as BulletedListItemBlockObjectResponseEx
   bulletedListItem1.type = 'bulleted_list_item'
   const bulleted = structuredClone(bulletedListItem1)
   const r = structuredClone(richText1)
@@ -71,7 +71,7 @@ function makeBulletedList (v: string) {
 }
 
 function makeNumberedList (v: string) {
-  const numberedListItem1 = structuredClone(baseBlock) as unknown as NumberedListItemBlockObjectResponseEx
+  const numberedListItem1 = structuredClone(baseBlock) as NumberedListItemBlockObjectResponseEx
   numberedListItem1.type = 'numbered_list_item'
   const numbered = structuredClone(numberedListItem1)
   const r = structuredClone(richText1)

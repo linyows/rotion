@@ -50,6 +50,7 @@ const block: FileBlockObjectResponseEx = {
     src: 'https://www.africau.edu/images/default/sample.pdf',
     size: 3028,
   },
+  in_trash: false,
 }
 
 const meta = {

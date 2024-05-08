@@ -49,6 +49,7 @@ const block: ImageBlockObjectResponseEx = {
       },
     ],
   },
+  in_trash: false,
 }
 
 const meta = {

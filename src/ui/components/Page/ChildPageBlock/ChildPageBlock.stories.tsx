@@ -193,6 +193,7 @@ const page: GetPageResponseEx = {
   },
   url: '',
   public_url: '',
+  in_trash: false,
 }
 
 const children: ListBlockChildrenResponseEx = {
@@ -230,6 +231,7 @@ const block: ChildPageBlockObjectResponseEx = {
   },
   page,
   children,
+  in_trash: false,
 }
 
 const meta = {

@@ -25,6 +25,7 @@ const block: LinkPreviewBlockObjectResponse = {
   link_preview: {
     url: 'https://github.com/linyows/rotion/pull/3',
   },
+  in_trash: false,
 }
 
 const meta = {

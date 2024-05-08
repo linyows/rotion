@@ -82,6 +82,7 @@ const block: TableBlockObjectResponseEx = {
             return [r]
           }),
         },
+        in_trash: false,
       },
       {
         object: 'block',
@@ -111,6 +112,7 @@ const block: TableBlockObjectResponseEx = {
             return [r]
           }),
         },
+        in_trash: false,
       },
       {
         object: 'block',
@@ -140,9 +142,11 @@ const block: TableBlockObjectResponseEx = {
             return [r]
           }),
         },
+        in_trash: false,
       },
     ],
   },
+  in_trash: false,
 }
 
 const meta = {

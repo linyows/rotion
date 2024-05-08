@@ -48,6 +48,7 @@ const block: CalloutBlockObjectResponseEx = {
       emoji: '💡',
     }
   },
+  in_trash: false,
 }
 
 const meta = {

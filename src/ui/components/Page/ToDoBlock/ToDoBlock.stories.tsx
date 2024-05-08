@@ -5,7 +5,7 @@ import type {
 import ToDoBlock from './ToDoBlock'
 
 /* TODO BLOCK */
-const block = {
+const block: ToDoBlockObjectResponse = {
   object: 'block',
   id: '12345678-1234-1234-1234-1234567890ab',
   created_time: '',
@@ -46,7 +46,8 @@ const block = {
     color: 'default',
     checked: true,
   },
-} as ToDoBlockObjectResponse
+  in_trash: false,
+}
 
 const meta = {
   title: 'Page/ToDoBlock',

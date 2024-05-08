@@ -1,11 +1,32 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import type {
   SyncedBlockBlockObjectResponseEx,
+  ParagraphBlockObjectResponseEx,
+  RichTextItemResponse,
+  ListBlockChildrenResponseEx,
 } from '../../../../exporter'
 import SyncedBlock from './SyncedBlock'
 
+const richText: RichTextItemResponse = {
+  type: 'text',
+  text: {
+    content: 'Similar to the Notion UI, there are two versions of a synced_block object: the original block that was created first and doesn\'t yet sync with anything else, and the duplicate block or blocks synced to the original.',
+    link: null,
+  },
+  annotations: {
+    bold: false,
+    italic: false,
+    strikethrough: false,
+    underline: false,
+    code: false,
+    color: 'default'
+  },
+  plain_text: 'Similar to the Notion UI, there are two versions of a synced_block object: the original block that was created first and doesn\'t yet sync with anything else, and the duplicate block or blocks synced to the original.',
+  href: null,
+}
+
 /* PARAGRAPH BLOCK */
-const p = {
+const p: ParagraphBlockObjectResponseEx = {
   object: 'block',
   id: '12345678-1234-1234-1234-1234567890ab',
   created_time: '',
@@ -26,28 +47,14 @@ const p = {
   },
   type: 'paragraph',
   paragraph: {
-    rich_text: [{
-      type: 'text',
-      text: {
-        content: 'Similar to the Notion UI, there are two versions of a synced_block object: the original block that was created first and doesn\'t yet sync with anything else, and the duplicate block or blocks synced to the original.',
-        link: null,
-      },
-      annotations: {
-        bold: false,
-        italic: false,
-        strikethrough: false,
-        underline: false,
-        code: false,
-        color: 'default'
-      },
-      plain_text: 'Similar to the Notion UI, there are two versions of a synced_block object: the original block that was created first and doesn\'t yet sync with anything else, and the duplicate block or blocks synced to the original.',
-      href: null,
-    }],
+    rich_text: [richText],
+    color: 'default',
   },
+  in_trash: false,
 }
 
 /* SYNCED BLOCK BLOCK */
-const block = {
+const block: SyncedBlockBlockObjectResponseEx = {
   object: 'block',
   id: '12345678-1234-1234-1234-1234567890ab',
   created_time: '',
@@ -75,8 +82,9 @@ const block = {
   },
   children: {
     results: [p]
-  }
-} as SyncedBlockBlockObjectResponseEx
+  } as ListBlockChildrenResponseEx,
+  in_trash: false,
+}
 
 const meta = {
   title: 'Page/SyncedBlock',

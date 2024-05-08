@@ -2,13 +2,14 @@ import type { Meta, StoryObj } from '@storybook/react'
 import type { FetchDatabaseRes } from '../../../exporter'
 import Gallery from './Gallery'
 import response from '../../fixtures/fetch_database_response.json'
+const db = response as unknown as FetchDatabaseRes
 
 const meta = {
   title: 'Database/Gallery',
   component: Gallery,
   args: {
     keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags'],
-    db: response as FetchDatabaseRes,
+    db,
     href: '/blog/[id]',
     link: undefined,
     query: undefined,
@@ -27,7 +28,7 @@ export const Default: Story = {}
 export const ImageFit: Story = {
   args: {
     keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags'],
-    db: response as FetchDatabaseRes,
+    db,
     href: '/blog/[id]',
     link: undefined,
     query: undefined,
@@ -40,7 +41,7 @@ export const ImageFit: Story = {
 export const SmallSize: Story = {
   args: {
     keys: ['Name', 'Tags'],
-    db: response as FetchDatabaseRes,
+    db,
     href: '/blog/[id]',
     link: undefined,
     query: undefined,
@@ -53,7 +54,7 @@ export const SmallSize: Story = {
 export const SmallLarge: Story = {
   args: {
     keys: ['Name', 'Tags'],
-    db: response as FetchDatabaseRes,
+    db,
     href: '/blog/[id]',
     link: undefined,
     query: undefined,

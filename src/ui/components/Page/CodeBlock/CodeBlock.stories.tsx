@@ -75,6 +75,7 @@ const block: CodeBlockObjectResponse = {
   },
   has_children: false,
   archived: false,
+  in_trash: false,
 }
 
 const meta = {

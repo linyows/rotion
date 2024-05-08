@@ -43,6 +43,7 @@ const block: BreadcrumbBlockObjectResponseEx = {
       },
     }
   ],
+  in_trash: false,
 }
 
 const meta = {
