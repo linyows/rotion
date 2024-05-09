@@ -9,8 +9,8 @@ const Td = ({ richTexts, key }: ThTdProps) => {
   return (
     <td className="rotion-table-td" key={key}>
       <div className="rotion-table-td-inner">
-        {richTexts.map((r) =>
-          <RichText textObject={r} />
+        {richTexts.map((r, i) =>
+          <RichText textObject={r} key={`tabletd-${i}`} />
         )}
       </div>
     </td>
@@ -21,8 +21,8 @@ const TdH = ({ richTexts, key }: ThTdProps) => {
   return (
     <td className="rotion-table-td-header" key={key}>
       <div className="rotion-table-td-header-inner">
-        {richTexts.map((r) =>
-          <RichText textObject={r} />
+        {richTexts.map((r, i) =>
+          <RichText textObject={r} key={`tabletdh-${i}`} />
         )}
       </div>
     </td>
