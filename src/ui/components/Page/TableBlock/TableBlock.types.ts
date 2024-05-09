@@ -14,6 +14,6 @@ export interface TrProps {
 }
 
 export interface ThTdProps {
-  cell: RichTextItemResponse
+  richTexts: RichTextItemResponse[]
   key: string
 }
