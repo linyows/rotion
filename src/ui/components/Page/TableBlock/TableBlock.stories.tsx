@@ -105,10 +105,24 @@ const block: TableBlockObjectResponseEx = {
         archived: false,
         type: 'table_row',
         table_row: {
-          cells: ['Line1-1', 'Line1-2', 'Header1-3'].map(v => {
+          cells: ['Line1-1', 'Line1-2', 'Line1-3'].map(v => {
             const r = structuredClone(richText)
             r.text.content = v
             r.plain_text = v
+            if (v === 'Line1-1') {
+              const r2 = structuredClone(richText)
+              r2.text.content = ' *required'
+              r2.plain_text = ' *required'
+              r2.annotations.color = 'red'
+              return [r, r2]
+            }
+            if (v === 'Line1-3') {
+              r.plain_text = v + v + v + v + ' '
+              const r2 = structuredClone(richText)
+              r2.plain_text = v + v + v + v + ' '
+              r2.annotations.color = 'blue_background'
+              return [r, r2, r]
+            }
             return [r]
           }),
         },
@@ -139,6 +153,9 @@ const block: TableBlockObjectResponseEx = {
             const r = structuredClone(richText)
             r.text.content = v
             r.plain_text = v
+            if (v === 'Line2-2') {
+              r.plain_text = v + v + v + v
+            }
             return [r]
           }),
         },

@@ -5,21 +5,25 @@ import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
 import '../../tokens.css'
 import './TableBlock.css'
 
-const Td = ({ cell, key }: ThTdProps) => {
+const Td = ({ richTexts, key }: ThTdProps) => {
   return (
     <td className="rotion-table-td" key={key}>
       <div className="rotion-table-td-inner">
-        <RichText textObject={cell} />
+        {richTexts.map((r, i) =>
+          <RichText textObject={r} key={`tabletd-${i}`} />
+        )}
       </div>
     </td>
   )
 }
 
-const TdH = ({ cell, key }: ThTdProps) => {
+const TdH = ({ richTexts, key }: ThTdProps) => {
   return (
     <td className="rotion-table-td-header" key={key}>
       <div className="rotion-table-td-header-inner">
-        <RichText textObject={cell} />
+        {richTexts.map((r, i) =>
+          <RichText textObject={r} key={`tabletdh-${i}`} />
+        )}
       </div>
     </td>
   )
@@ -51,16 +55,13 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
     if (v.table_row === undefined) {
       return ''
     }
-    v.table_row.cells.map((cells, ii) => {
-      cells.map((cell, iii) => {
-        const key = `${v.id}-${i}-${ii}-${iii}`
-        if ((i === 0 && ch) || (ii === 0 && rh)) {
-          columns.push(TdH({ cell, key }) || <></>)
-        } else {
-          columns.push(Td({ cell, key }) || <></>)
-        }
-        return ''
-      })
+    v.table_row.cells.map((richTexts, ii) => {
+      const key = `${v.id}-${i}-${ii}`
+      if ((i === 0 && ch) || (ii === 0 && rh)) {
+        columns.push(TdH({ richTexts, key }) || <></>)
+      } else {
+        columns.push(Td({ richTexts, key }) || <></>)
+      }
       return ''
     })
     const key = `${block.id}-${i}`

@@ -28,6 +28,7 @@
 
 .rotion-list-line:hover {
   background-color: var(--rotion-link-hover-bg-color);
+  border-radius: var(--rotion-border-radius);
 }
 
 .rotion-list-spacer {

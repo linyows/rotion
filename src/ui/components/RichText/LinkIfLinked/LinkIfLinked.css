@@ -8,10 +8,6 @@
   border-bottom: var(--rotion-link-hover-border-bottom);
 }
 
-.rotion-richtext-nolink {
-  color: inherit;
-}
-
 @media (prefers-color-scheme: dark) {
   .rotion-richtext-link {
     border-bottom: var(--rotion-dark-link-border-bottom);
