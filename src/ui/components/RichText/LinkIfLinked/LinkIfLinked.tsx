@@ -13,9 +13,9 @@ export const TextLink = ({ textObject, children }: TextLinkProps) => {
 
 const TextNoLink = ({ children }: { children: React.ReactNode }) => {
   return (
-    <span className="rotion-richtext-nolink">
+    <>
       {children}
-    </span>
+    </>
   )
 }
 
