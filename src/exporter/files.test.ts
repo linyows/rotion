@@ -1,3 +1,4 @@
+import fs from 'fs/promises'
 import { test } from 'uvu'
 import * as td from 'testdouble'
 import * as assert from 'uvu/assert'
@@ -12,6 +13,31 @@ test.before(() => {
 type GHRes = {
   message: string
   documentation_url: string
+}
+
+function urlToFilename(u: string) {
+  return u.replace('://', '_').replace(/\./g, '_').replace(/\//g, '_')
+}
+
+async function vcr (reqUrl: string) {
+  const dir = 'testdata/vcr'
+  const p = `${dir}/${urlToFilename(reqUrl)}.txt`
+  try {
+    const str = await fs.readFile(p, 'utf-8')
+    return str
+  } catch (_) {
+  }
+
+  try {
+    const str = await files.getHTTP(reqUrl)
+    await files.createDirWhenNotfound(dir)
+    await fs.writeFile(p, str)
+    return str
+  } catch (e) {
+    console.error(e.message, e.name)
+  }
+
+  return ''
 }
 
 test('getHtmlMeta returns title and desc', async () => {
@@ -71,12 +97,12 @@ test('getHtmlMeta returns title and desc', async () => {
       'Online communities include people from many different backgrounds. The Go contributors are committed to providing a friendly, safe and welcoming environment for all, regardless of gender identity and expression, sexual orientation, disabilities, neurodiversity, physical appearance, body size, ethnicity, nationality, race, age, religion, or similar personal characteristics.',
       '/images/html-image-dd81b68c375850259cdb26e64618e339c4eec3c3.webp',
       '/images/html-icon-77014b367198f9878ea91bdccd6bb3fce2a5ee2a-7f5e06b5d5dc8f2fac131fd56215ae5ca767a98c.webp',
-    ]
+    ],
   ]
 
   for (const t of tests) {
     const [url, title, desc, image, icon] = t
-    const re = await files.getHtmlMeta(url)
+    const re = await files.getHtmlMeta(url, vcr)
     assert.equal(re.title, title)
     assert.equal(re.desc, desc)
     assert.equal(re.image, image)

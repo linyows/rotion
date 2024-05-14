@@ -161,7 +161,7 @@ async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: numb
   }
 }
 
-async function getHTTP (reqUrl: string, redirectCount?: number): Promise<string> {
+export async function getHTTP (reqUrl: string, redirectCount?: number): Promise<string> {
   if (!redirectCount) {
     redirectCount = 0
   }
@@ -401,9 +401,9 @@ export const findImage = (html: string): string | null => {
   return null
 }
 
-export const getHtmlMeta = async (reqUrl: string): Promise<{ title: string, desc: string, image: string, icon: string }> => {
+export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<{ title: string, desc: string, image: string, icon: string }> => {
   try {
-    const resbody = await getHTTP(reqUrl)
+    const resbody = httpFunc ? await httpFunc(reqUrl) : await getHTTP(reqUrl)
     const body = resbody.replace(/\n/g, ' ')
 
     const title = findHtmlByRegexp(titleRegexps, body) || ''
