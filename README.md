@@ -10,6 +10,7 @@
 <strong>Rotion</strong> makes it easy to generate a Static Website using React and the Notion API.
 Therefore, images and other necessary files are stored locally. Basically, it is designed to use Next.js, but it will work with other frameworks as well. https://rotion.linyo.ws
 
+<br>
 <p align="center">
   <a href="https://github.com/linyows/rotion/actions" title="actions">
     <img alt="Actions" src="https://img.shields.io/github/actions/workflow/status/linyows/rotion/build.yml?branch=main&style=for-the-badge&labelColor=000000">
