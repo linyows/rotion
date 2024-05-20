@@ -96,18 +96,7 @@ export const FetchDatabase = async (params: FetchDatabaseArgs): Promise<FetchDat
     const page: PageObjectResponseEx = result
     await savePageCover(page)
     await savePageIcon(page)
-    // Set page property items
-    page.property_items = []
     for (const [, v] of Object.entries(page.properties)) {
-      const page_id = page.id
-      const property_id = v.id
-      const props = await reqAPIWithBackoffAndCache<GetPagePropertyResponse>({
-        name: 'notion.pages.properties.retrieve',
-        func: notion.pages.properties.retrieve,
-        args: { page_id, property_id },
-        count: 3,
-      })
-      page.property_items.push(props)
       // Save avatar in people property type
       if (v.type === 'people') {
         const peoples = v.people as unknown as PersonUserObjectResponseEx[]
