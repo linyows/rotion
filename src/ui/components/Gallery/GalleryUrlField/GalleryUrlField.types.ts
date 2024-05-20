@@ -1,3 +1,3 @@
 export interface GalleryUrlFieldProps {
-  payload: string|null
+  url: string | null
 }

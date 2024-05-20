@@ -1,6 +1,6 @@
-import type { RichTextPropertyItemObjectResponse } from '../../../../exporter'
+import type { RichTextItemResponseEx, RichTextItemResponse } from '../../../../exporter'
 
 export interface GalleryRichTextFieldProps {
-  payload: RichTextPropertyItemObjectResponse
+  textObjects: RichTextItemResponseEx[] | RichTextItemResponse[]
   size?: 'small' | 'medium' | 'large'
 }

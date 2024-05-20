@@ -4,12 +4,12 @@ import type { ListDateFieldProps } from './ListDateField.types'
 import { getDatetimeFormat } from '../../lib'
 import './ListDateField.css'
 
-const ListDateField = ({ payload }: ListDateFieldProps) => {
-  if (payload === null) {
+const ListDateField = ({ date }: ListDateFieldProps) => {
+  if (date === null) {
     return <></>
   }
 
-  const { start, end } = payload
+  const { start, end } = date
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
 

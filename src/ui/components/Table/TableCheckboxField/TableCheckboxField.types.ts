@@ -1,3 +1,3 @@
 export interface TableCheckboxFieldProps {
-  payload: boolean
+  checked: boolean
 }

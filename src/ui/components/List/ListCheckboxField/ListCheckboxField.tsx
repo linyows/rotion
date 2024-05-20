@@ -3,10 +3,10 @@ import type { ListCheckboxFieldProps } from './ListCheckboxField.types'
 import { Checkbox } from '../../Checkbox'
 import './ListCheckboxField.css'
 
-const ListCheckboxField = ({ payload }: ListCheckboxFieldProps) => {
+const ListCheckboxField = ({ checked }: ListCheckboxFieldProps) => {
   return (
     <div className="rotion-list-checkbox">
-      <Checkbox bool={payload} />
+      <Checkbox bool={checked} />
     </div>
   )
 }

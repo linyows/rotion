@@ -1,9 +1,9 @@
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { MultiSelectPropertyItemObjectResponse } from '../../../../exporter'
+import type { SelectPropertyResponse } from '../../../../exporter'
 import type { Link } from '../../types'
 
 export interface GalleryMultiSelectFieldProps {
-  payload: MultiSelectPropertyItemObjectResponse
+  multiSelect: SelectPropertyResponse[]
   path: string
   link?: Link
   query?: ParsedUrlQueryInput

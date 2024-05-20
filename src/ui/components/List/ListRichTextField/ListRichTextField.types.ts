@@ -1,5 +1,5 @@
-import type { RichTextPropertyItemObjectResponse } from '../../../../exporter'
+import type { RichTextItemResponse, RichTextItemResponseEx } from '../../../../exporter'
 
 export interface ListRichTextFieldProps {
-  payload: RichTextPropertyItemObjectResponse
+  textObjects: RichTextItemResponseEx[] | RichTextItemResponse[]
 }

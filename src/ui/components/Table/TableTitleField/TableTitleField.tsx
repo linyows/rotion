@@ -2,24 +2,13 @@ import React from 'react'
 import type { TableTitleFieldProps } from './TableTitleField.types'
 import LinkedTitleIfLinked from './LinkedTitleIfLinked'
 import './TableTitleField.css'
+import { RichText } from '../../RichText'
 
-const TableTitleField = ({ payload, path, slug, link, query }: TableTitleFieldProps) => {
-  const title = payload.map(v => {
-    const richtext = v.title
-    switch (richtext.type) {
-      case 'text':
-        return richtext.text.content
-      case 'mention':
-        return richtext.mention.type
-      default:
-        return richtext.equation.expression
-    }
-  }).join(',')
-
+const TableTitleField = ({ textObjects, path, slug, link, query }: TableTitleFieldProps) => {
   return (
     <div className="rotion-table-title">
       <LinkedTitleIfLinked path={path} slug={slug} link={link} query={query}>
-        {title}
+        {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
       </LinkedTitleIfLinked>
     </div>
   )

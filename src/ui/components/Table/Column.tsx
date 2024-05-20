@@ -1,5 +1,5 @@
 import React from 'react'
-import type { PageObjectResponseEx } from '../../../exporter'
+import type { DatabaseProperty, PageObjectResponseEx } from '../../../exporter'
 import TableHandler from './TableHandler'
 import { getLinkPathAndLinkKey } from '../lib'
 import type { ColumnProps } from './Column.types'
@@ -25,20 +25,17 @@ const Column = ({ name, page, href, link, query }: ColumnProps) => {
 
   const [path, slugKey] = href ? getLinkPathAndLinkKey(href) : [undefined, undefined]
 
-  if (!('property_items' in page) || !('properties' in page)) {
+  if (!('properties' in page)) {
     return <></>
   }
 
-  let propertyId = ''
-  for (const [k, v] of Object.entries(page.properties)) {
-    if (k === name) {
-      propertyId = v.id
-    }
-  }
-  const items = page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
   const slug = slugKey ? getSlug(slugKey, page) : undefined
+  const property = page.properties[name]
+  if (!property) {
+    return <></>
+  }
 
-  return <TableHandler items={items} path={path} slug={slug} link={link} query={query} />
+  return <TableHandler property={property as unknown as DatabaseProperty} path={path} slug={slug} link={link} query={query} />
 }
 
 export default Column

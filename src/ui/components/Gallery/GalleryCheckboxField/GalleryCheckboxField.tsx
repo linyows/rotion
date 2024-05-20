@@ -3,10 +3,10 @@ import type { GalleryCheckboxFieldProps } from './GalleryCheckboxField.types'
 import { Checkbox } from '../../Checkbox'
 import './GalleryCheckboxField.css'
 
-const GalleryCheckboxField = ({ payload }: GalleryCheckboxFieldProps) => {
+const GalleryCheckboxField = ({ checked }: GalleryCheckboxFieldProps) => {
   return (
     <div className="rotion-gallery-checkbox">
-      <Checkbox bool={payload} />
+      <Checkbox bool={checked} />
     </div>
   )
 }

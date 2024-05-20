@@ -1,9 +1,9 @@
-import type { SelectPropertyItemObjectResponse } from '../../../../exporter'
+import type { SelectPropertyResponse } from '../../../../exporter'
 import type { Link } from '../../types'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 
 export interface TableSelectFieldProps {
-  payload: SelectPropertyItemObjectResponse
+  select: SelectPropertyResponse
   path?: string
   link?: Link
   query?: ParsedUrlQueryInput

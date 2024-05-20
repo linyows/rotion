@@ -1,3 +1,3 @@
 export interface TableUrlFieldProps {
-  payload: string|null
+  url: string | null
 }

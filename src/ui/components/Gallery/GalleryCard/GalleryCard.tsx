@@ -1,5 +1,6 @@
 import React from 'react'
 import type {
+  DatabaseProperty,
   GetPageResponse,
   PageObjectResponseEx,
 } from '../../../../exporter'
@@ -37,16 +38,6 @@ function buildHref (page: PageObjectResponseEx, link?: string) {
   return `${path}${slug}`
 }
 
-function findItems (name: string, page: PageObjectResponseEx) {
-  let propertyId = ''
-  for (const [k, v] of Object.entries(page.properties)) {
-    if (k === name) {
-      propertyId = v.id
-    }
-  }
-  return page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
-}
-
 const GalleryCard = ({ keys, page, href, link, query, preview, size, fit }: GalleryCardProps) => {
   const path = getLinkPathAndLinkKey(href)[0]
 
@@ -57,7 +48,7 @@ const GalleryCard = ({ keys, page, href, link, query, preview, size, fit }: Gall
         <div className="rotion-gallery-card-text">
           {keys.map((name, i) => (
             <div key={`${page.id}${name}`} className={`field${i}`}>
-              <GalleryHandler items={findItems(name, page)} path={path} query={query} size={size} />
+              <GalleryHandler property={page.properties[name] as DatabaseProperty | undefined} path={path} query={query} size={size} />
             </div>
           ))}
         </div>

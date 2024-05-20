@@ -3,10 +3,10 @@ import type { TableCheckboxFieldProps } from './TableCheckboxField.types'
 import { Checkbox } from '../../Checkbox'
 import './TableCheckboxField.css'
 
-export const TableCheckboxField = ({ payload }: TableCheckboxFieldProps) => {
+export const TableCheckboxField = ({ checked }: TableCheckboxFieldProps) => {
   return (
     <div className={'rotion-table-checkbox'}>
-      <Checkbox bool={payload} />
+      <Checkbox bool={checked} />
     </div>
   )
 }

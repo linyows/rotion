@@ -4,12 +4,12 @@ import type { GalleryDateFieldProps } from './GalleryDateField.types'
 import { getDatetimeFormat } from '../../lib'
 import './GalleryDateField.css'
 
-const GalleryDateField = ({ payload }: GalleryDateFieldProps) => {
-  if (payload === null) {
+const GalleryDateField = ({ date }: GalleryDateFieldProps) => {
+  if (date === null) {
     return <></>
   }
 
-  const { start, end } = payload
+  const { start, end } = date
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
 

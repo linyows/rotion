@@ -1,3 +1,3 @@
 export interface ListUrlFieldProps {
-  payload: string|null
+  url: string|null
 }

@@ -1,9 +1,9 @@
-import type { GetPagePropertyResponse } from '../../../exporter'
+import type { DatabaseProperty } from '../../../exporter'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 import type { Link } from '../types'
 
 export interface TableHandlerProps {
-  items: GetPagePropertyResponse|undefined
+  property: DatabaseProperty
   path?: string
   slug?: string
   link?: Link

@@ -1,3 +1,3 @@
 export interface GalleryCheckboxFieldProps {
-  payload: boolean
+  checked: boolean
 }
