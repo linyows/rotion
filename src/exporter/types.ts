@@ -454,3 +454,219 @@ export type Parent =
 | { type: "page_id"; page_id: string }
 | { type: "block_id"; block_id: string }
 | { type: "workspace"; workspace: true }
+
+export type DatabaseProperty = DatabasePropertyConfigResponse
+
+export type DatabasePropertyConfigResponse =
+  | NumberDatabasePropertyConfigResponse
+  | FormulaDatabasePropertyConfigResponse
+  | SelectDatabasePropertyConfigResponse
+  | MultiSelectDatabasePropertyConfigResponse
+  | StatusDatabasePropertyConfigResponse
+  | RelationDatabasePropertyConfigResponse
+  | RollupDatabasePropertyConfigResponse
+  | UniqueIdDatabasePropertyConfigResponse
+  | TitleDatabasePropertyConfigResponse
+  | RichTextDatabasePropertyConfigResponse
+  | UrlDatabasePropertyConfigResponse
+  | PeopleDatabasePropertyConfigResponse
+  | FilesDatabasePropertyConfigResponse
+  | EmailDatabasePropertyConfigResponse
+  | PhoneNumberDatabasePropertyConfigResponse
+  | DateDatabasePropertyConfigResponse
+  | CheckboxDatabasePropertyConfigResponse
+  | CreatedByDatabasePropertyConfigResponse
+  | CreatedTimeDatabasePropertyConfigResponse
+  | LastEditedByDatabasePropertyConfigResponse
+  | LastEditedTimeDatabasePropertyConfigResponse
+
+type RollupFunction =
+  | "count"
+  | "count_values"
+  | "empty"
+  | "not_empty"
+  | "unique"
+  | "show_unique"
+  | "percent_empty"
+  | "percent_not_empty"
+  | "sum"
+  | "average"
+  | "median"
+  | "min"
+  | "max"
+  | "range"
+  | "earliest_date"
+  | "latest_date"
+  | "date_range"
+  | "checked"
+  | "unchecked"
+  | "percent_checked"
+  | "percent_unchecked"
+  | "count_per_group"
+  | "percent_per_group"
+  | "show_original"
+
+export type NumberDatabasePropertyConfigResponse = {
+  type: "number"
+  number: number | null
+  id: string
+}
+
+export type FormulaDatabasePropertyConfigResponse = {
+  type: "formula"
+  formula: { expression: string }
+  id: string
+}
+
+export type SelectDatabasePropertyConfigResponse = {
+  type: "select"
+  select: SelectPropertyResponse
+  id: string
+}
+
+export type MultiSelectDatabasePropertyConfigResponse = {
+  type: "multi_select"
+  multi_select: SelectPropertyResponse[]
+  id: string
+}
+
+export type StatusPropertyResponse = {
+  id: StringRequest
+  name: StringRequest
+  color: SelectColor
+}
+
+export type StatusDatabasePropertyConfigResponse = {
+  type: "status"
+  status: {
+    options: Array<StatusPropertyResponse>
+    groups: Array<{
+      id: StringRequest
+      name: StringRequest
+      color: SelectColor
+      option_ids: Array<string>
+    }>
+  }
+  id: string
+}
+
+export type SinglePropertyDatabasePropertyRelationConfigResponse = {
+  type: "single_property"
+  single_property: EmptyObject
+  database_id: IdRequest
+}
+
+export type DualPropertyDatabasePropertyRelationConfigResponse = {
+  type: "dual_property"
+  dual_property: {
+    synced_property_id: StringRequest
+    synced_property_name: StringRequest
+  }
+  database_id: IdRequest
+}
+
+export type DatabasePropertyRelationConfigResponse =
+  | SinglePropertyDatabasePropertyRelationConfigResponse
+  | DualPropertyDatabasePropertyRelationConfigResponse
+
+export type RelationDatabasePropertyConfigResponse = {
+  type: "relation"
+  relation: DatabasePropertyRelationConfigResponse
+  id: string
+}
+
+export type RollupDatabasePropertyConfigResponse = {
+  type: "rollup"
+  rollup: {
+    rollup_property_name: string
+    relation_property_name: string
+    rollup_property_id: string
+    relation_property_id: string
+    function: RollupFunction
+  }
+  id: string
+}
+
+export type UniqueIdDatabasePropertyConfigResponse = {
+  type: "unique_id"
+  unique_id: { prefix: string | null }
+  id: string
+}
+
+export type TitleDatabasePropertyConfigResponse = {
+  type: "title"
+  title: TextRichTextItemResponse[]
+  id: string
+}
+
+export type RichTextDatabasePropertyConfigResponse = {
+  type: "rich_text"
+  rich_text: TextRichTextItemResponse[]
+  id: string
+}
+
+export type UrlDatabasePropertyConfigResponse = {
+  type: "url"
+  url: string | null
+  id: string
+}
+
+export type PeopleDatabasePropertyConfigResponse = {
+  type: "people"
+  people: EmptyObject
+  id: string
+}
+
+export type FilesDatabasePropertyConfigResponse = {
+  type: "files"
+  files: EmptyObject
+  id: string
+}
+
+export type EmailDatabasePropertyConfigResponse = {
+  type: "email"
+  email: string | null
+  id: string
+}
+
+export type PhoneNumberDatabasePropertyConfigResponse = {
+  type: "phone_number"
+  phone_number: number | null
+  id: string
+}
+
+export type DateDatabasePropertyConfigResponse = {
+  type: "date"
+  date: DateResponse | null
+  id: string
+}
+
+export type CheckboxDatabasePropertyConfigResponse = {
+  type: "checkbox"
+  checkbox: boolean
+  id: string
+}
+
+export type CreatedByDatabasePropertyConfigResponse = {
+  type: "created_by"
+  created_by: EmptyObject
+  id: string
+}
+
+export type CreatedTimeDatabasePropertyConfigResponse = {
+  type: "created_time"
+  created_time: EmptyObject
+  id: string
+}
+
+export type LastEditedByDatabasePropertyConfigResponse = {
+  type: "last_edited_by"
+  last_edited_by: EmptyObject
+  id: string
+}
+
+export type LastEditedTimeDatabasePropertyConfigResponse = {
+  type: "last_edited_time"
+  last_edited_time: EmptyObject
+  id: string
+}
