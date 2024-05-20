@@ -1,3 +1,3 @@
 export interface ListCheckboxFieldProps {
-  payload: boolean
+  checked: boolean
 }

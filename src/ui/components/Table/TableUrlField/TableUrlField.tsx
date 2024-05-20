@@ -3,14 +3,15 @@ import type { TableUrlFieldProps } from './TableUrlField.types'
 import { splitUrl } from '../../lib'
 import './TableUrlField.css'
 
-const TableUrlField = ({ payload }: TableUrlFieldProps) => {
-  if (!payload) {
+const TableUrlField = ({ url }: TableUrlFieldProps) => {
+  if (!url) {
     return <></>
   }
-  const { domain, omittedPath } = splitUrl(payload)
+
+  const { domain, omittedPath } = splitUrl(url)
   return (
     <div className="rotion-table-url">
-      <a className="rotion-table-url-link" href={payload} rel="noreferrer" target="_blank">
+      <a className="rotion-table-url-link" href={url} rel="noreferrer" target="_blank">
         <span className="rotion-table-url-domain">
           {domain}
         </span>

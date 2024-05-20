@@ -1,23 +1,12 @@
 import React from 'react'
 import type { GalleryTitleFieldProps } from './GalleryTitleField.types'
+import { RichText } from '../../RichText'
 import './GalleryTitleField.css'
 
-const GalleryTitleField = ({ payload }: GalleryTitleFieldProps) => {
-  const title = payload.map(v => {
-    const richtext = v.title
-    switch (richtext.type) {
-      case 'text':
-        return richtext.text.content
-      case 'mention':
-        return richtext.mention.type
-      default:
-        return richtext.equation.expression
-    }
-  }).join(',')
-
+const GalleryTitleField = ({ textObjects }: GalleryTitleFieldProps) => {
   return (
     <div className="rotion-gallery-title">
-      {title}
+      {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
     </div>
   )
 }

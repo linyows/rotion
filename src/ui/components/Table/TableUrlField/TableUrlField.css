@@ -26,7 +26,7 @@
   white-space: nowrap;
 }
 
-.rotion-table-url-domain {
+.rotion-table-url-path {
   display: inline;
   font-size: .8rem;
   white-space: nowrap;
@@ -41,9 +41,5 @@
   .rotion-table-url-link:hover {
     color: var(--rotion-dark-link-hover-color);
     background: var(--rotion-dark-link-hover-bg-color);
-  }
-  
-  .rotion-table-url-domain {
-    color: var(--rotion-dark-tertiary-text);
   }
 }

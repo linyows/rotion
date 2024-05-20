@@ -4,12 +4,12 @@ import type { TableDateFieldProps } from './TableDateField.types'
 import { getDatetimeFormat } from '../../lib'
 import './TableDateField.css'
 
-const TableDateField = ({ payload }: TableDateFieldProps) => {
-  if (payload === null) {
+const TableDateField = ({ date }: TableDateFieldProps) => {
+  if (date === null) {
     return <></>
   }
 
-  const { start, end } = payload
+  const { start, end } = date
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import ListHandler from './ListHandler'
 import { getLinkPathAndLinkKey } from '../lib'
-import type { GetPageResponse } from '../../../exporter'
+import type { DatabaseProperty, GetPageResponse } from '../../../exporter'
 import type { ColumnProps } from './Column.types'
 
 function getSlug (key: string, page: GetPageResponse) {
@@ -25,19 +25,16 @@ function getSlug (key: string, page: GetPageResponse) {
 const Column = ({ name, page, href, link, query }: ColumnProps) => {
   const [path, slugKey] = getLinkPathAndLinkKey(href)
 
-  if (name === 'spacer' || name === 'dashed' || !('property_items' in page) || !('properties' in page)) {
+  if (name === 'spacer' || name === 'dashed' || !('properties' in page)) {
     return <></>
   }
-  let propertyId = ''
-  for (const [k, v] of Object.entries(page.properties)) {
-    if (k === name) {
-      propertyId = v.id
-    }
-  }
-  const items = page.property_items.find(v => ((v.object === 'property_item' && v.id === propertyId) || (v.object === 'list' && v.property_item.id === propertyId)))
   const slug = getSlug(slugKey, page)
+  const property = page.properties[name]
+  if (!property) {
+    return <></>
+  }
 
-  return <ListHandler name={name} items={items} path={path} slug={slug} link={link} query={query} />
+  return <ListHandler property={property as unknown as DatabaseProperty} path={path} slug={slug} link={link} query={query} />
 }
 
 export default Column

@@ -1,5 +1,5 @@
-import type { TitlePropertyItemObjectResponse } from '../../../../exporter'
+import type { RichTextItemResponseEx, RichTextItemResponse } from '../../../../exporter'
 
 export interface GalleryTitleFieldProps {
-  payload: Array<TitlePropertyItemObjectResponse>
+  textObjects: RichTextItemResponseEx[] | RichTextItemResponse[]
 }

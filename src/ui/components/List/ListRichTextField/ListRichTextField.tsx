@@ -3,10 +3,10 @@ import { RichText } from '../../RichText'
 import type { ListRichTextFieldProps } from './ListRichTextField.types'
 import './ListRichTextField.css'
 
-const ListRichTextField = ({ payload }: ListRichTextFieldProps) => {
+const ListRichTextField = ({ textObjects }: ListRichTextFieldProps) => {
   return (
     <div className="rotion-list-richtext">
-      <RichText textObject={payload.rich_text} />
+      {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
     </div>
   )
 }

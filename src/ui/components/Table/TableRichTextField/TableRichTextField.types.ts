@@ -1,5 +1,5 @@
-import type { RichTextPropertyItemObjectResponse } from '../../../../exporter'
+import type { RichTextItemResponseEx, RichTextItemResponse } from '../../../../exporter'
 
 export interface TableRichTextFieldProps {
-  payload?: RichTextPropertyItemObjectResponse
+  textObjects: RichTextItemResponseEx[] | RichTextItemResponse[]
 }

@@ -3,12 +3,14 @@ import type { ListMultiSelectFieldProps } from './ListMultiSelectField.types'
 import LinkedTagIfLinked from './LinkedTagIfLinked'
 import './ListMultiSelectField.css'
 
-const ListMultiSelectField = ({ payload, path, link, query }: ListMultiSelectFieldProps) => {
-  const { multi_select } = payload
+const ListMultiSelectField = ({ multiSelect, path, link, query }: ListMultiSelectFieldProps) => {
+  if (!multiSelect) {
+    return <></>
+  }
 
   return (
     <ul className="rotion-list-multiselect-ul">
-      {multi_select.map(v => (
+      {multiSelect.map(v => (
         <li key={v.id} className="rotion-list-multiselect-li">
           <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(v.name)}` : ''} color={v.color} link={link} query={query}>
             {v.name}

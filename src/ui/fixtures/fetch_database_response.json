@@ -5,7 +5,7 @@
       "object": "page",
       "id": "6ec7f962-cc97-46eb-a41c-064eea759368",
       "created_time": "2022-08-14T13:59:00.000Z",
-      "last_edited_time": "2023-02-21T03:36:00.000Z",
+      "last_edited_time": "2024-04-11T08:10:00.000Z",
       "created_by": {
         "object": "user",
         "id": "c1400938-a445-438b-be9c-2734e5dc90a6"
@@ -17,8 +17,8 @@
       "cover": {
         "type": "file",
         "file": {
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/faa2f0d9-3c0b-4fbe-8662-a8acd7fb5fc6/1114-laszlo_belady_older.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240124%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240124T022406Z&X-Amz-Expires=3600&X-Amz-Signature=55fdde9efb70384c8419fd9b816332b6917be6386da3d3239db15a87f619bbf4&X-Amz-SignedHeaders=host&x-id=GetObject",
-          "expiry_time": "2024-01-24T03:24:06.542Z"
+          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/faa2f0d9-3c0b-4fbe-8662-a8acd7fb5fc6/1114-laszlo_belady_older.jpg",
+          "expiry_time": "2024-05-20T05:46:15.740Z"
         },
         "src": "/images/page-cover-6ec7f962-cc97-46eb-a41c-064eea759368-b6461554734d669eed67ff2b16484e6aa9dc9dec.webp"
       },
@@ -28,6 +28,7 @@
         "database_id": "81781536-afc6-431d-a217-21177e7bf8e0"
       },
       "archived": false,
+      "in_trash": false,
       "properties": {
         "Note": {
           "id": "Jfxg",
@@ -86,7 +87,7 @@
           "id": "y%60Hh",
           "type": "date",
           "date": {
-            "start": "2052-08-01",
+            "start": "2052-08-01T00:00:00.000+09:00",
             "end": null,
             "time_zone": null
           }
@@ -123,141 +124,7 @@
         }
       },
       "url": "https://www.notion.so/L-szl-B-l-dy-6ec7f962cc9746eba41c064eea759368",
-      "public_url": "https://linyows.notion.site/L-szl-B-l-dy-6ec7f962cc9746eba41c064eea759368",
-      "property_items": [
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "László Bélády the editor-in-chief of the IEEE Transactions on Software Engineering in the 1980s.",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "László Bélády the editor-in-chief of the IEEE Transactions on Software Engineering in the 1980s.",
-                "href": null
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "Jfxg",
-            "next_url": null,
-            "type": "rich_text",
-            "rich_text": {}
-          },
-          "request_id": "e2c4818a-df3d-41d3-ab9a-5638c253d806"
-        },
-        {
-          "object": "property_item",
-          "type": "url",
-          "id": "%5Dtm%60",
-          "url": "https://en.wikipedia.org/wiki/L%C3%A1szl%C3%B3_B%C3%A9l%C3%A1dy",
-          "request_id": "459c88ab-5c97-4972-ac04-139e22f845ef"
-        },
-        {
-          "object": "property_item",
-          "type": "checkbox",
-          "id": "kdTh",
-          "checkbox": true,
-          "request_id": "4ebdb434-eec0-4278-ada9-e3e6212bd329"
-        },
-        {
-          "object": "property_item",
-          "type": "multi_select",
-          "id": "mlgA",
-          "multi_select": [
-            {
-              "id": "17fda342-647c-4251-83ab-2d0f44208e09",
-              "name": "Memory Caching Algorithm",
-              "color": "default"
-            }
-          ],
-          "request_id": "730b9a50-175b-47f6-bac1-e74830f2d82b"
-        },
-        {
-          "object": "property_item",
-          "type": "select",
-          "id": "uKbI",
-          "select": {
-            "id": "bb7aabba-a37e-4d02-9d83-e9001dc6e5d6",
-            "name": "Hungarians",
-            "color": "yellow"
-          },
-          "request_id": "7ff6166a-3949-4ca9-918c-91eef3a959e7"
-        },
-        {
-          "object": "property_item",
-          "type": "date",
-          "id": "y%60Hh",
-          "date": {
-            "start": "2052-08-01",
-            "end": null,
-            "time_zone": null
-          },
-          "request_id": "942a7d12-8d13-4b38-8629-b5bebc6bcdf7"
-        },
-        {
-          "object": "property_item",
-          "type": "number",
-          "id": "%7BUR%5E",
-          "number": 1928,
-          "request_id": "1b4242d4-67c0-41c2-b7a7-8687a9bd6d06"
-        },
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "title",
-              "id": "title",
-              "title": {
-                "type": "text",
-                "text": {
-                  "content": "László Bélády",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/L%C3%A1szl%C3%B3_B%C3%A9l%C3%A1dy"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "László Bélády",
-                "href": "https://en.wikipedia.org/wiki/L%C3%A1szl%C3%B3_B%C3%A9l%C3%A1dy"
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "title",
-            "next_url": null,
-            "type": "title",
-            "title": {}
-          },
-          "request_id": "faeb920b-81c1-4847-8b69-6c9d3ff358ae"
-        }
-      ]
+      "public_url": "https://linyows.notion.site/L-szl-B-l-dy-6ec7f962cc9746eba41c064eea759368"
     },
     {
       "object": "page",
@@ -275,8 +142,8 @@
       "cover": {
         "type": "file",
         "file": {
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/068a00e5-6ab6-4d83-8f5b-ec6a161da9fb/Richard_Stallman_at_LibrePlanet_2019.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240124%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240124T022406Z&X-Amz-Expires=3600&X-Amz-Signature=077ed31c10e7b86b8f768801876cc7e596a6f8705484b048b6d132e1b9e46000&X-Amz-SignedHeaders=host&x-id=GetObject",
-          "expiry_time": "2024-01-24T03:24:06.540Z"
+          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/068a00e5-6ab6-4d83-8f5b-ec6a161da9fb/Richard_Stallman_at_LibrePlanet_2019.jpg",
+          "expiry_time": "2024-05-20T05:46:15.737Z"
         },
         "src": "/images/page-cover-11e2cb37-294f-4495-86bb-29432a5ee0b9-b58e692f66c601d057082f6e808b29d32da1ae77.webp"
       },
@@ -286,6 +153,7 @@
         "database_id": "81781536-afc6-431d-a217-21177e7bf8e0"
       },
       "archived": false,
+      "in_trash": false,
       "properties": {
         "Note": {
           "id": "Jfxg",
@@ -332,7 +200,7 @@
             {
               "id": "b67c5f3e-e58e-4a51-9f5b-77bb7ab7b8d3",
               "name": "GCC",
-              "color": "green"
+              "color": "orange"
             }
           ]
         },
@@ -386,146 +254,7 @@
         }
       },
       "url": "https://www.notion.so/Richard-Stallman-11e2cb37294f449586bb29432a5ee0b9",
-      "public_url": "https://linyows.notion.site/Richard-Stallman-11e2cb37294f449586bb29432a5ee0b9",
-      "property_items": [
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "Richard Stallman, created the GNU system utilities and championed free software.",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Richard Stallman, created the GNU system utilities and championed free software.",
-                "href": null
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "Jfxg",
-            "next_url": null,
-            "type": "rich_text",
-            "rich_text": {}
-          },
-          "request_id": "40ebd6c8-857d-43c2-b56a-ca9b271f6685"
-        },
-        {
-          "object": "property_item",
-          "type": "url",
-          "id": "%5Dtm%60",
-          "url": "https://en.wikipedia.org/wiki/Richard_Stallman",
-          "request_id": "5bf06295-a3b9-46e2-8dd2-3208a749287d"
-        },
-        {
-          "object": "property_item",
-          "type": "checkbox",
-          "id": "kdTh",
-          "checkbox": true,
-          "request_id": "9ae8a973-81be-4597-bc9f-c6be713d36ef"
-        },
-        {
-          "object": "property_item",
-          "type": "multi_select",
-          "id": "mlgA",
-          "multi_select": [
-            {
-              "id": "50cad459-cd79-4114-aed9-41df9c549b00",
-              "name": "Emacs",
-              "color": "purple"
-            },
-            {
-              "id": "b67c5f3e-e58e-4a51-9f5b-77bb7ab7b8d3",
-              "name": "GCC",
-              "color": "green"
-            }
-          ],
-          "request_id": "6efa1ade-b5ac-4182-95d4-dfaf0192dc57"
-        },
-        {
-          "object": "property_item",
-          "type": "select",
-          "id": "uKbI",
-          "select": {
-            "id": "14f1fda7-c050-47dd-806e-28bb05324c9e",
-            "name": "American",
-            "color": "brown"
-          },
-          "request_id": "1ae8412e-8981-4522-9a09-dcc87b769f69"
-        },
-        {
-          "object": "property_item",
-          "type": "date",
-          "id": "y%60Hh",
-          "date": {
-            "start": "2022-09-29",
-            "end": null,
-            "time_zone": null
-          },
-          "request_id": "347c18be-1c23-4d91-87b8-24bdfa7b1ec0"
-        },
-        {
-          "object": "property_item",
-          "type": "number",
-          "id": "%7BUR%5E",
-          "number": 1953,
-          "request_id": "99623054-afe9-48ed-aaba-6e53407ba0a9"
-        },
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "title",
-              "id": "title",
-              "title": {
-                "type": "text",
-                "text": {
-                  "content": "Richard Stallman",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/Richard_Stallman"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Richard Stallman",
-                "href": "https://en.wikipedia.org/wiki/Richard_Stallman"
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "title",
-            "next_url": null,
-            "type": "title",
-            "title": {}
-          },
-          "request_id": "63121958-ae46-47f5-b345-2e75591acb9d"
-        }
-      ]
+      "public_url": "https://linyows.notion.site/Richard-Stallman-11e2cb37294f449586bb29432a5ee0b9"
     },
     {
       "object": "page",
@@ -543,8 +272,8 @@
       "cover": {
         "type": "file",
         "file": {
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/efd3c035-d4a2-4528-ac04-a8c0f36685e5/peterchen.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240124%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240124T022406Z&X-Amz-Expires=3600&X-Amz-Signature=209240c81e1a23289b482ecce33f97cfd284c4872c85a8bc99074be519c183b6&X-Amz-SignedHeaders=host&x-id=GetObject",
-          "expiry_time": "2024-01-24T03:24:06.540Z"
+          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/efd3c035-d4a2-4528-ac04-a8c0f36685e5/peterchen.jpg",
+          "expiry_time": "2024-05-20T05:46:15.738Z"
         },
         "src": "/images/page-cover-3d35bef7-5ec3-4860-8235-6aa705c11711-239dd5551a68f2297e67676b4f34a3c5bd712ddc.webp"
       },
@@ -554,6 +283,7 @@
         "database_id": "81781536-afc6-431d-a217-21177e7bf8e0"
       },
       "archived": false,
+      "in_trash": false,
       "properties": {
         "Note": {
           "id": "Jfxg",
@@ -685,187 +415,7 @@
         }
       },
       "url": "https://www.notion.so/Peter-Chen-3d35bef75ec3486082356aa705c11711",
-      "public_url": "https://linyows.notion.site/Peter-Chen-3d35bef75ec3486082356aa705c11711",
-      "property_items": [
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "Peter Chen known for the development of ",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Peter Chen known for the development of ",
-                "href": null
-              }
-            },
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "entity–relationship modeling",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "entity–relationship modeling",
-                "href": "https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model"
-              }
-            },
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": ".",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": ".",
-                "href": null
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "Jfxg",
-            "next_url": null,
-            "type": "rich_text",
-            "rich_text": {}
-          },
-          "request_id": "d2e9d257-79a9-41ba-990b-5933eb5648d7"
-        },
-        {
-          "object": "property_item",
-          "type": "url",
-          "id": "%5Dtm%60",
-          "url": "https://en.wikipedia.org/wiki/Peter_Chen",
-          "request_id": "ce460564-50d9-43c4-9fe4-f8bd496d9158"
-        },
-        {
-          "object": "property_item",
-          "type": "checkbox",
-          "id": "kdTh",
-          "checkbox": true,
-          "request_id": "8ba6ad1e-19f1-49c8-b7a9-fa419a2f6035"
-        },
-        {
-          "object": "property_item",
-          "type": "multi_select",
-          "id": "mlgA",
-          "multi_select": [
-            {
-              "id": "e8276f4c-9dbb-4420-869e-0899a5187f40",
-              "name": "Entity–Relationship Model",
-              "color": "pink"
-            }
-          ],
-          "request_id": "0362d908-365b-4e23-aaa6-174db911c980"
-        },
-        {
-          "object": "property_item",
-          "type": "select",
-          "id": "uKbI",
-          "select": {
-            "id": "14f1fda7-c050-47dd-806e-28bb05324c9e",
-            "name": "American",
-            "color": "brown"
-          },
-          "request_id": "9832554d-f5b6-43fb-8118-9c8037bfcb82"
-        },
-        {
-          "object": "property_item",
-          "type": "date",
-          "id": "y%60Hh",
-          "date": {
-            "start": "2022-09-09T12:00:00.000+09:00",
-            "end": null,
-            "time_zone": null
-          },
-          "request_id": "02b2a2d4-12c0-4e17-80bb-7c689cec4733"
-        },
-        {
-          "object": "property_item",
-          "type": "number",
-          "id": "%7BUR%5E",
-          "number": 1947,
-          "request_id": "feeb1689-4596-449e-a071-ce8ab2b07b45"
-        },
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "title",
-              "id": "title",
-              "title": {
-                "type": "text",
-                "text": {
-                  "content": "Peter Chen",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/Peter_Chen"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Peter Chen",
-                "href": "https://en.wikipedia.org/wiki/Peter_Chen"
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "title",
-            "next_url": null,
-            "type": "title",
-            "title": {}
-          },
-          "request_id": "44ff91a3-9737-4d0e-9d26-6559ec60a926"
-        }
-      ]
+      "public_url": "https://linyows.notion.site/Peter-Chen-3d35bef75ec3486082356aa705c11711"
     },
     {
       "object": "page",
@@ -883,8 +433,8 @@
       "cover": {
         "type": "file",
         "file": {
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/e44c5b16-2c08-4fa9-8c5c-2d0c7bdaf352/1024px-Edsger_Wybe_Dijkstra.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240124%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240124T022406Z&X-Amz-Expires=3600&X-Amz-Signature=1495cfb9f97737e511451764f50afeadc496776f88ce530e2a71fc1fedd5a01e&X-Amz-SignedHeaders=host&x-id=GetObject",
-          "expiry_time": "2024-01-24T03:24:06.541Z"
+          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/e44c5b16-2c08-4fa9-8c5c-2d0c7bdaf352/1024px-Edsger_Wybe_Dijkstra.jpg",
+          "expiry_time": "2024-05-20T05:46:15.738Z"
         },
         "src": "/images/page-cover-be549e10-30b2-4c2d-b38a-6c7b0dd898f5-678fbf564e3c2559c382afbfda2a41baf1171da0.webp"
       },
@@ -894,6 +444,7 @@
         "database_id": "81781536-afc6-431d-a217-21177e7bf8e0"
       },
       "archived": false,
+      "in_trash": false,
       "properties": {
         "Note": {
           "id": "Jfxg",
@@ -994,146 +545,7 @@
         }
       },
       "url": "https://www.notion.so/Edsger-W-Dijkstra-be549e1030b24c2db38a6c7b0dd898f5",
-      "public_url": "https://linyows.notion.site/Edsger-W-Dijkstra-be549e1030b24c2db38a6c7b0dd898f5",
-      "property_items": [
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "Edsger W. Dijkstra developed the framework for a form of structured programming.",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Edsger W. Dijkstra developed the framework for a form of structured programming.",
-                "href": null
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "Jfxg",
-            "next_url": null,
-            "type": "rich_text",
-            "rich_text": {}
-          },
-          "request_id": "288718a6-0bce-46b3-b685-0912ca5729f3"
-        },
-        {
-          "object": "property_item",
-          "type": "url",
-          "id": "%5Dtm%60",
-          "url": "https://en.wikipedia.org/wiki/Edsger_W._Dijkstra",
-          "request_id": "327d14d7-ecbf-4470-82a2-b194c46d5e5e"
-        },
-        {
-          "object": "property_item",
-          "type": "checkbox",
-          "id": "kdTh",
-          "checkbox": true,
-          "request_id": "70d41afb-c7f1-4b33-865e-f14c1a7295e7"
-        },
-        {
-          "object": "property_item",
-          "type": "multi_select",
-          "id": "mlgA",
-          "multi_select": [
-            {
-              "id": "1f1b1571-4d7b-4dca-8a06-9f9575a665f9",
-              "name": "Distributed Computing",
-              "color": "green"
-            },
-            {
-              "id": "6f8c5495-53a5-4bc9-9305-0a532ca3d400",
-              "name": "Structured Programming",
-              "color": "gray"
-            }
-          ],
-          "request_id": "75d71c55-23d8-417e-935a-e185b7ceb237"
-        },
-        {
-          "object": "property_item",
-          "type": "select",
-          "id": "uKbI",
-          "select": {
-            "id": "848ef319-fb42-4a1e-9d31-9b2e67aa9280",
-            "name": "Dutch",
-            "color": "purple"
-          },
-          "request_id": "6bd4fc2b-84b3-4de3-93bc-89d21a7cfbd2"
-        },
-        {
-          "object": "property_item",
-          "type": "date",
-          "id": "y%60Hh",
-          "date": {
-            "start": "2022-08-16",
-            "end": "2023-12-11",
-            "time_zone": null
-          },
-          "request_id": "5eaff2b2-028f-482f-8819-99ec28b8d62e"
-        },
-        {
-          "object": "property_item",
-          "type": "number",
-          "id": "%7BUR%5E",
-          "number": 1930,
-          "request_id": "f2cf0d26-ef7a-40fa-9814-480ea0c3abe9"
-        },
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "title",
-              "id": "title",
-              "title": {
-                "type": "text",
-                "text": {
-                  "content": "Edsger W. Dijkstra",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/Edsger_W._Dijkstra"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Edsger W. Dijkstra",
-                "href": "https://en.wikipedia.org/wiki/Edsger_W._Dijkstra"
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "title",
-            "next_url": null,
-            "type": "title",
-            "title": {}
-          },
-          "request_id": "0108b2cf-5032-4d1d-a5f3-11a7c9858846"
-        }
-      ]
+      "public_url": "https://linyows.notion.site/Edsger-W-Dijkstra-be549e1030b24c2db38a6c7b0dd898f5"
     },
     {
       "object": "page",
@@ -1151,8 +563,8 @@
       "cover": {
         "type": "file",
         "file": {
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/015c6030-6758-4326-b7ba-33b9a1a2c775/Fred_Brooks.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240124%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240124T022406Z&X-Amz-Expires=3600&X-Amz-Signature=261a54a56f957d811ef208d8fb55a4335418ce17d90912725c91f011b7316a03&X-Amz-SignedHeaders=host&x-id=GetObject",
-          "expiry_time": "2024-01-24T03:24:06.541Z"
+          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/015c6030-6758-4326-b7ba-33b9a1a2c775/Fred_Brooks.jpg",
+          "expiry_time": "2024-05-20T05:46:15.738Z"
         },
         "src": "/images/page-cover-2c1c3b86-4642-4d97-9042-19e916298fd9-0aa72a3ccb7d42280d843e43e580708d40eebdcd.webp"
       },
@@ -1162,6 +574,7 @@
         "database_id": "81781536-afc6-431d-a217-21177e7bf8e0"
       },
       "archived": false,
+      "in_trash": false,
       "properties": {
         "Note": {
           "id": "Jfxg",
@@ -1293,193 +706,13 @@
         }
       },
       "url": "https://www.notion.so/Fred-Brooks-2c1c3b8646424d97904219e916298fd9",
-      "public_url": "https://linyows.notion.site/Fred-Brooks-2c1c3b8646424d97904219e916298fd9",
-      "property_items": [
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "Fred Brooks best known for managing the development of ",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Fred Brooks best known for managing the development of ",
-                "href": null
-              }
-            },
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "OS/360",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/OS/360"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "OS/360",
-                "href": "https://en.wikipedia.org/wiki/OS/360"
-              }
-            },
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": ".",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": ".",
-                "href": null
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "Jfxg",
-            "next_url": null,
-            "type": "rich_text",
-            "rich_text": {}
-          },
-          "request_id": "56714576-6ec6-4e76-ac1e-8c8bbf23572c"
-        },
-        {
-          "object": "property_item",
-          "type": "url",
-          "id": "%5Dtm%60",
-          "url": "https://en.wikipedia.org/wiki/Fred_Brooks",
-          "request_id": "27898c04-6805-4b18-ba3f-2d569d5bfcca"
-        },
-        {
-          "object": "property_item",
-          "type": "checkbox",
-          "id": "kdTh",
-          "checkbox": true,
-          "request_id": "962f8fcf-afe3-4bdb-a425-6058904ece0f"
-        },
-        {
-          "object": "property_item",
-          "type": "multi_select",
-          "id": "mlgA",
-          "multi_select": [
-            {
-              "id": "6f15695f-6b34-4d48-80a3-2745776af57f",
-              "name": "OS/360",
-              "color": "brown"
-            }
-          ],
-          "request_id": "d60ae9e6-4bf7-41a1-81d2-dc3ab9e52090"
-        },
-        {
-          "object": "property_item",
-          "type": "select",
-          "id": "uKbI",
-          "select": {
-            "id": "14f1fda7-c050-47dd-806e-28bb05324c9e",
-            "name": "American",
-            "color": "brown"
-          },
-          "request_id": "9d4bf4a6-5069-4f5f-962c-d74b2b4a86dd"
-        },
-        {
-          "object": "property_item",
-          "type": "date",
-          "id": "y%60Hh",
-          "date": {
-            "start": "2022-08-10",
-            "end": null,
-            "time_zone": null
-          },
-          "request_id": "79b5a1e6-cfa7-4682-8f12-b6e8c0830876"
-        },
-        {
-          "object": "property_item",
-          "type": "number",
-          "id": "%7BUR%5E",
-          "number": 1931,
-          "request_id": "659d0c8a-9f55-4d64-b1b6-dce2799722cd"
-        },
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "title",
-              "id": "title",
-              "title": {
-                "type": "text",
-                "text": {
-                  "content": "Fred Brooks",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/Fred_Brooks"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Fred Brooks",
-                "href": "https://en.wikipedia.org/wiki/Fred_Brooks"
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "title",
-            "next_url": null,
-            "type": "title",
-            "title": {}
-          },
-          "request_id": "e67c7b00-ae75-40d7-8040-d43477b73b65"
-        }
-      ]
+      "public_url": "https://linyows.notion.site/Fred-Brooks-2c1c3b8646424d97904219e916298fd9"
     },
     {
       "object": "page",
       "id": "fcf85465-0caa-402f-aaf6-e4deb4f6c9d8",
       "created_time": "2022-08-14T13:59:00.000Z",
-      "last_edited_time": "2023-02-21T03:36:00.000Z",
+      "last_edited_time": "2024-04-11T06:20:00.000Z",
       "created_by": {
         "object": "user",
         "id": "c1400938-a445-438b-be9c-2734e5dc90a6"
@@ -1491,8 +724,8 @@
       "cover": {
         "type": "file",
         "file": {
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/0b9379d6-fad9-4cf1-a497-5e4804c43a2d/Charles_Bachman_2012.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240124%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240124T022406Z&X-Amz-Expires=3600&X-Amz-Signature=d4edd7efaf6026a4a3c1ab3e4ff407ada931de351f373e2340f23718b4e579de&X-Amz-SignedHeaders=host&x-id=GetObject",
-          "expiry_time": "2024-01-24T03:24:06.541Z"
+          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/0b9379d6-fad9-4cf1-a497-5e4804c43a2d/Charles_Bachman_2012.jpg",
+          "expiry_time": "2024-05-20T05:46:15.739Z"
         },
         "src": "/images/page-cover-fcf85465-0caa-402f-aaf6-e4deb4f6c9d8-d38ffeed87aaafe83b08077209c4dd893807e594.webp"
       },
@@ -1502,6 +735,7 @@
         "database_id": "81781536-afc6-431d-a217-21177e7bf8e0"
       },
       "archived": false,
+      "in_trash": false,
       "properties": {
         "Note": {
           "id": "Jfxg",
@@ -1597,7 +831,7 @@
           "type": "date",
           "date": {
             "start": "2022-08-01",
-            "end": null,
+            "end": "2023-08-01",
             "time_zone": null
           }
         },
@@ -1633,187 +867,7 @@
         }
       },
       "url": "https://www.notion.so/Charles-Bachman-fcf854650caa402faaf6e4deb4f6c9d8",
-      "public_url": "https://linyows.notion.site/Charles-Bachman-fcf854650caa402faaf6e4deb4f6c9d8",
-      "property_items": [
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "Charles Bachman is particularly known for his work in the area of ",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Charles Bachman is particularly known for his work in the area of ",
-                "href": null
-              }
-            },
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "databases",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/Databases"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "databases",
-                "href": "https://en.wikipedia.org/wiki/Databases"
-              }
-            },
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": ".",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": ".",
-                "href": null
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "Jfxg",
-            "next_url": null,
-            "type": "rich_text",
-            "rich_text": {}
-          },
-          "request_id": "ca43e416-1cb1-428a-b947-672bc442515c"
-        },
-        {
-          "object": "property_item",
-          "type": "url",
-          "id": "%5Dtm%60",
-          "url": "https://en.wikipedia.org/wiki/Charles_Bachman",
-          "request_id": "d76c636c-7794-4631-a9ac-2dbee4329a3d"
-        },
-        {
-          "object": "property_item",
-          "type": "checkbox",
-          "id": "kdTh",
-          "checkbox": true,
-          "request_id": "1e9609d1-14b8-4d35-aad8-eed06724d566"
-        },
-        {
-          "object": "property_item",
-          "type": "multi_select",
-          "id": "mlgA",
-          "multi_select": [
-            {
-              "id": "41ac519a-ede3-49c7-94c9-1f0d0d86ca16",
-              "name": "Integrated Data Store",
-              "color": "red"
-            }
-          ],
-          "request_id": "26481c94-b16a-468c-b2f5-3a026f25ebfb"
-        },
-        {
-          "object": "property_item",
-          "type": "select",
-          "id": "uKbI",
-          "select": {
-            "id": "14f1fda7-c050-47dd-806e-28bb05324c9e",
-            "name": "American",
-            "color": "brown"
-          },
-          "request_id": "e13eadc3-f177-4f4b-8dee-7210919f8a84"
-        },
-        {
-          "object": "property_item",
-          "type": "date",
-          "id": "y%60Hh",
-          "date": {
-            "start": "2022-08-01",
-            "end": null,
-            "time_zone": null
-          },
-          "request_id": "344980a3-1323-4ca4-be01-3c3ba873f4a8"
-        },
-        {
-          "object": "property_item",
-          "type": "number",
-          "id": "%7BUR%5E",
-          "number": 1924,
-          "request_id": "4b9030e7-eae7-46aa-80b7-02511935e9e2"
-        },
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "title",
-              "id": "title",
-              "title": {
-                "type": "text",
-                "text": {
-                  "content": "Charles Bachman",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/Charles_Bachman"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Charles Bachman",
-                "href": "https://en.wikipedia.org/wiki/Charles_Bachman"
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "title",
-            "next_url": null,
-            "type": "title",
-            "title": {}
-          },
-          "request_id": "cfefabd9-5f32-4eae-8333-ae55f536359a"
-        }
-      ]
+      "public_url": "https://linyows.notion.site/Charles-Bachman-fcf854650caa402faaf6e4deb4f6c9d8"
     },
     {
       "object": "page",
@@ -1831,8 +885,8 @@
       "cover": {
         "type": "file",
         "file": {
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/432856a1-33ec-4c68-a30c-55aff1f6d07f/David_Parnas.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240124%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240124T022406Z&X-Amz-Expires=3600&X-Amz-Signature=897380e30716e10a51928dd64222f5729db876820baf4029701c5e736c48951a&X-Amz-SignedHeaders=host&x-id=GetObject",
-          "expiry_time": "2024-01-24T03:24:06.542Z"
+          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/432856a1-33ec-4c68-a30c-55aff1f6d07f/David_Parnas.jpg",
+          "expiry_time": "2024-05-20T05:46:15.739Z"
         },
         "src": "/images/page-cover-42be4a98-826c-421d-a654-dd7fa9087b2c-0444b2cb66013f5993d92ccaedb782d73dd2538c.webp"
       },
@@ -1842,6 +896,7 @@
         "database_id": "81781536-afc6-431d-a217-21177e7bf8e0"
       },
       "archived": false,
+      "in_trash": false,
       "properties": {
         "Note": {
           "id": "Jfxg",
@@ -2009,233 +1064,7 @@
         }
       },
       "url": "https://www.notion.so/David-Parnas-42be4a98826c421da654dd7fa9087b2c",
-      "public_url": "https://linyows.notion.site/David-Parnas-42be4a98826c421da654dd7fa9087b2c",
-      "property_items": [
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "David Parnas developed the concept of ",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "David Parnas developed the concept of ",
-                "href": null
-              }
-            },
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "information hiding",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/Information_hiding"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "information hiding",
-                "href": "https://en.wikipedia.org/wiki/Information_hiding"
-              }
-            },
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "\n in ",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "\n in ",
-                "href": null
-              }
-            },
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "modular programming",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/Modular_programming"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "modular programming",
-                "href": "https://en.wikipedia.org/wiki/Modular_programming"
-              }
-            },
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": ".",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": ".",
-                "href": null
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "Jfxg",
-            "next_url": null,
-            "type": "rich_text",
-            "rich_text": {}
-          },
-          "request_id": "86c07359-bf6e-46ae-abfa-3fbde334c901"
-        },
-        {
-          "object": "property_item",
-          "type": "url",
-          "id": "%5Dtm%60",
-          "url": "https://en.wikipedia.org/wiki/David_Parnas",
-          "request_id": "e1c779fe-1503-4634-bc88-f5dd346e08fa"
-        },
-        {
-          "object": "property_item",
-          "type": "checkbox",
-          "id": "kdTh",
-          "checkbox": true,
-          "request_id": "6770fe1d-ec9a-4c16-bd3c-ba61f0134644"
-        },
-        {
-          "object": "property_item",
-          "type": "multi_select",
-          "id": "mlgA",
-          "multi_select": [
-            {
-              "id": "d80ac26b-11fc-4506-93fc-aacfab157cb4",
-              "name": "Modular Programming",
-              "color": "yellow"
-            }
-          ],
-          "request_id": "1351df0f-ccec-4937-8004-66b1d9983985"
-        },
-        {
-          "object": "property_item",
-          "type": "select",
-          "id": "uKbI",
-          "select": {
-            "id": "640f8079-bbb8-4690-80d5-e073e2bcf039",
-            "name": "Canadian",
-            "color": "orange"
-          },
-          "request_id": "84f60eb0-bfb8-4d01-b07d-4899ccc273de"
-        },
-        {
-          "object": "property_item",
-          "type": "date",
-          "id": "y%60Hh",
-          "date": {
-            "start": "2022-05-10",
-            "end": null,
-            "time_zone": null
-          },
-          "request_id": "e51bd330-03bb-43df-bf87-5b65343cd6fd"
-        },
-        {
-          "object": "property_item",
-          "type": "number",
-          "id": "%7BUR%5E",
-          "number": 1941,
-          "request_id": "bbc2b142-3080-48bb-bb9d-a72dd373cc1d"
-        },
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "title",
-              "id": "title",
-              "title": {
-                "type": "text",
-                "text": {
-                  "content": "David Parnas",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/David_Parnas"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "David Parnas",
-                "href": "https://en.wikipedia.org/wiki/David_Parnas"
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "title",
-            "next_url": null,
-            "type": "title",
-            "title": {}
-          },
-          "request_id": "c7c9b268-4f8a-4840-9f94-bf5702b931cd"
-        }
-      ]
+      "public_url": "https://linyows.notion.site/David-Parnas-42be4a98826c421da654dd7fa9087b2c"
     },
     {
       "object": "page",
@@ -2253,8 +1082,8 @@
       "cover": {
         "type": "file",
         "file": {
-          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/41b7bea7-2c24-49bf-83b3-c3466a452f60/MJPhotoVancouver.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20240124%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20240124T022406Z&X-Amz-Expires=3600&X-Amz-Signature=0960fc9fee79834e249e41af81e2b54c51ab8f6d970c21e9d5ae067b5c8b0205&X-Amz-SignedHeaders=host&x-id=GetObject",
-          "expiry_time": "2024-01-24T03:24:06.542Z"
+          "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/41b7bea7-2c24-49bf-83b3-c3466a452f60/MJPhotoVancouver.jpg",
+          "expiry_time": "2024-05-20T05:46:15.739Z"
         },
         "src": "/images/page-cover-9923bff0-6414-4ecb-b6e0-fdfd35343161-2e1d02970a6395c072ccbbe9ee3e4ef5aa1b4826.webp"
       },
@@ -2264,6 +1093,7 @@
         "database_id": "81781536-afc6-431d-a217-21177e7bf8e0"
       },
       "archived": false,
+      "in_trash": false,
       "properties": {
         "Note": {
           "id": "Jfxg",
@@ -2359,148 +1189,14 @@
         }
       },
       "url": "https://www.notion.so/Michael-A-Jackson-9923bff064144ecbb6e0fdfd35343161",
-      "public_url": "https://linyows.notion.site/Michael-A-Jackson-9923bff064144ecbb6e0fdfd35343161",
-      "property_items": [
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "rich_text",
-              "id": "Jfxg",
-              "rich_text": {
-                "type": "text",
-                "text": {
-                  "content": "Michael A. Jackson software engineering methodologist responsible for JSP method of program design; JSD method of system development (with John Cameron); and Problem Frames approach for analysing and structuring software development problems.",
-                  "link": null
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Michael A. Jackson software engineering methodologist responsible for JSP method of program design; JSD method of system development (with John Cameron); and Problem Frames approach for analysing and structuring software development problems.",
-                "href": null
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "Jfxg",
-            "next_url": null,
-            "type": "rich_text",
-            "rich_text": {}
-          },
-          "request_id": "50d2baef-2ebc-46ac-8fb1-74ad21ece467"
-        },
-        {
-          "object": "property_item",
-          "type": "url",
-          "id": "%5Dtm%60",
-          "url": "https://en.wikipedia.org/wiki/Michael_A._Jackson_(computer_scientist)",
-          "request_id": "e9752361-6df1-4a68-81de-d40b74429abe"
-        },
-        {
-          "object": "property_item",
-          "type": "checkbox",
-          "id": "kdTh",
-          "checkbox": true,
-          "request_id": "d1dae6b3-b378-4ac8-94da-8e0172d8fa85"
-        },
-        {
-          "object": "property_item",
-          "type": "multi_select",
-          "id": "mlgA",
-          "multi_select": [
-            {
-              "id": "97e2a87d-3cfa-47e4-918c-baaced2fd2ea",
-              "name": "JSD",
-              "color": "blue"
-            }
-          ],
-          "request_id": "9b4e44af-b3ee-455e-a9f6-a478ad4e75e9"
-        },
-        {
-          "object": "property_item",
-          "type": "select",
-          "id": "uKbI",
-          "select": {
-            "id": "4fa656d9-e483-420c-8a87-4a72d0f6c3c7",
-            "name": "British",
-            "color": "red"
-          },
-          "request_id": "d36d338e-b429-4a61-9241-9038c3bc0ef9"
-        },
-        {
-          "object": "property_item",
-          "type": "date",
-          "id": "y%60Hh",
-          "date": {
-            "start": "2021-06-01",
-            "end": null,
-            "time_zone": null
-          },
-          "request_id": "59f03a78-48aa-4213-a6d9-9c063ddebca9"
-        },
-        {
-          "object": "property_item",
-          "type": "number",
-          "id": "%7BUR%5E",
-          "number": 1936,
-          "request_id": "4cf3f157-7eb3-4afb-83e5-9bab07cf7b4e"
-        },
-        {
-          "object": "list",
-          "results": [
-            {
-              "object": "property_item",
-              "type": "title",
-              "id": "title",
-              "title": {
-                "type": "text",
-                "text": {
-                  "content": "Michael A. Jackson",
-                  "link": {
-                    "url": "https://en.wikipedia.org/wiki/Michael_A._Jackson_(computer_scientist)"
-                  }
-                },
-                "annotations": {
-                  "bold": false,
-                  "italic": false,
-                  "strikethrough": false,
-                  "underline": false,
-                  "code": false,
-                  "color": "default"
-                },
-                "plain_text": "Michael A. Jackson",
-                "href": "https://en.wikipedia.org/wiki/Michael_A._Jackson_(computer_scientist)"
-              }
-            }
-          ],
-          "next_cursor": null,
-          "has_more": false,
-          "type": "property_item",
-          "property_item": {
-            "id": "title",
-            "next_url": null,
-            "type": "title",
-            "title": {}
-          },
-          "request_id": "ec8a317e-1f5d-4c0d-b578-d9fdffe915d2"
-        }
-      ]
+      "public_url": "https://linyows.notion.site/Michael-A-Jackson-9923bff064144ecbb6e0fdfd35343161"
     }
   ],
   "next_cursor": null,
   "has_more": false,
   "type": "page_or_database",
   "page_or_database": {},
-  "request_id": "51706201-2cee-4b42-8695-aa020b7ebc89",
+  "request_id": "5fb36fa7-6151-44c8-9fa2-131443a32c59",
   "meta": {
     "object": "database",
     "id": "81781536-afc6-431d-a217-21177e7bf8e0",
@@ -2521,7 +1217,7 @@
       "object": "user",
       "id": "c1400938-a445-438b-be9c-2734e5dc90a6"
     },
-    "last_edited_time": "2024-01-09T00:46:00.000Z",
+    "last_edited_time": "2024-04-11T14:31:00.000Z",
     "title": [
       {
         "type": "text",
@@ -2595,7 +1291,7 @@
             {
               "id": "b67c5f3e-e58e-4a51-9f5b-77bb7ab7b8d3",
               "name": "GCC",
-              "color": "green",
+              "color": "orange",
               "description": null
             },
             {
@@ -2722,6 +1418,7 @@
     "url": "https://www.notion.so/81781536afc6431da21721177e7bf8e0",
     "public_url": "https://linyows.notion.site/81781536afc6431da21721177e7bf8e0",
     "archived": false,
-    "request_id": "b2b13b54-889c-45ac-a3a2-dd776cea5241"
+    "in_trash": false,
+    "request_id": "ab66c4f7-2147-4d03-8545-b0e819446bb9"
   }
 }

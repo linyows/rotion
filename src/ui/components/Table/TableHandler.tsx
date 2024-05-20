@@ -1,6 +1,4 @@
 import React from 'react'
-import type { TitlePropertyItemObjectResponse } from '../../../exporter'
-
 import TableTitleField from './TableTitleField/TableTitleField'
 import TableDateField from './TableDateField/TableDateField'
 import TableRichTextField from './TableRichTextField/TableRichTextField'
@@ -11,63 +9,44 @@ import TableCheckboxField from './TableCheckboxField/TableCheckboxField'
 import TableNumberField from './TableNumberField/TableNumberField'
 import type { TableHandlerProps } from './TableHandler.types'
 
-const TableHandler = ({ items, path, slug, link, query }: TableHandlerProps) => {
-  if (!items) {
+const TableHandler = ({ property, path, slug, link, query }: TableHandlerProps) => {
+  if (!property || !property.type) {
+    console.log('property empty in table handler: ', property)
     return <></>
   }
 
-  if (items.object === 'list') {
-    if (items.results.length === 0) {
+  switch (property.type) {
+    case 'title':
+      return <TableTitleField textObjects={property.title} path={path} slug={slug} link={link} query={query} />
+    case 'rich_text':
+      return <TableRichTextField textObjects={property.rich_text} />
+    case 'url':
+      return <TableUrlField url={property.url} />
+    case 'date':
+      return <TableDateField date={property.date} />
+    case 'multi_select':
+      return <TableMultiSelectField multiSelect={property.multi_select} path={path} query={query} />
+    case 'checkbox':
+      return <TableCheckboxField checked={property.checkbox} />
+    case 'number':
+      return <TableNumberField number={property.number} />
+    case 'select':
+      return <TableSelectField select={property.select} path={path} query={query} />
+    case 'status':
+    case 'email':
+    case 'phone_number':
+    case 'files':
+    case 'created_by':
+    case 'created_time':
+    case 'last_edited_by':
+    case 'last_edited_time':
+    case 'formula':
+    case 'people':
+    case 'relation':
+    case 'rollup':
+    default:
+      console.log('unsupport database property:', property)
       return <></>
-    }
-
-    const target = items.results[0]
-    switch (target.type) {
-      case 'title': { // Skip: Unexpected lexical declaration in case block.
-        const payload = items.results as Array<TitlePropertyItemObjectResponse>
-        return <TableTitleField payload={payload} path={path} slug={slug} link={link} query={query} />
-      }
-      case 'rich_text':
-        return <TableRichTextField payload={target} />
-      case 'people':
-      case 'relation':
-      case 'rollup':
-      default:
-        console.log('unsupport database property:', target)
-        break
-    }
-  } else {
-    switch (items.type) {
-      case 'date':
-        return <TableDateField payload={items.date} />
-      case 'rich_text':
-        return <TableRichTextField payload={items} />
-      case 'multi_select':
-        return <TableMultiSelectField payload={items} path={path} query={query} />
-      case 'url':
-        return <TableUrlField payload={items.url} />
-      case 'checkbox':
-        return <TableCheckboxField payload={items.checkbox} />
-      case 'number':
-        return <TableNumberField payload={items} />
-      case 'select':
-        return <TableSelectField payload={items} path={path} query={query} />
-      case 'status':
-      case 'email':
-      case 'phone_number':
-      case 'files':
-      case 'created_by':
-      case 'created_time':
-      case 'last_edited_by':
-      case 'last_edited_time':
-      case 'formula':
-      case 'people':
-      case 'relation':
-      case 'rollup':
-      default:
-        console.log('unsupport database property:', items)
-        break
-    }
   }
 }
 

@@ -3,10 +3,10 @@ import { RichText } from '../../RichText'
 import type { GalleryRichTextFieldProps } from './GalleryRichTextField.types'
 import './GalleryRichTextField.css'
 
-const GalleryRichTextField = ({ payload, size }: GalleryRichTextFieldProps) => {
+const GalleryRichTextField = ({ textObjects, size }: GalleryRichTextFieldProps) => {
   return (
     <div className={`rotion-gallery-richtext rotion-gallery-richtext-${size || 'medium'}`}>
-      <RichText textObject={payload.rich_text} />
+      {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
     </div>
   )
 }

@@ -3,9 +3,7 @@ import type { TableSelectFieldProps } from './TableSelectField.types'
 import LinkedTagIfLinked from './LinkedTagIfLinked'
 import './TableSelectField.css'
 
-const TableSelectField = ({ payload, path, link, query }: TableSelectFieldProps) => {
-  const { select } = payload
-
+const TableSelectField = ({ select, path, link, query }: TableSelectFieldProps) => {
   if (!select) {
     return <></>
   }
