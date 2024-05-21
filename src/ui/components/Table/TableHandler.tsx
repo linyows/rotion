@@ -7,6 +7,7 @@ import TableSelectField from './TableSelectField/TableSelectField'
 import TableUrlField from './TableUrlField/TableUrlField'
 import TableCheckboxField from './TableCheckboxField/TableCheckboxField'
 import TableNumberField from './TableNumberField/TableNumberField'
+import TableFormulaField from './TableFormulaField/TableFormulaField'
 import type { TableHandlerProps } from './TableHandler.types'
 
 const TableHandler = ({ property, path, slug, link, query }: TableHandlerProps) => {
@@ -32,6 +33,8 @@ const TableHandler = ({ property, path, slug, link, query }: TableHandlerProps) 
       return <TableNumberField number={property.number} />
     case 'select':
       return <TableSelectField select={property.select} path={path} query={query} />
+    case 'formula':
+      return <TableFormulaField number={property.formula.number} />
     case 'status':
     case 'email':
     case 'phone_number':
@@ -40,7 +43,6 @@ const TableHandler = ({ property, path, slug, link, query }: TableHandlerProps) 
     case 'created_time':
     case 'last_edited_by':
     case 'last_edited_time':
-    case 'formula':
     case 'people':
     case 'relation':
     case 'rollup':

@@ -514,7 +514,7 @@ export type NumberDatabasePropertyConfigResponse = {
 
 export type FormulaDatabasePropertyConfigResponse = {
   type: "formula"
-  formula: { expression: string }
+  formula: NumberDatabasePropertyConfigResponse
   id: string
 }
 
