@@ -1,0 +1,15 @@
+.rotion-table-formula {
+  font-family: var(--rotion-font-family);
+  color: var(--rotion-primary-text);
+  white-space: nowrap;
+  font-size: .85rem;
+  display: block;
+  width: 100%;
+  text-align: right;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-table-formula {
+    color: var(--rotion-dark-primary-text);
+  }
+}

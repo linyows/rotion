@@ -27,6 +27,7 @@ export * from './Table/TableRichTextField'
 export * from './Table/TableSelectField'
 export * from './Table/TableTitleField'
 export * from './Table/TableUrlField'
+export * from './Table/TableFormulaField'
 
 export * from './Page'
 export * from './Page/BookmarkBlock'
