@@ -8,7 +8,7 @@ const meta = {
   title: 'Database/Table',
   component: Table,
   args: {
-    keys: ['Name', 'Note', 'Published', 'Tags', 'Url', 'Born', 'Date'],
+    keys: ['Name', 'Note', 'Published', 'Tags', 'Url', 'Born', 'Date', 'Category'],
     db,
     href: '/blog/[id]',
     link: undefined,
