@@ -17,6 +17,7 @@ export * from './List/ListNumberField'
 export * from './List/ListRichTextField'
 export * from './List/ListTitleField'
 export * from './List/ListUrlField'
+export * from './List/ListFormulaField'
 
 export * from './Table'
 export * from './Table/TableCheckboxField'
