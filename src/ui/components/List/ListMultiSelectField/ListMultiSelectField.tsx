@@ -12,7 +12,7 @@ const ListMultiSelectField = ({ multiSelect, path, link, query }: ListMultiSelec
     <ul className="rotion-list-multiselect-ul">
       {multiSelect.map(v => (
         <li key={v.id} className="rotion-list-multiselect-li">
-          <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(v.name)}` : ''} color={v.color} link={link} query={query}>
+          <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(v.name)}` : undefined} color={v.color} link={link} query={query}>
             {v.name}
           </LinkedTagIfLinked>
         </li>

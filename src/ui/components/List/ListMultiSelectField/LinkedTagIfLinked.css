@@ -1,8 +1,11 @@
 .rotion-list-multiselect-link {
+  cursor: var(--rotion-link-cursor);
+}
+
+.rotion-list-multiselect-wrapper {
   font-family: var(--rotion-font-family);
   text-decoration: var(--rotion-link-text-decoration);
   color: inherit;
-  cursor: var(--rotion-link-cursor);
   padding: 2px 10px;
   border-radius: var(--rotion-border-radius);
 }

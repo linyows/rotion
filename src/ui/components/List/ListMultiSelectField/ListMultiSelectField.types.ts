@@ -4,7 +4,7 @@ import type { Link } from '../../types'
 
 export interface ListMultiSelectFieldProps {
   multiSelect: SelectPropertyResponse[]
-  path: string
+  path?: string
   link?: Link
   query?: ParsedUrlQueryInput
 }

@@ -4,26 +4,38 @@ import './LinkedTitle.css'
 import { RichText } from '../../RichText'
 
 const LinkedTitle = ({ textObjects, href, link, query }: LinkedTitleProps) => {
-  if (link && query) {
+  const className = () => {
+    return `rotion-list-title-wrapper ${href ? 'rotion-list-title-link' : ''}`
+  }
+
+  if (href && link && query) {
     const Link = link
     return (
-      <Link className="rotion-list-title-link" href={{ pathname: href, query }}>
+      <Link className={className()} href={{ pathname: href, query }}>
         {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
       </Link>
     )
-  } else if (link) {
+
+  } else if (href && link) {
     const Link = link
     return (
-      <Link className="rotion-list-title-link" href={href}>
+      <Link className={className()} href={href}>
         {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
       </Link>
+    )
+
+  } else if (href) {
+    return (
+      <a className={className()} href={href}>
+        {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
+      </a>
     )
   }
 
   return (
-    <a className="rotion-list-title-link" href={href}>
+    <span className={className()}>
       {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
-    </a>
+    </span>
   )
 }
 

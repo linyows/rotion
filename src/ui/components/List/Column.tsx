@@ -23,12 +23,19 @@ function getSlug (key: string, page: GetPageResponse) {
 }
 
 const Column = ({ name, page, href, link, query }: ColumnProps) => {
-  const [path, slugKey] = getLinkPathAndLinkKey(href)
-
   if (name === 'spacer' || name === 'dashed' || !('properties' in page)) {
     return <></>
   }
-  const slug = getSlug(slugKey, page)
+
+  let path = undefined
+  let slug = undefined
+  let slugKey = undefined
+
+  if (href) {
+    [path, slugKey] = getLinkPathAndLinkKey(href)
+    slug = getSlug(slugKey, page)
+  }
+
   const property = page.properties[name]
   if (!property) {
     return <></>

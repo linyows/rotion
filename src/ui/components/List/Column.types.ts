@@ -5,7 +5,7 @@ import type { Link } from '../types'
 export interface ColumnProps {
   name: string
   page: PageObjectResponseEx
-  href: string
+  href?: string
   link?: Link
   query?: ParsedUrlQueryInput
 }

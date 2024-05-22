@@ -4,7 +4,7 @@ import type { RichTextItemResponse, RichTextItemResponseEx } from '../../../../e
 
 export interface LinkedTitleProps {
   textObjects: RichTextItemResponseEx[] | RichTextItemResponse[]
-  href: string
+  href?: string
   link?: Link
   query?: ParsedUrlQueryInput
 }
