@@ -10,7 +10,7 @@ const meta = {
   args: {
     keys: ['Name', 'Note', 'Published', 'Tags', 'Url', 'Born', 'Date', 'Category'],
     db,
-    href: '/blog/[id]',
+    href: undefined,
     link: undefined,
     query: undefined,
   },
@@ -21,3 +21,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+export const Linked: Story = {
+  args: {
+    keys: ['Name', 'Note', 'Published', 'Tags', 'Url', 'Born', 'Date', 'Category'],
+    db,
+    href: '/blog/[id]',
+  }
+}

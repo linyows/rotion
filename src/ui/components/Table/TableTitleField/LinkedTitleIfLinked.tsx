@@ -5,7 +5,7 @@ import './LinkedTitleIfLinked.css'
 const LinkedTitleIfLinked = ({ path, slug, link, query, children }: LinkedTitleIfLinkedProps) => {
   if (!path && !slug) {
     return (
-      <span className="rotion-table-title-link">
+      <span className="rotion-table-title-wrapper">
         {children}
       </span>
     )
@@ -16,14 +16,14 @@ const LinkedTitleIfLinked = ({ path, slug, link, query, children }: LinkedTitleI
   if (link) {
     const Link = link
     return (
-      <Link className="rotion-table-title-link" href={href}>
+      <Link className="rotion-table-title-wrapper rotion-table-title-link" href={href}>
         {children}
       </Link>
     )
   }
 
   return (
-    <a className="rotion-table-title-link" href={pathname}>
+    <a className="rotion-table-title-wrapper rotion-table-title-link" href={pathname}>
       {children}
     </a>
   )
