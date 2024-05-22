@@ -5,9 +5,11 @@ import ListTitleField from './ListTitleField/ListTitleField'
 import ListDateField from './ListDateField/ListDateField'
 import ListRichTextField from './ListRichTextField/ListRichTextField'
 import ListMultiSelectField from './ListMultiSelectField/ListMultiSelectField'
+import ListSelectField from './ListSelectField/ListSelectField'
 import ListUrlField from './ListUrlField/ListUrlField'
 import ListCheckboxField from './ListCheckboxField/ListCheckboxField'
 import ListNumberField from './ListNumberField/ListNumberField'
+import ListFormulaField from './ListFormulaField/ListFormulaField'
 
 const ListHandler = ({ property, path, slug, link, query }: ListHandlerProps) => {
   if (!property || !property.type) {
@@ -31,6 +33,9 @@ const ListHandler = ({ property, path, slug, link, query }: ListHandlerProps) =>
     case 'number':
       return <ListNumberField number={property.number} />
     case 'select':
+      return <ListSelectField select={property.select} path={path} />
+    case 'formula':
+      return <ListFormulaField number={property.formula.number} />
     case 'status':
     case 'email':
     case 'phone_number':
@@ -39,7 +44,6 @@ const ListHandler = ({ property, path, slug, link, query }: ListHandlerProps) =>
     case 'created_time':
     case 'last_edited_by':
     case 'last_edited_time':
-    case 'formula':
     case 'people':
     case 'relation':
     case 'rollup':
