@@ -7,6 +7,7 @@ export * from './Gallery/GalleryNumberField'
 export * from './Gallery/GalleryRichTextField'
 export * from './Gallery/GalleryTitleField'
 export * from './Gallery/GalleryUrlField'
+export * from './Gallery/GalleryFormulaField'
 
 export * from './List'
 export * from './List/ListCheckboxField'
