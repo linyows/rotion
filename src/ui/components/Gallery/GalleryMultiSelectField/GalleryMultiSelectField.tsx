@@ -8,7 +8,7 @@ const GalleryMultiSelectField = ({ multiSelect, path, link, query }: GalleryMult
     <ul className="rotion-gallery-multiselect-ul">
       {multiSelect.map(v => (
         <li key={v.id} className={`rotion-gallery-multiselect-li rotion-gallery-multiselect-${v.color}`}>
-          <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(v.name)}` : ''} link={link} query={query}>
+          <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(v.name)}` : undefined} link={link} query={query}>
             {v.name}
           </LinkedTagIfLinked>
         </li>

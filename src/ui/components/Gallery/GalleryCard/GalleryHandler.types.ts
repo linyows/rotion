@@ -4,7 +4,7 @@ import type { Link } from '../../types'
 
 export interface GalleryHandlerProps {
   property?: DatabaseProperty
-  path: string
+  path?: string
   size: 'small' | 'medium' | 'large'
   link?: Link
   query?: ParsedUrlQueryInput

@@ -5,7 +5,7 @@ import type { Link } from '../../types'
 export interface GalleryCardProps {
   keys: string[]
   page: PageObjectResponseEx
-  href: string
+  href?: string
   link?: Link
   query?: ParsedUrlQueryInput
   preview?: 'cover' | 'content'

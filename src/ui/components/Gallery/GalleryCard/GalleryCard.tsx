@@ -39,7 +39,7 @@ function buildHref (page: PageObjectResponseEx, link?: string) {
 }
 
 const GalleryCard = ({ keys, page, href, link, query, preview, size, fit }: GalleryCardProps) => {
-  const path = getLinkPathAndLinkKey(href)[0]
+  const path = href ? getLinkPathAndLinkKey(href)[0] : undefined
 
   return (
     <div className="rotion-gallery-card">

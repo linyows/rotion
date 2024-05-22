@@ -8,9 +8,9 @@ const meta = {
   title: 'Database/Gallery',
   component: Gallery,
   args: {
-    keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags'],
+    keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags', 'Category'],
     db,
-    href: '/blog/[id]',
+    href: undefined,
     link: undefined,
     query: undefined,
     preview: 'cover',
@@ -27,7 +27,7 @@ export const Default: Story = {}
 
 export const ImageFit: Story = {
   args: {
-    keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags'],
+    keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags', 'Category'],
     db,
     href: '/blog/[id]',
     link: undefined,

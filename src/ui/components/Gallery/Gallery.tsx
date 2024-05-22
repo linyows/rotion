@@ -14,7 +14,7 @@ const Gallery = ({ keys, db, href, link, query, preview, size = 'medium', fit = 
             key={v.id}
             keys={keys}
             page={v as PageObjectResponseEx}
-            href={href || ''}
+            href={href}
             link={link}
             query={query}
             preview={preview}
