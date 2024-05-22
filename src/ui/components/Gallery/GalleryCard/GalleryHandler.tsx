@@ -6,6 +6,8 @@ import GalleryMultiSelectField from '../GalleryMultiSelectField/GalleryMultiSele
 import GalleryUrlField from '../GalleryUrlField/GalleryUrlField'
 import GalleryCheckboxField from '../GalleryCheckboxField/GalleryCheckboxField'
 import GalleryNumberField from '../GalleryNumberField/GalleryNumberField'
+import GallerySelectField from '../GallerySelectField/GallerySelectField'
+import GalleryFormulaField from '../GalleryFormulaField/GalleryFormulaField'
 import type { GalleryHandlerProps } from './GalleryHandler.types'
 
 const GalleryHandler = ({ property, path, link, query }: GalleryHandlerProps) => {
@@ -21,6 +23,8 @@ const GalleryHandler = ({ property, path, link, query }: GalleryHandlerProps) =>
       return <GalleryRichTextField textObjects={property.rich_text} />
     case 'multi_select':
       return <GalleryMultiSelectField multiSelect={property.multi_select} path={path} link={link} query={query} />
+    case 'select':
+      return <GallerySelectField select={property.select} path={path} link={link} query={query} />
     case 'date':
       return <GalleryDateField date={property.date} />
     case 'url':
@@ -29,7 +33,8 @@ const GalleryHandler = ({ property, path, link, query }: GalleryHandlerProps) =>
       return <GalleryCheckboxField checked={property.checkbox} />
     case 'number':
       return <GalleryNumberField number={property.number} />
-    case 'select':
+    case 'formula':
+      return <GalleryFormulaField number={property.formula.number} />
     case 'status':
     case 'email':
     case 'phone_number':
@@ -38,7 +43,6 @@ const GalleryHandler = ({ property, path, link, query }: GalleryHandlerProps) =>
     case 'created_time':
     case 'last_edited_by':
     case 'last_edited_time':
-    case 'formula':
     case 'people':
     case 'relation':
     case 'rollup':
