@@ -1,0 +1,10 @@
+.rotion-gallery-select-tag {
+  font-family: var(--rotion-font-family);
+  text-decoration: var(--rotion-text-decoration);
+  color: inherit;
+  padding: 2px 10px;
+}
+
+.rotion-gallery-select-link {
+  cursor: var(--rotion-link-cursor);
+}
