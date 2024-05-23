@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { ListBlockChildrenResponseEx } from '../../exporter'
+import type { ListBlockChildrenResponseEx, GetPageResponse } from '../../exporter'
 
 export function queryToString (q: ParsedUrlQueryInput | undefined) {
   if (q === undefined) {
@@ -23,6 +23,24 @@ export const getLinkPathAndLinkKey = (link: string): [string, string] => {
     return ['', '']
   }
   return [linkArray[0], linkArray[1].split(']')[0]]
+}
+
+export function getSlug (key: string, page: GetPageResponse) {
+  if (!('properties' in page)) {
+    return 'not-found-properties'
+  }
+  if (key === 'id') {
+    return page.id
+  }
+  if (!(key in page.properties)) {
+    return 'not-found-key-in-page-properties'
+  }
+  const p = page.properties[key]
+  if (!('rich_text' in p)) {
+    return 'not-found-richtext-in-key'
+  }
+  // @ts-ignore
+  return p.rich_text.map(v => v.text.content).join(',')
 }
 
 export function UsePagination<T> (pages: T[], perPage: number): {

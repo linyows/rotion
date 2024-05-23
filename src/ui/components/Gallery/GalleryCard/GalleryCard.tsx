@@ -5,7 +5,7 @@ import type {
   PageObjectResponseEx,
 } from '../../../../exporter'
 import GalleryHandler from './GalleryHandler'
-import { getLinkPathAndLinkKey } from '../../lib'
+import { getLinkPathAndLinkKey, getSlug } from '../../lib'
 import GalleryLinkedCard from './GalleryLinkedCard'
 import GalleryPreview from './GalleryPreview'
 import type { GalleryCardProps } from './GalleryCard.types'
