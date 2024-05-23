@@ -4,11 +4,12 @@ import LinkedTagIfLinked from './LinkedTag'
 import './GalleryMultiSelectField.css'
 
 const GalleryMultiSelectField = ({ multiSelect, options }: GalleryMultiSelectFieldProps) => {
+  const { pathname, link, query } = options || {}
   return (
     <ul className="rotion-gallery-multiselect-ul">
       {multiSelect.map(v => (
         <li key={v.id} className={`rotion-gallery-multiselect-li rotion-gallery-multiselect-${v.color}`}>
-          <LinkedTagIfLinked pathname={options?.pathname ? `${options.pathname}/${encodeURIComponent(v.name)}` : undefined} link={options?.link} query={options?.query}>
+          <LinkedTagIfLinked pathname={pathname ? `${pathname}/${encodeURIComponent(v.name)}` : undefined} link={link} query={query}>
             {v.name}
           </LinkedTagIfLinked>
         </li>

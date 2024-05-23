@@ -4,9 +4,11 @@ import { PrefixSuffix } from '../../PrefixSuffix'
 import './GalleryFormulaField.css'
 
 const GalleryFormulaField = ({ number, options }: GalleryFormulaFieldProps) => {
+  const { prefix, suffix } = options || {}
+
   return (
     <div className="rotion-gallery-formula">
-      <PrefixSuffix prefix={options?.prefix} suffix={options?.suffix}>
+      <PrefixSuffix prefix={prefix} suffix={suffix}>
         {number}
       </PrefixSuffix>
     </div>

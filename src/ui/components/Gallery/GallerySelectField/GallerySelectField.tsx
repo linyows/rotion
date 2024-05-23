@@ -5,10 +5,11 @@ import './GallerySelectField.css'
 
 const GalleryMultiSelectField = ({ select, options }: GallerySelectFieldProps) => {
   const { name, color } = select
+  const { pathname, link, query } = options || {}
   return (
     <div className="rotion-gallery-select">
       <span className={`rotion-gallery-select-wrapper rotion-gallery-select-${color}`}>
-        <LinkedTagIfLinked pathname={options?.pathname ? `${options.pathname}/${encodeURIComponent(name)}` : undefined} link={options?.link} query={options?.query}>
+        <LinkedTagIfLinked pathname={pathname ? `${pathname}/${encodeURIComponent(name)}` : undefined} link={link} query={query}>
           {name}
         </LinkedTagIfLinked>
       </span>

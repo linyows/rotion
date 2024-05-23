@@ -7,10 +7,11 @@ const TableSelectField = ({ select, options }: TableSelectFieldProps) => {
   if (!select) {
     return <></>
   }
+  const { pathname, link, query } = options || {}
 
   return (
     <div className="rotion-table-select">
-      <LinkedTagIfLinked pathname={options?.pathname ? `${options.pathname}/${encodeURIComponent(select.name)}` : ''} color={select.color} link={options?.link} query={options?.query}>
+      <LinkedTagIfLinked pathname={pathname ? `${pathname}/${encodeURIComponent(select.name)}` : ''} color={select.color} link={link} query={query}>
         {select.name}
       </LinkedTagIfLinked>
     </div>

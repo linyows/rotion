@@ -15,23 +15,24 @@ const Column = ({ name, page, options }: ColumnProps) => {
     return <></>
   }
 
+  const { href, link, query, prefix, suffix } = options || {}
   let opts: TablePropertyOptions = {}
 
-  if (options?.href && options?.href[name]) {
-    const [path, slugKey] = getLinkPathAndLinkKey(options.href[name])
+  if (href && href[name]) {
+    const [path, slugKey] = getLinkPathAndLinkKey(href[name])
     opts.pathname = (slugKey === '') ? path : `${path}${getSlug(slugKey, page)}`
-    if (options?.link) {
-      opts.link = options.link
+    if (link) {
+      opts.link = link
     }
-    if (options?.query) {
-      opts.query = options.query
+    if (query) {
+      opts.query = query
     }
   }
-  if (options?.prefix && options.prefix[name]) {
-    opts.prefix = options.prefix[name]
+  if (prefix && prefix[name]) {
+    opts.prefix = prefix[name]
   }
-  if (options?.suffix && options.suffix[name]) {
-    opts.suffix = options.suffix[name]
+  if (suffix && suffix[name]) {
+    opts.suffix = suffix[name]
   }
 
   return <TableHandler property={property as unknown as DatabaseProperty} options={opts} />

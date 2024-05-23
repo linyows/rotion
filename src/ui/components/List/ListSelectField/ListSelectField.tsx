@@ -8,10 +8,11 @@ const ListSelectField = ({ select, options }: ListSelectFieldProps) => {
     return <></>
   }
   const { name, color } = select
+  const { pathname, link, query } = options || {}
 
   return (
     <div className="rotion-list-select">
-      <LinkedTagIfLinked pathname={options?.pathname ? `${options.pathname}/${encodeURIComponent(name)}` : undefined} color={color} link={options?.link} query={options?.query}>
+      <LinkedTagIfLinked pathname={pathname ? `${pathname}/${encodeURIComponent(name)}` : undefined} color={color} link={link} query={query}>
         {name}
       </LinkedTagIfLinked>
     </div>

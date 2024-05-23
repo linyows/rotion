@@ -5,9 +5,10 @@ import { PrefixSuffix } from '../../PrefixSuffix'
 import './GalleryCheckboxField.css'
 
 const GalleryCheckboxField = ({ checked, options }: GalleryCheckboxFieldProps) => {
+  const { prefix, suffix } = options || {}
   return (
     <div className="rotion-gallery-checkbox">
-      <PrefixSuffix prefix={options?.prefix} suffix={options?.suffix}>
+      <PrefixSuffix prefix={prefix} suffix={suffix}>
         <Checkbox bool={checked} />
       </PrefixSuffix>
     </div>

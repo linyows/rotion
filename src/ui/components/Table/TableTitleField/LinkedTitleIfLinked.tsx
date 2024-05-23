@@ -3,18 +3,20 @@ import type { LinkedTitleIfLinkedProps } from './LinkedTitleIfLinked.types'
 import './LinkedTitleIfLinked.css'
 
 const LinkedTitleIfLinked = ({ options, children }: LinkedTitleIfLinkedProps) => {
-  if (options?.pathname && options?.link) {
-    const Link = options.link
+  const { pathname, link, query } = options || {}
+
+  if (pathname && link) {
+    const Link = link
     return (
-      <Link className="rotion-table-title-wrapper rotion-table-title-link" href={options?.query ? { pathname: options.pathname, query: options.query } : options.pathname}>
+      <Link className="rotion-table-title-wrapper rotion-table-title-link" href={query ? { pathname, query } : pathname}>
         {children}
       </Link>
     )
   }
 
-  if (options?.pathname) {
+  if (pathname) {
     return (
-      <a className="rotion-table-title-wrapper rotion-table-title-link" href={options.pathname}>
+      <a className="rotion-table-title-wrapper rotion-table-title-link" href={pathname}>
         {children}
       </a>
     )

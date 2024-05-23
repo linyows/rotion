@@ -4,9 +4,11 @@ import { PrefixSuffix } from '../../PrefixSuffix'
 import './ListNumberField.css'
 
 const ListNumberField = ({ number, options }: ListNumberFieldProps) => {
+  const { prefix, suffix } = options || {}
+
   return (
     <div className="rotion-list-number">
-      <PrefixSuffix prefix={options?.prefix} suffix={options?.suffix}>
+      <PrefixSuffix prefix={prefix} suffix={suffix}>
         {number}
       </PrefixSuffix>
     </div>

@@ -4,9 +4,11 @@ import { PrefixSuffix } from '../../PrefixSuffix'
 import './GalleryNumberField.css'
 
 const GalleryNumberField = ({ number, options }: GalleryNumberFieldProps) => {
+  const { prefix, suffix } = options || {}
+
   return (
     <div className="rotion-gallery-number">
-      <PrefixSuffix prefix={options?.prefix} suffix={options?.suffix}>
+      <PrefixSuffix prefix={prefix} suffix={suffix}>
         {number}
       </PrefixSuffix>
     </div>

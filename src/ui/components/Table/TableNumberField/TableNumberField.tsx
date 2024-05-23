@@ -4,9 +4,10 @@ import { PrefixSuffix } from '../../PrefixSuffix'
 import './TableNumberField.css'
 
 const TableNumberField = ({ number, options }: TableNumberFieldProps) => {
+  const { prefix, suffix } = options || {}
   return (
     <div className="rotion-table-number">
-      <PrefixSuffix prefix={options?.prefix} suffix={options?.suffix}>
+      <PrefixSuffix prefix={prefix} suffix={suffix}>
         {number}
       </PrefixSuffix>
     </div>

@@ -26,15 +26,16 @@ function setPathnamePrefixAndSuffix (name: string, dstOpts: GalleryPropertyOptio
   if (!srcOpts) {
     return dstOpts
   }
+  const { href, prefix, suffix } = srcOpts || {}
 
-  if (srcOpts?.href && srcOpts.href[name]) {
-    dstOpts.pathname = srcOpts.href[name]
+  if (href && href[name]) {
+    dstOpts.pathname = href[name]
   }
-  if (srcOpts?.prefix && srcOpts.prefix[name]) {
-    dstOpts.prefix = srcOpts.prefix[name]
+  if (prefix && prefix[name]) {
+    dstOpts.prefix = prefix[name]
   }
-  if (srcOpts?.suffix && srcOpts.suffix[name]) {
-    dstOpts.suffix = srcOpts.suffix[name]
+  if (suffix && suffix[name]) {
+    dstOpts.suffix = suffix[name]
   }
 
   return dstOpts
@@ -46,16 +47,17 @@ const GalleryCard = ({ keys, page, options }: GalleryCardProps) => {
     return <></>
   }
 
-  let opts: GalleryPropertyOptions = {}
+  const { href, link, query, image } = options || {}
+  let opts: GalleryPropertyOptions = { link, query }
 
-  if (options?.href && options?.href[titleKey]) {
-    const [path, slugKey] = getLinkPathAndLinkKey(options.href[titleKey])
+  if (href && href[titleKey]) {
+    const [path, slugKey] = getLinkPathAndLinkKey(href[titleKey])
     opts.pathname = (slugKey === '') ? path : `${path}${getSlug(slugKey, page)}`
   }
 
   return (
-    <GalleryLinkedCard pathname={opts.pathname} link={opts.link} query={opts.query}>
-      {options?.image?.preview && page.cover?.src && <GalleryPreview src={page.cover.src} options={options?.image} />}
+    <GalleryLinkedCard pathname={opts.pathname} link={link} query={query}>
+      {image?.preview && page.cover?.src && <GalleryPreview src={page.cover.src} options={image} />}
       <div className="rotion-gallery-card-text">
         {keys.map((name, i) => (
           <div key={`${page.id}${name}`} className={`field${i}`}>

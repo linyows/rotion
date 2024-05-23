@@ -14,17 +14,18 @@ const Column = ({ name, page, options }: ColumnProps) => {
     return <></>
   }
 
-  let opts: ListPropertyOptions = {}
+  const { href, prefix, suffix, link, query } = options || {}
+  let opts: ListPropertyOptions = { link, query }
 
-  if (options?.href && options?.href[name]) {
-    const [path, slugKey] = getLinkPathAndLinkKey(options.href[name])
+  if (href && href[name]) {
+    const [path, slugKey] = getLinkPathAndLinkKey(href[name])
     opts.pathname = (slugKey === '') ? path : `${path}${getSlug(slugKey, page)}`
   }
-  if (options?.prefix && options.prefix[name]) {
-    opts.prefix = options.prefix[name]
+  if (prefix && prefix[name]) {
+    opts.prefix = prefix[name]
   }
-  if (options?.suffix && options.suffix[name]) {
-    opts.suffix = options.suffix[name]
+  if (suffix && suffix[name]) {
+    opts.suffix = suffix[name]
   }
 
   return <ListHandler property={property as unknown as DatabaseProperty} options={opts} />

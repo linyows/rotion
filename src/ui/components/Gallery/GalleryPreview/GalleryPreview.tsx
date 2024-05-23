@@ -9,22 +9,22 @@ const defaultHeight = {
 }
 
 const GalleryPreview = ({ src, options }: GalleryPreviewProps) => {
+  const { size, height, fit } = options || {}
+
   let h = ''
-  if (options && options.size && options.height) {
-    if (typeof(options.height) === 'string') {
-      h = options.height
+  if (size && height) {
+    if (typeof(height) === 'string') {
+      h = height
     } else {
-      h = options.height[options.size]
+      h = height[size]
     }
   } else {
-    h = defaultHeight[options?.size || 'medium']
+    h = defaultHeight[size || 'medium']
   }
-
-  const className = `rotion-gallery-preview-img rotion-gallery-preview-${options?.fit ? 'fit' : 'nofit'}`
 
   return (
     <div className="rotion-gallery-preview" style={{ height: h }}>
-      {src && <img src={src} className={className} style={{ height: h }} />}
+      <img src={src} className={`rotion-gallery-preview-img rotion-gallery-preview-${fit ? 'fit' : 'nofit'}`} style={{ height: h }} />
     </div>
   )
 }

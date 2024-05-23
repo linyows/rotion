@@ -4,9 +4,11 @@ import { PrefixSuffix } from '../../PrefixSuffix'
 import './ListFormulaField.css'
 
 const ListFormulaField = ({ number, options }: ListFormulaFieldProps) => {
+  const { prefix, suffix } = options || {}
+
   return (
     <div className="rotion-list-formula">
-      <PrefixSuffix prefix={options?.prefix} suffix={options?.suffix}>
+      <PrefixSuffix prefix={prefix} suffix={suffix}>
         {number}
       </PrefixSuffix>
     </div>

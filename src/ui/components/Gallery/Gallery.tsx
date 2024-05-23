@@ -6,25 +6,19 @@ import '../tokens.css'
 import './Gallery.css'
 
 const Gallery = ({ keys, db, options }: GalleryProps) => {
-  if (!options) {
+  if (options === undefined) {
     options = {}
   }
-  if (!options.image) {
+  const { image } = options
+  if (image === undefined) {
     options.image = {}
   }
-  if (!options?.image.preview) {
-    options.image.preview = 'cover'
-  }
-  if (options?.image.fit === undefined) {
-    options.image.fit = true
-  }
-  if (!options?.image.size) {
-    options.image.size = 'medium'
-  }
+  const { preview = 'cover', fit = true, size = 'medium' } = image || {}
+  options.image = { preview, fit, size }
 
   return (
-    <div className={`rotion-gallery ${options.image.fit ? 'rotion-gallery-fit' : ''}`}>
-      <div className={`rotion-gallery-inner rotion-gallery-${options.image.size}`}>
+    <div className={`rotion-gallery ${fit ? 'rotion-gallery-fit' : ''}`}>
+      <div className={`rotion-gallery-inner rotion-gallery-${size}`}>
         {db.results.map((v) => (
           <GalleryCard key={v.id} keys={keys} page={v as PageObjectResponseEx} options={options} />
         ))}
