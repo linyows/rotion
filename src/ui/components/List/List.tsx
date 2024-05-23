@@ -22,7 +22,7 @@ export interface ListHeaderProps {
   keys: string[]
 }
 
-const List = ({ keys, db, href, link, query }: ListProps) => {
+const List = ({ keys, db, options }: ListProps) => {
   return (
     <div className="rotion-list">
       <div className="rotion-list-inner">
@@ -30,7 +30,7 @@ const List = ({ keys, db, href, link, query }: ListProps) => {
           <div key={v.id} className="rotion-list-line">
             {keys.map((name, i) => (
               <div key={`${v.id}${name}`} className={columnClassName(name, i)}>
-                <Column name={name} page={v} href={href} link={link} query={query} />
+                <Column name={name} page={v} options={options} />
               </div>
             ))}
           </div>

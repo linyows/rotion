@@ -11,7 +11,7 @@ import ListCheckboxField from './ListCheckboxField/ListCheckboxField'
 import ListNumberField from './ListNumberField/ListNumberField'
 import ListFormulaField from './ListFormulaField/ListFormulaField'
 
-const ListHandler = ({ property, path, slug, link, query }: ListHandlerProps) => {
+const ListHandler = ({ property, options }: ListHandlerProps) => {
   if (!property || !property.type) {
     console.log('property empty in table handler: ', property)
     return <></>
@@ -19,7 +19,7 @@ const ListHandler = ({ property, path, slug, link, query }: ListHandlerProps) =>
 
   switch (property.type) {
     case 'title':
-      return <ListTitleField textObjects={property.title} path={path} slug={slug} link={link} query={query} />
+      return <ListTitleField textObjects={property.title} options={options} />
     case 'rich_text':
       return <ListRichTextField textObjects={property.rich_text} />
     case 'url':
@@ -27,15 +27,15 @@ const ListHandler = ({ property, path, slug, link, query }: ListHandlerProps) =>
     case 'date':
       return <ListDateField date={property.date} />
     case 'multi_select':
-      return <ListMultiSelectField multiSelect={property.multi_select} path={path} />
+      return <ListMultiSelectField multiSelect={property.multi_select} options={options} />
     case 'checkbox':
-      return <ListCheckboxField checked={property.checkbox} />
+      return <ListCheckboxField checked={property.checkbox} options={options} />
     case 'number':
-      return <ListNumberField number={property.number} />
+      return <ListNumberField number={property.number} options={options} />
     case 'select':
-      return <ListSelectField select={property.select} path={path} />
+      return <ListSelectField select={property.select} options={options} />
     case 'formula':
-      return <ListFormulaField number={property.formula.number} />
+      return <ListFormulaField number={property.formula.number} options={options} />
     case 'status':
     case 'email':
     case 'phone_number':

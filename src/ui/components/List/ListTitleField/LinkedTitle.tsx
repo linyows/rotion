@@ -3,30 +3,31 @@ import type { LinkedTitleProps } from './LinkedTitle.types'
 import './LinkedTitle.css'
 import { RichText } from '../../RichText'
 
-const LinkedTitle = ({ textObjects, href, link, query }: LinkedTitleProps) => {
+const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
+
   const className = () => {
-    return `rotion-list-title-wrapper ${href ? 'rotion-list-title-link' : ''}`
+    return `rotion-list-title-wrapper ${options?.pathname ? 'rotion-list-title-link' : ''}`
   }
 
-  if (href && link && query) {
-    const Link = link
+  if (options?.link && options?.pathname && options?.query) {
+    const Link = options.link
     return (
-      <Link className={className()} href={{ pathname: href, query }}>
+      <Link className={className()} href={{ pathname: options.pathname, query: options.query }}>
         {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
       </Link>
     )
 
-  } else if (href && link) {
-    const Link = link
+  } else if (options?.link && options?.pathname) {
+    const Link = options.link
     return (
-      <Link className={className()} href={href}>
+      <Link className={className()} href={options.pathname}>
         {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
       </Link>
     )
 
-  } else if (href) {
+  } else if (options?.pathname) {
     return (
-      <a className={className()} href={href}>
+      <a className={className()} href={options.pathname}>
         {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
       </a>
     )

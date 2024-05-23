@@ -1,7 +1,21 @@
 .rotion-list-checkbox {
+  display: flex;
   margin: 0 .3rem;
   padding: 0 .3rem;
   background-color: var(--rotion-link-bg-color);
+}
+
+.rotion-list-checkbox .rotion-prefix,
+.rotion-list-checkbox .rotion-suffix {
+  padding-top: 1px;
+}
+
+.rotion-list-checkbox .rotion-prefix {
+  padding-right: 6px;
+}
+
+.rotion-list-checkbox .rotion-suffix {
+  padding-left: 6px;
 }
 
 @media (prefers-color-scheme: dark) {

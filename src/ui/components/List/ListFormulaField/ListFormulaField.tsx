@@ -1,11 +1,14 @@
 import React from 'react'
 import type { ListFormulaFieldProps } from './ListFormulaField.types'
+import { PrefixSuffix } from '../../PrefixSuffix'
 import './ListFormulaField.css'
 
-const ListFormulaField = ({ number }: ListFormulaFieldProps) => {
+const ListFormulaField = ({ number, options }: ListFormulaFieldProps) => {
   return (
     <div className="rotion-list-formula">
-      {number}
+      <PrefixSuffix prefix={options?.prefix} suffix={options?.suffix}>
+        {number}
+      </PrefixSuffix>
     </div>
   )
 }

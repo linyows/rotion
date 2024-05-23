@@ -3,7 +3,7 @@ import type { ListSelectFieldProps } from './ListSelectField.types'
 import LinkedTagIfLinked from './LinkedTagIfLinked'
 import './ListSelectField.css'
 
-const ListSelectField = ({ select, path, link, query }: ListSelectFieldProps) => {
+const ListSelectField = ({ select, options }: ListSelectFieldProps) => {
   if (!select) {
     return <></>
   }
@@ -11,7 +11,7 @@ const ListSelectField = ({ select, path, link, query }: ListSelectFieldProps) =>
 
   return (
     <div className="rotion-list-select">
-      <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(name)}` : undefined} color={color} link={link} query={query}>
+      <LinkedTagIfLinked pathname={options?.pathname ? `${options.pathname}/${encodeURIComponent(name)}` : undefined} color={color} link={options?.link} query={options?.query}>
         {name}
       </LinkedTagIfLinked>
     </div>

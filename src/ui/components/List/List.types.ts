@@ -6,8 +6,14 @@ import type { Link } from '../types'
 export interface ListProps {
   keys: string[]
   db: QueryDatabaseResponseEx
-  href?: string
+  children?: ReactNode
+  options?: ListOptions
+}
+
+export interface ListOptions {
+  href?: { [key: string]: string }
   link?: Link
   query?: ParsedUrlQueryInput
-  children?: ReactNode
+  suffix?: { [key: string]: string }
+  prefix?: { [key: string]: string }
 }
