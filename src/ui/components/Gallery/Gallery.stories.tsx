@@ -10,12 +10,6 @@ const meta = {
   args: {
     keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags', 'Category'],
     db,
-    href: undefined,
-    link: undefined,
-    query: undefined,
-    preview: 'cover',
-    size: undefined,
-    fit: true,
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Gallery>
@@ -25,41 +19,94 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
 
-export const ImageFit: Story = {
+export const Linked: Story = {
   args: {
     keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags', 'Category'],
     db,
-    href: '/blog/[id]',
-    link: undefined,
-    query: undefined,
-    preview: 'cover',
-    size: undefined,
-    fit: false,
+    options: {
+      href: {
+        Name: '/blog/[id]',
+        Tags: '/blog/tags',
+        Category: '/blog/category',
+      },
+    },
   }
 }
 
-export const SmallSize: Story = {
+export const LinkedOnlyTags: Story = {
   args: {
-    keys: ['Name', 'Tags'],
+    keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags', 'Category'],
     db,
-    href: '/blog/[id]',
-    link: undefined,
-    query: undefined,
-    preview: 'cover',
-    size: 'small',
-    fit: true,
+    options: {
+      href: {
+        Tags: '/blog/tags',
+      },
+    },
   }
 }
 
-export const SmallLarge: Story = {
+export const NoFitImage: Story = {
+  args: {
+    keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags', 'Category'],
+    db,
+    options: {
+      image: {
+        fit: false,
+      }
+    },
+  }
+}
+
+export const SmallSizeImage: Story = {
   args: {
     keys: ['Name', 'Tags'],
     db,
-    href: '/blog/[id]',
-    link: undefined,
-    query: undefined,
-    preview: 'cover',
-    size: 'large',
-    fit: true,
+    options: {
+      image: {
+        size: 'small',
+      },
+    },
+  }
+}
+
+export const LargeSizeImage: Story = {
+  args: {
+    keys: ['Name', 'Tags'],
+    db,
+    options: {
+      image: {
+        size: 'large',
+      },
+    },
+  }
+}
+
+export const SpecifyHight: Story = {
+  args: {
+    keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags', 'Category'],
+    db,
+    options: {
+      image: {
+        fit: false,
+        size: 'large',
+        height: '400px',
+      }
+    },
+  }
+}
+
+export const PrefixSuffix: Story = {
+  args: {
+    keys: ['Name', 'Born', 'Date', 'Published', 'Url', 'Note', 'Tags', 'Category'],
+    db,
+    options: {
+      prefix: {
+        Born: 'Born in',
+      },
+      suffix: {
+        Born: 's',
+        Published: 'Published',
+      }
+    },
   }
 }

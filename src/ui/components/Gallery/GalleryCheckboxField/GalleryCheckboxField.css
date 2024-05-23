@@ -1,3 +1,17 @@
 .rotion-gallery-checkbox {
+  display: flex;
   padding: 5px 10px 0;
+}
+
+.rotion-gallery-checkbox .rotion-prefix,
+.rotion-gallery-checkbox .rotion-suffix {
+  padding-top: 1px;
+}
+
+.rotion-gallery-checkbox .rotion-prefix {
+  padding-right: 6px;
+}
+
+.rotion-gallery-checkbox .rotion-suffix {
+  padding-left: 6px;
 }
