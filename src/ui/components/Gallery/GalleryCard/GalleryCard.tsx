@@ -19,7 +19,6 @@ function findTitlePropertyName (page: PageObjectResponseEx) {
       return key
     }
   }
-  return
 }
 
 function setPathnamePrefixAndSuffix (name: string, dstOpts: GalleryPropertyOptions, srcOpts?: GalleryOptions) {
@@ -48,7 +47,7 @@ const GalleryCard = ({ keys, page, options }: GalleryCardProps) => {
   }
 
   const { href, link, query, image } = options || {}
-  let opts: GalleryPropertyOptions = { link, query }
+  const opts: GalleryPropertyOptions = { link, query }
 
   if (href && href[titleKey]) {
     const [path, slugKey] = getLinkPathAndLinkKey(href[titleKey])

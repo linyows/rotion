@@ -1,5 +1,5 @@
 import React from 'react'
-import type { DatabaseProperty, PageObjectResponseEx } from '../../../exporter'
+import type { DatabaseProperty } from '../../../exporter'
 import TableHandler from './TableHandler'
 import { getLinkPathAndLinkKey, getSlug } from '../lib'
 import type { ColumnProps } from './Column.types'
@@ -16,7 +16,7 @@ const Column = ({ name, page, options }: ColumnProps) => {
   }
 
   const { href, link, query, prefix, suffix } = options || {}
-  let opts: TablePropertyOptions = {}
+  const opts: TablePropertyOptions = {}
 
   if (href && href[name]) {
     const [path, slugKey] = getLinkPathAndLinkKey(href[name])

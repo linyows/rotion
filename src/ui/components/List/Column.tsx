@@ -15,7 +15,7 @@ const Column = ({ name, page, options }: ColumnProps) => {
   }
 
   const { href, prefix, suffix, link, query } = options || {}
-  let opts: ListPropertyOptions = { link, query }
+  const opts: ListPropertyOptions = { link, query }
 
   if (href && href[name]) {
     const [path, slugKey] = getLinkPathAndLinkKey(href[name])

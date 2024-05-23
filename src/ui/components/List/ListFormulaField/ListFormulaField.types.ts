@@ -1,4 +1,4 @@
-import { ListPropertyOptions } from "../ListHandler.types"
+import { ListPropertyOptions } from '../ListHandler.types'
 
 export interface ListFormulaFieldProps {
   number: number | null

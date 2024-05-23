@@ -22,7 +22,6 @@ const LinkedTitleIfLinked = ({ options, children }: LinkedTitleIfLinkedProps) =>
     )
   }
 
-
   return (
     <span className="rotion-table-title-wrapper">
       {children}

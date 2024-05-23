@@ -14,6 +14,6 @@ export interface GalleryOptions {
   link?: Link
   query?: ParsedUrlQueryInput
   image?: GalleryPreviewOptions
-  prefix?: { [key: string]: string } 
+  prefix?: { [key: string]: string }
   suffix?: { [key: string]: string }
 }

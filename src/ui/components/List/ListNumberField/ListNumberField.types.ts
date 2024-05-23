@@ -1,4 +1,4 @@
-import { ListPropertyOptions } from "../ListHandler.types"
+import { ListPropertyOptions } from '../ListHandler.types'
 
 export interface ListNumberFieldProps {
   number: number | null

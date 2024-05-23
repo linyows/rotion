@@ -4,7 +4,6 @@ import './LinkedTitle.css'
 import { RichText } from '../../RichText'
 
 const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
-
   const className = () => {
     return `rotion-list-title-wrapper ${options?.pathname ? 'rotion-list-title-link' : ''}`
   }
@@ -16,7 +15,6 @@ const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
         {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
       </Link>
     )
-
   } else if (options?.link && options?.pathname) {
     const Link = options.link
     return (
@@ -24,7 +22,6 @@ const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
         {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
       </Link>
     )
-
   } else if (options?.pathname) {
     return (
       <a className={className()} href={options.pathname}>

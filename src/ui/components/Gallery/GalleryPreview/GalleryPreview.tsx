@@ -13,7 +13,7 @@ const GalleryPreview = ({ src, options }: GalleryPreviewProps) => {
 
   let h = ''
   if (size && height) {
-    if (typeof(height) === 'string') {
+    if (typeof (height) === 'string') {
       h = height
     } else {
       h = height[size]
