@@ -48,3 +48,13 @@ export const PrefixSuffix: Story = {
     },
   }
 }
+
+export const NoVerticalLines: Story = {
+  args: {
+    keys: ['Name', 'Note', 'Published', 'Tags', 'Url', 'Born', 'Date', 'Category'],
+    db,
+    options: {
+      verticalLines: false,
+    },
+  }
+}

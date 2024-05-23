@@ -16,4 +16,5 @@ export interface TableOptions {
   query?: ParsedUrlQueryInput
   prefix?: { [key: string]: string }
   suffix?: { [key: string]: string }
+  verticalLines?: boolean
 }
