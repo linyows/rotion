@@ -1,11 +1,14 @@
 import React from 'react'
 import type { TableNumberFieldProps } from './TableNumberField.types'
+import { PrefixSuffix } from '../../PrefixSuffix'
 import './TableNumberField.css'
 
-const TableNumberField = ({ number }: TableNumberFieldProps) => {
+const TableNumberField = ({ number, options }: TableNumberFieldProps) => {
   return (
     <div className="rotion-table-number">
-      {number}
+      <PrefixSuffix prefix={options?.prefix} suffix={options?.suffix}>
+        {number}
+      </PrefixSuffix>
     </div>
   )
 }

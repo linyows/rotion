@@ -3,12 +3,12 @@ import LinkedTagIfLinked from './LinkedTagIfLinked'
 import type { TableMultiSelectFieldProps } from './TableMultiSelectField.types'
 import './TableMultiSelectField.css'
 
-const TableMultiSelectField = ({ multiSelect, path, link, query }: TableMultiSelectFieldProps) => {
+const TableMultiSelectField = ({ multiSelect, options }: TableMultiSelectFieldProps) => {
   return (
     <ul className="rotion-table-multiselect-ul">
       {multiSelect.map(v => (
         <li key={v.id} className="rotion-table-multiselect-li">
-          <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(v.name)}` : ''} color={v.color} link={link} query={query}>
+          <LinkedTagIfLinked pathname={options?.pathname ? `${options.pathname}/${encodeURIComponent(v.name)}` : ''} color={v.color} link={options?.link} query={options?.query}>
             {v.name}
           </LinkedTagIfLinked>
         </li>

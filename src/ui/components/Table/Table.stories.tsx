@@ -10,9 +10,6 @@ const meta = {
   args: {
     keys: ['Name', 'Note', 'Published', 'Tags', 'Url', 'Born', 'Date', 'Category'],
     db,
-    href: undefined,
-    link: undefined,
-    query: undefined,
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Table>
@@ -26,6 +23,28 @@ export const Linked: Story = {
   args: {
     keys: ['Name', 'Note', 'Published', 'Tags', 'Url', 'Born', 'Date', 'Category'],
     db,
-    href: '/blog/[id]',
+    options: {
+      href: {
+        Name: '/blog/[id]',
+        Tags: '/blog/tags',
+        Category: '/blog/category',
+      }
+    },
+  }
+}
+
+export const PrefixSuffix: Story = {
+  args: {
+    keys: ['Name', 'Note', 'Published', 'Tags', 'Url', 'Born', 'Date', 'Category'],
+    db,
+    options: {
+      prefix: {
+        Born: 'Born in',
+      },
+      suffix: {
+        Born: 's',
+        Published: 'Published',
+      },
+    },
   }
 }

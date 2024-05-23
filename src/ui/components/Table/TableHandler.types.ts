@@ -4,8 +4,13 @@ import type { Link } from '../types'
 
 export interface TableHandlerProps {
   property: DatabaseProperty
-  path?: string
-  slug?: string
+  options?: TablePropertyOptions
+}
+
+export interface TablePropertyOptions {
+  pathname?: string
   link?: Link
   query?: ParsedUrlQueryInput
+  suffix?: string
+  prefix?: string
 }
