@@ -6,7 +6,7 @@ import type {
 import GalleryHandler from './GalleryHandler'
 import { getLinkPathAndLinkKey, getSlug } from '../../lib'
 import GalleryLinkedCard from './GalleryLinkedCard'
-import GalleryPreview from './GalleryPreview'
+import GalleryPreview from '../GalleryPreview/GalleryPreview'
 import type { GalleryCardProps } from './GalleryCard.types'
 import type { GalleryPropertyOptions } from './GalleryHandler.types'
 import type { GalleryOptions } from '../Gallery.types'
