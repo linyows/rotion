@@ -10,10 +10,13 @@
   transition: background 100ms ease-out 0s;
   position: static;
   height: 100%;
+}
+
+.rotion-gallery-link {
   cursor: pointer;
 }
 
-.rotion-gallery-card:hover {
+.rotion-gallery-link:hover {
   background: var(--rotion-gallery-hover-bg);
 }
 

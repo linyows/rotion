@@ -6,9 +6,11 @@ import GalleryMultiSelectField from '../GalleryMultiSelectField/GalleryMultiSele
 import GalleryUrlField from '../GalleryUrlField/GalleryUrlField'
 import GalleryCheckboxField from '../GalleryCheckboxField/GalleryCheckboxField'
 import GalleryNumberField from '../GalleryNumberField/GalleryNumberField'
+import GallerySelectField from '../GallerySelectField/GallerySelectField'
+import GalleryFormulaField from '../GalleryFormulaField/GalleryFormulaField'
 import type { GalleryHandlerProps } from './GalleryHandler.types'
 
-const GalleryHandler = ({ property, path, link, query }: GalleryHandlerProps) => {
+const GalleryHandler = ({ property, options }: GalleryHandlerProps) => {
   if (!property || !property.type) {
     console.log('property empty in gallery handler: ', property)
     return <></>
@@ -20,16 +22,19 @@ const GalleryHandler = ({ property, path, link, query }: GalleryHandlerProps) =>
     case 'rich_text':
       return <GalleryRichTextField textObjects={property.rich_text} />
     case 'multi_select':
-      return <GalleryMultiSelectField multiSelect={property.multi_select} path={path} link={link} query={query} />
+      return <GalleryMultiSelectField multiSelect={property.multi_select} options={options} />
+    case 'select':
+      return <GallerySelectField select={property.select} options={options} />
     case 'date':
       return <GalleryDateField date={property.date} />
     case 'url':
       return <GalleryUrlField url={property.url} />
     case 'checkbox':
-      return <GalleryCheckboxField checked={property.checkbox} />
+      return <GalleryCheckboxField checked={property.checkbox} options={options} />
     case 'number':
-      return <GalleryNumberField number={property.number} />
-    case 'select':
+      return <GalleryNumberField number={property.number} options={options} />
+    case 'formula':
+      return <GalleryFormulaField number={property.formula.number} options={options} />
     case 'status':
     case 'email':
     case 'phone_number':
@@ -38,7 +43,6 @@ const GalleryHandler = ({ property, path, link, query }: GalleryHandlerProps) =>
     case 'created_time':
     case 'last_edited_by':
     case 'last_edited_time':
-    case 'formula':
     case 'people':
     case 'relation':
     case 'rollup':

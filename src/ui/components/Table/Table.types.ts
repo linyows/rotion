@@ -6,8 +6,15 @@ import type { Link } from '../types'
 export interface TableProps {
   keys: string[]
   db: QueryDatabaseResponseEx
-  href?: string
+  children?: ReactNode
+  options?: TableOptions
+}
+
+export interface TableOptions {
+  href?: { [key: string]: string }
   link?: Link
   query?: ParsedUrlQueryInput
-  children?: ReactNode
+  prefix?: { [key: string]: string }
+  suffix?: { [key: string]: string }
+  verticalLines?: boolean
 }

@@ -1,3 +1,7 @@
+.rotion-table-title-wrapper {
+  color: var(--rotion-link-color);
+}
+
 .rotion-table-title-link {
   color: var(--rotion-link-color);
   text-decoration: var(--rotion-link-text-decoration);
@@ -10,8 +14,11 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .rotion-table-title-link {
+  .rotion-table-title-wrapper {
     color: var(--rotion-dark-link-color);
+  }
+
+  .rotion-table-title-link {
     border-bottom: var(--rotion-dark-link-border-bottom);
   }
 

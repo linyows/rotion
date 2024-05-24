@@ -1,59 +1,70 @@
 import React from 'react'
 import type {
   DatabaseProperty,
-  GetPageResponse,
   PageObjectResponseEx,
 } from '../../../../exporter'
 import GalleryHandler from './GalleryHandler'
-import { getLinkPathAndLinkKey } from '../../lib'
+import { getLinkPathAndLinkKey, getSlug } from '../../lib'
 import GalleryLinkedCard from './GalleryLinkedCard'
-import GalleryPreview from './GalleryPreview'
+import GalleryPreview from '../GalleryPreview/GalleryPreview'
 import type { GalleryCardProps } from './GalleryCard.types'
+import type { GalleryPropertyOptions } from './GalleryHandler.types'
+import type { GalleryOptions } from '../Gallery.types'
 import './GalleryCard.css'
 
-function getSlug (key: string, page: GetPageResponse) {
-  if (!('properties' in page)) {
-    return 'not-found-properties'
+function findTitlePropertyName (page: PageObjectResponseEx) {
+  for (const key in page.properties) {
+    const p = page.properties[key]
+    if (p.type === 'title') {
+      return key
+    }
   }
-  if (key === 'id') {
-    return page.id
-  }
-  if (!(key in page.properties)) {
-    return 'not-found-key-in-page-properties'
-  }
-  const p = page.properties[key]
-  if (!('rich_text' in p)) {
-    return 'not-found-richtext-in-key'
-  }
-  // @ts-ignore
-  return p.rich_text.map(v => v.text.content).join(',')
 }
 
-function buildHref (page: PageObjectResponseEx, link?: string) {
-  if (!link) {
-    return ''
+function setPathnamePrefixAndSuffix (name: string, dstOpts: GalleryPropertyOptions, srcOpts?: GalleryOptions) {
+  if (!srcOpts) {
+    return dstOpts
   }
-  const [path, slugKey] = getLinkPathAndLinkKey(link)
-  const slug = getSlug(slugKey, page)
-  return `${path}${slug}`
+  const { href, prefix, suffix } = srcOpts || {}
+
+  if (href && href[name]) {
+    dstOpts.pathname = href[name]
+  }
+  if (prefix && prefix[name]) {
+    dstOpts.prefix = prefix[name]
+  }
+  if (suffix && suffix[name]) {
+    dstOpts.suffix = suffix[name]
+  }
+
+  return dstOpts
 }
 
-const GalleryCard = ({ keys, page, href, link, query, preview, size, fit }: GalleryCardProps) => {
-  const path = getLinkPathAndLinkKey(href)[0]
+const GalleryCard = ({ keys, page, options }: GalleryCardProps) => {
+  const titleKey = findTitlePropertyName(page)
+  if (!titleKey) {
+    return <></>
+  }
+
+  const { href, link, query, image } = options || {}
+  const opts: GalleryPropertyOptions = { link, query }
+
+  if (href && href[titleKey]) {
+    const [path, slugKey] = getLinkPathAndLinkKey(href[titleKey])
+    opts.pathname = (slugKey === '') ? path : `${path}${getSlug(slugKey, page)}`
+  }
 
   return (
-    <div className="rotion-gallery-card">
-      <GalleryLinkedCard href={buildHref(page, href)} link={link} query={query}>
-        {preview && <GalleryPreview src={page.cover?.src} size={size} fit={fit} />}
-        <div className="rotion-gallery-card-text">
-          {keys.map((name, i) => (
-            <div key={`${page.id}${name}`} className={`field${i}`}>
-              <GalleryHandler property={page.properties[name] as DatabaseProperty | undefined} path={path} query={query} size={size} />
-            </div>
-          ))}
-        </div>
-      </GalleryLinkedCard>
-    </div>
+    <GalleryLinkedCard pathname={opts.pathname} link={link} query={query}>
+      {image?.preview && page.cover?.src && <GalleryPreview src={page.cover.src} options={image} />}
+      <div className="rotion-gallery-card-text">
+        {keys.map((name, i) => (
+          <div key={`${page.id}${name}`} className={`field${i}`}>
+            <GalleryHandler property={page.properties[name] as DatabaseProperty | undefined} options={setPathnamePrefixAndSuffix(name, structuredClone(opts), options)} />
+          </div>
+        ))}
+      </div>
+    </GalleryLinkedCard>
   )
 }
 

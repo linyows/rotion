@@ -32,6 +32,14 @@
   line-height: 1.5;
 }
 
+.rotion-table-verticallines .rotion-table-cell {
+  border-right: var(--rotion-table-border);
+}
+
+.rotion-table-verticallines .rotion-table-cell:last-child {
+  border-right: none;
+}
+
 .rotion-table-cell-inner {
   display: flex;
   flex-shrink: 0;
@@ -63,6 +71,14 @@
   .rotion-table-row {
     color: var(--rotion-dark-secondary-text);
     border-top: var(--rotion-dark-table-border);
+  }
+
+  .rotion-table-verticallines .rotion-table-cell {
+    border-right: var(--rotion-dark-table-border);
+  }
+
+  .rotion-table-verticallines .rotion-table-cell:last-child {
+    border-right: none;
   }
 
   .rotion-table-row:last-child {

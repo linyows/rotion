@@ -1,12 +1,16 @@
 import React from 'react'
 import type { ListNumberFieldProps } from './ListNumberField.types'
+import { PrefixSuffix } from '../../PrefixSuffix'
 import './ListNumberField.css'
 
-const ListNumberField = ({ number }: ListNumberFieldProps) => {
-  console.log(number)
+const ListNumberField = ({ number, options }: ListNumberFieldProps) => {
+  const { prefix, suffix } = options || {}
+
   return (
     <div className="rotion-list-number">
-      {number}
+      <PrefixSuffix prefix={prefix} suffix={suffix}>
+        {number}
+      </PrefixSuffix>
     </div>
   )
 }

@@ -8,11 +8,8 @@ const meta = {
   title: 'Database/List',
   component: List,
   args: {
-    keys: ['Name', 'spacer', 'Note', 'Published', 'Tags', 'Url', 'Born', 'Date'],
+    keys: ['Name', 'spacer', 'Note', 'Published', 'Tags', 'Url', 'Born', 'Category', 'Date'],
     db,
-    href: '/blog/[id]',
-    link: undefined,
-    query: undefined,
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof List>
@@ -24,8 +21,37 @@ export const Default: Story = {}
 
 export const Dashed: Story = {
   args: {
-    keys: ['Name', 'Note', 'dashed', 'Published', 'Tags', 'Url', 'Born', 'Date'],
+    keys: ['Name', 'Note', 'dashed', 'Published', 'Tags', 'Url', 'Born', 'Category', 'Date'],
     db,
-    href: '/blog/[id]',
+  }
+}
+
+export const Linked: Story = {
+  args: {
+    keys: ['Name', 'Note', 'dashed', 'Published', 'Tags', 'Url', 'Born', 'Category', 'Date'],
+    db,
+    options: {
+      href: {
+        Name: '/blog/[id]',
+        Tags: '/blog/tags',
+        Category: '/blog/category',
+      },
+    }
+  }
+}
+
+export const PrefixSuffix: Story = {
+  args: {
+    keys: ['Name', 'Note', 'dashed', 'Published', 'Tags', 'Url', 'Born', 'Category', 'Date'],
+    db,
+    options: {
+      prefix: {
+        Born: 'Born in',
+        Published: 'Published',
+      },
+      suffix: {
+        Born: 's',
+      }
+    }
   }
 }

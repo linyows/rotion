@@ -1,0 +1,16 @@
+.rotion-prefix,
+.rotion-suffix {
+  display: inline;
+  font-size: .7rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  color: var(--rotion-tertiary-text);
+}
+
+.rotion-prefix {
+  padding-right: 3px;
+}
+
+.rotion-suffix {
+  padding-left: 3px;
+}

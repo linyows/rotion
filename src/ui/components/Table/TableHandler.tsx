@@ -10,7 +10,7 @@ import TableNumberField from './TableNumberField/TableNumberField'
 import TableFormulaField from './TableFormulaField/TableFormulaField'
 import type { TableHandlerProps } from './TableHandler.types'
 
-const TableHandler = ({ property, path, slug, link, query }: TableHandlerProps) => {
+const TableHandler = ({ property, options }: TableHandlerProps) => {
   if (!property || !property.type) {
     console.log('property empty in table handler: ', property)
     return <></>
@@ -18,7 +18,8 @@ const TableHandler = ({ property, path, slug, link, query }: TableHandlerProps) 
 
   switch (property.type) {
     case 'title':
-      return <TableTitleField textObjects={property.title} path={path} slug={slug} link={link} query={query} />
+      console.log(options)
+      return <TableTitleField textObjects={property.title} options={options} />
     case 'rich_text':
       return <TableRichTextField textObjects={property.rich_text} />
     case 'url':
@@ -26,15 +27,15 @@ const TableHandler = ({ property, path, slug, link, query }: TableHandlerProps) 
     case 'date':
       return <TableDateField date={property.date} />
     case 'multi_select':
-      return <TableMultiSelectField multiSelect={property.multi_select} path={path} query={query} />
+      return <TableMultiSelectField multiSelect={property.multi_select} options={options} />
     case 'checkbox':
-      return <TableCheckboxField checked={property.checkbox} />
+      return <TableCheckboxField checked={property.checkbox} options={options} />
     case 'number':
-      return <TableNumberField number={property.number} />
+      return <TableNumberField number={property.number} options={options} />
     case 'select':
-      return <TableSelectField select={property.select} path={path} query={query} />
+      return <TableSelectField select={property.select} options={options} />
     case 'formula':
-      return <TableFormulaField number={property.formula.number} />
+      return <TableFormulaField number={property.formula.number} options={options} />
     case 'status':
     case 'email':
     case 'phone_number':

@@ -5,9 +5,9 @@ import './LinkedTag.css'
 const LinkedTagIfLinked = ({ pathname, link, query, children }: LinkedTagIfLinkedProps) => {
   const href = query ? { pathname, query } : pathname
 
-  if (href === '') {
+  if (!href) {
     return (
-      <span className="rotion-gallery-tag">
+      <span className="rotion-gallery-multiselect-tag">
         {children}
       </span>
     )
@@ -16,14 +16,14 @@ const LinkedTagIfLinked = ({ pathname, link, query, children }: LinkedTagIfLinke
   if (link) {
     const Link = link
     return (
-      <Link className="rotion-gallery-tag" href={href}>
+      <Link className="rotion-gallery-multiselect-tag rotion-gallery-multiselect-link" href={href}>
         {children}
       </Link>
     )
   }
 
   return (
-    <a className="rotion-gallery-tag" href={pathname}>
+    <a className="rotion-gallery-multiselect-tag rotion-gallery-multiselect-link" href={pathname}>
       {children}
     </a>
   )

@@ -5,7 +5,7 @@
       "object": "page",
       "id": "6ec7f962-cc97-46eb-a41c-064eea759368",
       "created_time": "2022-08-14T13:59:00.000Z",
-      "last_edited_time": "2024-04-11T08:10:00.000Z",
+      "last_edited_time": "2024-05-22T08:26:00.000Z",
       "created_by": {
         "object": "user",
         "id": "c1400938-a445-438b-be9c-2734e5dc90a6"
@@ -18,7 +18,7 @@
         "type": "file",
         "file": {
           "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/faa2f0d9-3c0b-4fbe-8662-a8acd7fb5fc6/1114-laszlo_belady_older.jpg",
-          "expiry_time": "2024-05-20T05:46:15.740Z"
+          "expiry_time": "2024-05-22T09:28:39.212Z"
         },
         "src": "/images/page-cover-6ec7f962-cc97-46eb-a41c-064eea759368-b6461554734d669eed67ff2b16484e6aa9dc9dec.webp"
       },
@@ -105,9 +105,7 @@
               "type": "text",
               "text": {
                 "content": "László Bélády",
-                "link": {
-                  "url": "https://en.wikipedia.org/wiki/L%C3%A1szl%C3%B3_B%C3%A9l%C3%A1dy"
-                }
+                "link": null
               },
               "annotations": {
                 "bold": false,
@@ -118,7 +116,7 @@
                 "color": "default"
               },
               "plain_text": "László Bélády",
-              "href": "https://en.wikipedia.org/wiki/L%C3%A1szl%C3%B3_B%C3%A9l%C3%A1dy"
+              "href": null
             }
           ]
         }
@@ -130,7 +128,7 @@
       "object": "page",
       "id": "11e2cb37-294f-4495-86bb-29432a5ee0b9",
       "created_time": "2022-09-05T13:39:00.000Z",
-      "last_edited_time": "2023-02-21T03:38:00.000Z",
+      "last_edited_time": "2024-05-22T08:26:00.000Z",
       "created_by": {
         "object": "user",
         "id": "c1400938-a445-438b-be9c-2734e5dc90a6"
@@ -143,7 +141,7 @@
         "type": "file",
         "file": {
           "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/068a00e5-6ab6-4d83-8f5b-ec6a161da9fb/Richard_Stallman_at_LibrePlanet_2019.jpg",
-          "expiry_time": "2024-05-20T05:46:15.737Z"
+          "expiry_time": "2024-05-22T09:28:39.213Z"
         },
         "src": "/images/page-cover-11e2cb37-294f-4495-86bb-29432a5ee0b9-b58e692f66c601d057082f6e808b29d32da1ae77.webp"
       },
@@ -235,9 +233,7 @@
               "type": "text",
               "text": {
                 "content": "Richard Stallman",
-                "link": {
-                  "url": "https://en.wikipedia.org/wiki/Richard_Stallman"
-                }
+                "link": null
               },
               "annotations": {
                 "bold": false,
@@ -248,7 +244,7 @@
                 "color": "default"
               },
               "plain_text": "Richard Stallman",
-              "href": "https://en.wikipedia.org/wiki/Richard_Stallman"
+              "href": null
             }
           ]
         }
@@ -260,7 +256,7 @@
       "object": "page",
       "id": "3d35bef7-5ec3-4860-8235-6aa705c11711",
       "created_time": "2022-08-16T01:56:00.000Z",
-      "last_edited_time": "2023-02-21T03:38:00.000Z",
+      "last_edited_time": "2024-05-22T08:26:00.000Z",
       "created_by": {
         "object": "user",
         "id": "c1400938-a445-438b-be9c-2734e5dc90a6"
@@ -273,7 +269,7 @@
         "type": "file",
         "file": {
           "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/efd3c035-d4a2-4528-ac04-a8c0f36685e5/peterchen.jpg",
-          "expiry_time": "2024-05-20T05:46:15.738Z"
+          "expiry_time": "2024-05-22T09:28:39.213Z"
         },
         "src": "/images/page-cover-3d35bef7-5ec3-4860-8235-6aa705c11711-239dd5551a68f2297e67676b4f34a3c5bd712ddc.webp"
       },
@@ -396,9 +392,7 @@
               "type": "text",
               "text": {
                 "content": "Peter Chen",
-                "link": {
-                  "url": "https://en.wikipedia.org/wiki/Peter_Chen"
-                }
+                "link": null
               },
               "annotations": {
                 "bold": false,
@@ -409,7 +403,7 @@
                 "color": "default"
               },
               "plain_text": "Peter Chen",
-              "href": "https://en.wikipedia.org/wiki/Peter_Chen"
+              "href": null
             }
           ]
         }
@@ -421,7 +415,7 @@
       "object": "page",
       "id": "be549e10-30b2-4c2d-b38a-6c7b0dd898f5",
       "created_time": "2022-08-16T01:59:00.000Z",
-      "last_edited_time": "2023-02-21T03:37:00.000Z",
+      "last_edited_time": "2024-05-22T08:26:00.000Z",
       "created_by": {
         "object": "user",
         "id": "c1400938-a445-438b-be9c-2734e5dc90a6"
@@ -434,7 +428,7 @@
         "type": "file",
         "file": {
           "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/e44c5b16-2c08-4fa9-8c5c-2d0c7bdaf352/1024px-Edsger_Wybe_Dijkstra.jpg",
-          "expiry_time": "2024-05-20T05:46:15.738Z"
+          "expiry_time": "2024-05-22T09:28:39.214Z"
         },
         "src": "/images/page-cover-be549e10-30b2-4c2d-b38a-6c7b0dd898f5-678fbf564e3c2559c382afbfda2a41baf1171da0.webp"
       },
@@ -526,9 +520,7 @@
               "type": "text",
               "text": {
                 "content": "Edsger W. Dijkstra",
-                "link": {
-                  "url": "https://en.wikipedia.org/wiki/Edsger_W._Dijkstra"
-                }
+                "link": null
               },
               "annotations": {
                 "bold": false,
@@ -539,7 +531,7 @@
                 "color": "default"
               },
               "plain_text": "Edsger W. Dijkstra",
-              "href": "https://en.wikipedia.org/wiki/Edsger_W._Dijkstra"
+              "href": null
             }
           ]
         }
@@ -551,7 +543,7 @@
       "object": "page",
       "id": "2c1c3b86-4642-4d97-9042-19e916298fd9",
       "created_time": "2022-08-14T13:59:00.000Z",
-      "last_edited_time": "2023-02-21T03:37:00.000Z",
+      "last_edited_time": "2024-05-22T08:26:00.000Z",
       "created_by": {
         "object": "user",
         "id": "c1400938-a445-438b-be9c-2734e5dc90a6"
@@ -564,7 +556,7 @@
         "type": "file",
         "file": {
           "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/015c6030-6758-4326-b7ba-33b9a1a2c775/Fred_Brooks.jpg",
-          "expiry_time": "2024-05-20T05:46:15.738Z"
+          "expiry_time": "2024-05-22T09:28:39.216Z"
         },
         "src": "/images/page-cover-2c1c3b86-4642-4d97-9042-19e916298fd9-0aa72a3ccb7d42280d843e43e580708d40eebdcd.webp"
       },
@@ -687,9 +679,7 @@
               "type": "text",
               "text": {
                 "content": "Fred Brooks",
-                "link": {
-                  "url": "https://en.wikipedia.org/wiki/Fred_Brooks"
-                }
+                "link": null
               },
               "annotations": {
                 "bold": false,
@@ -700,7 +690,7 @@
                 "color": "default"
               },
               "plain_text": "Fred Brooks",
-              "href": "https://en.wikipedia.org/wiki/Fred_Brooks"
+              "href": null
             }
           ]
         }
@@ -712,7 +702,7 @@
       "object": "page",
       "id": "fcf85465-0caa-402f-aaf6-e4deb4f6c9d8",
       "created_time": "2022-08-14T13:59:00.000Z",
-      "last_edited_time": "2024-04-11T06:20:00.000Z",
+      "last_edited_time": "2024-05-22T08:26:00.000Z",
       "created_by": {
         "object": "user",
         "id": "c1400938-a445-438b-be9c-2734e5dc90a6"
@@ -725,7 +715,7 @@
         "type": "file",
         "file": {
           "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/0b9379d6-fad9-4cf1-a497-5e4804c43a2d/Charles_Bachman_2012.jpg",
-          "expiry_time": "2024-05-20T05:46:15.739Z"
+          "expiry_time": "2024-05-22T09:28:39.214Z"
         },
         "src": "/images/page-cover-fcf85465-0caa-402f-aaf6-e4deb4f6c9d8-d38ffeed87aaafe83b08077209c4dd893807e594.webp"
       },
@@ -848,9 +838,7 @@
               "type": "text",
               "text": {
                 "content": "Charles Bachman",
-                "link": {
-                  "url": "https://en.wikipedia.org/wiki/Charles_Bachman"
-                }
+                "link": null
               },
               "annotations": {
                 "bold": false,
@@ -861,7 +849,7 @@
                 "color": "default"
               },
               "plain_text": "Charles Bachman",
-              "href": "https://en.wikipedia.org/wiki/Charles_Bachman"
+              "href": null
             }
           ]
         }
@@ -873,7 +861,7 @@
       "object": "page",
       "id": "42be4a98-826c-421d-a654-dd7fa9087b2c",
       "created_time": "2022-08-16T01:59:00.000Z",
-      "last_edited_time": "2023-02-21T03:37:00.000Z",
+      "last_edited_time": "2024-05-22T08:26:00.000Z",
       "created_by": {
         "object": "user",
         "id": "c1400938-a445-438b-be9c-2734e5dc90a6"
@@ -886,7 +874,7 @@
         "type": "file",
         "file": {
           "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/432856a1-33ec-4c68-a30c-55aff1f6d07f/David_Parnas.jpg",
-          "expiry_time": "2024-05-20T05:46:15.739Z"
+          "expiry_time": "2024-05-22T09:28:39.215Z"
         },
         "src": "/images/page-cover-42be4a98-826c-421d-a654-dd7fa9087b2c-0444b2cb66013f5993d92ccaedb782d73dd2538c.webp"
       },
@@ -1045,9 +1033,7 @@
               "type": "text",
               "text": {
                 "content": "David Parnas",
-                "link": {
-                  "url": "https://en.wikipedia.org/wiki/David_Parnas"
-                }
+                "link": null
               },
               "annotations": {
                 "bold": false,
@@ -1058,7 +1044,7 @@
                 "color": "default"
               },
               "plain_text": "David Parnas",
-              "href": "https://en.wikipedia.org/wiki/David_Parnas"
+              "href": null
             }
           ]
         }
@@ -1070,7 +1056,7 @@
       "object": "page",
       "id": "9923bff0-6414-4ecb-b6e0-fdfd35343161",
       "created_time": "2022-08-16T01:59:00.000Z",
-      "last_edited_time": "2023-02-21T03:37:00.000Z",
+      "last_edited_time": "2024-05-22T08:26:00.000Z",
       "created_by": {
         "object": "user",
         "id": "c1400938-a445-438b-be9c-2734e5dc90a6"
@@ -1083,7 +1069,7 @@
         "type": "file",
         "file": {
           "url": "https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/41b7bea7-2c24-49bf-83b3-c3466a452f60/MJPhotoVancouver.jpg",
-          "expiry_time": "2024-05-20T05:46:15.739Z"
+          "expiry_time": "2024-05-22T09:28:39.215Z"
         },
         "src": "/images/page-cover-9923bff0-6414-4ecb-b6e0-fdfd35343161-2e1d02970a6395c072ccbbe9ee3e4ef5aa1b4826.webp"
       },
@@ -1170,9 +1156,7 @@
               "type": "text",
               "text": {
                 "content": "Michael A. Jackson",
-                "link": {
-                  "url": "https://en.wikipedia.org/wiki/Michael_A._Jackson_(computer_scientist)"
-                }
+                "link": null
               },
               "annotations": {
                 "bold": false,
@@ -1183,7 +1167,7 @@
                 "color": "default"
               },
               "plain_text": "Michael A. Jackson",
-              "href": "https://en.wikipedia.org/wiki/Michael_A._Jackson_(computer_scientist)"
+              "href": null
             }
           ]
         }
@@ -1196,7 +1180,7 @@
   "has_more": false,
   "type": "page_or_database",
   "page_or_database": {},
-  "request_id": "5fb36fa7-6151-44c8-9fa2-131443a32c59",
+  "request_id": "40f91b6c-1fb8-463e-8c7d-a58773774f4e",
   "meta": {
     "object": "database",
     "id": "81781536-afc6-431d-a217-21177e7bf8e0",
@@ -1419,6 +1403,6 @@
     "public_url": "https://linyows.notion.site/81781536afc6431da21721177e7bf8e0",
     "archived": false,
     "in_trash": false,
-    "request_id": "ab66c4f7-2147-4d03-8545-b0e819446bb9"
+    "request_id": "f45fc96f-b8da-4cac-bd1a-8dbd8cbb9586"
   }
 }

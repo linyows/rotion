@@ -5,6 +5,6 @@ import type { Link } from '../../types'
 export interface GalleryLinkedCardProps {
   link?: Link
   query?: ParsedUrlQueryInput
-  href: string
+  pathname?: string
   children?: ReactNode
 }

@@ -1,0 +1,20 @@
+.rotion-list-select {
+  font-family: var(--rotion-font-family);
+  font-size: .75rem;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  padding: 0;
+  margin: 0 7px;
+  border-radius: 3px;
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-list-select {
+    color: rgb(211, 229, 239);
+    background-color: rgb(24, 51, 71);
+  }
+}

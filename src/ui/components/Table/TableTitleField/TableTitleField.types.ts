@@ -1,11 +1,7 @@
-import type { ParsedUrlQueryInput } from 'node:querystring'
 import type { RichTextItemResponseEx, RichTextItemResponse } from '../../../../exporter'
-import type { Link } from '../../types'
+import { TablePropertyOptions } from '../TableHandler.types'
 
 export interface TableTitleFieldProps {
   textObjects: RichTextItemResponseEx[] | RichTextItemResponse[]
-  path?: string
-  slug?: string
-  link?: Link
-  query?: ParsedUrlQueryInput
+  options?: TablePropertyOptions
 }

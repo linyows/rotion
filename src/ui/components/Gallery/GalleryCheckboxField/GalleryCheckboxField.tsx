@@ -1,12 +1,16 @@
 import React from 'react'
 import type { GalleryCheckboxFieldProps } from './GalleryCheckboxField.types'
 import { Checkbox } from '../../Checkbox'
+import { PrefixSuffix } from '../../PrefixSuffix'
 import './GalleryCheckboxField.css'
 
-const GalleryCheckboxField = ({ checked }: GalleryCheckboxFieldProps) => {
+const GalleryCheckboxField = ({ checked, options }: GalleryCheckboxFieldProps) => {
+  const { prefix, suffix } = options || {}
   return (
     <div className="rotion-gallery-checkbox">
-      <Checkbox bool={checked} />
+      <PrefixSuffix prefix={prefix} suffix={suffix}>
+        <Checkbox bool={checked} />
+      </PrefixSuffix>
     </div>
   )
 }

@@ -5,22 +5,22 @@ import type { GalleryProps } from './Gallery.types'
 import '../tokens.css'
 import './Gallery.css'
 
-const Gallery = ({ keys, db, href, link, query, preview, size = 'medium', fit = true }: GalleryProps) => {
+const Gallery = ({ keys, db, options }: GalleryProps) => {
+  if (options === undefined) {
+    options = {}
+  }
+  const { image } = options
+  if (image === undefined) {
+    options.image = {}
+  }
+  const { preview = 'cover', fit = true, size = 'medium' } = image || {}
+  options.image = { preview, fit, size }
+
   return (
     <div className={`rotion-gallery ${fit ? 'rotion-gallery-fit' : ''}`}>
       <div className={`rotion-gallery-inner rotion-gallery-${size}`}>
         {db.results.map((v) => (
-          <GalleryCard
-            key={v.id}
-            keys={keys}
-            page={v as PageObjectResponseEx}
-            href={href || ''}
-            link={link}
-            query={query}
-            preview={preview}
-            size={size}
-            fit={fit}
-          />
+          <GalleryCard key={v.id} keys={keys} page={v as PageObjectResponseEx} options={options} />
         ))}
       </div>
     </div>

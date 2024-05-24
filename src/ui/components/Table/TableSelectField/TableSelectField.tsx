@@ -3,14 +3,15 @@ import type { TableSelectFieldProps } from './TableSelectField.types'
 import LinkedTagIfLinked from './LinkedTagIfLinked'
 import './TableSelectField.css'
 
-const TableSelectField = ({ select, path, link, query }: TableSelectFieldProps) => {
+const TableSelectField = ({ select, options }: TableSelectFieldProps) => {
   if (!select) {
     return <></>
   }
+  const { pathname, link, query } = options || {}
 
   return (
     <div className="rotion-table-select">
-      <LinkedTagIfLinked pathname={path ? `${path}tags/${encodeURIComponent(select.name)}` : ''} color={select.color} link={link} query={query}>
+      <LinkedTagIfLinked pathname={pathname ? `${pathname}/${encodeURIComponent(select.name)}` : ''} color={select.color} link={link} query={query}>
         {select.name}
       </LinkedTagIfLinked>
     </div>

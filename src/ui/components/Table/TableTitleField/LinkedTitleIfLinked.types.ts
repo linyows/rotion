@@ -1,11 +1,7 @@
 import type { ReactNode } from 'react'
-import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { Link } from '../../types'
+import { TablePropertyOptions } from '../TableHandler.types'
 
 export interface LinkedTitleIfLinkedProps {
-  path?: string
-  slug?: string
-  link?: Link
-  query?: ParsedUrlQueryInput
+  options?: TablePropertyOptions
   children?: ReactNode
 }
