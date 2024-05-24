@@ -100,7 +100,6 @@ const ListPage: NextPage<Props> = ({ title, icon, blocks, db, breadcrumbs }) => 
             <List
               keys={['Name', 'spacer', 'Note', 'Tags', 'Url', 'Born', 'Date']}
               db={db}
-              href="/database/[id]"
             />
           </div>
         </div>

@@ -101,10 +101,7 @@ const GalleryPage: NextPage<Props> = ({ title, icon, blocks, db, breadcrumbs }) 
             <Gallery
               keys={['Name', 'Date', 'Tags']}
               db={db}
-              preview="cover"
-              size="large"
-              fit={true}
-              href="/database/[id]"
+              options={{ image: { preview: 'cover', size: 'large' }}}
             />
           </div>
         </div>

@@ -100,7 +100,6 @@ const TablePage: NextPage<Props> = ({ title, icon, blocks, db, breadcrumbs }) =>
             <Table
               keys={['Name', 'Date', 'Tags', 'Url', 'Note', 'Born', 'Category']}
               db={db}
-              href="/database/[id]"
             />
           </div>
         </div>
