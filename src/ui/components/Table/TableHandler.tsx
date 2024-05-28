@@ -18,7 +18,6 @@ const TableHandler = ({ property, options }: TableHandlerProps) => {
 
   switch (property.type) {
     case 'title':
-      console.log(options)
       return <TableTitleField textObjects={property.title} options={options} />
     case 'rich_text':
       return <TableRichTextField textObjects={property.rich_text} />
