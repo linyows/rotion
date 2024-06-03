@@ -203,9 +203,10 @@ export async function writeCache (f: string, data: unknown): Promise<void> {
 }
 
 export async function isAvailableCache (f: string): Promise<boolean> {
-  const t = new Date(Date.now() + cacheAvailableDuration)
+  const now = Date.now()
   const stats = await stat(f)
-  return stats.mtime < t
+  const cache = stats.mtime.getTime() + cacheAvailableDuration
+  return now < cache
 }
 
 const sleep = (m: number) => {
