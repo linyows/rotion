@@ -50,3 +50,5 @@ public
 
 
 *storybook.log
+
+/testdata/cache.txt
