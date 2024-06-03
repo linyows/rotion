@@ -18,7 +18,10 @@ test('isAvailableCache returs true when cache hits', async () => {
 })
 
 test('isAvailableCache returs false when cache no hits', async () => {
-  const res = await files.isAvailableCache('testdata/expired-cache.txt')
+  const path = 'testdata/cache.txt'
+  await fs.writeFile(path, '')
+  await files.sleep(1)
+  const res = await files.isAvailableCache(path, -10000)
   assert.not.ok(res)
 })
 

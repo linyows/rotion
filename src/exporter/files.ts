@@ -202,16 +202,14 @@ export async function writeCache (f: string, data: unknown): Promise<void> {
   return writeFile(f, JSON.stringify(data), 'utf8').catch(() => {})
 }
 
-export async function isAvailableCache (f: string): Promise<boolean> {
+export async function isAvailableCache (f: string, d?: number): Promise<boolean> {
   const now = Date.now()
   const stats = await stat(f)
-  const cache = stats.mtime.getTime() + cacheAvailableDuration
-  console.log(stats.mtime.toISOString())
-  console.log(now, '<', cache, now < cache)
+  const cache = stats.mtime.getTime() + (d || cacheAvailableDuration)
   return now < cache
 }
 
-const sleep = (m: number) => {
+export const sleep = (m: number) => {
   return new Promise((resolve) => setTimeout(resolve, m))
 }
 
