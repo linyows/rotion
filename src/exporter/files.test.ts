@@ -10,6 +10,18 @@ test.before(() => {
   td.reset()
 })
 
+test('isAvailableCache returs true when cache hits', async () => {
+  const path = 'testdata/cache.txt'
+  await fs.writeFile(path, '')
+  const res = await files.isAvailableCache(path)
+  assert.ok(res)
+})
+
+test('isAvailableCache returs false when cache no hits', async () => {
+  const res = await files.isAvailableCache('testdata/expired-cache.txt')
+  assert.not.ok(res)
+})
+
 type GHRes = {
   message: string
   documentation_url: string
