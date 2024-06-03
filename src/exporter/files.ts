@@ -206,6 +206,8 @@ export async function isAvailableCache (f: string): Promise<boolean> {
   const now = Date.now()
   const stats = await stat(f)
   const cache = stats.mtime.getTime() + cacheAvailableDuration
+  console.log(stats.mtime.toISOString())
+  console.log(now, '<', cache, now < cache)
   return now < cache
 }
 
