@@ -49,7 +49,6 @@
     "ui:rollup": "rollup --config rollup.config.ts --configPlugin typescript",
     "ui:typecheck": "tsc -p src/ui/tsconfig.typecheck.json",
     "ui:lint": "eslint ./src/ui/components --ext .js,.jsx,.ts,.tsx -c ./src/ui/.eslintrc.json",
-    "ui:test": "uvu -r tsm ./src/ui/components",
     "ui:fixtures": "jq '.' website/.cache/notion.databases.query-* | sed 's/?.*\",/\",/g' > src/ui/fixtures/fetch_database_response.json",
     "story": "storybook dev -p 6006 --ci",
     "build-story": "storybook build",
