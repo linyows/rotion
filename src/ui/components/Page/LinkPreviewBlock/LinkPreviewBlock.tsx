@@ -46,15 +46,15 @@ const Figma = ({ url }: Props) => {
   const basename = arrayUrl[arrayUrl.length - 1]
   const title = basename.split('?')[0].replace('-', ' ')
   return (
-    <span className="rotion-linkpreview-area rotion-linkpreview-figma">
-      <span className="rotion-linkpreview-icon">
+    <div className="rotion-linkpreview-area rotion-linkpreview-figma">
+      <div className="rotion-linkpreview-icon">
         <Icon name='figma' width='21px' height='32px' />
-      </span>
-      <span>
+      </div>
+      <div>
         <span className="rotion-linkpreview-title">{title}</span>
         <span className="rotion-linkpreview-desc">Assets in Figma</span>
-      </span>
-    </span>
+      </div>
+    </div>
   )
 }
 
@@ -65,6 +65,11 @@ const LinkPreviewBlock = ({ block }: LinkPreviewBlockProps) => {
   const { link_preview } = block
   const { url } = link_preview
 
+  if (url.includes('figma.com') && link_preview.figma) {
+    return (
+      <div className="rotion-linkpreview-figma" dangerouslySetInnerHTML={{ __html: link_preview.figma?.html }} />
+    )
+  }
 
   return (
     <div className="rotion-linkpreview">

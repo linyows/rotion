@@ -247,7 +247,13 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
         case 'link_preview':
           const { url } = block.link_preview
 
-          if (url.includes('github.com')) {
+          if (url.includes('figma.com')) {
+            // https://www.figma.com/file/GfHZFRpWGd0QXsRg9igdw8/Google-Material-Design?node-id=0%3A1
+            block.link_preview.figma = {
+              html: `<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=${encodeURI(url)}" allowfullscreen></iframe>`
+            }
+
+          } else if (url.includes('github.com')) {
             const u = new URL(url).pathname
             if (u.split('/').length > 1) {
               const [owner, repo, type, num] = u.split('/').slice(1)

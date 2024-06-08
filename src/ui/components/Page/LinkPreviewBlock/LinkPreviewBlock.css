@@ -103,6 +103,11 @@
   padding: 1px;
 }
 
+.rotion-linkpreview-figma iframe {
+  border-radius: var(--rotion-border-radius);
+  border: var(--rotion-border);
+}
+
 @media (prefers-color-scheme: dark) {
   .rotion-linkpreview-link {
     border: var(--rotion-dark-border);
