@@ -26,6 +26,7 @@ import type {
   GetDatabaseResponseEx,
 } from './types.js'
 import { FetchBreadcrumbs } from './breadcrumbs.js'
+import { getIssueForLinkPreview, getRepoForLinkPreview } from './github.js'
 
 export interface FetchBlocksArgs {
   block_id: string
@@ -243,6 +244,35 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
             block.video.html = await getVideoHtml(block)
           }
           break
+        case 'link_preview':
+          const { url } = block.link_preview
+
+          if (url.includes('figma.com')) {
+            // https://www.figma.com/file/GfHZFRpWGd0QXsRg9igdw8/Google-Material-Design?node-id=0%3A1
+            block.link_preview.figma = {
+              html: `<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=${encodeURI(url)}" allowfullscreen></iframe>`
+            }
+
+          } else if (url.includes('github.com')) {
+            const u = new URL(url).pathname
+            if (u.split('/').length > 1) {
+              const [owner, repo, type, num] = u.split('/').slice(1)
+              if (owner && repo && (type === 'issues' || type === 'pull') && num) {
+                const res = await getIssueForLinkPreview({ owner, repo, number: num })
+                block.link_preview.github = {
+                  type: 'issue',
+                  issue: res,
+                }
+              } else if (owner && repo) {
+                const res = await getRepoForLinkPreview({ owner, repo })
+                block.link_preview.github = {
+                  type: 'repo',
+                  repo: res,
+                }
+              }
+            }
+          }
+          break
         case 'audio':
         case 'code':
         case 'column':
@@ -252,7 +282,6 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
         case 'heading_2':
         case 'heading_3':
         case 'link_to_page':
-        case 'link_preview':
         case 'quote':
         case 'table_of_contents':
         case 'table_row':

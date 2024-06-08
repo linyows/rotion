@@ -453,7 +453,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
     // Instagram oEmbed API is authentication required. So hard-coding.
     return `<blockquote class="instagram-media" data-instgrm-permalink="${link}?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"> </blockquote> <script async src="//www.instagram.com/embed.js"></script>`
 
-  } else if (block.embed && block.embed.url.includes('twitter.com')) {
+  } else if (block.embed && (block.embed.url.includes('x.com') || block.embed.url.includes('twitter.com'))) {
     const src = block.embed?.url || ''
     const tweetId = path.basename(src.split('?').shift() || '')
     const reqUrl = `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
@@ -466,6 +466,17 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
       }
     }
 
+  } else if (block.embed && block.embed.url.includes('spotify.com')) {
+    const src = block.embed?.url || ''
+    const type = src.includes('artist') ? 'artist' : src.includes('album') ? 'album' : null
+    if (type) {
+      // Example: https://open.spotify.com/intl-ja/artist/2YZyLoL8N0Wb9xBt1NhZWg
+      // Example: https://open.spotify.com/intl-ja/album/07w0rG5TETcyihsEIZR3qG
+      const id = src.split('/').pop()
+      return `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/${type}/${id}?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`
+    }
+    console.log(`spotify url mismatched: ${src}`)
+
   } else if (block.embed && block.embed.url.includes('music.apple.com')) {
     const src = block.embed?.url || ''
     // Example: https://music.apple.com/us/album/paracosm-bonus-track-version/655768700
@@ -476,7 +487,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
       const musicId = m[3]
       return `<iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/${contry}/album/${albumName}/${musicId}"></iframe>`
     }
-    console.log(`music url mismatched: ${src}`)
+    console.log(`apple music url mismatched: ${src}`)
 
   } else if (block.embed && block.embed.url.includes('https://www.google')) {
     const src = block.embed?.url || ''

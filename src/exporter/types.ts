@@ -44,6 +44,7 @@ import type {
   TextRichTextItemResponse,
   EquationRichTextItemResponse,
 } from '@notionhq/client/build/src/api-endpoints.js'
+import { LinkPreviewGithubRepo, LinkPreviewGithubIssue } from './github.js'
 
 export * from '@notionhq/client/build/src/api-endpoints.js'
 
@@ -316,13 +317,22 @@ export type BlockObjectResponse =
   | PdfBlockObjectResponseEx
   | FileBlockObjectResponseEx
   | AudioBlockObjectResponse
-  | LinkPreviewBlockObjectResponse
+  | LinkPreviewBlockObjectResponseEx
   | UnsupportedBlockObjectResponse
 
 export type ListBlockChildrenResponseEx = ListBlockChildrenResponse & {
   results: Array<BlockObjectResponse>
   children?: ListBlockChildrenResponse
   last_edited_time?: string
+}
+export type LinkPreviewBlockObjectResponseEx = LinkPreviewBlockObjectResponse & {
+  link_preview: {
+    url: string
+    github?:
+      | { type: 'issue', issue: LinkPreviewGithubIssue }
+      | { type: 'repo', repo: LinkPreviewGithubRepo }
+    figma?: { html: string }
+  }
 }
 
 // Extending by adding src param

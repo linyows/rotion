@@ -2,7 +2,7 @@ import React from 'react'
 import './Icon.css'
 
 export interface IconProps {
-  name: 'figma' | 'slack' | 'github' | 'file' | 'link'
+  name: 'figma' | 'slack' | 'github' | 'file' | 'link' | 'codemerge' | 'circlecheck' | 'circledot'
   width?: string
   height?: string
   className?: string
@@ -49,6 +49,24 @@ const Icon = ({ name, width, height, className }: IconProps) => {
         <svg className={`rotion-icon-link ${className}`} version="1.0" xmlns="http://www.w3.org/2000/svg" width="13px" height="13px" viewBox="0 0 13 13" role="graphics-symbol">
           <path d="M6.30826 4.43292L1.76184 8.98454C1.76176 8.98462 1.76169 8.9847 1.76161 8.98477C1.76158 8.9848 1.76156 8.98482 1.76154 8.98484C1.46068 9.28584 1.25 9.6914 1.25 10.1565C1.25 10.6117 1.45865 11.0119 1.73417 11.2886C2.01014 11.5658 2.41107 11.7773 2.87078 11.7773C3.34169 11.7773 3.73758 11.5617 4.03477 11.2733L4.03482 11.2734L4.04244 11.2657L8.58864 6.72474V8.667C8.58864 9.51956 9.22729 10.2935 10.1521 10.2935C11.0528 10.2935 11.75 9.54534 11.75 8.66127V2.92671C11.75 2.48722 11.5981 2.06381 11.2838 1.74808C10.9689 1.43182 10.5446 1.27728 10.1006 1.27728H4.36028C3.46161 1.27728 2.72804 1.97749 2.72804 2.86942C2.72804 3.79734 3.51104 4.43292 4.35455 4.43292H6.30826Z" fill="#3E3C38" stroke="white" strokeWidth="1.5">
           </path>
+        </svg>
+      )
+    case 'circledot':
+      return (
+        <svg className={`rotion-icon-circledot ${className}`} xmlns="http://www.w3.org/2000/svg" width={width || '15px'} height={height || '15px'} viewBox="0 0 512 512">
+          <path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256-96a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/>
+        </svg>
+      )
+    case 'circlecheck':
+      return (
+        <svg className={`rotion-icon-circlecheck ${className}`} xmlns="http://www.w3.org/2000/svg" width={width || '15px'} height={height || '15px'} viewBox="0 0 512 512">
+          <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/>
+        </svg>
+      )
+    case 'codemerge':
+      return (
+        <svg className={`rotion-icon-codemerge ${className}`} version='1.0' xmlns="http://www.w3.org/2000/svg" width={width || '15px'} height={height || '15px'} viewBox="0 0 448 512">
+          <path d="M80 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm32.4 97.2c28-12.4 47.6-40.5 47.6-73.2c0-44.2-35.8-80-80-80S0 35.8 0 80c0 32.8 19.7 61 48 73.3V358.7C19.7 371 0 399.2 0 432c0 44.2 35.8 80 80 80s80-35.8 80-80c0-32.8-19.7-61-48-73.3V272c26.7 20.1 60 32 96 32h86.7c12.3 28.3 40.5 48 73.3 48c44.2 0 80-35.8 80-80s-35.8-80-80-80c-32.8 0-61 19.7-73.3 48H208c-49.9 0-91-38.1-95.6-86.8zM80 408a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM344 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/>
         </svg>
       )
   }
