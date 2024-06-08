@@ -40,7 +40,7 @@ const GithubLinkPreview = ({ url, github }: GithubLinkPreviewProps) => {
 
   if (github.type === 'issue') {
     const { title, login, number, created_at, closed_at, merged_at, state, avatar_src } = github.issue
-    const date = merged_at ? merged_at : (closed_at ? closed_at : created_at)
+    const date = merged_at || (closed_at || created_at)
     const icon = state === 'merged' ? 'codemerge' : (state === 'closed' ? 'circlecheck' : 'circledot')
     const stateClass = `rotion-linkpreview-github-state-icon rotion-linkpreview-issue-${state}`
     return (
@@ -53,7 +53,7 @@ const GithubLinkPreview = ({ url, github }: GithubLinkPreviewProps) => {
           <div className="rotion-linkpreview-title">
             {title}
             <span className="rotion-linkpreview-github-state">
-              <Icon className={stateClass} name={icon} width='14px' height='14px' /> 
+              <Icon className={stateClass} name={icon} width='14px' height='14px' />
               <span className="rotion-linkpreview-state">{state}</span>
             </span>
           </div>
