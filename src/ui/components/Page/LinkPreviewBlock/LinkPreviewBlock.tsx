@@ -62,12 +62,14 @@ const LinkPreviewBlock = ({ block }: LinkPreviewBlockProps) => {
   if (!block.link_preview) {
     return <></>
   }
-  const { url } = block.link_preview
+  const { link_preview } = block
+  const { url } = link_preview
+
 
   return (
     <div className="rotion-linkpreview">
       <a className="rotion-linkpreview-link" href={url} rel="noreferrer" target="_blank">
-        {url.includes('github.com') && <Github url={url} />}
+        {url.includes('github.com') && <GithubLinkPreview url={url} github={link_preview.github} />}
         {url.includes('slack.com') && <Slack url={url} />}
         {url.includes('figma.com') && <Figma url={url} />}
         {!url.includes('github.com') && !url.includes('slack.com') && !url.includes('figma.com') && `${url}`}

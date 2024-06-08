@@ -48,6 +48,61 @@
   color: var(--rotion-tertiary-text);
 }
 
+.rotion-linkpreview-githubicon {
+  position: relative;
+  margin-left: -3px;
+}
+
+.rotion-linkpreview-githubicon-user {
+  border-radius: 15px;
+}
+
+.rotion-linkpreview-dot {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.rotion-linkpreview-github-state {
+  margin-left: .6rem;
+  color: var(--rotion-secondary-text);
+}
+
+.rotion-linkpreview-github-state-icon {
+  margin-right: 3px;
+  margin-top: -1px;
+  vertical-align: middle;
+}
+
+.rotion-linkpreview-github-state .rotion-linkpreview-github-state-icon {
+  margin-right: 5px;
+  margin-top: -2px;
+}
+
+.rotion-linkpreview-issue-open {
+  fill: rgba(30,130,10,0.8);
+}
+
+.rotion-linkpreview-issue-closed {
+  fill: rgba(200,30,80,0.8);
+}
+
+.rotion-linkpreview-issue-merged {
+  fill: rgba(130,60,180,0.8);
+}
+
+.rotion-linkpreview-state {
+  text-transform: capitalize;
+}
+
+.rotion-linkpreview-githubicon-octocat {
+  position: absolute;
+  bottom: -2px;
+  right: -4px;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 1px;
+}
+
 @media (prefers-color-scheme: dark) {
   .rotion-linkpreview-link {
     border: var(--rotion-dark-border);
@@ -62,5 +117,9 @@
 
   .rotion-linkpreview-desc {
     color: var(--rotion-dark-tertiary-text);
+  }
+
+  .rotion-linkpreview-githubicon-octocat {
+    background-color: #000;
   }
 }

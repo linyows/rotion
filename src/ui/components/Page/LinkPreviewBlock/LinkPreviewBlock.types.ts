@@ -1,5 +1,5 @@
-import type { LinkPreviewBlockObjectResponse } from '../../../../exporter'
+import type { LinkPreviewBlockObjectResponseEx } from '../../../../exporter'
 
 export type LinkPreviewBlockProps = {
-  block: LinkPreviewBlockObjectResponse
+  block: LinkPreviewBlockObjectResponseEx
 }
