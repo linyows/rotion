@@ -28,10 +28,12 @@
 .rotion-linkpreview-icon {
   height: 100%;
 }
+
 .rotion-linkpreview-slack .rotion-linkpreview-icon {
   padding-top: 3px;
   margin-bottom: -3px;
 }
+
 .rotion-linkpreview-figma .rotion-linkpreview-icon {
   padding-left: 6px;
 }
