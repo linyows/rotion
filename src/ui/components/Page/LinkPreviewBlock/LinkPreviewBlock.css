@@ -96,7 +96,7 @@
 
 .rotion-linkpreview-githubicon-octocat {
   position: absolute;
-  bottom: -2px;
+  top: 20px;
   right: -4px;
   background-color: #fff;
   border-radius: 15px;
