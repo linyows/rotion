@@ -1,4 +1,6 @@
 import React from 'react'
+import { cdate } from 'cdate'
+import { relative } from 'cdate-relative'
 import { Icon } from '../../Icon'
 import type { LinkPreviewBlockProps } from './LinkPreviewBlock.types'
 import '../../tokens.css'
@@ -38,6 +40,8 @@ const GithubLinkPreview = ({ url, github }: GithubLinkPreviewProps) => {
     )
   }
 
+  const rdate = cdate().handler(relative).cdateFn()
+
   if (github.type === 'issue') {
     const { title, login, number, created_at, closed_at, merged_at, state, avatar_src } = github.issue
     const date = merged_at || (closed_at || created_at)
@@ -62,7 +66,9 @@ const GithubLinkPreview = ({ url, github }: GithubLinkPreviewProps) => {
             <span className="rotion-linkpreview-dot">•</span>
             {login}
             <span className="rotion-linkpreview-dot">•</span>
-            <span className="rotion-linkpreview-state">{state}</span> {date}
+            <span className="rotion-linkpreview-state">{state}</span>
+            {` `}
+            <span title={date}>{rdate(date).format('F')}</span>
           </div>
         </div>
       </div>
@@ -70,20 +76,21 @@ const GithubLinkPreview = ({ url, github }: GithubLinkPreviewProps) => {
   }
 
   if (github.type === 'repo') {
+    const { avatar_src, name, login, updated_at } = github.repo
     return (
       <div className="rotion-linkpreview-area rotion-linkpreview-github">
         <div className="rotion-linkpreview-githubicon">
-          <img className="rotion-linkpreview-githubicon-user" src={github.repo.avatar_src} width='32px' height='32px' />
+          <img className="rotion-linkpreview-githubicon-user" src={avatar_src} width='32px' height='32px' />
           <Icon className="rotion-linkpreview-githubicon-octocat" name='github' width='15px' height='15px' />
         </div>
         <div>
           <div className="rotion-linkpreview-title">
-            {github.repo.name}
+            {name}
           </div>
           <div className="rotion-linkpreview-desc">
-            {github.repo.login}
+            {login}
             <span className="rotion-linkpreview-dot">•</span>
-            Updated {github.repo.updated_at}
+            <span title={updated_at}>Updated {rdate(updated_at).format('F')}</span>
           </div>
         </div>
       </div>
