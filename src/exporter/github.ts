@@ -1,7 +1,7 @@
 import { fetchWithTimeout } from './api.js'
 import { saveImage } from './files.js'
 
-interface FetchFunc<T> {
+export interface FetchFunc<T> {
   (input: RequestInfo, init?: RequestInit): Promise<T>
 }
 
