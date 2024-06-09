@@ -67,7 +67,7 @@ const GithubLinkPreview = ({ url, github }: GithubLinkPreviewProps) => {
             {login}
             <span className="rotion-linkpreview-dot">•</span>
             <span className="rotion-linkpreview-state">{state}</span>
-            {` `}
+            {' '}
             <span title={date}>{rdate(date).format('F')}</span>
           </div>
         </div>
