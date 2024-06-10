@@ -39,7 +39,8 @@
 }
 
 .rotion-linkpreview-title {
-  display: block;
+  display: flex;
+  width: calc(100% - 42px);
   font-size: .85rem;
 }
 
@@ -48,6 +49,10 @@
   display: block;
   font-size: .8rem;
   color: var(--rotion-tertiary-text);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: calc(100% - 42px);
 }
 
 .rotion-linkpreview-githubicon {
@@ -67,6 +72,7 @@
 .rotion-linkpreview-github-state {
   margin-left: .6rem;
   color: var(--rotion-secondary-text);
+  white-space: nowrap;
 }
 
 .rotion-linkpreview-github-state-icon {
@@ -128,5 +134,15 @@
 
   .rotion-linkpreview-githubicon-octocat {
     background-color: #000;
+  }
+}
+
+@media (max-width: 580px) {
+  .rotion-linkpreview-github-title {
+    display: inline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-grow: 1;
   }
 }

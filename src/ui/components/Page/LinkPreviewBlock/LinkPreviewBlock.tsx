@@ -55,7 +55,9 @@ const GithubLinkPreview = ({ url, github }: GithubLinkPreviewProps) => {
         </div>
         <div>
           <div className="rotion-linkpreview-title">
-            {title}
+            <span className="rotion-linkpreview-github-title">
+              {title}
+            </span>
             <span className="rotion-linkpreview-github-state">
               <Icon className={stateClass} name={icon} width='14px' height='14px' />
               <span className="rotion-linkpreview-state">{state}</span>
@@ -85,7 +87,9 @@ const GithubLinkPreview = ({ url, github }: GithubLinkPreviewProps) => {
         </div>
         <div>
           <div className="rotion-linkpreview-title">
-            {name}
+            <span className="rotion-linkpreview-github-title">
+              {name}
+            </span>
           </div>
           <div className="rotion-linkpreview-desc">
             {login}
