@@ -1,28 +1,13 @@
 .rotion-pdf {
   font-family: var(--rotion-font-family);
+  padding: .3rem 0;
 }
 
-.rotion-pdf-link {
-  display: grid;
-  grid-template: repeat(1, 1fr) / 1.5rem 1fr;
-  gap: .1rem;
-  margin: .2rem 0 0;
-  padding: .6rem .3rem;
-  text-decoration: var(--rotion-link-text-decoration);
-  color: var(--rotion-link-color);
-  align-items: top;
-  background-color: var(--rotion-link-bg-color);
+.rotion-pdf-object {
   border-radius: var(--rotion-border-radius);
-}
-
-.rotion-pdf-link:hover {
-  background-color: var(--rotion-link-hover-bg-color);
-}
-
-.rotion-pdf-size {
-  color: var(--rotion-tertiary-text);
-  font-size: .8rem;
-  padding-left: .5rem;
+  border: var(--rotion-border);
+  width: 100%;
+  height: 90vh;
 }
 
 .rotion-pdf-caption {
@@ -33,20 +18,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .rotion-pdf-link {
-    text-decoration: var(--rotion-dark-link-text-decoration);
-    color: var(--rotion-dark-link-color);
-    background-color: var(--rotion-dark-link-bg-color);
-  }
-
-  .rotion-pdf-link:hover {
-    background-color: var(--rotion-dark-link-hover-bg-color);
-  }
-
-  .rotion-pdf-size {
-    color: var(--rotion-dark-tertiary-text);
-  }
-
   .rotion-pdf-caption {
     color: var(--rotion-dark-tertiary-text);
   }
