@@ -6,8 +6,9 @@
 .rotion-pdf-object {
   border-radius: var(--rotion-border-radius);
   border: var(--rotion-border);
-  width: 100%;
-  height: 90vh;
+  width: calc(100% - 2px);
+  min-height: 500px;
+  max-height: 90vh;
 }
 
 .rotion-pdf-caption {
