@@ -46,6 +46,7 @@ jobs:
           path: |
             website/.cache
             website/public/images
+            website/public/files
           key: rotion
           restore-keys: rotion
       - name: Install dependencies
