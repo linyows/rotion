@@ -23,15 +23,16 @@ const block: PdfBlockObjectResponseEx = {
     page_id: '12345678-1234-1234-1234-1234567890ab',
   },
   pdf: {
-    type: 'external',
-    external: {
-      url: 'https://www.africau.edu/images/default/sample.pdf',
+    type: 'file',
+    file: {
+      url: 'https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/3be2c579-093b-4e0c-ad32-f51e7160ccc1/sample.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&...',
+      expiry_time: '2024-06-11T00:49:09.664Z',
     },
     caption: [
       {
         type: 'text',
         text: {
-          content: 'This is sample file',
+          content: 'This is a PDF file',
           link: null,
         },
         annotations: {
@@ -42,11 +43,11 @@ const block: PdfBlockObjectResponseEx = {
           code: false,
           color: 'default',
         },
-        plain_text: 'This is sample file',
+        plain_text: 'This is a PDF file',
         href: null,
       },
     ],
-    src: 'https://www.africau.edu/images/default/sample.pdf',
+    src: '/files/block-a269e10b-843a-442c-a2bc-b3ac61350849-8151325dcdbae9e0ff95f9f9658432dbedfdb209.pdf',
     size: 3028,
   },
   in_trash: false,
