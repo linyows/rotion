@@ -39,12 +39,6 @@ yarn-error.log*
 
 public
 
-# examples
-/examples/**/.cache
-/examples/**/.next
-/examples/**/out
-/examples/**/public/images
-
 # packages
 /packages/**/dist
 

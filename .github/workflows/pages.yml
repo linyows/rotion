@@ -28,7 +28,7 @@ jobs:
           cache: npm
           cache-dependency-path: website/package-lock.json
       - name: Setup pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v5
         with:
           static_site_generator: next
       - name: Restore next cache
@@ -56,8 +56,9 @@ jobs:
         run: |
           npm run build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
+          name: github-pages
           path: ./website/out
 
   deploy:
@@ -73,4 +74,4 @@ jobs:
     steps:
       - name: Deploy to github pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
