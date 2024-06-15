@@ -24,14 +24,14 @@ const PdfBlock = ({ block }: PdfBlockProps) => {
         <nav className="rotion-pdf-nav">
           <ul className="rotion-pdf-pager">
             <li className="rotion-pdf-prev">
-              <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+              <span className={`rotion-pdf-prevnext ${page === 1 ? 'rotion-pdf-prevnext-disabled' : ''}`} onClick={() => setPage(page - 1)}>
                ◀︎
-              </button>
+              </span>
             </li>
             <li className="rotion-pdf-next">
-              <button disabled={page === pdfDocument!.numPages} onClick={() => setPage(page + 1)}>
+              <span className={`rotion-pdf-prevnext ${page === pdfDocument!.numPages ? 'rotion-pdf-prevnext-disabled' : ''}`} onClick={() => setPage(page + 1)}>
                 ▶
-              </button>
+              </span>
             </li>
           </ul>
           <a href={src} className="rotion-pdf-link" title="Download PDF" target="_blank" rel="noopener noreferrer">
