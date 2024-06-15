@@ -66,6 +66,7 @@ export default [
       'react-dom',
       'prismjs',
       'mermaid',
+      'pdfjs-dist',
     ],
   },
   {

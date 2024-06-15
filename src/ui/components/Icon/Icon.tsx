@@ -2,7 +2,7 @@ import React from 'react'
 import './Icon.css'
 
 export interface IconProps {
-  name: 'figma' | 'slack' | 'github' | 'file' | 'link' | 'codemerge' | 'circlecheck' | 'circledot'
+  name: 'figma' | 'slack' | 'github' | 'file' | 'link' | 'codemerge' | 'circlecheck' | 'circledot' | 'downloadfile'
   width?: string
   height?: string
   className?: string
@@ -67,6 +67,12 @@ const Icon = ({ name, width, height, className }: IconProps) => {
       return (
         <svg className={`rotion-icon-codemerge ${className}`} version='1.0' xmlns="http://www.w3.org/2000/svg" width={width || '15px'} height={height || '15px'} viewBox="0 0 448 512">
           <path d="M80 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm32.4 97.2c28-12.4 47.6-40.5 47.6-73.2c0-44.2-35.8-80-80-80S0 35.8 0 80c0 32.8 19.7 61 48 73.3V358.7C19.7 371 0 399.2 0 432c0 44.2 35.8 80 80 80s80-35.8 80-80c0-32.8-19.7-61-48-73.3V272c26.7 20.1 60 32 96 32h86.7c12.3 28.3 40.5 48 73.3 48c44.2 0 80-35.8 80-80s-35.8-80-80-80c-32.8 0-61 19.7-73.3 48H208c-49.9 0-91-38.1-95.6-86.8zM80 408a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM344 272a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/>
+        </svg>
+      )
+    case 'downloadfile':
+      return (
+        <svg className={`rotion-icon-downloadfile ${className}`} xmlns="http://www.w3.org/2000/svg" width={width || '15px'} height={height || '15px'} viewBox="0 0 512 512">
+          <path d="M256 464a208 208 0 1 1 0-416 208 208 0 1 1 0 416zM256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM376.9 294.6c4.5-4.2 7.1-10.1 7.1-16.3c0-12.3-10-22.3-22.3-22.3H304V160c0-17.7-14.3-32-32-32l-32 0c-17.7 0-32 14.3-32 32v96H150.3C138 256 128 266 128 278.3c0 6.2 2.6 12.1 7.1 16.3l107.1 99.9c3.8 3.5 8.7 5.5 13.8 5.5s10.1-2 13.8-5.5l107.1-99.9z"/>
         </svg>
       )
   }

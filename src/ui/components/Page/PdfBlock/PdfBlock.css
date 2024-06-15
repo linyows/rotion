@@ -3,11 +3,68 @@
   padding: .3rem 0;
 }
 
-.rotion-pdf-object {
-  border-radius: var(--rotion-border-radius);
-  border: var(--rotion-border);
-  width: 100%;
-  height: 90vh;
+.rotion-pdf-canvas {
+  border-bottom-left-radius: var(--rotion-border-radius);
+  border-bottom-right-radius: var(--rotion-border-radius);
+  border: 1px solid rgb(230, 230, 230);
+  width: calc(100% - 2px);
+  min-height: 500px;
+}
+
+.rotion-pdf-nav {
+  background-color: rgba(250, 250, 250, 1);
+  width: calc(100% - 2px);
+  border: 1px solid rgb(230, 230, 230);
+  border-bottom: none;
+  border-top-left-radius: var(--rotion-border-radius);
+  border-top-right-radius: var(--rotion-border-radius);
+  margin: 0;
+  padding: .6rem 0;
+  line-height: 1;
+  display: flex;
+}
+
+.rotion-pdf-pager {
+  display: flex;
+  list-style: none;
+  text-align: right;
+  flex-grow: 1;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.rotion-pdf-prev,
+.rotion-pdf-next {
+  display: inline;
+  padding-left: 1rem;
+}
+
+.rotion-pdf-pager button {
+  background-color: transparent;
+  border-width: 1px;
+  cursor: pointer;
+  font-size: .6rem;
+  border-radius: 30px;
+  padding: .3rem 1rem;
+}
+
+.rotion-pdf-pager button:disabled {
+  cursor: default;
+}
+
+.rotion-pdf-link {
+  display: flex;
+  flex-grow: 2;
+  justify-content: flex-end;
+  margin: 0;
+  padding: .2rem 1rem 0;
+  text-decoration: none;
+  color: var(--rotion-link-color);
+}
+
+.rotion-pdf-link svg {
+  fill: rgba(100, 100, 100, 0.8);
 }
 
 .rotion-pdf-caption {
