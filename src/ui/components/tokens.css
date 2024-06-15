@@ -13,9 +13,15 @@
 
   /* BORDER */
   --rotion-border-color: rgba(220, 220, 220, 0.8);
+  --rotion-border-disabled-color: rgba(220, 220, 220, 0.5);
+  --rotion-border-hover-color: rgba(120, 120, 120, 0.8);
   --rotion-dark-border-color: rgba(80, 80, 80, 0.8);
+  --rotion-dark-border-hover-color: rgba(180, 180, 180, 0.8);
   --rotion-border: 1px solid var(--rotion-border-color);
+  --rotion-border-disabled: 1px solid var(--rotion-border-disabled-color);
+  --rotion-border-hover: 1px solid var(--rotion-border-hover-color);
   --rotion-dark-border: 1px solid var(--rotion-dark-border-color);
+  --rotion-dark-border-hover: 1px solid var(--rotion-dark-border-hover-color);
 
   /* CODE, TABLE and TOGGLE */
   --rotion-code-bg-color: rgba(135, 131, 120, .15);

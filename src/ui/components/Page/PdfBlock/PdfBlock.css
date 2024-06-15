@@ -40,17 +40,26 @@
   padding-left: 1rem;
 }
 
-.rotion-pdf-pager button {
-  background-color: transparent;
+.rotion-pdf-prevnext {
   border-width: 1px;
   cursor: pointer;
   font-size: .6rem;
   border-radius: 30px;
   padding: .3rem 1rem;
+  border: var(--rotion-border);
+  color: var(--rotion-secondary-text);
 }
 
-.rotion-pdf-pager button:disabled {
+.rotion-pdf-prevnext:hover {
+  border: var(--rotion-border-hover);
+  color: var(--rotion-primary-text);
+}
+
+.rotion-pdf-prevnext-disabled,
+.rotion-pdf-prevnext-disabled:hover {
   cursor: default;
+  border: var(--rotion-border-disabled);
+  color: var(--rotion-tertiary-text);
 }
 
 .rotion-pdf-link {
