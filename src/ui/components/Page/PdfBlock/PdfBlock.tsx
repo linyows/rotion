@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react'
-import { usePdf } from '@mikecousins/react-pdf'
-import type { RichTextItemResponse } from '../../../../exporter'
 import RichText from '../../RichText/RichText'
-import type { PdfBlockProps } from './PdfBlock.types'
+import { usePdf } from './Pdf'
 import { Icon } from '../../Icon'
+import type { RichTextItemResponse } from '../../../../exporter'
+import type { PdfBlockProps } from './PdfBlock.types'
 import '../../tokens.css'
 import './PdfBlock.css'
 
@@ -30,7 +30,7 @@ const PdfBlock = ({ block }: PdfBlockProps) => {
             </li>
             <li className="rotion-pdf-next">
               <button disabled={page === pdfDocument!.numPages} onClick={() => setPage(page + 1)}>
-                ▶ 
+                ▶
               </button>
             </li>
           </ul>
