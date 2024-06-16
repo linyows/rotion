@@ -597,3 +597,19 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
 export const isEmpty = (obj: Object) => {
   return !Object.keys(obj).length
 }
+
+export function getVideoType(uri: string) {
+  const ext = path.extname(uri).replace('.', '')
+  switch (ext) {
+    case 'mp4':
+      return 'video/mp4'
+    case 'webm':
+      return 'video/webm'
+    case 'ogm':
+    case 'ogv':
+    case 'ogg':
+      return 'video/ogg'
+    default:
+      return ''
+  }
+}
