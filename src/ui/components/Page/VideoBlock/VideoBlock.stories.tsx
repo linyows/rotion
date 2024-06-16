@@ -44,11 +44,13 @@ const block: VideoBlockObjectResponseEx = {
   type: 'video',
   video: {
     caption: [richText],
-    type: 'external',
-    external: {
-      url: 'https://youtu.be/2ncpb3auHOw?si=egykqR6viQTM9fNR',
+    type: 'file',
+    file: {
+      url: 'https://prod-files-secure.s3.us-west-2.amazonaws.com/9c5c8bd8-2326-4257-98e7-557d511c9d37/417fa407-6779-4374-89ee-f47c8d22722e/Sample_5s_video.mp4?X-Amz-Algorithm=....',
+      expiry_time: '2024-06-15T09:56:10.889Z',
     },
-    html: '<iframe width="560" height="315" src="https://www.youtube.com/embed/2ncpb3auHOw?si=egykqR6viQTM9fNR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+    src: '/files/block-7151c5e8-b035-479b-8d55-f65347a88d26-8eec7bc461808e0b8a28783d0bec1a3a22eb0821.mp4',
+    videoType: 'video/mp4',
   },
   in_trash: false,
 }
@@ -65,4 +67,49 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Youtube: Story = {}
+export const File: Story = {}
+
+const youtube = structuredClone(block)
+youtube.video = {
+  caption: [richText],
+  type: 'external',
+  external: {
+    url: 'https://youtu.be/2ncpb3auHOw?si=egykqR6viQTM9fNR',
+  },
+  html: '<iframe width="560" height="315" src="https://www.youtube.com/embed/2ncpb3auHOw?si=egykqR6viQTM9fNR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
+}
+export const Youtube: Story = {
+  args: {
+    block: youtube,
+  },
+}
+
+const vimeo = structuredClone(block)
+vimeo.video = {
+  caption: [richText],
+  type: 'external',
+  external: {
+    url: 'https://vimeo.com/michaelkoenig/earth',
+  },
+  html: '<iframe src="https://player.vimeo.com/video/32001208?h=acec7b3a82&color=ffffff&portrait=0" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>',
+}
+export const Vimeo: Story = {
+  args: {
+    block: vimeo,
+  },
+}
+
+const tiktok = structuredClone(block)
+tiktok.video = {
+  caption: [richText],
+  type: 'external',
+  external: {
+    url: 'https://www.tiktok.com/@theweeknd/video/7206051055564508462?is_from_webapp=1&sender_device=pc&web_id=7365681356522685970',
+  },
+  html: '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@theweeknd/video/7206051055564508462" data-video-id="7206051055564508462" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@theweeknd" href="https://www.tiktok.com/@theweeknd?refer=embed">@theweeknd</a> 🌹 @hbo @hbomax <a title="dieforyou" target="_blank" href="https://www.tiktok.com/tag/dieforyou?refer=embed">#dieforyou</a> <a target="_blank" title="♬ Die For You - The Weeknd" href="https://www.tiktok.com/music/Die-For-You-6928589404693628929?refer=embed">♬ Die For You - The Weeknd</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>',
+}
+export const Tiktok: Story = {
+  args: {
+    block: tiktok,
+  },
+}

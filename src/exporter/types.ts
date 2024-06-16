@@ -172,20 +172,24 @@ export type ImageBlockObjectResponseEx = ImageBlockObjectResponse & {
     src: string
   }
 }
-export type VideoBlockObjectResponseEx = VideoBlockObjectResponse & {
-  video:
-  | {
-    type: 'external'
-    external: { url: TextRequest }
-    caption: Array<RichTextItemResponse>
-    html: string
-  }
-  | {
-    type: 'file'
-    file: { url: string; expiry_time: string }
-    caption: Array<RichTextItemResponse>
-  }
+
+export type VideoExternal = {
+  type: 'external'
+  external: { url: TextRequest }
+  caption: Array<RichTextItemResponse>
+  html: string
 }
+export type VideoFile = {
+  type: 'file'
+  file: { url: string, expiry_time: string }
+  caption: Array<RichTextItemResponse>
+  src: string
+  videoType: 'video/mp4' | 'video/webm' | 'video/ogg' | 'video/ogv' | ''
+}
+export type VideoBlockObjectResponseEx = VideoBlockObjectResponse & {
+  video: VideoExternal | VideoFile
+}
+
 export type EmbedBlockObjectResponseEx = EmbedBlockObjectResponse & {
   embed: {
     url: string

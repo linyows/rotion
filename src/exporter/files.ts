@@ -106,6 +106,44 @@ interface YoutubeOembedResponse extends Oembed {
   html: string
 }
 
+interface VimeoOembedResponse extends Oembed {
+  type: 'video'
+  title: string
+  author_name: string
+  author_url: string
+  provider_name: 'Vimeo'
+  provider_url: 'https://vimeo.com/'
+  is_plus: string
+  account_type: string
+  html: string
+  width: number
+  height: number
+  duration: number
+  description: string
+  thumbnail_url: string
+  thumbnail_width: number
+  thumbnail_height: number
+  thumbnail_url_with_play_button: string
+  upload_date: string
+  video_id: number
+  uri: string
+}
+
+interface TiktokOembedResponse extends Oembed {
+  type: 'video'
+  title: string
+  author_name: string
+  author_url: string
+  provider_name: 'TikTok'
+  provider_url: 'https://www.tiktok.com/'
+  thumbnail_url: string
+  thumbnail_width: number
+  thumbnail_height: number
+  width: number
+  height: number
+  html: string
+}
+
 interface TwitterOembedResponse extends Oembed {
   type: 'rich'
   author_name: string
@@ -432,10 +470,18 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
     return ''
   }
   const extUrl = block.video?.external.url as string
+  let reqUrl = ''
+  type T = YoutubeOembedResponse | VimeoOembedResponse | TiktokOembedResponse
   if (extUrl.includes('youtube.com') || extUrl.includes('youtu.be')) {
-    const reqUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(extUrl)}`
+    reqUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(extUrl)}`
+  } else if (extUrl.includes('vimeo.com')) {
+    reqUrl = `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(extUrl)}`
+  } else if (extUrl.includes('tiktok.com')) {
+    reqUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(extUrl)}`
+  }
+  if (reqUrl !== '') {
     try {
-      const json = await getJson<YoutubeOembedResponse>(reqUrl)
+      const json = await getJson<T>(reqUrl)
       return json.html
     } catch (e) {
       if (debug) {
@@ -550,4 +596,20 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
 
 export const isEmpty = (obj: Object) => {
   return !Object.keys(obj).length
+}
+
+export function getVideoType(uri: string) {
+  const ext = path.extname(uri).replace('.', '')
+  switch (ext) {
+    case 'mp4':
+      return 'video/mp4'
+    case 'webm':
+      return 'video/webm'
+    case 'ogm':
+    case 'ogv':
+    case 'ogg':
+      return 'video/ogg'
+    default:
+      return ''
+  }
 }

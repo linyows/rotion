@@ -19,6 +19,7 @@ import {
   getVideoHtml,
   getEmbedHtml,
   isEmpty,
+  getVideoType
 } from './files.js'
 import type {
   ListBlockChildrenResponseEx,
@@ -240,7 +241,11 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
           block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
           break
         case 'video':
-          if (block.video.type === 'external') {
+          if (block.video.type === 'file') {
+            const { src } = await saveFile(block.video.file.url, `block-${block.id}`)
+            block.video.src = src
+            block.video.videoType = getVideoType(src)
+          } else if (block.video.type === 'external') {
             block.video.html = await getVideoHtml(block)
           }
           break
