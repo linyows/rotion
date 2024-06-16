@@ -106,6 +106,44 @@ interface YoutubeOembedResponse extends Oembed {
   html: string
 }
 
+interface VimeoOembedResponse extends Oembed {
+  type: 'video'
+  title: string
+  author_name: string
+  author_url: string
+  provider_name: 'Vimeo'
+  provider_url: 'https://vimeo.com/'
+  is_plus: string
+  account_type: string
+  html: string
+  width: number
+  height: number
+  duration: number
+  description: string
+  thumbnail_url: string
+  thumbnail_width: number
+  thumbnail_height: number
+  thumbnail_url_with_play_button: string
+  upload_date: string
+  video_id: number
+  uri: string
+}
+
+interface TiktokOembedResponse extends Oembed {
+  type: 'video'
+  title: string
+  author_name: string
+  author_url: string
+  provider_name: 'TikTok'
+  provider_url: 'https://www.tiktok.com/'
+  thumbnail_url: string
+  thumbnail_width: number
+  thumbnail_height: number
+  width: number
+  height: number
+  html: string
+}
+
 interface TwitterOembedResponse extends Oembed {
   type: 'rich'
   author_name: string
