@@ -470,10 +470,18 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
     return ''
   }
   const extUrl = block.video?.external.url as string
+  let reqUrl = ''
+  type T = YoutubeOembedResponse | VimeoOembedResponse | TiktokOembedResponse
   if (extUrl.includes('youtube.com') || extUrl.includes('youtu.be')) {
-    const reqUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(extUrl)}`
+    reqUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(extUrl)}`
+  } else if (extUrl.includes('vimeo.com')) {
+    reqUrl = `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(extUrl)}`
+  } else if (extUrl.includes('tiktok.com')) {
+    reqUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(extUrl)}`
+  }
+  if (reqUrl !== '') {
     try {
-      const json = await getJson<YoutubeOembedResponse>(reqUrl)
+      const json = await getJson<T>(reqUrl)
       return json.html
     } catch (e) {
       if (debug) {
