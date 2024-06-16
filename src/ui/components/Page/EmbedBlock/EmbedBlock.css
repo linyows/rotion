@@ -17,6 +17,7 @@
   font-size: .95rem;
 }
 
+/* Instagram */
 .rotion-embed-instagram {
   max-width: 540px;
   margin: 0 auto;
@@ -26,16 +27,19 @@
   overflow: hidden;
 }
 
+/* Twitter */
 .rotion-embed-twitter {
   max-width: 550px;
   margin: 0 auto;
 }
 
+/* Apple Music */
 .rotion-embed-applemusic {
   max-width: 660px;
   margin: 0 auto;
 }
 
+/* Speakerdeck */
 .rotion-embed-speakerdeck {
   width: 100%;
   margin: 0 auto .8rem;
@@ -48,14 +52,19 @@
   height: 56.25%; /* 16:9 */
 }
 
+/* Google Map */
 .rotion-embed-googlemap {
   width: 100%;
   margin: 0 auto .8rem;
   height: 90vh;
 }
-
 .rotion-embed-googlemap iframe {
   height: 90vh;
+}
+
+/* Tiktok */
+.rotion-embed-tiktok {
+  width: 100%;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -54,14 +54,6 @@
   height: 100%;
 }
 
-/* Tiktok */
-.rotion-video-tiktok {
-  width: 100%;
-  margin: auto;
-  padding-bottom: 0;
-  height: auto;
-}
-
 @media (prefers-color-scheme: dark) {
   .rotion-video-caption {
     color: var(--rotion-dark-tertiary-text);

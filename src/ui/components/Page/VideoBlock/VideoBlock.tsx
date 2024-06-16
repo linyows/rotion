@@ -30,27 +30,7 @@ const Vimeo = ({ video: { html, caption } }: VideoExternalProps) => {
     <div className="rotion-video">
       <div className="rotion-video-inner">
         <div className="rotion-video-html rotion-video-vimeo" dangerouslySetInnerHTML={{ __html: html }} />
-        <Caption caption={caption} />
-      </div>
-    </div>
-  )
-}
-
-const Tiktok = ({ video: { html, caption } }: VideoExternalProps) => {
-  const htmlWithRemovedScript = html.replace(/<script>.*/, '')
-  const videoHtmlClass = 'rotion-video-tiktok'
-
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://www.tiktok.com/embed.js'
-    document.getElementsByClassName(videoHtmlClass)[0].appendChild(script)
-  }, [])
-
-  return (
-    <div className="rotion-video">
-      <div className="rotion-video-inner">
-        <div className={`rotion-video-html ${videoHtmlClass}`} dangerouslySetInnerHTML={{ __html: htmlWithRemovedScript }} />
-        <Caption caption={caption} />
+        <Caption type="video" caption={caption} />
       </div>
     </div>
   )
@@ -104,9 +84,6 @@ const VideoBlock = ({ block }: VideoBlockProps) => {
       }
       if (video.html.includes('vimeo')) {
         return <Vimeo video={video} />
-      }
-      if (video.html.includes('tiktok')) {
-        return <Tiktok video={video} />
       }
       return <External video={video} />
 

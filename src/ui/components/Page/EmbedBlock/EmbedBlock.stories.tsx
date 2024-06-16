@@ -102,3 +102,12 @@ export const GoogleMaps: Story = {
     block: gm,
   },
 }
+
+const tiktok = structuredClone(block)
+tiktok.embed.url = 'https://www.tiktok.com/@theweeknd/video/7206051055564508462?is_from_webapp=1&sender_device=pc&web_id=7365681356522685970'
+tiktok.embed.html = '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@theweeknd/video/7206051055564508462" data-video-id="7206051055564508462" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@theweeknd" href="https://www.tiktok.com/@theweeknd?refer=embed">@theweeknd</a> 🌹 @hbo @hbomax <a title="dieforyou" target="_blank" href="https://www.tiktok.com/tag/dieforyou?refer=embed">#dieforyou</a> <a target="_blank" title="♬ Die For You - The Weeknd" href="https://www.tiktok.com/music/Die-For-You-6928589404693628929?refer=embed">♬ Die For You - The Weeknd</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>'
+export const Tiktok: Story = {
+  args: {
+    block: tiktok,
+  },
+}
