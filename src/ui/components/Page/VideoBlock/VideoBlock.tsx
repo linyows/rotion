@@ -82,8 +82,8 @@ const File = ({ video: { src, caption, videoType } }: VideoFileProps) => {
     <div className="rotion-video">
       <div className="rotion-video-inner">
         <div className="rotion-video-file">
-          {/* @ts-ignore */}
-          <video src={src} type={videoType} controls playsinline preload="auto" width="100%">
+          <video controls preload="metadata" width="100%">
+            <source src={src} type={videoType} />
             Download the <a href={src}>Video</a>
           </video>
         </div>
