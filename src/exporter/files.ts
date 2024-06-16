@@ -471,17 +471,14 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
   }
   const extUrl = block.video?.external.url as string
   let reqUrl = ''
-  type T = YoutubeOembedResponse | VimeoOembedResponse | TiktokOembedResponse
-  if (extUrl.includes('youtube.com') || extUrl.includes('youtu.be')) {
+  if (extUrl.includes('//www.youtube.com') || extUrl.includes('youtu.be')) {
     reqUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(extUrl)}`
-  } else if (extUrl.includes('vimeo.com')) {
+  } else if (extUrl.includes('//vimeo.com')) {
     reqUrl = `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(extUrl)}`
-  } else if (extUrl.includes('tiktok.com')) {
-    reqUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(extUrl)}`
   }
   if (reqUrl !== '') {
     try {
-      const json = await getJson<T>(reqUrl)
+      const json = await getJson<YoutubeOembedResponse | VimeoOembedResponse>(reqUrl)
       return json.html
     } catch (e) {
       if (debug) {
@@ -493,27 +490,20 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
 }
 
 export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> => {
-  if (block.embed && block.embed.url.includes('instagram.com')) {
-    const src = block.embed?.url || ''
+  const { embed } = block
+  if (embed === undefined) {
+    return ''
+  }
+  const { url } = embed
+  const src = url || ''
+  let oembedUrl = ''
+
+  if (url.includes('//instagram.com')) {
     const link = src.split('?').shift()
     // Instagram oEmbed API is authentication required. So hard-coding.
     return `<blockquote class="instagram-media" data-instgrm-permalink="${link}?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"> </blockquote> <script async src="//www.instagram.com/embed.js"></script>`
 
-  } else if (block.embed && (block.embed.url.includes('x.com') || block.embed.url.includes('twitter.com'))) {
-    const src = block.embed?.url || ''
-    const tweetId = path.basename(src.split('?').shift() || '')
-    const reqUrl = `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
-    try {
-      const json = await getJson<TwitterOembedResponse>(reqUrl)
-      return json.html
-    } catch (e) {
-      if (debug) {
-        console.log(`getEmbedHtml failure: ${reqUrl} - ${e}`)
-      }
-    }
-
-  } else if (block.embed && block.embed.url.includes('spotify.com')) {
-    const src = block.embed?.url || ''
+  } else if (url.includes('//open.spotify.com')) {
     const type = src.includes('artist') ? 'artist' : src.includes('album') ? 'album' : null
     if (type) {
       // Example: https://open.spotify.com/intl-ja/artist/2YZyLoL8N0Wb9xBt1NhZWg
@@ -523,8 +513,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
     }
     console.log(`spotify url mismatched: ${src}`)
 
-  } else if (block.embed && block.embed.url.includes('music.apple.com')) {
-    const src = block.embed?.url || ''
+  } else if (url.includes('//music.apple.com')) {
     // Example: https://music.apple.com/us/album/paracosm-bonus-track-version/655768700
     const m = src.match(/([a-z]+)\/album\/([0-9A-z-]+)\/(\d+)/)
     if (m) {
@@ -535,8 +524,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
     }
     console.log(`apple music url mismatched: ${src}`)
 
-  } else if (block.embed && block.embed.url.includes('https://www.google')) {
-    const src = block.embed?.url || ''
+  } else if (url.includes('//www.google')) {
     if (googleMapKey) {
       // Example:
       // https://www.google.com/maps/@33.5838302,130.3657052,14z?entry=ttu
@@ -572,21 +560,29 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
       console.log('map is required: GOOGLEMAP_KEY')
     }
 
-  } else if (block.embed && block.embed.url.includes('speakerdeck.com')) {
-    const embedUrl = block.embed?.url as string
-    const reqUrl = `https://speakerdeck.com/oembed.json?url=${encodeURIComponent(embedUrl)}`
+  } else if (url.includes('//x.com') || url.includes('//twitter.com')) {
+    const tweetId = path.basename(src.split('?').shift() || '')
+    oembedUrl = `https://api.twitter.com/1/statuses/oembed.json?id=${tweetId}`
 
+  } else if (url.includes('//speakerdeck.com')) {
+    oembedUrl = `https://speakerdeck.com/oembed.json?url=${encodeURIComponent(url)}`
+
+  } else if (url.includes('//www.tiktok.com')) {
+    oembedUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`
+  }
+
+  if (oembedUrl !== '') {
     /*
      * The `UND_ERR_SOCKET` error occurs when GET request to the speakerdeck.com using the fetch api. That's why this using the https module.
      * A bug report has been created
      * https://github.com/nodejs/undici/issues/1412
      */
     try {
-      const json = await getJson<SpeakerdeckOembedResponse>(reqUrl)
+      const json = await getJson<TwitterOembedResponse | SpeakerdeckOembedResponse | TiktokOembedResponse>(oembedUrl)
       return json.html
     } catch (e) {
       if (debug) {
-        console.log(`getEmbedHtml failure: ${reqUrl} -- ${e}`)
+        console.log(`getEmbedHtml failure: ${oembedUrl} -- ${e}`)
       }
     }
   }

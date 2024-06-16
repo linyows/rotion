@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import { RichText } from '../../RichText'
-import type { EmbedBlockProps } from './EmbedBlock.types'
+import Caption from '../../RichText/Caption'
+import type { EmbedBlockProps, EmbedProps, OembedProps } from './EmbedBlock.types'
 import '../../tokens.css'
 import './EmbedBlock.css'
 
-const Instagram = ({ block }: EmbedBlockProps) => {
-  const htmlWithRemovedScript = block.embed.html.replace(/<script>.*/, '')
+const Instagram = ({ html, caption }: OembedProps) => {
+  const htmlWithRemovedScript = html.replace(/<script>.*/, '')
   const embedClass = 'rotion-embed-html'
 
   useEffect(() => {
@@ -23,18 +23,14 @@ const Instagram = ({ block }: EmbedBlockProps) => {
     <div className="rotion-embed">
       <div className="rotion-embed-instagram">
         <div className={embedClass} dangerouslySetInnerHTML={{ __html: htmlWithRemovedScript }} />
-        <div className="rotion-embed-caption">
-          {block.embed.caption.map((v, i) => (
-            <RichText textObject={v} key={`richtext-${i}`} />
-          ))}
-        </div>
+        <Caption type="embed" caption={caption} />
       </div>
     </div>
   )
 }
 
-const Twitter = ({ block }: EmbedBlockProps) => {
-  const htmlWithRemovedScript = block.embed.html.replace(/<script>.*/, '')
+const Twitter = ({ html, caption }: OembedProps) => {
+  const htmlWithRemovedScript = html.replace(/<script>.*/, '')
   const embedClass = 'rotion-embed-html'
 
   useEffect(() => {
@@ -47,95 +43,73 @@ const Twitter = ({ block }: EmbedBlockProps) => {
     <div className="rotion-embed">
       <div className="rotion-embed-twitter">
         <div className={embedClass} dangerouslySetInnerHTML={{ __html: htmlWithRemovedScript }} />
-        <div className="rotion-embed-caption">
-          {block.embed.caption.map((v, i) => (
-            <RichText textObject={v} key={`richtext-${i}`} />
-          ))}
-        </div>
+        <Caption type="embed" caption={caption} />
       </div>
     </div>
   )
 }
 
-const Speakerdeck = ({ block }: EmbedBlockProps) => {
+const Tiktok = ({ html, caption }: OembedProps) => {
+  const htmlWithRemovedScript = html.replace(/<script>.*/, '')
+  const embedClass = 'rotion-embed-html'
+
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://www.tiktok.com/embed.js'
+    document.getElementsByClassName(embedClass)[0].appendChild(script)
+  }, [])
+
   return (
     <div className="rotion-embed">
-      <div className="rotion-embed-speakerdeck">
-        <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
-        <div className="rotion-embed-caption">
-          {block.embed.caption.map((v, i) => (
-            <RichText textObject={v} key={`richtext-${i}`} />
-          ))}
-        </div>
+      <div className="rotion-embed-tiktok">
+        <div className={embedClass} dangerouslySetInnerHTML={{ __html: htmlWithRemovedScript }} />
+        <Caption type="embed" caption={caption} />
       </div>
     </div>
   )
 }
 
-const Applemusic = ({ block }: EmbedBlockProps) => {
+const Embed = ({ type, html, caption }: EmbedProps) => {
   return (
     <div className="rotion-embed">
-      <div className="rotion-embed-applemusic">
-        <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
-        <div className="rotion-embed-caption">
-          {block.embed.caption.map((v, i) => (
-            <RichText textObject={v} key={`richtext-${i}`} />
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-const Googlemap = ({ block }: EmbedBlockProps) => {
-  return (
-    <div className="rotion-embed">
-      <div className="rotion-embed-googlemap">
-        <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
-        <div className="rotion-embed-caption">
-          {block.embed.caption.map((v, i) => (
-            <RichText textObject={v} key={`richtext-${i}`} />
-          ))}
-        </div>
+      <div className={`rotion-embed-${type}`}>
+        <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: html }} />
+        <Caption type="embed" caption={caption} />
       </div>
     </div>
   )
 }
 
 const EmbedBlock = ({ block }: EmbedBlockProps) => {
-  if (block.embed?.html === undefined) {
+  const { embed: { html, caption } } = block
+  if (html === undefined) {
     console.log('The html property for this embed block was undefined:', block)
     return <></>
   }
 
-  if (block.embed.html.includes('instagram')) {
-    return <Instagram block={block} />
+  if (html.includes('instagram')) {
+    return <Instagram html={html} caption={caption} />
   }
-
-  if (block.embed.html.includes('twitter')) {
-    return <Twitter block={block} />
+  if (html.includes('twitter')) {
+    return <Twitter html={html} caption={caption} />
   }
-
-  if (block.embed.html.includes('speakerdeck')) {
-    return <Speakerdeck block={block} />
+  if (html.includes('tiktok')) {
+    return <Tiktok html={html} caption={caption} />
   }
-
-  if (block.embed.html.includes('music.apple.com')) {
-    return <Applemusic block={block} />
+  if (html.includes('speakerdeck')) {
+    return <Embed type="speakerdeck" html={html} caption={caption} />
   }
-
-  if (block.embed.html.includes('google')) {
-    return <Googlemap block={block} />
+  if (html.includes('music.apple.com')) {
+    return <Embed type="applemusic" html={html} caption={caption} />
+  }
+  if (html.includes('google')) {
+    return <Embed type="googlemap" html={html} caption={caption} />
   }
 
   return (
     <div className="rotion-embed">
-      <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: block.embed.html }} />
-      <div className="rotion-embed-caption">
-        {block.embed.caption.map((v, i) => (
-          <RichText textObject={v} key={`richtext-${i}`} />
-        ))}
-      </div>
+      <div className="rotion-embed-html" dangerouslySetInnerHTML={{ __html: html }} />
+      <Caption type="embed" caption={caption} />
     </div>
   )
 }

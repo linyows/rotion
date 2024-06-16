@@ -6,3 +6,8 @@ export interface RichTextProps {
   key?: string
   children?: ReactNode
 }
+
+export interface CaptionProps {
+  type: 'embed' | 'video'
+  caption: RichTextItemResponse[]
+}

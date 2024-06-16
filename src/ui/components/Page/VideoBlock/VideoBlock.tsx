@@ -1,18 +1,8 @@
-import React, { useEffect } from 'react'
-import { RichText } from '../../RichText'
-import type { CaptionProps, VideoBlockProps, VideoExternalProps, VideoFileProps } from './VideoBlock.types'
+import React from 'react'
+import Caption from '../../RichText/Caption'
+import type { VideoBlockProps, VideoExternalProps, VideoFileProps } from './VideoBlock.types'
 import '../../tokens.css'
 import './VideoBlock.css'
-
-const Caption = ({ caption }: CaptionProps) => {
-  return (
-    <div className="rotion-video-caption">
-      {caption.map((v, i) => (
-        <RichText textObject={v} key={`richtext-${i}`} />
-      ))}
-    </div>
-  )
-}
 
 const Youtube = ({ video: { html, caption } }: VideoExternalProps) => {
   // const css = `
@@ -29,7 +19,7 @@ const Youtube = ({ video: { html, caption } }: VideoExternalProps) => {
     <div className="rotion-video">
       <div className="rotion-video-inner">
         <div className="rotion-video-html rotion-video-youtube" dangerouslySetInnerHTML={{ __html: html }} />
-        <Caption caption={caption} />
+        <Caption type="video" caption={caption} />
       </div>
     </div>
   )
@@ -40,27 +30,7 @@ const Vimeo = ({ video: { html, caption } }: VideoExternalProps) => {
     <div className="rotion-video">
       <div className="rotion-video-inner">
         <div className="rotion-video-html rotion-video-vimeo" dangerouslySetInnerHTML={{ __html: html }} />
-        <Caption caption={caption} />
-      </div>
-    </div>
-  )
-}
-
-const Tiktok = ({ video: { html, caption } }: VideoExternalProps) => {
-  const htmlWithRemovedScript = html.replace(/<script>.*/, '')
-  const videoHtmlClass = 'rotion-video-tiktok'
-
-  useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://www.tiktok.com/embed.js'
-    document.getElementsByClassName(videoHtmlClass)[0].appendChild(script)
-  }, [])
-
-  return (
-    <div className="rotion-video">
-      <div className="rotion-video-inner">
-        <div className={`rotion-video-html ${videoHtmlClass}`} dangerouslySetInnerHTML={{ __html: htmlWithRemovedScript }} />
-        <Caption caption={caption} />
+        <Caption type="video" caption={caption} />
       </div>
     </div>
   )
@@ -71,7 +41,7 @@ const External = ({ video: { html, caption } }: VideoExternalProps) => {
     <div className="rotion-video">
       <div className="rotion-video-inner">
         <div className="rotion-video-html" dangerouslySetInnerHTML={{ __html: html }} />
-        <Caption caption={caption} />
+        <Caption type="video" caption={caption} />
       </div>
     </div>
   )
@@ -87,7 +57,7 @@ const File = ({ video: { src, caption, videoType } }: VideoFileProps) => {
             Download the <a href={src}>Video</a>
           </video>
         </div>
-        <Caption caption={caption} />
+        <Caption type="video" caption={caption} />
       </div>
     </div>
   )
@@ -114,9 +84,6 @@ const VideoBlock = ({ block }: VideoBlockProps) => {
       }
       if (video.html.includes('vimeo')) {
         return <Vimeo video={video} />
-      }
-      if (video.html.includes('tiktok')) {
-        return <Tiktok video={video} />
       }
       return <External video={video} />
 
