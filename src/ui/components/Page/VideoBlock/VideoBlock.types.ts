@@ -1,4 +1,4 @@
-import type { VideoBlockObjectResponseEx, VideoFile, VideoExternal, RichTextItemResponse } from '../../../../exporter'
+import type { VideoBlockObjectResponseEx, VideoFile, VideoExternal } from '../../../../exporter'
 
 export interface VideoBlockProps {
   block: VideoBlockObjectResponseEx
@@ -10,8 +10,4 @@ export interface VideoFileProps {
 
 export interface VideoExternalProps {
   video: VideoExternal
-}
-
-export interface CaptionProps {
-  caption: RichTextItemResponse[]
 }
