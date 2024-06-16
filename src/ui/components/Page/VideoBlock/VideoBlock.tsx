@@ -4,7 +4,6 @@ import type { CaptionProps, VideoBlockProps, VideoExternalProps, VideoFileProps 
 import '../../tokens.css'
 import './VideoBlock.css'
 
-
 const Caption = ({ caption }: CaptionProps) => {
   return (
     <div className="rotion-video-caption">
@@ -40,7 +39,7 @@ const Vimeo = ({ video: { html, caption } }: VideoExternalProps) => {
   return (
     <div className="rotion-video">
       <div className="rotion-video-inner">
-        <div className={`rotion-video-html rotion-video-vimeo`} dangerouslySetInnerHTML={{ __html: html }} />
+        <div className="rotion-video-html rotion-video-vimeo" dangerouslySetInnerHTML={{ __html: html }} />
         <Caption caption={caption} />
       </div>
     </div>
