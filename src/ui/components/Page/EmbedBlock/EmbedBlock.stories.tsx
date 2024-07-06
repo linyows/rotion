@@ -80,6 +80,15 @@ export const Speakerdeck: Story = {
   },
 }
 
+const ss = structuredClone(block)
+ss.embed.url = 'https://www.slideshare.net/slideshow/storytelling-for-the-web-integrate-storytelling-in-your-design-process/269527754'
+ss.embed.html = '<iframe src="https://www.slideshare.net/slideshow/embed_code/key/s0jgpCg83mwgH?startSlide=1" width="100%" height="450" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:0;" allowfullscreen></iframe>'
+export const Slideshare: Story = {
+  args: {
+    block: ss,
+  },
+}
+
 const am = structuredClone(block)
 am.embed.url = 'https://music.apple.com/jp/album/the-lo-fis/1540065822'
 am.embed.html = '<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/jp/album/the-lo-fis/1540065822"></iframe>'

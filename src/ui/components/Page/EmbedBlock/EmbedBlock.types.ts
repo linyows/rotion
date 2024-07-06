@@ -5,7 +5,7 @@ export interface EmbedBlockProps {
 }
 
 export interface EmbedProps {
-  type: 'speakerdeck' | 'applemusic' | 'googlemap'
+  type: 'speakerdeck' | 'slideshare' | 'applemusic' | 'googlemap'
   html: string
   caption: RichTextItemResponse[]
 }
