@@ -99,6 +99,9 @@ const EmbedBlock = ({ block }: EmbedBlockProps) => {
   if (html.includes('speakerdeck')) {
     return <Embed type="speakerdeck" html={html} caption={caption} />
   }
+  if (html.includes('slideshare')) {
+    return <Embed type="slideshare" html={html} caption={caption} />
+  }
   if (html.includes('music.apple.com')) {
     return <Embed type="applemusic" html={html} caption={caption} />
   }
