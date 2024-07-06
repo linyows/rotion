@@ -173,6 +173,12 @@ test('getVideoHtml returns html', async () => {
   assert.match(html, /<iframe/)
 })
 
+test('getSlideshareOembedUrl returns URL for oEmbed', async () => {
+  const url = 'https://www.slideshare.net/slideshow/artificial-intelligence-data-and-competition-schrepel-june-2024-oecd-discussion/269644409'
+  const oembedUrl = await files.getSlideshareOembedUrl(url, vcr)
+  assert.equal(oembedUrl, 'https://www.slideshare.net/slideshow/embed_code/key/hRM8WIyvd1l8mG')
+})
+
 test('getEmbedHtml returns html', async () => {
   const block = {
     embed: {
