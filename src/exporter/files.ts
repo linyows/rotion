@@ -489,6 +489,12 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
   return ''
 }
 
+export async function getSlideshareOembedUrl (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<string> {
+  const resbody = httpFunc ? await httpFunc(reqUrl) : await getHTTP(reqUrl)
+  const matched = resbody.match(/name="twitter:player" content="(.*?)"/)
+  return matched ? matched[1] : ''
+}
+
 export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> => {
   const { embed } = block
   if (embed === undefined) {
@@ -559,6 +565,10 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
     } else {
       console.log('map is required: GOOGLEMAP_KEY')
     }
+
+  } else if (url.includes('//www.slideshare.net')) {
+    const url = await getSlideshareOembedUrl(src)
+    return (url === '') ? '' : `<iframe src="${url}?startSlide=1" width="100%" height="450" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:0;" allowfullscreen></iframe>`
 
   } else if (url.includes('//x.com') || url.includes('//twitter.com')) {
     const tweetId = path.basename(src.split('?').shift() || '')
