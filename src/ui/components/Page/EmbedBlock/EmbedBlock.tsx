@@ -82,7 +82,7 @@ const Embed = ({ type, html, caption }: EmbedProps) => {
 
 const EmbedBlock = ({ block }: EmbedBlockProps) => {
   const { embed: { html, caption } } = block
-  if (html === undefined) {
+  if (html === undefined || html === '') {
     console.log('The html property for this embed block was undefined:', block)
     return <></>
   }
