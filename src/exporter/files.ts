@@ -199,10 +199,7 @@ async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: numb
   }
 }
 
-export async function getHTTP (reqUrl: string, redirectCount?: number): Promise<string> {
-  if (!redirectCount) {
-    redirectCount = 0
-  }
+export async function getHTTP (reqUrl: string): Promise<string> {
   let body = ''
   const res = await httpsGetWithFollowRedirects(reqUrl)
   // @ts-ignore
