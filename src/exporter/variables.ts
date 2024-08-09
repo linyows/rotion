@@ -14,10 +14,12 @@ export const fileDir = process.env.ROTION_FILEDIR || 'files'
 export const timeout = process.env.ROTION_TIMEOUT ? parseInt(process.env.ROTION_TIMEOUT) : 1500
 export const webpQuality = process.env.ROTION_WEBP_QUALITY ? parseInt(process.env.ROTION_WEBP_QUALITY) : 95
 export const debug = process.env.ROTION_DEBUG === 'true'
+export const maxRedirects = process.env.ROTION_MAX_REDIRECTS ? parseInt(process.env.ROTION_MAX_REDIRECTS) : 5
+export const userAgent = process.env.ROTION_UA || `${pkg.name}/${pkg.version}`
 export const httpOptions = {
   timeout,
   headers: {
-    'User-Agent': `${pkg.name}/${pkg.version}`,
+    'User-Agent': `${userAgent}`,
     Accept: '*/*',
   },
 }

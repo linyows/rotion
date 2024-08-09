@@ -99,6 +99,8 @@ test('getHtmlMeta returns title and desc', async () => {
       '/images/html-image-7741183ef80385ccb4441ac2b39abc9b927e0490.webp',
       '/images/html-icon-239b10b2bb1ad78e45400118cb543275e165075e-c6eac0e9dbd7a24b49444f38a7984d17050ebf67.webp',
     ],
+    // (!) This site requires 'User-Agent: curl', so it no response with default UA of rotion.
+    //     Runs the 'env ROTION_UA=curl npm test' when updates VCR.
     [
       'https://www.businesswire.com/',
       'Global Press Release &amp; Newswire Distribution Services | Business Wire',

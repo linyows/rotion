@@ -18,6 +18,7 @@ import {
   debug,
   googleMapKey,
   cacheAvailableDuration,
+  maxRedirects,
 } from './variables.js'
 import type {
   VideoBlockObjectResponseEx,
@@ -161,7 +162,6 @@ const httpsGet = promisify(https.get)
 const httpGet = promisify(http.get)
 const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
-const maxRedirects = 5
 
 export const findLocationUrl = (rawHeaders: string[]): string => {
   for (let i = 0; i <= rawHeaders.length; i++) {
@@ -199,10 +199,7 @@ async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: numb
   }
 }
 
-export async function getHTTP (reqUrl: string, redirectCount?: number): Promise<string> {
-  if (!redirectCount) {
-    redirectCount = 0
-  }
+export async function getHTTP (reqUrl: string): Promise<string> {
   let body = ''
   const res = await httpsGetWithFollowRedirects(reqUrl)
   // @ts-ignore
