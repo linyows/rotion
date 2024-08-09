@@ -14,6 +14,8 @@ jobs:
     strategy:
       matrix:
         node-version: [22.x]
+    env:
+      ROTION_UA: curl
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
