@@ -1,5 +1,6 @@
 import React from 'react'
 import { RichText } from '../../RichText'
+import Page from '../Page'
 import type { CalloutBlockProps } from './CalloutBlock.types'
 import '../../tokens.css'
 import './CalloutBlock.css'
@@ -21,7 +22,7 @@ const Icon = ({ block }: CalloutBlockProps) => {
   }
 }
 
-const CalloutBlock = ({ block }: CalloutBlockProps) => {
+const CalloutBlock = ({ block, href, link, query }: CalloutBlockProps) => {
   const { color, rich_text } = block.callout
 
   return (
@@ -33,6 +34,7 @@ const CalloutBlock = ({ block }: CalloutBlockProps) => {
         {rich_text.map((v, i) => (
           <RichText textObject={v} key={`richtext-${i}`} />
         ))}
+        {block.has_children && block.children !== undefined && <Page blocks={block.children} href={href} link={link} query={query} />}
       </div>
     </div>
   )

@@ -45,7 +45,7 @@ export const PageHandler = ({ block, href, link, query, breadcrumb_hrefs }: Hand
     case 'bulleted_list_item':
       return <BulletedListBlocks block={block} key={block.id} />
     case 'callout':
-      return <CalloutBlock block={block} key={block.id} />
+      return <CalloutBlock block={block} href={href} link={link} query={query} key={block.id} />
     case 'child_database':
       return <ChildDatabaseBlock block={block} href={href} link={link} query={query} key={block.id} />
     case 'child_page':
