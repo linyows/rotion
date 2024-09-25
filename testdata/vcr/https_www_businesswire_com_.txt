@@ -683,32 +683,32 @@ function reload() {
 		
 				<li>
 					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808606386/en/Largo-Reports-Second-Quarter-2024-Financial-Results-Applauds-China%E2%80%99s-New-Mandatory-Steel-Rebar-Standards-with-Vanadium-Use" itemtype="http://schema.org/NewsArticle">
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot" itemtype="http://schema.org/NewsArticle">
 					
 					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808606386/en/Largo-Reports-Second-Quarter-2024-Financial-Results-Applauds-China%E2%80%99s-New-Mandatory-Steel-Rebar-Standards-with-Vanadium-Use"/>
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot"/>
 					
 					
 					<div class="bwThumbs">
 					
-						<a  href="/news/home/20240808606386/en/Largo-Reports-Second-Quarter-2024-Financial-Results-Applauds-China%E2%80%99s-New-Mandatory-Steel-Rebar-Standards-with-Vanadium-Use"><img src="https://mms.businesswire.com/media/20240808606386/en/2211016/21/Largo-Logo-RGB.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+						<a  href="/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot"><img src="https://mms.businesswire.com/media/20240925769780/en/638510/21/Verint_Logo_Blue_RGB_High-Res.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
 					
 					
-						<a  href="/news/home/20240808606386/en/Largo-Reports-Second-Quarter-2024-Financial-Results-Applauds-China%E2%80%99s-New-Mandatory-Steel-Rebar-Standards-with-Vanadium-Use"><img src="https://mms.businesswire.com/media/20240808606386/en/2211021/21/LARGO_-_Banco_de_Imagens_2024_06_Dia-296.jpg" title="" alt="View Press Release"  /></a>
+						<a  href="/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot"><img src="https://mms.businesswire.com/media/20240925769780/en/2253643/21/Verint-Robot-Standing.jpg" title="" alt="View Press Release"  /></a>
 					
 					</div> 
 					
 					
-						<a class="bwTitleLink"  href="/news/home/20240808606386/en/Largo-Reports-Second-Quarter-2024-Financial-Results-Applauds-China%E2%80%99s-New-Mandatory-Steel-Rebar-Standards-with-Vanadium-Use"><span itemprop="headline">Largo Reports Second Quarter 2024 Financial Results; Applauds China&rsquo;s New Mandatory Steel Rebar Standards with Vanadium Use</span></a> 
+						<a class="bwTitleLink"  href="/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot"><span itemprop="headline">Verint Expands Contact Center Business Analytics Suite with Verint Genie Bot</span></a> 
 					
 					<div class="bwMeta"> 
 						
 						
 						<div class="bwTimestamp">
 							
-								<time itemprop="dateModified" datetime="2024-08-08T17:05:00Z">
+								<time itemprop="dateModified" datetime="2024-09-25T09:46:00Z">
 							
-							08/08/2024 - 05:05 PM
+							09/25/2024 - 09:46 AM
 							
 								</time>
 							
@@ -718,7 +718,7 @@ function reload() {
 					</div>
 		
 					
-						<span id="hyde_mkup_20240808606386" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
+						<span id="hyde_mkup_20240925769780" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
 					
 		
 					
@@ -731,32 +731,32 @@ function reload() {
 		
 				<li>
 					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808017231/en/Pembina-Pipeline-Corporation-Reports-Record-Results-for-the-Second-Quarter-2024-and-Raises-Full-Year-Guidance" itemtype="http://schema.org/NewsArticle">
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients" itemtype="http://schema.org/NewsArticle">
 					
 					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808017231/en/Pembina-Pipeline-Corporation-Reports-Record-Results-for-the-Second-Quarter-2024-and-Raises-Full-Year-Guidance"/>
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients"/>
 					
 					
 					<div class="bwThumbs">
 					
-						<a  href="/news/home/20240808017231/en/Pembina-Pipeline-Corporation-Reports-Record-Results-for-the-Second-Quarter-2024-and-Raises-Full-Year-Guidance"><img src="https://mms.businesswire.com/media/20240808017231/en/1712012/21/Pembina_Logo.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+						<a  href="/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients"><img src="https://mms.businesswire.com/media/20240925400366/en/758834/21/KI-Logo-Horizontal-Blue-Dark.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
 					
 					
-						<a  href="/news/home/20240808017231/en/Pembina-Pipeline-Corporation-Reports-Record-Results-for-the-Second-Quarter-2024-and-Raises-Full-Year-Guidance"><img src="https://mms.businesswire.com/media/20240808017231/en/2211463/21/Q2_2024_Press_Release_vF.jpg" title="" alt="View Press Release"  /></a>
+						<a  href="/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients"><img src="https://mms.businesswire.com/media/20240925400366/en/2253402/21/24-09-24-CarPark-Speedway-SSRichmond.jpg" title="" alt="View Press Release"  /></a>
 					
 					</div> 
 					
 					
-						<a class="bwTitleLink"  href="/news/home/20240808017231/en/Pembina-Pipeline-Corporation-Reports-Record-Results-for-the-Second-Quarter-2024-and-Raises-Full-Year-Guidance"><span itemprop="headline">Pembina Pipeline Corporation Reports Record Results for the Second Quarter 2024 and Raises Full Year Guidance</span></a> 
+						<a class="bwTitleLink"  href="/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients"><span itemprop="headline">Knightscope Robot Growth Accelerates with Existing Clients</span></a> 
 					
 					<div class="bwMeta"> 
 						
 						
 						<div class="bwTimestamp">
 							
-								<time itemprop="dateModified" datetime="2024-08-08T17:01:00Z">
+								<time itemprop="dateModified" datetime="2024-09-25T09:45:00Z">
 							
-							08/08/2024 - 05:01 PM
+							09/25/2024 - 09:45 AM
 							
 								</time>
 							
@@ -766,7 +766,7 @@ function reload() {
 					</div>
 		
 					
-						<span id="hyde_mkup_20240808017231" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
+						<span id="hyde_mkup_20240925400366" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
 					
 		
 					
@@ -779,32 +779,32 @@ function reload() {
 		
 				<li>
 					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808438668/en/Newmont%E2%80%99s-Trial-of-Underground-5G-at-Cadia-Mine-Delivers-Strong-Results" itemtype="http://schema.org/NewsArticle">
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide" itemtype="http://schema.org/NewsArticle">
 					
 					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808438668/en/Newmont%E2%80%99s-Trial-of-Underground-5G-at-Cadia-Mine-Delivers-Strong-Results"/>
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide"/>
 					
 					
 					<div class="bwThumbs">
 					
-						<a  href="/news/home/20240808438668/en/Newmont%E2%80%99s-Trial-of-Underground-5G-at-Cadia-Mine-Delivers-Strong-Results"><img src="https://mms.businesswire.com/media/20240808438668/en/765162/21/Newmont-Color-RGB.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+						<a  href="/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide"><img src="https://mms.businesswire.com/media/20240903788395/en/2231257/21/Lakeview_health.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
 					
 					
-						<a  href="/news/home/20240808438668/en/Newmont%E2%80%99s-Trial-of-Underground-5G-at-Cadia-Mine-Delivers-Strong-Results"><img src="https://mms.businesswire.com/media/20240808438668/en/2211660/21/23098-006-A_Product_Image_-_Ericsson_Private_5G_core_in_a_rack.jpg" title="" alt="View Press Release"  /></a>
+						<a  href="/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide"><img src="https://mms.businesswire.com/media/20240903788395/en/2231034/21/Lakeview_Health_2.jpg" title="" alt="View Press Release"  /></a>
 					
 					</div> 
 					
 					
-						<a class="bwTitleLink"  href="/news/home/20240808438668/en/Newmont%E2%80%99s-Trial-of-Underground-5G-at-Cadia-Mine-Delivers-Strong-Results"><span itemprop="headline">Newmont&rsquo;s Trial of Underground 5G at Cadia Mine Delivers Strong Results</span></a> 
+						<a class="bwTitleLink"  href="/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide"><span itemprop="headline">Bradford Health Services Acquires Lakeview Health, Expands Comprehensive Addiction Treatment Network Nationwide</span></a> 
 					
 					<div class="bwMeta"> 
 						
 						
 						<div class="bwTimestamp">
 							
-								<time itemprop="dateModified" datetime="2024-08-08T17:00:00Z">
+								<time itemprop="dateModified" datetime="2024-09-25T09:43:00Z">
 							
-							08/08/2024 - 05:00 PM
+							09/25/2024 - 09:43 AM
 							
 								</time>
 							
@@ -814,7 +814,7 @@ function reload() {
 					</div>
 		
 					
-						<span id="hyde_mkup_20240808438668" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
+						<span id="hyde_mkup_20240903788395" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
 					
 		
 					
@@ -827,32 +827,32 @@ function reload() {
 		
 				<li>
 					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808143608/en/AST-SpaceMobile%E2%80%99s-Commercial-Satellites-Arrive-at-Cape-Canaveral-For-Upcoming-Launch" itemtype="http://schema.org/NewsArticle">
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs" itemtype="http://schema.org/NewsArticle">
 					
 					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808143608/en/AST-SpaceMobile%E2%80%99s-Commercial-Satellites-Arrive-at-Cape-Canaveral-For-Upcoming-Launch"/>
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs"/>
 					
 					
 					<div class="bwThumbs">
 					
-						<a  href="/news/home/20240808143608/en/AST-SpaceMobile%E2%80%99s-Commercial-Satellites-Arrive-at-Cape-Canaveral-For-Upcoming-Launch"><img src="https://mms.businesswire.com/media/20240808143608/en/2211624/21/AST-SM-stack-orange_1.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+						<a  href="/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs"><img src="https://mms.businesswire.com/media/20240925604494/en/2253160/21/loop_logo_2.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
 					
 					
-						<a  href="/news/home/20240808143608/en/AST-SpaceMobile%E2%80%99s-Commercial-Satellites-Arrive-at-Cape-Canaveral-For-Upcoming-Launch"><img src="https://mms.businesswire.com/media/20240808143608/en/2211628/21/Truck_arriving_at_KSC.jpg" title="" alt="View Press Release"  /></a>
+						<a  href="/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs"><img src="https://mms.businesswire.com/media/20240925604494/en/2253162/21/Offset_by_Loop.jpg" title="" alt="View Press Release"  /></a>
 					
 					</div> 
 					
 					
-						<a class="bwTitleLink"  href="/news/home/20240808143608/en/AST-SpaceMobile%E2%80%99s-Commercial-Satellites-Arrive-at-Cape-Canaveral-For-Upcoming-Launch"><span itemprop="headline">AST SpaceMobile&rsquo;s Commercial Satellites Arrive at Cape Canaveral For Upcoming Launch</span></a> 
+						<a class="bwTitleLink"  href="/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs"><span itemprop="headline">Loop Launches Offset to Help Merchants Fully Cover Return Costs</span></a> 
 					
 					<div class="bwMeta"> 
 						
 						
 						<div class="bwTimestamp">
 							
-								<time itemprop="dateModified" datetime="2024-08-08T16:30:00Z">
+								<time itemprop="dateModified" datetime="2024-09-25T09:30:00Z">
 							
-							08/08/2024 - 04:30 PM
+							09/25/2024 - 09:30 AM
 							
 								</time>
 							
@@ -862,7 +862,7 @@ function reload() {
 					</div>
 		
 					
-						<span id="hyde_mkup_20240808143608" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
+						<span id="hyde_mkup_20240925604494" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
 					
 		
 					
@@ -875,32 +875,32 @@ function reload() {
 		
 				<li>
 					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808890164/en/Archer-Announces-Key-Terms-Of-Contract-Manufacturing-Relationship-With-Stellantis%E2%80%93Representing-Up-To-400M-To-Help-Scale-Midnight-Production-To-650-Aircraft-Annually%E2%80%93Secures-230M-In-Additional-Equity-Capital-From-Strategic-Institutional-Investors" itemtype="http://schema.org/NewsArticle">
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240925918776/en/Portrait-Unveils-A-Revolutionary-Platform-To-Help-Aesthetic-Business-Owners-Scale-Faster-And-Keep-100-Of-Their-Revenue-and-Profits" itemtype="http://schema.org/NewsArticle">
 					
 					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808890164/en/Archer-Announces-Key-Terms-Of-Contract-Manufacturing-Relationship-With-Stellantis%E2%80%93Representing-Up-To-400M-To-Help-Scale-Midnight-Production-To-650-Aircraft-Annually%E2%80%93Secures-230M-In-Additional-Equity-Capital-From-Strategic-Institutional-Investors"/>
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240925918776/en/Portrait-Unveils-A-Revolutionary-Platform-To-Help-Aesthetic-Business-Owners-Scale-Faster-And-Keep-100-Of-Their-Revenue-and-Profits"/>
 					
 					
 					<div class="bwThumbs">
 					
-						<a  href="/news/home/20240808890164/en/Archer-Announces-Key-Terms-Of-Contract-Manufacturing-Relationship-With-Stellantis%E2%80%93Representing-Up-To-400M-To-Help-Scale-Midnight-Production-To-650-Aircraft-Annually%E2%80%93Secures-230M-In-Additional-Equity-Capital-From-Strategic-Institutional-Investors"><img src="https://mms.businesswire.com/media/20240808890164/en/2211613/21/Archer_Logo_Lockup_Black.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+						<a  href="/news/home/20240925918776/en/Portrait-Unveils-A-Revolutionary-Platform-To-Help-Aesthetic-Business-Owners-Scale-Faster-And-Keep-100-Of-Their-Revenue-and-Profits"><img src="https://mms.businesswire.com/media/20240925918776/en/2252804/21/Portrait_Wordmark_RGB_Black.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
 					
 					
-						<a  href="/news/home/20240808890164/en/Archer-Announces-Key-Terms-Of-Contract-Manufacturing-Relationship-With-Stellantis%E2%80%93Representing-Up-To-400M-To-Help-Scale-Midnight-Production-To-650-Aircraft-Annually%E2%80%93Secures-230M-In-Additional-Equity-Capital-From-Strategic-Institutional-Investors"><img src="https://mms.businesswire.com/media/20240808890164/en/2211615/21/Archer-Cov-GA-Building-v3-1.jpg" title="" alt="View Press Release"  /></a>
+						<a  href="/news/home/20240925918776/en/Portrait-Unveils-A-Revolutionary-Platform-To-Help-Aesthetic-Business-Owners-Scale-Faster-And-Keep-100-Of-Their-Revenue-and-Profits"><img src="https://mms.businesswire.com/media/20240925918776/en/2252683/21/How_Portrait_Works.jpg" title="" alt="View Press Release"  /></a>
 					
 					</div> 
 					
 					
-						<a class="bwTitleLink"  href="/news/home/20240808890164/en/Archer-Announces-Key-Terms-Of-Contract-Manufacturing-Relationship-With-Stellantis%E2%80%93Representing-Up-To-400M-To-Help-Scale-Midnight-Production-To-650-Aircraft-Annually%E2%80%93Secures-230M-In-Additional-Equity-Capital-From-Strategic-Institutional-Investors"><span itemprop="headline">Archer Announces Key Terms Of Contract Manufacturing Relationship With Stellantis&ndash;Representing Up To ~$400M To Help Scale Midnight Production To 650 Aircraft Annually&ndash;Secures $230M In Additional Equity Capital From Strategic &amp; Institutional Investors</span></a> 
+						<a class="bwTitleLink"  href="/news/home/20240925918776/en/Portrait-Unveils-A-Revolutionary-Platform-To-Help-Aesthetic-Business-Owners-Scale-Faster-And-Keep-100-Of-Their-Revenue-and-Profits"><span itemprop="headline">Portrait Unveils A Revolutionary Platform To Help Aesthetic Business Owners Scale Faster And Keep 100% Of Their Revenue and Profits</span></a> 
 					
 					<div class="bwMeta"> 
 						
 						
 						<div class="bwTimestamp">
 							
-								<time itemprop="dateModified" datetime="2024-08-08T16:27:00Z">
+								<time itemprop="dateModified" datetime="2024-09-25T09:30:00Z">
 							
-							08/08/2024 - 04:27 PM
+							09/25/2024 - 09:30 AM
 							
 								</time>
 							
@@ -910,7 +910,7 @@ function reload() {
 					</div>
 		
 					
-						<span id="hyde_mkup_20240808890164" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
+						<span id="hyde_mkup_20240925918776" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
 					
 		
 					
@@ -923,32 +923,32 @@ function reload() {
 		
 				<li>
 					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808270093/en/Rocket-Lab-Begins-Installation-of-Large-Carbon-Composite-Rocket-Building-Machine" itemtype="http://schema.org/NewsArticle">
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240924393062/en/Grape-Law-Was-Ranked-Among-the-%E2%80%9CTop-100-Small-and-Mid-Sized-Firms-in-the-U.S.%E2%80%9D" itemtype="http://schema.org/NewsArticle">
 					
 					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808270093/en/Rocket-Lab-Begins-Installation-of-Large-Carbon-Composite-Rocket-Building-Machine"/>
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240924393062/en/Grape-Law-Was-Ranked-Among-the-%E2%80%9CTop-100-Small-and-Mid-Sized-Firms-in-the-U.S.%E2%80%9D"/>
 					
 					
 					<div class="bwThumbs">
 					
-						<a  href="/news/home/20240808270093/en/Rocket-Lab-Begins-Installation-of-Large-Carbon-Composite-Rocket-Building-Machine"><img src="https://mms.businesswire.com/media/20240808270093/en/1417605/21/Rocket_Lab_Logo.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+						<a  href="/news/home/20240924393062/en/Grape-Law-Was-Ranked-Among-the-%E2%80%9CTop-100-Small-and-Mid-Sized-Firms-in-the-U.S.%E2%80%9D"><img src="https://mms.businesswire.com/media/20240924393062/en/2252050/21/glf-logo.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
 					
 					
-						<a  href="/news/home/20240808270093/en/Rocket-Lab-Begins-Installation-of-Large-Carbon-Composite-Rocket-Building-Machine"><img src="https://mms.businesswire.com/media/20240808270093/en/2211567/21/Rocket_Lab%27s_rocket-building_robot.jpg" title="" alt="View Press Release"  /></a>
+						<a  href="/news/home/20240924393062/en/Grape-Law-Was-Ranked-Among-the-%E2%80%9CTop-100-Small-and-Mid-Sized-Firms-in-the-U.S.%E2%80%9D"><img src="https://mms.businesswire.com/media/20240924393062/en/2253597/21/GLF_businessprofile_kare-logosuz.jpg" title="" alt="View Press Release"  /></a>
 					
 					</div> 
 					
 					
-						<a class="bwTitleLink"  href="/news/home/20240808270093/en/Rocket-Lab-Begins-Installation-of-Large-Carbon-Composite-Rocket-Building-Machine"><span itemprop="headline">Rocket Lab Begins Installation of Large Carbon Composite Rocket-Building Machine</span></a> 
+						<a class="bwTitleLink"  href="/news/home/20240924393062/en/Grape-Law-Was-Ranked-Among-the-%E2%80%9CTop-100-Small-and-Mid-Sized-Firms-in-the-U.S.%E2%80%9D"><span itemprop="headline">Grape Law Was Ranked Among the &ldquo;Top 100 Small and Mid-Sized Firms in the U.S.&rdquo;</span></a> 
 					
 					<div class="bwMeta"> 
 						
 						
 						<div class="bwTimestamp">
 							
-								<time itemprop="dateModified" datetime="2024-08-08T16:17:00Z">
+								<time itemprop="dateModified" datetime="2024-09-25T09:13:00Z">
 							
-							08/08/2024 - 04:17 PM
+							09/25/2024 - 09:13 AM
 							
 								</time>
 							
@@ -958,7 +958,7 @@ function reload() {
 					</div>
 		
 					
-						<span id="hyde_mkup_20240808270093" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
+						<span id="hyde_mkup_20240924393062" itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>
 					
 		
 					
@@ -991,61 +991,61 @@ function reload() {
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G2*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">2</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G2*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">2</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G3*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">3</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G3*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">3</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G4*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">4</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G4*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">4</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G5*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">5</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G5*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">5</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G6*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">6</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G6*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">6</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G7*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">7</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G7*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">7</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G8*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">8</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G8*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">8</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G9*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">9</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G9*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">9</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G10*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">10</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G10*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">10</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G11*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">11</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G11*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">11</a>
 		
 		
 	
@@ -1057,7 +1057,7 @@ function reload() {
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G594*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">594</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G579*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">579</a>
 		
 		
 	
@@ -1068,7 +1068,7 @@ function reload() {
 </div>
 	<div class="pagingNext">
 	
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1718017200000*B1723181855860*DgroupByDate*G2*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">Next &raquo;</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=cf73395f6abf6d22dcfe35970d908a0c&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_viewID=MY_PORTAL_VIEW&javax.portlet.prp_cf73395f6abf6d22dcfe35970d908a0c_ndmHsc=v2*A1722078000000*B1727272334322*DgroupByDate*G2*N1030604&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">Next &raquo;</a>
 	
   	</div>
 </div>
@@ -1206,7 +1206,7 @@ function reload() {
 <div id="headlinesDate">
 
 
-		Today is August 09, 2024.
+		Today is September 25, 2024.
 		
 		All times in Eastern Daylight Time.
 </div>
@@ -1238,30 +1238,263 @@ function reload() {
 		
 				<li>
 					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808069241/en/Eutelsat-Communications-Full-Year-2023-24-Results" itemtype="http://schema.org/NewsArticle">
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot" itemtype="http://schema.org/NewsArticle">
 					
 					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808069241/en/Eutelsat-Communications-Full-Year-2023-24-Results"/>
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot"/>
 					
 					
 					<div class="bwThumbs">
 					
-						<a onclick='openNewsViewPopup("/news/home/20240808069241/en/Eutelsat-Communications-Full-Year-2023-24-Results");return false;' target=_blank  href="/news/home/20240808069241/en/Eutelsat-Communications-Full-Year-2023-24-Results"><img src="https://mms.businesswire.com/media/20240808069241/en/1915951/21/Eutelsat_Logo_Horizontal_RVB_%282%29.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+						<a onclick='openNewsViewPopup("/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot");return false;' target=_blank  href="/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot"><img src="https://mms.businesswire.com/media/20240925769780/en/638510/21/Verint_Logo_Blue_RGB_High-Res.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
 					
+					
+						<a onclick='openNewsViewPopup("/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot");return false;' target=_blank  href="/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot"><img src="https://mms.businesswire.com/media/20240925769780/en/2253643/21/Verint-Robot-Standing.jpg" title="" alt="View Press Release"  /></a>
 					
 					</div> 
 					
 					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808069241/en/Eutelsat-Communications-Full-Year-2023-24-Results");return false;' target='_blank'  href="/news/home/20240808069241/en/Eutelsat-Communications-Full-Year-2023-24-Results"><span itemprop="headline">Eutelsat Communications: Full Year 2023-24 Results</span></a> 
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot");return false;' target='_blank'  href="/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot"><span itemprop="headline">Verint Expands Contact Center Business Analytics Suite with Verint Genie Bot</span></a> 
 					
 					<div class="bwMeta"> 
 						
 						
 						<div class="bwTimestamp">
 							
-								<time itemprop="dateModified" datetime="2024-08-09T01:30:00Z">
+								<time itemprop="dateModified" datetime="2024-09-25T09:46:00Z">
 							
-							08/09/2024 - 01:30 AM
+							09/25/2024 - 09:46 AM
+							
+								</time>
+							
+						</div>
+						
+		
+						<div class="bwAssets">
+							<img src="/images/icons/icon_photo.gif" alt="Photo" title="Photo" />
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+						</div>
+					</div>
+		<div class="bwDesc">ORLANDO, Fla.--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--ENGAGE 2024– Verint® (NASDAQ: VRNT), The CX Automation Company™, today announced the expansion of its contact center suite of business analytics solutions for busine... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot");return false;' target=_blank  href="/news/home/20240925769780/en/Verint-Expands-Contact-Center-Business-Analytics-Suite-with-Verint-Genie-Bot" rel="nofollow">more</a> &raquo;</span></div> 
+		
+					
+						</div>
+					
+				</li>	
+			
+			
+		
+		
+				<li>
+					
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240924535985/nl" itemtype="http://schema.org/NewsArticle">
+					
+					
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240924535985/nl"/>
+					
+					
+					<div class="bwThumbs">
+					
+						<a onclick='openNewsViewPopup("/news/home/20240924535985/nl");return false;' target=_blank  href="/news/home/20240924535985/nl"><img src="https://mms.businesswire.com/media/20240924535985/nl/2252214/21/Nasal_Recorder_5_Million_Views_in_10_Days.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+					
+					
+					</div> 
+					
+					
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240924535985/nl");return false;' target='_blank'  href="/news/home/20240924535985/nl"><span itemprop="headline">&quot;5 miljoen views in 10 dagen!&quot; - De virale sensatie Mikko Rautiainen blikt terug op zijn recordbrekende optreden tijdens Holland&rsquo;s Got Talent, van Filmikko</span></a> 
+					
+					<div class="bwMeta"> 
+						
+						
+						<div class="bwTimestamp">
+							
+								<time itemprop="dateModified" datetime="2024-09-25T09:45:00Z">
+							
+							09/25/2024 - 09:45 AM
+							
+								</time>
+							
+						</div>
+						
+		
+						<div class="bwAssets">
+							<img src="/images/icons/icon_photo.gif" alt="Photo" title="Photo" />
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+						</div><div class="bwLanguage">
+							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
+						 </div>
+							
+					</div>
+		<div class="bwDesc">AMSTERDAM--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Mikko Rautiainen, die alom beter bekend staat als Nasal Recorder, is op slag een groot succes geworden na zijn unieke optreden tijdens Holland’s Got Talent. In amper 10 ... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240924535985/nl");return false;' target=_blank  href="/news/home/20240924535985/nl" rel="nofollow">more</a> &raquo;</span></div> 
+		
+					
+						</div>
+					
+				</li>	
+			
+			
+		
+		
+				<li>
+					
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240925520539/en/LEO-Pharma-Presents-Late-Breaking-Anzupgo%C2%AE-delgocitinib-Cream-Presentation-at-EADV-2024-Highlighting-Results-of-Head-to-Head-DELTA-FORCE-Trial-in-Chronic-Hand-Eczema-CHE" itemtype="http://schema.org/NewsArticle">
+					
+					
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240925520539/en/LEO-Pharma-Presents-Late-Breaking-Anzupgo%C2%AE-delgocitinib-Cream-Presentation-at-EADV-2024-Highlighting-Results-of-Head-to-Head-DELTA-FORCE-Trial-in-Chronic-Hand-Eczema-CHE"/>
+					
+					
+					<div class="bwThumbs">
+					
+						<a onclick='openNewsViewPopup("/news/home/20240925520539/en/LEO-Pharma-Presents-Late-Breaking-Anzupgo%C2%AE-delgocitinib-Cream-Presentation-at-EADV-2024-Highlighting-Results-of-Head-to-Head-DELTA-FORCE-Trial-in-Chronic-Hand-Eczema-CHE");return false;' target=_blank  href="/news/home/20240925520539/en/LEO-Pharma-Presents-Late-Breaking-Anzupgo%C2%AE-delgocitinib-Cream-Presentation-at-EADV-2024-Highlighting-Results-of-Head-to-Head-DELTA-FORCE-Trial-in-Chronic-Hand-Eczema-CHE"><img src="https://mms.businesswire.com/media/20240925520539/en/662919/21/leopharma.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+					
+					
+					</div> 
+					
+					
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240925520539/en/LEO-Pharma-Presents-Late-Breaking-Anzupgo%C2%AE-delgocitinib-Cream-Presentation-at-EADV-2024-Highlighting-Results-of-Head-to-Head-DELTA-FORCE-Trial-in-Chronic-Hand-Eczema-CHE");return false;' target='_blank'  href="/news/home/20240925520539/en/LEO-Pharma-Presents-Late-Breaking-Anzupgo%C2%AE-delgocitinib-Cream-Presentation-at-EADV-2024-Highlighting-Results-of-Head-to-Head-DELTA-FORCE-Trial-in-Chronic-Hand-Eczema-CHE"><span itemprop="headline">LEO Pharma Presents Late-Breaking Anzupgo&reg; (delgocitinib) Cream Presentation at EADV 2024 Highlighting Results of Head-to-Head DELTA FORCE Trial in Chronic Hand Eczema (CHE)</span></a> 
+					
+					<div class="bwMeta"> 
+						
+						
+						<div class="bwTimestamp">
+							
+								<time itemprop="dateModified" datetime="2024-09-25T09:45:00Z">
+							
+							09/25/2024 - 09:45 AM
+							
+								</time>
+							
+						</div>
+						
+		
+					</div>
+		<div class="bwDesc">BALLERUP, Denmark--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--LEO Pharma Presents Late-Breaking Anzupgo® (delgocitinib) Cream Presentation at EADV 2024 <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240925520539/en/LEO-Pharma-Presents-Late-Breaking-Anzupgo%C2%AE-delgocitinib-Cream-Presentation-at-EADV-2024-Highlighting-Results-of-Head-to-Head-DELTA-FORCE-Trial-in-Chronic-Hand-Eczema-CHE");return false;' target=_blank  href="/news/home/20240925520539/en/LEO-Pharma-Presents-Late-Breaking-Anzupgo%C2%AE-delgocitinib-Cream-Presentation-at-EADV-2024-Highlighting-Results-of-Head-to-Head-DELTA-FORCE-Trial-in-Chronic-Hand-Eczema-CHE" rel="nofollow">more</a> &raquo;</span></div> 
+		
+					
+						</div>
+					
+				</li>	
+			
+			
+		
+		
+				<li>
+					
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients" itemtype="http://schema.org/NewsArticle">
+					
+					
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients"/>
+					
+					
+					<div class="bwThumbs">
+					
+						<a onclick='openNewsViewPopup("/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients");return false;' target=_blank  href="/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients"><img src="https://mms.businesswire.com/media/20240925400366/en/758834/21/KI-Logo-Horizontal-Blue-Dark.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+					
+					
+						<a onclick='openNewsViewPopup("/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients");return false;' target=_blank  href="/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients"><img src="https://mms.businesswire.com/media/20240925400366/en/2253402/21/24-09-24-CarPark-Speedway-SSRichmond.jpg" title="" alt="View Press Release"  /></a>
+					
+					</div> 
+					
+					
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients");return false;' target='_blank'  href="/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients"><span itemprop="headline">Knightscope Robot Growth Accelerates with Existing Clients</span></a> 
+					
+					<div class="bwMeta"> 
+						
+						
+						<div class="bwTimestamp">
+							
+								<time itemprop="dateModified" datetime="2024-09-25T09:45:00Z">
+							
+							09/25/2024 - 09:45 AM
+							
+								</time>
+							
+						</div>
+						
+		
+						<div class="bwAssets">
+							<img src="/images/icons/icon_photo.gif" alt="Photo" title="Photo" />
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+						</div>
+					</div>
+		<div class="bwDesc">MOUNTAIN VIEW, Calif.--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Knightscope Robot growth accelerates with existing large clients - a hotel, casino, and storage facility continue deploying at multiple locations. <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients");return false;' target=_blank  href="/news/home/20240925400366/en/Knightscope-Robot-Growth-Accelerates-with-Existing-Clients" rel="nofollow">more</a> &raquo;</span></div> 
+		
+					
+						</div>
+					
+				</li>	
+			
+			
+		
+		
+				<li>
+					
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240924020952/fr" itemtype="http://schema.org/NewsArticle">
+					
+					
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240924020952/fr"/>
+					
+					
+					<div class="bwThumbs">
+					
+						<a onclick='openNewsViewPopup("/news/home/20240924020952/fr");return false;' target=_blank  href="/news/home/20240924020952/fr"><img src="https://mms.businesswire.com/media/20240924020952/fr/2250823/21/STL_Logo_2020_RGB.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+					
+					
+					</div> 
+					
+					
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240924020952/fr");return false;' target='_blank'  href="/news/home/20240924020952/fr"><span itemprop="headline">SmartStream d&eacute;voile les capacit&eacute;s d&rsquo;intelligence des donn&eacute;es de nouvelle g&eacute;n&eacute;ration de sa plateforme Air</span></a> 
+					
+					<div class="bwMeta"> 
+						
+						
+						<div class="bwTimestamp">
+							
+								<time itemprop="dateModified" datetime="2024-09-25T09:44:00Z">
+							
+							09/25/2024 - 09:44 AM
 							
 								</time>
 							
@@ -1272,7 +1505,7 @@ function reload() {
 						 </div>
 							
 					</div>
-		<div class="bwDesc">PARIS--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Regulatory News: The Board of Directors of Eutelsat Communications (ISIN: FR0010221234 - Euronext Paris / London Stock Exchange: ETL), chaired by Dominique D’Hinnin, reviewe... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808069241/en/Eutelsat-Communications-Full-Year-2023-24-Results");return false;' target=_blank  href="/news/home/20240808069241/en/Eutelsat-Communications-Full-Year-2023-24-Results" rel="nofollow">more</a> &raquo;</span></div> 
+		<div class="bwDesc">LONDRES--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--SmartStream, fournisseur de solutions de Transaction Lifecycle Management (TLM®), annonce le lancement de la version 9 de son offre Air. Après des années de recherche et d... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240924020952/fr");return false;' target=_blank  href="/news/home/20240924020952/fr" rel="nofollow">more</a> &raquo;</span></div> 
 		
 					
 						</div>
@@ -1284,30 +1517,30 @@ function reload() {
 		
 				<li>
 					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808246857/fr" itemtype="http://schema.org/NewsArticle">
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240924223124/nl" itemtype="http://schema.org/NewsArticle">
 					
 					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808246857/fr"/>
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240924223124/nl"/>
 					
 					
 					<div class="bwThumbs">
 					
-						<a onclick='openNewsViewPopup("/news/home/20240808246857/fr");return false;' target=_blank  href="/news/home/20240808246857/fr"><img src="https://mms.businesswire.com/media/20240808246857/fr/1915951/21/Eutelsat_Logo_Horizontal_RVB_%282%29.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+						<a onclick='openNewsViewPopup("/news/home/20240924223124/nl");return false;' target=_blank  href="/news/home/20240924223124/nl"><img src="https://mms.businesswire.com/media/20240924223124/nl/2250823/21/STL_Logo_2020_RGB.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
 					
 					
 					</div> 
 					
 					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808246857/fr");return false;' target='_blank'  href="/news/home/20240808246857/fr"><span itemprop="headline">Eutelsat Communications : R&Eacute;SULTATS ANNUELS 2023-24</span></a> 
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240924223124/nl");return false;' target='_blank'  href="/news/home/20240924223124/nl"><span itemprop="headline">Samenvatting: SmartStream onthult data-intelligentiecapaciteiten van de nieuwste generatie voor haar Air-platform</span></a> 
 					
 					<div class="bwMeta"> 
 						
 						
 						<div class="bwTimestamp">
 							
-								<time itemprop="dateModified" datetime="2024-08-09T01:30:00Z">
+								<time itemprop="dateModified" datetime="2024-09-25T09:44:00Z">
 							
-							08/09/2024 - 01:30 AM
+							09/25/2024 - 09:44 AM
 							
 								</time>
 							
@@ -1318,7 +1551,7 @@ function reload() {
 						 </div>
 							
 					</div>
-		<div class="bwDesc">PARIS--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Regulatory News: Le Conseil d’administration d’Eutelsat Communications (ISIN : FR0010221234 - Euronext Paris / London Stock Exchange : ETL) s’est réuni sous la présidence de... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808246857/fr");return false;' target=_blank  href="/news/home/20240808246857/fr" rel="nofollow">more</a> &raquo;</span></div> 
+		<div class="bwDesc">LONDEN--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--SmartStream, de leverancier van financiële TLM®-oplossingen (Transaction Lifecycle Management), kondigt de lancering aan van versie 9 van haar Air-aanbod. Na vele jaren R&a... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240924223124/nl");return false;' target=_blank  href="/news/home/20240924223124/nl" rel="nofollow">more</a> &raquo;</span></div> 
 		
 					
 						</div>
@@ -1330,32 +1563,170 @@ function reload() {
 		
 				<li>
 					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240724681707/zh-CN" itemtype="http://schema.org/NewsArticle">
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240924421879/de" itemtype="http://schema.org/NewsArticle">
 					
 					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240724681707/zh-CN"/>
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240924421879/de"/>
 					
 					
 					<div class="bwThumbs">
 					
-						<a onclick='openNewsViewPopup("/news/home/20240724681707/zh-CN");return false;' target=_blank  href="/news/home/20240724681707/zh-CN"><img src="https://mms.businesswire.com/media/20240724681707/zh-CN/2191841/21/Logo_m.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+						<a onclick='openNewsViewPopup("/news/home/20240924421879/de");return false;' target=_blank  href="/news/home/20240924421879/de"><img src="https://mms.businesswire.com/media/20240924421879/de/2250823/21/STL_Logo_2020_RGB.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
 					
-					
-						<a onclick='openNewsViewPopup("/news/home/20240724681707/zh-CN");return false;' target=_blank  href="/news/home/20240724681707/zh-CN"><img src="https://mms.businesswire.com/media/20240724681707/zh-CN/2191842/21/Confidential_GRM188_107_20230425_g1_3.jpg" title="" alt="View Press Release"  /></a>
 					
 					</div> 
 					
 					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240724681707/zh-CN");return false;' target='_blank'  href="/news/home/20240724681707/zh-CN"><span itemprop="headline">&#26449;&#30000; &#24320;&#22987;&#37327;&#20135;&#26449;&#30000;&#39318;&#27454;&#12289;1608M&#23610;&#23544;&#12289;&#38745;&#30005;&#23481;&#37327;&#21487;&#36798;100&mu;F&#30340;&#22810;&#23618;&#38518;&#29943;&#30005;&#23481;&#22120;</span></a> 
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240924421879/de");return false;' target='_blank'  href="/news/home/20240924421879/de"><span itemprop="headline">SmartStream stellt die n&auml;chste Generation seiner Datenintelligenz-Funktionen f&uuml;r seine Air-Plattform vor</span></a> 
 					
 					<div class="bwMeta"> 
 						
 						
 						<div class="bwTimestamp">
 							
-								<time itemprop="dateModified" datetime="2024-08-09T00:00:00Z">
+								<time itemprop="dateModified" datetime="2024-09-25T09:44:00Z">
 							
-							08/09/2024 - 12:00 AM
+							09/25/2024 - 09:44 AM
+							
+								</time>
+							
+						</div>
+						
+		<div class="bwLanguage">
+							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
+						 </div>
+							
+					</div>
+		<div class="bwDesc">LONDON--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--SmartStream, der Anbieter von Lösungen für das Financial Transaction Lifecycle Management (TLM®), kündigt die Einführung der Version 9 seines Air-Angebots an. Nach Jahren i... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240924421879/de");return false;' target=_blank  href="/news/home/20240924421879/de" rel="nofollow">more</a> &raquo;</span></div> 
+		
+					
+						</div>
+					
+				</li>	
+			
+			
+		
+		
+				<li>
+					
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240924758757/es" itemtype="http://schema.org/NewsArticle">
+					
+					
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240924758757/es"/>
+					
+					
+					<div class="bwThumbs">
+					
+						<a onclick='openNewsViewPopup("/news/home/20240924758757/es");return false;' target=_blank  href="/news/home/20240924758757/es"><img src="https://mms.businesswire.com/media/20240924758757/es/2250823/21/STL_Logo_2020_RGB.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+					
+					
+					</div> 
+					
+					
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240924758757/es");return false;' target='_blank'  href="/news/home/20240924758757/es"><span itemprop="headline">Resumen: SmartStream incorpora funciones de inteligencia de datos de nueva generaci&oacute;n a su plataforma Air</span></a> 
+					
+					<div class="bwMeta"> 
+						
+						
+						<div class="bwTimestamp">
+							
+								<time itemprop="dateModified" datetime="2024-09-25T09:44:00Z">
+							
+							09/25/2024 - 09:44 AM
+							
+								</time>
+							
+						</div>
+						
+		<div class="bwLanguage">
+							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
+						 </div>
+							
+					</div>
+		<div class="bwDesc">LONDRES--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--SmartStream, proveedor de soluciones de gestión del ciclo de vida de las transacciones financieras (TLM®), anuncia el lanzamiento de la versión 9 de su oferta Air. Tras añ... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240924758757/es");return false;' target=_blank  href="/news/home/20240924758757/es" rel="nofollow">more</a> &raquo;</span></div> 
+		
+					
+						</div>
+					
+				</li>	
+			
+			
+		
+		
+				<li>
+					
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240924862677/it" itemtype="http://schema.org/NewsArticle">
+					
+					
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240924862677/it"/>
+					
+					
+					<div class="bwThumbs">
+					
+						<a onclick='openNewsViewPopup("/news/home/20240924862677/it");return false;' target=_blank  href="/news/home/20240924862677/it"><img src="https://mms.businesswire.com/media/20240924862677/it/2250823/21/STL_Logo_2020_RGB.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+					
+					
+					</div> 
+					
+					
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240924862677/it");return false;' target='_blank'  href="/news/home/20240924862677/it"><span itemprop="headline">Riassunto: SmartStream presenta le funzionalit&agrave; di data intelligence di nuova generazione della sua piattaforma Air</span></a> 
+					
+					<div class="bwMeta"> 
+						
+						
+						<div class="bwTimestamp">
+							
+								<time itemprop="dateModified" datetime="2024-09-25T09:44:00Z">
+							
+							09/25/2024 - 09:44 AM
+							
+								</time>
+							
+						</div>
+						
+		<div class="bwLanguage">
+							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
+						 </div>
+							
+					</div>
+		<div class="bwDesc">LONDRA--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--SmartStream, fornitore di soluzioni per la gestione del ciclo di vita delle transazioni finanziarie (TLM®), annuncia il lancio della versione 9 della sua offerta Air. Dopo ... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240924862677/it");return false;' target=_blank  href="/news/home/20240924862677/it" rel="nofollow">more</a> &raquo;</span></div> 
+		
+					
+						</div>
+					
+				</li>	
+			
+			
+		
+		
+				<li>
+					
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide" itemtype="http://schema.org/NewsArticle">
+					
+					
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide"/>
+					
+					
+					<div class="bwThumbs">
+					
+						<a onclick='openNewsViewPopup("/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide");return false;' target=_blank  href="/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide"><img src="https://mms.businesswire.com/media/20240903788395/en/2231257/21/Lakeview_health.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+					
+					
+						<a onclick='openNewsViewPopup("/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide");return false;' target=_blank  href="/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide"><img src="https://mms.businesswire.com/media/20240903788395/en/2231034/21/Lakeview_Health_2.jpg" title="" alt="View Press Release"  /></a>
+					
+					</div> 
+					
+					
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide");return false;' target='_blank'  href="/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide"><span itemprop="headline">Bradford Health Services Acquires Lakeview Health, Expands Comprehensive Addiction Treatment Network Nationwide</span></a> 
+					
+					<div class="bwMeta"> 
+						
+						
+						<div class="bwTimestamp">
+							
+								<time itemprop="dateModified" datetime="2024-09-25T09:43:00Z">
+							
+							09/25/2024 - 09:43 AM
 							
 								</time>
 							
@@ -1379,12 +1750,9 @@ function reload() {
 							
 							
 							
-						</div><div class="bwLanguage">
-							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
-						 </div>
-							
+						</div>
 					</div>
-		<div class="bwDesc">日本京都--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--(美国商业资讯)-- 村田制作所(TOKYO:6981)（以下简称“村田”）已开发出了村田首款、1608M尺寸（1.6×0.8mm）、静电容量高达100µF的多层陶瓷电容器（以下简称“本产品”）。额定电压为2.5Vdc、工作温度可达105°C、温度特性为X6S(1)的“GRM188C80E107M”和工作温度可达85°C、温度特性为X5R(2)的... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240724681707/zh-CN");return false;' target=_blank  href="/news/home/20240724681707/zh-CN" rel="nofollow">more</a> &raquo;</span></div> 
+		<div class="bwDesc">BIRMINGHAM, Ala.--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Bradford Health Services, a leading provider of addiction treatment and recovery services, is proud to announce the acquisition of Lakeview Health, a premier beha... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide");return false;' target=_blank  href="/news/home/20240903788395/en/Bradford-Health-Services-Acquires-Lakeview-Health-Expands-Comprehensive-Addiction-Treatment-Network-Nationwide" rel="nofollow">more</a> &raquo;</span></div> 
 		
 					
 						</div>
@@ -1396,32 +1764,207 @@ function reload() {
 		
 				<li>
 					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808594610/es" itemtype="http://schema.org/NewsArticle">
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240924403058/de" itemtype="http://schema.org/NewsArticle">
 					
 					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808594610/es"/>
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240924403058/de"/>
 					
 					
 					<div class="bwThumbs">
 					
-						<a onclick='openNewsViewPopup("/news/home/20240808594610/es");return false;' target=_blank  href="/news/home/20240808594610/es"><img src="https://mms.businesswire.com/media/20240808594610/es/2210789/21/Canva-logo_%281%29.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+						<a onclick='openNewsViewPopup("/news/home/20240924403058/de");return false;' target=_blank  href="/news/home/20240924403058/de"><img src="https://mms.businesswire.com/media/20240924403058/de/738100/21/cf-logo-h-rgb.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
 					
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808594610/es");return false;' target=_blank  href="/news/home/20240808594610/es"><img src="https://mms.businesswire.com/media/20240808594610/es/2210848/21/Canva_Brand_Glow_Up_PR_Asset04.jpg" title="" alt="View Press Release"  /></a>
 					
 					</div> 
 					
 					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808594610/es");return false;' target='_blank'  href="/news/home/20240808594610/es"><span itemprop="headline">Canva presenta un renovado sistema de marca dise&ntilde;ado para el trabajo</span></a> 
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240924403058/de");return false;' target='_blank'  href="/news/home/20240924403058/de"><span itemprop="headline">Cloudflare stellt Threat Intel Team vor und verpflichtet sich, pr&auml;zise und zeitnahe globale Bedrohungsforschung f&uuml;r jedermann zug&auml;nglich zu machen</span></a> 
 					
 					<div class="bwMeta"> 
 						
 						
 						<div class="bwTimestamp">
 							
-								<time itemprop="dateModified" datetime="2024-08-08T23:54:00Z">
+								<time itemprop="dateModified" datetime="2024-09-25T09:36:00Z">
 							
-							08/08/2024 - 11:54 PM
+							09/25/2024 - 09:36 AM
+							
+								</time>
+							
+						</div>
+						
+		<div class="bwLanguage">
+							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
+						 </div>
+							
+					</div>
+		<div class="bwDesc">SAN FRANCISCO--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Cloudflare, Inc. (NYSE: NET), das führende Unternehmen für Konnektivitäts-Clouds, gab heute bekannt, dass sein Bedrohungsinformationsteam Cloudforce One, seine Forsc... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240924403058/de");return false;' target=_blank  href="/news/home/20240924403058/de" rel="nofollow">more</a> &raquo;</span></div> 
+		
+					
+						</div>
+					
+				</li>	
+			
+			
+		
+		
+				<li>
+					
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240925011879/en/SPRY-Launches-First-of-Its-Kind-BI-and-Fax-AI-Tools-for-Rehab-Therapy-Clinics-at-APTA-2024" itemtype="http://schema.org/NewsArticle">
+					
+					
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240925011879/en/SPRY-Launches-First-of-Its-Kind-BI-and-Fax-AI-Tools-for-Rehab-Therapy-Clinics-at-APTA-2024"/>
+					
+					
+					<div class="bwThumbs">
+					
+						<a onclick='openNewsViewPopup("/news/home/20240925011879/en/SPRY-Launches-First-of-Its-Kind-BI-and-Fax-AI-Tools-for-Rehab-Therapy-Clinics-at-APTA-2024");return false;' target=_blank  href="/news/home/20240925011879/en/SPRY-Launches-First-of-Its-Kind-BI-and-Fax-AI-Tools-for-Rehab-Therapy-Clinics-at-APTA-2024"><img src="https://mms.businesswire.com/media/20240925011879/en/2137826/21/SPRY-Logo-3F0E50_240510.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+					
+					
+					</div> 
+					
+					
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240925011879/en/SPRY-Launches-First-of-Its-Kind-BI-and-Fax-AI-Tools-for-Rehab-Therapy-Clinics-at-APTA-2024");return false;' target='_blank'  href="/news/home/20240925011879/en/SPRY-Launches-First-of-Its-Kind-BI-and-Fax-AI-Tools-for-Rehab-Therapy-Clinics-at-APTA-2024"><span itemprop="headline">SPRY Launches First-of-Its-Kind BI and Fax AI Tools for Rehab Therapy Clinics at APTA 2024</span></a> 
+					
+					<div class="bwMeta"> 
+						
+						
+						<div class="bwTimestamp">
+							
+								<time itemprop="dateModified" datetime="2024-09-25T09:35:00Z">
+							
+							09/25/2024 - 09:35 AM
+							
+								</time>
+							
+						</div>
+						
+		
+					</div>
+		<div class="bwDesc">WILMINGTON, Del.--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--SPRY to launch two innovative AI-powered tools for SMB rehabilitation therapy clinics, designed to streamline operations and enhance efficiency. <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240925011879/en/SPRY-Launches-First-of-Its-Kind-BI-and-Fax-AI-Tools-for-Rehab-Therapy-Clinics-at-APTA-2024");return false;' target=_blank  href="/news/home/20240925011879/en/SPRY-Launches-First-of-Its-Kind-BI-and-Fax-AI-Tools-for-Rehab-Therapy-Clinics-at-APTA-2024" rel="nofollow">more</a> &raquo;</span></div> 
+		
+					
+						</div>
+					
+				</li>	
+			
+			
+		
+		
+				<li>
+					
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240924271723/en/New-Publication-Evaluates-Awareness-of-High-Breast-Density-as-a-Risk-Factor-for-Breast-Cancer" itemtype="http://schema.org/NewsArticle">
+					
+					
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240924271723/en/New-Publication-Evaluates-Awareness-of-High-Breast-Density-as-a-Risk-Factor-for-Breast-Cancer"/>
+					
+					
+					<div class="bwThumbs">
+					
+						<a onclick='openNewsViewPopup("/news/home/20240924271723/en/New-Publication-Evaluates-Awareness-of-High-Breast-Density-as-a-Risk-Factor-for-Breast-Cancer");return false;' target=_blank  href="/news/home/20240924271723/en/New-Publication-Evaluates-Awareness-of-High-Breast-Density-as-a-Risk-Factor-for-Breast-Cancer"><img src="https://mms.businesswire.com/media/20240924271723/en/830197/21/Bayer_Logo.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+					
+					
+					</div> 
+					
+					
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240924271723/en/New-Publication-Evaluates-Awareness-of-High-Breast-Density-as-a-Risk-Factor-for-Breast-Cancer");return false;' target='_blank'  href="/news/home/20240924271723/en/New-Publication-Evaluates-Awareness-of-High-Breast-Density-as-a-Risk-Factor-for-Breast-Cancer"><span itemprop="headline">New Publication Evaluates Awareness of High Breast Density as a Risk Factor for Breast Cancer</span></a> 
+					
+					<div class="bwMeta"> 
+						
+						
+						<div class="bwTimestamp">
+							
+								<time itemprop="dateModified" datetime="2024-09-25T09:33:00Z">
+							
+							09/25/2024 - 09:33 AM
+							
+								</time>
+							
+						</div>
+						
+		
+					</div>
+		<div class="bwDesc">WHIPPANY, N.J.--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--In honor of World Dense Breast Day on September 25, Bayer announced today a new study, published in Patient Preference and Adherence, evaluating awareness and knowl... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240924271723/en/New-Publication-Evaluates-Awareness-of-High-Breast-Density-as-a-Risk-Factor-for-Breast-Cancer");return false;' target=_blank  href="/news/home/20240924271723/en/New-Publication-Evaluates-Awareness-of-High-Breast-Density-as-a-Risk-Factor-for-Breast-Cancer" rel="nofollow">more</a> &raquo;</span></div> 
+		
+					
+						</div>
+					
+				</li>	
+			
+			
+		
+		
+				<li>
+					
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240925165138/en/Employees-Desire-Supplemental-Health-Benefits-Amidst-Rising-Healthcare-Costs-New-York-Life-Survey-Finds" itemtype="http://schema.org/NewsArticle">
+					
+					
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240925165138/en/Employees-Desire-Supplemental-Health-Benefits-Amidst-Rising-Healthcare-Costs-New-York-Life-Survey-Finds"/>
+					
+					
+					<div class="bwThumbs">
+					
+						<a onclick='openNewsViewPopup("/news/home/20240925165138/en/Employees-Desire-Supplemental-Health-Benefits-Amidst-Rising-Healthcare-Costs-New-York-Life-Survey-Finds");return false;' target=_blank  href="/news/home/20240925165138/en/Employees-Desire-Supplemental-Health-Benefits-Amidst-Rising-Healthcare-Costs-New-York-Life-Survey-Finds"><img src="https://mms.businesswire.com/media/20240925165138/en/2252870/21/images.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+					
+					
+					</div> 
+					
+					
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240925165138/en/Employees-Desire-Supplemental-Health-Benefits-Amidst-Rising-Healthcare-Costs-New-York-Life-Survey-Finds");return false;' target='_blank'  href="/news/home/20240925165138/en/Employees-Desire-Supplemental-Health-Benefits-Amidst-Rising-Healthcare-Costs-New-York-Life-Survey-Finds"><span itemprop="headline">Employees Desire Supplemental Health Benefits Amidst Rising Healthcare Costs, New York Life Survey Finds</span></a> 
+					
+					<div class="bwMeta"> 
+						
+						
+						<div class="bwTimestamp">
+							
+								<time itemprop="dateModified" datetime="2024-09-25T09:30:00Z">
+							
+							09/25/2024 - 09:30 AM
+							
+								</time>
+							
+						</div>
+						
+		
+					</div>
+		<div class="bwDesc">NEW YORK--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--As open enrollment season for employees across the U.S. begins, a new survey from New York Life's Group Benefit Solutions highlights the crucial role of supplemental heal... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240925165138/en/Employees-Desire-Supplemental-Health-Benefits-Amidst-Rising-Healthcare-Costs-New-York-Life-Survey-Finds");return false;' target=_blank  href="/news/home/20240925165138/en/Employees-Desire-Supplemental-Health-Benefits-Amidst-Rising-Healthcare-Costs-New-York-Life-Survey-Finds" rel="nofollow">more</a> &raquo;</span></div> 
+		
+					
+						</div>
+					
+				</li>	
+			
+			
+		
+		
+				<li>
+					
+						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs" itemtype="http://schema.org/NewsArticle">
+					
+					
+						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs"/>
+					
+					
+					<div class="bwThumbs">
+					
+						<a onclick='openNewsViewPopup("/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs");return false;' target=_blank  href="/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs"><img src="https://mms.businesswire.com/media/20240925604494/en/2253160/21/loop_logo_2.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
+					
+					
+						<a onclick='openNewsViewPopup("/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs");return false;' target=_blank  href="/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs"><img src="https://mms.businesswire.com/media/20240925604494/en/2253162/21/Offset_by_Loop.jpg" title="" alt="View Press Release"  /></a>
+					
+					</div> 
+					
+					
+						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs");return false;' target='_blank'  href="/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs"><span itemprop="headline">Loop Launches Offset to Help Merchants Fully Cover Return Costs</span></a> 
+					
+					<div class="bwMeta"> 
+						
+						
+						<div class="bwTimestamp">
+							
+								<time itemprop="dateModified" datetime="2024-09-25T09:30:00Z">
+							
+							09/25/2024 - 09:30 AM
 							
 								</time>
 							
@@ -1435,7 +1978,6 @@ function reload() {
 							
 							
 							
-							<img src="/images/icons/icon_video.gif" alt="Video" title="Video" />
 							
 							
 							
@@ -1445,623 +1987,10 @@ function reload() {
 							
 							
 							
-						</div><div class="bwLanguage">
-							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
-						 </div>
 							
+						</div>
 					</div>
-		<div class="bwDesc">SYDNEY--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Canva, la mayor plataforma de comunicación visual del mundo, lanzó hoy un sistema de marca renovado, diseñado específicamente para lugares de trabajo de todo el mundo. La i... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808594610/es");return false;' target=_blank  href="/news/home/20240808594610/es" rel="nofollow">more</a> &raquo;</span></div> 
-		
-					
-						</div>
-					
-				</li>	
-			
-			
-		
-		
-				<li>
-					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808186809/pt" itemtype="http://schema.org/NewsArticle">
-					
-					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808186809/pt"/>
-					
-					
-					<div class="bwThumbs">
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808186809/pt");return false;' target=_blank  href="/news/home/20240808186809/pt"><img src="https://mms.businesswire.com/media/20240808186809/pt/2210789/21/Canva-logo_%281%29.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
-					
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808186809/pt");return false;' target=_blank  href="/news/home/20240808186809/pt"><img src="https://mms.businesswire.com/media/20240808186809/pt/2210848/21/Canva_Brand_Glow_Up_PR_Asset04.jpg" title="" alt="View Press Release"  /></a>
-					
-					</div> 
-					
-					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808186809/pt");return false;' target='_blank'  href="/news/home/20240808186809/pt"><span itemprop="headline">Canva revela marca atualizada com sistema projetado para o trabalho</span></a> 
-					
-					<div class="bwMeta"> 
-						
-						
-						<div class="bwTimestamp">
-							
-								<time itemprop="dateModified" datetime="2024-08-08T23:47:00Z">
-							
-							08/08/2024 - 11:47 PM
-							
-								</time>
-							
-						</div>
-						
-		
-						<div class="bwAssets">
-							<img src="/images/icons/icon_photo.gif" alt="Photo" title="Photo" />
-							
-							
-							
-							
-							
-							<img src="/images/icons/icon_video.gif" alt="Video" title="Video" />
-							
-							
-							
-							
-							
-							
-							
-							
-							
-						</div><div class="bwLanguage">
-							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
-						 </div>
-							
-					</div>
-		<div class="bwDesc">SYDNEY--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Canva, a maior plataforma internacional de comunicação visual, lançou hoje um sistema de marca atualizado, criado especificamente para locais de trabalho ao redor do mundo.... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808186809/pt");return false;' target=_blank  href="/news/home/20240808186809/pt" rel="nofollow">more</a> &raquo;</span></div> 
-		
-					
-						</div>
-					
-				</li>	
-			
-			
-		
-		
-				<li>
-					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808046597/fr" itemtype="http://schema.org/NewsArticle">
-					
-					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808046597/fr"/>
-					
-					
-					<div class="bwThumbs">
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808046597/fr");return false;' target=_blank  href="/news/home/20240808046597/fr"><img src="https://mms.businesswire.com/media/20240808046597/fr/2210789/21/Canva-logo_%281%29.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
-					
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808046597/fr");return false;' target=_blank  href="/news/home/20240808046597/fr"><img src="https://mms.businesswire.com/media/20240808046597/fr/2210848/21/Canva_Brand_Glow_Up_PR_Asset04.jpg" title="" alt="View Press Release"  /></a>
-					
-					</div> 
-					
-					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808046597/fr");return false;' target='_blank'  href="/news/home/20240808046597/fr"><span itemprop="headline">Canva d&eacute;voile un syst&egrave;me de marque repens&eacute; con&ccedil;u pour le travail</span></a> 
-					
-					<div class="bwMeta"> 
-						
-						
-						<div class="bwTimestamp">
-							
-								<time itemprop="dateModified" datetime="2024-08-08T23:37:00Z">
-							
-							08/08/2024 - 11:37 PM
-							
-								</time>
-							
-						</div>
-						
-		
-						<div class="bwAssets">
-							<img src="/images/icons/icon_photo.gif" alt="Photo" title="Photo" />
-							
-							
-							
-							
-							
-							<img src="/images/icons/icon_video.gif" alt="Video" title="Video" />
-							
-							
-							
-							
-							
-							
-							
-							
-							
-						</div><div class="bwLanguage">
-							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
-						 </div>
-							
-					</div>
-		<div class="bwDesc">SYDNEY--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Canva, la plus grande plateforme de communication visuelle au monde, a lancé aujourd’hui un nouveau système de marque conçu pour les lieux de travail du monde entier. L’ide... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808046597/fr");return false;' target=_blank  href="/news/home/20240808046597/fr" rel="nofollow">more</a> &raquo;</span></div> 
-		
-					
-						</div>
-					
-				</li>	
-			
-			
-		
-		
-				<li>
-					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808721853/de" itemtype="http://schema.org/NewsArticle">
-					
-					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808721853/de"/>
-					
-					
-					<div class="bwThumbs">
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808721853/de");return false;' target=_blank  href="/news/home/20240808721853/de"><img src="https://mms.businesswire.com/media/20240808721853/de/2210789/21/Canva-logo_%281%29.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
-					
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808721853/de");return false;' target=_blank  href="/news/home/20240808721853/de"><img src="https://mms.businesswire.com/media/20240808721853/de/2210848/21/Canva_Brand_Glow_Up_PR_Asset04.jpg" title="" alt="View Press Release"  /></a>
-					
-					</div> 
-					
-					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808721853/de");return false;' target='_blank'  href="/news/home/20240808721853/de"><span itemprop="headline">Canva enth&uuml;llt &uuml;berarbeitetes Markensystem, das f&uuml;r die Arbeitswelt entworfen wurde</span></a> 
-					
-					<div class="bwMeta"> 
-						
-						
-						<div class="bwTimestamp">
-							
-								<time itemprop="dateModified" datetime="2024-08-08T23:32:00Z">
-							
-							08/08/2024 - 11:32 PM
-							
-								</time>
-							
-						</div>
-						
-		
-						<div class="bwAssets">
-							<img src="/images/icons/icon_photo.gif" alt="Photo" title="Photo" />
-							
-							
-							
-							
-							
-							<img src="/images/icons/icon_video.gif" alt="Video" title="Video" />
-							
-							
-							
-							
-							
-							
-							
-							
-							
-						</div><div class="bwLanguage">
-							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
-						 </div>
-							
-					</div>
-		<div class="bwDesc">SYDNEY--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Canva, die weltweit größte visuelle Kommunikationsplattform, gab heute die Einführung eines überarbeiteten und speziell für Arbeitsplätze weltweit entwickelten Markensystem... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808721853/de");return false;' target=_blank  href="/news/home/20240808721853/de" rel="nofollow">more</a> &raquo;</span></div> 
-		
-					
-						</div>
-					
-				</li>	
-			
-			
-		
-		
-				<li>
-					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808532585/ja" itemtype="http://schema.org/NewsArticle">
-					
-					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808532585/ja"/>
-					
-					
-					<div class="bwThumbs">
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808532585/ja");return false;' target=_blank  href="/news/home/20240808532585/ja"><img src="https://mms.businesswire.com/media/20240808532585/ja/2210789/21/Canva-logo_%281%29.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
-					
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808532585/ja");return false;' target=_blank  href="/news/home/20240808532585/ja"><img src="https://mms.businesswire.com/media/20240808532585/ja/2210848/21/Canva_Brand_Glow_Up_PR_Asset04.jpg" title="" alt="View Press Release"  /></a>
-					
-					</div> 
-					
-					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808532585/ja");return false;' target='_blank'  href="/news/home/20240808532585/ja"><span itemprop="headline">Canva&#12289;&#20181;&#20107;&#12398;&#12383;&#12417;&#12395;&#12487;&#12470;&#12452;&#12531;&#12373;&#12428;&#12289;&#26032;&#12375;&#12367;&#29983;&#12414;&#12428;&#22793;&#12431;&#12387;&#12383;&#12502;&#12521;&#12531;&#12489;&#12471;&#12473;&#12486;&#12512;&#12434;&#30330;&#34920;</span></a> 
-					
-					<div class="bwMeta"> 
-						
-						
-						<div class="bwTimestamp">
-							
-								<time itemprop="dateModified" datetime="2024-08-08T23:25:00Z">
-							
-							08/08/2024 - 11:25 PM
-							
-								</time>
-							
-						</div>
-						
-		
-						<div class="bwAssets">
-							<img src="/images/icons/icon_photo.gif" alt="Photo" title="Photo" />
-							
-							
-							
-							
-							
-							<img src="/images/icons/icon_video.gif" alt="Video" title="Video" />
-							
-							
-							
-							
-							
-							
-							
-							
-							
-						</div><div class="bwLanguage">
-							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
-						 </div>
-							
-					</div>
-		<div class="bwDesc">シドニー--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--（ビジネスワイヤ） -- 世界最大のビジュアルコミュニケーション・プラットフォームであるCanvaは、世界中の職場向けにデザインされたブランドシステムを刷新したと発表しました。新しくなったアイデンティティは、グローバルに拡大し、かつローカルにつながることができるようにデザインされており、世界中のすべての人にデザインする力を与えるというCanvaの... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808532585/ja");return false;' target=_blank  href="/news/home/20240808532585/ja" rel="nofollow">more</a> &raquo;</span></div> 
-		
-					
-						</div>
-					
-				</li>	
-			
-			
-		
-		
-				<li>
-					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808110340/en/Rosen-Law-Firm-Urges-XPEL-Inc.-NASDAQ-XPEL-Stockholders-with-Large-Losses-to-Contact-the-Firm-for-Information-About-Their-Rights" itemtype="http://schema.org/NewsArticle">
-					
-					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808110340/en/Rosen-Law-Firm-Urges-XPEL-Inc.-NASDAQ-XPEL-Stockholders-with-Large-Losses-to-Contact-the-Firm-for-Information-About-Their-Rights"/>
-					
-					
-					<div class="bwThumbs">
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808110340/en/Rosen-Law-Firm-Urges-XPEL-Inc.-NASDAQ-XPEL-Stockholders-with-Large-Losses-to-Contact-the-Firm-for-Information-About-Their-Rights");return false;' target=_blank  href="/news/home/20240808110340/en/Rosen-Law-Firm-Urges-XPEL-Inc.-NASDAQ-XPEL-Stockholders-with-Large-Losses-to-Contact-the-Firm-for-Information-About-Their-Rights"><img src="https://mms.businesswire.com/media/20240808110340/en/1164042/21/July_30%2C_2021_-_ROSEN_LOGO.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
-					
-					
-					</div> 
-					
-					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808110340/en/Rosen-Law-Firm-Urges-XPEL-Inc.-NASDAQ-XPEL-Stockholders-with-Large-Losses-to-Contact-the-Firm-for-Information-About-Their-Rights");return false;' target='_blank'  href="/news/home/20240808110340/en/Rosen-Law-Firm-Urges-XPEL-Inc.-NASDAQ-XPEL-Stockholders-with-Large-Losses-to-Contact-the-Firm-for-Information-About-Their-Rights"><span itemprop="headline">Rosen Law Firm Urges XPEL, Inc. (NASDAQ: XPEL) Stockholders with Large Losses to Contact the Firm for Information About Their Rights</span></a> 
-					
-					<div class="bwMeta"> 
-						
-						
-						<div class="bwTimestamp">
-							
-								<time itemprop="dateModified" datetime="2024-08-08T22:30:00Z">
-							
-							08/08/2024 - 10:30 PM
-							
-								</time>
-							
-						</div>
-						
-		
-					</div>
-		<div class="bwDesc">NEW YORK--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Rosen Law Firm, a global investor rights law firm, announces that a shareholder filed a class action on behalf of all purchasers of securities of XPEL, Inc. (NASDAQ: XPEL... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808110340/en/Rosen-Law-Firm-Urges-XPEL-Inc.-NASDAQ-XPEL-Stockholders-with-Large-Losses-to-Contact-the-Firm-for-Information-About-Their-Rights");return false;' target=_blank  href="/news/home/20240808110340/en/Rosen-Law-Firm-Urges-XPEL-Inc.-NASDAQ-XPEL-Stockholders-with-Large-Losses-to-Contact-the-Firm-for-Information-About-Their-Rights" rel="nofollow">more</a> &raquo;</span></div> 
-		
-					
-						</div>
-					
-				</li>	
-			
-			
-		
-		
-				<li>
-					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808167424/en/Guidewire-India-Launches-Guidewire-Gives-Back-%E2%80%9CElevatEd-by-Guidewire%E2%80%9D-Scholarship-Program-to-Empower-Female-Students" itemtype="http://schema.org/NewsArticle">
-					
-					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808167424/en/Guidewire-India-Launches-Guidewire-Gives-Back-%E2%80%9CElevatEd-by-Guidewire%E2%80%9D-Scholarship-Program-to-Empower-Female-Students"/>
-					
-					
-					<div class="bwThumbs">
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808167424/en/Guidewire-India-Launches-Guidewire-Gives-Back-%E2%80%9CElevatEd-by-Guidewire%E2%80%9D-Scholarship-Program-to-Empower-Female-Students");return false;' target=_blank  href="/news/home/20240808167424/en/Guidewire-India-Launches-Guidewire-Gives-Back-%E2%80%9CElevatEd-by-Guidewire%E2%80%9D-Scholarship-Program-to-Empower-Female-Students"><img src="https://mms.businesswire.com/media/20240808167424/en/1447261/21/guidewire_logo_new_2color_h_screen-2022.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
-					
-					
-					</div> 
-					
-					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808167424/en/Guidewire-India-Launches-Guidewire-Gives-Back-%E2%80%9CElevatEd-by-Guidewire%E2%80%9D-Scholarship-Program-to-Empower-Female-Students");return false;' target='_blank'  href="/news/home/20240808167424/en/Guidewire-India-Launches-Guidewire-Gives-Back-%E2%80%9CElevatEd-by-Guidewire%E2%80%9D-Scholarship-Program-to-Empower-Female-Students"><span itemprop="headline">Guidewire India Launches Guidewire Gives Back &ldquo;ElevatEd by Guidewire&rdquo; Scholarship Program to Empower Female Students</span></a> 
-					
-					<div class="bwMeta"> 
-						
-						
-						<div class="bwTimestamp">
-							
-								<time itemprop="dateModified" datetime="2024-08-08T22:30:00Z">
-							
-							08/08/2024 - 10:30 PM
-							
-								</time>
-							
-						</div>
-						
-		
-					</div>
-		<div class="bwDesc">BENGALURU, India--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Guidewire India has launched Guidewire Gives Back’s “ElevatEd by Guidewire” scholarship program in engineering. <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808167424/en/Guidewire-India-Launches-Guidewire-Gives-Back-%E2%80%9CElevatEd-by-Guidewire%E2%80%9D-Scholarship-Program-to-Empower-Female-Students");return false;' target=_blank  href="/news/home/20240808167424/en/Guidewire-India-Launches-Guidewire-Gives-Back-%E2%80%9CElevatEd-by-Guidewire%E2%80%9D-Scholarship-Program-to-Empower-Female-Students" rel="nofollow">more</a> &raquo;</span></div> 
-		
-					
-						</div>
-					
-				</li>	
-			
-			
-		
-		
-				<li>
-					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808555107/nl" itemtype="http://schema.org/NewsArticle">
-					
-					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808555107/nl"/>
-					
-					
-					<div class="bwThumbs">
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808555107/nl");return false;' target=_blank  href="/news/home/20240808555107/nl"><img src="https://mms.businesswire.com/media/20240808555107/nl/2210789/21/Canva-logo_%281%29.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
-					
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808555107/nl");return false;' target=_blank  href="/news/home/20240808555107/nl"><img src="https://mms.businesswire.com/media/20240808555107/nl/2210848/21/Canva_Brand_Glow_Up_PR_Asset04.jpg" title="" alt="View Press Release"  /></a>
-					
-					</div> 
-					
-					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808555107/nl");return false;' target='_blank'  href="/news/home/20240808555107/nl"><span itemprop="headline">Samenvatting: Canva onthult vernieuwd merk speciaal voor de werkomgeving</span></a> 
-					
-					<div class="bwMeta"> 
-						
-						
-						<div class="bwTimestamp">
-							
-								<time itemprop="dateModified" datetime="2024-08-08T22:07:00Z">
-							
-							08/08/2024 - 10:07 PM
-							
-								</time>
-							
-						</div>
-						
-		
-						<div class="bwAssets">
-							<img src="/images/icons/icon_photo.gif" alt="Photo" title="Photo" />
-							
-							
-							
-							
-							
-							<img src="/images/icons/icon_video.gif" alt="Video" title="Video" />
-							
-							
-							
-							
-							
-							
-							
-							
-							
-						</div><div class="bwLanguage">
-							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
-						 </div>
-							
-					</div>
-		<div class="bwDesc">SYDNEY--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Canva, 's werelds grootste visuele communicatieplatform, lanceerde vandaag een vernieuwd merksysteem dat speciaal is gemaakt voor werkplekken wereldwijd. De aangepaste lay-... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808555107/nl");return false;' target=_blank  href="/news/home/20240808555107/nl" rel="nofollow">more</a> &raquo;</span></div> 
-		
-					
-						</div>
-					
-				</li>	
-			
-			
-		
-		
-				<li>
-					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808352950/it" itemtype="http://schema.org/NewsArticle">
-					
-					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808352950/it"/>
-					
-					
-					<div class="bwThumbs">
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808352950/it");return false;' target=_blank  href="/news/home/20240808352950/it"><img src="https://mms.businesswire.com/media/20240808352950/it/2210789/21/Canva-logo_%281%29.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
-					
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808352950/it");return false;' target=_blank  href="/news/home/20240808352950/it"><img src="https://mms.businesswire.com/media/20240808352950/it/2210848/21/Canva_Brand_Glow_Up_PR_Asset04.jpg" title="" alt="View Press Release"  /></a>
-					
-					</div> 
-					
-					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808352950/it");return false;' target='_blank'  href="/news/home/20240808352950/it"><span itemprop="headline">Riassunto: Canva presenta un sistema di brand rinnovato sviluppato per il lavoro</span></a> 
-					
-					<div class="bwMeta"> 
-						
-						
-						<div class="bwTimestamp">
-							
-								<time itemprop="dateModified" datetime="2024-08-08T21:43:00Z">
-							
-							08/08/2024 - 09:43 PM
-							
-								</time>
-							
-						</div>
-						
-		
-						<div class="bwAssets">
-							<img src="/images/icons/icon_photo.gif" alt="Photo" title="Photo" />
-							
-							
-							
-							
-							
-							<img src="/images/icons/icon_video.gif" alt="Video" title="Video" />
-							
-							
-							
-							
-							
-							
-							
-							
-							
-						</div><div class="bwLanguage">
-							<img src="/images/icons/icon_translations.gif" title="Translations available" alt="Translations Available" />
-						 </div>
-							
-					</div>
-		<div class="bwDesc">SYDNEY--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Canva, la più grande piattaforma di comunicazione visiva al mondo, ha lanciato oggi un sistema di brand identity rinnovato, appositamente sviluppato per i luoghi di lavoro ... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808352950/it");return false;' target=_blank  href="/news/home/20240808352950/it" rel="nofollow">more</a> &raquo;</span></div> 
-		
-					
-						</div>
-					
-				</li>	
-			
-			
-		
-		
-				<li>
-					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808215193/en/IGC-Pharma-Reports-First-Quarter-Fiscal-2025-Results" itemtype="http://schema.org/NewsArticle">
-					
-					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808215193/en/IGC-Pharma-Reports-First-Quarter-Fiscal-2025-Results"/>
-					
-					
-					<div class="bwThumbs">
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808215193/en/IGC-Pharma-Reports-First-Quarter-Fiscal-2025-Results");return false;' target=_blank  href="/news/home/20240808215193/en/IGC-Pharma-Reports-First-Quarter-Fiscal-2025-Results"><img src="https://mms.businesswire.com/media/20240808215193/en/2211827/21/IGC_Pharma%2C_Inc.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
-					
-					
-					</div> 
-					
-					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808215193/en/IGC-Pharma-Reports-First-Quarter-Fiscal-2025-Results");return false;' target='_blank'  href="/news/home/20240808215193/en/IGC-Pharma-Reports-First-Quarter-Fiscal-2025-Results"><span itemprop="headline">IGC Pharma Reports First Quarter Fiscal 2025 Results</span></a> 
-					
-					<div class="bwMeta"> 
-						
-						
-						<div class="bwTimestamp">
-							
-								<time itemprop="dateModified" datetime="2024-08-08T21:30:00Z">
-							
-							08/08/2024 - 09:30 PM
-							
-								</time>
-							
-						</div>
-						
-		
-					</div>
-		<div class="bwDesc">POTOMAC, Md.--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--IGC Pharma Reports First Quarter Fiscal 2025 Results <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808215193/en/IGC-Pharma-Reports-First-Quarter-Fiscal-2025-Results");return false;' target=_blank  href="/news/home/20240808215193/en/IGC-Pharma-Reports-First-Quarter-Fiscal-2025-Results" rel="nofollow">more</a> &raquo;</span></div> 
-		
-					
-						</div>
-					
-				</li>	
-			
-			
-		
-		
-				<li>
-					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808660355/en/Slate-Office-REIT-Reports-Second-Quarter-2024-Results" itemtype="http://schema.org/NewsArticle">
-					
-					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808660355/en/Slate-Office-REIT-Reports-Second-Quarter-2024-Results"/>
-					
-					
-					<div class="bwThumbs">
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808660355/en/Slate-Office-REIT-Reports-Second-Quarter-2024-Results");return false;' target=_blank  href="/news/home/20240808660355/en/Slate-Office-REIT-Reports-Second-Quarter-2024-Results"><img src="https://mms.businesswire.com/media/20240808660355/en/764621/21/Slate_Office_REIT_Logo_%28New_Brand%29.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
-					
-					
-					</div> 
-					
-					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808660355/en/Slate-Office-REIT-Reports-Second-Quarter-2024-Results");return false;' target='_blank'  href="/news/home/20240808660355/en/Slate-Office-REIT-Reports-Second-Quarter-2024-Results"><span itemprop="headline">Slate Office REIT Reports Second Quarter 2024 Results</span></a> 
-					
-					<div class="bwMeta"> 
-						
-						
-						<div class="bwTimestamp">
-							
-								<time itemprop="dateModified" datetime="2024-08-08T21:28:00Z">
-							
-							08/08/2024 - 09:28 PM
-							
-								</time>
-							
-						</div>
-						
-		
-					</div>
-		<div class="bwDesc">TORONTO--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Slate Office REIT (TSX: SOT.UN) (the "REIT"), an owner and operator of high-quality workplace real estate, reported today financial results and highlights for the three an... <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808660355/en/Slate-Office-REIT-Reports-Second-Quarter-2024-Results");return false;' target=_blank  href="/news/home/20240808660355/en/Slate-Office-REIT-Reports-Second-Quarter-2024-Results" rel="nofollow">more</a> &raquo;</span></div> 
-		
-					
-						</div>
-					
-				</li>	
-			
-			
-		
-		
-				<li>
-					
-						<div itemscope="itemscope" itemid="https://www.businesswire.com/news/home/20240808294311/en/Lost-Money-in-Customers-Bancorp-Inc.-Gibbs-Law-Group-Investigates-Potential-Securities-Law-Violations" itemtype="http://schema.org/NewsArticle">
-					
-					
-						<meta itemprop="url" content="https://www.businesswire.com/news/home/20240808294311/en/Lost-Money-in-Customers-Bancorp-Inc.-Gibbs-Law-Group-Investigates-Potential-Securities-Law-Violations"/>
-					
-					
-					<div class="bwThumbs">
-					
-						<a onclick='openNewsViewPopup("/news/home/20240808294311/en/Lost-Money-in-Customers-Bancorp-Inc.-Gibbs-Law-Group-Investigates-Potential-Securities-Law-Violations");return false;' target=_blank  href="/news/home/20240808294311/en/Lost-Money-in-Customers-Bancorp-Inc.-Gibbs-Law-Group-Investigates-Potential-Securities-Law-Violations"><img src="https://mms.businesswire.com/media/20240808294311/en/2211841/21/9e12f85f-da91-4594-be44-34cff2514275.jpg" title="" alt="View Press Release" itemprop="thumbnailUrl" /></a>
-					
-					
-					</div> 
-					
-					
-						<a class="bwTitleLink" onclick='openNewsViewPopup("/news/home/20240808294311/en/Lost-Money-in-Customers-Bancorp-Inc.-Gibbs-Law-Group-Investigates-Potential-Securities-Law-Violations");return false;' target='_blank'  href="/news/home/20240808294311/en/Lost-Money-in-Customers-Bancorp-Inc.-Gibbs-Law-Group-Investigates-Potential-Securities-Law-Violations"><span itemprop="headline">Lost Money in Customers Bancorp, Inc.? Gibbs Law Group Investigates Potential Securities Law Violations</span></a> 
-					
-					<div class="bwMeta"> 
-						
-						
-						<div class="bwTimestamp">
-							
-								<time itemprop="dateModified" datetime="2024-08-08T20:39:00Z">
-							
-							08/08/2024 - 08:39 PM
-							
-								</time>
-							
-						</div>
-						
-		
-					</div>
-		<div class="bwDesc">OAKLAND, Calif.--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Gibbs Law Group is investigating a potential securities class action lawsuit on behalf of Customers Bancorp, Inc. (NYSE: CUBI) investors. <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240808294311/en/Lost-Money-in-Customers-Bancorp-Inc.-Gibbs-Law-Group-Investigates-Potential-Securities-Law-Violations");return false;' target=_blank  href="/news/home/20240808294311/en/Lost-Money-in-Customers-Bancorp-Inc.-Gibbs-Law-Group-Investigates-Potential-Securities-Law-Violations" rel="nofollow">more</a> &raquo;</span></div> 
+		<div class="bwDesc">COLUMBUS, Ohio--(<span itemprop="provider publisher copyrightHolder" itemscope="itemscope" itemtype="http://schema.org/Organization" itemid="https://www.businesswire.com"><meta itemprop="url" content="https://www.businesswire.com"/><span itemprop="name">BUSINESS WIRE</span></span>)--Loop announces the launch of Offset, a new pre-purchase returns solution that helps merchants offset the high costs of returns and reverse logistics. <span class="linkExpand"><a onclick='openNewsViewPopup("/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs");return false;' target=_blank  href="/news/home/20240925604494/en/Loop-Launches-Offset-to-Help-Merchants-Fully-Cover-Return-Costs" rel="nofollow">more</a> &raquo;</span></div> 
 		
 					
 						</div>
@@ -2093,61 +2022,61 @@ function reload() {
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G2*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">2</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G2*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">2</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G3*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">3</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G3*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">3</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G4*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">4</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G4*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">4</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G5*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">5</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G5*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">5</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G6*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">6</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G6*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">6</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G7*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">7</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G7*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">7</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G8*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">8</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G8*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">8</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G9*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">9</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G9*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">9</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G10*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">10</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G10*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">10</a>
 		
 		
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G11*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">11</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G11*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">11</a>
 		
 		
 	
@@ -2159,7 +2088,7 @@ function reload() {
 	
 		
 		
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G1076*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">1076</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G1033*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">1033</a>
 		
 		
 	
@@ -2170,7 +2099,7 @@ function reload() {
 </div>
 	<div class="pagingNext">
 	
-		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1720609200000*B1723181855861*DgroupByDate*G2*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">Next &raquo;</a>
+		<a href="/portal/site/home/template.PAGE/welcome/?javax.portlet.tpst=9ee47ea3678ece48256bb762f04eca4a&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_viewID=MY_PORTAL_VIEW&javax.portlet.prp_9ee47ea3678ece48256bb762f04eca4a_ndmHsc=v2*A1724670000000*B1727272334324*DgroupByDate*G2*N1010492&javax.portlet.begCacheTok=com.vignette.cachetoken&javax.portlet.endCacheTok=com.vignette.cachetoken">Next &raquo;</a>
 	
   	</div>
 </div>
