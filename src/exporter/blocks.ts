@@ -101,6 +101,9 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
             const iconUrl = block.callout.icon.external.url
             block.callout.icon.src = await saveImage(iconUrl, `block-${block.id}`)
           }
+          if (block.has_children) {
+            block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
+          }
           break
         case 'child_database':
           // if (block.has_children) {
