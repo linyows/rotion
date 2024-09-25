@@ -156,6 +156,7 @@ export type CalloutBlockObjectResponseEx = CalloutBlockObjectResponse & {
     | { src: string, type: 'external', external: { url: TextRequest } }
     | { src: string, type: 'file', file: { url: string, expiry_time: string } }
   }
+  children?: ListBlockChildrenResponseEx
 }
 export type ImageBlockObjectResponseEx = ImageBlockObjectResponse & {
   image:
