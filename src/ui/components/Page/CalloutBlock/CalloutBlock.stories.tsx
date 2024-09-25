@@ -52,57 +52,57 @@ const block: CalloutBlockObjectResponseEx = {
 }
 
 const childblocks: ListBlockChildrenResponseEx = {
-  "object": "list",
-  "results": [
+  object: 'list',
+  results: [
     {
-      "object": "block",
-      "id": '12345678-1234-1234-1234-1234567890ab',
-      "parent": {
-        "type": "block_id",
-        "block_id": '12345678-1234-1234-1234-1234567890ab',
+      object: 'block',
+      id: '12345678-1234-1234-1234-1234567890ab',
+      parent: {
+        type: 'block_id',
+        block_id: '12345678-1234-1234-1234-1234567890ab',
       },
-      "created_time": "2024-09-25T11:48:00.000Z",
-      "last_edited_time": "2024-09-25T11:49:00.000Z",
-      "created_by": {
-        "object": "user",
-        "id": '12345678-1234-1234-1234-1234567890ab',
+      created_time: '2024-09-25T11:48:00.000Z',
+      last_edited_time: '2024-09-25T11:49:00.000Z',
+      created_by: {
+        object: 'user',
+        id: '12345678-1234-1234-1234-1234567890ab',
       },
-      "last_edited_by": {
-        "object": "user",
-        "id": '12345678-1234-1234-1234-1234567890ab',
+      last_edited_by: {
+        object: 'user',
+        id: '12345678-1234-1234-1234-1234567890ab',
       },
-      "has_children": false,
-      "archived": false,
-      "in_trash": false,
-      "type": "paragraph",
-      "paragraph": {
-        "rich_text": [
+      has_children: false,
+      archived: false,
+      in_trash: false,
+      type: 'paragraph',
+      paragraph: {
+        rich_text: [
           {
-            "type": "text",
-            "text": {
-              "content": "Callout with Paragraph\nCallout with Paragraph\nCallout with Paragraph\nCallout with Paragraph",
-              "link": null
+            type: 'text',
+            text: {
+              content: 'Callout with Paragraph\nCallout with Paragraph\nCallout with Paragraph\nCallout with Paragraph',
+              link: null
             },
-            "annotations": {
-              "bold": false,
-              "italic": false,
-              "strikethrough": false,
-              "underline": false,
-              "code": false,
-              "color": "default"
+            annotations: {
+              bold: false,
+              italic: false,
+              strikethrough: false,
+              underline: false,
+              code: false,
+              color: 'default'
             },
-            "plain_text": "Callout with Paragraph\nCallout with Paragraph\nCallout with Paragraph\nCallout with Paragraph",
-            "href": null
+            plain_text: 'Callout with Paragraph\nCallout with Paragraph\nCallout with Paragraph\nCallout with Paragraph',
+            href: null
           }
         ],
-        "color": "default"
+        color: 'default'
       }
     }
   ],
-  "next_cursor": null,
-  "has_more": false,
-  "type": "block",
-  "block": {},
+  next_cursor: null,
+  has_more: false,
+  type: 'block',
+  block: {},
 }
 
 const meta = {
