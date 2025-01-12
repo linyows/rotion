@@ -191,33 +191,35 @@ test('getEmbedHtml returns html', async () => {
   assert.match(html, /<iframe/)
 })
 
-test('iconRegex matches all favicons', async () => {
-  const examples = [
-    [
-      '<link href="https://example.com/image/upload/front/favicon.ico" rel="icon shortcut" type="image/x-icon"/>',
-      'https://example.com/image/upload/front/favicon.ico',
-    ],
-    [
-      '<link rel="icon" class="favicon" type="image/svg+xml" href="https://example.com/favicons/favicon.svg">',
-      'https://example.com/favicons/favicon.svg',
-    ],
-    [
-      '<link rel="shortcut icon" href=/static/images/favicons/data/favicon.ico>',
-      '/static/images/favicons/data/favicon.ico',
-    ],
-    [
-      '<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96" />',
-      '/assets/img/favicons/favicon-96x96.png',
-    ],
-    [
-      '<link rel="shortcut icon" type="image/x-icon" href="/assets/favicon-test.ico" />',
-      '/assets/favicon-test.ico',
-    ],
-  ]
-  for (const ex of examples) {
-    const re = files.findHtmlByRegexp(files.iconRegexps, ex[0])
-    assert.equal(ex[1], re)
-  }
-})
+const testsIconRegex = [
+  [
+    '<link href="https://example.com/image/upload/front/favicon.ico" rel="icon shortcut" type="image/x-icon"/>',
+    'https://example.com/image/upload/front/favicon.ico',
+  ],
+  [
+    '<link rel="icon" class="favicon" type="image/svg+xml" href="https://example.com/favicons/favicon.svg">',
+    'https://example.com/favicons/favicon.svg',
+  ],
+  [
+    '<link rel="shortcut icon" href=/static/images/favicons/data/favicon.ico>',
+    '/static/images/favicons/data/favicon.ico',
+  ],
+  [
+    '<link rel="icon" type="image/png" href="/assets/img/favicons/favicon-96x96.png" sizes="96x96" />',
+    '/assets/img/favicons/favicon-96x96.png',
+  ],
+  [
+    '<link rel="shortcut icon" type="image/x-icon" href="/assets/favicon-test.ico" />',
+    '/assets/favicon-test.ico',
+  ],
+]
+
+for (const t of testsIconRegex) {
+  const [tag, path] = t
+  test(`iconRegex matches all favicons: ${path}`, async () => {
+    const re = files.findHtmlByRegexp(files.iconRegexps, tag)
+    assert.equal(path, re)
+  })
+}
 
 test.run()
