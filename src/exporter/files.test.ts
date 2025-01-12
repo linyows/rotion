@@ -55,77 +55,77 @@ async function vcr (reqUrl: string) {
   return ''
 }
 
-test('getHtmlMeta returns title and desc', async () => {
-  const tests = [
-    [
-      'https://github.com',
-      'GitHub: Let’s build from here · GitHub',
-      'GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...',
-      '/images/html-image-c134a985e5f03a4b5d56525a8cf57b57bf2d227d.webp',
-      '/images/html-icon-84b7e44aa54d002eac8d00f5bfa9cc93410f2a48-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg',
-    ],
-    [
-      'https://wordpress.org',
-      'Blog Tool, Publishing Platform, and CMS &#8211; WordPress.org',
-      'Open source software which you can use to easily create a beautiful website, blog, or app.',
-      '/images/html-image-3a3090603f6bdfe020ebfadbcda88269e7ff9fba.webp',
-      '/images/html-icon-5e627442a6a3e12ed6cbbecf1a9a0f3ef9298800-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
-    ],
-    [
-      'https://reactjs.org',
-      'React',
-      'React is the library for web and native user interfaces. Build user interfaces out of individual pieces called components written in JavaScript. React is designed to let you seamlessly combine components written by independent people, teams, and organizations.',
-      '/images/html-image-ce7f0c52bc0e232480445462ce8acd6f873e7263.webp',
-      '/images/html-icon-cf3a9253f8e579b8815743c91cf8474a7ba0a5c3-c6eac0e9dbd7a24b49444f38a7984d17050ebf67.webp',
-    ],
-    [
-      'https://nuxtjs.org',
-      'Nuxt 2 - The Intuitive Vue Framework',
-      'Build your Vue 2 application with confidence using Nuxt 2. An open source framework making web development simple and powerful.',
-      '/images/html-image-1aa787fe0cfb373575fc2c0f6f826e7c6dc9fd41.webp',
-      '/images/html-icon-5b7695a0da380c6011550f0097344ad388806506-08c83a2cb68c04d4853253d2592db038a7bdd726.webp',
-    ],
-    [
-      'https://www.notion.so/releases/2022-03-03',
-      'March 3, 2022 – Connect your tools with the API 🧰',
-      'The API is officially out of beta! We expanded the API’s capabilities to make it even easier to build with Notion — learn more at developers.notion.com.',
-      '/images/html-image-ed29a0e7fc0223f62b6c61ed6bdca27accec2567.webp',
-      '/images/html-icon-fd5736cc37eed0e7ead5af0d272b87c070164673-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
-    ],
-    [
-      'https://www.typeform.com',
-      'Typeform: People-Friendly Forms and Surveys',
-      'Build beautiful, interactive forms — get more responses. No coding needed. Templates for quizzes, research, feedback, lead generation, and more. Sign up FREE.',
-      '/images/html-image-7741183ef80385ccb4441ac2b39abc9b927e0490.webp',
-      '/images/html-icon-239b10b2bb1ad78e45400118cb543275e165075e-c6eac0e9dbd7a24b49444f38a7984d17050ebf67.webp',
-    ],
-    // (!) This site requires 'User-Agent: curl', so it no response with default UA of rotion.
-    //     Runs the 'env ROTION_UA=curl npm test' when updates VCR.
-    [
-      'https://www.businesswire.com/',
-      'Global Press Release &amp; Newswire Distribution Services | Business Wire',
-      'Explore Business Wire for premium press release &amp; newswire distribution services, offering global reach and tailored solutions for businesses worldwide. Expand your reach today.',
-      '/images/html-image-1ebfeb4b204984939ca889895f01fad24a9e0848.webp',
-      '/images/html-icon-65fbfcdf2d131a1bd29acc6b5377073a0b10a76f-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
-    ],
-    [
-      'https://go.dev/conduct',
-      'Go Community Code of Conduct - The Go Programming Language',
-      'Online communities include people from many different backgrounds. The Go contributors are committed to providing a friendly, safe and welcoming environment for all, regardless of gender identity and expression, sexual orientation, disabilities, neurodiversity, physical appearance, body size, ethnicity, nationality, race, age, religion, or similar personal characteristics.',
-      '/images/html-image-dd81b68c375850259cdb26e64618e339c4eec3c3.webp',
-      '/images/html-icon-77014b367198f9878ea91bdccd6bb3fce2a5ee2a-7f5e06b5d5dc8f2fac131fd56215ae5ca767a98c.webp',
-    ],
-  ]
+const testsGetHtmlMeta = [
+  [
+    'https://github.com',
+    'GitHub: Let’s build from here · GitHub',
+    'GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...',
+    '/images/html-image-c134a985e5f03a4b5d56525a8cf57b57bf2d227d.webp',
+    '/images/html-icon-84b7e44aa54d002eac8d00f5bfa9cc93410f2a48-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg',
+  ],
+  [
+    'https://wordpress.org',
+    'Blog Tool, Publishing Platform, and CMS &#8211; WordPress.org',
+    'Open source software which you can use to easily create a beautiful website, blog, or app.',
+    '/images/html-image-3a3090603f6bdfe020ebfadbcda88269e7ff9fba.webp',
+    '/images/html-icon-5e627442a6a3e12ed6cbbecf1a9a0f3ef9298800-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
+  ],
+  [
+    'https://reactjs.org',
+    'React',
+    'React is the library for web and native user interfaces. Build user interfaces out of individual pieces called components written in JavaScript. React is designed to let you seamlessly combine components written by independent people, teams, and organizations.',
+    '/images/html-image-ce7f0c52bc0e232480445462ce8acd6f873e7263.webp',
+    '/images/html-icon-cf3a9253f8e579b8815743c91cf8474a7ba0a5c3-c6eac0e9dbd7a24b49444f38a7984d17050ebf67.webp',
+  ],
+  [
+    'https://nuxtjs.org',
+    'Nuxt 2 - The Intuitive Vue Framework',
+    'Build your Vue 2 application with confidence using Nuxt 2. An open source framework making web development simple and powerful.',
+    '/images/html-image-1aa787fe0cfb373575fc2c0f6f826e7c6dc9fd41.webp',
+    '/images/html-icon-5b7695a0da380c6011550f0097344ad388806506-08c83a2cb68c04d4853253d2592db038a7bdd726.webp',
+  ],
+  [
+    'https://www.notion.so/releases/2022-03-03',
+    'March 3, 2022 – Connect your tools with the API 🧰',
+    'The API is officially out of beta! We expanded the API’s capabilities to make it even easier to build with Notion — learn more at developers.notion.com.',
+    '/images/html-image-ed29a0e7fc0223f62b6c61ed6bdca27accec2567.webp',
+    '/images/html-icon-fd5736cc37eed0e7ead5af0d272b87c070164673-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
+  ],
+  [
+    'https://www.typeform.com',
+    'Typeform: People-Friendly Forms and Surveys',
+    'Build beautiful, interactive forms — get more responses. No coding needed. Templates for quizzes, research, feedback, lead generation, and more. Sign up FREE.',
+    '/images/html-image-bf79251ec7ff53f033ec9fce0cbf0ce6986e8f72.webp',
+    '/images/html-icon-239b10b2bb1ad78e45400118cb543275e165075e-0137cba4199addb251992b2ec2d00accebaff1e9.webp',
+  ],
+  // (!) This site requires 'User-Agent: curl', so it no response with default UA of rotion.
+  //     Runs the 'env ROTION_UA=curl npm test' when updates VCR.
+  [
+    'https://www.businesswire.com/',
+    'Global Press Release &amp; Newswire Distribution Services | Business Wire',
+    'Explore Business Wire for premium press release &amp; newswire distribution services, offering global reach and tailored solutions for businesses worldwide. Expand your reach today.',
+    '/images/html-image-1ebfeb4b204984939ca889895f01fad24a9e0848.webp',
+    '/images/html-icon-65fbfcdf2d131a1bd29acc6b5377073a0b10a76f-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
+  ],
+  [
+    'https://go.dev/conduct',
+    'Go Community Code of Conduct - The Go Programming Language',
+    'Online communities include people from many different backgrounds. The Go contributors are committed to providing a friendly, safe and welcoming environment for all, regardless of gender identity and expression, sexual orientation, disabilities, neurodiversity, physical appearance, body size, ethnicity, nationality, race, age, religion, or similar personal characteristics.',
+    '/images/html-image-dd81b68c375850259cdb26e64618e339c4eec3c3.webp',
+    '/images/html-icon-77014b367198f9878ea91bdccd6bb3fce2a5ee2a-7f5e06b5d5dc8f2fac131fd56215ae5ca767a98c.webp',
+  ],
+]
 
-  for (const t of tests) {
-    const [url, title, desc, image, icon] = t
+for (const t of testsGetHtmlMeta) {
+  const [url, title, desc, image, icon] = t
+  test(`getHtmlMeta returns title and desc: ${url}`, async () => {
     const re = await files.getHtmlMeta(url, vcr)
     assert.equal(re.title, title)
     assert.equal(re.desc, desc)
     assert.equal(re.image, image)
     assert.equal(re.icon, icon)
-  }
-})
+  })
+}
 
 test('getJson returns correct body', async () => {
   const res = await files.getJson<GHRes>('https://api.github.com/notfound')
