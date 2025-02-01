@@ -10,17 +10,17 @@
   },
   "dependencies": {
     "mermaid": "^10.6.1",
-    "next": "^14.0.4",
+    "next": "^15",
     "prismjs": "^1.29.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "rotion": "^1.7.0"
+    "react": "^19",
+    "react-dom": "^19",
+    "rotion": "^1.8.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^22",
     "@types/prismjs": "^1.26.3",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
     "typescript": "^5"
