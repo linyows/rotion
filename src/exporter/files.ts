@@ -93,6 +93,28 @@ interface SpeakerdeckOembedResponse extends Oembed {
   html: string
 }
 
+interface SlideshareOembedResponse extends Oembed {
+  type: 'rich'
+  provider_name: 'SlideShare'
+  provider_url: 'https://www.slideshare.net'
+  slide_image_baseurl_suffix: string
+  slide_image_baseurl: string
+  author_name: string
+  author_url: string
+  version_no: number
+  version: number
+  total_slides: number
+  thumbnail: string
+  thumbnail_width: number
+  thumbnail_height: number
+  html: string
+  title: string
+  width: number
+  height: number
+  conversion_version: number
+  slideshow_id: number
+}
+
 interface YoutubeOembedResponse extends Oembed {
   type: 'video'
   title: string
