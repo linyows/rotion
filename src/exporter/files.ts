@@ -22,6 +22,8 @@ import {
 import type {
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
+  HtmlMetadata,
+  ImagePathWithSize,
 } from './types.js'
 
 // @ts-ignore
@@ -293,12 +295,6 @@ export async function saveFile (fileUrl: string, prefix: string) {
   }
 }
 
-export interface ImagePathWithSize {
-  path: string
-  width?: number
-  height?: number
-}
-
 export const saveImage = async (imageUrl: string, prefix: string): Promise<ImagePathWithSize> => {
   const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
   const { ext, name } = path.parse(urlWithoutQuerystring)
@@ -493,14 +489,7 @@ export const findImage = (html: string): string | null => {
   return null
 }
 
-export interface htmlMeta {
-  title: string
-  desc: string
-  image: ImagePathWithSize | null
-  icon: ImagePathWithSize | null
-}
-
-export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<htmlMeta> => {
+export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<HtmlMetadata> => {
   try {
     const resbody = httpFunc ? await httpFunc(reqUrl) : await getHTTP(reqUrl)
     const body = resbody.replace(/\n/g, ' ')
@@ -512,9 +501,11 @@ export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) =>
 
     const url = new URL(reqUrl)
     const imageUrl = imagePath !== '' ? (imagePath.match(/^(https?:|data:)/) ? imagePath : `${url.protocol}//${url.hostname}${imagePath}`) : ''
-    const image = imagePath !== '' ? (imagePath.match(/^data:/) ? { path: imagePath } : await saveImage(imageUrl, 'html-image')) : null
+    const ipws = imagePath !== '' ? (imagePath.match(/^data:/) ? { path: imagePath } : await saveImage(imageUrl, 'html-image')) : null
+    const image = ipws ? ipws.path : ''
     const iconUrl = iconPath !== '' ? (iconPath.match(/^(https?:|data:)/) ? iconPath : `${url.protocol}//${url.hostname}${iconPath}`) : ''
-    const icon = iconUrl !== '' ? (iconPath.match(/^data:/) ? { path: iconPath } : await saveImage(iconUrl, `html-icon-${atoh(reqUrl)}`)) : null
+    const ipws2 = iconUrl !== '' ? (iconPath.match(/^data:/) ? { path: iconPath } : await saveImage(iconUrl, `html-icon-${atoh(reqUrl)}`)) : null
+    const icon = ipws2 ? ipws2.path : ''
 
     return { title, desc, image, icon }
   } catch (e) {
@@ -522,7 +513,7 @@ export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) =>
       console.log(`getHtmlMeta failure: ${reqUrl} -- ${e}`)
     }
   }
-  return { title: '', desc: '', image: null, icon: null }
+  return { title: '', desc: '', image: '', icon: '' }
 }
 
 export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> => {

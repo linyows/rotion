@@ -143,12 +143,12 @@ export interface LinkPreviewGithubRepo {
 export async function getRepoForLinkPreview({ owner, repo }: GithubRepoArgs, func?: FetchFunc<GithubRepoResponse>): Promise<LinkPreviewGithubRepo> {
   const res = await getRepo({ owner, repo }, func)
   const { name, owner: { login, avatar_url }, updated_at } = res
-  const isws = await saveImage(avatar_url, 'github-link-preview')
+  const ipws = await saveImage(avatar_url, 'github-link-preview')
   return {
     name,
     login,
     avatar_url,
-    avatar_src: isws.path,
+    avatar_src: ipws.path,
     updated_at
   }
 }
@@ -279,12 +279,12 @@ export async function getIssueForLinkPreview({ owner, repo, number }: GithubIssu
   const res = await getIssue({ owner, repo, number }, func)
   const n = res.number
   const { title, user: { login, avatar_url }, created_at, closed_at } = res
-  const isws = await saveImage(avatar_url, 'github-link-preview')
+  const ipws = await saveImage(avatar_url, 'github-link-preview')
   return {
     title,
     login,
     avatar_url,
-    avatar_src: isws.path,
+    avatar_src: ipws.path,
     created_at,
     closed_at,
     merged_at: res.pull_request ? res.pull_request.merged_at : null,

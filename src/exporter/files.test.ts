@@ -113,8 +113,8 @@ for (const t of testsGetHtmlMeta) {
     const re = await files.getHtmlMeta(url, vcr)
     assert.equal(re.title, title)
     assert.equal(re.desc, desc)
-    assert.equal(re.image?.path, image)
-    assert.equal(re.icon?.path, icon)
+    assert.equal(re.image, image)
+    assert.equal(re.icon, icon)
   })
 }
 
@@ -125,8 +125,8 @@ test('getJson returns correct body', async () => {
 
 test('saveImage saves a image correct file name', async () => {
   const url = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
-  const isws = await files.saveImage(url, 'test')
-  assert.equal(isws.path, '/images/test-5cb3342120a9a25a65f2790c4d6f2644cd262734.webp')
+  const ipws = await files.saveImage(url, 'test')
+  assert.equal(ipws.path, '/images/test-5cb3342120a9a25a65f2790c4d6f2644cd262734.webp')
 })
 
 test('findLocationUrl returns url from location header', async () => {

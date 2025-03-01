@@ -45,7 +45,6 @@ import type {
   EquationRichTextItemResponse,
 } from '@notionhq/client/build/src/api-endpoints.js'
 import { LinkPreviewGithubRepo, LinkPreviewGithubIssue } from './github.js'
-import { htmlMeta } from './files.js'
 
 export * from '@notionhq/client/build/src/api-endpoints.js'
 
@@ -140,7 +139,7 @@ export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & {
   bookmark: {
     url: string
     caption: Array<RichTextItemResponse>
-    site: htmlMeta
+    site: HtmlMetadata
   }
 }
 export type CalloutBlockObjectResponseEx = CalloutBlockObjectResponse & {
@@ -684,4 +683,17 @@ export type LastEditedTimeDatabasePropertyConfigResponse = {
   type: "last_edited_time"
   last_edited_time: EmptyObject
   id: string
+}
+
+export type ImagePathWithSize = {
+  path: string
+  width?: number
+  height?: number
+}
+
+export type HtmlMetadata = {
+  title: string
+  desc: string
+  image: string
+  icon: string
 }

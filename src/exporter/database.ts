@@ -102,8 +102,8 @@ export const FetchDatabase = async (params: FetchDatabaseArgs): Promise<FetchDat
         const peoples = v.people as unknown as PersonUserObjectResponseEx[]
         for (const people of peoples) {
           if (people.avatar_url) {
-            const isws = await saveImage(people.avatar_url, `database-avatar-${people.id}`)
-            people.avatar = isws.path
+            const ipws = await saveImage(people.avatar_url, `database-avatar-${people.id}`)
+            people.avatar = ipws.path
           }
         }
       }
@@ -129,11 +129,11 @@ export async function saveDatabaseCover(db: GetDatabaseResponseEx) {
     return
   }
   if (db.cover.type === 'external') {
-    const isws = await saveImage(db.cover.external.url, `database-cover-${db.id}`)
-    db.cover.src = isws.path
+    const ipws = await saveImage(db.cover.external.url, `database-cover-${db.id}`)
+    db.cover.src = ipws.path
   } else if (db.cover.type === 'file') {
-    const isws = await saveImage(db.cover.file.url, `database-cover-${db.id}`)
-    db.cover.src = isws.path
+    const ipws = await saveImage(db.cover.file.url, `database-cover-${db.id}`)
+    db.cover.src = ipws.path
   }
 }
 
@@ -142,10 +142,10 @@ export async function saveDatabaseIcon(db: GetDatabaseResponseEx) {
     return
   }
   if (db.icon.type === 'external') {
-    const isws = await saveImage(db.icon.external.url, `database-icon-${db.id}`)
-    db.icon.src = isws.path
+    const ipws = await saveImage(db.icon.external.url, `database-icon-${db.id}`)
+    db.icon.src = ipws.path
   } else if (db.icon.type === 'file') {
-    const isws = await saveImage(db.icon.file.url, `database-icon-${db.id}`)
-    db.icon.src = isws.path
+    const ipws = await saveImage(db.icon.file.url, `database-icon-${db.id}`)
+    db.icon.src = ipws.path
   }
 }
