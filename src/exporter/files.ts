@@ -93,6 +93,28 @@ interface SpeakerdeckOembedResponse extends Oembed {
   html: string
 }
 
+interface SlideshareOembedResponse extends Oembed {
+  type: 'rich'
+  provider_name: 'SlideShare'
+  provider_url: 'https://www.slideshare.net'
+  slide_image_baseurl_suffix: string
+  slide_image_baseurl: string
+  author_name: string
+  author_url: string
+  version_no: number
+  version: number
+  total_slides: number
+  thumbnail: string
+  thumbnail_width: number
+  thumbnail_height: number
+  html: string
+  title: string
+  width: number
+  height: number
+  conversion_version: number
+  slideshow_id: number
+}
+
 interface YoutubeOembedResponse extends Oembed {
   type: 'video'
   title: string
@@ -542,7 +564,8 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
 
 export async function getSlideshareOembedUrl (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<string> {
   const resbody = httpFunc ? await httpFunc(reqUrl) : await getHTTP(reqUrl)
-  const matched = resbody.match(/name="twitter:player" content="(.*?)"/)
+  const metaTagRegex = /<meta\s+name=["']twitter:player["']\s+content=["'](.*?)["']/i
+  const matched = resbody.match(metaTagRegex)
   return matched ? matched[1] : ''
 }
 
@@ -618,8 +641,8 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
     }
 
   } else if (url.includes('//www.slideshare.net')) {
-    const url = await getSlideshareOembedUrl(src)
-    return (url === '') ? '' : `<iframe src="${url}?startSlide=1" width="100%" height="450" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:0;" allowfullscreen></iframe>`
+    const playerUrl = await getSlideshareOembedUrl(url)
+    oembedUrl = `https://www.slideshare.net/api/oembed/2?url=${encodeURIComponent(playerUrl)}`
 
   } else if (url.includes('//x.com') || url.includes('//twitter.com')) {
     const tweetId = path.basename(src.split('?').shift() || '')
@@ -639,7 +662,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
      * https://github.com/nodejs/undici/issues/1412
      */
     try {
-      const json = await getJson<TwitterOembedResponse | SpeakerdeckOembedResponse | TiktokOembedResponse>(oembedUrl)
+      const json = await getJson<TwitterOembedResponse | SpeakerdeckOembedResponse | TiktokOembedResponse | SlideshareOembedResponse>(oembedUrl)
       return json.html
     } catch (e) {
       if (debug) {
