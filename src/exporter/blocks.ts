@@ -99,7 +99,8 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
         case 'callout':
           if (block.callout.icon?.type === 'external') {
             const iconUrl = block.callout.icon.external.url
-            block.callout.icon.src = await saveImage(iconUrl, `block-${block.id}`)
+            const isws = await saveImage(iconUrl, `block-${block.id}`)
+            block.callout.icon.src = isws.path
           }
           if (block.has_children) {
             block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
@@ -135,7 +136,14 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
           const { id, image } = block
           if (image !== undefined) {
             const imageUrl = image.type === 'file' ? image.file.url : image.external.url
-            block.image.src = await saveImage(imageUrl, `block-${id}`)
+            const isws = await saveImage(imageUrl, `block-${id}`)
+            block.image.src = isws.path
+            if (isws.width) {
+              block.image.width = isws.width
+            }
+            if (isws.height) {
+              block.image.height = isws.height
+            }
           }
           break
         case 'numbered_list_item':
@@ -163,8 +171,8 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                     richText.mention.database.icon = { type: 'emoji', emoji: db.icon.emoji }
                   } else if (db.icon?.type === 'external' || db.icon?.type === 'file') {
                     const iconUrl = (db.icon.type === 'external') ? db.icon.external.url : db.icon.file.url
-                    const src = await saveImage(iconUrl, `block-${block.id}`)
-                    richText.mention.database.icon = { type: db.icon.type, src, url: src }
+                    const isws = await saveImage(iconUrl, `block-${block.id}`)
+                    richText.mention.database.icon = { type: db.icon.type, src: isws.path, url: isws.path }
                   }
                 } catch (e) {
                   if (debug) {
@@ -195,11 +203,11 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                     }
                   } else if (page.icon?.type === 'external' || page.icon?.type === 'file') {
                     const iconUrl = (page.icon.type === 'external') ? page.icon.external.url : page.icon.file.url
-                    const src = await saveImage(iconUrl, `block-${block.id}`)
+                    const isws = await saveImage(iconUrl, `block-${block.id}`)
                     richText.mention.page.icon = {
                       type: page.icon.type,
-                      src,
-                      url: src,
+                      src: isws.path,
+                      url: isws.path,
                     }
                   }
                 } catch (e) {

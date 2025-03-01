@@ -45,6 +45,7 @@ import type {
   EquationRichTextItemResponse,
 } from '@notionhq/client/build/src/api-endpoints.js'
 import { LinkPreviewGithubRepo, LinkPreviewGithubIssue } from './github.js'
+import { htmlMeta } from './files.js'
 
 export * from '@notionhq/client/build/src/api-endpoints.js'
 
@@ -139,12 +140,7 @@ export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & {
   bookmark: {
     url: string
     caption: Array<RichTextItemResponse>
-    site: {
-      title: string
-      desc: string
-      image: string
-      icon: string
-    }
+    site: htmlMeta
   }
 }
 export type CalloutBlockObjectResponseEx = CalloutBlockObjectResponse & {
@@ -165,12 +161,16 @@ export type ImageBlockObjectResponseEx = ImageBlockObjectResponse & {
     external: { url: TextRequest }
     caption: Array<RichTextItemResponse>
     src: string
+    width?: number
+    height?: number
   }
   | {
     type: 'file'
     file: { url: string; expiry_time: string }
     caption: Array<RichTextItemResponse>
     src: string
+    width?: number
+    height?: number
   }
 }
 
