@@ -139,12 +139,7 @@ export type BookmarkBlockObjectResponseEx = BookmarkBlockObjectResponse & {
   bookmark: {
     url: string
     caption: Array<RichTextItemResponse>
-    site: {
-      title: string
-      desc: string
-      image: string
-      icon: string
-    }
+    site: HtmlMetadata
   }
 }
 export type CalloutBlockObjectResponseEx = CalloutBlockObjectResponse & {
@@ -165,12 +160,16 @@ export type ImageBlockObjectResponseEx = ImageBlockObjectResponse & {
     external: { url: TextRequest }
     caption: Array<RichTextItemResponse>
     src: string
+    width?: number
+    height?: number
   }
   | {
     type: 'file'
     file: { url: string; expiry_time: string }
     caption: Array<RichTextItemResponse>
     src: string
+    width?: number
+    height?: number
   }
 }
 
@@ -684,4 +683,17 @@ export type LastEditedTimeDatabasePropertyConfigResponse = {
   type: "last_edited_time"
   last_edited_time: EmptyObject
   id: string
+}
+
+export type ImagePathWithSize = {
+  path: string
+  width?: number
+  height?: number
+}
+
+export type HtmlMetadata = {
+  title: string
+  desc: string
+  image: string
+  icon: string
 }

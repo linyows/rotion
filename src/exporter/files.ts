@@ -6,7 +6,6 @@ import path from 'path'
 import crypto from 'crypto'
 import { promisify } from 'util'
 import sharp from 'sharp'
-import { fileTypeFromFile } from 'file-type'
 import replaceExt from 'replace-ext'
 import {
   docRoot,
@@ -23,6 +22,8 @@ import {
 import type {
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
+  HtmlMetadata,
+  ImagePathWithSize,
 } from './types.js'
 
 // @ts-ignore
@@ -294,15 +295,13 @@ export async function saveFile (fileUrl: string, prefix: string) {
   }
 }
 
-export const saveImage = async (imageUrl: string, prefix: string): Promise<string> => {
+export const saveImage = async (imageUrl: string, prefix: string): Promise<ImagePathWithSize> => {
   const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
   const { ext, name } = path.parse(urlWithoutQuerystring)
   const basename = `${atoh(name)}${ext}`
   const urlPath = `/${imageDir}/${prefix}-${basename}`
   const filePath = `${docRoot}${urlPath}`
   const dirPath = `${docRoot}/${imageDir}`
-
-  const webpMimes = ['image/jpeg', 'image/png']
   const webpUrlPath = replaceExt(urlPath, '.webp')
   const webpPath = `${docRoot}${webpUrlPath}`
 
@@ -310,9 +309,36 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
 
   if (fs.existsSync(filePath)) {
     if (webpQuality > 0 && fs.existsSync(webpPath)) {
-      return webpUrlPath
+      try {
+        const meta = await sharp(webpPath).metadata()
+        return {
+          path: webpUrlPath,
+          width: meta.width,
+          height: meta.height,
+        }
+      } catch(e) {
+        if (debug) {
+          console.log(`sharp.metadata() error -- path: ${webpUrlPath}, message: ${e}`)
+        }
+        return { path: webpUrlPath }
+      }
     } else {
-      return urlPath
+      if (ext === '.ico') {
+        return { path: urlPath }
+      }
+      try {
+        const meta = await sharp(filePath).metadata()
+        return {
+          path: urlPath,
+          width: meta.width,
+          height: meta.height,
+        }
+      } catch(e) {
+        if (debug) {
+          console.log(`sharp.metadata() error -- path: ${urlPath}, message: ${e}`)
+        }
+        return { path: urlPath }
+      }
     }
 
   /* Download image */
@@ -337,20 +363,46 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
     }
   }
 
+  if (ext === '.ico') {
+    return { path: urlPath }
+  }
+
   /* Convert to webp */
   try {
+    const meta = await sharp(filePath).metadata()
     if (webpQuality > 0) {
-      const fType = await fileTypeFromFile(filePath)
-      if (fType === undefined) {
-        if (debug) {
-          console.log(`fileTypeFromFile returns undefined -- path: ${filePath}, url: ${imageUrl}`)
-        }
-        return urlPath
-      } else {
-        if (webpMimes.includes(fType.mime)) {
+      if (meta.format === 'png' || meta.format === 'jpeg') {
+        if (meta.orientation && [3,6,8].includes(meta.orientation)) {
+          const angle = (meta.orientation === 6) ? 90 : (meta.orientation === 8) ? -90 : 180
+          await sharp(filePath).rotate(angle).webp({ quality: webpQuality }).toFile(webpPath)
+          return {
+            path: webpUrlPath,
+            width: meta.orientation === 6 || meta.orientation === 8 ? meta.height : meta.width,
+            height: meta.orientation === 6 || meta.orientation === 8 ? meta.width : meta.height,
+          }
+        } else {
           await sharp(filePath).webp({ quality: webpQuality }).toFile(webpPath)
-          return webpUrlPath
+          return {
+            path: webpUrlPath,
+            width: meta.width,
+            height: meta.height,
+          }
         }
+      } else {
+        if (debug) {
+          console.log(`sharp.metadata().format returns other -- path: ${filePath}, url: ${imageUrl}, format: ${meta.format}`)
+        }
+        return {
+          path: urlPath,
+          width: meta.width,
+          height: meta.height,
+        }
+      }
+    } else {
+      return {
+        path: urlPath,
+        width: meta.width,
+        height: meta.height,
       }
     }
   } catch (e) {
@@ -359,7 +411,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<strin
     }
   }
 
-  return urlPath
+  return { path: urlPath }
 }
 
 export const findHtmlByRegexp = (regexps: RegExp[], html: string): string | null => {
@@ -437,7 +489,7 @@ export const findImage = (html: string): string | null => {
   return null
 }
 
-export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<{ title: string, desc: string, image: string, icon: string }> => {
+export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<HtmlMetadata> => {
   try {
     const resbody = httpFunc ? await httpFunc(reqUrl) : await getHTTP(reqUrl)
     const body = resbody.replace(/\n/g, ' ')
@@ -449,9 +501,11 @@ export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) =>
 
     const url = new URL(reqUrl)
     const imageUrl = imagePath !== '' ? (imagePath.match(/^(https?:|data:)/) ? imagePath : `${url.protocol}//${url.hostname}${imagePath}`) : ''
-    const image = imagePath !== '' ? (imagePath.match(/^data:/) ? imagePath : await saveImage(imageUrl, 'html-image')) : ''
+    const ipws = imagePath !== '' ? (imagePath.match(/^data:/) ? { path: imagePath } : await saveImage(imageUrl, 'html-image')) : null
+    const image = ipws ? ipws.path : ''
     const iconUrl = iconPath !== '' ? (iconPath.match(/^(https?:|data:)/) ? iconPath : `${url.protocol}//${url.hostname}${iconPath}`) : ''
-    const icon = iconUrl !== '' ? (iconPath.match(/^data:/) ? iconPath : await saveImage(iconUrl, `html-icon-${atoh(reqUrl)}`)) : ''
+    const ipws2 = iconUrl !== '' ? (iconPath.match(/^data:/) ? { path: iconPath } : await saveImage(iconUrl, `html-icon-${atoh(reqUrl)}`)) : null
+    const icon = ipws2 ? ipws2.path : ''
 
     return { title, desc, image, icon }
   } catch (e) {

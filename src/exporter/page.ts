@@ -102,9 +102,11 @@ export async function savePageCover(page: GetPageResponseEx | PageObjectResponse
     return
   }
   if (page.cover.type === 'external') {
-    page.cover.src = await saveImage(page.cover.external.url, `page-cover-${page.id}`)
+    const ipws = await saveImage(page.cover.external.url, `page-cover-${page.id}`)
+    page.cover.src = ipws.path
   } else if (page.cover.type === 'file') {
-    page.cover.src = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
+    const ipws = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
+    page.cover.src = ipws.path
   }
 }
 
@@ -113,8 +115,10 @@ export async function savePageIcon(page: GetPageResponseEx | PageObjectResponseE
     return
   }
   if (page.icon.type === 'external') {
-    page.icon.src = await saveImage(page.icon.external.url, `page-icon-${page.id}`)
+    const ipws = await saveImage(page.icon.external.url, `page-icon-${page.id}`)
+    page.icon.src = ipws.path
   } else if (page.icon.type === 'file') {
-    page.icon.src = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
+    const ipws = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
+    page.icon.src = ipws.path
   }
 }
