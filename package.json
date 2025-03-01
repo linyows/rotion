@@ -62,7 +62,6 @@
     "@notionhq/client": "^2.2.14",
     "cdate": "^0.0.7",
     "cdate-relative": "^0.1.0",
-    "file-type": "^20.1.0",
     "katex": "^0.16.9",
     "mermaid": "^11.4.1",
     "pdfjs-dist": "^4.10.38",
