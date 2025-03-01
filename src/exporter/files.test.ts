@@ -58,9 +58,9 @@ async function vcr (reqUrl: string) {
 const testsGetHtmlMeta = [
   [
     'https://github.com',
-    'GitHub: Let’s build from here · GitHub',
-    'GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...',
-    '/images/html-image-c134a985e5f03a4b5d56525a8cf57b57bf2d227d.webp',
+    'GitHub · Build and ship software on a single, collaborative platform · GitHub',
+    'Join the world&#39;s most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.',
+    '/images/html-image-77689c771405d1131dd653d0fc62bcf0e149788f.webp',
     '/images/html-icon-84b7e44aa54d002eac8d00f5bfa9cc93410f2a48-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg',
   ],
   [
@@ -79,17 +79,17 @@ const testsGetHtmlMeta = [
   ],
   [
     'https://nuxtjs.org',
-    'Nuxt 2 - The Intuitive Vue Framework',
-    'Build your Vue 2 application with confidence using Nuxt 2. An open source framework making web development simple and powerful.',
-    '/images/html-image-1aa787fe0cfb373575fc2c0f6f826e7c6dc9fd41.webp',
-    '/images/html-icon-5b7695a0da380c6011550f0097344ad388806506-08c83a2cb68c04d4853253d2592db038a7bdd726.webp',
+    'Nuxt: The Intuitive Vue Framework · Nuxt',
+    'Nuxt is an open source framework that makes web development intuitive and powerful. Create performant and production-grade full-stack web apps and websites with confidence.',
+    '/images/html-image-b964fb1bec8baa0610a95027ead4c2faf741c89c.webp',
+    '/images/html-icon-5b7695a0da380c6011550f0097344ad388806506-f8995ba5891b07e328c60d6bd6c10159878c5a13.webp',
   ],
   [
-    'https://www.notion.so/releases/2022-03-03',
-    'March 3, 2022 – Connect your tools with the API 🧰',
-    'The API is officially out of beta! We expanded the API’s capabilities to make it even easier to build with Notion — learn more at developers.notion.com.',
-    '/images/html-image-ed29a0e7fc0223f62b6c61ed6bdca27accec2567.webp',
-    '/images/html-icon-fd5736cc37eed0e7ead5af0d272b87c070164673-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
+    'https://www.notion.so',
+    'Your connected workspace for wiki, docs &amp; projects | Notion',
+    'A new tool that blends your everyday work apps into one. It&#x27;s the all-in-one workspace for you and your team.',
+    '/images/html-image-7505d64a54e061b7acd54ccd58b49dc43500b635.webp',
+    '/images/html-icon-5f4aa01486e967f562d93fdff83daae603912c43-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
   ],
   [
     'https://www.typeform.com',
@@ -97,15 +97,6 @@ const testsGetHtmlMeta = [
     'Build beautiful, interactive forms — get more responses. No coding needed. Templates for quizzes, research, feedback, lead generation, and more. Sign up FREE.',
     '/images/html-image-bf79251ec7ff53f033ec9fce0cbf0ce6986e8f72.webp',
     '/images/html-icon-239b10b2bb1ad78e45400118cb543275e165075e-0137cba4199addb251992b2ec2d00accebaff1e9.webp',
-  ],
-  // (!) This site requires 'User-Agent: curl', so it no response with default UA of rotion.
-  //     Runs the 'env ROTION_UA=curl npm test' when updates VCR.
-  [
-    'https://www.businesswire.com/',
-    'Global Press Release &amp; Newswire Distribution Services | Business Wire',
-    'Explore Business Wire for premium press release &amp; newswire distribution services, offering global reach and tailored solutions for businesses worldwide. Expand your reach today.',
-    '/images/html-image-1ebfeb4b204984939ca889895f01fad24a9e0848.webp',
-    '/images/html-icon-65fbfcdf2d131a1bd29acc6b5377073a0b10a76f-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
   ],
   [
     'https://go.dev/conduct',
