@@ -645,7 +645,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
     }
 
   } else if (url.includes('//www.slideshare.net')) {
-    const playerUrl = await getSlideshareOembedUrl(url)
+    const playerUrl = (url.includes('/embed_code/')) ? url : await getSlideshareOembedUrl(url)
     oembedUrl = `https://www.slideshare.net/api/oembed/2?url=${encodeURIComponent(playerUrl)}`
 
   } else if (url.includes('//x.com') || url.includes('//twitter.com')) {
