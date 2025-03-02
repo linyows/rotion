@@ -165,11 +165,30 @@ test('getVideoHtml returns html', async () => {
   assert.match(html, /<iframe/)
 })
 
-test('getSlideshareOembedUrl returns URL for oEmbed', async () => {
-  const url = 'https://www.slideshare.net/slideshow/artificial-intelligence-data-and-competition-schrepel-june-2024-oecd-discussion/269644409'
-  const oembedUrl = await files.getSlideshareOembedUrl(url, vcr)
-  assert.equal(oembedUrl, 'https://www.slideshare.net/slideshow/embed_code/key/hRM8WIyvd1l8mG')
-})
+const testsSlideshow = [
+  [
+    'slide title pattern',
+    'https://www.slideshare.net/slideshow/artificial-intelligence-data-and-competition-schrepel-june-2024-oecd-discussion/269644409',
+    'https://www.slideshare.net/slideshow/embed_code/key/hRM8WIyvd1l8mG',
+  ],
+  [
+    'username and slide id pattern redirects to slide title pattern',
+    'https://www.slideshare.net/ShunsukeKikuchi1/fog-153532606',
+    'https://www.slideshare.net/slideshow/embed_code/key/13RbHMBj5OkZV3',
+  ],
+  [
+    'embed code url not include twitter player',
+    'http://www.slideshare.net/slideshow/embed_code/12628111',
+    '',
+  ]
+]
+for (const t of testsSlideshow) {
+  const [name, url, expect] = t
+  test(`getSlideshareOembedUrl returns URL for oEmbed: ${url} (${name})`, async () => {
+    const got = await files.getSlideshareOembedUrl(url, vcr)
+    assert.equal(got, expect)
+  })
+}
 
 test('getEmbedHtml returns html', async () => {
   const block = {
