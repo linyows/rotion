@@ -106,7 +106,6 @@ const testsGetHtmlMeta = [
     '/images/html-icon-77014b367198f9878ea91bdccd6bb3fce2a5ee2a-7f5e06b5d5dc8f2fac131fd56215ae5ca767a98c.webp',
   ],
 ]
-
 for (const t of testsGetHtmlMeta) {
   const [url, title, desc, image, icon] = t
   test(`getHtmlMeta returns title and desc: ${url}`, async () => {
@@ -231,7 +230,6 @@ const testsIconRegex = [
     '/assets/favicon-test.ico',
   ],
 ]
-
 for (const t of testsIconRegex) {
   const [tag, path] = t
   test(`iconRegex matches all favicons: ${path}`, async () => {
