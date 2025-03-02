@@ -106,7 +106,6 @@ const testsGetHtmlMeta = [
     '/images/html-icon-77014b367198f9878ea91bdccd6bb3fce2a5ee2a-7f5e06b5d5dc8f2fac131fd56215ae5ca767a98c.webp',
   ],
 ]
-
 for (const t of testsGetHtmlMeta) {
   const [url, title, desc, image, icon] = t
   test(`getHtmlMeta returns title and desc: ${url}`, async () => {
@@ -165,21 +164,50 @@ test('getVideoHtml returns html', async () => {
   assert.match(html, /<iframe/)
 })
 
-test('getSlideshareOembedUrl returns URL for oEmbed', async () => {
-  const url = 'https://www.slideshare.net/slideshow/artificial-intelligence-data-and-competition-schrepel-june-2024-oecd-discussion/269644409'
-  const oembedUrl = await files.getSlideshareOembedUrl(url, vcr)
-  assert.equal(oembedUrl, 'https://www.slideshare.net/slideshow/embed_code/key/hRM8WIyvd1l8mG')
-})
+const testsSlideshow = [
+  [
+    'slide title pattern',
+    'https://www.slideshare.net/slideshow/artificial-intelligence-data-and-competition-schrepel-june-2024-oecd-discussion/269644409',
+    'https://www.slideshare.net/slideshow/embed_code/key/hRM8WIyvd1l8mG',
+  ],
+  [
+    'username and slide id pattern redirects to slide title pattern',
+    'https://www.slideshare.net/ShunsukeKikuchi1/fog-153532606',
+    'https://www.slideshare.net/slideshow/embed_code/key/13RbHMBj5OkZV3',
+  ],
+  [
+    'embed code url not include twitter player',
+    'http://www.slideshare.net/slideshow/embed_code/12628111',
+    '',
+  ]
+]
+for (const t of testsSlideshow) {
+  const [name, url, expect] = t
+  test(`getSlideshareOembedUrl returns URL for oEmbed: ${url} (${name})`, async () => {
+    const got = await files.getSlideshareOembedUrl(url, vcr)
+    assert.equal(got, expect)
+  })
+}
 
-test('getEmbedHtml returns html', async () => {
-  const block = {
-    embed: {
-      url: 'https://speakerdeck.com/chrislema/infographics-made-easy',
-    },
-  } as unknown as EmbedBlockObjectResponseEx
-  const html = await files.getEmbedHtml(block)
-  assert.match(html, /<iframe/)
-})
+const testsEmbedHtml = [
+  ['https://speakerdeck.com/chrislema/infographics-made-easy', /<iframe/],
+  ['https://www.slideshare.net/slideshow/embed_code/key/13RbHMBj5OkZV3', /<iframe/],
+  ['https://twitter.com/jack/status/1247616214769086465', /<blockquote/],
+  ['https://www.instagram.com/p/Cu2DjxmvLeI/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', /<blockquote/],
+  ['https://open.spotify.com/intl-ja/artist/2YZyLoL8N0Wb9xBt1NhZWg', /<iframe/],
+  ['https://music.apple.com/us/album/paracosm-bonus-track-version/655768700', /<iframe/],
+  // needs GOOGLEMAP_KEY
+  //['https://www.google.com/maps/@33.5838302,130.3657052,14z?entry=ttu', /<iframe/],
+  ['https://www.tiktok.com/@theweeknd/video/7206051055564508462?is_from_webapp=1&sender_device=pc&web_id=7365681356522685970', /<blockquote/],
+]
+for (const t of testsEmbedHtml) {
+  const [url, expect] = t
+  test(`getEmbedHtml returns html: ${url}`, async () => {
+    const block = { embed: { url: url } } as unknown as EmbedBlockObjectResponseEx
+    const html = await files.getEmbedHtml(block)
+    assert.match(html, expect)
+  })
+}
 
 const testsIconRegex = [
   [
@@ -203,7 +231,6 @@ const testsIconRegex = [
     '/assets/favicon-test.ico',
   ],
 ]
-
 for (const t of testsIconRegex) {
   const [tag, path] = t
   test(`iconRegex matches all favicons: ${path}`, async () => {
