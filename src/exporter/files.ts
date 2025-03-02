@@ -188,7 +188,7 @@ const writeFile = promisify(fs.writeFile)
 
 export const findLocationUrl = (rawHeaders: string[]): string => {
   for (let i = 0; i <= rawHeaders.length; i++) {
-    if (rawHeaders[i] === 'Location') {
+    if (rawHeaders[i].toLowerCase() === 'location') {
       const next = 1
       return rawHeaders[i + next]
     }
@@ -207,7 +207,11 @@ async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: numb
   const httpFunc = (reqUrl.includes('https://')) ? httpsGet : httpGet
   const res = await httpFunc(reqUrl) as unknown as HttpGetResponse
 
-  if (res.statusCode >= 300 && res.statusCode < 400 && res.rawHeaders.includes('Location')) {
+  const isIncludesLocationHeader = () => {
+    return res.rawHeaders.includes('Location') || res.rawHeaders.includes('location')
+  }
+
+  if (res.statusCode >= 300 && res.statusCode < 400 && isIncludesLocationHeader()) {
     const redirectTo = findLocationUrl(res.rawHeaders)
     redirectCount++
     if (maxRedirects < redirectCount) {
