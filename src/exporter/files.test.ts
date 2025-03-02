@@ -196,7 +196,8 @@ const testsEmbedHtml = [
   ['https://www.instagram.com/p/Cu2DjxmvLeI/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', /<blockquote/],
   ['https://open.spotify.com/intl-ja/artist/2YZyLoL8N0Wb9xBt1NhZWg', /<iframe/],
   ['https://music.apple.com/us/album/paracosm-bonus-track-version/655768700', /<iframe/],
-  ['https://www.google.com/maps/@33.5838302,130.3657052,14z?entry=ttu', /<iframe/],
+  // needs GOOGLEMAP_KEY
+  //['https://www.google.com/maps/@33.5838302,130.3657052,14z?entry=ttu', /<iframe/],
   ['https://www.tiktok.com/@theweeknd/video/7206051055564508462?is_from_webapp=1&sender_device=pc&web_id=7365681356522685970', /<blockquote/],
 ]
 for (const t of testsEmbedHtml) {
