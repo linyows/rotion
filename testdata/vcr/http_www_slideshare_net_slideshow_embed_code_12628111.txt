@@ -1,0 +1,1429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" style="height:100%;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="canonical" href="https://www.slideshare.net/slideshow/20120421/12628111" />
+
+    <meta name="robots" content="noindex">
+
+    <link rel="stylesheet" href="https://public.slidesharecdn.com/v2/stylesheets/app.10d489608a34b3c77437.css" media="screen" />
+    <link rel="stylesheet" href="https://public.slidesharecdn.com/v2/stylesheets/app_critical.f69afafd88ea7eff9597.css" media="screen" />
+    <link rel="stylesheet" href="https://public.slidesharecdn.com/v2/stylesheets/slideview_critical.48e8d13c09994269bba9.css" media="screen" />
+    <link rel="stylesheet" href="https://public.slidesharecdn.com/v2/stylesheets/player/base.d5bf85955b9c01e839bc.css" media="screen" />
+    <link rel="stylesheet" href="https://public.slidesharecdn.com/v2/stylesheets/player_toolbar.20224c694a9b9749f9c4.css" media="screen" />
+    <link rel="stylesheet" href="https://public.slidesharecdn.com/v2/stylesheets/slideshare-icons.e77d3ecb961eec18390b.css" media="screen" />
+
+    <!-- SL:begin:notranslate -->
+    <title>20120421 さくらのクラウドのコンパネをつくる話</title>
+    <!-- SL:end:notranslate -->
+    <!--[if IE]><style>.slidesContainer img { border: none } </style><![endif]-->
+    <script src="https://public.slidesharecdn.com/v2/assets/javascripts/packs/runtime.f32b776fa440a3f79000.js"></script>
+    <script src="https://public.slidesharecdn.com/v2/javascripts/packs/combined_jquery.de0d04a1acc3bf04934d.js"></script>
+
+    <script type="text/javascript">
+      var slideshare_object = {
+        flagging: {"update_url":"https://www.slideshare.net/main/flag/12628111?slideshow_id=12628111","is_flagged":false},
+        user: {"userGroup":"non-member","login":"guest","id":null,"loggedin":false,"name":null,"is_valid_fbuser":false,"fb_userid":null,"is_pro":"false","su":false,"is_test_user":false,"has_uploads":null,"is_li_connected":false,"is_li_auto_created_user":false,"show_li_connect_cta":false,"has_privacy_enabled":null,"scribd_subscriber":false,"connected_with_scribd":false,"trial_eligible":false},
+        timer: { start: (new Date()).getTime(), end: '', execTime: '' },
+        top_nav: { get_url: "/top_nav"},
+        dev: false,
+        init: [],
+        feature_flag: [],
+        is_ssl: true,
+        rum_pagekey: "desktop_slideview_embed_code_loggedout",
+        page_key: "slideshow/embed_code",
+        slideshow: {
+          id: 12628111,
+          is_clickgen_enabled: '',
+          clickgen_url: '',
+          ss_url: '/slideshow/20120421/12628111',
+          total_slides: 58
+        }
+      };
+      slideshare_object.slideshow_config = {};
+      $.extend(true, slideshare_object.slideshow_config, {"id":12628111,"is_private":false,"is_only_private":false,"stripped_title":"20120421","slide_count":58,"image_ready":true,"has_video":false,"video_slides_count":0,"page":null,"image_bucket_location":"https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01","ppt_location":"20120421-phpcon-hokkaido-pub-120421025841-phpapp01","timestamp":1668045619,"html_ttffont_url_suffix":".js","html_eotfont_url_suffix":"-eot.js","mode":"image","player_type":"presentation","fullscreen_bgcolor":"jsplBgColorBlack","player_bgcolor":"jsplBgColorBigfoot","spinner_url":"https://public.slidesharecdn.com/v2/images/ssplayer/loading.gif","spinner_url_fullscreen":"https://public.slidesharecdn.com/v2/images/ssplayer/loading_black.gif","disable_eagerload":true,"fullscreen_url":"/fullscreen/kanreisa/20120421","author_id":37514280,"slideview_url":"/kanreisa/20120421?ref=","embed_code":"\u003ciframe src=\"https://www.slideshare.net/slideshow/embed_code/key/yYEsb3eg0EZwa3\" width=\"597\" height=\"486\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;\" allowfullscreen\u003e \u003c/iframe\u003e \u003cdiv style=\"margin-bottom:5px\"\u003e \u003cstrong\u003e \u003ca href=\"https://www.slideshare.net/slideshow/20120421/12628111\" title=\"20120421 さくらのクラウドのコンパネをつくる話\" target=\"_blank\"\u003e20120421 さくらのクラウドのコンパネをつくる話\u003c/a\u003e \u003c/strong\u003e from \u003cstrong\u003e\u003ca href=\"https://www.slideshare.net/kanreisa\" target=\"_blank\"\u003eYuki KAN\u003c/a\u003e\u003c/strong\u003e \u003c/div\u003e","embed_sizes":{"config":{"defaultPreset":"preset4"},"presets":{"preset1":{"size":{"width":340,"height":290},"displaySize":{"width":40,"height":30}},"preset2":{"size":{"width":425,"height":355},"displaySize":{"width":50,"height":38}},"preset3":{"size":{"width":510,"height":420},"displaySize":{"width":60,"height":45}},"preset4":{"size":{"width":595,"height":485},"displaySize":{"width":70,"height":53}}}},"iframe_url":"//www.slideshare.net/slideshow/embed_code/key/yYEsb3eg0EZwa3","iframe_code":"\u003ciframe src=\"{iframe_url}\" width=\"{width}\" height=\"{height}\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\" scrolling=\"no\" style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;\" allowfullscreen\u003e \u003c/iframe\u003e \u003cdiv style=\"margin-bottom:5px\"\u003e \u003cstrong\u003e \u003ca href=\"https://www.slideshare.net/slideshow/20120421/12628111\" title=\"20120421 さくらのクラウドのコンパネをつくる話\" target=\"_blank\"\u003e20120421 さくらのクラウドのコンパネをつくる話\u003c/a\u003e \u003c/strong\u003e from \u003cstrong\u003e\u003ca href=\"https://www.slideshare.net/kanreisa\" target=\"_blank\"\u003eYuki KAN\u003c/a\u003e\u003c/strong\u003e \u003c/div\u003e","wp_code":"[slideshare id=12628111\u0026doc=20120421-phpcon-hokkaido-pub-120421025841-phpapp01]","show_related_content":"1","sharescreen":{"url":"https://www.slideshare.net/slideshow/20120421/12628111","title":"20120421 さくらのクラウドのコンパネをつくる話","slideshow_id":12628111,"html":"\u003cdiv class=\"shareScreen\"\u003e\n  \u003ca href=\"#\" class=\"close\"\u003e\u0026times;\u003c/a\u003e\n  \u003cul class=\"shareMethods\"\u003e\n    \u003cli class=\"embed\"\u003e\n      \u003clabel for=\"embed-code\"\u003eEmbed\u003c/label\u003e\n      \u003cinput type='text' class=\"shareScreenEmbedCode\" value=\"code\" name=\"embed-code\" /\u003e\n    \u003c/li\u003e\n    \u003cli class=\"url last\"\u003e\n      \u003clabel for=\"embed-url\"\u003eURL\u003c/label\u003e\n      \u003cinput type='text' class=\"shareScreenSSUrl\" value=\"code\" name=\"embed-url\" /\u003e\n    \u003c/li\u003e\n  \u003c/ul\u003e\n  \u003cform class=\"emailShare\"\u003e\n    \u003cfieldset\u003e\n      \u003clegend\u003eEmail this\u003c/legend\u003e\n      \u003cinput type=\"hidden\" class=\"shareDefaultMessage\" value=\"I think you will find this useful.\" /\u003e\n      \u003cul\u003e\n        \u003cli\u003e\n          \u003clabel for=\"name\"\u003eYour name\u003c/label\u003e\n          \u003cinput class='shareScreenFromName' type=\"text\" value=\"\" /\u003e\n        \u003c/li\u003e\n        \u003cli\u003e\n          \u003clabel for=\"mailID\"\u003eEmail to\u003c/label\u003e\n          \u003cinput class=\"shareScreenMailID\" type=\"text\" value=\"\" /\u003e\n        \u003c/li\u003e\n        \u003cli class=\"submit\"\u003e\n          \u003clabel\u003e\u0026nbsp;\u003c/label\u003e\n          \u003cinput class=\"shareSprite\" type=\"submit\" value=\"\" /\u003e\n        \u003c/li\u003e\n      \u003c/ul\u003e\n      \u003c/fieldset\u003e\n  \u003c/form\u003e\n\u003c/div\u003e\u003c!-- shareScreen ends here --\u003e","user_name":""},"track_slide_enable":1,"render_links":"default","twitter_recommended_users":"@kanreisa","twitter_share_text":"20120421 さくらのクラウドのコンパネをつくる話 by @kanreisa #phpcondophpcon","share_text":"20120421 さくらのクラウドのコンパネをつくる話 by Yuki KAN via slideshare","pin_image_url":"https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-1-638.jpg?cb=1668045619","autoplayOnEmbed":false,"lastscreen":{"url":"https://www.slideshare.net/slideshow/20120421/12628111","related":[{"url":"/slideshow/hand-doctor-kids-game/30845167","title":"Hand doctor – kids game","author":"Arth I-Soft","author_login":"arthisoftseo","views":311,"thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/handdoctorkidsgame-140205061324-phpapp01-thumbnail.jpg?width=320\u0026height=320\u0026fit=bounds"},{"url":"/slideshow/highlights-experts-meetingvienna2011crstesupfeb20121/11919492","title":"Highlights experts meeting_vienna_2...","author":"Lasermed Tic","author_login":"lasermed","views":621,"thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/highlightsexpertsmeetingvienna2011crstesupfeb20121-120308055219-phpapp01-thumbnail.jpg?width=320\u0026height=320\u0026fit=bounds"},{"url":"/slideshow/shaklee-map-to-100000/28398283","title":"Shaklee map to 100K","author":"Cindy McAsey","author_login":"barefootcindymcasey","views":913,"thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/shakleemapto100k-131118231802-phpapp01-thumbnail.jpg?width=320\u0026height=320\u0026fit=bounds"},{"url":"/slideshow/mcardleonlinepresentation/11728070","title":"McArdle_onlinepresentation","author":"jtmcardle","author_login":"jtmcardle","views":155,"thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/mcardleonlinepresentation-120223215015-phpapp02-thumbnail.jpg?width=320\u0026height=320\u0026fit=bounds"},{"url":"/slideshow/van-gogh-final/11639190","title":"Van Gogh FINAL","author":"Irene Ocariz","author_login":"cupcakeire","views":292,"thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/vangoghfinal-120217125318-phpapp02-thumbnail.jpg?width=320\u0026height=320\u0026fit=bounds"},{"url":"/slideshow/better-mtinfographic/30033091","title":"5 Steps for Better Machine Translat...","author":"Multilizer","author_login":"multilizer","views":1010,"thumbnail":"https://cdn.slidesharecdn.com/ss_thumbnails/better-mt-infographic-140115020911-phpapp01-thumbnail.jpg?width=320\u0026height=320\u0026fit=bounds"}]},"container":"player","enable_viewSS":true,"disable_lastscreen":false,"disable_share":false,"start_slide":1,"hosted_in":"embed","slideshow_slideshow_type":0,"video_hash":{},"show_image_player":true,"video_slides":[],"slideshow_real_total_slides_count":58,"is_ssl":true,"flagging":{"update_url":"https://www.slideshare.net/main/flag/12628111?slideshow_id=12628111","is_flagged":false},"slideshow":{"slideshow":{"id":12628111,"ppt_location":"20120421-phpcon-hokkaido-pub-120421025841-phpapp01","title":"20120421 さくらのクラウドのコンパネをつくる話","created_at":"2012-04-21T02:58:40.000Z","user_id":37514280,"tag_text":"phpcondo phpcon","converted":2,"retries":0,"total_slides":58,"featured":0,"description":"","stripped_title":"20120421","converted_time":"2012-04-21T02:59:51.000Z","created_by":"phpapp01","license":0,"converted_by":"107.20.75.70","extension":"pdf","featured_on":null,"language":"en","contestflag":false,"api":false,"api_accounts_id":0,"privacy_level":0,"src_file_share":"None","inter_file_share":"None","src_dwnld":true,"inter_dwnld":false,"flag_visible":1,"web_based":false,"from_web":false,"embeds":10,"secret_url":"yYEsb3eg0EZwa3","uploadtype":8,"slideshow_type":0,"available":0,"updated_at":"2022-11-10T02:00:19.000Z","app_userid":null,"app_name":"ss","categorized":2,"show_on_ss":true,"app_imported_at":null,"upload_key":"20120421-phpcon-hokkaido-pub-u-1334995080988-b-u.pdf","spam":"ham","public_status":"public","dont_show_ads":false}},"slideshow_title":"20120421 さくらのクラウドのコンパネをつくる話","slideshow-transcript-blocks":["y-kan at sakura.ad.jp\n\n\n\n\n(C)Copyright 1996-2011 SAKURA Internet Inc.\n ","","\u0026#x2022;\n\u0026#x2022;\n\u0026#x2022;\n    \u0026#x2013;\n    \u0026#x2013;\n    \u0026#x2013;\n\n\u0026#x2022;\n\u0026#x2022;\n\u0026#x2022;\n\n\u0026#x2022;\n ","","","","","","","","On-demand self-service\n\n\n                                           Broad network access\n\n\n                                             Resource pooling\n\n\n                                              Rapid elasticity\n\n\n                                            Measured Service\n\n\n\nhttp://www.nist.gov/itl/cloud/index.cfm\n ","Software as a Service\n\n\n\n\n                                          Platform as a Service\n\n\n\n\n              Infrastructure as a Service                   Hardware as a Service\n\n\n\n\nhttp://www.nist.gov/itl/cloud/index.cfm\n ","On-demand self-service\n\n\n                                           Broad network access\n\n\n                                             Resource pooling\n\n\n                                              Rapid elasticity\n\n\n                                            Measured Service\n\n\n\nhttp://www.nist.gov/itl/cloud/index.cfm\n ","","","","","","","","","VLAN101\n\n                                   VLAN106\n     VLAN102   VLAN103\n\n\n\n\n                         VLAN104\n\n\n\n\n                               VLAN105\n ","","","","","","POST /server\n\nGET /server\n\nPUT /server/:server-id\n\nDELETE /server/:server-id\n ","PUT /server/:server-id/reset\n\nGET /server/:server-id/power\n\nPUT /server/:server-id/power\n\nDELETE /server/:server-id/power\n ","GET /server\n ","GET /server\n ","","","","","","","","","","","","JavaScript:\n ","","","","","","","","","","","Hypergrid\n\n\n\n\nhttp://github.com/kanreisa/Hypergrid/\n ","Hypermodal\n\n\n\n\nhttp://github.com/kanreisa/Hypermodal/\n ","Hyperform\n\n\n\n\nhttp://github.com/kanreisa/Hyperform/\n "],"ss-url-for-slideshow":"slideshow/20120421/12628111","slideshow_type_as_string":"presentation","twitter_share_text":"20120421 さくらのクラウドのコンパネをつくる話 by @kanreisa #phpcondophpcon","pin-image-url":"https://cdn.slidesharecdn.com/ss_thumbnails/20120421-phpcon-hokkaido-pub-120421025841-phpapp01-thumbnail.jpg?width=640\u0026height=640\u0026fit=bounds"});
+    </script>
+
+    <script src="https://public.slidesharecdn.com/v2/javascripts/assets/ss_foundation/core-utils.b272ce3040ee212eed1b.js"></script>
+
+    
+
+    <script src="https://public.slidesharecdn.com/v2/javascripts/assets/ss_foundation/global.60747e3b75e653547133.js"></script>
+
+    
+
+    
+
+    <link rel="stylesheet" href="https://public.slidesharecdn.com/v2/stylesheets/bigboot/modal_share.4f420759c85553a9472b.css" media="screen" />
+<link rel="stylesheet" href="https://public.slidesharecdn.com/v2/stylesheets/share-clipboard-modal.a9abc0e857ee432d7819.css" media="screen" />
+<link rel="stylesheet" href="https://public.slidesharecdn.com/v2/stylesheets/bigboot/mobile_list_items.855daa4963cf55d9a7f2.css" media="screen" />
+  </head>
+
+  <body id="pagekey-slideshare_desktop_slideview_embed_code_loggedout" style="border:0;margin:0;padding:0;width:100%;height:100%;overflow:hidden;" class="">
+    
+<div
+  id="new-player"
+  data-slideshow-id=""
+  class="presentation-player embed "
+>
+  <div id="stage">
+    
+
+      <div class="inbetween-overlay" id="inbetween-overlay-1">
+    <div class="ad-inner">
+      
+<div class="ad-container  interstitial" id="interstitial-ad-1-container" data-index="0">
+  <div class="ad-inner-wrapper">
+    <div id="interstitial-ad-1" style="min-width: 200px; min-height: 50px;" class="google-ad">
+    </div>
+      <a 
+        class="fallback-ad-container"
+        target="_blank"
+        aria-label="Ad for Scribd subscription"
+        rel="noopener noreferrer"
+        alt="Ad for Scribd subscription"
+        href="https://www.scribd.com/slideshare">
+          <div class="fallback-ad en"></div>
+      </a>
+  </div>
+</div>
+      <button type="button" class="skip-ad-button waiting-to-skip" disabled="disabled">
+        <span class="ad-skip-message">Skip to next slide</span>
+        <span class="ad-skip-countdown-message">You can skip to the next slide in</span>
+        <span class="ad-countdown">3</span></button>
+    </div>
+    <div class="ad-label-wrapper">
+      <div class="ad-label-container">
+        <span>Ad</span>
+      </div>
+    </div>
+  </div>
+  <div class="inbetween-overlay" id="inbetween-overlay-2">
+    <div class="ad-inner">
+      
+<div class="ad-container  interstitial" id="interstitial-ad-2-container" data-index="0">
+  <div class="ad-inner-wrapper">
+    <div id="interstitial-ad-2" style="min-width: 200px; min-height: 50px;" class="google-ad">
+    </div>
+      <a 
+        class="fallback-ad-container"
+        target="_blank"
+        aria-label="Ad for Scribd subscription"
+        rel="noopener noreferrer"
+        alt="Ad for Scribd subscription"
+        href="https://www.scribd.com/slideshare">
+          <div class="fallback-ad en"></div>
+      </a>
+  </div>
+</div>
+      <button type="button" class="skip-ad-button waiting-to-skip" disabled="disabled">
+        <span class="ad-skip-message">Skip to next slide</span>
+        <span class="ad-skip-countdown-message">You can skip to the next slide in</span>
+        <span class="ad-countdown">3</span></button>
+    </div>
+    <div class="ad-label-wrapper">
+      <div class="ad-label-container">
+        <span>Ad</span>
+      </div>
+    </div>
+  </div>
+  <div class="inbetween-overlay" id="inbetween-overlay-3">
+    <div class="ad-inner">
+      
+<div class="ad-container  interstitial" id="interstitial-ad-3-container" data-index="0">
+  <div class="ad-inner-wrapper">
+    <div id="interstitial-ad-3" style="min-width: 200px; min-height: 50px;" class="google-ad">
+    </div>
+      <a 
+        class="fallback-ad-container"
+        target="_blank"
+        aria-label="Ad for Scribd subscription"
+        rel="noopener noreferrer"
+        alt="Ad for Scribd subscription"
+        href="https://www.scribd.com/slideshare">
+          <div class="fallback-ad en"></div>
+      </a>
+  </div>
+</div>
+      <button type="button" class="skip-ad-button waiting-to-skip" disabled="disabled">
+        <span class="ad-skip-message">Skip to next slide</span>
+        <span class="ad-skip-countdown-message">You can skip to the next slide in</span>
+        <span class="ad-countdown">3</span></button>
+    </div>
+    <div class="ad-label-wrapper">
+      <div class="ad-label-container">
+        <span>Ad</span>
+      </div>
+    </div>
+  </div>
+  <div class="inbetween-overlay" id="inbetween-overlay-4">
+    <div class="ad-inner">
+      
+<div class="ad-container  interstitial" id="interstitial-ad-4-container" data-index="0">
+  <div class="ad-inner-wrapper">
+    <div id="interstitial-ad-4" style="min-width: 200px; min-height: 50px;" class="google-ad">
+    </div>
+      <a 
+        class="fallback-ad-container"
+        target="_blank"
+        aria-label="Ad for Scribd subscription"
+        rel="noopener noreferrer"
+        alt="Ad for Scribd subscription"
+        href="https://www.scribd.com/slideshare">
+          <div class="fallback-ad en"></div>
+      </a>
+  </div>
+</div>
+      <button type="button" class="skip-ad-button waiting-to-skip" disabled="disabled">
+        <span class="ad-skip-message">Skip to next slide</span>
+        <span class="ad-skip-countdown-message">You can skip to the next slide in</span>
+        <span class="ad-countdown">3</span></button>
+    </div>
+    <div class="ad-label-wrapper">
+      <div class="ad-label-container">
+        <span>Ad</span>
+      </div>
+    </div>
+  </div>
+  <div class="inbetween-overlay" id="inbetween-overlay-5">
+    <div class="ad-inner">
+      
+<div class="ad-container  interstitial" id="interstitial-ad-5-container" data-index="0">
+  <div class="ad-inner-wrapper">
+    <div id="interstitial-ad-5" style="min-width: 200px; min-height: 50px;" class="google-ad">
+    </div>
+      <a 
+        class="fallback-ad-container"
+        target="_blank"
+        aria-label="Ad for Scribd subscription"
+        rel="noopener noreferrer"
+        alt="Ad for Scribd subscription"
+        href="https://www.scribd.com/slideshare">
+          <div class="fallback-ad en"></div>
+      </a>
+  </div>
+</div>
+      <button type="button" class="skip-ad-button waiting-to-skip" disabled="disabled">
+        <span class="ad-skip-message">Skip to next slide</span>
+        <span class="ad-skip-countdown-message">You can skip to the next slide in</span>
+        <span class="ad-countdown">3</span></button>
+    </div>
+    <div class="ad-label-wrapper">
+      <div class="ad-label-container">
+        <span>Ad</span>
+      </div>
+    </div>
+  </div>
+  <div class="inbetween-overlay" id="inbetween-overlay-6">
+    <div class="ad-inner">
+      
+<div class="ad-container  interstitial" id="interstitial-ad-6-container" data-index="0">
+  <div class="ad-inner-wrapper">
+    <div id="interstitial-ad-6" style="min-width: 200px; min-height: 50px;" class="google-ad">
+    </div>
+      <a 
+        class="fallback-ad-container"
+        target="_blank"
+        aria-label="Ad for Scribd subscription"
+        rel="noopener noreferrer"
+        alt="Ad for Scribd subscription"
+        href="https://www.scribd.com/slideshare">
+          <div class="fallback-ad en"></div>
+      </a>
+  </div>
+</div>
+      <button type="button" class="skip-ad-button waiting-to-skip" disabled="disabled">
+        <span class="ad-skip-message">Skip to next slide</span>
+        <span class="ad-skip-countdown-message">You can skip to the next slide in</span>
+        <span class="ad-countdown">3</span></button>
+    </div>
+    <div class="ad-label-wrapper">
+      <div class="ad-label-container">
+        <span>Ad</span>
+      </div>
+    </div>
+  </div>
+  <div class="inbetween-overlay" id="inbetween-overlay-7">
+    <div class="ad-inner">
+      
+<div class="ad-container  interstitial" id="interstitial-ad-7-container" data-index="0">
+  <div class="ad-inner-wrapper">
+    <div id="interstitial-ad-7" style="min-width: 200px; min-height: 50px;" class="google-ad">
+    </div>
+      <a 
+        class="fallback-ad-container"
+        target="_blank"
+        aria-label="Ad for Scribd subscription"
+        rel="noopener noreferrer"
+        alt="Ad for Scribd subscription"
+        href="https://www.scribd.com/slideshare">
+          <div class="fallback-ad en"></div>
+      </a>
+  </div>
+</div>
+      <button type="button" class="skip-ad-button waiting-to-skip" disabled="disabled">
+        <span class="ad-skip-message">Skip to next slide</span>
+        <span class="ad-skip-countdown-message">You can skip to the next slide in</span>
+        <span class="ad-countdown">3</span></button>
+    </div>
+    <div class="ad-label-wrapper">
+      <div class="ad-label-container">
+        <span>Ad</span>
+      </div>
+    </div>
+  </div>
+  <div class="inbetween-overlay" id="inbetween-overlay-8">
+    <div class="ad-inner">
+      
+<div class="ad-container  interstitial" id="interstitial-ad-8-container" data-index="0">
+  <div class="ad-inner-wrapper">
+    <div id="interstitial-ad-8" style="min-width: 200px; min-height: 50px;" class="google-ad">
+    </div>
+      <a 
+        class="fallback-ad-container"
+        target="_blank"
+        aria-label="Ad for Scribd subscription"
+        rel="noopener noreferrer"
+        alt="Ad for Scribd subscription"
+        href="https://www.scribd.com/slideshare">
+          <div class="fallback-ad en"></div>
+      </a>
+  </div>
+</div>
+      <button type="button" class="skip-ad-button waiting-to-skip" disabled="disabled">
+        <span class="ad-skip-message">Skip to next slide</span>
+        <span class="ad-skip-countdown-message">You can skip to the next slide in</span>
+        <span class="ad-countdown">3</span></button>
+    </div>
+    <div class="ad-label-wrapper">
+      <div class="ad-label-container">
+        <span>Ad</span>
+      </div>
+    </div>
+  </div>
+  <div class="inbetween-overlay" id="inbetween-overlay-9">
+    <div class="ad-inner">
+      
+<div class="ad-container  interstitial" id="interstitial-ad-9-container" data-index="0">
+  <div class="ad-inner-wrapper">
+    <div id="interstitial-ad-9" style="min-width: 200px; min-height: 50px;" class="google-ad">
+    </div>
+      <a 
+        class="fallback-ad-container"
+        target="_blank"
+        aria-label="Ad for Scribd subscription"
+        rel="noopener noreferrer"
+        alt="Ad for Scribd subscription"
+        href="https://www.scribd.com/slideshare">
+          <div class="fallback-ad en"></div>
+      </a>
+  </div>
+</div>
+      <button type="button" class="skip-ad-button waiting-to-skip" disabled="disabled">
+        <span class="ad-skip-message">Skip to next slide</span>
+        <span class="ad-skip-countdown-message">You can skip to the next slide in</span>
+        <span class="ad-countdown">3</span></button>
+    </div>
+    <div class="ad-label-wrapper">
+      <div class="ad-label-container">
+        <span>Ad</span>
+      </div>
+    </div>
+  </div>
+  <div class="inbetween-overlay" id="inbetween-overlay-10">
+    <div class="ad-inner">
+      
+<div class="ad-container  interstitial" id="interstitial-ad-10-container" data-index="0">
+  <div class="ad-inner-wrapper">
+    <div id="interstitial-ad-10" style="min-width: 200px; min-height: 50px;" class="google-ad">
+    </div>
+      <a 
+        class="fallback-ad-container"
+        target="_blank"
+        aria-label="Ad for Scribd subscription"
+        rel="noopener noreferrer"
+        alt="Ad for Scribd subscription"
+        href="https://www.scribd.com/slideshare">
+          <div class="fallback-ad en"></div>
+      </a>
+  </div>
+</div>
+      <button type="button" class="skip-ad-button waiting-to-skip" disabled="disabled">
+        <span class="ad-skip-message">Skip to next slide</span>
+        <span class="ad-skip-countdown-message">You can skip to the next slide in</span>
+        <span class="ad-countdown">3</span></button>
+    </div>
+    <div class="ad-label-wrapper">
+      <div class="ad-label-container">
+        <span>Ad</span>
+      </div>
+    </div>
+  </div>
+
+<div class="inbetween-overlay" id="inbetween-overlay-video">
+  <div class="ad-inner">
+    
+<div class="ad-container  interstitial" id="interstitial-ad-video-container" data-index="0">
+  <div class="ad-inner-wrapper">
+    <div id="interstitial-ad-video" style="min-width: 200px; min-height: 50px;" class="google-ad">
+    </div>
+      <a 
+        class="fallback-ad-container"
+        target="_blank"
+        aria-label="Ad for Scribd subscription"
+        rel="noopener noreferrer"
+        alt="Ad for Scribd subscription"
+        href="https://www.scribd.com/slideshare">
+          <div class="fallback-ad en"></div>
+      </a>
+  </div>
+</div>
+    <div class="video-ad-loading-indicator"><div></div><div></div><div></div><div></div></div>
+    <button type="button" class="skip-ad-button waiting-to-skip" disabled="disabled">
+      <span class="ad-skip-message">Skip to next slide</span>
+      <span class="ad-skip-countdown-message">You can skip to the next slide in</span>
+      <span class="ad-countdown">3</span>
+    </button>
+    <button type="button" aria-label="Change Volume" class="volume-control"><i class="icon-low-volume"></i></button>
+  </div>
+  <div class="ad-label-wrapper">
+    <div class="ad-label-container">
+      <span>Ad</span>
+    </div>
+  </div>
+  <button class="close-sticky-video" type="button" aria-label="Close ad">&#215;</button>  
+</div>
+
+<div class="inbetween-overlay" id="inbetween-overlay-default-video">
+  <div id="video-container">
+    <a 
+      target="_blank"
+      aria-label="Ad for Scribd subscription"
+      rel="noopener noreferrer"
+      alt="Ad for Scribd subscription"
+      href="https://www.scribd.com/slideshare">
+      <video id="inbetween-video" webkit-playsinline playsinline type="video/mp4">
+        Your browser does not support the video tag.
+        <track
+          label="English"
+          kind="subtitles"
+          srclang="en"
+          src="/videos/ads/video_reading_translations/english.vtt"
+          default />
+        <track
+          label="Deutsch"
+          kind="subtitles"
+          srclang="de"
+          src="/videos/ads/video_reading_translations/german.vtt"
+           />
+        <track
+          label="Español"
+          kind="subtitles"
+          srclang="es"
+          src="/videos/ads/video_reading_translations/spanish.vtt"
+           />
+        <track
+          label="Francais"
+          kind="subtitles"
+          srclang="fr"
+          src="/videos/ads/video_reading_translations/french.vtt"
+           />
+        <track
+          label="Portugese"
+          kind="subtitles"
+          srclang="pt"
+          src="/videos/ads/video_reading_translations/portugese.vtt"
+           />
+      </video>
+    </a>
+    <button type="button" aria-label="Change Volume" class="volume-control"><i class="icon-low-volume"></i></button>
+  </div>
+  <button type="button" class="skip-ad-button">
+    <span class="ad-skip-message">Skip to next slide</span>
+  </button>
+  <div class="ad-label-wrapper">
+    <div class="ad-label-container">
+      <span>Ad</span>
+    </div>
+  </div>
+  <button class="close-sticky-video" type="button" aria-label="Close ad">&#215;</button>  
+</div>
+    <div id="slide-container" data-cy="slide-container" tabindex="0">
+        <div class="slide current" id="slide-0" data-index="0">
+              <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-1-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-1-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-1-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="y-kan at sakura.ad.jp
+
+
+
+
+(C)Copyright 1996-2011 SAKURA Internet Inc.
+ " data-index="1" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-1-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-1-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-1-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-0"></picture>
+          
+</div>        <div class="slide" id="slide-1" data-index="1">
+              <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-2-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-2-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-2-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="2" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-2-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-2-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-2-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-1"></picture>
+          
+</div>        <div class="slide" id="slide-2" data-index="2">
+              <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-3-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-3-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-3-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="•
+•
+•
+    –
+    –
+    –
+
+•
+•
+•
+
+•
+ " data-index="3" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-3-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-3-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-3-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-2"></picture>
+          
+</div>        <div class="slide" id="slide-3" data-index="3">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-4-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-4-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-4-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="4" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-4-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-4-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-4-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-3"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-4" data-index="4">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-5-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-5-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-5-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="5" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-5-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-5-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-5-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-4"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-5" data-index="5">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-6-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-6-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-6-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="6" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-6-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-6-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-6-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-5"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-6" data-index="6">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-7-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-7-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-7-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="7" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-7-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-7-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-7-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-6"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-7" data-index="7">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-8-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-8-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-8-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="8" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-8-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-8-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-8-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-7"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-8" data-index="8">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-9-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-9-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-9-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="9" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-9-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-9-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-9-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-8"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-9" data-index="9">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-10-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-10-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-10-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="10" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-10-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-10-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-10-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-9"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-10" data-index="10">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-11-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-11-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-11-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="On-demand self-service
+
+
+                                           Broad network access
+
+
+                               ..." data-index="11" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-11-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-11-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-11-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-10"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-11" data-index="11">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-12-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-12-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-12-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="Software as a Service
+
+
+
+
+                                          Platform as a Service
+
+
+
+
+              Infrastructure..." data-index="12" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-12-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-12-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-12-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-11"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-12" data-index="12">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-13-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-13-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-13-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="On-demand self-service
+
+
+                                           Broad network access
+
+
+                               ..." data-index="13" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-13-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-13-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-13-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-12"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-13" data-index="13">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-14-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-14-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-14-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="14" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-14-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-14-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-14-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-13"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-14" data-index="14">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-15-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-15-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-15-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="15" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-15-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-15-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-15-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-14"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-15" data-index="15">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-16-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-16-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-16-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="16" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-16-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-16-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-16-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-15"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-16" data-index="16">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-17-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-17-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-17-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="17" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-17-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-17-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-17-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-16"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-17" data-index="17">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-18-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-18-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-18-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="18" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-18-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-18-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-18-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-17"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-18" data-index="18">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-19-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-19-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-19-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="19" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-19-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-19-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-19-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-18"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-19" data-index="19">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-20-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-20-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-20-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="20" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-20-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-20-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-20-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-19"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-20" data-index="20">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-21-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-21-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-21-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="21" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-21-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-21-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-21-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-20"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-21" data-index="21">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-22-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-22-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-22-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="VLAN101
+
+                                   VLAN106
+     VLAN102   VLAN103
+
+
+
+
+                         VLAN104
+
+
+
+
+      ..." data-index="22" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-22-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-22-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-22-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-21"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-22" data-index="22">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-23-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-23-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-23-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="23" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-23-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-23-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-23-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-22"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-23" data-index="23">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-24-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-24-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-24-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="24" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-24-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-24-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-24-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-23"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-24" data-index="24">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-25-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-25-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-25-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="25" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-25-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-25-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-25-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-24"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-25" data-index="25">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-26-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-26-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-26-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="26" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-26-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-26-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-26-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-25"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-26" data-index="26">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-27-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-27-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-27-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="27" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-27-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-27-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-27-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-26"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-27" data-index="27">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-28-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-28-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-28-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="POST /server
+
+GET /server
+
+PUT /server/:server-id
+
+DELETE /server/:server-id
+ " data-index="28" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-28-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-28-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-28-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-27"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-28" data-index="28">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-29-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-29-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-29-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="PUT /server/:server-id/reset
+
+GET /server/:server-id/power
+
+PUT /server/:server-id/power
+
+DELETE /server/:server-id/power
+ " data-index="29" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-29-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-29-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-29-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-28"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-29" data-index="29">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-30-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-30-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-30-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="GET /server
+ " data-index="30" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-30-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-30-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-30-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-29"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-30" data-index="30">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-31-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-31-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-31-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="GET /server
+ " data-index="31" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-31-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-31-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-31-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-30"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-31" data-index="31">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-32-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-32-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-32-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="32" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-32-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-32-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-32-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-31"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-32" data-index="32">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-33-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-33-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-33-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="33" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-33-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-33-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-33-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-32"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-33" data-index="33">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-34-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-34-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-34-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="34" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-34-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-34-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-34-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-33"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-34" data-index="34">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-35-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-35-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-35-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="35" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-35-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-35-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-35-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-34"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-35" data-index="35">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-36-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-36-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-36-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="36" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-36-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-36-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-36-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-35"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-36" data-index="36">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-37-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-37-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-37-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="37" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-37-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-37-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-37-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-36"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-37" data-index="37">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-38-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-38-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-38-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="38" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-38-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-38-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-38-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-37"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-38" data-index="38">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-39-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-39-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-39-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="39" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-39-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-39-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-39-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-38"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-39" data-index="39">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-40-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-40-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-40-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="40" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-40-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-40-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-40-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-39"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-40" data-index="40">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-41-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-41-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-41-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="41" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-41-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-41-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-41-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-40"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-41" data-index="41">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-42-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-42-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-42-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="42" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-42-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-42-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-42-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-41"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-42" data-index="42">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-43-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-43-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-43-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="JavaScript:
+ " data-index="43" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-43-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-43-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-43-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-42"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-43" data-index="43">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-44-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-44-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-44-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="44" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-44-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-44-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-44-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-43"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-44" data-index="44">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-45-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-45-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-45-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="45" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-45-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-45-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-45-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-44"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-45" data-index="45">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-46-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-46-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-46-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="46" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-46-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-46-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-46-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-45"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-46" data-index="46">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-47-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-47-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-47-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="47" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-47-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-47-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-47-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-46"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-47" data-index="47">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-48-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-48-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-48-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="48" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-48-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-48-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-48-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-47"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-48" data-index="48">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-49-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-49-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-49-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="49" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-49-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-49-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-49-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-48"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-49" data-index="49">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-50-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-50-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-50-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="50" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-50-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-50-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-50-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-49"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-50" data-index="50">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-51-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-51-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-51-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="51" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-51-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-51-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-51-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-50"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-51" data-index="51">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-52-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-52-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-52-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="52" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-52-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-52-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-52-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-51"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-52" data-index="52">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-53-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-53-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-53-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="" data-index="53" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-53-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-53-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-53-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-52"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-53" data-index="53">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-54-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-54-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-54-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="Hypergrid
+
+
+
+
+http://github.com/kanreisa/Hypergrid/
+ " data-index="54" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-54-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-54-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-54-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-53"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-54" data-index="54">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-55-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-55-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-55-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="Hypermodal
+
+
+
+
+http://github.com/kanreisa/Hypermodal/
+ " data-index="55" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-55-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-55-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-55-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-54"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-55" data-index="55">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-56-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-56-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-56-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="Hyperform
+
+
+
+
+http://github.com/kanreisa/Hyperform/
+ " data-index="56" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-56-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-56-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-56-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-55"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-56" data-index="56">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-57-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-57-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-57-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="20120421 さくらのクラウドのコンパネをつくる話" data-index="57" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-57-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-57-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-57-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-56"></picture>
+              </noscript>
+          
+</div>        <div class="slide" id="slide-57" data-index="57">
+              <noscript class="loading-lazy">
+                <picture><source srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-58-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-58-638.jpg?cb=1668045619 638w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/75/20120421-58-2048.jpg?cb=1668045619 2048w" sizes="100vw" type="image/webp"><img class="slide-image" alt="20120421 さくらのクラウドのコンパネをつくる話" data-index="58" loading="lazy" src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-58-320.jpg?cb=1668045619" srcset="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-58-320.jpg?cb=1668045619 320w, https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-58-638.jpg?cb=1668045619 638w" sizes="100vw" id="slide-image-57"></picture>
+              </noscript>
+          
+</div>        <div class="slide-end-trap"></div>
+    </div>
+    <div class="rightpoint pointly"></div>
+    <div class="leftpoint pointly"></div>
+  </div>
+
+  
+  
+  <div class="modal-share new-player-share" style="display: none;" id="slideview-modal-share" data-ga-track-category="bigfoot_slideview">
+  <div class="j-modal-popup modal-popup" role="dialog" aria-labelledby="button-share-tab">
+    <div class="modal-content-wrapper">
+      <div class="j-modal-content modal-content" id="share-screen-modal-content" data-slideshowid="">
+        <button type="button" class="j-modal-close modal-close" aria-label="Close"></button>  
+        <header class="j-tabs tabs">
+          <a id="button-share-tab" role="button" class="selected j-button-share-tab">Share SlideShare</a>
+          <hr class="divider"/>
+        </header>
+      
+        <div>
+          <div>
+            <ul class="j-share-social-list share-social-list" data-canonical-url="https://www.slideshare.net/slideshow/20120421/12628111">
+              <li class="facebook" data-network="facebook">
+                <div class="social-hover">
+                  <a class="share-link" rel="nofollow" data-url="https://www.slideshare.net/slideshow/20120421/12628111" title="Share on Facebook" href="#">Facebook</a>
+                </div>
+              </li>
+              <li class="twitter" data-network="twitter">
+                <div class="social-hover">
+                  <a class="share-link" rel="nofollow"  data-url="https://www.slideshare.net/slideshow/20120421/12628111" data-text="20120421 さくらのクラウドのコンパネをつくる話 by @kanreisa #phpcondophpcon" data-related="" data-via="SlideShare" title="Tweet on Twitter" href="#">Twitter</a>
+                </div>
+              </li>
+              <li class="linkedin" data-network="linkedin">
+                <div class="social-hover">
+                  <a class="share-link" rel="nofollow" data-url="https://www.slideshare.net/slideshow/20120421/12628111" data-text="20120421 さくらのクラウドのコンパネをつくる話 by Yuki KAN via slideshare" title="Share on Linkedin" href="#">LinkedIn</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="j-share-embed section share-embed">
+            <label class="header" for="share-embed-link">Embed</label>
+            <textarea id="share-embed-link" class="j-share-embed-link j-share-expand-trigger" readonly data-ga="link"></textarea>
+            <div class="share-embed-options j-share-expand">
+              <div class="embed-size">
+                <label class="title" for="embed-size-picker">Size (px)</label>
+                <select class="j-embed-size-picker embed-size-picker j-update-embed" id="embed-size-picker" data-ga="size-picker"></select>
+              </div>
+              <div class="embed-show-related" style="display:none">
+                <input type="checkbox" name="related-content" checked="checked" class="j-embed-related-cbox embed-related-cbox j-update-embed" data-ga="related">
+                <span>Show related SlideShares at end</span>
+              </div>
+            </div>
+          </div>
+          <div class="wordpress-container section">
+            <label class="header" for="share-embed-wp">WordPress Shortcode</label>
+            <input type="text" name="embed-code" id="share-embed-wp" value="" readonly="readonly" class="j-share-embed-wp text quiet h-wpembedcode j-share-expand-trigger" data-ga="wp-link">
+          </div>
+          <div class="share-link-container section">
+            <label class="header" for="share-link-url">Link</label>
+            <input type="text" class="j-share-link-url j-share-expand-trigger" id="share-link-url" data-ga="link" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- share modal -->
+
+  <div id="lastScreen" style="display: none;">
+    <div class="lastScreen">
+  <div class="jsplLastScreenOverlay j-last-screen-overlay"></div>
+  <div class="pro-overlay j-lastscreen">
+      <ul class="lastActions j-last-screen-actions">
+        <li class="share-cta j-share-cta lastscreen-share-cta"><a class="share-btn"><span class="lastScreen-sprite"></span>Share</a></li>
+        <li class="email-cta j-email-cta"><a class="email-btn"><span class="lastScreen-sprite"></span>Email</a></li>
+        <li class="replay last">
+          <a class="replay-btn lastScreenReplay j-tooltip j-last-screen-replay" data-original-title="View again" title="View again">
+            <span class="lastScreen-sprite">&nbsp;</span>
+          </a>
+        </li>
+        <li class="close-btn lastScreen-sprite j-lastscreen-close">
+          <a>&nbsp;</a>
+        </li>
+      </ul>
+      <div class="related-presentations j-lastscreen-related">
+        <ul class="presentation-list">
+          <li>
+          <a href="/slideshow/hand-doctor-kids-game/30845167" title="Hand doctor – kids game" target="_blank">
+            <img class="j-thumbnail" data-original="https://cdn.slidesharecdn.com/ss_thumbnails/handdoctorkidsgame-140205061324-phpapp01-thumbnail.jpg?width=320&amp;height=320&amp;fit=bounds" alt="Hand doctor – kids game" />
+            <span class="presentation-meta">
+              <span class="title">Hand doctor – kids game</span>
+              <span class="author">by&nbsp;Arth I-Soft</span>
+              <span class="view-count">311&nbsp;views</span>
+            </span>
+          </a>
+          </li>
+          <li>
+          <a href="/slideshow/highlights-experts-meetingvienna2011crstesupfeb20121/11919492" title="Highlights experts meeting_vienna_2..." target="_blank">
+            <img class="j-thumbnail" data-original="https://cdn.slidesharecdn.com/ss_thumbnails/highlightsexpertsmeetingvienna2011crstesupfeb20121-120308055219-phpapp01-thumbnail.jpg?width=320&amp;height=320&amp;fit=bounds" alt="Highlights experts meeting_vienna_2..." />
+            <span class="presentation-meta">
+              <span class="title">Highlights experts meeting_vienna_2...</span>
+              <span class="author">by&nbsp;Lasermed Tic</span>
+              <span class="view-count">621&nbsp;views</span>
+            </span>
+          </a>
+          </li>
+          <li>
+          <a href="/slideshow/shaklee-map-to-100000/28398283" title="Shaklee map to 100K" target="_blank">
+            <img class="j-thumbnail" data-original="https://cdn.slidesharecdn.com/ss_thumbnails/shakleemapto100k-131118231802-phpapp01-thumbnail.jpg?width=320&amp;height=320&amp;fit=bounds" alt="Shaklee map to 100K" />
+            <span class="presentation-meta">
+              <span class="title">Shaklee map to 100K</span>
+              <span class="author">by&nbsp;Cindy McAsey</span>
+              <span class="view-count">913&nbsp;views</span>
+            </span>
+          </a>
+          </li>
+          <li>
+          <a href="/slideshow/mcardleonlinepresentation/11728070" title="McArdle_onlinepresentation" target="_blank">
+            <img class="j-thumbnail" data-original="https://cdn.slidesharecdn.com/ss_thumbnails/mcardleonlinepresentation-120223215015-phpapp02-thumbnail.jpg?width=320&amp;height=320&amp;fit=bounds" alt="McArdle_onlinepresentation" />
+            <span class="presentation-meta">
+              <span class="title">McArdle_onlinepresentation</span>
+              <span class="author">by&nbsp;jtmcardle</span>
+              <span class="view-count">155&nbsp;views</span>
+            </span>
+          </a>
+          </li>
+          <li>
+          <a href="/slideshow/van-gogh-final/11639190" title="Van Gogh FINAL" target="_blank">
+            <img class="j-thumbnail" data-original="https://cdn.slidesharecdn.com/ss_thumbnails/vangoghfinal-120217125318-phpapp02-thumbnail.jpg?width=320&amp;height=320&amp;fit=bounds" alt="Van Gogh FINAL" />
+            <span class="presentation-meta">
+              <span class="title">Van Gogh FINAL</span>
+              <span class="author">by&nbsp;Irene Ocariz</span>
+              <span class="view-count">292&nbsp;views</span>
+            </span>
+          </a>
+          </li>
+          <li>
+          <a href="/slideshow/better-mtinfographic/30033091" title="5 Steps for Better Machine Translat..." target="_blank">
+            <img class="j-thumbnail" data-original="https://cdn.slidesharecdn.com/ss_thumbnails/better-mt-infographic-140115020911-phpapp01-thumbnail.jpg?width=320&amp;height=320&amp;fit=bounds" alt="5 Steps for Better Machine Translat..." />
+            <span class="presentation-meta">
+              <span class="title">5 Steps for Better Machine Translat...</span>
+              <span class="author">by&nbsp;Multilizer</span>
+              <span class="view-count">1010&nbsp;views</span>
+            </span>
+          </a>
+          </li>
+        </ul>
+      </div>
+  </div> <!-- end of div class pro-overlay -->
+</div><!-- last screen ends here -->
+
+  </div>
+
+  <div id="filmstrip" style="display: none;">
+  <div class="filmstrip-lens">
+    <img
+      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+      class="filmstrip-lens-image"
+      alt="">
+    <span class="top-clip-label">Top clipped slide</span>
+  </div>
+  <ul id="filmstrip-list">
+      <li id="thumbnail-0" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-1-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-1" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-2-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-2" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-3-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-3" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-4-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-4" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-5-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-5" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-6-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-6" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-7-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-7" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-8-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-8" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-9-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-9" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-10-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-10" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-11-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-11" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-12-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-12" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-13-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-13" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-14-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-14" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-15-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-15" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-16-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-16" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-17-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-17" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-18-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-18" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-19-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-19" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-20-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-20" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-21-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-21" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-22-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-22" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-23-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-23" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-24-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-24" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-25-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-25" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-26-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-26" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-27-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-27" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-28-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-28" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-29-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-29" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-30-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-30" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-31-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-31" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-32-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-32" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-33-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-33" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-34-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-34" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-35-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-35" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-36-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-36" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-37-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-37" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-38-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-38" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-39-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-39" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-40-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-40" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-41-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-41" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-42-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-42" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-43-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-43" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-44-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-44" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-45-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-45" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-46-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-46" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-47-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-47" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-48-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-48" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-49-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-49" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-50-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-50" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-51-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-51" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-52-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-52" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-53-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-53" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-54-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-54" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-55-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-55" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-56-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-56" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-57-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+      <li id="thumbnail-57" style="margin: 4px;" class="filmstrip-item">
+        <noscript class="loading-lazy">
+          <img src="https://image.slidesharecdn.com/20120421-phpcon-hokkaido-pub-120421025841-phpapp01/85/20120421-58-320.jpg?cb=1668045619" class="filmstrip-thumb" loading="lazy" alt="">
+        </noscript>
+      </li>
+  </ul>
+</div>
+
+  <div id="player-toolbar">
+  <div id="player-toolbar-left-actions" class="player-toolbar-item">
+      <a
+        type="button"
+        data-action="share"
+        href=https://www.slideshare.net/slideshow/20120421/12628111
+        class="link view-on-ss"
+        aria-label="View on SlideShare"
+      >
+        View on SlideShare
+      </a>
+  </div>
+  <div id="player-navigation" class="player-toolbar-item">
+    <button
+      type="button"
+      id="previous-slide" 
+      data-cy="previous-button"
+      aria-label="Previous Slide"
+      disabled
+    >
+      <i class="icon-chevron-left"></i>
+    </button>
+    <span class="slide-index" aria-live="polite" aria-atomic="true">
+      <span data-cy="current-slide-number" class="current-slide-number j-current-slide">1</span> of <span class="total-slides j-total-slides">58</span>
+    </span>
+    <span class="ad-notification">Ad</span>
+    <button
+      type="button"
+      id="next-slide"
+      data-cy="next-button"
+      aria-label="Next Slide"
+      > 
+      <i class="icon-chevron-right"></i>
+    </button>
+  </div>
+  <div id="player-toolbar-right-actions" class="player-toolbar-item">
+    <div class="zoom-slide">
+      <button
+        type="button"
+        class="zoom-in"
+        aria-label="Zoom In">
+        <i class='icon-zoom-in'></i>
+      </button>
+      <button
+        type="button"
+        class="zoom-out"
+        aria-label="Zoom Out">
+        <i class='icon-zoom-out'></i>
+      </button>
+    </div>
+    <button
+      type="button"
+      id="fullscreen"
+      aria-label="View Fullscreen"
+    >
+      <i class="icon-focus fullscreen-icon"></i>
+    </button>
+  </div>
+
+</div>
+  
+<div id="player-fullscreen-overlay">
+  <div id="overlay-player-left">
+    <button
+      type="button"
+      id="overlay-previous-slide"
+      data-cy="overlay-previous-button"
+      aria-label="Previous Slide"
+      disabled
+    >
+      <i class="icon-chevron-left"></i>
+    </button>
+  </div>
+  <div id="overlay-player-top" class="no-download-or-clip">
+    <div class="button-container">
+      
+
+
+    </div>
+  </div>
+  <div id="overlay-player-bottom">
+    <div id="player-fullscreen-navigation" class="player-toolbar-item">
+      <span class="slide-index" aria-live="polite" aria-atomic="true">
+        <span data-cy="current-slide-number" class="current-slide-number j-current-slide">1</span> of <span class="total-slides j-total-slides">58</span>
+      </span>
+      <span class="ad-notification">Ad</span>
+    </div>
+    <div class="content-right">
+      <div class="zoom-slide">
+        <button
+          type="button"
+          class="zoom-in"
+          aria-label="Zoom In">
+          <i class='icon-zoom-in'></i>
+        </button>
+        <button
+          type="button"
+          class="zoom-out"
+          aria-label="Zoom Out">
+          <i class='icon-zoom-out'></i>
+        </button>
+      </div>
+      <button
+        type="button"
+        id="exit-fullscreen"
+        aria-label="Exit Fullscreen"
+      >
+        <i class="icon-compress exit-fullscreen-icon"></i>
+      </button>
+    </div>
+  </div>
+  <div id="overlay-player-right">
+    <button
+      type="button"
+      id="overlay-next-slide"
+      data-cy="overlay-next-button"
+      aria-label="Next Slide"
+      > 
+      <i class="icon-chevron-right"></i>
+    </button>
+  </div>
+</div>
+
+</div>
+
+
+    <script>
+    window.feature_flags = {
+      disable_facebook: true,
+      document_interstitials_flag: true,
+      minimalist_header: false,
+      recommendation_impression_tracking: true,
+      search_results_tracking: true, 
+      view_restriction_without_subscription_after_five: true,
+    };
+</script>
+
+    <script>
+    window.ab_tests = {}
+  window.nway_tests = {"example":"B","expressive_search":"A","fullscreen_view":"B","gallery_view":"B","nextjs_profile":"B","nextjs_profile_v2":"B","reading_modes":"A","single_slide_view_v2":"A"}
+</script>
+
+
+    <script src="https://public.slidesharecdn.com/v2/javascripts/assets/vendor/jquery.scrollTo-1.4.4.min.9d32ddea8190cb6b9d69.js"></script>
+    <script src="https://public.slidesharecdn.com/v2/javascripts/packs/combined_analytics.b328c362f64597ee95fd.js"></script>
+    <script src="https://public.slidesharecdn.com/v2/javascripts/packs/combined_base.a796147d1c6cac7604d0.js"></script>
+    <script src="https://public.slidesharecdn.com/v2/javascripts/packs/combined_foundation.3a132c3eb54282eaa22b.js"></script>
+    <script src="https://public.slidesharecdn.com/v2/javascripts/packs/combined_player.1aa966d69843d108d291.js" defer="defer"></script>
+    <script src="https://public.slidesharecdn.com/v2/javascripts/assets/tracking/page-view.783cf698aeb58fc30f9b.js"></script>
+  </body>
+</html>
