@@ -164,6 +164,24 @@ test('getVideoHtml returns html', async () => {
   assert.match(html, /<iframe/)
 })
 
+const testsSlideshareOembedUrls = [
+  [
+    'https://www.slideshare.net/naotomatsumoto/ss-76167012',
+    'https://www.slideshare.net/slideshow/embed_code/key/P8K5T2uhutnid',
+  ],
+  [
+    'https://www.slideshare.net/naotomatsumoto/iot29',
+    'https://www.slideshare.net/slideshow/embed_code/key/4XbwpqYMhN1Y9T',
+  ],
+]
+for (const t of testsSlideshareOembedUrls) {
+  const [url, expect] = t
+  test(`getSlideshareOembedUrl: ${url}`, async () => {
+    const got = await files.getSlideshareOembedUrl(url, vcr)
+    assert.equal(got, expect)
+  })
+}
+
 const testsSlideshow = [
   [
     'slide title pattern',
