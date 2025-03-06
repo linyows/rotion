@@ -349,7 +349,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
         return { path: webpUrlPath }
       }
     } else {
-      if (ext === '.ico') {
+      if (ext === '.ico' || ext === '.svg') {
         return { path: urlPath }
       }
       try {
@@ -389,7 +389,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
     }
   }
 
-  if (ext === '.ico') {
+  if (ext === '.ico' || ext === '.svg') {
     return { path: urlPath }
   }
 
