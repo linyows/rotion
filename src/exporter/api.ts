@@ -40,12 +40,8 @@ export async function reqAPIWithBackoff<T> ({ func, args, count }: reqAPIWithBac
       await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
     }
   } catch (error: unknown) {
-    if (isNotionClientError(error)) {
+    if (error && typeof error === 'object' && isNotionClientError(error)) {
       switch (error.code) {
-        case APIErrorCode.ValidationError:
-          if (!error.message.includes('The start_cursor provided is invalid:')) {
-            break
-          }
         case APIErrorCode.RateLimited:
         case APIErrorCode.InternalServerError:
         case ClientErrorCode.ResponseError:
@@ -56,7 +52,7 @@ export async function reqAPIWithBackoff<T> ({ func, args, count }: reqAPIWithBac
           if (waitTimeSecAfterLimit > 0) {
             await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
           }
-          res = await reqAPIWithBackoff<T>({ func, args, count: count-- })
+          res = await reqAPIWithBackoff<T>({ func, args, count: count - 1 })
           break
       }
     }
