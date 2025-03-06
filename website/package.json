@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "mermaid": "^10.9.3",
+    "mermaid": "^11.4.1",
     "next": "^15",
     "prismjs": "^1.29.0",
     "react": "^19",
