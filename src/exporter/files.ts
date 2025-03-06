@@ -415,9 +415,6 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
           }
         }
       } else {
-        if (debug) {
-          console.log(`sharp.metadata().format returns other -- path: ${filePath}, url: ${imageUrl}, format: ${meta.format}`)
-        }
         return {
           path: urlPath,
           width: meta.width,
