@@ -42,6 +42,10 @@ export async function reqAPIWithBackoff<T> ({ func, args, count }: reqAPIWithBac
   } catch (error: unknown) {
     if (isNotionClientError(error)) {
       switch (error.code) {
+        case APIErrorCode.ValidationError:
+          if (!error.message.includes('The start_cursor provided is invalid:')) {
+            break
+          }
         case APIErrorCode.RateLimited:
         case APIErrorCode.InternalServerError:
         case ClientErrorCode.ResponseError:
