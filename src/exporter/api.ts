@@ -61,7 +61,7 @@ export async function reqAPIWithBackoff<T> ({ func, args, count }: reqAPIWithBac
       }
     }
     if (debug) {
-      console.error(`reqAPIWithBackoff error -- func: ${func.name}, args: ${args}, error: ${error}`)
+      console.error(`reqAPIWithBackoff error -- func: ${func.name}, args: ${JSON.stringify(args)}, error: ${error}`)
     }
   }
 
