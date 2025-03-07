@@ -39,7 +39,7 @@ export interface FetchDatabaseRes extends QueryDatabaseResponseEx {
  * And create cache that includes filepath of downloaded images.
  */
 export const FetchDatabase = async (params: FetchDatabaseArgs): Promise<FetchDatabaseRes> => {
-  const { database_id } = params
+  const { database_id } = JSON.parse(JSON.stringify(params))
   const limit = ('page_size' in params) ? params.page_size : undefined
   const paramsHash = atoh(JSON.stringify(params))
 
