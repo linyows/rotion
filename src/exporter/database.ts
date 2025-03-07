@@ -1,6 +1,5 @@
 import {
   reqAPIWithBackoff,
-  reqAPIWithBackoffAndCache,
   notion,
 } from './api.js'
 import {
@@ -23,7 +22,6 @@ import type {
   GetDatabaseResponseEx,
   PageObjectResponseEx,
   PersonUserObjectResponseEx,
-  GetPagePropertyResponse,
 } from './types.js'
 import {
   savePageCover,
