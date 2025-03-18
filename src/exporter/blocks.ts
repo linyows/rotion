@@ -69,19 +69,36 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
     /* not fatal */
   }
 
-  const list = await reqAPIWithBackoff<ListBlockChildrenResponseEx>({
-    func: notion.blocks.children.list,
-    args: { block_id },
-    count: 3
-  })
+  let allres: undefined|ListBlockChildrenResponseEx
+  let res: undefined|ListBlockChildrenResponseEx
+  let params = { block_id, start_cursor: undefined as string|undefined }
+
+  while (true) {
+    if (res && res.next_cursor) {
+      params.start_cursor = res.next_cursor
+    }
+    res = await reqAPIWithBackoff<ListBlockChildrenResponseEx>({
+      func: notion.blocks.children.list,
+      args: params,
+      count: 3
+    })
+    if (allres === undefined) {
+      allres = res
+    } else {
+      allres.results.push(...res.results)
+    }
+    if (res.next_cursor === null) {
+      break
+    }
+  }
 
   // With the blocks api, you can get the last modified date of a block,
   // but not the last modified date of all blocks. So extend the type and add it.
   if (last_edited_time) {
-    list.last_edited_time = last_edited_time
+    allres.last_edited_time = last_edited_time
   }
 
-  for (const block of list.results) {
+  for (const block of allres.results) {
     try {
       const { type } = block
       switch (type) {
@@ -318,7 +335,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
     }
   }
 
-  await writeCache(cacheFile, list)
+  await writeCache(cacheFile, allres)
 
-  return list
+  return allres
 }
