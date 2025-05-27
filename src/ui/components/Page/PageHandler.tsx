@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { JSX } from 'react'
 import type { HandlerProps } from './PageHandler.types'
 
 import BookmarkBlock from './BookmarkBlock/BookmarkBlock'

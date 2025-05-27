@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { JSX } from 'react'
 import type { BlockObjectResponse } from '../../../exporter'
 import type { PageProps, ListType, ULOL } from './Page.types'
 import { ListBlocks } from './ListBlocks'
