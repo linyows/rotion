@@ -97,7 +97,6 @@
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
     "@types/replace-ext": "^2.0.2",
-    "@types/rollup-plugin-peer-deps-external": "^2.2.4",
     "@typescript-eslint/eslint-plugin": "^8.23.0",
     "@typescript-eslint/parser": "^8.23.0",
     "eslint": "^9.20.0",
