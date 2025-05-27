@@ -1,3 +1,4 @@
+import type { JSX } from 'react'
 import type { Link } from '../../types'
 import type { BlockObjectResponse } from '../../../../exporter'
 import type { ParsedUrlQueryInput } from 'node:querystring'

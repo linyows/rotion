@@ -6,7 +6,6 @@
     "jsx": "react",
     "module": "ESNext",
     "declaration": true,
-    "declarationDir": "types",
     "sourceMap": true,
     "rootDir": "src",
     "outDir": "dist/ui",

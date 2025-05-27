@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { JSX } from 'react'
 import type { BulletedListBlockProps } from './BulletedListBlock.types'
 import { RichText } from '../../RichText'
 import { blockType } from '../PageHandler'
