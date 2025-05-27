@@ -43,7 +43,7 @@ export default [
         intro: "'use client';",
         file: './dist/ui/umd/index.js',
         format: 'umd',
-        name: 'NotionateUI',
+        name: 'Rotion UI',
         sourcemap: true,
         globals: { react: 'React', mermaid: 'mermaid', prismjs: 'Prism' },
       },
@@ -54,7 +54,9 @@ export default [
       resolve(),
       json(),
       commonjs(),
-      typescript(),
+      typescript({
+        declaration: false,
+      }),
       terser(),
       postcss({
         extract: true,
@@ -66,7 +68,7 @@ export default [
       'react-dom',
       'prismjs',
       'mermaid',
-      'pdfjs-dist',
+      'pdfjsDist',
     ],
   },
   {
