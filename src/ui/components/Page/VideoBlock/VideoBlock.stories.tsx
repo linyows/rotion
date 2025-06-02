@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { VideoBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter'
 import VideoBlock from './VideoBlock'
 

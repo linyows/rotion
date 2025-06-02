@@ -5,21 +5,19 @@ const config: StorybookConfig = {
     "../src/**/*.mdx",
     "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
+
   addons: [
-    "storybook-dark-mode",
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
-    "@storybook/addon-interactions",
-    "@chromatic-com/storybook"
+    "@chromatic-com/storybook",
+    "@storybook/addon-docs"
   ],
+
   framework: {
     name: "@storybook/react-vite",
     options: {},
   },
-  staticDirs: ['../website/public'],
-  docs: {
-    autodocs: "tag",
-  },
+
+  staticDirs: ['../website/public']
 };
 export default config;
