@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { BreadcrumbBlockObjectResponseEx } from '../../../../exporter'
 import BreadcrumbBlock from './BreadcrumbBlock'
 

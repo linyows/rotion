@@ -1,6 +1,6 @@
 import React from 'react'
 import type { TextRichTextItemResponse } from '../../../../exporter'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import LinkIfLinked from './LinkIfLinked'
 
 const textObject = {

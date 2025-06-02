@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { TableBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter'
 import TableBlock from './TableBlock'
 
