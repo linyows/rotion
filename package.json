@@ -1,6 +1,6 @@
 {
   "name": "rotion",
-  "version": "1.14.0",
+  "version": "1.14.1",
   "license": "MIT",
   "repository": "linyows/rotion",
   "description": "This is react components that uses the notion API to display the notion's database and page.",
