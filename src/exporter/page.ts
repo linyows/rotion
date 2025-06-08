@@ -21,6 +21,7 @@ import type {
   GetPagePropertyResponse,
   PageObjectResponseEx,
 } from './types.js'
+import { withFileLock } from './mutex.js'
 
 export interface FetchPageArgs {
   page_id: string
@@ -38,63 +39,66 @@ export interface FetchPageRes extends GetPageResponseEx {
 export const FetchPage = async ({ page_id, last_edited_time }: FetchPageArgs): Promise<FetchPageRes> => {
   await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.pages.retrieve-${page_id}`
+  const lockKey = `page-${page_id}`
 
-  try {
-    const page = await readCache<GetPageResponseEx>(cacheFile)
-    if (!isEmpty(page)) {
-      if (incrementalCache && last_edited_time === undefined) {
-        if (debug) {
-          console.log(`use cache in FetchPage(): ${cacheFile}, last_edited_time is required as a FetchPage() args when incremental cache`)
+  return withFileLock(lockKey, async () => {
+    try {
+      const page = await readCache<GetPageResponseEx>(cacheFile)
+      if (!isEmpty(page)) {
+        if (incrementalCache && last_edited_time === undefined) {
+          if (debug) {
+            console.log(`use cache in FetchPage(): ${cacheFile}, last_edited_time is required as a FetchPage() args when incremental cache`)
+          }
+          return page
         }
-        return page
-      }
-      if (!incrementalCache || ('last_edited_time' in page && page.last_edited_time === last_edited_time)) {
-        if (debug) {
-          console.log(`use cache so same last-edited-time in FetchPage(): ${cacheFile}`)
+        if (!incrementalCache || ('last_edited_time' in page && page.last_edited_time === last_edited_time)) {
+          if (debug) {
+            console.log(`use cache so same last-edited-time in FetchPage(): ${cacheFile}`)
+          }
+          return page
         }
-        return page
+        if (debug) {
+          console.log(`requesting to API because an old cache file was found in FetchPage(): ${cacheFile}`)
+        }
       }
-      if (debug) {
-        console.log(`requesting to API because an old cache file was found in FetchPage(): ${cacheFile}`)
-      }
+    } catch (_) {
+      /* not fatal */
     }
-  } catch (_) {
-    /* not fatal */
-  }
 
-  const page = await reqAPIWithBackoff<GetPageResponseEx>({
-    func: notion.pages.retrieve,
-    args: { page_id },
-    count: 3
+    const page = await reqAPIWithBackoff<GetPageResponseEx>({
+      func: notion.pages.retrieve,
+      args: { page_id },
+      count: 3
+    })
+
+    if ('properties' in page) {
+      let list: undefined|PropertyItemPropertyItemListResponse
+      for (const [, v] of Object.entries(page.properties)) {
+        const property_id = v.id
+        const res = await reqAPIWithBackoffAndCache<GetPagePropertyResponse>({
+          name: 'notion.pages.properties.retrieve',
+          func: notion.pages.properties.retrieve,
+          args: { page_id, property_id },
+          count: 3,
+        })
+        if (res.object !== 'list') {
+          continue
+        }
+        if (list === undefined) {
+          list = res
+        } else {
+          list.results.push(...res.results)
+        }
+      }
+      page.meta = list
+    }
+
+    await savePageCover(page)
+    await savePageIcon(page)
+    await writeCache(cacheFile, page)
+
+    return page
   })
-
-  if ('properties' in page) {
-    let list: undefined|PropertyItemPropertyItemListResponse
-    for (const [, v] of Object.entries(page.properties)) {
-      const property_id = v.id
-      const res = await reqAPIWithBackoffAndCache<GetPagePropertyResponse>({
-        name: 'notion.pages.properties.retrieve',
-        func: notion.pages.properties.retrieve,
-        args: { page_id, property_id },
-        count: 3,
-      })
-      if (res.object !== 'list') {
-        continue
-      }
-      if (list === undefined) {
-        list = res
-      } else {
-        list.results.push(...res.results)
-      }
-    }
-    page.meta = list
-  }
-
-  await savePageCover(page)
-  await savePageIcon(page)
-  await writeCache(cacheFile, page)
-
-  return page
 }
 
 export async function savePageCover(page: GetPageResponseEx | PageObjectResponseEx) {

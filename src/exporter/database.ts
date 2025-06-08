@@ -27,6 +27,7 @@ import {
   savePageCover,
   savePageIcon,
 } from './page.js'
+import { withFileLock } from './mutex.js'
 
 export interface FetchDatabaseArgs extends QueryDatabaseParameters {
 }
@@ -46,81 +47,85 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
 
   await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.databases.query-${paramsHash}${limit !== undefined ? `.limit-${limit}` : ''}`
-  let allres: undefined|QueryDatabaseResponseEx
-  let res: undefined|QueryDatabaseResponseEx
+  const lockKey = `database-${paramsHash}`
 
-  try {
-    const list = await readCache<QueryDatabaseResponseEx>(cacheFile)
-    if (!isEmpty(list)) {
-      if (!incrementalCache) {
-        if (debug) {
-          console.log(`use cache in FetchDatabase() with no-incremental-cache: ${cacheFile}`)
+  return withFileLock(lockKey, async () => {
+    let allres: undefined|QueryDatabaseResponseEx
+    let res: undefined|QueryDatabaseResponseEx
+
+    try {
+      const list = await readCache<QueryDatabaseResponseEx>(cacheFile)
+      if (!isEmpty(list)) {
+        if (!incrementalCache) {
+          if (debug) {
+            console.log(`use cache in FetchDatabase() with no-incremental-cache: ${cacheFile}`)
+          }
+          return list
         }
-        return list
-      }
-      if (await isAvailableCache(cacheFile)) {
-        if (debug) {
-          console.log(`use available cache in FetchDatabase(): ${cacheFile}`)
+        if (await isAvailableCache(cacheFile)) {
+          if (debug) {
+            console.log(`use available cache in FetchDatabase(): ${cacheFile}`)
+          }
+          return list
         }
-        return list
+        if (debug) {
+          console.log(`requesting to API because an old cache file was found in FetchDatabase(): ${cacheFile}`)
+        }
       }
-      if (debug) {
-        console.log(`requesting to API because an old cache file was found in FetchDatabase(): ${cacheFile}`)
+    } catch (_) {
+      /* not fatal */
+    }
+
+    while (true) {
+      if (res && res.next_cursor) {
+        params.start_cursor = res.next_cursor
+      }
+      res = await reqAPIWithBackoff<QueryDatabaseResponseEx>({
+        func: notion.databases.query,
+        args: params,
+        count: 3,
+      })
+      if (allres === undefined) {
+        allres = res
+      } else {
+        allres.results.push(...res.results)
+      }
+      if (res.next_cursor === null || limit !== undefined) {
+        break
       }
     }
-  } catch (_) {
-    /* not fatal */
-  }
 
-  while (true) {
-    if (res && res.next_cursor) {
-      params.start_cursor = res.next_cursor
-    }
-    res = await reqAPIWithBackoff<QueryDatabaseResponseEx>({
-      func: notion.databases.query,
-      args: params,
-      count: 3,
-    })
-    if (allres === undefined) {
-      allres = res
-    } else {
-      allres.results.push(...res.results)
-    }
-    if (res.next_cursor === null || limit !== undefined) {
-      break
-    }
-  }
-
-  for (const result of allres.results) {
-    const page: PageObjectResponseEx = result
-    await savePageCover(page)
-    await savePageIcon(page)
-    for (const [, v] of Object.entries(page.properties)) {
-      // Save avatar in people property type
-      if (v.type === 'people') {
-        const peoples = v.people as unknown as PersonUserObjectResponseEx[]
-        for (const people of peoples) {
-          if (people.avatar_url) {
-            const ipws = await saveImage(people.avatar_url, `database-avatar-${people.id}`)
-            people.avatar = ipws.path
+    for (const result of allres.results) {
+      const page: PageObjectResponseEx = result
+      await savePageCover(page)
+      await savePageIcon(page)
+      for (const [, v] of Object.entries(page.properties)) {
+        // Save avatar in people property type
+        if (v.type === 'people') {
+          const peoples = v.people as unknown as PersonUserObjectResponseEx[]
+          for (const people of peoples) {
+            if (people.avatar_url) {
+              const ipws = await saveImage(people.avatar_url, `database-avatar-${people.id}`)
+              people.avatar = ipws.path
+            }
           }
         }
       }
     }
-  }
 
-  const meta = await reqAPIWithBackoff<GetDatabaseResponseEx>({
-    func: notion.databases.retrieve,
-    args: { database_id },
-    count: 3,
+    const meta = await reqAPIWithBackoff<GetDatabaseResponseEx>({
+      func: notion.databases.retrieve,
+      args: { database_id },
+      count: 3,
+    })
+    await saveDatabaseCover(meta)
+    await saveDatabaseIcon(meta)
+    allres.meta = meta
+
+    await writeCache(cacheFile, allres)
+
+    return allres
   })
-  await saveDatabaseCover(meta)
-  await saveDatabaseIcon(meta)
-  allres.meta = meta
-
-  await writeCache(cacheFile, allres)
-
-  return allres
 }
 
 export async function saveDatabaseCover(db: GetDatabaseResponseEx) {
