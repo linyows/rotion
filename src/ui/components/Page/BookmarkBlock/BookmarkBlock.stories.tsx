@@ -91,12 +91,12 @@ export const EmptyDesc: Story = {
   },
 }
 
-const emptyBookmark = structuredClone(block)
-emptyBookmark.bookmark.site.title = ''
-emptyBookmark.bookmark.site.desc = ''
-emptyBookmark.bookmark.site.image = ''
-export const Empty: Story = {
+const emptyTitleBookmark = structuredClone(block)
+emptyTitleBookmark.bookmark.site.title = ''
+emptyTitleBookmark.bookmark.site.desc = ''
+emptyTitleBookmark.bookmark.site.image = ''
+export const EmptyTitle: Story = {
   args: {
-    block: emptyBookmark,
+    block: emptyTitleBookmark,
   },
 }

@@ -68,6 +68,10 @@
   overflow: hidden;
   line-height: 1.5;
   margin-bottom: 2px;
+  width: 100%;
+  max-width: 100%;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .rotion-bookmark-url {
