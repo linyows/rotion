@@ -437,8 +437,26 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
   return { path: urlPath }
 }
 
-export const findHtmlByRegexp = (regexps: RegExp[], html: string): string | null => {
+export const findHtmlByRegexp = (regexps: RegExp[], html: string, removeJS: boolean = false): string | null => {
   let matched: RegExpMatchArray | null = null
+
+  if (removeJS) {
+    html = html
+      .replace(/\$\([^)]*\)[^;]*;?/g, '')
+      .replace(/jQuery[^;]*;?/g, '')
+      .replace(/document\.ready[^;]*;?/g, '')
+      .replace(/\(\(\)=>\{[^}]*\}\)/g, '')
+      .replace(/function\s*\([^)]*\)\s*\{[^}]*\}/g, '')
+      .replace(/var\s+\w+\s*=[^;]*;?/g, '')
+      .replace(/let\s+\w+\s*=[^;]*;?/g, '')
+      .replace(/const\s+\w+\s*=[^;]*;?/g, '')
+      .replace(/\.selected\s*=\s*[^;]*;?/g, '')
+      .replace(/if\s*?\([^)]*\)\s*\{[^}]*\}/g, '')
+      .replace(/navigator\.userAgent[^;]*;?/g, '')
+      .replace(/\.toLowerCase\(\)[^;]*;?/g, '')
+      .replace(/\.indexOf\([^)]*\)[^;]*;?/g, '')
+      .replace(/selected\s*=\s*[^;]*;?/g, '')
+  }
 
   for (let i = 0; i < regexps.length; i++) {
     const result = html.match(regexps[i])
@@ -452,11 +470,14 @@ export const findHtmlByRegexp = (regexps: RegExp[], html: string): string | null
     return null
   }
 
-  return matched[1]
+  let result = matched[1]
     .replace(/\n/g, ' ')
     .trim()
     .replace(/<[^>]*>?/gm, '')
     .replace(/https:https:/g, 'https:')
+    .replace(/\s+/g, ' ')
+
+  return result
 }
 
 export const titleRegexps = [
@@ -487,16 +508,16 @@ export const imageRegexps = [
 ]
 
 export const iconRegexps = [
-  /<link\s+href="([^"]+)"\s+rel="icon"/,
-  /<link\s+rel="icon"\s+href="(\/favicon\.ico)"\s*?\/?>/,
-  /<link\s+rel="icon".*?href="([^"]+)"/,
+  /<link\s+href="?([^"]+)"?\s+rel="icon"/,
+  /<link\s+rel="icon"\s+href="?([^"]+)"?\s*?\/?>/,
+  /<link\s+rel="icon".*?href="?([^"]+)"?/,
   /<link\s+rel="shortcut icon"\s+type="image\/x-icon"\s+href="?([^"]+)"?\s?\/?>/,
-  /<link\s+rel="shortcut icon"\s+href="?([^"]+)"?\s?\/?>/,
+  /<link\s+rel="shortcut icon"\s+href="?([^\s>]+)"?\s?\/?>/,
   /<link\s+href="?([^"]+)"?\s+rel="(shortcut icon|icon shortcut)"(\s+type="image\/x-icon")?\s?\/?>/,
-  /<link\s+href="([^"]+)"\s+rel="icon"\s+sizes="[^"]+"\s+type="image\/[^"]"\s*\/?>/,
-  /type="image\/x-icon"\s+href="(\/favicon\.ico)"/,
-  /rel="icon"\s+href="(\/favicon\.ico)"/,
-  /rel="shortcut icon"\s+href="([^"]+)"/,
+  /<link\s+href="?([^"]+)"?\s+rel="icon"\s+sizes="[^"]+"\s+type="image\/[^"]"\s*\/?>/,
+  /type="image\/x-icon"\s+href="?([^"]+)"?/,
+  /rel="icon"\s+href="?([^"]+)"?/,
+  /rel="shortcut icon"\s+href="?([^\s>]+)"?/,
 ]
 
 export const findImage = (html: string): string | null => {
@@ -512,21 +533,28 @@ export const findImage = (html: string): string | null => {
   return null
 }
 
+const maxDescLength = 400
+
 export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<HtmlMetadata> => {
   try {
     const resbody = httpFunc ? await httpFunc(reqUrl) : await getHTTP(reqUrl)
     const body = resbody.replace(/\n/g, ' ')
 
     const title = findHtmlByRegexp(titleRegexps, body) || ''
-    const desc = findHtmlByRegexp(descRegexps, body) || ''
+    const descRaw = findHtmlByRegexp(descRegexps, body, true) || ''
+    const desc = descRaw.length > maxDescLength ? descRaw.substring(0, maxDescLength) + '...' : descRaw
     const imagePath = findHtmlByRegexp(imageRegexps, body) || findImage(body) || ''
-    const iconPath = findHtmlByRegexp(iconRegexps, body) || '/favicon.ico'
+    const iconPath = findHtmlByRegexp(iconRegexps, body, true) || '/favicon.ico'
 
     const url = new URL(reqUrl)
     const imageUrl = imagePath !== '' ? (imagePath.match(/^(https?:|data:)/) ? imagePath : `${url.protocol}//${url.hostname}${imagePath}`) : ''
     const ipws = imagePath !== '' ? (imagePath.match(/^data:/) ? { path: imagePath } : await saveImage(imageUrl, 'html-image')) : null
     const image = ipws ? ipws.path : ''
-    const iconUrl = iconPath !== '' ? (iconPath.match(/^(https?:|data:)/) ? iconPath : `${url.protocol}//${url.hostname}${iconPath}`) : ''
+    const iconUrl = iconPath !== '' ? (
+      iconPath.match(/^(https?:|data:)/) ? iconPath : 
+      iconPath.match(/^\/\//) ? `${url.protocol}${iconPath}` :
+      `${url.protocol}//${url.hostname}${iconPath}`
+    ) : ''
     const ipws2 = iconUrl !== '' ? (iconPath.match(/^data:/) ? { path: iconPath } : await saveImage(iconUrl, `html-icon-${atoh(reqUrl)}`)) : null
     const icon = ipws2 ? ipws2.path : ''
 

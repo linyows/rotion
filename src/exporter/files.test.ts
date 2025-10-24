@@ -105,6 +105,13 @@ const testsGetHtmlMeta = [
     '/images/html-image-dd81b68c375850259cdb26e64618e339c4eec3c3.webp',
     '/images/html-icon-77014b367198f9878ea91bdccd6bb3fce2a5ee2a-7f5e06b5d5dc8f2fac131fd56215ae5ca767a98c.webp',
   ],
+  [
+    'https://cyberduck.io/',
+    'Cyberduck | Libre server and cloud storage browser for Mac and Windows with support for FTP, SFTP, WebDAV, Amazon S3, OpenStack Swift, Backblaze B2, Microsoft Azure & OneDrive, Google Drive and Dropbox',
+    'Download Mountain Duck available from mountainduck.io to mount any remote server storage as a local disk in the Finder.app on Mac and the File Explorer on Windows.',
+    '',
+    '/images/html-icon-0ea4fe54a56108226c40911cfa94470adfae2bde-951d8d975579f37b03d055b2da250a94924e208e.webp',
+  ],
 ]
 for (const t of testsGetHtmlMeta) {
   const [url, title, desc, image, icon] = t
