@@ -564,7 +564,7 @@ export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) =>
     const title = findHtmlByRegexp(titleRegexps, body) || ''
     const descRaw = findHtmlByRegexp(descRegexps, body, true) || ''
     const desc = descRaw.length > maxDescLength ? descRaw.substring(0, maxDescLength) + '...' : descRaw
-    const imagePath = findHtmlByRegexp(imageRegexps, body) || findImage(body) || ''
+    const imagePath = findHtmlByRegexp(imageRegexps, body) || ''
     const iconPath = findHtmlByRegexp(iconRegexps, body, true) || '/favicon.ico'
 
     const url = new URL(reqUrl)
