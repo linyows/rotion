@@ -446,6 +446,18 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
   return { path: urlPath }
 }
 
+export const decodeHtmlEntities = (text: string): string => {
+  return text
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(parseInt(dec, 10)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (match, hex) => String.fromCharCode(parseInt(hex, 16)))
+}
+
 export const findHtmlByRegexp = (regexps: RegExp[], html: string, removeJS: boolean = false): string | null => {
   let matched: RegExpMatchArray | null = null
 
@@ -486,7 +498,7 @@ export const findHtmlByRegexp = (regexps: RegExp[], html: string, removeJS: bool
     .replace(/https:https:/g, 'https:')
     .replace(/\s+/g, ' ')
 
-  return result
+  return decodeHtmlEntities(result)
 }
 
 export const titleRegexps = [
