@@ -24,6 +24,7 @@
 
 .rotion-bookmark-text {
   flex: 4 1 180px;
+  min-width: 0;
   padding: .7rem 1rem;
   line-height: 1;
   align-self: start;
@@ -53,6 +54,7 @@
   color: var(--rotion-primary-text);
   font-size: .9rem;
   width: 100%;
+  min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
