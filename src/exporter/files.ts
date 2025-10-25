@@ -446,7 +446,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
   return { path: urlPath }
 }
 
-const decodeHtmlEntities = (text: string): string => {
+export const decodeHtmlEntities = (text: string): string => {
   return text
     .replace(/&amp;/g, '&')
     .replace(/&lt;/g, '<')

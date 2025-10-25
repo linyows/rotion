@@ -61,13 +61,13 @@ const testsGetHtmlMeta = [
   [
     'https://github.com',
     'GitHub · Build and ship software on a single, collaborative platform · GitHub',
-    'Join the world&#39;s most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.',
+    "Join the world's most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.",
     '/images/html-image-77689c771405d1131dd653d0fc62bcf0e149788f.webp',
     '/images/html-icon-84b7e44aa54d002eac8d00f5bfa9cc93410f2a48-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.svg',
   ],
   [
     'https://wordpress.org',
-    'Blog Tool, Publishing Platform, and CMS &#8211; WordPress.org',
+    'Blog Tool, Publishing Platform, and CMS – WordPress.org',
     'Open source software which you can use to easily create a beautiful website, blog, or app.',
     '/images/html-image-3a3090603f6bdfe020ebfadbcda88269e7ff9fba.webp',
     '/images/html-icon-5e627442a6a3e12ed6cbbecf1a9a0f3ef9298800-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
@@ -88,8 +88,8 @@ const testsGetHtmlMeta = [
   ],
   [
     'https://www.notion.so',
-    'Your connected workspace for wiki, docs &amp; projects | Notion',
-    'A new tool that blends your everyday work apps into one. It&#x27;s the all-in-one workspace for you and your team.',
+    'Your connected workspace for wiki, docs & projects | Notion',
+    "A new tool that blends your everyday work apps into one. It's the all-in-one workspace for you and your team.",
     '/images/html-image-7505d64a54e061b7acd54ccd58b49dc43500b635.webp',
     '/images/html-icon-5f4aa01486e967f562d93fdff83daae603912c43-2ba3a0d7878316de5aaa6eed7faed9e4ba4e9f09.ico',
   ],
@@ -307,6 +307,32 @@ for (const t of testsIconRegex) {
   test(`iconRegex matches all favicons: ${path}`, async () => {
     const re = files.findHtmlByRegexp(files.iconRegexps, tag)
     assert.equal(path, re)
+  })
+}
+
+const testsDecodeHtmlEntities = [
+  ['&amp;', '&'],
+  ['&lt;', '<'],
+  ['&gt;', '>'],
+  ['&quot;', '"'],
+  ['&#39;', "'"],
+  ['&nbsp;', ' '],
+  ['&#123;', '{'],
+  ['&#x1A2B;', 'ᨫ'],
+  ['&#x3042;', 'あ'],
+  ['&lt;div&gt;Hello &amp; Goodbye&lt;/div&gt;', '<div>Hello & Goodbye</div>'],
+  ['Tom&nbsp;&amp;&nbsp;Jerry', 'Tom & Jerry'],
+  ['&#8211;', '–'],
+  ['&#x27;', "'"],
+  ['&lt;a href=&quot;test.html&quot;&gt;Link&lt;/a&gt;', '<a href="test.html">Link</a>'],
+  ['Plain text without entities', 'Plain text without entities'],
+  ['Mixed: &amp; &#123; &#x3042; &nbsp;', 'Mixed: & { あ  '],
+]
+for (const t of testsDecodeHtmlEntities) {
+  const [input, expected] = t
+  test(`decodeHtmlEntities decodes: ${input}`, () => {
+    const result = files.decodeHtmlEntities(input)
+    assert.equal(result, expected)
   })
 }
 
