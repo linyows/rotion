@@ -18,6 +18,7 @@ import {
   googleMapKey,
   cacheAvailableDuration,
   maxRedirects,
+  isSkipDownload,
 } from './variables.js'
 import type {
   VideoBlockObjectResponseEx,
@@ -308,9 +309,11 @@ export async function saveFile (fileUrl: string, prefix: string) {
       // This fix that for fileType do not returns undefined
       await sleep(10)
     } catch (e) {
+      const errorMessage = `saveFile download error -- path: ${filePath}, url: ${fileUrl}, message: ${e}`
       if (debug) {
-        console.log(`saveFile download error -- path: ${filePath}, url: ${fileUrl}, message: ${e}`)
+        console.log(errorMessage)
       }
+      throw new Error(errorMessage)
     }
   }
 
@@ -369,6 +372,10 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
 
   /* Download image */
   } else {
+    if (isSkipDownload()) {
+      return { path: urlPath }
+    }
+
     try {
       let res: HttpGetResponse
       res = await httpsGetWithFollowRedirects(imageUrl)
@@ -383,9 +390,11 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
       // This fix that for fileType do not returns undefined
       await sleep(10)
     } catch (e) {
+      const errorMessage = `saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`
       if (debug) {
-        console.log(`saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
+        console.log(errorMessage)
       }
+      throw new Error(errorMessage)
     }
   }
 
@@ -548,14 +557,36 @@ export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) =>
 
     const url = new URL(reqUrl)
     const imageUrl = imagePath !== '' ? (imagePath.match(/^(https?:|data:)/) ? imagePath : `${url.protocol}//${url.hostname}${imagePath}`) : ''
-    const ipws = imagePath !== '' ? (imagePath.match(/^data:/) ? { path: imagePath } : await saveImage(imageUrl, 'html-image')) : null
+    let ipws = null
+    if (imagePath !== '' && imagePath.match(/^data:/)) {
+      ipws = { path: imagePath }
+    } else if (imageUrl !== '') {
+      try {
+        ipws = await saveImage(imageUrl, 'html-image')
+      } catch (e) {
+        if (debug) {
+          console.log(`Failed to save html image: ${e}`)
+        }
+      }
+    }
     const image = ipws ? ipws.path : ''
     const iconUrl = iconPath !== '' ? (
-      iconPath.match(/^(https?:|data:)/) ? iconPath : 
+      iconPath.match(/^(https?:|data:)/) ? iconPath :
       iconPath.match(/^\/\//) ? `${url.protocol}${iconPath}` :
       `${url.protocol}//${url.hostname}${iconPath}`
     ) : ''
-    const ipws2 = iconUrl !== '' ? (iconPath.match(/^data:/) ? { path: iconPath } : await saveImage(iconUrl, `html-icon-${atoh(reqUrl)}`)) : null
+    let ipws2 = null
+    if (iconPath !== '' && iconPath.match(/^data:/)) {
+      ipws2 = { path: iconPath }
+    } else if (iconUrl !== '') {
+      try {
+        ipws2 = await saveImage(iconUrl, `html-icon-${atoh(reqUrl)}`)
+      } catch (e) {
+        if (debug) {
+          console.log(`Failed to save html icon: ${e}`)
+        }
+      }
+    }
     const icon = ipws2 ? ipws2.path : ''
 
     return { title, desc, image, icon }

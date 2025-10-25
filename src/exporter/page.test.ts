@@ -7,6 +7,8 @@ import { savePageCover, savePageIcon } from './page.js'
 test.before(() => {
   td.replace(console, 'log')
   td.reset()
+  // Enable skipDownload for testing
+  process.env.ROTION_SKIP_DOWNLOAD = 'true'
 })
 
 test('savePageCover saves external cover image when cover exists', async () => {
