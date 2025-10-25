@@ -105,12 +105,18 @@ export async function savePageCover(page: GetPageResponseEx | PageObjectResponse
   if (page.cover === undefined || page.cover === null) {
     return
   }
-  if (page.cover.type === 'external') {
-    const ipws = await saveImage(page.cover.external.url, `page-cover-${page.id}`)
-    page.cover.src = ipws.path
-  } else if (page.cover.type === 'file') {
-    const ipws = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
-    page.cover.src = ipws.path
+  try {
+    if (page.cover.type === 'external') {
+      const ipws = await saveImage(page.cover.external.url, `page-cover-${page.id}`)
+      page.cover.src = ipws.path
+    } else if (page.cover.type === 'file') {
+      const ipws = await saveImage(page.cover.file.url, `page-cover-${page.id}`)
+      page.cover.src = ipws.path
+    }
+  } catch (e) {
+    if (debug) {
+      console.log(`Failed to save page cover: ${e}`)
+    }
   }
 }
 
@@ -118,11 +124,17 @@ export async function savePageIcon(page: GetPageResponseEx | PageObjectResponseE
   if (page.icon === undefined || page.icon === null) {
     return
   }
-  if (page.icon.type === 'external') {
-    const ipws = await saveImage(page.icon.external.url, `page-icon-${page.id}`)
-    page.icon.src = ipws.path
-  } else if (page.icon.type === 'file') {
-    const ipws = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
-    page.icon.src = ipws.path
+  try {
+    if (page.icon.type === 'external') {
+      const ipws = await saveImage(page.icon.external.url, `page-icon-${page.id}`)
+      page.icon.src = ipws.path
+    } else if (page.icon.type === 'file') {
+      const ipws = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
+      page.icon.src = ipws.path
+    }
+  } catch (e) {
+    if (debug) {
+      console.log(`Failed to save page icon: ${e}`)
+    }
   }
 }

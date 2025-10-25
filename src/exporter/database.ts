@@ -105,8 +105,14 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
           const peoples = v.people as unknown as PersonUserObjectResponseEx[]
           for (const people of peoples) {
             if (people.avatar_url) {
-              const ipws = await saveImage(people.avatar_url, `database-avatar-${people.id}`)
-              people.avatar = ipws.path
+              try {
+                const ipws = await saveImage(people.avatar_url, `database-avatar-${people.id}`)
+                people.avatar = ipws.path
+              } catch (e) {
+                if (debug) {
+                  console.log(`Failed to save people avatar: ${e}`)
+                }
+              }
             }
           }
         }
@@ -132,12 +138,18 @@ export async function saveDatabaseCover(db: GetDatabaseResponseEx) {
   if (db.cover === undefined || db.cover === null) {
     return
   }
-  if (db.cover.type === 'external') {
-    const ipws = await saveImage(db.cover.external.url, `database-cover-${db.id}`)
-    db.cover.src = ipws.path
-  } else if (db.cover.type === 'file') {
-    const ipws = await saveImage(db.cover.file.url, `database-cover-${db.id}`)
-    db.cover.src = ipws.path
+  try {
+    if (db.cover.type === 'external') {
+      const ipws = await saveImage(db.cover.external.url, `database-cover-${db.id}`)
+      db.cover.src = ipws.path
+    } else if (db.cover.type === 'file') {
+      const ipws = await saveImage(db.cover.file.url, `database-cover-${db.id}`)
+      db.cover.src = ipws.path
+    }
+  } catch (e) {
+    if (debug) {
+      console.log(`Failed to save database cover: ${e}`)
+    }
   }
 }
 
@@ -145,11 +157,17 @@ export async function saveDatabaseIcon(db: GetDatabaseResponseEx) {
   if (db.icon === undefined || db.icon === null) {
     return
   }
-  if (db.icon.type === 'external') {
-    const ipws = await saveImage(db.icon.external.url, `database-icon-${db.id}`)
-    db.icon.src = ipws.path
-  } else if (db.icon.type === 'file') {
-    const ipws = await saveImage(db.icon.file.url, `database-icon-${db.id}`)
-    db.icon.src = ipws.path
+  try {
+    if (db.icon.type === 'external') {
+      const ipws = await saveImage(db.icon.external.url, `database-icon-${db.id}`)
+      db.icon.src = ipws.path
+    } else if (db.icon.type === 'file') {
+      const ipws = await saveImage(db.icon.file.url, `database-icon-${db.id}`)
+      db.icon.src = ipws.path
+    }
+  } catch (e) {
+    if (debug) {
+      console.log(`Failed to save database icon: ${e}`)
+    }
   }
 }

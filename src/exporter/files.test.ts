@@ -8,6 +8,8 @@ import { EmbedBlockObjectResponseEx, VideoBlockObjectResponseEx } from './types'
 test.before(() => {
   td.replace(console, 'log')
   td.reset()
+  // Ensure skipDownload is disabled for files.test.ts
+  delete process.env.ROTION_SKIP_DOWNLOAD
 })
 
 test('isAvailableCache returs true when cache hits', async () => {
@@ -133,6 +135,50 @@ test('saveImage saves a image correct file name', async () => {
   const url = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
   const ipws = await files.saveImage(url, 'test')
   assert.equal(ipws.path, '/images/test-5cb3342120a9a25a65f2790c4d6f2644cd262734.webp')
+})
+
+test('saveImage creates correct path without downloading when skipDownload is true', async () => {
+  const originalSkipDownload = process.env.ROTION_SKIP_DOWNLOAD
+  process.env.ROTION_SKIP_DOWNLOAD = 'true'
+
+  const url = 'https://example.com/image.png'
+  const ipws = await files.saveImage(url, 'test')
+  assert.equal(ipws.path, '/images/test-0e76292794888d4f1fa75fb3aff4ca27c58f56a6.png')
+
+  if (originalSkipDownload === undefined) {
+    delete process.env.ROTION_SKIP_DOWNLOAD
+  } else {
+    process.env.ROTION_SKIP_DOWNLOAD = originalSkipDownload
+  }
+})
+
+test('saveImage throws error when download fails', async () => {
+  const originalSkipDownload = process.env.ROTION_SKIP_DOWNLOAD
+  delete process.env.ROTION_SKIP_DOWNLOAD
+
+  const url = 'https://httpstat.us/404'
+  try {
+    await files.saveImage(url, 'test-error')
+    assert.unreachable('should have thrown an error')
+  } catch (e) {
+    assert.ok(e instanceof Error)
+    assert.match(e.message, /saveImage download error/)
+  } finally {
+    if (originalSkipDownload !== undefined) {
+      process.env.ROTION_SKIP_DOWNLOAD = originalSkipDownload
+    }
+  }
+})
+
+test('saveFile throws error when download fails', async () => {
+  const url = 'https://httpstat.us/404'
+  try {
+    await files.saveFile(url, 'test-error')
+    assert.unreachable('should have thrown an error')
+  } catch (e) {
+    assert.ok(e instanceof Error)
+    assert.match(e.message, /saveFile download error/)
+  }
 })
 
 test('findLocationUrl returns url from location header', async () => {

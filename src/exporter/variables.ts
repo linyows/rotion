@@ -16,6 +16,8 @@ export const webpQuality = process.env.ROTION_WEBP_QUALITY ? parseInt(process.en
 export const debug = process.env.ROTION_DEBUG === 'true'
 export const maxRedirects = process.env.ROTION_MAX_REDIRECTS ? parseInt(process.env.ROTION_MAX_REDIRECTS) : 5
 export const userAgent = process.env.ROTION_UA || `${pkg.name}/${pkg.version}`
+// For testing purposes only: Skip actual file downloads in saveImage/saveFile
+export const isSkipDownload = () => process.env.ROTION_SKIP_DOWNLOAD === 'true'
 export const httpOptions = {
   timeout,
   headers: {

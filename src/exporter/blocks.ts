@@ -116,8 +116,14 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
         case 'callout':
           if (block.callout.icon?.type === 'external') {
             const iconUrl = block.callout.icon.external.url
-            const ipws = await saveImage(iconUrl, `block-${block.id}`)
-            block.callout.icon.src = ipws.path
+            try {
+              const ipws = await saveImage(iconUrl, `block-${block.id}`)
+              block.callout.icon.src = ipws.path
+            } catch (e) {
+              if (debug) {
+                console.log(`Failed to save callout icon: ${e}`)
+              }
+            }
           }
           if (block.has_children) {
             block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
@@ -153,13 +159,19 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
           const { id, image } = block
           if (image !== undefined) {
             const imageUrl = image.type === 'file' ? image.file.url : image.external.url
-            const ipws = await saveImage(imageUrl, `block-${id}`)
-            block.image.src = ipws.path
-            if (ipws.width) {
-              block.image.width = ipws.width
-            }
-            if (ipws.height) {
-              block.image.height = ipws.height
+            try {
+              const ipws = await saveImage(imageUrl, `block-${id}`)
+              block.image.src = ipws.path
+              if (ipws.width) {
+                block.image.width = ipws.width
+              }
+              if (ipws.height) {
+                block.image.height = ipws.height
+              }
+            } catch (e) {
+              if (debug) {
+                console.log(`Failed to save image: ${e}`)
+              }
             }
           }
           break
@@ -188,8 +200,14 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                     richText.mention.database.icon = { type: 'emoji', emoji: db.icon.emoji }
                   } else if (db.icon?.type === 'external' || db.icon?.type === 'file') {
                     const iconUrl = (db.icon.type === 'external') ? db.icon.external.url : db.icon.file.url
-                    const ipws = await saveImage(iconUrl, `block-${block.id}`)
-                    richText.mention.database.icon = { type: db.icon.type, src: ipws.path, url: ipws.path }
+                    try {
+                      const ipws = await saveImage(iconUrl, `block-${block.id}`)
+                      richText.mention.database.icon = { type: db.icon.type, src: ipws.path, url: ipws.path }
+                    } catch (e) {
+                      if (debug) {
+                        console.log(`Failed to save database icon: ${e}`)
+                      }
+                    }
                   }
                 } catch (e) {
                   if (debug) {
@@ -220,11 +238,17 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                     }
                   } else if (page.icon?.type === 'external' || page.icon?.type === 'file') {
                     const iconUrl = (page.icon.type === 'external') ? page.icon.external.url : page.icon.file.url
-                    const ipws = await saveImage(iconUrl, `block-${block.id}`)
-                    richText.mention.page.icon = {
-                      type: page.icon.type,
-                      src: ipws.path,
-                      url: ipws.path,
+                    try {
+                      const ipws = await saveImage(iconUrl, `block-${block.id}`)
+                      richText.mention.page.icon = {
+                        type: page.icon.type,
+                        src: ipws.path,
+                        url: ipws.path,
+                      }
+                    } catch (e) {
+                      if (debug) {
+                        console.log(`Failed to save page icon: ${e}`)
+                      }
                     }
                   }
                 } catch (e) {
@@ -240,16 +264,28 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
           break
         case 'file': {
           const url = block.file.type === 'external' ? block.file.external.url : block.file.file.url
-          const { src, size } = await saveFile(url, `block-${block.id}`)
-          block.file.src = src
-          block.file.size = size
+          try {
+            const { src, size } = await saveFile(url, `block-${block.id}`)
+            block.file.src = src
+            block.file.size = size
+          } catch (e) {
+            if (debug) {
+              console.log(`Failed to save file: ${e}`)
+            }
+          }
           break
         }
         case 'pdf': {
           const url = block.pdf.type === 'external' ? block.pdf.external.url : block.pdf.file.url
-          const { src, size } = await saveFile(url, `block-${block.id}`)
-          block.pdf.src = src
-          block.pdf.size = size
+          try {
+            const { src, size } = await saveFile(url, `block-${block.id}`)
+            block.pdf.src = src
+            block.pdf.size = size
+          } catch (e) {
+            if (debug) {
+              console.log(`Failed to save PDF: ${e}`)
+            }
+          }
           break
         }
         case 'synced_block':
@@ -270,9 +306,15 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
           break
         case 'video':
           if (block.video.type === 'file') {
-            const { src } = await saveFile(block.video.file.url, `block-${block.id}`)
-            block.video.src = src
-            block.video.videoType = getVideoType(src)
+            try {
+              const { src } = await saveFile(block.video.file.url, `block-${block.id}`)
+              block.video.src = src
+              block.video.videoType = getVideoType(src)
+            } catch (e) {
+              if (debug) {
+                console.log(`Failed to save video: ${e}`)
+              }
+            }
           } else if (block.video.type === 'external') {
             block.video.html = await getVideoHtml(block)
           }

@@ -1,5 +1,6 @@
 import { fetchWithTimeout } from './api.js'
 import { saveImage } from './files.js'
+import { debug } from './variables.js'
 
 export interface FetchFunc<T> {
   (input: RequestInfo, init?: RequestInit): Promise<T>
@@ -143,12 +144,20 @@ export interface LinkPreviewGithubRepo {
 export async function getRepoForLinkPreview({ owner, repo }: GithubRepoArgs, func?: FetchFunc<GithubRepoResponse>): Promise<LinkPreviewGithubRepo> {
   const res = await getRepo({ owner, repo }, func)
   const { name, owner: { login, avatar_url }, updated_at } = res
-  const ipws = await saveImage(avatar_url, 'github-link-preview')
+  let avatar_src = ''
+  try {
+    const ipws = await saveImage(avatar_url, 'github-link-preview')
+    avatar_src = ipws.path
+  } catch (e) {
+    if (debug) {
+      console.log(`Failed to save github avatar: ${e}`)
+    }
+  }
   return {
     name,
     login,
     avatar_url,
-    avatar_src: ipws.path,
+    avatar_src,
     updated_at
   }
 }
@@ -279,12 +288,20 @@ export async function getIssueForLinkPreview({ owner, repo, number }: GithubIssu
   const res = await getIssue({ owner, repo, number }, func)
   const n = res.number
   const { title, user: { login, avatar_url }, created_at, closed_at } = res
-  const ipws = await saveImage(avatar_url, 'github-link-preview')
+  let avatar_src = ''
+  try {
+    const ipws = await saveImage(avatar_url, 'github-link-preview')
+    avatar_src = ipws.path
+  } catch (e) {
+    if (debug) {
+      console.log(`Failed to save github avatar: ${e}`)
+    }
+  }
   return {
     title,
     login,
     avatar_url,
-    avatar_src: ipws.path,
+    avatar_src,
     created_at,
     closed_at,
     merged_at: res.pull_request ? res.pull_request.merged_at : null,
