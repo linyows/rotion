@@ -8,16 +8,16 @@ quote_block_id=bff5a1d2-011e-4c42-9275-f3d5dcf62021
 callout_block_id=e6bcac11-9787-4e2d-bee5-609b7a6e7ab8
 db_id=81781536afc6431da21721177e7bf8e0
 page_id=6d6150cf068f4293a78b6fd9fa8d0181
+toc_id=298d49d0927e804da61ddc76b096d6f2
+block_id=$toc_id
 
-block_id=$callout_block_id
+curl "https://api.notion.com/v1/blocks/$block_id/children?page_size=100" \
+  -H "Authorization: Bearer $NOTION_TOKEN" \
+  -H "Notion-Version: 2022-06-28"
 
-#curl "https://api.notion.com/v1/blocks/$block_id/children?page_size=100" \
-#  -H "Authorization: Bearer $NOTION_TOKEN" \
-#  -H "Notion-Version: 2022-06-28"
-
-curl "https://api.notion.com/v1/blocks/$block_id" \
-  -H 'Authorization: Bearer '"$NOTION_TOKEN"'' \
-  -H 'Notion-Version: 2022-06-28'
+#curl "https://api.notion.com/v1/blocks/$block_id" \
+#  -H 'Authorization: Bearer '"$NOTION_TOKEN"'' \
+#  -H 'Notion-Version: 2022-06-28'
 
 #curl "https://api.notion.com/v1/databases/$db_id" \
 #  -H 'Authorization: Bearer '"$NOTION_TOKEN"'' \
