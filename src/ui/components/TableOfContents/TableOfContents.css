@@ -1,0 +1,26 @@
+.rotion-toc {
+  font-family: var(--rotion-font-family);
+  line-height: var(--rotion-line-height);
+  padding: .2rem 0 .2rem 1rem;
+  margin: 0;
+}
+
+.rotion-toc-link {
+  text-decoration: var(--rotion-link-text-decoration);
+  color: inherit;
+  border-bottom: var(--rotion-link-border-bottom);
+}
+
+.rotion-toc-link:hover {
+  border-bottom: var(--rotion-link-hover-border-bottom);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-toc-link {
+    border-bottom: var(--rotion-dark-link-border-bottom);
+  }
+
+  .rotion-toc-link:hover {
+    border-bottom: var(--rotion-dark-link-hover-border-bottom);
+  }
+}
