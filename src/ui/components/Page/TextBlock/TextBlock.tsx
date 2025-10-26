@@ -2,6 +2,7 @@ import React from 'react'
 import RichText from '../../RichText/RichText'
 import type { RichTextItemResponse } from '../../../../exporter'
 import type { TextBlockProps } from './TextBlock.types'
+import { GenHtmlId } from '../../TableOfContents'
 import '../../tokens.css'
 import './TextBlock.css'
 
@@ -30,8 +31,11 @@ const TextBlock = ({ tag, block }: TextBlockProps) => {
   // @ts-ignore
   const richText: RichTextItemResponse[] = block[block.type].rich_text
 
+  // Add id attribute for headings using first 7 characters of block id
+  const isHeading = ['heading_1', 'heading_2', 'heading_3'].includes(block.type)
+  
   return (
-    <CustomTag className={css.join(' ')}>
+    <CustomTag className={css.join(' ')} {...(isHeading && { id: GenHtmlId(block.id) })}>
       {richText.map((v, i) => (
         <RichText textObject={v} key={`richtext-${i}`} />
       ))}
