@@ -28,6 +28,7 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "stories/**/*.tsx"
+    "stories/**/*.tsx",
+    "**/*.stories.tsx"
   ]
 }
