@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { PDFDocumentProxy, PDFPageProxy, GlobalWorkerOptions, getDocument, version } from 'pdfjs-dist'
+import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist'
 import type { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api'
 
 function isFunction (value: any): value is Function {
@@ -45,7 +45,7 @@ export const usePdf = ({
   page = 1,
   cMapUrl,
   cMapPacked,
-  workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.mjs`,
+  workerSrc,
   withCredentials = false,
 }: HookProps): HookReturnValues => {
   const [pdfDocument, setPdfDocument] = useState<PDFDocumentProxy>()
@@ -65,31 +65,44 @@ export const usePdf = ({
   useEffect(() => { onPageLoadFailRef.current = onPageLoadFail }, [onPageLoadFail])
   useEffect(() => { onPageRenderSuccessRef.current = onPageRenderSuccess }, [onPageRenderSuccess])
   useEffect(() => { onPageRenderFailRef.current = onPageRenderFail }, [onPageRenderFail])
-  useEffect(() => { GlobalWorkerOptions.workerSrc = workerSrc }, [workerSrc])
 
   useEffect(() => {
-    const config: DocumentInitParameters = { url: file, withCredentials }
-    if (cMapUrl) {
-      config.cMapUrl = cMapUrl
-      config.cMapPacked = cMapPacked
-    }
-    getDocument(config).promise.then(
-      (loadedPdfDocument) => {
-        setPdfDocument(loadedPdfDocument)
-        if (isFunction(onDocumentLoadSuccessRef.current)) {
-          onDocumentLoadSuccessRef.current(loadedPdfDocument)
-        }
-      },
-      () => {
-        if (isFunction(onDocumentLoadFailRef.current)) {
-          onDocumentLoadFailRef.current()
-        }
+    if (typeof window === 'undefined') return
+    import('pdfjs-dist').then((pdfjs) => {
+      const defaultWorkerSrc = workerSrc || `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.mjs`
+      pdfjs.GlobalWorkerOptions.workerSrc = defaultWorkerSrc
+    })
+  }, [workerSrc])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    import('pdfjs-dist').then((pdfjs) => {
+      const config: DocumentInitParameters = { url: file, withCredentials }
+      if (cMapUrl) {
+        config.cMapUrl = cMapUrl
+        config.cMapPacked = cMapPacked
       }
-    )
+      pdfjs.getDocument(config).promise.then(
+        (loadedPdfDocument) => {
+          setPdfDocument(loadedPdfDocument)
+          if (isFunction(onDocumentLoadSuccessRef.current)) {
+            onDocumentLoadSuccessRef.current(loadedPdfDocument)
+          }
+        },
+        () => {
+          if (isFunction(onDocumentLoadFailRef.current)) {
+            onDocumentLoadFailRef.current()
+          }
+        }
+      )
+    })
   }, [file, withCredentials, cMapUrl, cMapPacked])
 
   useEffect(() => {
-    const drawPDF = (page: PDFPageProxy) => {
+    if (typeof window === 'undefined' || !pdfDocument) return
+
+    const drawPDF = async (page: PDFPageProxy) => {
+      if (typeof window === 'undefined') return
       const rotation = rotate === 0 ? page.rotate : page.rotate + rotate
       const viewport = page.getViewport({ scale, rotation })
       const canvasEl = canvasRef!.current
@@ -128,7 +141,7 @@ export const usePdf = ({
           if (reason && reason.name === 'RenderingCancelledException') {
             const lastPageRequestedRender = lastPageRequestedRenderRef.current ?? page
             lastPageRequestedRenderRef.current = null
-            drawPDF(lastPageRequestedRender)
+            void drawPDF(lastPageRequestedRender)
           } else if (isFunction(onPageRenderFailRef.current)) {
             onPageRenderFailRef.current()
           }
@@ -143,7 +156,7 @@ export const usePdf = ({
           if (isFunction(onPageLoadSuccessRef.current)) {
             onPageLoadSuccessRef.current(loadedPdfPage)
           }
-          drawPDF(loadedPdfPage)
+          void drawPDF(loadedPdfPage)
         },
         () => {
           if (isFunction(onPageLoadFailRef.current)) {
@@ -152,7 +165,7 @@ export const usePdf = ({
         }
       )
     }
-  }, [canvasRef, page, pdfDocument, rotate, scale])
+  }, [canvasRef, page, pdfDocument, rotate, scale, workerSrc])
 
   return { pdfDocument, pdfPage }
 }
