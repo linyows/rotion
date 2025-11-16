@@ -86,7 +86,7 @@
     "@types/imagemin": "^9.0.1",
     "@types/imagemin-webp": "^7.0.3",
     "@types/katex": "^0.16.7",
-    "@types/node": "^22.13.1",
+    "@types/node": "^24.10.1",
     "@types/prismjs": "^1.26.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
