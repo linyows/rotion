@@ -68,35 +68,38 @@ export const usePdf = ({
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    import('pdfjs-dist').then((pdfjs) => {
-      const defaultWorkerSrc = workerSrc || `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.mjs`
-      pdfjs.GlobalWorkerOptions.workerSrc = defaultWorkerSrc
-    })
-  }, [workerSrc])
+    import('pdfjs-dist').then((pdfjsModule) => {
+      // pdfjs-dist 5.x uses named exports
+      const { GlobalWorkerOptions, getDocument, version } = pdfjsModule
+      const defaultWorkerSrc = workerSrc || `https://unpkg.com/pdfjs-dist@${version}/build/pdf.worker.min.mjs`
+      GlobalWorkerOptions.workerSrc = defaultWorkerSrc
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return
-    import('pdfjs-dist').then((pdfjs) => {
       const config: DocumentInitParameters = { url: file, withCredentials }
       if (cMapUrl) {
         config.cMapUrl = cMapUrl
         config.cMapPacked = cMapPacked
       }
-      pdfjs.getDocument(config).promise.then(
+      getDocument(config).promise.then(
         (loadedPdfDocument) => {
           setPdfDocument(loadedPdfDocument)
           if (isFunction(onDocumentLoadSuccessRef.current)) {
             onDocumentLoadSuccessRef.current(loadedPdfDocument)
           }
         },
-        () => {
+        (error) => {
+          console.error('PDF document load error:', error)
           if (isFunction(onDocumentLoadFailRef.current)) {
             onDocumentLoadFailRef.current()
           }
         }
       )
+    }).catch((error) => {
+      console.error('PDF.js import error:', error)
+      if (isFunction(onDocumentLoadFailRef.current)) {
+        onDocumentLoadFailRef.current()
+      }
     })
-  }, [file, withCredentials, cMapUrl, cMapPacked])
+  }, [file, withCredentials, cMapUrl, cMapPacked, workerSrc])
 
   useEffect(() => {
     if (typeof window === 'undefined' || !pdfDocument) return
