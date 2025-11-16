@@ -54,7 +54,10 @@ export default [
       resolve(),
       json(),
       commonjs(),
-      typescript(),
+      typescript({
+        declaration: false,
+        declarationDir: undefined,
+      }),
       terser(),
       postcss({
         extract: true,
