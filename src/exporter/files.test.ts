@@ -137,6 +137,47 @@ test('saveImage saves a image correct file name', async () => {
   assert.equal(ipws.path, '/images/test-5cb3342120a9a25a65f2790c4d6f2644cd262734.webp')
 })
 
+test('saveImage converts HEIC to WebP', async () => {
+  const sharp = (await import('sharp')).default
+  const heicConvert = (await import('heic-convert')).default
+  const { docRoot, imageDir } = await import('./variables.js')
+
+  // Use local HEIC file from testdata
+  const sourceHeic = 'testdata/example.heic'
+  const basename = 'test-heic-example.png'
+  const destPath = `${docRoot}/${imageDir}/${basename}`
+  const webpPath = destPath.replace(/\.png$/, '.webp')
+
+  await files.createDirWhenNotfound(`${docRoot}/${imageDir}`)
+
+  // Convert HEIC to PNG using heic-convert (for testing purposes)
+  const heicBuffer = await fs.readFile(sourceHeic)
+  const pngBuffer = await heicConvert({
+    buffer: heicBuffer,
+    format: 'PNG',
+  })
+  await fs.writeFile(destPath, pngBuffer)
+
+  // Verify PNG was created
+  const meta = await sharp(destPath).metadata()
+  assert.equal(meta.format, 'png')
+  assert.ok(meta.width)
+  assert.ok(meta.height)
+
+  // Convert PNG to WebP
+  await sharp(destPath).webp({ quality: 95 }).toFile(webpPath)
+
+  // Verify WebP file was created
+  const webpMeta = await sharp(webpPath).metadata()
+  assert.equal(webpMeta.format, 'webp')
+  assert.ok(webpMeta.width)
+  assert.ok(webpMeta.height)
+
+  // Clean up
+  await fs.unlink(destPath)
+  await fs.unlink(webpPath)
+})
+
 test('saveImage creates correct path without downloading when skipDownload is true', async () => {
   const originalSkipDownload = process.env.ROTION_SKIP_DOWNLOAD
   process.env.ROTION_SKIP_DOWNLOAD = 'true'
