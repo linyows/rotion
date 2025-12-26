@@ -406,7 +406,9 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
   try {
     const meta = await sharp(filePath).metadata()
     if (webpQuality > 0) {
-      if (meta.format === 'png' || meta.format === 'jpeg') {
+      // Convert various image formats to webp (png, jpeg, heic, heif, tiff, avif, etc.)
+      // Exclude gif to preserve animations
+      if (meta.format && meta.format !== 'gif') {
         if (meta.orientation && [3,6,8].includes(meta.orientation)) {
           const angle = (meta.orientation === 6) ? 90 : (meta.orientation === 8) ? -90 : 180
           await sharp(filePath).rotate(angle).webp({ quality: webpQuality }).toFile(webpPath)
