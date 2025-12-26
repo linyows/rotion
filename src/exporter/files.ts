@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { mkdir, stat, readFile, writeFile, unlink } from 'node:fs/promises'
+import { mkdir, stat, unlink } from 'node:fs/promises'
 import https from 'https'
 import http from 'http'
 import path from 'path'
@@ -416,10 +416,11 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
         console.log(`Converting HEIC/HEIF to PNG -- path: ${filePath}`)
       }
       const heicBuffer = await readFile(filePath)
-      const pngBuffer = await heicConvert({
-        buffer: heicBuffer,
+      const pngArrayBuffer = await heicConvert({
+        buffer: heicBuffer.buffer.slice(heicBuffer.byteOffset, heicBuffer.byteOffset + heicBuffer.byteLength),
         format: 'PNG',
       })
+      const pngBuffer = Buffer.from(pngArrayBuffer)
       const pngPath = replaceExt(filePath, '.png')
       await writeFile(pngPath, pngBuffer)
       // Delete original HEIC file

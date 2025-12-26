@@ -84,6 +84,7 @@
     "@storybook/addon-onboarding": "^10.0.7",
     "@storybook/react-vite": "^10.0.7",
     "@tsconfig/node-lts-strictest-esm": "^18.12.1",
+    "@types/heic-convert": "^2.1.0",
     "@types/imagemin": "^9.0.1",
     "@types/imagemin-webp": "^7.0.3",
     "@types/katex": "^0.16.7",
