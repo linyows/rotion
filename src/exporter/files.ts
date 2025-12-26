@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { mkdir, stat } from 'node:fs/promises'
+import { mkdir, stat, readFile, writeFile, unlink } from 'node:fs/promises'
 import https from 'https'
 import http from 'http'
 import path from 'path'
@@ -7,6 +7,7 @@ import crypto from 'crypto'
 import { promisify } from 'util'
 import sharp from 'sharp'
 import replaceExt from 'replace-ext'
+import heicConvert from 'heic-convert'
 import {
   docRoot,
   imageDir,
@@ -385,10 +386,14 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
           throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
         }
       }
-      res.pipe(fs.createWriteStream(filePath))
+      const writeStream = fs.createWriteStream(filePath)
+      res.pipe(writeStream)
       await res.end
-      // This fix that for fileType do not returns undefined
-      await sleep(10)
+      // Wait for the write stream to finish
+      await new Promise<void>((resolve, reject) => {
+        writeStream.on('finish', resolve)
+        writeStream.on('error', reject)
+      })
     } catch (e) {
       const errorMessage = `saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`
       if (debug) {
@@ -402,23 +407,54 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
     return { path: urlPath }
   }
 
+  /* Convert HEIC/HEIF to PNG first if needed */
+  let processFilePath = filePath
+  let processUrlPath = urlPath
+  if (ext === '.heic' || ext === '.heif') {
+    try {
+      if (debug) {
+        console.log(`Converting HEIC/HEIF to PNG -- path: ${filePath}`)
+      }
+      const heicBuffer = await readFile(filePath)
+      const pngBuffer = await heicConvert({
+        buffer: heicBuffer,
+        format: 'PNG',
+      })
+      const pngPath = replaceExt(filePath, '.png')
+      await writeFile(pngPath, pngBuffer)
+      // Delete original HEIC file
+      await unlink(filePath)
+      processFilePath = pngPath
+      processUrlPath = replaceExt(urlPath, '.png')
+      if (debug) {
+        console.log(`Converted HEIC/HEIF to PNG -- from: ${filePath}, to: ${pngPath}`)
+      }
+    } catch (e) {
+      const errorMessage = e instanceof Error ? e.message : String(e)
+      if (debug) {
+        console.log(`HEIC/HEIF to PNG conversion error -- path: ${filePath}, message: ${errorMessage}`)
+      }
+      // Fall through to try WebP conversion with original file
+    }
+  }
+
   /* Convert to webp */
   try {
-    const meta = await sharp(filePath).metadata()
+    const meta = await sharp(processFilePath).metadata()
     if (webpQuality > 0) {
       // Convert various image formats to webp (png, jpeg, heic, heif, tiff, avif, etc.)
       // Exclude gif to preserve animations
       if (meta.format && meta.format !== 'gif') {
         if (meta.orientation && [3,6,8].includes(meta.orientation)) {
           const angle = (meta.orientation === 6) ? 90 : (meta.orientation === 8) ? -90 : 180
-          await sharp(filePath).rotate(angle).webp({ quality: webpQuality }).toFile(webpPath)
+          await sharp(processFilePath).rotate(angle).webp({ quality: webpQuality }).toFile(webpPath)
           return {
             path: webpUrlPath,
             width: meta.orientation === 6 || meta.orientation === 8 ? meta.height : meta.width,
             height: meta.orientation === 6 || meta.orientation === 8 ? meta.width : meta.height,
           }
         } else {
-          await sharp(filePath).webp({ quality: webpQuality }).toFile(webpPath)
+          await sharp(processFilePath).webp({ quality: webpQuality }).toFile(webpPath)
           return {
             path: webpUrlPath,
             width: meta.width,
@@ -427,25 +463,34 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
         }
       } else {
         return {
-          path: urlPath,
+          path: processUrlPath,
           width: meta.width,
           height: meta.height,
         }
       }
     } else {
       return {
-        path: urlPath,
+        path: processUrlPath,
         width: meta.width,
         height: meta.height,
       }
     }
   } catch (e) {
-    if (debug) {
-      console.log(`saveImage webp convert error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`)
+    const errorMessage = e instanceof Error ? e.message : String(e)
+
+    // Check if the error is due to unsupported HEIC/HEIF compression format
+    if (errorMessage.includes('Support for this compression format has not been built in')) {
+      const unsupportedMessage = `HEIC/HEIF image with unsupported compression format detected -- path: ${processFilePath}, url: ${imageUrl}. This image may not display in browsers other than Safari. Consider using a different image format or re-encoding the HEIC file.`
+      if (debug) {
+        console.log(unsupportedMessage)
+      }
+      console.warn(unsupportedMessage)
+    } else if (debug) {
+      console.log(`saveImage webp convert error -- path: ${processFilePath}, url: ${imageUrl}, message: ${errorMessage}`)
     }
   }
 
-  return { path: urlPath }
+  return { path: processUrlPath }
 }
 
 export const decodeHtmlEntities = (text: string): string => {
