@@ -55,7 +55,7 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
         {language}
       </div>}
       <pre className={cl} suppressHydrationWarning>
-        <code ref={codeRef}>
+        <code ref={codeRef} suppressHydrationWarning>
           {children}
         </code>
       </pre>
