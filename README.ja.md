@@ -31,6 +31,8 @@ Next.jsをはじめとしたReact系フレームワークでの利用を想定�
 - 画像やPDFなどのファイルもローカル保存
 - 豊富なReactコンポーネント（Gallery, Table, List, Page, 各種Blockなど）
 - Next.jsなどの静的サイトジェネレーターと親和性が高い
+- **Next.js App Router サポート** - `createClientLink` ヘルパー（v2.0.1以降）
+- **Next.js Page Router サポート** - 従来のSSGワークフロー
 - TypeScript対応
 
 インストール
@@ -51,47 +53,128 @@ yarn add rotion
 
 ### 1. Notion APIのセットアップ
 
-Notionのインテグレーションを作成し、APIキーとデータベースIDを取得してください。
+Notionインテグレーションを作成し、APIキーとデータベースIDを取得します：
 
-### 2. データのエクスポート
+1. [Notion Integrations](https://www.notion.so/my-integrations) にアクセス
+2. 新しいインテグレーションを作成
+3. インテグレーショントークンをコピー
+4. Notionページ/データベースをインテグレーションと共有
+5. ページ/データベースIDをURLからコピー
 
-`src/exporter`配下のAPIを使って、Notionからデータを取得し、静的ファイルとして保存します。
+### 2. データの取得
 
-例:
+`rotion` から提供されるAPIを使ってNotionからデータを取得します：
+
 ```ts
-import { FetchDatabase, FetchBlocks } from 'rotion'
+import { FetchDatabase, FetchBlocks, FetchPage } from 'rotion'
 
+// データベースを取得
 const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
-const page = await FetchBlocks({ block_id: 'YOUR_PAGE_ID' })
+
+// ページブロックを取得
+const blocks = await FetchBlocks({ block_id: 'YOUR_PAGE_ID' })
+
+// ページ情報を取得
+const page = await FetchPage({ page_id: 'YOUR_PAGE_ID' })
 ```
 
 ### 3. Reactコンポーネントで表示
 
-`src/ui`配下の各種コンポーネントを使って、取得したデータを表示できます。
+#### Next.js App Router (v15+)
 
-例:
+Next.js App Router では、`createClientLink` ヘルパーのセットアップが必要です：
+
+**ステップ1:** `app/lib/rotion.ts` を作成：
 ```tsx
-import { Gallery } from 'rotion/ui'
+'use client'
 
-<Gallery db={db} keys={['Name', 'Description']} />
+import { createClientLink } from 'rotion/ui'
+import NextLink from 'next/link'
+
+export const ClientLink = createClientLink(NextLink)
+```
+
+**ステップ2:** Server Component で使用：
+```tsx
+// app/page.tsx
+import { Page } from 'rotion/ui'
+import { FetchBlocks } from 'rotion'
+import { ClientLink } from './lib/rotion'
+import type { Link } from 'rotion/ui'
+
+export default async function MyPage() {
+  const blocks = await FetchBlocks({ block_id: 'YOUR_PAGE_ID' })
+  return <Page blocks={blocks} link={ClientLink as Link} />
+}
+```
+
+#### Next.js Page Router
+
+Page Router では、Next.js の Link を直接使用できます：
+
+```tsx
+// pages/index.tsx
+import type { GetStaticProps } from 'next'
+import { Page } from 'rotion/ui'
+import { FetchBlocks } from 'rotion'
+import NextLink from 'next/link'
+
+export const getStaticProps: GetStaticProps = async () => {
+  const blocks = await FetchBlocks({ block_id: 'YOUR_PAGE_ID' })
+  return { props: { blocks } }
+}
+
+export default function MyPage({ blocks }) {
+  return <Page blocks={blocks} link={NextLink} />
+}
+```
+
+#### データベースビュー
+
+Notionデータベースをさまざまな形式で表示：
+
+```tsx
+import { Gallery, Table, List } from 'rotion/ui'
+import { FetchDatabase } from 'rotion'
+
+const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
+
+// ギャラリービュー
+<Gallery db={db} keys={['Name', 'Description', 'Image']} />
+
+// テーブルビュー
+<Table db={db} keys={['Name', 'Status', 'Date']} />
+
+// リストビュー
+<List db={db} keys={['Name', 'Tags']} />
 ```
 
 主なエクスポート
 --
 
-### データ取得用関数（exporter）
+### データ取得用関数（`rotion` から）
 
-- `FetchDatabase` - データベースの取得・ローカルキャッシュ
-- `FetchBlocks` - ページブロックの取得・ローカルキャッシュ
+- `FetchDatabase` - Notionデータベースの取得とキャッシュ
+- `FetchBlocks` - ページブロックの取得とキャッシュ
 - `FetchPage` - ページ情報の取得
 - `FetchBreadcrumbs` - パンくずリスト情報の取得
 
-### UIコンポーネント
+### UIコンポーネント（`rotion/ui` から）
 
-- `Gallery`, `Table`, `List` - Notionデータベースの各種表示
-- `Page` - Notionページの表示
-- 各種Blockコンポーネント（TextBlock, ImageBlock, CodeBlock, ...）
-- `Icon`, `RichText`, `Checkbox` など
+**データベースビュー:**
+- `Gallery` - ギャラリービュー
+- `Table` - テーブルビュー
+- `List` - リストビュー
+
+**ページとブロック:**
+- `Page` - Notionページ全体を表示
+- 各種Blockコンポーネント（TextBlock, ImageBlock, CodeBlock, CalloutBlock など）
+
+**ユーティリティ:**
+- `Icon` - Notionアイコンの表示
+- `RichText` - Notionリッチテキストの表示
+- `Checkbox` - チェックボックスの表示
+- `createClientLink` - Next.js App Router用ヘルパー（v2.0.1以降）
 
 スクリプト
 --
@@ -104,7 +187,8 @@ import { Gallery } from 'rotion/ui'
 --
 
 - Node.js 18以上推奨
-- React 17/18/19対応
+- React 17、18、または19
+- Next.js 13以上（App Router機能を使う場合はNext.js 15以上推奨）
 
 ライセンス
 --
