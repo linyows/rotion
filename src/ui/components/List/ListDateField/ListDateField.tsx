@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from 'react'
 import { cdate } from 'cdate'
 import type { ListDateFieldProps } from './ListDateField.types'

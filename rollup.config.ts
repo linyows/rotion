@@ -26,21 +26,21 @@ export default [
     input: './src/ui/index.ts',
     output: [
       {
-        intro: "'use client';",
+        banner: "'use client';",
         file: './dist/ui/cjs/index.js',
         format: 'cjs',
         sourcemap: true,
         globals: { react: 'React', mermaid: 'mermaid', prismjs: 'Prism' },
       },
       {
-        intro: "'use client';",
+        banner: "'use client';",
         file: './dist/ui/esm/index.js',
         format: 'esm',
         sourcemap: true,
         globals: { react: 'React', mermaid: 'mermaid', prismjs: 'Prism' },
       },
       {
-        intro: "'use client';",
+        banner: "'use client';",
         file: './dist/ui/umd/index.js',
         format: 'umd',
         name: 'NotionateUI',
@@ -58,7 +58,15 @@ export default [
         declaration: false,
         declarationDir: undefined,
       }),
-      terser(),
+      terser({
+        format: {
+          comments: (node, comment) => {
+            // Preserve 'use client' directive
+            return comment.value.includes('use client')
+          },
+          preamble: "'use client';"
+        }
+      }),
       postcss({
         extract: true,
         minimize: true,

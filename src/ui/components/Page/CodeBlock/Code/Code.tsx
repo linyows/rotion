@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect, useState } from 'react'
 import type { CodeProps } from './Code.types'
 import './Code.css'
