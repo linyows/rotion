@@ -31,7 +31,7 @@ export const Page = ({ blocks, href, link, query, breadcrumb_hrefs }: PageProps)
         list.push(block)
         if (Object.keys(listType).includes(block.type)) {
           const tag = listType[block.type] as ULOL
-          children.push(ListBlocks({ tag, blocks: list, href, link, query }))
+          children.push(<div key={block.id}>{ListBlocks({ tag, blocks: list, href, link, query })}</div>)
           list = []
         }
       // first
@@ -41,7 +41,7 @@ export const Page = ({ blocks, href, link, query, breadcrumb_hrefs }: PageProps)
       }
     } else {
       const elem = PageHandler({ block, href, link, query, breadcrumb_hrefs })
-      children.push(elem)
+      children.push(<div key={block.id}>{elem}</div>)
     }
     return ''
   })

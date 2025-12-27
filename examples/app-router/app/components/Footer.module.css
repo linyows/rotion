@@ -1,0 +1,36 @@
+.footer {
+  text-align: center;
+  padding: 2rem;
+}
+
+.footer a {
+  color: #444;
+  text-decoration: none;
+  border-radius: 30px;
+}
+
+.nav {
+  font-size: small;
+}
+
+.nav a {
+  font-weight: bold;
+}
+
+.copyright {
+  padding-top: .6rem;
+  font-size: small;
+}
+
+.copyright, .copyright a {
+  color: #999;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer a {
+    color: #888;
+  }
+  .copyright, .copyright a {
+    color: #666;
+  }
+}

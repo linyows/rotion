@@ -54,8 +54,8 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
       {show && <div className="rotion-code-lang">
         {language}
       </div>}
-      <pre className={cl}>
-        <code ref={codeRef}>
+      <pre className={cl} suppressHydrationWarning>
+        <code ref={codeRef} suppressHydrationWarning>
           {children}
         </code>
       </pre>
