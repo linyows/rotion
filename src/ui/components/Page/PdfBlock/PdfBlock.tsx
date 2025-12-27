@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useRef } from 'react'
 import RichText from '../../RichText/RichText'
 import { usePdf } from './Pdf'

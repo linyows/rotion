@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 import { RichText } from '../../RichText'
 import type { ParagraphBlockObjectResponse } from '../../../../exporter'

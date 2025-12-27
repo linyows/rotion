@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect } from 'react'
 import Caption from '../../RichText/Caption'
 import type { EmbedBlockProps, EmbedProps, OembedProps } from './EmbedBlock.types'
