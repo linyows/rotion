@@ -1,6 +1,6 @@
 'use client'
 
-import React, { ComponentType, ComponentProps } from 'react'
+import React, { ComponentType, ComponentProps, FC } from 'react'
 
 /**
  * Creates a Client Component wrapper for a Link component to use with rotion in Next.js App Router
@@ -33,8 +33,8 @@ import React, { ComponentType, ComponentProps } from 'react'
  */
 export function createClientLink<T extends ComponentType<any>>(
   LinkComponent: T
-): ComponentType<ComponentProps<T>> {
-  const ClientLink = (props: ComponentProps<T>) => {
+): FC<ComponentProps<T>> {
+  const ClientLink: FC<ComponentProps<T>> = (props) => {
     return <LinkComponent {...props} />
   }
 
