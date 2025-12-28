@@ -1,2 +1,2 @@
-import PdfBlock from './PdfBlock'
+import PdfBlock from './PdfBlock.js'
 export { PdfBlock }

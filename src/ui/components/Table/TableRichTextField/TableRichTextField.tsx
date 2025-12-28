@@ -1,5 +1,5 @@
 import React from 'react'
-import { RichText } from '../../RichText'
+import { RichText } from '../../RichText/index.js'
 import type { TableRichTextFieldProps } from './TableRichTextField.types'
 import './TableRichTextField.css'
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import { RichText } from '../../RichText'
-import Page from '../Page'
+import { RichText } from '../../RichText/index.js'
+import Page from '../Page.js'
 import type { CalloutBlockProps } from './CalloutBlock.types'
 import '../../tokens.css'
 import './CalloutBlock.css'

@@ -1,2 +1,2 @@
-import DateMention from './DateMention'
+import DateMention from './DateMention.js'
 export { DateMention }

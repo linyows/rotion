@@ -1,2 +1,2 @@
-import GalleryDateField from './GalleryDateField'
+import GalleryDateField from './GalleryDateField.js'
 export { GalleryDateField }

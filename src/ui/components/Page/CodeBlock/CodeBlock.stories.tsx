@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { CodeBlockObjectResponse, RichTextItemResponse } from '../../../../exporter'
-import CodeBlock from './CodeBlock'
+import type { CodeBlockObjectResponse, RichTextItemResponse } from '../../../../exporter/index.js'
+import CodeBlock from './CodeBlock.js'
 
 const examples = {
   typescript: `type Text = {

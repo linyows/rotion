@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { cdate } from 'cdate'
 import type { ListDateFieldProps } from './ListDateField.types'
-import { getDatetimeFormat } from '../../lib'
+import { getDatetimeFormat } from '../../lib.js'
 import './ListDateField.css'
 
 const ListDateField = ({ date }: ListDateFieldProps) => {

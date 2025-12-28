@@ -1,6 +1,6 @@
 import React, { JSX } from 'react'
-import RichText from '../../RichText/RichText'
-import type { TableRowBlockObjectResponse } from '../../../../exporter'
+import RichText from '../../RichText/RichText.js'
+import type { TableRowBlockObjectResponse } from '../../../../exporter/index.js'
 import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
 import '../../tokens.css'
 import './TableBlock.css'

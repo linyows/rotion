@@ -1,7 +1,7 @@
 import React from 'react'
-import { RichText } from '../../RichText'
+import { RichText } from '../../RichText/index.js'
 import type { ToDoBlockProps } from './ToDoBlock.types'
-import { Checkbox } from '../../Checkbox'
+import { Checkbox } from '../../Checkbox/index.js'
 import '../../tokens.css'
 import './ToDoBlock.css'
 

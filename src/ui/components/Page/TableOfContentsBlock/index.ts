@@ -1,2 +1,2 @@
-import TableOfContentsBlock from './TableOfContentsBlock'
+import TableOfContentsBlock from './TableOfContentsBlock.js'
 export { TableOfContentsBlock }

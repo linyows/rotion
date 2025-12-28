@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { PdfBlockObjectResponseEx } from '../../../../exporter'
-import PdfBlock from './PdfBlock'
+import type { PdfBlockObjectResponseEx } from '../../../../exporter/index.js'
+import PdfBlock from './PdfBlock.js'
 
 const block: PdfBlockObjectResponseEx = {
   object: 'block',

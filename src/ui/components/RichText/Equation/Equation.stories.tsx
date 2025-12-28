@@ -1,7 +1,7 @@
 import React from 'react'
-import type { EquationRichTextItemResponse } from '../../../../exporter'
+import type { EquationRichTextItemResponse } from '../../../../exporter/index.js'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import Equation from './Equation'
+import Equation from './Equation.js'
 
 const textObject = {
   type: 'equation',

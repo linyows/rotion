@@ -1,2 +1,2 @@
-import EquationBlock from './EquationBlock'
+import EquationBlock from './EquationBlock.js'
 export { EquationBlock }

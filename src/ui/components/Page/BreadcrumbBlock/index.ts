@@ -1,3 +1,3 @@
-import BreadcrumbBlock from './BreadcrumbBlock'
-import Breadcrumbs from './Breadcrumbs'
+import BreadcrumbBlock from './BreadcrumbBlock.js'
+import Breadcrumbs from './Breadcrumbs.js'
 export { BreadcrumbBlock, Breadcrumbs }

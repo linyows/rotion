@@ -7,8 +7,8 @@ import type {
   ParagraphBlockObjectResponseEx,
   QuoteBlockObjectResponse,
   RichTextItemResponse,
-} from '../../../../exporter'
-import TextBlock from './TextBlock'
+} from '../../../../exporter/index.js'
+import TextBlock from './TextBlock.js'
 
 const richText: RichTextItemResponse = {
   type: 'text',

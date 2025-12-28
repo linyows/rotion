@@ -1,2 +1,2 @@
-import TableUrlField from './TableUrlField'
+import TableUrlField from './TableUrlField.js'
 export { TableUrlField }

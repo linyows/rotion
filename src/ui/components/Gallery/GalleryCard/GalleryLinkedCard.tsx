@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Link } from '../../types'
+import type { Link } from '../../types.js'
 import type { GalleryLinkedCardProps } from './GalleryLinkedCard.types'
 
 const GalleryLinkedCard = ({ children, link, query, pathname }: GalleryLinkedCardProps) => {

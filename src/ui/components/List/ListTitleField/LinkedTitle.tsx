@@ -1,7 +1,7 @@
 import React from 'react'
 import type { LinkedTitleProps } from './LinkedTitle.types'
 import './LinkedTitle.css'
-import { RichText } from '../../RichText'
+import { RichText } from '../../RichText/index.js'
 
 const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
   const className = () => {

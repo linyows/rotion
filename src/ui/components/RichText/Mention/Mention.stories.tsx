@@ -1,6 +1,6 @@
-import type { MentionRichTextItemResponseEx } from '../../../../exporter'
+import type { MentionRichTextItemResponseEx } from '../../../../exporter/index.js'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import Mention from './Mention'
+import Mention from './Mention.js'
 import { cdate } from 'cdate'
 
 const textObject: MentionRichTextItemResponseEx = {

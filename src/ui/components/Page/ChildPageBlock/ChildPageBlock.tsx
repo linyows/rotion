@@ -1,6 +1,6 @@
 import React from 'react'
 import type { ChildPageBlockProps, ChildPageLinkProps } from './ChildPageBlock.types'
-import { getLinkPathAndLinkKey, queryToString } from '../../lib'
+import { getLinkPathAndLinkKey, queryToString } from '../../lib.js'
 import '../../tokens.css'
 import './ChildPageBlock.css'
 

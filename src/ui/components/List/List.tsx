@@ -1,6 +1,6 @@
 import React from 'react'
-import Column from './Column'
-import type { PageObjectResponseEx } from '../../../exporter'
+import Column from './Column.js'
+import type { PageObjectResponseEx } from '../../../exporter/index.js'
 import type { ListProps } from './List.types'
 import '../tokens.css'
 import './List.css'

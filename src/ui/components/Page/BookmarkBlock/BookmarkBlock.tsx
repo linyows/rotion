@@ -1,5 +1,5 @@
 import React from 'react'
-import { RichText } from '../../RichText'
+import { RichText } from '../../RichText/index.js'
 import type { BookmarkBlockProps } from './BookmarkBlock.types'
 import '../../tokens.css'
 import './BookmarkBlock.css'

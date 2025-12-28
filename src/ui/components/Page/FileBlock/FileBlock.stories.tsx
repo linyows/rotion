@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { FileBlockObjectResponseEx } from '../../../../exporter'
-import FileBlock from './FileBlock'
+import type { FileBlockObjectResponseEx } from '../../../../exporter/index.js'
+import FileBlock from './FileBlock.js'
 
 const block: FileBlockObjectResponseEx = {
   object: 'block',

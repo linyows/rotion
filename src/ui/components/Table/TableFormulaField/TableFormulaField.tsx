@@ -1,6 +1,6 @@
 import React from 'react'
 import type { TableFormulaFieldProps } from './TableFormulaField.types'
-import { PrefixSuffix } from '../../PrefixSuffix'
+import { PrefixSuffix } from '../../PrefixSuffix/index.js'
 import './TableFormulaField.css'
 
 const TableFormulaField = ({ number, options }: TableFormulaFieldProps) => {

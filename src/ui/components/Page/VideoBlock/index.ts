@@ -1,2 +1,2 @@
-import VideoBlock from './VideoBlock'
+import VideoBlock from './VideoBlock.js'
 export { VideoBlock }

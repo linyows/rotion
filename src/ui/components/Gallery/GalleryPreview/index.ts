@@ -1,2 +1,2 @@
-import GalleryPreview from './GalleryPreview'
+import GalleryPreview from './GalleryPreview.js'
 export { GalleryPreview }

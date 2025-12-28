@@ -1,8 +1,8 @@
 import React from 'react'
-import RichText from '../../RichText/RichText'
-import type { RichTextItemResponse } from '../../../../exporter'
+import RichText from '../../RichText/RichText.js'
+import type { RichTextItemResponse } from '../../../../exporter/index.js'
 import type { TextBlockProps } from './TextBlock.types'
-import { GenHtmlId } from '../../TableOfContents'
+import { GenHtmlId } from '../../TableOfContents/index.js'
 import '../../tokens.css'
 import './TextBlock.css'
 

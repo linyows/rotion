@@ -1,2 +1,2 @@
-import TableSelectField from './TableSelectField'
+import TableSelectField from './TableSelectField.js'
 export { TableSelectField }

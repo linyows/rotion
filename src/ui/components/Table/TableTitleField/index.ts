@@ -1,2 +1,2 @@
-import TableTitleField from './TableTitleField'
+import TableTitleField from './TableTitleField.js'
 export { TableTitleField }

@@ -1,2 +1,2 @@
-import ToDoBlock from './ToDoBlock'
+import ToDoBlock from './ToDoBlock.js'
 export { ToDoBlock }

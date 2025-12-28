@@ -1,2 +1,2 @@
-import TextBlock from './TextBlock'
+import TextBlock from './TextBlock.js'
 export { TextBlock }

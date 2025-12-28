@@ -1,2 +1,2 @@
-import TemplateMention from './TemplateMention'
+import TemplateMention from './TemplateMention.js'
 export { TemplateMention }

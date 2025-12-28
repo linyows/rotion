@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import { RichText } from '../../RichText'
-import type { ParagraphBlockObjectResponse } from '../../../../exporter'
+import { RichText } from '../../RichText/index.js'
+import type { ParagraphBlockObjectResponse } from '../../../../exporter/index.js'
 import type { ToggleBlockProps } from './ToggleBlock.types'
 import '../../tokens.css'
 import './ToggleBlock.css'

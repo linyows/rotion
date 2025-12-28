@@ -1,6 +1,6 @@
 import React from 'react'
 import type { ListFormulaFieldProps } from './ListFormulaField.types'
-import { PrefixSuffix } from '../../PrefixSuffix'
+import { PrefixSuffix } from '../../PrefixSuffix/index.js'
 import './ListFormulaField.css'
 
 const ListFormulaField = ({ number, options }: ListFormulaFieldProps) => {

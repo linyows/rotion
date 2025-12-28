@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { EmbedBlockObjectResponseEx } from '../../../../exporter'
-import EmbedBlock from './EmbedBlock'
+import type { EmbedBlockObjectResponseEx } from '../../../../exporter/index.js'
+import EmbedBlock from './EmbedBlock.js'
 
 const block: EmbedBlockObjectResponseEx = {
   object: 'block',

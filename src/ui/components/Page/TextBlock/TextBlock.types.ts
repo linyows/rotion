@@ -6,7 +6,7 @@ import type {
   Heading3BlockObjectResponse,
   QuoteBlockObjectResponse,
   DividerBlockObjectResponse,
-} from '../../../../exporter'
+} from '../../../../exporter/index.js'
 
 export interface TextBlockProps {
   tag: keyof JSX.IntrinsicElements

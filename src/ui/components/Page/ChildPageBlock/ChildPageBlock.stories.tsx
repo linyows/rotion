@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { ChildPageBlockObjectResponseEx, GetPageResponseEx, ListBlockChildrenResponseEx } from '../../../../exporter'
-import ChildPageBlock from './ChildPageBlock'
+import type { ChildPageBlockObjectResponseEx, GetPageResponseEx, ListBlockChildrenResponseEx } from '../../../../exporter/index.js'
+import ChildPageBlock from './ChildPageBlock.js'
 
 /* Next is Database
 {

@@ -1,2 +1,2 @@
-import Text from './Text'
+import Text from './Text.js'
 export { Text }

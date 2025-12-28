@@ -1,4 +1,4 @@
-import type { PageObjectResponseEx } from '../../../exporter'
+import type { PageObjectResponseEx } from '../../../exporter/index.js'
 import { TableOptions } from './Table.types'
 
 export interface ColumnProps {

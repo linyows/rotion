@@ -1,6 +1,6 @@
-import type { ChildDatabaseBlockObjectResponseEx } from '../../../../exporter'
+import type { ChildDatabaseBlockObjectResponseEx } from '../../../../exporter/index.js'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { Link } from '../../types'
+import type { Link } from '../../types.js'
 
 export interface ChildDatabaseBlockProps {
   block: ChildDatabaseBlockObjectResponseEx

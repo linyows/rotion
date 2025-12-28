@@ -1,2 +1,2 @@
-import ListMultiSelectField from './ListMultiSelectField'
+import ListMultiSelectField from './ListMultiSelectField.js'
 export { ListMultiSelectField }

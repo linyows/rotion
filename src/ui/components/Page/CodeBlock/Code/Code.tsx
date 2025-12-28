@@ -5,7 +5,7 @@ import type { CodeProps } from './Code.types'
 import './Code.css'
 import mermaid from 'mermaid'
 import Prism from 'prismjs'
-import 'prismjs/plugins/autoloader/prism-autoloader'
+import 'prismjs/plugins/autoloader/prism-autoloader.js'
 if (Prism.plugins.autoloader) {
   Prism.plugins.autoloader.languages_path = 'https://unpkg.com/prismjs@1.29.0/components/'
 }

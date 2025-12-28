@@ -1,6 +1,6 @@
 import React from 'react'
-import LinkedBreadcrumbIfLinked from './LinkedBreadcrumbIfLinked'
-import type { Breadcrumb } from '../../../../exporter'
+import LinkedBreadcrumbIfLinked from './LinkedBreadcrumbIfLinked.js'
+import type { Breadcrumb } from '../../../../exporter/index.js'
 import type { BreadcrumbsProps } from './Breadcrumbs.types'
 
 // Note: This omponent cut out from BreadcrumbBlock. To call the breadcrumb list from other than Page. So, Don't integrate.

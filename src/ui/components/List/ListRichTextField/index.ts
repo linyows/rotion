@@ -1,2 +1,2 @@
-import ListRichTextField from './ListRichTextField'
+import ListRichTextField from './ListRichTextField.js'
 export { ListRichTextField }

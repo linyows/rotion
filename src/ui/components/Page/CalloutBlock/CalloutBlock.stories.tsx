@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { CalloutBlockObjectResponseEx, ListBlockChildrenResponseEx, RichTextItemResponse } from '../../../../exporter'
-import CalloutBlock from './CalloutBlock'
+import type { CalloutBlockObjectResponseEx, ListBlockChildrenResponseEx, RichTextItemResponse } from '../../../../exporter/index.js'
+import CalloutBlock from './CalloutBlock.js'
 
 const richText: RichTextItemResponse = {
   type: 'text',

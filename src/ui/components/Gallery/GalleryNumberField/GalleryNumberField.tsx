@@ -1,6 +1,6 @@
 import React from 'react'
 import type { GalleryNumberFieldProps } from './GalleryNumberField.types'
-import { PrefixSuffix } from '../../PrefixSuffix'
+import { PrefixSuffix } from '../../PrefixSuffix/index.js'
 import './GalleryNumberField.css'
 
 const GalleryNumberField = ({ number, options }: GalleryNumberFieldProps) => {

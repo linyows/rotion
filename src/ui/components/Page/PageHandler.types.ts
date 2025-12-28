@@ -1,6 +1,6 @@
-import type { BlockObjectResponse } from '../../../exporter'
+import type { BlockObjectResponse } from '../../../exporter/index.js'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { Link } from '../types'
+import type { Link } from '../types.js'
 
 export interface HandlerProps {
   block: BlockObjectResponse

@@ -1,5 +1,5 @@
 import React from 'react'
-import Breadcrumbs from './Breadcrumbs'
+import Breadcrumbs from './Breadcrumbs.js'
 import type { BreadcrumbBlockProps } from './BreadcrumbBlock.types'
 import '../../tokens.css'
 import './BreadcrumbBlock.css'

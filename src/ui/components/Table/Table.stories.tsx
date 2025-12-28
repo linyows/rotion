@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { FetchDatabaseRes } from '../../../exporter'
-import Table from './Table'
+import type { FetchDatabaseRes } from '../../../exporter/index.js'
+import Table from './Table.js'
 import response from '../../fixtures/fetch_database_response.json'
 const db = response as unknown as FetchDatabaseRes
 

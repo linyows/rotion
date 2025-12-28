@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { RichTextItemResponseEx } from '../../../../exporter'
-import Annotation from './Annotation'
+import type { RichTextItemResponseEx } from '../../../../exporter/index.js'
+import Annotation from './Annotation.js'
 
 const textObject = {
   type: 'text',

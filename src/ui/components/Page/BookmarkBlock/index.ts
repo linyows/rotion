@@ -1,2 +1,2 @@
-import BookmarkBlock from './BookmarkBlock'
+import BookmarkBlock from './BookmarkBlock.js'
 export { BookmarkBlock }

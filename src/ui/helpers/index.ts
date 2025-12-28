@@ -1,1 +1,1 @@
-export { createClientLink } from './createClientLink'
+export { createClientLink } from './createClientLink.js'

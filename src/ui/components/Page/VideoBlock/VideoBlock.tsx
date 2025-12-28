@@ -1,5 +1,5 @@
 import React from 'react'
-import Caption from '../../RichText/Caption'
+import Caption from '../../RichText/Caption.js'
 import type { VideoBlockProps, VideoExternalProps, VideoFileProps } from './VideoBlock.types'
 import '../../tokens.css'
 import './VideoBlock.css'

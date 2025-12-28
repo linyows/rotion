@@ -1,2 +1,2 @@
-import ColumnListBlock from './ColumnListBlock'
+import ColumnListBlock from './ColumnListBlock.js'
 export { ColumnListBlock }

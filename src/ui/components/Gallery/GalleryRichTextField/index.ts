@@ -1,2 +1,2 @@
-import GalleryRichTextField from './GalleryRichTextField'
+import GalleryRichTextField from './GalleryRichTextField.js'
 export { GalleryRichTextField }

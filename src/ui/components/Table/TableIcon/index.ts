@@ -1,2 +1,2 @@
-import TableIcon from './TableIcon'
+import TableIcon from './TableIcon.js'
 export { TableIcon }

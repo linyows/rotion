@@ -1,5 +1,5 @@
 import React from 'react'
-import { RichText } from '../../RichText'
+import { RichText } from '../../RichText/index.js'
 import type { ImageBlockProps } from './ImageBlock.types'
 import '../../tokens.css'
 import './ImageBlock.css'

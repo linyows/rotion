@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import type {
   ToDoBlockObjectResponse,
-} from '../../../../exporter'
-import ToDoBlock from './ToDoBlock'
+} from '../../../../exporter/index.js'
+import ToDoBlock from './ToDoBlock.js'
 
 /* TODO BLOCK */
 const block: ToDoBlockObjectResponse = {

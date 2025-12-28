@@ -20,7 +20,7 @@ import React, { ComponentType, ComponentProps, FC } from 'react'
  * ```tsx
  * // app/page.tsx
  * import { Page } from 'rotion/ui'
- * import { ClientLink } from './lib/rotion'
+ * import { ClientLink } from './lib/rotion.js'
  *
  * export default async function MyPage() {
  *   const blocks = await FetchBlocks(...)

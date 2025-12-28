@@ -1,6 +1,6 @@
 import React from 'react'
 import type { ListMultiSelectFieldProps } from './ListMultiSelectField.types'
-import LinkedTagIfLinked from './LinkedTagIfLinked'
+import LinkedTagIfLinked from './LinkedTagIfLinked.js'
 import './ListMultiSelectField.css'
 
 const ListMultiSelectField = ({ multiSelect, options }: ListMultiSelectFieldProps) => {

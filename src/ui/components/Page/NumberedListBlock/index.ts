@@ -1,2 +1,2 @@
-import NumberedListBlock from './NumberedListBlock'
+import NumberedListBlock from './NumberedListBlock.js'
 export { NumberedListBlock }

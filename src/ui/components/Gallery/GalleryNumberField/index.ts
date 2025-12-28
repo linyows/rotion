@@ -1,2 +1,2 @@
-import GalleryNumberField from './GalleryNumberField'
+import GalleryNumberField from './GalleryNumberField.js'
 export { GalleryNumberField }

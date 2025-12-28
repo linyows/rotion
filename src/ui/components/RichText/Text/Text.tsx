@@ -1,6 +1,6 @@
 import React from 'react'
-import LinkIfLinked from '../LinkIfLinked/LinkIfLinked'
-import Annotation from '../Annotation/Annotation'
+import LinkIfLinked from '../LinkIfLinked/LinkIfLinked.js'
+import Annotation from '../Annotation/Annotation.js'
 import type { TextProps } from './Text.types'
 
 const Text = ({ textObject }: TextProps) => {

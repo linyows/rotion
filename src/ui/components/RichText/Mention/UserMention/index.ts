@@ -1,2 +1,2 @@
-import UserMention from './UserMention'
+import UserMention from './UserMention.js'
 export { UserMention }

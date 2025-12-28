@@ -1,5 +1,5 @@
 import React from 'react'
-import { getLinkPathAndLinkKey, queryToString } from '../../lib'
+import { getLinkPathAndLinkKey, queryToString } from '../../lib.js'
 import type { LinkedBreadcrumbIfLinkedProps } from './LinkedBreadcrumbIfLinked.types'
 import './LinkedBreadcrumbIfLinked.css'
 

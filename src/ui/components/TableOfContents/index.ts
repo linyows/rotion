@@ -1,3 +1,3 @@
-import TableOfContents from './TableOfContents'
-import { GenHtmlId } from './TableOfContents'
+import TableOfContents from './TableOfContents.js'
+import { GenHtmlId } from './TableOfContents.js'
 export { TableOfContents, GenHtmlId }

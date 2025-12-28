@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { EquationBlockObjectResponse } from '../../../../exporter'
-import EquationBlock from './EquationBlock'
+import type { EquationBlockObjectResponse } from '../../../../exporter/index.js'
+import EquationBlock from './EquationBlock.js'
 
 const block: EquationBlockObjectResponse = {
   object: 'block',

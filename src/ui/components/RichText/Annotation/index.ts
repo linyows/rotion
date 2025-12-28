@@ -1,2 +1,2 @@
-import Annotation from './Annotation'
+import Annotation from './Annotation.js'
 export { Annotation }

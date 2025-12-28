@@ -1,2 +1,2 @@
-import GalleryMultiSelectField from './GalleryMultiSelectField'
+import GalleryMultiSelectField from './GalleryMultiSelectField.js'
 export { GalleryMultiSelectField }

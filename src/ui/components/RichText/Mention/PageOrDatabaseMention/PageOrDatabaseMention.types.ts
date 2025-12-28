@@ -1,4 +1,4 @@
-import { PageOrDatabaseMention } from '../../../../../exporter'
+import { PageOrDatabaseMention } from '../../../../../exporter/index.js'
 
 export interface PageOrDatabaseMentionProps {
   mention: PageOrDatabaseMention

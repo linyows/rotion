@@ -1,2 +1,2 @@
-import ListCheckboxField from './ListCheckboxField'
+import ListCheckboxField from './ListCheckboxField.js'
 export { ListCheckboxField }

@@ -1,6 +1,6 @@
 import React from 'react'
 import type { TableSelectFieldProps } from './TableSelectField.types'
-import LinkedTagIfLinked from './LinkedTagIfLinked'
+import LinkedTagIfLinked from './LinkedTagIfLinked.js'
 import './TableSelectField.css'
 
 const TableSelectField = ({ select, options }: TableSelectFieldProps) => {

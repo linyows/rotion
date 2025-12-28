@@ -1,2 +1,2 @@
-import ImageBlock from './ImageBlock'
+import ImageBlock from './ImageBlock.js'
 export { ImageBlock }

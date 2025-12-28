@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { ChildDatabaseBlockObjectResponseEx, GetDatabaseResponseEx, RichTextItemResponse } from '../../../../exporter'
-import ChildDatabaseBlock from './ChildDatabaseBlock'
+import type { ChildDatabaseBlockObjectResponseEx, GetDatabaseResponseEx, RichTextItemResponse } from '../../../../exporter/index.js'
+import ChildDatabaseBlock from './ChildDatabaseBlock.js'
 
 const richtext: RichTextItemResponse[] = [{
   type: 'text',

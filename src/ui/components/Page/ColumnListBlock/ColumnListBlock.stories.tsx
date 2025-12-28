@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { ColumnListBlockObjectResponseEx, ListBlockChildrenResponseEx, BlockObjectResponse } from '../../../../exporter'
-import ColumnListBlock from './ColumnListBlock'
+import type { ColumnListBlockObjectResponseEx, ListBlockChildrenResponseEx, BlockObjectResponse } from '../../../../exporter/index.js'
+import ColumnListBlock from './ColumnListBlock.js'
 
 const column: BlockObjectResponse = {
   object: 'block',

@@ -1,2 +1,2 @@
-import LinkIfLinked from './LinkIfLinked'
+import LinkIfLinked from './LinkIfLinked.js'
 export { LinkIfLinked }

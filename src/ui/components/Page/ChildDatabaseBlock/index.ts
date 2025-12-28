@@ -1,2 +1,2 @@
-import ChildDatabaseBlock from './ChildDatabaseBlock'
+import ChildDatabaseBlock from './ChildDatabaseBlock.js'
 export { ChildDatabaseBlock }

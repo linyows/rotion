@@ -1,2 +1,2 @@
-import ListBlocks from './ListBlocks'
+import ListBlocks from './ListBlocks.js'
 export { ListBlocks }
