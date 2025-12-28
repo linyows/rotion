@@ -8,7 +8,7 @@ import './Table.css'
 
 export const Table = ({ keys, db, options }: TableProps) => {
   const propType = (name: string) => {
-    return (db.meta.properties[name]) ? db.meta.properties[name].type : `Unknown "${name}"`
+    return (db.meta.properties?.[name]) ? db.meta.properties[name].type : `Unknown "${name}"`
   }
   const { verticalLines = true } = options || {}
 
