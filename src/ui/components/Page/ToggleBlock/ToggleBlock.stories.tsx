@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { BlockObjectResponse, ToggleBlockObjectResponseEx } from '../../../../exporter'
-import ToggleBlock from './ToggleBlock'
+import type { BlockObjectResponse, ToggleBlockObjectResponseEx } from '../../../../exporter/index.js'
+import ToggleBlock from './ToggleBlock.js'
 
 /* PARAGRAPH BLOCK */
 const p: BlockObjectResponse = {

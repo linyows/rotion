@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { ListBlockChildrenResponseEx, GetPageResponse } from '../../exporter'
+import type { ListBlockChildrenResponseEx, GetPageResponse } from '../../exporter/index.js'
 
 export function queryToString (q: ParsedUrlQueryInput | undefined) {
   if (q === undefined) {

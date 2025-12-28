@@ -4,8 +4,8 @@ import type {
   ParagraphBlockObjectResponseEx,
   RichTextItemResponse,
   ListBlockChildrenResponseEx,
-} from '../../../../exporter'
-import SyncedBlock from './SyncedBlock'
+} from '../../../../exporter/index.js'
+import SyncedBlock from './SyncedBlock.js'
 
 const richText: RichTextItemResponse = {
   type: 'text',

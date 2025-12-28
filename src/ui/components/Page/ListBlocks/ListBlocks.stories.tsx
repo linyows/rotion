@@ -4,8 +4,8 @@ import type {
   TextRichTextItemResponse,
   BulletedListItemBlockObjectResponseEx,
   NumberedListItemBlockObjectResponseEx,
-} from '../../../../exporter'
-import ListBlocks from './ListBlocks'
+} from '../../../../exporter/index.js'
+import ListBlocks from './ListBlocks.js'
 
 const list1 = ['Coffee', 'Milk', 'Cinnamon']
 const list2 = ['Light', 'Medium', 'Dark']

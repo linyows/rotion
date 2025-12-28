@@ -1,6 +1,6 @@
 import React from 'react'
 import type { TableNumberFieldProps } from './TableNumberField.types'
-import { PrefixSuffix } from '../../PrefixSuffix'
+import { PrefixSuffix } from '../../PrefixSuffix/index.js'
 import './TableNumberField.css'
 
 const TableNumberField = ({ number, options }: TableNumberFieldProps) => {

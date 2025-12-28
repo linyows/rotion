@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import type {
   TableBlockObjectResponseEx,
   RichTextItemResponse,
-} from '../../../../exporter'
+} from '../../../../exporter/index.js'
 
 export interface TableBlockProps {
   block: TableBlockObjectResponseEx

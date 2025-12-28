@@ -1,2 +1,2 @@
-import SyncedBlock from './SyncedBlock'
+import SyncedBlock from './SyncedBlock.js'
 export { SyncedBlock }

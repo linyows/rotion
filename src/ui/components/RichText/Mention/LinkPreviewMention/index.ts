@@ -1,2 +1,2 @@
-import LinkPreviewMention from './LinkPreviewMention'
+import LinkPreviewMention from './LinkPreviewMention.js'
 export { LinkPreviewMention }

@@ -1,2 +1,2 @@
-import TableCheckboxField from './TableCheckboxField'
+import TableCheckboxField from './TableCheckboxField.js'
 export { TableCheckboxField }

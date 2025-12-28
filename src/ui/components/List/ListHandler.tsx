@@ -1,15 +1,15 @@
 import React from 'react'
 import type { ListHandlerProps } from './ListHandler.types'
 
-import ListTitleField from './ListTitleField/ListTitleField'
-import ListDateField from './ListDateField/ListDateField'
-import ListRichTextField from './ListRichTextField/ListRichTextField'
-import ListMultiSelectField from './ListMultiSelectField/ListMultiSelectField'
-import ListSelectField from './ListSelectField/ListSelectField'
-import ListUrlField from './ListUrlField/ListUrlField'
-import ListCheckboxField from './ListCheckboxField/ListCheckboxField'
-import ListNumberField from './ListNumberField/ListNumberField'
-import ListFormulaField from './ListFormulaField/ListFormulaField'
+import ListTitleField from './ListTitleField/ListTitleField.js'
+import ListDateField from './ListDateField/ListDateField.js'
+import ListRichTextField from './ListRichTextField/ListRichTextField.js'
+import ListMultiSelectField from './ListMultiSelectField/ListMultiSelectField.js'
+import ListSelectField from './ListSelectField/ListSelectField.js'
+import ListUrlField from './ListUrlField/ListUrlField.js'
+import ListCheckboxField from './ListCheckboxField/ListCheckboxField.js'
+import ListNumberField from './ListNumberField/ListNumberField.js'
+import ListFormulaField from './ListFormulaField/ListFormulaField.js'
 
 const ListHandler = ({ property, options }: ListHandlerProps) => {
   if (!property || !property.type) {

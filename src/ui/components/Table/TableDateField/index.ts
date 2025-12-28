@@ -1,2 +1,2 @@
-import TableDateField from './TableDateField'
+import TableDateField from './TableDateField.js'
 export { TableDateField }

@@ -1,6 +1,6 @@
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { Link } from '../../types'
-import type { BreadcrumbBlockObjectResponseEx } from '../../../../exporter'
+import type { Link } from '../../types.js'
+import type { BreadcrumbBlockObjectResponseEx } from '../../../../exporter/index.js'
 
 export interface BreadcrumbBlockProps {
   block: BreadcrumbBlockObjectResponseEx

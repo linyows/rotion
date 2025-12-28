@@ -1,2 +1,2 @@
-import ToggleBlock from './ToggleBlock'
+import ToggleBlock from './ToggleBlock.js'
 export { ToggleBlock }

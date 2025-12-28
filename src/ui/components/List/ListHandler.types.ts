@@ -1,6 +1,6 @@
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { DatabaseProperty } from '../../../exporter'
-import type { Link } from '../types'
+import type { DatabaseProperty } from '../../../exporter/index.js'
+import type { Link } from '../types.js'
 
 export interface ListHandlerProps {
   property: DatabaseProperty

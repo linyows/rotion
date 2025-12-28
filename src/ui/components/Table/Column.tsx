@@ -1,7 +1,7 @@
 import React from 'react'
-import type { DatabaseProperty } from '../../../exporter'
-import TableHandler from './TableHandler'
-import { getLinkPathAndLinkKey, getSlug } from '../lib'
+import type { DatabaseProperty } from '../../../exporter/index.js'
+import TableHandler from './TableHandler.js'
+import { getLinkPathAndLinkKey, getSlug } from '../lib.js'
 import type { ColumnProps } from './Column.types'
 import type { TablePropertyOptions } from './TableHandler.types'
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { BookmarkBlockObjectResponseEx } from '../../../../exporter'
-import BookmarkBlock from './BookmarkBlock'
+import type { BookmarkBlockObjectResponseEx } from '../../../../exporter/index.js'
+import BookmarkBlock from './BookmarkBlock.js'
 
 const block: BookmarkBlockObjectResponseEx = {
   object: 'block',

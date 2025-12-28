@@ -1,2 +1,2 @@
-import EmbedBlock from './EmbedBlock'
+import EmbedBlock from './EmbedBlock.js'
 export { EmbedBlock }

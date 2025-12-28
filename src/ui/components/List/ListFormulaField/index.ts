@@ -1,2 +1,2 @@
-import ListFormulaField from './ListFormulaField'
+import ListFormulaField from './ListFormulaField.js'
 export { ListFormulaField }

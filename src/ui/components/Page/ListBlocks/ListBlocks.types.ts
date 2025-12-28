@@ -1,6 +1,6 @@
 import type { JSX } from 'react'
-import type { Link } from '../../types'
-import type { BlockObjectResponse } from '../../../../exporter'
+import type { Link } from '../../types.js'
+import type { BlockObjectResponse } from '../../../../exporter/index.js'
 import type { ParsedUrlQueryInput } from 'node:querystring'
 
 export interface ListBlocksProps {

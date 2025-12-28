@@ -1,2 +1,2 @@
-import GalleryCard from './GalleryCard'
+import GalleryCard from './GalleryCard.js'
 export { GalleryCard }

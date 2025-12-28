@@ -1,2 +1,2 @@
-import ListNumberField from './ListNumberField'
+import ListNumberField from './ListNumberField.js'
 export { ListNumberField }

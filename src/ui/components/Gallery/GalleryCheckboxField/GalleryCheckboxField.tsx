@@ -1,7 +1,7 @@
 import React from 'react'
 import type { GalleryCheckboxFieldProps } from './GalleryCheckboxField.types'
-import { Checkbox } from '../../Checkbox'
-import { PrefixSuffix } from '../../PrefixSuffix'
+import { Checkbox } from '../../Checkbox/index.js'
+import { PrefixSuffix } from '../../PrefixSuffix/index.js'
 import './GalleryCheckboxField.css'
 
 const GalleryCheckboxField = ({ checked, options }: GalleryCheckboxFieldProps) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon } from '../../../Icon'
+import { Icon } from '../../../Icon/index.js'
 import type { PageOrDatabaseMentionProps } from './PageOrDatabaseMention.types'
 import './PageOrDatabaseMention.css'
 

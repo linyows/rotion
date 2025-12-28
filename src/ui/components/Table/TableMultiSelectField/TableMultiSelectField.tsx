@@ -1,5 +1,5 @@
 import React from 'react'
-import LinkedTagIfLinked from './LinkedTagIfLinked'
+import LinkedTagIfLinked from './LinkedTagIfLinked.js'
 import type { TableMultiSelectFieldProps } from './TableMultiSelectField.types'
 import './TableMultiSelectField.css'
 

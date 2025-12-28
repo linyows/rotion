@@ -1,7 +1,7 @@
 import React from 'react'
-import type { BlockObjectResponse } from '../../../../exporter'
+import type { BlockObjectResponse } from '../../../../exporter/index.js'
 import type { SyncedBlockProps } from './SyncedBlock.types'
-import PageHandler from '../PageHandler'
+import PageHandler from '../PageHandler.js'
 import '../../tokens.css'
 import './SyncedBlock.css'
 

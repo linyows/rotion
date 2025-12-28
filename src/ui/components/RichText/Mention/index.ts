@@ -1,2 +1,2 @@
-import Mention from './Mention'
+import Mention from './Mention.js'
 export { Mention }

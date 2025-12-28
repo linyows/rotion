@@ -1,6 +1,6 @@
 import React from 'react'
 import type { GalleryMultiSelectFieldProps } from './GalleryMultiSelectField.types'
-import LinkedTagIfLinked from './LinkedTag'
+import LinkedTagIfLinked from './LinkedTag.js'
 import './GalleryMultiSelectField.css'
 
 const GalleryMultiSelectField = ({ multiSelect, options }: GalleryMultiSelectFieldProps) => {

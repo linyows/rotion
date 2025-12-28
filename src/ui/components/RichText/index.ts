@@ -1,2 +1,2 @@
-import RichText from './RichText'
+import RichText from './RichText.js'
 export { RichText }

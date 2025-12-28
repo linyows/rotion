@@ -1,2 +1,2 @@
-import GalleryCheckboxField from './GalleryCheckboxField'
+import GalleryCheckboxField from './GalleryCheckboxField.js'
 export { GalleryCheckboxField }

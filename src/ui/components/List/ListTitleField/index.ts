@@ -1,2 +1,2 @@
-import ListTitleField from './ListTitleField'
+import ListTitleField from './ListTitleField.js'
 export { ListTitleField }

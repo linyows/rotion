@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from '../Page'
+import Page from '../Page.js'
 import type { ColumnListBlockProps } from './ColumnListBlock.types'
 import '../../tokens.css'
 import './ColumnListBlock.css'

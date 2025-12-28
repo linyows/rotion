@@ -1,6 +1,6 @@
 import React from 'react'
 import type { GalleryFormulaFieldProps } from './GalleryFormulaField.types'
-import { PrefixSuffix } from '../../PrefixSuffix'
+import { PrefixSuffix } from '../../PrefixSuffix/index.js'
 import './GalleryFormulaField.css'
 
 const GalleryFormulaField = ({ number, options }: GalleryFormulaFieldProps) => {

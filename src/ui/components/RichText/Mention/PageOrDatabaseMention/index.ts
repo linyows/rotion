@@ -1,2 +1,2 @@
-import PageOrDatabaseMention from './PageOrDatabaseMention'
+import PageOrDatabaseMention from './PageOrDatabaseMention.js'
 export { PageOrDatabaseMention }

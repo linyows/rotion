@@ -1,6 +1,6 @@
 import React from 'react'
 import type { ChildDatabaseBlockProps, ChildDatabaseLinkProps } from './ChildDatabaseBlock.types'
-import { getLinkPathAndLinkKey, queryToString } from '../../lib'
+import { getLinkPathAndLinkKey, queryToString } from '../../lib.js'
 import '../../tokens.css'
 import './ChildDatabaseBlock.css'
 

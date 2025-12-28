@@ -1,2 +1,2 @@
-import ChildPageBlock from './ChildPageBlock'
+import ChildPageBlock from './ChildPageBlock.js'
 export { ChildPageBlock }

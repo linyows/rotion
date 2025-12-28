@@ -1,6 +1,6 @@
 import React from 'react'
-import { pathBasename } from '../../../lib'
-import { Icon } from '../../../Icon'
+import { pathBasename } from '../../../lib.js'
+import { Icon } from '../../../Icon/index.js'
 import type { LinkPreviewMemtionProps } from './LinkPreviewMention.types'
 import './LinkPreviewMention.css'
 

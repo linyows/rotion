@@ -2,11 +2,11 @@ import React from 'react'
 import type {
   DatabaseProperty,
   PageObjectResponseEx,
-} from '../../../../exporter'
-import GalleryHandler from './GalleryHandler'
-import { getLinkPathAndLinkKey, getSlug } from '../../lib'
-import GalleryLinkedCard from './GalleryLinkedCard'
-import GalleryPreview from '../GalleryPreview/GalleryPreview'
+} from '../../../../exporter/index.js'
+import GalleryHandler from './GalleryHandler.js'
+import { getLinkPathAndLinkKey, getSlug } from '../../lib.js'
+import GalleryLinkedCard from './GalleryLinkedCard.js'
+import GalleryPreview from '../GalleryPreview/GalleryPreview.js'
 import type { GalleryCardProps } from './GalleryCard.types'
 import type { GalleryPropertyOptions } from './GalleryHandler.types'
 import type { GalleryOptions } from '../Gallery.types'

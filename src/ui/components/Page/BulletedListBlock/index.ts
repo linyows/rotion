@@ -1,2 +1,2 @@
-import BulletedListBlock from './BulletedListBlock'
+import BulletedListBlock from './BulletedListBlock.js'
 export { BulletedListBlock }

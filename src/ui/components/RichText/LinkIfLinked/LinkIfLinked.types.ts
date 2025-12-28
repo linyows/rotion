@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import type { RichTextItemResponse } from '../../../../exporter'
+import type { RichTextItemResponse } from '../../../../exporter/index.js'
 
 export interface TextLinkProps {
   textObject: RichTextItemResponse

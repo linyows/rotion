@@ -1,2 +1,2 @@
-import List from './List'
+import List from './List.js'
 export { List }

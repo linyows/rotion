@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { LinkPreviewBlockObjectResponseEx } from '../../../../exporter'
-import LinkPreviewBlock from './LinkPreviewBlock'
+import type { LinkPreviewBlockObjectResponseEx } from '../../../../exporter/index.js'
+import LinkPreviewBlock from './LinkPreviewBlock.js'
 
 const block: LinkPreviewBlockObjectResponseEx = {
   object: 'block',

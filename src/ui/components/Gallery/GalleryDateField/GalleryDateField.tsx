@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { cdate } from 'cdate'
 import type { GalleryDateFieldProps } from './GalleryDateField.types'
-import { getDatetimeFormat } from '../../lib'
+import { getDatetimeFormat } from '../../lib.js'
 import './GalleryDateField.css'
 
 const GalleryDateField = ({ date }: GalleryDateFieldProps) => {

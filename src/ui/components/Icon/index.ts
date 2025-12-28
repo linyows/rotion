@@ -1,2 +1,2 @@
-import Icon from './Icon'
+import Icon from './Icon.js'
 export { Icon }

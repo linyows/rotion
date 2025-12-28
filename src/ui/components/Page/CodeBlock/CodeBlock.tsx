@@ -3,10 +3,10 @@ import type {
   RichTextItemResponse,
   RichTextItemResponseEx,
   TextRichTextItemResponse,
-} from '../../../../exporter'
-import RichText from '../../RichText/RichText'
+} from '../../../../exporter/index.js'
+import RichText from '../../RichText/RichText.js'
 import type { CodeBlockProps } from './CodeBlock.types'
-import Code from './Code/Code'
+import Code from './Code/Code.js'
 import '../../tokens.css'
 import './CodeBlock.css'
 

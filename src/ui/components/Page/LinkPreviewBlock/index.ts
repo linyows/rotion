@@ -1,2 +1,2 @@
-import LinkPreviewBlock from './LinkPreviewBlock'
+import LinkPreviewBlock from './LinkPreviewBlock.js'
 export { LinkPreviewBlock }

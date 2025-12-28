@@ -1,4 +1,4 @@
-import { TableOfContentsBlockObjectResponse } from '../../../../exporter'
+import { TableOfContentsBlockObjectResponse } from '../../../../exporter/index.js'
 
 export interface TableOfContentsBlockProps {
   block: TableOfContentsBlockObjectResponse,

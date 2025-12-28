@@ -1,7 +1,7 @@
 import React from 'react'
 import type { TableTitleFieldProps } from './TableTitleField.types'
-import LinkedTitleIfLinked from './LinkedTitleIfLinked'
-import { RichText } from '../../RichText'
+import LinkedTitleIfLinked from './LinkedTitleIfLinked.js'
+import { RichText } from '../../RichText/index.js'
 import './TableTitleField.css'
 
 const TableTitleField = ({ textObjects, options }: TableTitleFieldProps) => {

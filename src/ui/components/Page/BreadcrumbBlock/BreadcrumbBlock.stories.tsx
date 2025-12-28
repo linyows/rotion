@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { BreadcrumbBlockObjectResponseEx } from '../../../../exporter'
-import BreadcrumbBlock from './BreadcrumbBlock'
+import type { BreadcrumbBlockObjectResponseEx } from '../../../../exporter/index.js'
+import BreadcrumbBlock from './BreadcrumbBlock.js'
 
 const block: BreadcrumbBlockObjectResponseEx = {
   object: 'block',

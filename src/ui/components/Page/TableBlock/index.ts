@@ -1,2 +1,2 @@
-import TableBlock from './TableBlock'
+import TableBlock from './TableBlock.js'
 export { TableBlock }

@@ -1,6 +1,6 @@
 import React from 'react'
 import type { ListSelectFieldProps } from './ListSelectField.types'
-import LinkedTagIfLinked from './LinkedTagIfLinked'
+import LinkedTagIfLinked from './LinkedTagIfLinked.js'
 import './ListSelectField.css'
 
 const ListSelectField = ({ select, options }: ListSelectFieldProps) => {

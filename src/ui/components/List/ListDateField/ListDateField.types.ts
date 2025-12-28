@@ -1,4 +1,4 @@
-import type { DateResponse } from '../../../../exporter'
+import type { DateResponse } from '../../../../exporter/index.js'
 
 export interface ListDateFieldProps {
   date: DateResponse | null

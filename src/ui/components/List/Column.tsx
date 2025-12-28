@@ -1,7 +1,7 @@
 import React from 'react'
-import ListHandler from './ListHandler'
-import { getLinkPathAndLinkKey, getSlug } from '../lib'
-import type { DatabaseProperty } from '../../../exporter'
+import ListHandler from './ListHandler.js'
+import { getLinkPathAndLinkKey, getSlug } from '../lib.js'
+import type { DatabaseProperty } from '../../../exporter/index.js'
 import type { ColumnProps } from './Column.types'
 import type { ListPropertyOptions } from './ListHandler.types'
 

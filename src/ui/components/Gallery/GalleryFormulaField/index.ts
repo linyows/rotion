@@ -1,2 +1,2 @@
-import GalleryFormulaField from './GalleryFormulaField'
+import GalleryFormulaField from './GalleryFormulaField.js'
 export { GalleryFormulaField }

@@ -1,4 +1,4 @@
-import type { EmbedBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter'
+import type { EmbedBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter/index.js'
 
 export interface EmbedBlockProps {
   block: EmbedBlockObjectResponseEx

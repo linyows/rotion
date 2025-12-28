@@ -1,5 +1,5 @@
 import React from 'react'
-import PageHandler from '../PageHandler'
+import PageHandler from '../PageHandler.js'
 import type { ListBlocksProps } from './ListBlocks.types'
 import '../../tokens.css'
 import './ListBlocks.css'

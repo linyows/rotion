@@ -1,6 +1,6 @@
 import React from 'react'
 import type { GalleryTitleFieldProps } from './GalleryTitleField.types'
-import { RichText } from '../../RichText'
+import { RichText } from '../../RichText/index.js'
 import './GalleryTitleField.css'
 
 const GalleryTitleField = ({ textObjects }: GalleryTitleFieldProps) => {

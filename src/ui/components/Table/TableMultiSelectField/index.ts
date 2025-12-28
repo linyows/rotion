@@ -1,2 +1,2 @@
-import TableMultiSelectField from './TableMultiSelectField'
+import TableMultiSelectField from './TableMultiSelectField.js'
 export { TableMultiSelectField }

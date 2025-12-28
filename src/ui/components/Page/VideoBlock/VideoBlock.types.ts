@@ -1,4 +1,4 @@
-import type { VideoBlockObjectResponseEx, VideoFile, VideoExternal } from '../../../../exporter'
+import type { VideoBlockObjectResponseEx, VideoFile, VideoExternal } from '../../../../exporter/index.js'
 
 export interface VideoBlockProps {
   block: VideoBlockObjectResponseEx

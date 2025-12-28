@@ -1,2 +1,2 @@
-import CalloutBlock from './CalloutBlock'
+import CalloutBlock from './CalloutBlock.js'
 export { CalloutBlock }

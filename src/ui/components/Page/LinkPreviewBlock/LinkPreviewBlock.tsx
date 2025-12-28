@@ -1,12 +1,12 @@
 import React from 'react'
 import { cdate } from 'cdate'
 import { relative } from 'cdate-relative'
-import { Icon } from '../../Icon'
+import { Icon } from '../../Icon/index.js'
 import type { LinkPreviewBlockProps } from './LinkPreviewBlock.types'
 import '../../tokens.css'
 import './LinkPreviewBlock.css'
 import '../../Icon/Icon.css'
-import { LinkPreviewGithubIssue, LinkPreviewGithubRepo } from '../../../../exporter/github'
+import { LinkPreviewGithubIssue, LinkPreviewGithubRepo } from '../../../../exporter/github.js'
 
 interface Props {
   url: string

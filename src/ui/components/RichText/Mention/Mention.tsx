@@ -1,10 +1,10 @@
 import React from 'react'
-import UserMention from './UserMention/UserMention'
+import UserMention from './UserMention/UserMention.js'
 import type { MentionProps } from './Mention.types'
-import { PageOrDatabaseMention } from './PageOrDatabaseMention'
-import { LinkPreviewMention } from './LinkPreviewMention'
-import { DateMention } from './DateMention'
-import { TemplateMention } from './TemplateMention'
+import { PageOrDatabaseMention } from './PageOrDatabaseMention/index.js'
+import { LinkPreviewMention } from './LinkPreviewMention/index.js'
+import { DateMention } from './DateMention/index.js'
+import { TemplateMention } from './TemplateMention/index.js'
 import '../../tokens.css'
 
 const Mention = ({ textObject, children }: MentionProps) => {

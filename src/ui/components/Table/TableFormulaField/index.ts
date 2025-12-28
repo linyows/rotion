@@ -1,2 +1,2 @@
-import TableFormulaField from './TableFormulaField'
+import TableFormulaField from './TableFormulaField.js'
 export { TableFormulaField }

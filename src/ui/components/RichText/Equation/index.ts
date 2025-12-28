@@ -1,2 +1,2 @@
-import Equation from './Equation'
+import Equation from './Equation.js'
 export { Equation }

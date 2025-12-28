@@ -1,2 +1,2 @@
-import GalleryUrlField from './GalleryUrlField'
+import GalleryUrlField from './GalleryUrlField.js'
 export { GalleryUrlField }

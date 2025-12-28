@@ -1,8 +1,8 @@
 import React, { JSX } from 'react'
-import type { BlockObjectResponse } from '../../../exporter'
+import type { BlockObjectResponse } from '../../../exporter/index.js'
 import type { PageProps, ListType, ULOL } from './Page.types'
-import { ListBlocks } from './ListBlocks'
-import PageHandler from './PageHandler'
+import { ListBlocks } from './ListBlocks/index.js'
+import PageHandler from './PageHandler.js'
 
 export const Page = ({ blocks, href, link, query, breadcrumb_hrefs }: PageProps) => {
   const { results } = blocks
