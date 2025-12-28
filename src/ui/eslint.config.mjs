@@ -1,5 +1,6 @@
 import react from "eslint-plugin-react";
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
+import importPlugin from "eslint-plugin-import";
 import globals from "globals";
 import tsParser from "@typescript-eslint/parser";
 import path from "node:path";
@@ -21,6 +22,7 @@ export default [
         plugins: {
             react,
             "@typescript-eslint": typescriptEslint,
+            "import": importPlugin,
         },
 
         languageOptions: {
@@ -55,6 +57,15 @@ export default [
             "@typescript-eslint/no-use-before-define": ["error"],
             "comma-dangle": "off",
             "@typescript-eslint/comma-dangle": "off",
+            "import/extensions": ["error", "always", {
+                "ignorePackages": true,
+                "pattern": {
+                    "js": "always",
+                    "jsx": "always",
+                    "ts": "always",
+                    "tsx": "always",
+                }
+            }],
         },
     },
 ];
