@@ -185,24 +185,25 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
             if (richText.type !== 'mention') {
               continue
             }
-            switch (richText.mention.type) {
+            const mention = richText.mention as any
+            switch (mention.type) {
               case 'database':
                 try {
-                  const database_id = richText.mention.database.id
+                  const database_id = mention.database.id
                   const db = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>({
                     name: 'notion.databases.retrieve',
                     func: notion.databases.retrieve,
                     args: { database_id },
                     count: 3,
                   })
-                  richText.mention.database.name = db.title.map(v => v.plain_text).join('')
+                  mention.database.name = db.title.map(v => v.plain_text).join('')
                   if (db.icon?.type === 'emoji') {
-                    richText.mention.database.icon = { type: 'emoji', emoji: db.icon.emoji }
+                    mention.database.icon = { type: 'emoji', emoji: db.icon.emoji }
                   } else if (db.icon?.type === 'external' || db.icon?.type === 'file') {
                     const iconUrl = (db.icon.type === 'external') ? db.icon.external.url : db.icon.file.url
                     try {
                       const ipws = await saveImage(iconUrl, `block-${block.id}`)
-                      richText.mention.database.icon = { type: db.icon.type, src: ipws.path, url: ipws.path }
+                      mention.database.icon = { type: db.icon.type, src: ipws.path, url: ipws.path }
                     } catch (e) {
                       if (debug) {
                         console.log(`Failed to save database icon: ${e}`)
@@ -213,13 +214,13 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                   if (debug) {
                     console.log(`database view mention is unsupported ${block.type}`, block, e)
                   }
-                  richText.mention.database.name = '--'
-                  richText.mention.database.icon = { type: 'emoji', emoji: '@' }
+                  mention.database.name = '--'
+                  mention.database.icon = { type: 'emoji', emoji: '@' }
                 }
                 break
               case 'page':
                 try {
-                  const page_id = richText.mention.page.id
+                  const page_id = mention.page.id
                   const page = await reqAPIWithBackoff<GetPageResponseEx>({
                     func: notion.pages.retrieve,
                     args: { page_id },
@@ -227,12 +228,12 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                   })
                   for (const prop of Object.values(page.properties)) {
                     if (prop.type === 'title') {
-                      richText.mention.page.name = prop.title.map(v => v.plain_text).join('')
+                      mention.page.name = prop.title.map(v => v.plain_text).join('')
                       break
                     }
                   }
                   if (page.icon?.type === 'emoji') {
-                    richText.mention.page.icon = {
+                    mention.page.icon = {
                       type: page.icon.type,
                       emoji: page.icon.emoji,
                     }
@@ -240,7 +241,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                     const iconUrl = (page.icon.type === 'external') ? page.icon.external.url : page.icon.file.url
                     try {
                       const ipws = await saveImage(iconUrl, `block-${block.id}`)
-                      richText.mention.page.icon = {
+                      mention.page.icon = {
                         type: page.icon.type,
                         src: ipws.path,
                         url: ipws.path,
@@ -255,8 +256,8 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                   if (debug) {
                     console.log(`page mention is unsupported ${block.type}`, block, e)
                   }
-                  richText.mention.page.name = '--'
-                  richText.mention.page.icon = { type: 'emoji', emoji: '@' }
+                  mention.page.name = '--'
+                  mention.page.icon = { type: 'emoji', emoji: '@' }
                 }
                 break
             }
