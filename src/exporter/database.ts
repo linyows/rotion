@@ -17,7 +17,7 @@ import {
   isEmpty,
 } from './files.js'
 import type {
-  QueryDatabaseParameters,
+  QueryDataSourceParameters,
   QueryDatabaseResponseEx,
   GetDatabaseResponseEx,
   PageObjectResponseEx,
@@ -29,7 +29,8 @@ import {
 } from './page.js'
 import { withFileLock } from './mutex.js'
 
-export interface FetchDatabaseArgs extends QueryDatabaseParameters {
+export interface FetchDatabaseArgs extends Omit<QueryDataSourceParameters, 'data_source_id'> {
+  database_id: string
 }
 
 export interface FetchDatabaseRes extends QueryDatabaseResponseEx {
@@ -76,13 +77,41 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
       /* not fatal */
     }
 
+    // First, retrieve the database to get the data_source_id
+    const meta = await reqAPIWithBackoff<GetDatabaseResponseEx>({
+      func: notion.databases.retrieve,
+      args: { database_id },
+      count: 3,
+    })
+
+    // Get the data_source_id from the first data source
+    if (!meta.data_sources || meta.data_sources.length === 0) {
+      throw new Error(`No data sources found for database ${database_id}`)
+    }
+    const data_source_id = meta.data_sources[0].id
+
+    // Retrieve the data source to get properties
+    const dataSource = await reqAPIWithBackoff<any>({
+      func: notion.dataSources.retrieve,
+      args: { data_source_id },
+      count: 3,
+    })
+    // Add properties to meta for backward compatibility
+    if (dataSource && dataSource.properties) {
+      meta.properties = dataSource.properties
+    }
+
+    // Remove database_id and add data_source_id to params
+    const queryParams = { ...params, data_source_id }
+    delete (queryParams as any).database_id
+
     while (true) {
       if (res && res.next_cursor) {
-        params.start_cursor = res.next_cursor
+        queryParams.start_cursor = res.next_cursor
       }
       res = await reqAPIWithBackoff<QueryDatabaseResponseEx>({
-        func: notion.databases.query,
-        args: params,
+        func: notion.dataSources.query,
+        args: queryParams,
         count: 3,
       })
       if (allres === undefined) {
@@ -119,11 +148,6 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
       }
     }
 
-    const meta = await reqAPIWithBackoff<GetDatabaseResponseEx>({
-      func: notion.databases.retrieve,
-      args: { database_id },
-      count: 3,
-    })
     await saveDatabaseCover(meta)
     await saveDatabaseIcon(meta)
     allres.meta = meta
