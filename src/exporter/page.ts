@@ -17,7 +17,7 @@ import {
 } from './files.js'
 import type {
   GetPageResponseEx,
-  PropertyItemPropertyItemListResponse,
+  PropertyItemListResponse,
   GetPagePropertyResponse,
   PageObjectResponseEx,
 } from './types.js'
@@ -72,7 +72,7 @@ export const FetchPage = async ({ page_id, last_edited_time }: FetchPageArgs): P
     })
 
     if ('properties' in page) {
-      let list: undefined|PropertyItemPropertyItemListResponse
+      let list: undefined|PropertyItemListResponse
       for (const [, v] of Object.entries(page.properties)) {
         const property_id = v.id
         const res = await reqAPIWithBackoffAndCache<GetPagePropertyResponse>({
