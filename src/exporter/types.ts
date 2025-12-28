@@ -1,5 +1,6 @@
 import type {
-  QueryDatabaseResponse,
+  QueryDataSourceResponse,
+  QueryDataSourceParameters,
   ListBlockChildrenResponse,
   GetSelfResponse,
   ParagraphBlockObjectResponse,
@@ -38,11 +39,12 @@ import type {
   RichTextItemResponse,
   GetPagePropertyResponse,
   PageObjectResponse,
-  PersonUserObjectResponse,
+  UserObjectResponse,
   DatabaseObjectResponse,
   MentionRichTextItemResponse,
   TextRichTextItemResponse,
   EquationRichTextItemResponse,
+  PropertyItemListResponse,
 } from '@notionhq/client/build/src/api-endpoints.js'
 import { LinkPreviewGithubRepo, LinkPreviewGithubIssue } from './github.js'
 
@@ -87,8 +89,6 @@ export type SelectPropertyResponse = {
   name: StringRequest
   color: SelectColor
 }
-
-export type UserObjectResponse = GetSelfResponse
 
 export type PartialUserObjectResponse =
   | { id: IdRequest, object: 'user' }
@@ -213,8 +213,9 @@ export type LinkPreviewMentionResponse = {
 export type MentionEmoji = { type: 'emoji', emoji: string }
 export type MentionExternalOrFile = { type: 'external' | 'file', src: string, url: string }
 export type MentionIcon = MentionEmoji | MentionExternalOrFile
-export type PageOrDatabaseMention = { id: IdRequest, name: string, icon: MentionIcon }
-export type MentionRichTextItemResponseEx = MentionRichTextItemResponse & {
+export type PageOrDatabaseMention = { id: IdRequest, name?: string, icon?: MentionIcon }
+export type MentionRichTextItemResponseEx = RichTextItemResponse & {
+  type: 'mention'
   mention:
   | { type: "user", user: PartialUserObjectResponse | UserObjectResponse }
   | { type: "date", date: DateResponse }
@@ -222,9 +223,11 @@ export type MentionRichTextItemResponseEx = MentionRichTextItemResponse & {
   | { type: "template_mention", template_mention: TemplateMentionResponse }
   | { type: "page", page: PageOrDatabaseMention }
   | { type: "database", database: PageOrDatabaseMention }
+  | { type: "link_mention", link_mention: any }
+  | { type: "custom_emoji", custom_emoji: any }
 }
 
-export type RichTextItemResponseEx = TextRichTextItemResponse | MentionRichTextItemResponseEx | EquationRichTextItemResponse
+export type RichTextItemResponseEx = RichTextItemResponse
 export type ParagraphBlockObjectResponseEx = ParagraphBlockObjectResponse & {
   paragraph: {
     rich_text: Array<RichTextItemResponseEx>
@@ -452,22 +455,25 @@ export type GetDatabaseResponseEx = DatabaseObjectResponse & {
     | { src: string, type: 'external'; external: { url: TextRequest } }
     | { src: string, type: 'file'; file: { url: string; expiry_time: string } }
     | null
+  // In v5, properties are in data sources, but we add them here for backward compatibility
+  properties?: Record<string, DatabasePropertyConfigResponse>
 }
 
-export type QueryDatabaseResponseEx = QueryDatabaseResponse & {
+export type QueryDatabaseResponseEx = QueryDataSourceResponse & {
   results: Array<PageObjectResponseEx>
   meta: GetDatabaseResponseEx
 }
 
-export type PersonUserObjectResponseEx = PersonUserObjectResponse & {
+export type PersonUserObjectResponseEx = UserObjectResponse & {
   avatar?: string
 }
 
-export type Parent = 
+export type Parent =
 | { type: "database_id"; database_id: string }
 | { type: "page_id"; page_id: string }
 | { type: "block_id"; block_id: string }
 | { type: "workspace"; workspace: true }
+| { type: "data_source_id"; data_source_id: string }
 
 export type DatabaseProperty = DatabasePropertyConfigResponse
 

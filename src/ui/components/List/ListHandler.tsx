@@ -19,9 +19,9 @@ const ListHandler = ({ property, options }: ListHandlerProps) => {
 
   switch (property.type) {
     case 'title':
-      return <ListTitleField textObjects={property.title} options={options} />
+      return <ListTitleField textObjects={property.title as any} options={options} />
     case 'rich_text':
-      return <ListRichTextField textObjects={property.rich_text} />
+      return <ListRichTextField textObjects={property.rich_text as any} />
     case 'url':
       return <ListUrlField url={property.url} />
     case 'date':

@@ -18,9 +18,9 @@ const GalleryHandler = ({ property, options }: GalleryHandlerProps) => {
 
   switch (property.type) {
     case 'title':
-      return <GalleryTitleField textObjects={property.title} />
+      return <GalleryTitleField textObjects={property.title as any} />
     case 'rich_text':
-      return <GalleryRichTextField textObjects={property.rich_text} />
+      return <GalleryRichTextField textObjects={property.rich_text as any} />
     case 'multi_select':
       return <GalleryMultiSelectField multiSelect={property.multi_select} options={options} />
     case 'select':

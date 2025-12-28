@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
-import type { TextRichTextItemResponse } from '../../../../exporter/index.js'
+import type { RichTextItemResponse } from '../../../../exporter/index.js'
 
 export interface TextProps {
-  textObject: TextRichTextItemResponse
+  textObject: RichTextItemResponse
   children?: ReactNode
 }
