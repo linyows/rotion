@@ -127,7 +127,7 @@ for (const t of testsGetHtmlMeta) {
 }
 
 test('getJson returns correct body', async () => {
-  const res = await files.getJson<GHRes>('https://api.github.com/notfound')
+  const res = await files.getJson<GHRes>('https://api.github.com/notfound', vcr)
   assert.equal(res.message, 'Not Found')
 })
 

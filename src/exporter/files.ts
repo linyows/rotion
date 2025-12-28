@@ -238,8 +238,8 @@ export async function getHTTP (reqUrl: string): Promise<string> {
   return body
 }
 
-export async function getJson<T> (reqUrl: string): Promise<T> {
-  const body = await getHTTP(reqUrl)
+export async function getJson<T> (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<T> {
+  const body = httpFunc ? await httpFunc(reqUrl) : await getHTTP(reqUrl)
   return JSON.parse(body) as T
 }
 
