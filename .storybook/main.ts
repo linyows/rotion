@@ -15,7 +15,9 @@ const config: StorybookConfig = {
 
   framework: {
     name: "@storybook/react-vite",
-    options: {},
+    options: {
+      viteConfigPath: '.storybook/vite.config.ts',
+    },
   },
 
   staticDirs: ['../website/public']
