@@ -1,6 +1,6 @@
 {
   "name": "rotion",
-  "version": "2.1.0-rc.2",
+  "version": "2.1.0",
   "license": "MIT",
   "repository": "linyows/rotion",
   "description": "This is react components that uses the notion API to display the notion's database and page.",
@@ -88,7 +88,7 @@
     "@types/imagemin": "^9.0.1",
     "@types/imagemin-webp": "^7.0.3",
     "@types/katex": "^0.16.7",
-    "@types/node": "^24.10.1",
+    "@types/node": "^25.0.3",
     "@types/prismjs": "^1.26.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
