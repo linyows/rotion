@@ -254,7 +254,7 @@ test('getVideoHtml returns html', async () => {
       },
     },
   } as unknown as VideoBlockObjectResponseEx
-  const html = await files.getVideoHtml(block)
+  const html = await files.getVideoHtml(block, vcr)
   assert.match(html, /<iframe/)
 })
 
@@ -316,7 +316,7 @@ for (const t of testsEmbedHtml) {
   const [url, expect] = t
   test(`getEmbedHtml returns html: ${url}`, async () => {
     const block = { embed: { url: url } } as unknown as EmbedBlockObjectResponseEx
-    const html = await files.getEmbedHtml(block)
+    const html = await files.getEmbedHtml(block, vcr)
     assert.match(html, expect)
   })
 }

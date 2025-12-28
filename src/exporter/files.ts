@@ -658,7 +658,7 @@ export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) =>
   return { title: '', desc: '', image: '', icon: '' }
 }
 
-export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<string> => {
+export const getVideoHtml = async (block: VideoBlockObjectResponseEx, httpFunc?: (reqUrl: string) => Promise<string>): Promise<string> => {
   if (block.video?.type !== 'external') {
     return ''
   }
@@ -671,7 +671,8 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx): Promise<s
   }
   if (reqUrl !== '') {
     try {
-      const json = await getJson<YoutubeOembedResponse | VimeoOembedResponse>(reqUrl)
+      const jsonStr = httpFunc ? await httpFunc(reqUrl) : await getHTTP(reqUrl)
+      const json = JSON.parse(jsonStr) as YoutubeOembedResponse | VimeoOembedResponse
       return json.html
     } catch (e) {
       if (debug) {
@@ -689,7 +690,7 @@ export async function getSlideshareOembedUrl (reqUrl: string, httpFunc?: (reqUrl
   return matched ? matched[1] : ''
 }
 
-export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<string> => {
+export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx, httpFunc?: (reqUrl: string) => Promise<string>): Promise<string> => {
   const { embed } = block
   if (embed === undefined) {
     return ''
@@ -782,7 +783,8 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx): Promise<s
      * https://github.com/nodejs/undici/issues/1412
      */
     try {
-      const json = await getJson<TwitterOembedResponse | SpeakerdeckOembedResponse | TiktokOembedResponse | SlideshareOembedResponse>(oembedUrl)
+      const jsonStr = httpFunc ? await httpFunc(oembedUrl) : await getHTTP(oembedUrl)
+      const json = JSON.parse(jsonStr) as TwitterOembedResponse | SpeakerdeckOembedResponse | TiktokOembedResponse | SlideshareOembedResponse
       return json.html
     } catch (e) {
       if (debug) {
