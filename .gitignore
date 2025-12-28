@@ -42,6 +42,12 @@ public
 # packages
 /packages/**/dist
 
+# build artifacts in src (should only be in dist/)
+/src/**/*.js
+/src/**/*.js.map
+!/src/ui/scripts/*.js
+/src/exporter/**/*.d.ts
+/src/ui/index.css
 
 *storybook.log
 

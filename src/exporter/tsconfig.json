@@ -6,10 +6,10 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "declaration": true,
-    "declarationDir": "dist/exporter",
+    "declarationDir": "../../dist/exporter",
     "sourceMap": true,
-    "rootDir": "src/exporter",
-    "outDir": "dist/exporter",
+    "rootDir": ".",
+    "outDir": "../../dist/exporter",
     "resolveJsonModule": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -18,13 +18,12 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/exporter/**/*"
+    "./**/*"
   ],
   "exclude": [
-    "node_modules",
-    "examples",
-    "dist",
-    "src/ui",
+    "../../node_modules",
+    "../../examples",
+    "../../dist",
     "**/*.test.ts"
   ]
 }
