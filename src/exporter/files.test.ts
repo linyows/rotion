@@ -118,7 +118,17 @@ const testsGetHtmlMeta = [
 for (const t of testsGetHtmlMeta) {
   const [url, title, desc, image, icon] = t
   test(`getHtmlMeta returns title and desc: ${url}`, async () => {
-    const re = await files.getHtmlMeta(url, vcr)
+    // Mock saveImage to avoid actual file downloads and make tests stable
+    const mockSaveImage = async (imageUrl: string, prefix: string) => {
+      if (prefix === 'html-image') {
+        return { path: image }
+      } else if (prefix.startsWith('html-icon')) {
+        return { path: icon }
+      }
+      return { path: '' }
+    }
+
+    const re = await files.getHtmlMeta(url, vcr, mockSaveImage)
     assert.equal(re.title, title)
     assert.equal(re.desc, desc)
     assert.equal(re.image, image)
