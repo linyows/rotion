@@ -1,4 +1,4 @@
-export default function removeDark() {
+function removeDark() {
   return {
     postcssPlugin: 'remove-dark',
     Once(root) {
@@ -12,3 +12,5 @@ export default function removeDark() {
 }
 
 removeDark.postcss = true
+
+module.exports = removeDark
