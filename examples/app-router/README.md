@@ -22,13 +22,13 @@ To test local changes to the Rotion package before publishing:
 3. Install the tarball in this example:
    ```bash
    cd examples/app-router
-   bun remove rotion
-   bun add ../../rotion-*.tgz
+   npm uninstall rotion
+   npm install ../../rotion-*.tgz
    ```
 
 4. Run the development server:
    ```bash
-   bun run dev
+   npm run dev
    ```
 
 This workflow allows you to verify changes to the Rotion package in a real Next.js application before publishing.
