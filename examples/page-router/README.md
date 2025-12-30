@@ -1,6 +1,6 @@
-# Rotion Next.js App Router Example
+# Rotion Next.js Page Router Example
 
-This example demonstrates how to use [Rotion](https://github.com/linyows/rotion) with Next.js App Router for static site generation.
+This example demonstrates how to use [Rotion](https://github.com/linyows/rotion) with Next.js Page Router for static site generation.
 
 ## Development
 
@@ -21,7 +21,7 @@ To test local changes to the Rotion package before publishing:
 
 3. Install the tarball in this example:
    ```bash
-   cd examples/app-router
+   cd examples/page-router
    npm uninstall rotion
    npm install ../../rotion-*.tgz
    ```

@@ -47,7 +47,7 @@
     "ui:clean": "rm -rf dist/ui/*",
     "ui:css:generate": "node src/ui/scripts/generate-css-entry.js",
     "ui:css:build": "postcss src/ui/index.css -o dist/ui/index.css --config src/ui/postcss.config.js",
-    "ui:css:build:without-dark": "postcss src/ui/index.css -o dist/ui/index-without-dark.css --config src/ui/postcss.config.without-dark.js",
+    "ui:css:build:without-dark": "node src/ui/scripts/build-without-dark.cjs",
     "ui:tsc": "tsc -p src/ui/tsconfig.json",
     "ui:fix-output": "node src/ui/scripts/fix-ui-build-output.js",
     "ui:remove-css-imports": "node src/ui/scripts/remove-css-imports.js",
