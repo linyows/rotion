@@ -118,5 +118,9 @@
   "extends": "@tsconfig/node-lts-strictest-esm",
   "overrides": {
     "storybook": "$storybook"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
