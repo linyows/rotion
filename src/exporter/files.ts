@@ -604,7 +604,13 @@ export const findImage = (html: string): string | null => {
 
 const maxDescLength = 400
 
-export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<HtmlMetadata> => {
+export const getHtmlMeta = async (
+  reqUrl: string,
+  httpFunc?: (reqUrl: string) => Promise<string>,
+  saveImageFunc?: (imageUrl: string, prefix: string) => Promise<ImagePathWithSize>
+): Promise<HtmlMetadata> => {
+  const saveImageToUse = saveImageFunc || saveImage
+
   try {
     const resbody = httpFunc ? await httpFunc(reqUrl) : await getHTTP(reqUrl)
     const body = resbody.replace(/\n/g, ' ')
@@ -622,7 +628,7 @@ export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) =>
       ipws = { path: imagePath }
     } else if (imageUrl !== '') {
       try {
-        ipws = await saveImage(imageUrl, 'html-image')
+        ipws = await saveImageToUse(imageUrl, 'html-image')
       } catch (e) {
         if (debug) {
           console.log(`Failed to save html image: ${e}`)
@@ -640,7 +646,7 @@ export const getHtmlMeta = async (reqUrl: string, httpFunc?: (reqUrl: string) =>
       ipws2 = { path: iconPath }
     } else if (iconUrl !== '') {
       try {
-        ipws2 = await saveImage(iconUrl, `html-icon-${atoh(reqUrl)}`)
+        ipws2 = await saveImageToUse(iconUrl, `html-icon-${atoh(reqUrl)}`)
       } catch (e) {
         if (debug) {
           console.log(`Failed to save html icon: ${e}`)
