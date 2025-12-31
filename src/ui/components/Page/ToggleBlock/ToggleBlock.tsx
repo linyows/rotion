@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
-import { RichText } from '../../RichText/index.js'
+import { useState } from 'react'
 import type { ParagraphBlockObjectResponse } from '../../../../exporter/index.js'
+import { RichText } from '../../RichText/index.js'
 import type { ToggleBlockProps } from './ToggleBlock.types'
 import '../../tokens.css'
 import './ToggleBlock.css'
@@ -26,12 +26,12 @@ const ToggleBlock = ({ block }: ToggleBlockProps) => {
   const [open, setOpen] = useState(false)
   const onClick = () => setOpen(!open)
 
-  const text = block.children.results.map((vv, i) => {
+  const text = block.children.results.map((vv, _i) => {
     const v = vv as ParagraphBlockObjectResponse
     return (
       <>
         {v.paragraph.rich_text.map((v, i) => (
-          <RichText textObject={v} key={`richtext-${i}`} />
+          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
         ))}
       </>
     )
@@ -45,10 +45,10 @@ const ToggleBlock = ({ block }: ToggleBlockProps) => {
       <div className="rotion-toggle-text">
         <div>
           {block.toggle.rich_text.map((v, i) => (
-            <RichText textObject={v} key={`richtext-${i}`} />
+            <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
           ))}
         </div>
-        {open ? text : null }
+        {open ? text : null}
       </div>
     </div>
   )

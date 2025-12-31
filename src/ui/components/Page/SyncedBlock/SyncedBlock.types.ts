@@ -1,5 +1,5 @@
-import { SyncedBlockBlockObjectResponseEx } from '../../../../exporter/index.js'
+import type { SyncedBlockBlockObjectResponseEx } from '../../../../exporter/index.js'
 
 export interface SyncedBlockProps {
-  block: SyncedBlockBlockObjectResponseEx,
+  block: SyncedBlockBlockObjectResponseEx
 }

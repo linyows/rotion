@@ -1,7 +1,7 @@
-import type { FetchDatabaseRes } from '../../../exporter/index.js'
 import type { ParsedUrlQueryInput } from 'node:querystring'
+import type { FetchDatabaseRes } from '../../../exporter/index.js'
 import type { Link } from '../types.js'
-import { GalleryPreviewOptions } from './GalleryPreview/GalleryPreview.types'
+import type { GalleryPreviewOptions } from './GalleryPreview/GalleryPreview.types'
 
 export interface GalleryProps {
   keys: string[]

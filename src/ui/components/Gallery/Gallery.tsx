@@ -1,7 +1,6 @@
-import React from 'react'
 import type { PageObjectResponseEx } from '../../../exporter/index.js'
-import GalleryCard from './GalleryCard/GalleryCard.js'
 import type { GalleryProps } from './Gallery.types'
+import GalleryCard from './GalleryCard/GalleryCard.js'
 import '../tokens.css'
 import './Gallery.css'
 

@@ -1,7 +1,7 @@
-import type { JSX } from 'react'
-import type { Link } from '../../types.js'
-import type { BlockObjectResponse } from '../../../../exporter/index.js'
 import type { ParsedUrlQueryInput } from 'node:querystring'
+import type { JSX } from 'react'
+import type { BlockObjectResponse } from '../../../../exporter/index.js'
+import type { Link } from '../../types.js'
 
 export interface ListBlocksProps {
   tag: keyof JSX.IntrinsicElements

@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type {
-  ToDoBlockObjectResponse,
-} from '../../../../exporter/index.js'
+import type { ToDoBlockObjectResponse } from '../../../../exporter/index.js'
 import ToDoBlock from './ToDoBlock.js'
 
 /* TODO BLOCK */
@@ -26,23 +24,25 @@ const block: ToDoBlockObjectResponse = {
   },
   type: 'to_do',
   to_do: {
-    rich_text: [{
-      type: 'text',
-      text: {
-        content: 'Check email for work',
-        link: null,
+    rich_text: [
+      {
+        type: 'text',
+        text: {
+          content: 'Check email for work',
+          link: null,
+        },
+        annotations: {
+          bold: false,
+          italic: false,
+          strikethrough: false,
+          underline: false,
+          code: false,
+          color: 'default',
+        },
+        plain_text: 'Check email for work',
+        href: null,
       },
-      annotations: {
-        bold: false,
-        italic: false,
-        strikethrough: false,
-        underline: false,
-        code: false,
-        color: 'default'
-      },
-      plain_text: 'Check email for work',
-      href: null,
-    }],
+    ],
     color: 'default',
     checked: true,
   },
@@ -67,6 +67,6 @@ const unchecked = structuredClone(block)
 unchecked.to_do.checked = false
 export const UnChecked: Story = {
   args: {
-    block: unchecked
-  }
+    block: unchecked,
+  },
 }

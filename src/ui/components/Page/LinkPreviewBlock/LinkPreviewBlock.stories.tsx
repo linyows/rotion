@@ -131,7 +131,7 @@ export const Slack: Story = {
 const figma = structuredClone(block)
 figma.link_preview.url = 'https://www.figma.com/file/GfHZFRpWGd0QXsRg9igdw8/Google-Material-Design?node-id=0%3A1'
 figma.link_preview.figma = {
-  html: `<iframe width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=${encodeURI(figma.link_preview.url)}" allowfullscreen></iframe>`
+  html: `<iframe width="100%" height="450" src="https://www.figma.com/embed?embed_host=share&url=${encodeURI(figma.link_preview.url)}" allowfullscreen></iframe>`,
 }
 export const Figma: Story = {
   args: {

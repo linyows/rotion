@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import type {
   BlockObjectResponse,
-  TextRichTextItemResponse,
   BulletedListItemBlockObjectResponseEx,
   NumberedListItemBlockObjectResponseEx,
+  TextRichTextItemResponse,
 } from '../../../../exporter/index.js'
 import ListBlocks from './ListBlocks.js'
 
@@ -33,7 +33,7 @@ const baseBlock: unknown = {
   type: '',
   children: {
     object: 'list',
-    results: []
+    results: [],
   },
 }
 
@@ -42,7 +42,7 @@ const richText1: TextRichTextItemResponse = {
   type: 'text',
   text: {
     content: '',
-    link: null
+    link: null,
   },
   annotations: {
     bold: false,
@@ -56,7 +56,7 @@ const richText1: TextRichTextItemResponse = {
   href: null,
 }
 
-function makeBulletedList (v: string) {
+function makeBulletedList(v: string) {
   const bulletedListItem1 = structuredClone(baseBlock) as BulletedListItemBlockObjectResponseEx
   bulletedListItem1.type = 'bulleted_list_item'
   const bulleted = structuredClone(bulletedListItem1)
@@ -65,12 +65,12 @@ function makeBulletedList (v: string) {
   r.plain_text = v
   bulleted.bulleted_list_item = {
     rich_text: [r],
-    color: 'default'
+    color: 'default',
   }
   return bulleted
 }
 
-function makeNumberedList (v: string) {
+function makeNumberedList(v: string) {
   const numberedListItem1 = structuredClone(baseBlock) as NumberedListItemBlockObjectResponseEx
   numberedListItem1.type = 'numbered_list_item'
   const numbered = structuredClone(numberedListItem1)
@@ -79,23 +79,23 @@ function makeNumberedList (v: string) {
   r.plain_text = v
   numbered.numbered_list_item = {
     rich_text: [r],
-    color: 'default'
+    color: 'default',
   }
   return numbered
 }
 
 /* BULLETED LIST */
-const bulletedBlocks: BlockObjectResponse[] = list1.map(v => {
+const bulletedBlocks: BlockObjectResponse[] = list1.map((v) => {
   const bulleted = makeBulletedList(v)
   bulleted.has_children = true
   bulleted.children = {
     object: 'list',
-    results: list2.map(vv => {
+    results: list2.map((vv) => {
       const bulleted = makeBulletedList(vv)
       bulleted.has_children = true
       bulleted.children = {
         object: 'list',
-        results: list3.map(vvv => makeBulletedList(vvv)),
+        results: list3.map((vvv) => makeBulletedList(vvv)),
         type: 'block',
         next_cursor: null,
         has_more: false,
@@ -112,17 +112,17 @@ const bulletedBlocks: BlockObjectResponse[] = list1.map(v => {
 })
 
 /* NUMBERED LIST */
-const numberedBlocks: BlockObjectResponse[] = list1.map(v => {
+const numberedBlocks: BlockObjectResponse[] = list1.map((v) => {
   const numbered = makeNumberedList(v)
   numbered.has_children = true
   numbered.children = {
     object: 'list',
-    results: list2.map(vv => {
+    results: list2.map((vv) => {
       const numbered = makeNumberedList(vv)
       numbered.has_children = true
       numbered.children = {
         object: 'list',
-        results: list3.map(vvv => makeNumberedList(vvv)),
+        results: list3.map((vvv) => makeNumberedList(vvv)),
         type: 'block',
         next_cursor: null,
         has_more: false,
@@ -157,5 +157,5 @@ export const Numbered: Story = {
   args: {
     blocks: numberedBlocks,
     tag: 'ol',
-  }
+  },
 }

@@ -1,14 +1,13 @@
-import React from 'react'
 import type { PageObjectResponseEx } from '../../../exporter/index.js'
-import TableIcon from './TableIcon/TableIcon.js'
 import Column from './Column.js'
 import type { TableProps } from './Table.types'
+import TableIcon from './TableIcon/TableIcon.js'
 import '../tokens.css'
 import './Table.css'
 
 export const Table = ({ keys, db, options }: TableProps) => {
   const propType = (name: string) => {
-    return (db.meta.properties?.[name]) ? db.meta.properties[name].type : `Unknown "${name}"`
+    return db.meta.properties?.[name] ? db.meta.properties[name].type : `Unknown "${name}"`
   }
   const { verticalLines = true } = options || {}
 
@@ -17,12 +16,10 @@ export const Table = ({ keys, db, options }: TableProps) => {
       <div className="rotion-table-inner">
         <div className="rotion-table-header rotion-table-row">
           {keys.map((name, i) => (
-            <div key={`${name}-${i}`} className={`rotion-table-cell rotion-table-column${i}`}>
+            <div key={name} className={`rotion-table-cell rotion-table-column${i}`}>
               <div className="rotion-table-cell-inner">
                 <TableIcon type={propType(name)} className="rotion-table-header-icon" />
-                <div className="rotion-table-header-text">
-                  {name}
-                </div>
+                <div className="rotion-table-header-text">{name}</div>
               </div>
             </div>
           ))}

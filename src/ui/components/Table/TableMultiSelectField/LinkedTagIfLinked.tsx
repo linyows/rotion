@@ -1,5 +1,4 @@
-import React from 'react'
-import { LinkedTagIfLinkedProps } from './LinkedTagIfLinked.types'
+import type { LinkedTagIfLinkedProps } from './LinkedTagIfLinked.types'
 import './LinkedTagIfLinked.css'
 
 const LinkedTagIfLinked = ({ color, pathname, link, query, children }: LinkedTagIfLinkedProps) => {
@@ -10,11 +9,7 @@ const LinkedTagIfLinked = ({ color, pathname, link, query, children }: LinkedTag
   }
 
   if (href === '') {
-    return (
-      <span className={className(color)}>
-        {children}
-      </span>
-    )
+    return <span className={className(color)}>{children}</span>
   }
 
   if (link) {

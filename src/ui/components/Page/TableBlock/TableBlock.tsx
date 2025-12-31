@@ -1,7 +1,8 @@
-import React, { JSX } from 'react'
-import RichText from '../../RichText/RichText.js'
+import type React from 'react'
+import type { JSX } from 'react'
 import type { TableRowBlockObjectResponse } from '../../../../exporter/index.js'
-import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
+import RichText from '../../RichText/RichText.js'
+import type { TableBlockProps, ThTdProps, TrProps } from './TableBlock.types'
 import '../../tokens.css'
 import './TableBlock.css'
 
@@ -9,9 +10,9 @@ const Td = ({ richTexts, key }: ThTdProps) => {
   return (
     <td className="rotion-table-td" key={key}>
       <div className="rotion-table-td-inner">
-        {richTexts.map((r, i) =>
-          <RichText textObject={r} key={`tabletd-${i}`} />
-        )}
+        {richTexts.map((r, i) => (
+          <RichText textObject={r} key={`${r.plain_text || 'empty'}-${i}`} />
+        ))}
       </div>
     </td>
   )
@@ -21,9 +22,9 @@ const TdH = ({ richTexts, key }: ThTdProps) => {
   return (
     <td className="rotion-table-td-header" key={key}>
       <div className="rotion-table-td-header-inner">
-        {richTexts.map((r, i) =>
-          <RichText textObject={r} key={`tabletdh-${i}`} />
-        )}
+        {richTexts.map((r, i) => (
+          <RichText textObject={r} key={`${r.plain_text || 'empty'}-${i}`} />
+        ))}
       </div>
     </td>
   )
@@ -38,8 +39,8 @@ const Tr = ({ children, key }: TrProps) => {
 }
 
 const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
-  if (!block.table || !block.children) {
-    return <></>
+  if (!(block.table && block.children)) {
+    return null
   }
 
   const rows: JSX.Element[] = []
@@ -58,23 +59,21 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
     v.table_row.cells.map((richTexts, ii) => {
       const key = `${v.id}-${i}-${ii}`
       if ((i === 0 && ch) || (ii === 0 && rh)) {
-        columns.push(TdH({ richTexts, key }) || <></>)
+        columns.push(TdH({ richTexts, key }))
       } else {
-        columns.push(Td({ richTexts, key }) || <></>)
+        columns.push(Td({ richTexts, key }))
       }
       return ''
     })
     const key = `${block.id}-${i}`
-    rows.push(Tr({ children: columns, key }) || <></>)
+    rows.push(Tr({ children: columns, key }))
     return ''
   })
 
   return (
     <div className="rotion-table">
       <table className="rotion-table-area">
-        <tbody>
-          {rows}
-        </tbody>
+        <tbody>{rows}</tbody>
       </table>
     </div>
   )

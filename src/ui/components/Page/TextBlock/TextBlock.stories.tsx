@@ -79,7 +79,7 @@ export const Heading1: Story = {
   args: {
     block: heading1,
     tag: 'h1',
-  }
+  },
 }
 
 /* HEADING 2 */
@@ -97,7 +97,7 @@ export const Heading2: Story = {
   args: {
     block: heading2,
     tag: 'h2',
-  }
+  },
 }
 
 /* HEADING 3 */
@@ -115,7 +115,7 @@ export const Heading3: Story = {
   args: {
     block: heading3,
     tag: 'h3',
-  }
+  },
 }
 
 /* PARAGRAPH */
@@ -134,7 +134,7 @@ export const Paragraph: Story = {
   args: {
     block: p,
     tag: 'p',
-  }
+  },
 }
 
 /* BLOCK QUOTE */
@@ -158,7 +158,7 @@ export const BlockQuote: Story = {
   args: {
     block: bq,
     tag: 'blockquote',
-  }
+  },
 }
 
 /* DIVIDER */
@@ -169,5 +169,5 @@ export const Divider: Story = {
   args: {
     block: dv,
     tag: 'hr',
-  }
+  },
 }

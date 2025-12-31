@@ -1,9 +1,8 @@
-import React from 'react'
 import { getLinkPathAndLinkKey, queryToString } from '../../lib.js'
 import type { LinkedBreadcrumbIfLinkedProps } from './LinkedBreadcrumbIfLinked.types'
 import './LinkedBreadcrumbIfLinked.css'
 
-function buildPathname (id: string, name: string, href?: string) {
+function buildPathname(id: string, name: string, href?: string) {
   if (href === '/') {
     return href
   }
@@ -41,11 +40,7 @@ const LinkedBreadcrumbIfLinked = ({ breadcrumb, link, href, query, children }: L
     )
   }
 
-  return (
-    <span className="rotion-breadcrumb-link">
-      {children}
-    </span>
-  )
+  return <span className="rotion-breadcrumb-link">{children}</span>
 }
 
 export default LinkedBreadcrumbIfLinked

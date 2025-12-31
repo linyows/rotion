@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import Caption from '../../RichText/Caption.js'
 import type { EmbedBlockProps, EmbedProps, OembedProps } from './EmbedBlock.types'
 import '../../tokens.css'
@@ -14,9 +14,9 @@ const Instagram = ({ html, caption }: OembedProps) => {
     const script = document.createElement('script')
     script.src = 'https://www.instagram.com/embed.js'
     document.getElementsByClassName(embedClass)[0].appendChild(script)
-    // @ts-ignore
+    // @ts-expect-error
     if (window.instgrm) {
-      // @ts-ignore
+      // @ts-expect-error
       window.instgrm.Embeds.process()
     }
   }, [])
@@ -83,10 +83,12 @@ const Embed = ({ type, html, caption }: EmbedProps) => {
 }
 
 const EmbedBlock = ({ block }: EmbedBlockProps) => {
-  const { embed: { html, caption } } = block
+  const {
+    embed: { html, caption },
+  } = block
   if (html === undefined || html === '') {
     console.log('The html property for this embed block was undefined:', block)
-    return <></>
+    return null
   }
 
   if (html.includes('instagram')) {

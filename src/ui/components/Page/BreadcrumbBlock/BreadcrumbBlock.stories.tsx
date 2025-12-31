@@ -7,17 +7,17 @@ const block: BreadcrumbBlockObjectResponseEx = {
   id: '12345678-1234-1234-1234-1234567890ab',
   parent: {
     type: 'page_id',
-    page_id: '12345678-1234-1234-1234-1234567890ab'
+    page_id: '12345678-1234-1234-1234-1234567890ab',
   },
   created_time: '2024-01-07T01:52:00.000Z',
   last_edited_time: '2024-01-07T01:52:00.000Z',
   created_by: {
     object: 'user',
-    id: '12345678-1234-1234-1234-1234567890ab'
+    id: '12345678-1234-1234-1234-1234567890ab',
   },
   last_edited_by: {
     object: 'user',
-    id: '12345678-1234-1234-1234-1234567890ab'
+    id: '12345678-1234-1234-1234-1234567890ab',
   },
   has_children: false,
   archived: false,
@@ -41,7 +41,7 @@ const block: BreadcrumbBlockObjectResponseEx = {
         src: 'https://www.notion.so/icons/library_blue.svg?mode=light',
         url: 'https://www.notion.so/icons/library_blue.svg?mode=light',
       },
-    }
+    },
   ],
   in_trash: false,
 }
@@ -77,10 +77,10 @@ emoji.list = [
       type: 'emoji',
       emoji: '🏛️',
     },
-  }
+  },
 ]
 export const Emoji: Story = {
   args: {
     block: emoji,
-  }
+  },
 }

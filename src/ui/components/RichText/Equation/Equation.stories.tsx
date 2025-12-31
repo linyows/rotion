@@ -1,6 +1,5 @@
-import React from 'react'
-import type { EquationRichTextItemResponse } from '../../../../exporter/index.js'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { EquationRichTextItemResponse } from '../../../../exporter/index.js'
 import Equation from './Equation.js'
 
 const textObject = {
@@ -41,5 +40,5 @@ sigma.plain_text = 'S=\\sum_{n=1}^\\infty a_n'
 export const Sigma: Story = {
   args: {
     textObject: sigma,
-  }
+  },
 }

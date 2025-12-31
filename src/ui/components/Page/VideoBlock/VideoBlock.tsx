@@ -1,4 +1,3 @@
-import React from 'react'
 import Caption from '../../RichText/Caption.js'
 import type { VideoBlockProps, VideoExternalProps, VideoFileProps } from './VideoBlock.types'
 import '../../tokens.css'
@@ -70,14 +69,14 @@ const VideoBlock = ({ block }: VideoBlockProps) => {
     case 'file':
       if (!video.src) {
         console.log('The video source for this video block was undefined:', block)
-        return <></>
+        return null
       }
       return <File video={video} />
 
     case 'external':
       if (!video.html) {
         console.log('The html for this video block was undefined:', block)
-        return <></>
+        return null
       }
       if (video.html.includes('youtube')) {
         return <Youtube video={video} />
@@ -89,7 +88,7 @@ const VideoBlock = ({ block }: VideoBlockProps) => {
 
     default:
       console.log('The video type is unknown:', block)
-      return <></>
+      return null
   }
 }
 

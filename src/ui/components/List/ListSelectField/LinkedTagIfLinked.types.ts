@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react'
 import type { ParsedUrlQueryInput } from 'node:querystring'
+import type { ReactNode } from 'react'
 import type { Link } from '../../types.js'
 
 export interface LinkedTagIfLinkedProps {

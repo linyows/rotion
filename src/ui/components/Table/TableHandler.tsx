@@ -1,19 +1,18 @@
-import React from 'react'
-import TableTitleField from './TableTitleField/TableTitleField.js'
-import TableDateField from './TableDateField/TableDateField.js'
-import TableRichTextField from './TableRichTextField/TableRichTextField.js'
-import TableMultiSelectField from './TableMultiSelectField/TableMultiSelectField.js'
-import TableSelectField from './TableSelectField/TableSelectField.js'
-import TableUrlField from './TableUrlField/TableUrlField.js'
 import TableCheckboxField from './TableCheckboxField/TableCheckboxField.js'
-import TableNumberField from './TableNumberField/TableNumberField.js'
+import TableDateField from './TableDateField/TableDateField.js'
 import TableFormulaField from './TableFormulaField/TableFormulaField.js'
 import type { TableHandlerProps } from './TableHandler.types'
+import TableMultiSelectField from './TableMultiSelectField/TableMultiSelectField.js'
+import TableNumberField from './TableNumberField/TableNumberField.js'
+import TableRichTextField from './TableRichTextField/TableRichTextField.js'
+import TableSelectField from './TableSelectField/TableSelectField.js'
+import TableTitleField from './TableTitleField/TableTitleField.js'
+import TableUrlField from './TableUrlField/TableUrlField.js'
 
 const TableHandler = ({ property, options }: TableHandlerProps) => {
-  if (!property || !property.type) {
+  if (!property?.type) {
     console.log('property empty in table handler: ', property)
-    return <></>
+    return null
   }
 
   switch (property.type) {
@@ -35,20 +34,9 @@ const TableHandler = ({ property, options }: TableHandlerProps) => {
       return <TableSelectField select={property.select} options={options} />
     case 'formula':
       return <TableFormulaField number={property.formula.number} options={options} />
-    case 'status':
-    case 'email':
-    case 'phone_number':
-    case 'files':
-    case 'created_by':
-    case 'created_time':
-    case 'last_edited_by':
-    case 'last_edited_time':
-    case 'people':
-    case 'relation':
-    case 'rollup':
     default:
       console.log('unsupport database property:', property)
-      return <></>
+      return null
   }
 }
 

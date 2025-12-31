@@ -1,16 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import type {
-  SyncedBlockBlockObjectResponseEx,
+  ListBlockChildrenResponseEx,
   ParagraphBlockObjectResponseEx,
   RichTextItemResponse,
-  ListBlockChildrenResponseEx,
+  SyncedBlockBlockObjectResponseEx,
 } from '../../../../exporter/index.js'
 import SyncedBlock from './SyncedBlock.js'
 
 const richText: RichTextItemResponse = {
   type: 'text',
   text: {
-    content: 'Similar to the Notion UI, there are two versions of a synced_block object: the original block that was created first and doesn\'t yet sync with anything else, and the duplicate block or blocks synced to the original.',
+    content:
+      "Similar to the Notion UI, there are two versions of a synced_block object: the original block that was created first and doesn't yet sync with anything else, and the duplicate block or blocks synced to the original.",
     link: null,
   },
   annotations: {
@@ -19,9 +20,10 @@ const richText: RichTextItemResponse = {
     strikethrough: false,
     underline: false,
     code: false,
-    color: 'default'
+    color: 'default',
   },
-  plain_text: 'Similar to the Notion UI, there are two versions of a synced_block object: the original block that was created first and doesn\'t yet sync with anything else, and the duplicate block or blocks synced to the original.',
+  plain_text:
+    "Similar to the Notion UI, there are two versions of a synced_block object: the original block that was created first and doesn't yet sync with anything else, and the duplicate block or blocks synced to the original.",
   href: null,
 }
 
@@ -81,7 +83,7 @@ const block: SyncedBlockBlockObjectResponseEx = {
     },
   },
   children: {
-    results: [p]
+    results: [p],
   } as ListBlockChildrenResponseEx,
   in_trash: false,
 }

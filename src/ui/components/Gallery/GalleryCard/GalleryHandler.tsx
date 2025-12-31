@@ -1,19 +1,18 @@
-import React from 'react'
-import GalleryTitleField from '../GalleryTitleField/GalleryTitleField.js'
-import GalleryDateField from '../GalleryDateField/GalleryDateField.js'
-import GalleryRichTextField from '../GalleryRichTextField/GalleryRichTextField.js'
-import GalleryMultiSelectField from '../GalleryMultiSelectField/GalleryMultiSelectField.js'
-import GalleryUrlField from '../GalleryUrlField/GalleryUrlField.js'
 import GalleryCheckboxField from '../GalleryCheckboxField/GalleryCheckboxField.js'
-import GalleryNumberField from '../GalleryNumberField/GalleryNumberField.js'
-import GallerySelectField from '../GallerySelectField/GallerySelectField.js'
+import GalleryDateField from '../GalleryDateField/GalleryDateField.js'
 import GalleryFormulaField from '../GalleryFormulaField/GalleryFormulaField.js'
+import GalleryMultiSelectField from '../GalleryMultiSelectField/GalleryMultiSelectField.js'
+import GalleryNumberField from '../GalleryNumberField/GalleryNumberField.js'
+import GalleryRichTextField from '../GalleryRichTextField/GalleryRichTextField.js'
+import GallerySelectField from '../GallerySelectField/GallerySelectField.js'
+import GalleryTitleField from '../GalleryTitleField/GalleryTitleField.js'
+import GalleryUrlField from '../GalleryUrlField/GalleryUrlField.js'
 import type { GalleryHandlerProps } from './GalleryHandler.types'
 
 const GalleryHandler = ({ property, options }: GalleryHandlerProps) => {
-  if (!property || !property.type) {
+  if (!property?.type) {
     console.log('property empty in gallery handler: ', property)
-    return <></>
+    return null
   }
 
   switch (property.type) {
@@ -35,20 +34,9 @@ const GalleryHandler = ({ property, options }: GalleryHandlerProps) => {
       return <GalleryNumberField number={property.number} options={options} />
     case 'formula':
       return <GalleryFormulaField number={property.formula.number} options={options} />
-    case 'status':
-    case 'email':
-    case 'phone_number':
-    case 'files':
-    case 'created_by':
-    case 'created_time':
-    case 'last_edited_by':
-    case 'last_edited_time':
-    case 'people':
-    case 'relation':
-    case 'rollup':
     default:
       console.log('unsupport database property:', property)
-      return <></>
+      return null
   }
 }
 

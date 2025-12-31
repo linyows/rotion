@@ -1,16 +1,17 @@
-import React from 'react'
 import { RichText } from '../../RichText/index.js'
 import type { TableRichTextFieldProps } from './TableRichTextField.types'
 import './TableRichTextField.css'
 
 const TableRichTextField = ({ textObjects }: TableRichTextFieldProps) => {
   if (!textObjects) {
-    return <></>
+    return null
   }
 
   return (
     <div className="rotion-table-richtext">
-      {textObjects.map((t, i) => <RichText key={`richtext-${i}`} textObject={t} />)}
+      {textObjects.map((t, i) => (
+        <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
+      ))}
     </div>
   )
 }

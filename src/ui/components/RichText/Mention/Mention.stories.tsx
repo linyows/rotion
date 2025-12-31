@@ -1,7 +1,7 @@
-import type { MentionRichTextItemResponseEx } from '../../../../exporter/index.js'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import Mention from './Mention.js'
 import { cdate } from 'cdate'
+import type { MentionRichTextItemResponseEx } from '../../../../exporter/index.js'
+import Mention from './Mention.js'
 
 const textObject: MentionRichTextItemResponseEx = {
   type: 'mention',
@@ -41,12 +41,12 @@ const anonymousMention = structuredClone(textObject) as MentionRichTextItemRespo
 export const AnnonymousMention: Story = {
   args: {
     textObject: anonymousMention,
-  }
+  },
 }
 
 /* USER MENTION */
 const userMention = structuredClone(textObject) as MentionRichTextItemResponseEx
-// @ts-ignore
+// @ts-expect-error
 userMention.mention.user = {
   id: '12345678-1234-1234-1234-1234567890ab',
   object: 'user',
@@ -58,7 +58,7 @@ userMention.mention.user = {
 export const UserMention: Story = {
   args: {
     textObject: userMention,
-  }
+  },
 }
 
 /* GITHUB PREVIEW MENTION */
@@ -73,7 +73,7 @@ githubPreviewMention.href = github
 export const GithubLinkPreviewMention: Story = {
   args: {
     textObject: githubPreviewMention,
-  }
+  },
 }
 
 /* SLACK PREVIEW MENTION */
@@ -88,7 +88,7 @@ slackPreviewMention.href = slack
 export const SlackLinkPreviewMention: Story = {
   args: {
     textObject: slackPreviewMention,
-  }
+  },
 }
 
 /* FIGMA PREVIEW MENTION */
@@ -103,7 +103,7 @@ figmaPreviewMention.href = figma
 export const FigmaLinkPreviewMention: Story = {
   args: {
     textObject: figmaPreviewMention,
-  }
+  },
 }
 
 /* TEMPLATE MENTION
@@ -135,7 +135,7 @@ startDateMention.mention = {
 export const StartDateMention: Story = {
   args: {
     textObject: startDateMention,
-  }
+  },
 }
 
 /* PERIOD DATE MENTION */
@@ -151,7 +151,7 @@ periodDateMention.mention = {
 export const PeriodDateMention: Story = {
   args: {
     textObject: periodDateMention,
-  }
+  },
 }
 
 /* YESTERDAY MENTION */
@@ -168,7 +168,7 @@ yesterdayMention.mention = {
 export const YesterdayMention: Story = {
   args: {
     textObject: yesterdayMention,
-  }
+  },
 }
 
 /* PAGE MENTION */
@@ -178,13 +178,13 @@ pageMention.mention = {
   page: {
     id: '12345678-1234-1234-1234-1234-1234567890ab',
     name: 'Child Page',
-    icon: { type: 'emoji', emoji: '✌️' }
+    icon: { type: 'emoji', emoji: '✌️' },
   },
 }
 export const PageMention: Story = {
   args: {
     textObject: pageMention,
-  }
+  },
 }
 
 /* DATABSE MENTION */
@@ -204,5 +204,5 @@ databaseMention.mention = {
 export const DatabaseMention: Story = {
   args: {
     textObject: databaseMention,
-  }
+  },
 }

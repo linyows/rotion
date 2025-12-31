@@ -1,5 +1,5 @@
-import React from 'react'
-import type { TextLinkProps, LinkIfLinkedProps } from './LinkIfLinked.types'
+import type React from 'react'
+import type { LinkIfLinkedProps, TextLinkProps } from './LinkIfLinked.types'
 import '../../tokens.css'
 import './LinkIfLinked.css'
 
@@ -12,14 +12,11 @@ export const TextLink = ({ textObject, children }: TextLinkProps) => {
 }
 
 const TextNoLink = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <>
-      {children}
-    </>
-  )
+  return <>{children}</>
 }
 
 // Conditional Wrapper
-const LinkIfLinked = ({ condition, textObject, children }: LinkIfLinkedProps) => condition ? TextLink({ textObject, children }) : TextNoLink({ children })
+const LinkIfLinked = ({ condition, textObject, children }: LinkIfLinkedProps) =>
+  condition ? TextLink({ textObject, children }) : TextNoLink({ children })
 
 export default LinkIfLinked

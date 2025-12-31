@@ -64,7 +64,8 @@ export const Instagram: Story = {}
 
 const x = structuredClone(block)
 x.embed.url = 'https://twitter.com/jack/status/1247616214769086465'
-x.embed.html = '<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I’m moving $1B of my Square equity (~28% of my wealth) to <a href="https://twitter.com/hashtag/startsmall?src=hash&amp;ref_src=twsrc%5Etfw">#startsmall</a> LLC to fund global COVID-19 relief. After we disarm this pandemic, the focus will shift to girl’s health and education, and UBI. It will operate transparently, all flows tracked here: <a href="https://t.co/hVkUczDQmz">https://t.co/hVkUczDQmz</a></p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/1247616214769086465?ref_src=twsrc%5Etfw">April 7, 2020</a></blockquote>\n<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>\n\n'
+x.embed.html =
+  '<blockquote class="twitter-tweet"><p lang="en" dir="ltr">I’m moving $1B of my Square equity (~28% of my wealth) to <a href="https://twitter.com/hashtag/startsmall?src=hash&amp;ref_src=twsrc%5Etfw">#startsmall</a> LLC to fund global COVID-19 relief. After we disarm this pandemic, the focus will shift to girl’s health and education, and UBI. It will operate transparently, all flows tracked here: <a href="https://t.co/hVkUczDQmz">https://t.co/hVkUczDQmz</a></p>&mdash; jack (@jack) <a href="https://twitter.com/jack/status/1247616214769086465?ref_src=twsrc%5Etfw">April 7, 2020</a></blockquote>\n<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>\n\n'
 export const Twitter: Story = {
   args: {
     block: x,
@@ -73,7 +74,8 @@ export const Twitter: Story = {
 
 const sd = structuredClone(block)
 sd.embed.url = 'https://speakerdeck.com/lara/designing-for-performance'
-sd.embed.html = '<iframe id="talk_frame_78036" class="speakerdeck-iframe" src="//speakerdeck.com/player/64c73790385101315ae85eae0478e863" width="710" height="399" style="aspect-ratio:710/399; border:0; padding:0; margin:0; background:transparent;" frameborder="0" allowtransparency="true" allowfullscreen="allowfullscreen"></iframe>\n'
+sd.embed.html =
+  '<iframe id="talk_frame_78036" class="speakerdeck-iframe" src="//speakerdeck.com/player/64c73790385101315ae85eae0478e863" width="710" height="399" style="aspect-ratio:710/399; border:0; padding:0; margin:0; background:transparent;" frameborder="0" allowtransparency="true" allowfullscreen="allowfullscreen"></iframe>\n'
 export const Speakerdeck: Story = {
   args: {
     block: sd,
@@ -81,8 +83,10 @@ export const Speakerdeck: Story = {
 }
 
 const ss = structuredClone(block)
-ss.embed.url = 'https://www.slideshare.net/slideshow/storytelling-for-the-web-integrate-storytelling-in-your-design-process/269527754'
-ss.embed.html = '<iframe src="https://www.slideshare.net/slideshow/embed_code/key/s0jgpCg83mwgH?startSlide=1" width="100%" height="450" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:0;" allowfullscreen></iframe>'
+ss.embed.url =
+  'https://www.slideshare.net/slideshow/storytelling-for-the-web-integrate-storytelling-in-your-design-process/269527754'
+ss.embed.html =
+  '<iframe src="https://www.slideshare.net/slideshow/embed_code/key/s0jgpCg83mwgH?startSlide=1" width="100%" height="450" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:0;" allowfullscreen></iframe>'
 export const Slideshare: Story = {
   args: {
     block: ss,
@@ -91,14 +95,15 @@ export const Slideshare: Story = {
 
 const am = structuredClone(block)
 am.embed.url = 'https://music.apple.com/jp/album/the-lo-fis/1540065822'
-am.embed.html = '<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/jp/album/the-lo-fis/1540065822"></iframe>'
+am.embed.html =
+  '<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/jp/album/the-lo-fis/1540065822"></iframe>'
 export const AppleMusic: Story = {
   args: {
     block: am,
   },
 }
 
-// @ts-ignore
+// @ts-expect-error
 const googleMapKey = import.meta.env.STORYBOOK_GOOGLEMAP_KEY
 const latitude = '33.5838302'
 const longitude = '130.3657052'
@@ -113,8 +118,10 @@ export const GoogleMaps: Story = {
 }
 
 const tiktok = structuredClone(block)
-tiktok.embed.url = 'https://www.tiktok.com/@theweeknd/video/7206051055564508462?is_from_webapp=1&sender_device=pc&web_id=7365681356522685970'
-tiktok.embed.html = '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@theweeknd/video/7206051055564508462" data-video-id="7206051055564508462" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@theweeknd" href="https://www.tiktok.com/@theweeknd?refer=embed">@theweeknd</a> 🌹 @hbo @hbomax <a title="dieforyou" target="_blank" href="https://www.tiktok.com/tag/dieforyou?refer=embed">#dieforyou</a> <a target="_blank" title="♬ Die For You - The Weeknd" href="https://www.tiktok.com/music/Die-For-You-6928589404693628929?refer=embed">♬ Die For You - The Weeknd</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>'
+tiktok.embed.url =
+  'https://www.tiktok.com/@theweeknd/video/7206051055564508462?is_from_webapp=1&sender_device=pc&web_id=7365681356522685970'
+tiktok.embed.html =
+  '<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@theweeknd/video/7206051055564508462" data-video-id="7206051055564508462" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@theweeknd" href="https://www.tiktok.com/@theweeknd?refer=embed">@theweeknd</a> 🌹 @hbo @hbomax <a title="dieforyou" target="_blank" href="https://www.tiktok.com/tag/dieforyou?refer=embed">#dieforyou</a> <a target="_blank" title="♬ Die For You - The Weeknd" href="https://www.tiktok.com/music/Die-For-You-6928589404693628929?refer=embed">♬ Die For You - The Weeknd</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>'
 export const Tiktok: Story = {
   args: {
     block: tiktok,

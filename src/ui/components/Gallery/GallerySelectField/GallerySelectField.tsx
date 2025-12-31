@@ -1,4 +1,3 @@
-import React from 'react'
 import type { GallerySelectFieldProps } from './GallerySelectField.types'
 import LinkedTagIfLinked from './LinkedTag.js'
 import './GallerySelectField.css'
@@ -9,7 +8,11 @@ const GalleryMultiSelectField = ({ select, options }: GallerySelectFieldProps) =
   return (
     <div className="rotion-gallery-select">
       <span className={`rotion-gallery-select-wrapper rotion-gallery-select-${color}`}>
-        <LinkedTagIfLinked pathname={pathname ? `${pathname}/${encodeURIComponent(name)}` : undefined} link={link} query={query}>
+        <LinkedTagIfLinked
+          pathname={pathname ? `${pathname}/${encodeURIComponent(name)}` : undefined}
+          link={link}
+          query={query}
+        >
           {name}
         </LinkedTagIfLinked>
       </span>

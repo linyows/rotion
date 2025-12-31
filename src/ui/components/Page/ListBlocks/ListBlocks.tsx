@@ -1,4 +1,3 @@
-import React from 'react'
 import PageHandler from '../PageHandler.js'
 import type { ListBlocksProps } from './ListBlocks.types'
 import '../../tokens.css'
@@ -9,7 +8,7 @@ export const ListBlocks = ({ tag, blocks, href, link, query }: ListBlocksProps) 
   // This is calling BulletedListBlock or NumberedListBlock with PageHandler
   return (
     <CustomTag className={`rotion-listblocks rotion-list-${tag}`} key={tag + blocks[0].id}>
-      {blocks.map(block => PageHandler({ block, href, link, query }))}
+      {blocks.map((block) => PageHandler({ block, href, link, query }))}
     </CustomTag>
   )
 }

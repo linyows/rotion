@@ -1,3 +1,3 @@
 export interface ListUrlFieldProps {
-  url: string|null
+  url: string | null
 }

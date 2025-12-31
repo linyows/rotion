@@ -1,6 +1,4 @@
-import React, { JSX } from 'react'
-import type { HandlerProps } from './PageHandler.types'
-
+import type { JSX } from 'react'
 import BookmarkBlock from './BookmarkBlock/BookmarkBlock.js'
 import BreadcrumbBlock from './BreadcrumbBlock/BreadcrumbBlock.js'
 import BulletedListBlocks from './BulletedListBlock/BulletedListBlock.js'
@@ -12,14 +10,15 @@ import ColumnListBlock from './ColumnListBlock/ColumnListBlock.js'
 import EmbedBlock from './EmbedBlock/EmbedBlock.js'
 import EquationBlock from './EquationBlock/EquationBlock.js'
 import FileBlock from './FileBlock/FileBlock.js'
-import TextBlock from './TextBlock/TextBlock.js'
 import ImageBlock from './ImageBlock/ImageBlock.js'
 import LinkPreviewBlock from './LinkPreviewBlock/LinkPreviewBlock.js'
 import NumberedListBlocks from './NumberedListBlock/NumberedListBlock.js'
+import type { HandlerProps } from './PageHandler.types'
 import PdfBlock from './PdfBlock/PdfBlock.js'
 import SyncedBlock from './SyncedBlock/SyncedBlock.js'
 import TableBlock from './TableBlock/TableBlock.js'
 import TableOfContentsBlock from './TableOfContentsBlock/TableOfContentsBlock.js'
+import TextBlock from './TextBlock/TextBlock.js'
 import ToDoBlock from './ToDoBlock/ToDoBlock.js'
 import ToggleBlock from './ToggleBlock/ToggleBlock.js'
 import VideoBlock from './VideoBlock/VideoBlock.js'
@@ -92,7 +91,7 @@ export const PageHandler = ({ block, href, link, query, breadcrumb_hrefs }: Hand
       return <VideoBlock block={block} key={block.id} />
     default:
       console.log(`unknown component: ${block.type}`, block)
-      return <></>
+      return null
   }
 }
 

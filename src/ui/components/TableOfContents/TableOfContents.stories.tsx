@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { ListBlockChildrenResponseEx } from '../../../exporter/index.js'
-import TableOfContents from './TableOfContents.js'
 import response from '../../fixtures/fetch_blocks_response.json'
+import TableOfContents from './TableOfContents.js'
+
 const blocks = response as unknown as ListBlockChildrenResponseEx
 
 const meta = {

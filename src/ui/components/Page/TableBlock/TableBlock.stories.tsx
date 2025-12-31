@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { TableBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter/index.js'
+import type { RichTextItemResponse, TableBlockObjectResponseEx } from '../../../../exporter/index.js'
 import TableBlock from './TableBlock.js'
 
 /* RICH TEXT */
@@ -75,7 +75,7 @@ const block: TableBlockObjectResponseEx = {
         archived: false,
         type: 'table_row',
         table_row: {
-          cells: ['Header1', 'Header2', 'Header3'].map(v => {
+          cells: ['Header1', 'Header2', 'Header3'].map((v) => {
             const r = structuredClone(richText)
             r.text.content = v
             r.plain_text = v
@@ -105,7 +105,7 @@ const block: TableBlockObjectResponseEx = {
         archived: false,
         type: 'table_row',
         table_row: {
-          cells: ['Line1-1', 'Line1-2', 'Line1-3'].map(v => {
+          cells: ['Line1-1', 'Line1-2', 'Line1-3'].map((v) => {
             const r = structuredClone(richText)
             r.text.content = v
             r.plain_text = v
@@ -117,9 +117,9 @@ const block: TableBlockObjectResponseEx = {
               return [r, r2]
             }
             if (v === 'Line1-3') {
-              r.plain_text = v + v + v + v + ' '
+              r.plain_text = `${v + v + v + v} `
               const r2 = structuredClone(richText)
-              r2.plain_text = v + v + v + v + ' '
+              r2.plain_text = `${v + v + v + v} `
               r2.annotations.color = 'blue_background'
               return [r, r2, r]
             }
@@ -149,7 +149,7 @@ const block: TableBlockObjectResponseEx = {
         archived: false,
         type: 'table_row',
         table_row: {
-          cells: ['Line2-1', 'Line2-2', 'Header2-3'].map(v => {
+          cells: ['Line2-1', 'Line2-2', 'Header2-3'].map((v) => {
             const r = structuredClone(richText)
             r.text.content = v
             r.plain_text = v

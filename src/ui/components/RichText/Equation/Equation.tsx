@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react'
 import Katex from 'katex'
+import { useMemo } from 'react'
 import type { EquationProps } from './Equation.types'
 import '../../tokens.css'
 import './Equation.css'

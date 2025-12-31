@@ -1,4 +1,3 @@
-import React from 'react'
 import { RichText } from '../../RichText/index.js'
 import type { ImageBlockProps } from './ImageBlock.types'
 import '../../tokens.css'
@@ -6,7 +5,7 @@ import './ImageBlock.css'
 
 export const ImageBlock = ({ block }: ImageBlockProps) => {
   let cname = 'rotion-image-ratio-unknown'
-  if (block.image && block.image.width && block.image.height) {
+  if (block.image?.width && block.image.height) {
     const { width, height } = block.image
     cname = width > height ? 'rotion-image-ratio-landscape' : 'rotion-image-ratio-portrait'
   }
@@ -18,7 +17,7 @@ export const ImageBlock = ({ block }: ImageBlockProps) => {
       </div>
       <div className="rotion-image-caption">
         {block.image.caption.map((v, i) => (
-          <RichText textObject={v} key={`richtext-${i}`} />
+          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
         ))}
       </div>
     </div>

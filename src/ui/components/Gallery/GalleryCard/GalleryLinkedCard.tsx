@@ -1,4 +1,3 @@
-import React from 'react'
 import type { Link } from '../../types.js'
 import type { GalleryLinkedCardProps } from './GalleryLinkedCard.types'
 
@@ -25,11 +24,7 @@ const GalleryLinkedCard = ({ children, link, query, pathname }: GalleryLinkedCar
     )
   }
 
-  return (
-    <div className="rotion-gallery-card">
-      {children}
-    </div>
-  )
+  return <div className="rotion-gallery-card">{children}</div>
 }
 
 export default GalleryLinkedCard

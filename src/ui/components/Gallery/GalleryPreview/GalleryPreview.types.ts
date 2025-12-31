@@ -8,9 +8,11 @@ export interface GalleryPreviewOptions {
   preview?: 'cover' | 'content'
   size?: 'small' | 'medium' | 'large'
   fit?: boolean
-  height?: {
-    small: string
-    medium: string
-    large: string
-  } | string
+  height?:
+    | {
+        small: string
+        medium: string
+        large: string
+      }
+    | string
 }

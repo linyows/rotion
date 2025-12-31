@@ -1,14 +1,9 @@
-import React from 'react'
 import type { LinkedTagIfLinkedProps } from './LinkedTag.types'
 import './LinkedTag.css'
 
 const LinkedTagIfLinked = ({ pathname, link, query, children }: LinkedTagIfLinkedProps) => {
   if (!pathname) {
-    return (
-      <span className="rotion-gallery-select-tag">
-        {children}
-      </span>
-    )
+    return <span className="rotion-gallery-select-tag">{children}</span>
   }
 
   if (link) {

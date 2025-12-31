@@ -1,6 +1,5 @@
-import React from 'react'
-import type { TextRichTextItemResponse } from '../../../../exporter/index.js'
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { TextRichTextItemResponse } from '../../../../exporter/index.js'
 import LinkIfLinked from './LinkIfLinked.js'
 
 const textObject = {
@@ -46,5 +45,5 @@ export const NoLinked: Story = {
   args: {
     condition: false,
     textObject: noLinked,
-  }
+  },
 }

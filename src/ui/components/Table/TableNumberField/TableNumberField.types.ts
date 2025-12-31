@@ -1,4 +1,4 @@
-import { TablePropertyOptions } from '../TableHandler.types'
+import type { TablePropertyOptions } from '../TableHandler.types'
 
 export interface TableNumberFieldProps {
   number: number | null
