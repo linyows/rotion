@@ -26,7 +26,7 @@ const FileBlock = ({ block }: FileBlockProps) => {
       {file.caption.length > 0 && (
         <div className="rotion-file-caption">
           {file.caption.map((v: RichTextItemResponse, i) => (
-            <RichText textObject={v} key={`richtext-${i}`} />
+            <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
           ))}
         </div>
       )}

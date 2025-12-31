@@ -16,7 +16,7 @@ export const Table = ({ keys, db, options }: TableProps) => {
       <div className="rotion-table-inner">
         <div className="rotion-table-header rotion-table-row">
           {keys.map((name, i) => (
-            <div key={`${name}-${i}`} className={`rotion-table-cell rotion-table-column${i}`}>
+            <div key={name} className={`rotion-table-cell rotion-table-column${i}`}>
               <div className="rotion-table-cell-inner">
                 <TableIcon type={propType(name)} className="rotion-table-header-icon" />
                 <div className="rotion-table-header-text">{name}</div>

@@ -31,7 +31,7 @@ const ToggleBlock = ({ block }: ToggleBlockProps) => {
     return (
       <>
         {v.paragraph.rich_text.map((v, i) => (
-          <RichText textObject={v} key={`richtext-${i}`} />
+          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
         ))}
       </>
     )
@@ -45,7 +45,7 @@ const ToggleBlock = ({ block }: ToggleBlockProps) => {
       <div className="rotion-toggle-text">
         <div>
           {block.toggle.rich_text.map((v, i) => (
-            <RichText textObject={v} key={`richtext-${i}`} />
+            <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
           ))}
         </div>
         {open ? text : null}

@@ -20,8 +20,7 @@ const CodeBlock = ({ block }: CodeBlockProps) => {
   })
 
   const captions = block.code?.caption.map((v, i) => {
-    const captionText = v.type === 'text' ? v.text.content.substring(0, 30) : 'empty'
-    return <RichText textObject={v as RichTextItemResponseEx} key={`${captionText}-${i}`} />
+    return <RichText textObject={v as RichTextItemResponseEx} key={`${v.plain_text || 'empty'}-${i}`} />
   })
 
   return (

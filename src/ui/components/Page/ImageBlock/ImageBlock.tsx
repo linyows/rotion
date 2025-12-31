@@ -17,7 +17,7 @@ export const ImageBlock = ({ block }: ImageBlockProps) => {
       </div>
       <div className="rotion-image-caption">
         {block.image.caption.map((v, i) => (
-          <RichText textObject={v} key={`richtext-${i}`} />
+          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
         ))}
       </div>
     </div>

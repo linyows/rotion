@@ -15,7 +15,7 @@ const BulletedListBlock = ({ block, href, link, query }: BulletedListBlockProps)
     return (
       <CustomTag key={block.id} className="rotion-bulleted-list">
         {text.map((v, i) => (
-          <RichText textObject={v} key={`richtext-${i}`} />
+          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
         ))}
         <Page blocks={block.children} href={href} link={link} query={query} />
       </CustomTag>
@@ -25,7 +25,7 @@ const BulletedListBlock = ({ block, href, link, query }: BulletedListBlockProps)
   return (
     <CustomTag className="rotion-bulleted-list">
       {text.map((v, i) => (
-        <RichText textObject={v} key={`richtext-${i}`} />
+        <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
       ))}
     </CustomTag>
   )

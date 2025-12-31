@@ -33,7 +33,7 @@ const TextBlock = ({ tag, block }: TextBlockProps) => {
   return (
     <CustomTag className={css.join(' ')} {...(isHeading && { id: GenHtmlId(block.id) })}>
       {richText.map((v, i) => (
-        <RichText textObject={v} key={`richtext-${i}`} />
+        <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
       ))}
     </CustomTag>
   )

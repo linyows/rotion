@@ -31,7 +31,7 @@ const BookmarkBlock = ({ block }: BookmarkBlockProps) => {
       </div>
       <div className="rotion-bookmark-caption">
         {block.bookmark.caption.map((v, i) => (
-          <RichText textObject={v} key={`richtext-${i}`} />
+          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
         ))}
       </div>
     </div>

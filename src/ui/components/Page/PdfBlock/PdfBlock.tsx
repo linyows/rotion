@@ -52,7 +52,7 @@ const PdfBlock = ({ block }: PdfBlockProps) => {
       {caption.length > 0 && (
         <div className="rotion-pdf-caption">
           {caption.map((v: RichTextItemResponse, i) => (
-            <RichText textObject={v} key={`richtext-${i}`} />
+            <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
           ))}
         </div>
       )}

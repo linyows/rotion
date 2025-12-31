@@ -31,7 +31,7 @@ const CalloutBlock = ({ block, href, link, query }: CalloutBlockProps) => {
       </div>
       <div className="rotion-callout-text">
         {rich_text.map((v, i) => (
-          <RichText textObject={v} key={`richtext-${i}`} />
+          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
         ))}
         {block.has_children && block.children !== undefined && (
           <Page blocks={block.children} href={href} link={link} query={query} />
