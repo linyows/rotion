@@ -4,7 +4,7 @@ import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist'
 import type { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api'
 import { useEffect, useRef, useState } from 'react'
 
-function isFunction(value: any): value is Function {
+function isFunction(value: any): value is (...args: any[]) => any {
   return typeof value === 'function'
 }
 

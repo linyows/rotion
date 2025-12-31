@@ -59,14 +59,14 @@ const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
     v.table_row.cells.map((richTexts, ii) => {
       const key = `${v.id}-${i}-${ii}`
       if ((i === 0 && ch) || (ii === 0 && rh)) {
-        columns.push(TdH({ richTexts, key }) || <></>)
+        columns.push(TdH({ richTexts, key }))
       } else {
-        columns.push(Td({ richTexts, key }) || <></>)
+        columns.push(Td({ richTexts, key }))
       }
       return ''
     })
     const key = `${block.id}-${i}`
-    rows.push(Tr({ children: columns, key }) || <></>)
+    rows.push(Tr({ children: columns, key }))
     return ''
   })
 
