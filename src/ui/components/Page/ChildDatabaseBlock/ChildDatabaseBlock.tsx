@@ -1,6 +1,5 @@
-import React from 'react'
-import type { ChildDatabaseBlockProps, ChildDatabaseLinkProps } from './ChildDatabaseBlock.types'
 import { getLinkPathAndLinkKey, queryToString } from '../../lib.js'
+import type { ChildDatabaseBlockProps, ChildDatabaseLinkProps } from './ChildDatabaseBlock.types'
 import '../../tokens.css'
 import './ChildDatabaseBlock.css'
 
@@ -10,11 +9,7 @@ const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabase
   const file = slugKey === 'id' ? block.database.id : encodeURIComponent(title.toLowerCase()).replace(/%20/g, '-')
 
   if (!href) {
-    return (
-      <div className="rotion-childdb-link">
-        {children}
-      </div>
-    )
+    return <div className="rotion-childdb-link">{children}</div>
   }
   if (link) {
     const Link = link
@@ -37,7 +32,7 @@ const ChildDatabaseLink = ({ block, href, link, query, children }: ChildDatabase
 
 const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProps) => {
   if (block.database === undefined) {
-    return <></>
+    return null
   }
 
   const title = block.child_database.title
@@ -45,13 +40,9 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
     return (
       <div className="rotion-childdb">
         <ChildDatabaseLink block={block} href={href} link={link} query={query}>
-          <span className="rotion-childdb-icon">
-            {'️-'}
-          </span>
+          <span className="rotion-childdb-icon">{'️-'}</span>
           <div>
-            <span className="rotion-childdb-title">
-              {title}
-            </span>
+            <span className="rotion-childdb-title">{title}</span>
           </div>
         </ChildDatabaseLink>
       </div>
@@ -62,13 +53,9 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
     return (
       <div className="rotion-childdb">
         <ChildDatabaseLink block={block} href={href} link={link} query={query}>
-          <span className="rotion-childdb-emoji">
-            {block.database.icon.emoji}
-          </span>
+          <span className="rotion-childdb-emoji">{block.database.icon.emoji}</span>
           <div>
-            <span className="rotion-childdb-title">
-              {title}
-            </span>
+            <span className="rotion-childdb-title">{title}</span>
           </div>
         </ChildDatabaseLink>
       </div>
@@ -83,9 +70,7 @@ const ChildDatabaseBlock = ({ block, href, link, query }: ChildDatabaseBlockProp
           <img className="rotion-childdb-icon-img" src={block.database.icon.src} alt="Icon" />
         </span>
         <div>
-          <span className="rotion-childdb-title">
-            {title}
-          </span>
+          <span className="rotion-childdb-title">{title}</span>
         </div>
       </ChildDatabaseLink>
     </div>

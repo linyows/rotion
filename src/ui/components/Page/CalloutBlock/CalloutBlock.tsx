@@ -1,4 +1,3 @@
-import React from 'react'
 import { RichText } from '../../RichText/index.js'
 import Page from '../Page.js'
 import type { CalloutBlockProps } from './CalloutBlock.types'
@@ -7,7 +6,7 @@ import './CalloutBlock.css'
 
 const Icon = ({ block }: CalloutBlockProps) => {
   if (!block.callout.icon) {
-    return <></>
+    return null
   }
 
   const { type } = block.callout.icon
@@ -18,7 +17,7 @@ const Icon = ({ block }: CalloutBlockProps) => {
     case 'file':
       return <img className="rotion-callout-img" src={block.callout.icon.src} alt="Icon" />
     default:
-      return <></>
+      return null
   }
 }
 
@@ -34,7 +33,9 @@ const CalloutBlock = ({ block, href, link, query }: CalloutBlockProps) => {
         {rich_text.map((v, i) => (
           <RichText textObject={v} key={`richtext-${i}`} />
         ))}
-        {block.has_children && block.children !== undefined && <Page blocks={block.children} href={href} link={link} query={query} />}
+        {block.has_children && block.children !== undefined && (
+          <Page blocks={block.children} href={href} link={link} query={query} />
+        )}
       </div>
     </div>
   )

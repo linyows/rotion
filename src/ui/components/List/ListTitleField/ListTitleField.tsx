@@ -1,6 +1,5 @@
-import React from 'react'
-import type { ListTitleFieldProps } from './ListTitleField.types'
 import LinkedTitle from './LinkedTitle.js'
+import type { ListTitleFieldProps } from './ListTitleField.types'
 import './ListTitleField.css'
 
 const ListTitleField = ({ textObjects, options }: ListTitleFieldProps) => {

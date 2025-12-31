@@ -1,13 +1,12 @@
-import React from 'react'
 import type { BlockObjectResponse } from '../../../../exporter/index.js'
-import type { SyncedBlockProps } from './SyncedBlock.types'
 import PageHandler from '../PageHandler.js'
+import type { SyncedBlockProps } from './SyncedBlock.types'
 import '../../tokens.css'
 import './SyncedBlock.css'
 
 const SyncedBlock = ({ block }: SyncedBlockProps) => {
   if (!block.has_children || block.children === undefined) {
-    return <></>
+    return null
   }
 
   return (

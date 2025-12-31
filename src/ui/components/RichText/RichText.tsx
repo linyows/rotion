@@ -1,13 +1,12 @@
-import React from 'react'
-import Mention from './Mention/Mention.js'
-import Text from './Text/Text.js'
-import Equation from './Equation/Equation.js'
-import type { RichTextProps } from './RichText.types'
 import type { MentionRichTextItemResponseEx } from '../../../exporter/index.js'
+import Equation from './Equation/Equation.js'
+import Mention from './Mention/Mention.js'
+import type { RichTextProps } from './RichText.types'
+import Text from './Text/Text.js'
 
 const RichText = ({ textObject }: RichTextProps) => {
   if (!textObject) {
-    return <></>
+    return null
   }
 
   const { type, plain_text } = textObject
@@ -16,15 +15,11 @@ const RichText = ({ textObject }: RichTextProps) => {
     case 'text':
       return <Text textObject={textObject} />
     case 'mention':
-      return (
-        <Mention textObject={textObject as MentionRichTextItemResponseEx}>
-          {plain_text}
-        </Mention>
-      )
+      return <Mention textObject={textObject as MentionRichTextItemResponseEx}>{plain_text}</Mention>
     case 'equation':
       return <Equation textObject={textObject} />
     default:
-      return <></>
+      return null
   }
 }
 

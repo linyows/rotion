@@ -1,4 +1,3 @@
-import React from 'react'
 import type { GalleryMultiSelectFieldProps } from './GalleryMultiSelectField.types'
 import LinkedTagIfLinked from './LinkedTag.js'
 import './GalleryMultiSelectField.css'
@@ -7,9 +6,13 @@ const GalleryMultiSelectField = ({ multiSelect, options }: GalleryMultiSelectFie
   const { pathname, link, query } = options || {}
   return (
     <ul className="rotion-gallery-multiselect-ul">
-      {multiSelect.map(v => (
+      {multiSelect.map((v) => (
         <li key={v.id} className={`rotion-gallery-multiselect-li rotion-gallery-multiselect-${v.color}`}>
-          <LinkedTagIfLinked pathname={pathname ? `${pathname}/${encodeURIComponent(v.name)}` : undefined} link={link} query={query}>
+          <LinkedTagIfLinked
+            pathname={pathname ? `${pathname}/${encodeURIComponent(v.name)}` : undefined}
+            link={link}
+            query={query}
+          >
             {v.name}
           </LinkedTagIfLinked>
         </li>

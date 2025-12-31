@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { ChildPageBlockObjectResponseEx, GetPageResponseEx, ListBlockChildrenResponseEx } from '../../../../exporter/index.js'
+import type {
+  ChildPageBlockObjectResponseEx,
+  GetPageResponseEx,
+  ListBlockChildrenResponseEx,
+} from '../../../../exporter/index.js'
 import ChildPageBlock from './ChildPageBlock.js'
 
 /* Next is Database
@@ -254,6 +258,6 @@ icon.page.icon!.type = 'external'
 icon.page.icon!.src = 'https://www.notion.so/icons/library_blue.svg?mode=light'
 export const Icon: Story = {
   args: {
-    block: icon
-  }
+    block: icon,
+  },
 }

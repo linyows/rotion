@@ -1,7 +1,7 @@
-import React, { type JSX } from 'react'
+import type { JSX } from 'react'
 import type { BlockObjectResponse } from '../../../exporter/index.js'
-import type { PageProps, ListType, ULOL } from './Page.types'
 import { ListBlocks } from './ListBlocks/index.js'
+import type { ListType, PageProps, ULOL } from './Page.types'
 import PageHandler from './PageHandler.js'
 
 export const Page = ({ blocks, href, link, query, breadcrumb_hrefs }: PageProps) => {
@@ -25,7 +25,7 @@ export const Page = ({ blocks, href, link, query, breadcrumb_hrefs }: PageProps)
       // intermediate
       if (isListTag && isListContinue(i)) {
         list.push(block)
-      // last or (first and last)
+        // last or (first and last)
       } else if (isListTag || !isListContinue(i)) {
         isListTag = false
         list.push(block)
@@ -34,7 +34,7 @@ export const Page = ({ blocks, href, link, query, breadcrumb_hrefs }: PageProps)
           children.push(<div key={block.id}>{ListBlocks({ tag, blocks: list, href, link, query })}</div>)
           list = []
         }
-      // first
+        // first
       } else {
         isListTag = true
         list.push(block)
@@ -46,11 +46,7 @@ export const Page = ({ blocks, href, link, query, breadcrumb_hrefs }: PageProps)
     return ''
   })
 
-  return (
-    <div className="rotion-blocks">
-      {children}
-    </div>
-  )
+  return <div className="rotion-blocks">{children}</div>
 }
 
 export default Page

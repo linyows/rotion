@@ -1,30 +1,29 @@
-import React from 'react'
-import ListHandler from './ListHandler.js'
-import { getLinkPathAndLinkKey, getSlug } from '../lib.js'
 import type { DatabaseProperty } from '../../../exporter/index.js'
+import { getLinkPathAndLinkKey, getSlug } from '../lib.js'
 import type { ColumnProps } from './Column.types'
+import ListHandler from './ListHandler.js'
 import type { ListPropertyOptions } from './ListHandler.types'
 
 const Column = ({ name, page, options }: ColumnProps) => {
   if (name === 'spacer' || name === 'dashed' || !('properties' in page)) {
-    return <></>
+    return null
   }
   const property = page.properties[name]
   if (!property) {
-    return <></>
+    return null
   }
 
   const { href, prefix, suffix, link, query } = options || {}
   const opts: ListPropertyOptions = { link, query }
 
-  if (href && href[name]) {
+  if (href?.[name]) {
     const [path, slugKey] = getLinkPathAndLinkKey(href[name])
-    opts.pathname = (slugKey === '') ? path : `${path}${getSlug(slugKey, page)}`
+    opts.pathname = slugKey === '' ? path : `${path}${getSlug(slugKey, page)}`
   }
-  if (prefix && prefix[name]) {
+  if (prefix?.[name]) {
     opts.prefix = prefix[name]
   }
-  if (suffix && suffix[name]) {
+  if (suffix?.[name]) {
     opts.suffix = suffix[name]
   }
 

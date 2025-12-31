@@ -1,26 +1,25 @@
-import React from 'react'
 import type { DatabaseProperty } from '../../../exporter/index.js'
-import TableHandler from './TableHandler.js'
 import { getLinkPathAndLinkKey, getSlug } from '../lib.js'
 import type { ColumnProps } from './Column.types'
+import TableHandler from './TableHandler.js'
 import type { TablePropertyOptions } from './TableHandler.types'
 
 const Column = ({ name, page, options }: ColumnProps) => {
   if (!('properties' in page)) {
-    return <></>
+    return null
   }
 
   const property = page.properties[name]
   if (!property) {
-    return <></>
+    return null
   }
 
   const { href, link, query, prefix, suffix } = options || {}
   const opts: TablePropertyOptions = {}
 
-  if (href && href[name]) {
+  if (href?.[name]) {
     const [path, slugKey] = getLinkPathAndLinkKey(href[name])
-    opts.pathname = (slugKey === '') ? path : `${path}${getSlug(slugKey, page)}`
+    opts.pathname = slugKey === '' ? path : `${path}${getSlug(slugKey, page)}`
     if (link) {
       opts.link = link
     }
@@ -28,10 +27,10 @@ const Column = ({ name, page, options }: ColumnProps) => {
       opts.query = query
     }
   }
-  if (prefix && prefix[name]) {
+  if (prefix?.[name]) {
     opts.prefix = prefix[name]
   }
-  if (suffix && suffix[name]) {
+  if (suffix?.[name]) {
     opts.suffix = suffix[name]
   }
 

@@ -1,6 +1,6 @@
 import type React from 'react'
-import type { TableOfContentsProps } from './TableOfContents.types'
 import type { ListBlockChildrenResponseEx } from '../../../exporter/index.js'
+import type { TableOfContentsProps } from './TableOfContents.types'
 import '../tokens.css'
 import './TableOfContents.css'
 
@@ -16,35 +16,36 @@ type TocItem = {
 
 const buildTocItems = (blocks: ListBlockChildrenResponseEx): TocItem[] => {
   const { results } = blocks
-  return results.map((bl) => {
-    if (!('type' in bl)) {
+  return results
+    .map((bl) => {
+      if (!('type' in bl)) {
+        return null
+      }
+
+      switch (bl.type) {
+        case 'heading_1':
+          return {
+            level: 1,
+            text: bl.heading_1.rich_text.map((t) => t.plain_text).join('') || '',
+            id: GenHtmlId(bl.id),
+          }
+        case 'heading_2':
+          return {
+            level: 2,
+            text: bl.heading_2.rich_text.map((t) => t.plain_text).join('') || '',
+            id: GenHtmlId(bl.id),
+          }
+        case 'heading_3':
+          return {
+            level: 3,
+            text: bl.heading_3.rich_text.map((t) => t.plain_text).join('') || '',
+            id: GenHtmlId(bl.id),
+          }
+      }
+
       return null
-    }
-
-    switch (bl.type) {
-      case 'heading_1':
-        return {
-          level: 1,
-          text: bl.heading_1.rich_text.map((t) => t.plain_text).join('') || '',
-          id: GenHtmlId(bl.id),
-        }
-      case 'heading_2':
-        return {
-          level: 2,
-          text: bl.heading_2.rich_text.map((t) => t.plain_text).join('') || '',
-          id: GenHtmlId(bl.id),
-        }
-      case 'heading_3':
-        return {
-          level: 3,
-          text: bl.heading_3.rich_text.map((t) => t.plain_text).join('') || '',
-          id: GenHtmlId(bl.id),
-        }
-    }
-
-    return null
-
-  }).filter((item): item is NonNullable<typeof item> => item !== null)
+    })
+    .filter((item): item is NonNullable<typeof item> => item !== null)
 }
 
 type ListRecursiveProps = {
@@ -91,7 +92,7 @@ const ListRecursive = ({ items }: ListRecursiveProps) => {
 
 /**
  * Important:
- * 
+ *
  * Unlike TableOfContentsBlock which is a Page block, this component is a
  * Table of Contents generated from the page's blocks and extracts headings
  * to create a navigation structure.

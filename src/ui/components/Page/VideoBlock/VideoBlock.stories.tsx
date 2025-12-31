@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { VideoBlockObjectResponseEx, RichTextItemResponse } from '../../../../exporter/index.js'
+import type { RichTextItemResponse, VideoBlockObjectResponseEx } from '../../../../exporter/index.js'
 import VideoBlock from './VideoBlock.js'
 
 /* RICH TEXT */

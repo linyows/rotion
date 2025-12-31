@@ -29,7 +29,7 @@ $ ps auxf
   Note right of John: Rational thoughts <br/>prevail!
   John-->>Alice: Great!
   John->>Bob: How about you?
-  Bob-->>John: Jolly good!`
+  Bob-->>John: Jolly good!`,
 }
 
 const richText: RichTextItemResponse = {
@@ -67,11 +67,11 @@ const block: CodeBlockObjectResponse = {
   last_edited_time: '2024-01-07T01:52:00.000Z',
   created_by: {
     object: 'user',
-    id: '12345678-1234-1234-1234-1234567890ab'
+    id: '12345678-1234-1234-1234-1234567890ab',
   },
   last_edited_by: {
     object: 'user',
-    id: '12345678-1234-1234-1234-1234567890ab'
+    id: '12345678-1234-1234-1234-1234567890ab',
   },
   has_children: false,
   archived: false,
@@ -99,8 +99,8 @@ go.code.rich_text[0].plain_text = examples.go
 go.code.language = 'go'
 export const Go: Story = {
   args: {
-    block: go
-  }
+    block: go,
+  },
 }
 
 const ts = structuredClone(block)
@@ -110,8 +110,8 @@ ts.code.rich_text[0].plain_text = examples.typescript
 ts.code.language = 'typescript'
 export const TypeScript: Story = {
   args: {
-    block: ts
-  }
+    block: ts,
+  },
 }
 
 const sql = structuredClone(block)
@@ -121,8 +121,8 @@ sql.code.rich_text[0].plain_text = examples.sql
 sql.code.language = 'sql'
 export const SQL: Story = {
   args: {
-    block: sql
-  }
+    block: sql,
+  },
 }
 
 const mermaid = structuredClone(block)
@@ -132,6 +132,6 @@ mermaid.code.rich_text[0].plain_text = examples.mermaid
 mermaid.code.language = 'mermaid'
 export const Mermaid: Story = {
   args: {
-    block: mermaid
-  }
+    block: mermaid,
+  },
 }

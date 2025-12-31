@@ -1,5 +1,5 @@
 import type { FileBlockObjectResponseEx } from '../../../../exporter/index.js'
 
 export interface FileBlockProps {
-  block: FileBlockObjectResponseEx,
+  block: FileBlockObjectResponseEx
 }

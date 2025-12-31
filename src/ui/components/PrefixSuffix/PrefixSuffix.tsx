@@ -1,4 +1,3 @@
-import React from 'react'
 import type { PrefixSuffixProps } from './PrefixSuffix.types'
 import './PrefixSuffix.css'
 

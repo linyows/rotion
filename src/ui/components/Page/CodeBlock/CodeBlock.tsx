@@ -1,12 +1,11 @@
-import React from 'react'
 import type {
   RichTextItemResponse,
   RichTextItemResponseEx,
   TextRichTextItemResponse,
 } from '../../../../exporter/index.js'
 import RichText from '../../RichText/RichText.js'
-import type { CodeBlockProps } from './CodeBlock.types'
 import Code from './Code/Code.js'
+import type { CodeBlockProps } from './CodeBlock.types'
 import '../../tokens.css'
 import './CodeBlock.css'
 
@@ -21,17 +20,13 @@ const CodeBlock = ({ block }: CodeBlockProps) => {
   })
 
   const captions = block.code?.caption.map((v, i) => {
-    return (
-      <RichText textObject={v as RichTextItemResponseEx} key={`${i}`} />
-    )
+    return <RichText textObject={v as RichTextItemResponseEx} key={`${i}`} />
   })
 
   return (
     <div className="rotion-code">
       {els}
-      <div className="rotion-code-caption">
-        {captions}
-      </div>
+      <div className="rotion-code-caption">{captions}</div>
     </div>
   )
 }

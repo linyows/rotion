@@ -1,6 +1,6 @@
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { Link } from '../../types.js'
 import type { Breadcrumb } from '../../../../exporter/index.js'
+import type { Link } from '../../types.js'
 
 export interface BreadcrumbsProps {
   list: Breadcrumb[]

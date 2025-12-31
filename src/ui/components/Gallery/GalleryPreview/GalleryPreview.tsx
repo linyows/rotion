@@ -1,4 +1,3 @@
-import React from 'react'
 import type { GalleryPreviewProps } from './GalleryPreview.types'
 import './GalleryPreview.css'
 
@@ -13,7 +12,7 @@ const GalleryPreview = ({ src, options }: GalleryPreviewProps) => {
 
   let h = ''
   if (size && height) {
-    if (typeof (height) === 'string') {
+    if (typeof height === 'string') {
       h = height
     } else {
       h = height[size]
@@ -24,7 +23,11 @@ const GalleryPreview = ({ src, options }: GalleryPreviewProps) => {
 
   return (
     <div className="rotion-gallery-preview" style={{ height: h }}>
-      <img src={src} className={`rotion-gallery-preview-img rotion-gallery-preview-${fit ? 'fit' : 'nofit'}`} style={{ height: h }} />
+      <img
+        src={src}
+        className={`rotion-gallery-preview-img rotion-gallery-preview-${fit ? 'fit' : 'nofit'}`}
+        style={{ height: h }}
+      />
     </div>
   )
 }

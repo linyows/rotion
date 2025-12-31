@@ -1,7 +1,6 @@
-import React from 'react'
-import type { DateMentionProps } from './DateMention.types'
 import { cdate } from 'cdate'
 import { relative } from 'cdate-relative'
+import type { DateMentionProps } from './DateMention.types'
 import './DateMention.css'
 
 interface endMentionProps {
@@ -11,7 +10,7 @@ interface endMentionProps {
 
 const DateOrDateTime = ({ dateOrDateTime, prefix }: endMentionProps) => {
   if (!dateOrDateTime) {
-    return <></>
+    return null
   }
 
   const rdate = cdate().handler(relative).cdateFn()
@@ -29,11 +28,9 @@ const DateMention = ({ date }: DateMentionProps) => {
   const { start, end, time_zone } = date
   return (
     <span className="rotion-richtext-date">
-      <span className="rotion-richtext-atsign">
-        @
-      </span>
+      <span className="rotion-richtext-atsign">@</span>
       <DateOrDateTime dateOrDateTime={start} />
-      {end !== null && <DateOrDateTime dateOrDateTime={end} prefix=' → ' />}
+      {end !== null && <DateOrDateTime dateOrDateTime={end} prefix=" → " />}
       {time_zone !== null && `(${time_zone})`}
     </span>
   )

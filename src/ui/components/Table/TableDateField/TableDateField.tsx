@@ -1,14 +1,14 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
 import { cdate } from 'cdate'
-import type { TableDateFieldProps } from './TableDateField.types'
+import { useEffect, useState } from 'react'
 import { getDatetimeFormat } from '../../lib.js'
+import type { TableDateFieldProps } from './TableDateField.types'
 import './TableDateField.css'
 
 const TableDateField = ({ date }: TableDateFieldProps) => {
   if (date === null) {
-    return <></>
+    return null
   }
 
   const { start, end } = date
@@ -21,7 +21,7 @@ const TableDateField = ({ date }: TableDateFieldProps) => {
     if (end) {
       setEndDate(cdate(end).format(end.length > 10 ? `${dateF} ${timeF}` : dateF))
     }
-  }, [startDate, endDate])
+  }, [end, start])
 
   return (
     <div className="rotion-table-date">

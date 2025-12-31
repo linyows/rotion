@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
 import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist'
 import type { DocumentInitParameters } from 'pdfjs-dist/types/src/display/api'
+import { useEffect, useRef, useState } from 'react'
 
-function isFunction (value: any): value is Function {
+function isFunction(value: any): value is Function {
   return typeof value === 'function'
 }
 
@@ -61,46 +61,60 @@ export const usePdf = ({
   const onPageRenderSuccessRef = useRef(onPageRenderSuccess)
   const onPageRenderFailRef = useRef(onPageRenderFail)
 
-  useEffect(() => { onDocumentLoadSuccessRef.current = onDocumentLoadSuccess }, [onDocumentLoadSuccess])
-  useEffect(() => { onDocumentLoadFailRef.current = onDocumentLoadFail }, [onDocumentLoadFail])
-  useEffect(() => { onPageLoadSuccessRef.current = onPageLoadSuccess }, [onPageLoadSuccess])
-  useEffect(() => { onPageLoadFailRef.current = onPageLoadFail }, [onPageLoadFail])
-  useEffect(() => { onPageRenderSuccessRef.current = onPageRenderSuccess }, [onPageRenderSuccess])
-  useEffect(() => { onPageRenderFailRef.current = onPageRenderFail }, [onPageRenderFail])
+  useEffect(() => {
+    onDocumentLoadSuccessRef.current = onDocumentLoadSuccess
+  }, [onDocumentLoadSuccess])
+  useEffect(() => {
+    onDocumentLoadFailRef.current = onDocumentLoadFail
+  }, [onDocumentLoadFail])
+  useEffect(() => {
+    onPageLoadSuccessRef.current = onPageLoadSuccess
+  }, [onPageLoadSuccess])
+  useEffect(() => {
+    onPageLoadFailRef.current = onPageLoadFail
+  }, [onPageLoadFail])
+  useEffect(() => {
+    onPageRenderSuccessRef.current = onPageRenderSuccess
+  }, [onPageRenderSuccess])
+  useEffect(() => {
+    onPageRenderFailRef.current = onPageRenderFail
+  }, [onPageRenderFail])
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    import('pdfjs-dist').then((pdfjsModule) => {
-      // pdfjs-dist 5.x uses named exports
-      const { GlobalWorkerOptions, getDocument, version } = pdfjsModule
-      const defaultWorkerSrc = workerSrc || `https://unpkg.com/pdfjs-dist@${version}/build/pdf.worker.min.mjs`
-      GlobalWorkerOptions.workerSrc = defaultWorkerSrc
+    import('pdfjs-dist')
+      .then((pdfjsModule) => {
+        // pdfjs-dist 5.x uses named exports
+        const { GlobalWorkerOptions, getDocument, version } = pdfjsModule
+        const defaultWorkerSrc = workerSrc || `https://unpkg.com/pdfjs-dist@${version}/build/pdf.worker.min.mjs`
+        GlobalWorkerOptions.workerSrc = defaultWorkerSrc
 
-      const config: DocumentInitParameters = { url: file, withCredentials }
-      if (cMapUrl) {
-        config.cMapUrl = cMapUrl
-        config.cMapPacked = cMapPacked
-      }
-      getDocument(config).promise.then(
-        (loadedPdfDocument) => {
-          setPdfDocument(loadedPdfDocument)
-          if (isFunction(onDocumentLoadSuccessRef.current)) {
-            onDocumentLoadSuccessRef.current(loadedPdfDocument)
-          }
-        },
-        (error) => {
-          console.error('PDF document load error:', error)
-          if (isFunction(onDocumentLoadFailRef.current)) {
-            onDocumentLoadFailRef.current()
-          }
+        const config: DocumentInitParameters = { url: file, withCredentials }
+        if (cMapUrl) {
+          config.cMapUrl = cMapUrl
+          config.cMapPacked = cMapPacked
         }
-      )
-    }).catch((error) => {
-      console.error('PDF.js import error:', error)
-      if (isFunction(onDocumentLoadFailRef.current)) {
-        onDocumentLoadFailRef.current()
-      }
-    })
+        getDocument(config).promise.then(
+          (loadedPdfDocument) => {
+            setPdfDocument(loadedPdfDocument)
+            if (isFunction(onDocumentLoadSuccessRef.current)) {
+              onDocumentLoadSuccessRef.current(loadedPdfDocument)
+            }
+          },
+          (error) => {
+            console.error('PDF document load error:', error)
+            if (isFunction(onDocumentLoadFailRef.current)) {
+              onDocumentLoadFailRef.current()
+            }
+          },
+        )
+      })
+      .catch((error) => {
+        console.error('PDF.js import error:', error)
+        if (isFunction(onDocumentLoadFailRef.current)) {
+          onDocumentLoadFailRef.current()
+        }
+      })
   }, [file, withCredentials, cMapUrl, cMapPacked, workerSrc])
 
   useEffect(() => {
@@ -150,7 +164,7 @@ export const usePdf = ({
           } else if (isFunction(onPageRenderFailRef.current)) {
             onPageRenderFailRef.current()
           }
-        }
+        },
       )
     }
 
@@ -167,10 +181,10 @@ export const usePdf = ({
           if (isFunction(onPageLoadFailRef.current)) {
             onPageLoadFailRef.current()
           }
-        }
+        },
       )
     }
-  }, [canvasRef, page, pdfDocument, rotate, scale, workerSrc])
+  }, [canvasRef, page, pdfDocument, rotate, scale])
 
   return { pdfDocument, pdfPage }
 }

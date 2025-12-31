@@ -1,16 +1,17 @@
 import type { JSX } from 'react'
 import type {
-  ParagraphBlockObjectResponseEx,
+  DividerBlockObjectResponse,
   Heading1BlockObjectResponse,
   Heading2BlockObjectResponse,
   Heading3BlockObjectResponse,
+  ParagraphBlockObjectResponseEx,
   QuoteBlockObjectResponse,
-  DividerBlockObjectResponse,
 } from '../../../../exporter/index.js'
 
 export interface TextBlockProps {
   tag: keyof JSX.IntrinsicElements
-  block: ParagraphBlockObjectResponseEx
+  block:
+    | ParagraphBlockObjectResponseEx
     | Heading1BlockObjectResponse
     | Heading2BlockObjectResponse
     | Heading3BlockObjectResponse

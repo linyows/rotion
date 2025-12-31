@@ -1,4 +1,4 @@
-import type { RichTextItemResponseEx, RichTextItemResponse } from '../../../../exporter/index.js'
+import type { RichTextItemResponse, RichTextItemResponseEx } from '../../../../exporter/index.js'
 
 export interface GalleryRichTextFieldProps {
   textObjects: RichTextItemResponseEx[] | RichTextItemResponse[]

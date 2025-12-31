@@ -1,15 +1,17 @@
-import { useState } from 'react'
 import type { ParsedUrlQueryInput } from 'node:querystring'
-import type { ListBlockChildrenResponseEx, GetPageResponse } from '../../exporter/index.js'
+import { useState } from 'react'
+import type { GetPageResponse, ListBlockChildrenResponseEx } from '../../exporter/index.js'
 
-export function queryToString (q: ParsedUrlQueryInput | undefined) {
+export function queryToString(q: ParsedUrlQueryInput | undefined) {
   if (q === undefined) {
     return ''
   }
 
-  const str = Object.entries(q).map((e) => {
-    return `${e[0]}=${encodeURIComponent(`${e[1]}`)}`
-  }).join('&')
+  const str = Object.entries(q)
+    .map((e) => {
+      return `${e[0]}=${encodeURIComponent(`${e[1]}`)}`
+    })
+    .join('&')
 
   return `?${str}`
 }
@@ -24,7 +26,7 @@ export const getLinkPathAndLinkKey = (link: string): [string, string] => {
   return [linkArray[0], linkArray[1].split(']')[0]]
 }
 
-export function getSlug (key: string, page: GetPageResponse) {
+export function getSlug(key: string, page: GetPageResponse) {
   if (!('properties' in page)) {
     return 'not-found-properties'
   }
@@ -39,10 +41,13 @@ export function getSlug (key: string, page: GetPageResponse) {
     return 'not-found-richtext-in-key'
   }
   // @ts-expect-error
-  return p.rich_text.map(v => v.text.content).join(',')
+  return p.rich_text.map((v) => v.text.content).join(',')
 }
 
-export function UsePagination<T> (pages: T[], perPage: number): {
+export function UsePagination<T>(
+  pages: T[],
+  perPage: number,
+): {
   currentData(): T[]
   next(): void
   currentPage: number
@@ -65,18 +70,18 @@ export function UsePagination<T> (pages: T[], perPage: number): {
 }
 
 // BuildPlainTextByPage builds plain text from a apge as FetchBlocks returns
-export function BuildPlainTextByPage (blocks: ListBlockChildrenResponseEx) {
-  const richText = blocks.results.map(v => 'type' in v && v.type === 'paragraph' ? v.paragraph.rich_text : [])
-  return richText.flatMap(v => v.map(vv => vv.plain_text)).join('')
+export function BuildPlainTextByPage(blocks: ListBlockChildrenResponseEx) {
+  const richText = blocks.results.map((v) => ('type' in v && v.type === 'paragraph' ? v.paragraph.rich_text : []))
+  return richText.flatMap((v) => v.map((vv) => vv.plain_text)).join('')
 }
 
-export function pathBasename (str: string) {
+export function pathBasename(str: string) {
   const u = str.replace(/\/$/, '')
   const l = u.substring(u.lastIndexOf('/') + 1)
   return l.lastIndexOf('?') > 0 ? l.substring(0, l.lastIndexOf('?')) : l
 }
 
-export function getDatetimeFormat (lang?: string) {
+export function getDatetimeFormat(lang?: string) {
   let dateF = 'MMMM D, YYYY'
   let timeF = 'h:mm A'
   if (!lang) {
@@ -90,13 +95,13 @@ export function getDatetimeFormat (lang?: string) {
   return { dateF, timeF }
 }
 
-export function splitUrl (url: string) {
+export function splitUrl(url: string) {
   const withoutScheme = url.replace(/https?:\/\//, '')
   const arrayPath = withoutScheme.split('/')
   const domain = `${arrayPath.shift()}`
   const path = arrayPath.join('/')
   return {
     domain,
-    omittedPath: `/${path.length > 12 ? `${path.substring(0, 3)}...${path.substring(path.length - 6)}` : path}`
+    omittedPath: `/${path.length > 12 ? `${path.substring(0, 3)}...${path.substring(path.length - 6)}` : path}`,
   }
 }

@@ -1,7 +1,6 @@
-import React from 'react'
-import type { ListCheckboxFieldProps } from './ListCheckboxField.types'
 import { Checkbox } from '../../Checkbox/index.js'
 import { PrefixSuffix } from '../../PrefixSuffix/index.js'
+import type { ListCheckboxFieldProps } from './ListCheckboxField.types'
 import './ListCheckboxField.css'
 
 const ListCheckboxField = ({ checked, options }: ListCheckboxFieldProps) => {

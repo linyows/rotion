@@ -1,6 +1,5 @@
-import React from 'react'
-import type { ListNumberFieldProps } from './ListNumberField.types'
 import { PrefixSuffix } from '../../PrefixSuffix/index.js'
+import type { ListNumberFieldProps } from './ListNumberField.types'
 import './ListNumberField.css'
 
 const ListNumberField = ({ number, options }: ListNumberFieldProps) => {

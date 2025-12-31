@@ -1,5 +1,5 @@
-import type { EquationRichTextItemResponse } from '../../../../exporter/index.js'
 import type { ReactNode } from 'react'
+import type { EquationRichTextItemResponse } from '../../../../exporter/index.js'
 
 export interface EquationProps {
   textObject: EquationRichTextItemResponse

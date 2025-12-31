@@ -47,13 +47,11 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
 
   useEffect(() => {
     highlight(language)
-  }, [language, ''])
+  }, [language, highlight])
 
   return (
     <div className="rotion-code-area" onMouseOver={showLang} onMouseOut={hideLang}>
-      {show && <div className="rotion-code-lang">
-        {language}
-      </div>}
+      {show && <div className="rotion-code-lang">{language}</div>}
       <pre className={cl} suppressHydrationWarning>
         <code ref={codeRef} suppressHydrationWarning>
           {children}

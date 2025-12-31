@@ -1,17 +1,13 @@
-import React from 'react'
-import RichText from '../../RichText/RichText.js'
 import type { RichTextItemResponse } from '../../../../exporter/index.js'
-import type { TextBlockProps } from './TextBlock.types'
+import RichText from '../../RichText/RichText.js'
 import { GenHtmlId } from '../../TableOfContents/index.js'
+import type { TextBlockProps } from './TextBlock.types'
 import '../../tokens.css'
 import './TextBlock.css'
 
 const TextBlock = ({ tag, block }: TextBlockProps) => {
   if (block.type === 'divider') {
-    return (
-      <div className="rotion-text-hr">
-      </div>
-    )
+    return <div className="rotion-text-hr"></div>
   }
 
   const styles = {
@@ -33,7 +29,7 @@ const TextBlock = ({ tag, block }: TextBlockProps) => {
 
   // Add id attribute for headings using first 7 characters of block id
   const isHeading = ['heading_1', 'heading_2', 'heading_3'].includes(block.type)
-  
+
   return (
     <CustomTag className={css.join(' ')} {...(isHeading && { id: GenHtmlId(block.id) })}>
       {richText.map((v, i) => (

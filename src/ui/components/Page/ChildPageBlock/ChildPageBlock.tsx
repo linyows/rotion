@@ -1,6 +1,5 @@
-import React from 'react'
-import type { ChildPageBlockProps, ChildPageLinkProps } from './ChildPageBlock.types'
 import { getLinkPathAndLinkKey, queryToString } from '../../lib.js'
+import type { ChildPageBlockProps, ChildPageLinkProps } from './ChildPageBlock.types'
 import '../../tokens.css'
 import './ChildPageBlock.css'
 
@@ -10,11 +9,7 @@ const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProp
   const file = slugKey === 'id' ? block.page.id : encodeURIComponent(title.toLowerCase()).replace(/%20/g, '-')
 
   if (!href) {
-    return (
-      <div className="rotion-childpage-link">
-        {children}
-      </div>
-    )
+    return <div className="rotion-childpage-link">{children}</div>
   }
   if (link) {
     const Link = link
@@ -36,7 +31,7 @@ const ChildPageLink = ({ block, href, link, query, children }: ChildPageLinkProp
 
 const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
   if (block.page === undefined) {
-    return <></>
+    return null
   }
 
   const title = block.child_page.title
@@ -44,13 +39,9 @@ const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
     return (
       <div className="rotion-childpage">
         <ChildPageLink block={block} href={href} link={link} query={query}>
-          <span className="rotion-childpage-icon">
-            {'️-'}
-          </span>
+          <span className="rotion-childpage-icon">{'️-'}</span>
           <div>
-            <span className="rotion-childpage-title">
-              {title}
-            </span>
+            <span className="rotion-childpage-title">{title}</span>
           </div>
         </ChildPageLink>
       </div>
@@ -61,13 +52,9 @@ const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
     return (
       <div className="rotion-childpage">
         <ChildPageLink block={block} href={href} link={link} query={query}>
-          <span className="rotion-childpage-emoji">
-            {block.page.icon.emoji}
-          </span>
+          <span className="rotion-childpage-emoji">{block.page.icon.emoji}</span>
           <div>
-            <span className="rotion-childpage-title">
-              {title}
-            </span>
+            <span className="rotion-childpage-title">{title}</span>
           </div>
         </ChildPageLink>
       </div>
@@ -82,9 +69,7 @@ const ChildPageBlock = ({ block, href, link, query }: ChildPageBlockProps) => {
           <img className="rotion-childpage-icon-img" src={block.page.icon.src} alt="Icon" />
         </span>
         <div>
-          <span className="rotion-childpage-title">
-            {title}
-          </span>
+          <span className="rotion-childpage-title">{title}</span>
         </div>
       </ChildPageLink>
     </div>

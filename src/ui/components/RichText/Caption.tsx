@@ -1,4 +1,3 @@
-import React from 'react'
 import RichText from './RichText.js'
 import type { CaptionProps } from './RichText.types'
 

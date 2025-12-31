@@ -1,11 +1,10 @@
-import React from 'react'
-import Column from './Column.js'
 import type { PageObjectResponseEx } from '../../../exporter/index.js'
+import Column from './Column.js'
 import type { ListProps } from './List.types'
 import '../tokens.css'
 import './List.css'
 
-function columnClassName (name: string, i: number) {
+function columnClassName(name: string, i: number) {
   const classArray = [`rotion-list-column${i}`]
   switch (name) {
     case 'spacer':

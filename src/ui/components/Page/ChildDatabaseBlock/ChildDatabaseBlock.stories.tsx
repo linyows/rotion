@@ -1,24 +1,30 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import type { ChildDatabaseBlockObjectResponseEx, GetDatabaseResponseEx, RichTextItemResponse } from '../../../../exporter/index.js'
+import type {
+  ChildDatabaseBlockObjectResponseEx,
+  GetDatabaseResponseEx,
+  RichTextItemResponse,
+} from '../../../../exporter/index.js'
 import ChildDatabaseBlock from './ChildDatabaseBlock.js'
 
-const richtext: RichTextItemResponse[] = [{
-  type: 'text',
-  text: {
-    content: 'My Database',
-    link: null,
+const richtext: RichTextItemResponse[] = [
+  {
+    type: 'text',
+    text: {
+      content: 'My Database',
+      link: null,
+    },
+    annotations: {
+      bold: false,
+      italic: false,
+      strikethrough: false,
+      underline: false,
+      code: false,
+      color: 'default',
+    },
+    plain_text: 'My Database',
+    href: null,
   },
-  annotations: {
-    bold: false,
-    italic: false,
-    strikethrough: false,
-    underline: false,
-    code: false,
-    color: 'default',
-  },
-  plain_text: 'My Database',
-  href: null,
-}]
+]
 
 const database: GetDatabaseResponseEx = {
   object: 'database',
@@ -115,10 +121,10 @@ icon.database.icon! = {
   type: 'external',
   external: {
     url: 'https://www.notion.so/icons/library_blue.svg?mode=light',
-  }
+  },
 }
 export const Icon: Story = {
   args: {
-    block: icon
-  }
+    block: icon,
+  },
 }

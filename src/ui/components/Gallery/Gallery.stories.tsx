@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { FetchDatabaseRes } from '../../../exporter/index.js'
-import Gallery from './Gallery.js'
 import response from '../../fixtures/fetch_database_response.json'
+import Gallery from './Gallery.js'
+
 const db = response as unknown as FetchDatabaseRes
 
 const meta = {
@@ -30,7 +31,7 @@ export const Linked: Story = {
         Category: '/blog/category',
       },
     },
-  }
+  },
 }
 
 export const LinkedOnlyTags: Story = {
@@ -42,7 +43,7 @@ export const LinkedOnlyTags: Story = {
         Tags: '/blog/tags',
       },
     },
-  }
+  },
 }
 
 export const NoFitImage: Story = {
@@ -52,9 +53,9 @@ export const NoFitImage: Story = {
     options: {
       image: {
         fit: false,
-      }
+      },
     },
-  }
+  },
 }
 
 export const SmallSizeImage: Story = {
@@ -66,7 +67,7 @@ export const SmallSizeImage: Story = {
         size: 'small',
       },
     },
-  }
+  },
 }
 
 export const LargeSizeImage: Story = {
@@ -78,7 +79,7 @@ export const LargeSizeImage: Story = {
         size: 'large',
       },
     },
-  }
+  },
 }
 
 export const SpecifyHight: Story = {
@@ -90,9 +91,9 @@ export const SpecifyHight: Story = {
         fit: false,
         size: 'large',
         height: '400px',
-      }
+      },
     },
-  }
+  },
 }
 
 export const PrefixSuffix: Story = {
@@ -106,7 +107,7 @@ export const PrefixSuffix: Story = {
       suffix: {
         Born: 's',
         Published: 'Published',
-      }
+      },
     },
-  }
+  },
 }

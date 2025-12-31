@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { FetchDatabaseRes } from '../../../exporter/index.js'
-import Table from './Table.js'
 import response from '../../fixtures/fetch_database_response.json'
+import Table from './Table.js'
+
 const db = response as unknown as FetchDatabaseRes
 
 const meta = {
@@ -28,9 +29,9 @@ export const Linked: Story = {
         Name: '/blog/[id]',
         Tags: '/blog/tags',
         Category: '/blog/category',
-      }
+      },
     },
-  }
+  },
 }
 
 export const PrefixSuffix: Story = {
@@ -46,7 +47,7 @@ export const PrefixSuffix: Story = {
         Published: 'Published',
       },
     },
-  }
+  },
 }
 
 export const NoVerticalLines: Story = {
@@ -56,5 +57,5 @@ export const NoVerticalLines: Story = {
     options: {
       verticalLines: false,
     },
-  }
+  },
 }

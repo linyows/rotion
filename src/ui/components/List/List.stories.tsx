@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import type { FetchDatabaseRes } from '../../../exporter/index.js'
-import List from './List.js'
 import response from '../../fixtures/fetch_database_response.json'
+import List from './List.js'
+
 const db = response as unknown as FetchDatabaseRes
 
 const meta = {
@@ -23,7 +24,7 @@ export const Dashed: Story = {
   args: {
     keys: ['Name', 'Note', 'dashed', 'Published', 'Tags', 'Url', 'Born', 'Category', 'Date'],
     db,
-  }
+  },
 }
 
 export const Linked: Story = {
@@ -36,8 +37,8 @@ export const Linked: Story = {
         Tags: '/blog/tags',
         Category: '/blog/category',
       },
-    }
-  }
+    },
+  },
 }
 
 export const PrefixSuffix: Story = {
@@ -51,7 +52,7 @@ export const PrefixSuffix: Story = {
       },
       suffix: {
         Born: 's',
-      }
-    }
-  }
+      },
+    },
+  },
 }

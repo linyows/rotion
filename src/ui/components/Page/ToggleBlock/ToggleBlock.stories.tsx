@@ -70,23 +70,25 @@ const block: ToggleBlockObjectResponseEx = {
   },
   type: 'toggle',
   toggle: {
-    rich_text: [{
-      type: 'text',
-      text: {
-        content: 'Write test code',
-        link: null,
+    rich_text: [
+      {
+        type: 'text',
+        text: {
+          content: 'Write test code',
+          link: null,
+        },
+        annotations: {
+          bold: false,
+          italic: false,
+          strikethrough: false,
+          underline: false,
+          code: false,
+          color: 'default',
+        },
+        plain_text: 'Write test code',
+        href: null,
       },
-      annotations: {
-        bold: false,
-        italic: false,
-        strikethrough: false,
-        underline: false,
-        code: false,
-        color: 'default'
-      },
-      plain_text: 'Write test code',
-      href: null,
-    }],
+    ],
     color: 'default',
   },
   children: {

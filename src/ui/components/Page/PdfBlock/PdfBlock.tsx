@@ -1,10 +1,10 @@
 'use client'
 
-import React, { useState, useRef } from 'react'
+import { useRef, useState } from 'react'
+import type { RichTextItemResponse } from '../../../../exporter/index.js'
+import { Icon } from '../../Icon/index.js'
 import RichText from '../../RichText/RichText.js'
 import { usePdf } from './Pdf.js'
-import { Icon } from '../../Icon/index.js'
-import type { RichTextItemResponse } from '../../../../exporter/index.js'
 import type { PdfBlockProps } from './PdfBlock.types'
 import '../../tokens.css'
 import './PdfBlock.css'
@@ -22,16 +22,22 @@ const PdfBlock = ({ block }: PdfBlockProps) => {
 
   return (
     <div className="rotion-pdf">
-      {Boolean(pdfDocument && pdfDocument.numPages) && (
+      {Boolean(pdfDocument?.numPages) && (
         <nav className="rotion-pdf-nav">
           <ul className="rotion-pdf-pager">
             <li className="rotion-pdf-prev">
-              <span className={`rotion-pdf-prevnext ${page === 1 ? 'rotion-pdf-prevnext-disabled' : ''}`} onClick={() => setPage(page - 1)}>
-               ◀︎
+              <span
+                className={`rotion-pdf-prevnext ${page === 1 ? 'rotion-pdf-prevnext-disabled' : ''}`}
+                onClick={() => setPage(page - 1)}
+              >
+                ◀︎
               </span>
             </li>
             <li className="rotion-pdf-next">
-              <span className={`rotion-pdf-prevnext ${page === pdfDocument!.numPages ? 'rotion-pdf-prevnext-disabled' : ''}`} onClick={() => setPage(page + 1)}>
+              <span
+                className={`rotion-pdf-prevnext ${page === pdfDocument!.numPages ? 'rotion-pdf-prevnext-disabled' : ''}`}
+                onClick={() => setPage(page + 1)}
+              >
                 ▶
               </span>
             </li>
@@ -43,11 +49,13 @@ const PdfBlock = ({ block }: PdfBlockProps) => {
       )}
       {!pdfDocument && <span>Loading...</span>}
       <canvas className="rotion-pdf-canvas" ref={canvasRef} />
-      {caption.length > 0 && <div className="rotion-pdf-caption">
-        {caption.map((v: RichTextItemResponse, i) => (
-          <RichText textObject={v} key={`richtext-${i}`} />
-        ))}
-      </div>}
+      {caption.length > 0 && (
+        <div className="rotion-pdf-caption">
+          {caption.map((v: RichTextItemResponse, i) => (
+            <RichText textObject={v} key={`richtext-${i}`} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }
