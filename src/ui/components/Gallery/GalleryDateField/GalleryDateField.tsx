@@ -7,26 +7,28 @@ import type { GalleryDateFieldProps } from './GalleryDateField.types'
 import './GalleryDateField.css'
 
 const GalleryDateField = ({ date }: GalleryDateFieldProps) => {
-  if (date === null) {
-    return null
-  }
-
-  const { start, end } = date
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
 
   useEffect(() => {
+    if (date === null) return
+
+    const { start, end } = date
     const { dateF, timeF } = getDatetimeFormat(window?.navigator?.language)
     setStartDate(cdate(start).format(start.length > 10 ? `${dateF} ${timeF}` : dateF))
     if (end) {
       setEndDate(cdate(end).format(end.length > 10 ? `${dateF} ${timeF}` : dateF))
     }
-  }, [end, start])
+  }, [date])
+
+  if (date === null) {
+    return null
+  }
 
   return (
     <div className="rotion-gallery-date">
       {startDate}
-      {end && ` → ${endDate}`}
+      {date.end && ` → ${endDate}`}
     </div>
   )
 }
