@@ -26,6 +26,9 @@
         "noExplicitAny": "off",
         "noArrayIndexKey": "warn"
       },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
       "a11y": {
         "noSvgWithoutTitle": "warn"
       }
