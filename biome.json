@@ -30,7 +30,13 @@
         "noDangerouslySetInnerHtml": "off"
       },
       "a11y": {
-        "noSvgWithoutTitle": "warn"
+        "noSvgWithoutTitle": "warn",
+        "noStaticElementInteractions": "warn",
+        "useKeyWithClickEvents": "warn",
+        "useKeyWithMouseEvents": "warn",
+        "useAltText": "warn",
+        "noRedundantAlt": "warn",
+        "useMediaCaption": "warn"
       }
     }
   },
