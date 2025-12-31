@@ -11,7 +11,7 @@ import GalleryFormulaField from '../GalleryFormulaField/GalleryFormulaField.js'
 import type { GalleryHandlerProps } from './GalleryHandler.types'
 
 const GalleryHandler = ({ property, options }: GalleryHandlerProps) => {
-  if (!property || !property.type) {
+  if (!(property && property.type)) {
     console.log('property empty in gallery handler: ', property)
     return <></>
   }

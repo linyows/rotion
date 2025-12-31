@@ -46,7 +46,7 @@ export const AnnonymousMention: Story = {
 
 /* USER MENTION */
 const userMention = structuredClone(textObject) as MentionRichTextItemResponseEx
-// @ts-ignore
+// @ts-expect-error
 userMention.mention.user = {
   id: '12345678-1234-1234-1234-1234567890ab',
   object: 'user',

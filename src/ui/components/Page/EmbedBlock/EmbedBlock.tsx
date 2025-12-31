@@ -14,9 +14,9 @@ const Instagram = ({ html, caption }: OembedProps) => {
     const script = document.createElement('script')
     script.src = 'https://www.instagram.com/embed.js'
     document.getElementsByClassName(embedClass)[0].appendChild(script)
-    // @ts-ignore
+    // @ts-expect-error
     if (window.instgrm) {
-      // @ts-ignore
+      // @ts-expect-error
       window.instgrm.Embeds.process()
     }
   }, [])

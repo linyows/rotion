@@ -6,7 +6,7 @@ import type { LinkPreviewBlockProps } from './LinkPreviewBlock.types'
 import '../../tokens.css'
 import './LinkPreviewBlock.css'
 import '../../Icon/Icon.css'
-import { LinkPreviewGithubIssue, LinkPreviewGithubRepo } from '../../../../exporter/github.js'
+import type { LinkPreviewGithubIssue, LinkPreviewGithubRepo } from '../../../../exporter/github.js'
 
 interface Props {
   url: string
@@ -153,7 +153,7 @@ const LinkPreviewBlock = ({ block }: LinkPreviewBlockProps) => {
         {url.includes('github.com') && <GithubLinkPreview url={url} github={link_preview.github} />}
         {url.includes('slack.com') && <Slack url={url} />}
         {url.includes('figma.com') && <Figma url={url} />}
-        {!url.includes('github.com') && !url.includes('slack.com') && !url.includes('figma.com') && `${url}`}
+        {!((url.includes('github.com') || url.includes('slack.com') ) || url.includes('figma.com') ) && `${url}`}
       </a>
     </div>
   )

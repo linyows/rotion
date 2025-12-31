@@ -1,5 +1,5 @@
 import type { PageObjectResponseEx } from '../../../../exporter/index.js'
-import { GalleryOptions } from '../Gallery.types'
+import type { GalleryOptions } from '../Gallery.types'
 
 export interface GalleryCardProps {
   keys: string[]

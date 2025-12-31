@@ -1,4 +1,4 @@
-import React, { JSX } from 'react'
+import React, { type JSX } from 'react'
 import type { BulletedListBlockProps } from './BulletedListBlock.types'
 import { RichText } from '../../RichText/index.js'
 import { blockType } from '../PageHandler.js'
@@ -9,7 +9,6 @@ import './BulletedListBlock.css'
 const BulletedListBlock = ({ block, href, link, query }: BulletedListBlockProps) => {
   const CustomTag = blockType[block.type] as keyof JSX.IntrinsicElements
 
-  // @ts-ignore
   const text = block[block.type]?.rich_text
 
   if (block.has_children && block.children !== undefined) {

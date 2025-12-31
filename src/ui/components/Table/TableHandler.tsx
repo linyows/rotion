@@ -11,7 +11,7 @@ import TableFormulaField from './TableFormulaField/TableFormulaField.js'
 import type { TableHandlerProps } from './TableHandler.types'
 
 const TableHandler = ({ property, options }: TableHandlerProps) => {
-  if (!property || !property.type) {
+  if (!(property && property.type)) {
     console.log('property empty in table handler: ', property)
     return <></>
   }

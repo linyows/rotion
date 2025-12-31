@@ -1,0 +1,63 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "noUselessFragments": "warn",
+        "noUselessSwitchCase": "warn",
+        "useOptionalChain": "warn",
+        "useSimplifiedLogicExpression": "warn"
+      },
+      "correctness": {
+        "noUnusedImports": "warn",
+        "noUnusedVariables": "warn",
+        "useExhaustiveDependencies": "warn",
+        "useHookAtTopLevel": "warn"
+      },
+      "style": {
+        "noNonNullAssertion": "off",
+        "useImportType": "warn",
+        "useNamingConvention": "off",
+        "useTemplate": "warn"
+      },
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noArrayIndexKey": "warn"
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "warn"
+      }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120,
+    "lineEnding": "lf"
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "double",
+      "trailingCommas": "all",
+      "semicolons": "asNeeded",
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "quoteProperties": "asNeeded"
+    },
+    "globals": [
+      "React",
+      "JSX"
+    ]
+  },
+  "files": {
+    "includes": [
+      "src/ui/components/**/*.ts",
+      "src/ui/components/**/*.tsx"
+    ]
+  }
+}

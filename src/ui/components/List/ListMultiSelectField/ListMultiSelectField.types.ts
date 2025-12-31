@@ -1,5 +1,5 @@
 import type { SelectPropertyResponse } from '../../../../exporter/index.js'
-import { ListPropertyOptions } from '../ListHandler.types'
+import type { ListPropertyOptions } from '../ListHandler.types'
 
 export interface ListMultiSelectFieldProps {
   multiSelect: SelectPropertyResponse[]

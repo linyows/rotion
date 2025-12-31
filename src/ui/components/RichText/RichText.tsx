@@ -3,7 +3,7 @@ import Mention from './Mention/Mention.js'
 import Text from './Text/Text.js'
 import Equation from './Equation/Equation.js'
 import type { RichTextProps } from './RichText.types'
-import { MentionRichTextItemResponseEx } from '../../../exporter/index.js'
+import type { MentionRichTextItemResponseEx } from '../../../exporter/index.js'
 
 const RichText = ({ textObject }: RichTextProps) => {
   if (!textObject) {

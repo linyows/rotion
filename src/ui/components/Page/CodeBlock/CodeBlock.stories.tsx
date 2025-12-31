@@ -93,7 +93,7 @@ type Story = StoryObj<typeof meta>
 export const Bash: Story = {}
 
 const go = structuredClone(block)
-// @ts-ignore
+// @ts-expect-error
 go.code.rich_text[0].text.content = examples.go
 go.code.rich_text[0].plain_text = examples.go
 go.code.language = 'go'
@@ -104,7 +104,7 @@ export const Go: Story = {
 }
 
 const ts = structuredClone(block)
-// @ts-ignore
+// @ts-expect-error
 ts.code.rich_text[0].text.content = examples.typescript
 ts.code.rich_text[0].plain_text = examples.typescript
 ts.code.language = 'typescript'
@@ -115,7 +115,7 @@ export const TypeScript: Story = {
 }
 
 const sql = structuredClone(block)
-// @ts-ignore
+// @ts-expect-error
 sql.code.rich_text[0].text.content = examples.sql
 sql.code.rich_text[0].plain_text = examples.sql
 sql.code.language = 'sql'
@@ -126,7 +126,7 @@ export const SQL: Story = {
 }
 
 const mermaid = structuredClone(block)
-// @ts-ignore
+// @ts-expect-error
 mermaid.code.rich_text[0].text.content = examples.mermaid
 mermaid.code.rich_text[0].plain_text = examples.mermaid
 mermaid.code.language = 'mermaid'

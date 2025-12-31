@@ -1,4 +1,4 @@
-import { GalleryPropertyOptions } from '../GalleryCard/GalleryHandler.types'
+import type { GalleryPropertyOptions } from '../GalleryCard/GalleryHandler.types'
 
 export interface GalleryFormulaFieldProps {
   number: number | null

@@ -163,7 +163,7 @@ export const NestedParagraph: Story = {
 /* DEFAULT */
 const defcolor = structuredClone(icon)
 defcolor.callout.color = 'default'
-// @ts-ignore
+// @ts-expect-error
 defcolor.callout.icon.src = 'https://www.notion.so/icons/light-bulb_gray.svg'
 export const Default: Story = {
   args: {
@@ -181,7 +181,7 @@ export const BgDefault: Story = {
 /* GRAY */
 const gray = structuredClone(icon)
 gray.callout.color = 'gray'
-// @ts-ignore
+// @ts-expect-error
 gray.callout.icon.src = 'https://www.notion.so/icons/light-bulb_lightgray.svg'
 export const Gray: Story = {
   args: {
@@ -199,7 +199,7 @@ export const BgGray: Story = {
 /* BROWN */
 const brown = structuredClone(icon)
 brown.callout.color = 'brown'
-// @ts-ignore
+// @ts-expect-error
 brown.callout.icon.src = 'https://www.notion.so/icons/light-bulb_brown.svg'
 export const Brown: Story = {
   args: {
@@ -217,7 +217,7 @@ export const BgBrown: Story = {
 /* ORANGE */
 const orange = structuredClone(icon)
 orange.callout.color = 'orange'
-// @ts-ignore
+// @ts-expect-error
 orange.callout.icon.src = 'https://www.notion.so/icons/light-bulb_orange.svg'
 export const Orange: Story = {
   args: {
@@ -235,7 +235,7 @@ export const BgOrange: Story = {
 /* YELLOW */
 const yellow = structuredClone(icon)
 yellow.callout.color = 'yellow'
-// @ts-ignore
+// @ts-expect-error
 yellow.callout.icon.src = 'https://www.notion.so/icons/light-bulb_yellow.svg'
 export const Yellow: Story = {
   args: {
@@ -253,7 +253,7 @@ export const BgYellow: Story = {
 /* GREEN */
 const green = structuredClone(icon)
 green.callout.color = 'green'
-// @ts-ignore
+// @ts-expect-error
 green.callout.icon.src = 'https://www.notion.so/icons/light-bulb_green.svg'
 export const Green: Story = {
   args: {
@@ -271,7 +271,7 @@ export const BgGreen: Story = {
 /* BLUE */
 const blue = structuredClone(icon)
 blue.callout.color = 'blue'
-// @ts-ignore
+// @ts-expect-error
 blue.callout.icon.src = 'https://www.notion.so/icons/light-bulb_blue.svg'
 export const Blue: Story = {
   args: {
@@ -289,7 +289,7 @@ export const BgBlue: Story = {
 /* PURPLE */
 const purple = structuredClone(icon)
 purple.callout.color = 'purple'
-// @ts-ignore
+// @ts-expect-error
 purple.callout.icon.src = 'https://www.notion.so/icons/light-bulb_purple.svg'
 export const Purple: Story = {
   args: {
@@ -307,7 +307,7 @@ export const BgPurple: Story = {
 /* PINK */
 const pink = structuredClone(icon)
 pink.callout.color = 'pink'
-// @ts-ignore
+// @ts-expect-error
 pink.callout.icon.src = 'https://www.notion.so/icons/light-bulb_pink.svg'
 export const Pink: Story = {
   args: {
@@ -325,7 +325,7 @@ export const BgPink: Story = {
 /* RED */
 const red = structuredClone(icon)
 red.callout.color = 'red'
-// @ts-ignore
+// @ts-expect-error
 red.callout.icon.src = 'https://www.notion.so/icons/light-bulb_red.svg'
 export const Red: Story = {
   args: {

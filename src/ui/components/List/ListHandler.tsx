@@ -12,7 +12,7 @@ import ListNumberField from './ListNumberField/ListNumberField.js'
 import ListFormulaField from './ListFormulaField/ListFormulaField.js'
 
 const ListHandler = ({ property, options }: ListHandlerProps) => {
-  if (!property || !property.type) {
+  if (!(property && property.type)) {
     console.log('property empty in table handler: ', property)
     return <></>
   }

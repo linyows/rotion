@@ -1,4 +1,4 @@
-import { DateResponse } from '../../../../../exporter/index.js'
+import type { DateResponse } from '../../../../../exporter/index.js'
 
 export interface DateMentionProps {
   date: DateResponse

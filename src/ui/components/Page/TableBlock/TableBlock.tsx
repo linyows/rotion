@@ -1,4 +1,5 @@
-import React, { JSX } from 'react'
+import type React from 'react'
+import type { JSX } from 'react'
 import RichText from '../../RichText/RichText.js'
 import type { TableRowBlockObjectResponse } from '../../../../exporter/index.js'
 import type { ThTdProps, TrProps, TableBlockProps } from './TableBlock.types'
@@ -38,7 +39,7 @@ const Tr = ({ children, key }: TrProps) => {
 }
 
 const TableBlock: React.FC<TableBlockProps> = ({ block }) => {
-  if (!block.table || !block.children) {
+  if (!(block.table && block.children)) {
     return <></>
   }
 

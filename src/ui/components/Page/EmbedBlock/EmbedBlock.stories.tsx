@@ -98,7 +98,7 @@ export const AppleMusic: Story = {
   },
 }
 
-// @ts-ignore
+// @ts-expect-error
 const googleMapKey = import.meta.env.STORYBOOK_GOOGLEMAP_KEY
 const latitude = '33.5838302'
 const longitude = '130.3657052'

@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 import type { TableOfContentsProps } from './TableOfContents.types'
 import type { ListBlockChildrenResponseEx } from '../../../exporter/index.js'
 import '../tokens.css'

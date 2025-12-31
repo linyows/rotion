@@ -38,7 +38,7 @@ export function getSlug (key: string, page: GetPageResponse) {
   if (!('rich_text' in p)) {
     return 'not-found-richtext-in-key'
   }
-  // @ts-ignore
+  // @ts-expect-error
   return p.rich_text.map(v => v.text.content).join(',')
 }
 
@@ -67,7 +67,7 @@ export function UsePagination<T> (pages: T[], perPage: number): {
 // BuildPlainTextByPage builds plain text from a apge as FetchBlocks returns
 export function BuildPlainTextByPage (blocks: ListBlockChildrenResponseEx) {
   const richText = blocks.results.map(v => 'type' in v && v.type === 'paragraph' ? v.paragraph.rich_text : [])
-  return richText.map(v => v.map(vv => vv.plain_text)).flat().join('')
+  return richText.flatMap(v => v.map(vv => vv.plain_text)).join('')
 }
 
 export function pathBasename (str: string) {

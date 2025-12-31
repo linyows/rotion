@@ -28,7 +28,7 @@ const TextBlock = ({ tag, block }: TextBlockProps) => {
   if (block.type in styles) {
     css.push(`rotion-text-${styles[block.type]}`)
   }
-  // @ts-ignore
+  // @ts-expect-error
   const richText: RichTextItemResponse[] = block[block.type].rich_text
 
   // Add id attribute for headings using first 7 characters of block id
