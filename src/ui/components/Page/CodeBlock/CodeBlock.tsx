@@ -13,14 +13,15 @@ const CodeBlock = ({ block }: CodeBlockProps) => {
   const els = block.code?.rich_text.map((textObject: RichTextItemResponse, i) => {
     const text = textObject as TextRichTextItemResponse
     return (
-      <Code language={block.code?.language || ''} key={`${i}`}>
+      <Code language={block.code?.language || ''} key={`${text.text.content.substring(0, 50)}-${i}`}>
         {text.text.content}
       </Code>
     )
   })
 
   const captions = block.code?.caption.map((v, i) => {
-    return <RichText textObject={v as RichTextItemResponseEx} key={`${i}`} />
+    const captionText = v.type === 'text' ? v.text.content.substring(0, 30) : 'empty'
+    return <RichText textObject={v as RichTextItemResponseEx} key={`${captionText}-${i}`} />
   })
 
   return (

@@ -6,7 +6,7 @@ const GalleryRichTextField = ({ textObjects, size }: GalleryRichTextFieldProps) 
   return (
     <div className={`rotion-gallery-richtext rotion-gallery-richtext-${size || 'medium'}`}>
       {textObjects.map((t, i) => (
-        <RichText key={`richtext-${i}`} textObject={t} />
+        <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
       ))}
     </div>
   )

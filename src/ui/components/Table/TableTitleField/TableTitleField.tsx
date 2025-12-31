@@ -8,7 +8,7 @@ const TableTitleField = ({ textObjects, options }: TableTitleFieldProps) => {
     <div className="rotion-table-title">
       <LinkedTitleIfLinked options={options}>
         {textObjects.map((t, i) => (
-          <RichText key={`richtext-${i}`} textObject={t} />
+          <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
         ))}
       </LinkedTitleIfLinked>
     </div>

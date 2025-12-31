@@ -12,7 +12,7 @@ const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
     return (
       <Link className={className()} href={{ pathname: options.pathname, query: options.query }}>
         {textObjects.map((t, i) => (
-          <RichText key={`richtext-${i}`} textObject={t} />
+          <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
         ))}
       </Link>
     )
@@ -21,7 +21,7 @@ const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
     return (
       <Link className={className()} href={options.pathname}>
         {textObjects.map((t, i) => (
-          <RichText key={`richtext-${i}`} textObject={t} />
+          <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
         ))}
       </Link>
     )
@@ -29,7 +29,7 @@ const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
     return (
       <a className={className()} href={options.pathname}>
         {textObjects.map((t, i) => (
-          <RichText key={`richtext-${i}`} textObject={t} />
+          <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
         ))}
       </a>
     )
@@ -38,7 +38,7 @@ const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
   return (
     <span className={className()}>
       {textObjects.map((t, i) => (
-        <RichText key={`richtext-${i}`} textObject={t} />
+        <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
       ))}
     </span>
   )

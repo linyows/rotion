@@ -10,7 +10,7 @@ const TableRichTextField = ({ textObjects }: TableRichTextFieldProps) => {
   return (
     <div className="rotion-table-richtext">
       {textObjects.map((t, i) => (
-        <RichText key={`richtext-${i}`} textObject={t} />
+        <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
       ))}
     </div>
   )

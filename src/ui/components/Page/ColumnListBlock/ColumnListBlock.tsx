@@ -5,8 +5,9 @@ import './ColumnListBlock.css'
 
 const ColumnListBlock = ({ block, href, link, query }: ColumnListBlockProps) => {
   const columns = block.columns.map((v, i) => {
+    const firstBlock = Array.isArray(v) && v.length > 0 ? v[0] : null
     return (
-      <div key={i} className="rotion-columnlist-column">
+      <div key={firstBlock?.id || `column-${i}`} className="rotion-columnlist-column">
         <Page blocks={v} href={href} link={link} query={query} />
       </div>
     )

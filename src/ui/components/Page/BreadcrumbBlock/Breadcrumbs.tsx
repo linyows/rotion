@@ -8,7 +8,7 @@ const Breadcrumbs = ({ list, link, hrefs, query }: BreadcrumbsProps) => {
   return (
     <div className="rotion-breadcrumb">
       {list.map((v: Breadcrumb, i: number) => (
-        <span key={`crumb-${i}`}>
+        <span key={`${v.name || 'crumb'}-${i}`}>
           <LinkedBreadcrumbIfLinked
             breadcrumb={v}
             href={hrefs === undefined ? undefined : hrefs[i]}
