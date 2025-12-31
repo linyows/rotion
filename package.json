@@ -43,7 +43,7 @@
     "exporter:build": "npm run exporter:clean && tsc -p src/exporter/tsconfig.json",
     "exporter:clean": "rm -rf dist/exporter/*",
     "exporter:test": "tsx node_modules/uvu/bin.js ./src/exporter",
-    "ui:build": "npm run ui:typecheck && npm run ui:clean && npm run ui:css:generate && npm run ui:tsc && npm run ui:fix-output && npm run ui:remove-css-imports && npm run ui:css:build && npm run ui:css:build:without-dark && npm run ui:use-client",
+    "ui:build": "npm run ui:lint && npm run ui:typecheck && npm run ui:clean && npm run ui:css:generate && npm run ui:tsc && npm run ui:fix-output && npm run ui:remove-css-imports && npm run ui:css:build && npm run ui:css:build:without-dark && npm run ui:use-client",
     "ui:clean": "rm -rf dist/ui/*",
     "ui:css:generate": "node src/ui/scripts/generate-css-entry.js",
     "ui:css:build": "postcss src/ui/index.css -o dist/ui/index.css --config src/ui/postcss.config.js",
