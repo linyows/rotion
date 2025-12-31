@@ -40,7 +40,7 @@ export function getSlug(key: string, page: GetPageResponse) {
   if (!('rich_text' in p)) {
     return 'not-found-richtext-in-key'
   }
-  // @ts-expect-error
+  // @ts-expect-error: Notion rich_text property items have text.content but TypeScript types are incomplete
   return p.rich_text.map((v) => v.text.content).join(',')
 }
 

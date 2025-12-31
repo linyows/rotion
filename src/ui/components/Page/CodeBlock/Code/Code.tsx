@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import type { CodeProps } from './Code.types'
 import './Code.css'
 import mermaid from 'mermaid'
@@ -27,7 +27,7 @@ const setPrismCss = () => {
 }
 
 const Code = ({ children, language = 'text' }: CodeProps) => {
-  const codeRef = React.createRef<HTMLPreElement>()
+  const codeRef = useRef<HTMLPreElement>(null)
 
   const highlight = useCallback(
     async (language: string) => {
