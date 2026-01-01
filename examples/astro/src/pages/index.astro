@@ -1,46 +1,37 @@
 ---
-import { FetchBlocks, FetchPage } from 'rotion';
-import NotionPage from '../components/NotionPage';
+import { FetchDatabase } from 'rotion';
+import Header from '../components/Header';
+import Table from '../components/Table';
 import 'rotion/style-without-dark.css';
 
 // Get configuration from environment variables
 const apiToken = import.meta.env.NOTION_TOKEN;
-const pageId = import.meta.env.NOTION_PAGE_ID;
+const databaseId = import.meta.env.NOTION_DATABASE_ID;
 
 // Set process.env for Rotion (it expects NOTION_TOKEN)
 if (apiToken) {
   process.env.NOTION_TOKEN = apiToken;
 }
 
-let blocks = [];
-let pageTitle = '';
+let db = null;
+let databaseTitle = '';
 let error = null;
 
-if (!pageId) {
-  error = 'Please set NOTION_PAGE_ID in your .env file';
+if (!databaseId) {
+  error = 'Please set NOTION_DATABASE_ID in your .env file';
 } else if (!apiToken) {
   error = 'Please set NOTION_TOKEN in your .env file';
 } else {
   try {
-    // Fetch page metadata to get the title
-    const page = await FetchPage({ page_id: pageId });
-
-    // Extract title from properties
-    if ('properties' in page) {
-      for (const [key, property] of Object.entries(page.properties)) {
-        if (property.type === 'title' && 'title' in property) {
-          pageTitle = property.title.map((t: any) => t.plain_text).join('');
-          break;
-        }
-      }
-    }
-
-    // Fetch blocks for content
-    blocks = await FetchBlocks({ block_id: pageId });
+    db = await FetchDatabase({ database_id: databaseId });
+    databaseTitle = db.meta?.title?.[0]?.plain_text || 'Database';
   } catch (err) {
-    error = err instanceof Error ? err.message : 'Failed to fetch Notion page';
+    error = err instanceof Error ? err.message : 'Failed to fetch Notion database';
   }
 }
+
+const description = 'This is a rotion example of the Notion database.';
+const keys = ['Title', 'Tags', 'Date'];
 ---
 
 <!DOCTYPE html>
@@ -48,16 +39,22 @@ if (!pageId) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rotion Astro Example</title>
-    <style>
+    <title>{databaseTitle || 'Rotion Astro Example'}</title>
+    <style is:global>
       body {
         margin: 0;
-        padding: 20px;
+        padding: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       }
       .container {
         max-width: 900px;
         margin: 0 auto;
+        padding: 20px;
+      }
+      .description {
+        margin-bottom: 40px;
+        color: #666;
+        font-size: 16px;
       }
       .error {
         padding: 40px;
@@ -82,6 +79,14 @@ if (!pageId) {
         margin-bottom: 8px;
         font-family: monospace;
       }
+      /* Table column width styles */
+      .rotion-table-column0 {
+        white-space: nowrap;
+        width: 100%;
+      }
+      .rotion-table-column0 .rotion-table-cell-inner {
+        width: 100%;
+      }
     </style>
   </head>
   <body>
@@ -94,14 +99,17 @@ if (!pageId) {
         </p>
         <ul>
           <li>NOTION_TOKEN</li>
-          <li>NOTION_PAGE_ID</li>
+          <li>NOTION_DATABASE_ID</li>
         </ul>
       </div>
     ) : (
-      <div class="container">
-        {pageTitle && <h1>{pageTitle}</h1>}
-        <NotionPage blocks={blocks} client:load />
-      </div>
+      <>
+        <Header title={databaseTitle} client:load />
+        <div class="container">
+          <p class="description">{description}</p>
+          <Table keys={keys} db={db} client:load />
+        </div>
+      </>
     )}
   </body>
 </html>
