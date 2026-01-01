@@ -191,7 +191,7 @@ const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
 | Tags       | `multi_select`|
 | Date       | `date`      |
 
-### [app-router](./examples/app-router)
+### [nextjs-approuter](./examples/nextjs-approuter)
 データベース対応のNext.js App Routerサンプル：
 - インデックスページにデータベーステーブルビュー
 - 個別記事用の動的 `[id]` ルート
@@ -199,21 +199,21 @@ const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
 - CSS Modulesによるスタイリング
 
 ```bash
-cd examples/app-router
+cd examples/nextjs-approuter
 cp .env.example .env.local
 # NOTION_TOKENとNOTION_DATABASE_IDを設定
 npm install
 npm run dev
 ```
 
-### [page-router](./examples/page-router)
+### [nextjs-pagerouter](./examples/nextjs-pagerouter)
 データベース対応のNext.js Pages Routerサンプル：
 - `getStaticProps` を使ったデータベーステーブルビュー
 - `getStaticPaths` による動的 `[id]` ルート
 - 従来のSSGワークフロー
 
 ```bash
-cd examples/page-router
+cd examples/nextjs-pagerouter
 cp .env.example .env.local
 # NOTION_TOKENとNOTION_DATABASE_IDを設定
 npm install

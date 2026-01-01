@@ -190,7 +190,7 @@ All examples require a Notion database with the following properties:
 | Tags         | `multi_select`|
 | Date         | `date`        |
 
-### [app-router](./examples/app-router)
+### [nextjs-approuter](./examples/nextjs-approuter)
 Next.js App Router example with database support:
 - Database table view on the index page
 - Dynamic `[id]` routes for individual articles
@@ -198,21 +198,21 @@ Next.js App Router example with database support:
 - CSS Modules for styling
 
 ```bash
-cd examples/app-router
+cd examples/nextjs-approuter
 cp .env.example .env.local
 # Add your NOTION_TOKEN and NOTION_DATABASE_ID
 npm install
 npm run dev
 ```
 
-### [page-router](./examples/page-router)
+### [nextjs-pagerouter](./examples/nextjs-pagerouter)
 Next.js Pages Router example with database support:
 - Database table view using `getStaticProps`
 - Dynamic `[id]` routes with `getStaticPaths`
 - Traditional SSG workflow
 
 ```bash
-cd examples/page-router
+cd examples/nextjs-pagerouter
 cp .env.example .env.local
 # Add your NOTION_TOKEN and NOTION_DATABASE_ID
 npm install
