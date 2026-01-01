@@ -1,0 +1,159 @@
+---
+import { FetchBlocks, FetchDatabase, FetchPage } from 'rotion';
+import Header from '../components/Header';
+import NotionPage from '../components/NotionPage';
+import 'rotion/style-without-dark.css';
+
+// Get configuration from environment variables
+const apiToken = import.meta.env.NOTION_TOKEN;
+const databaseId = import.meta.env.NOTION_DATABASE_ID;
+
+// Set process.env for Rotion (it expects NOTION_TOKEN)
+if (apiToken) {
+  process.env.NOTION_TOKEN = apiToken;
+}
+
+export async function getStaticPaths() {
+  const apiToken = import.meta.env.NOTION_TOKEN;
+  const databaseId = import.meta.env.NOTION_DATABASE_ID;
+
+  if (apiToken) {
+    process.env.NOTION_TOKEN = apiToken;
+  }
+
+  if (!databaseId || !apiToken) {
+    return [];
+  }
+
+  const db = await FetchDatabase({ database_id: databaseId });
+
+  return db.results.map((page) => ({
+    params: { id: page.id },
+  }));
+}
+
+const { id } = Astro.params;
+
+let blocks = [];
+let pageTitle = '';
+let pageIcon = '';
+let databaseTitle = '';
+let error = null;
+
+if (!id) {
+  error = 'No page ID provided';
+} else if (!apiToken) {
+  error = 'Please set NOTION_TOKEN in your .env file';
+} else {
+  try {
+    const [page, db] = await Promise.all([
+      FetchPage({ page_id: id }),
+      FetchDatabase({ database_id: databaseId })
+    ]);
+
+    // Extract title from properties
+    if ('properties' in page) {
+      for (const [key, property] of Object.entries(page.properties)) {
+        if (property.type === 'title' && 'title' in property) {
+          pageTitle = property.title.map((t: any) => t.plain_text).join('');
+          break;
+        }
+      }
+    }
+
+    // Get icon
+    if (page.icon && 'src' in page.icon) {
+      pageIcon = page.icon.src;
+    }
+
+    // Get database title
+    databaseTitle = db.meta?.title?.[0]?.plain_text || 'Database';
+
+    // Fetch blocks for content
+    blocks = await FetchBlocks({ block_id: id });
+  } catch (err) {
+    error = err instanceof Error ? err.message : 'Failed to fetch Notion page';
+  }
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle || 'Article'}</title>
+    <style is:global>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      }
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .page-icon {
+        display: block;
+        margin: 20px auto;
+        border-radius: 8px;
+      }
+      .title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 20px 0 40px;
+        text-align: center;
+      }
+      .back {
+        margin-top: 60px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+      }
+      .back a {
+        color: #0066cc;
+        text-decoration: none;
+      }
+      .back a:hover {
+        text-decoration: underline;
+      }
+      .error {
+        padding: 40px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .error h2 {
+        color: #e74c3c;
+        margin-bottom: 16px;
+      }
+      /* Table column width styles */
+      .rotion-table-column0 {
+        white-space: nowrap;
+        width: 100%;
+      }
+      .rotion-table-column0 .rotion-table-cell-inner {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    {error ? (
+      <div class="error">
+        <h2>Error</h2>
+        <p>{error}</p>
+      </div>
+    ) : (
+      <>
+        <Header title={databaseTitle} client:load />
+        <div class="container">
+          {pageIcon && <img src={pageIcon} width="160" height="160" alt="Icon" class="page-icon" />}
+          <h1 class="title">{pageTitle}</h1>
+          <NotionPage blocks={blocks} client:load />
+          <div class="back">
+            <a href="/">Back to Home</a>
+          </div>
+        </div>
+      </>
+    )}
+  </body>
+</html>

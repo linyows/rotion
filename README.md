@@ -175,6 +175,69 @@ Main Exports
 - `Checkbox` – Renders checkboxes
 - `createClientLink` – Helper for Next.js App Router (v2.0.1+)
 
+Examples
+--
+
+The `examples/` directory contains complete working examples demonstrating Notion database integration.
+
+### Database Setup
+
+All examples require a Notion database with the following properties:
+
+| Property Name | Property Type |
+|--------------|---------------|
+| Title        | `title`       |
+| Tags         | `multi_select`|
+| Date         | `date`        |
+
+### [nextjs-approuter](./examples/nextjs-approuter)
+Next.js App Router example with database support:
+- Database table view on the index page
+- Dynamic `[id]` routes for individual articles
+- Server Components with `generateStaticParams`
+- CSS Modules for styling
+
+```bash
+cd examples/nextjs-approuter
+cp .env.example .env.local
+# Add your NOTION_TOKEN and NOTION_DATABASE_ID
+npm install
+npm run dev
+```
+
+### [nextjs-pagerouter](./examples/nextjs-pagerouter)
+Next.js Pages Router example with database support:
+- Database table view using `getStaticProps`
+- Dynamic `[id]` routes with `getStaticPaths`
+- Traditional SSG workflow
+
+```bash
+cd examples/nextjs-pagerouter
+cp .env.example .env.local
+# Add your NOTION_TOKEN and NOTION_DATABASE_ID
+npm install
+npm run dev
+```
+
+### [astro](./examples/astro)
+Astro example with database support:
+- Database table view in `.astro` files
+- Dynamic routes with `getStaticPaths`
+- React components with `client:load`
+
+```bash
+cd examples/astro
+cp .env.example .env
+# Add your NOTION_TOKEN and NOTION_DATABASE_ID
+npm install
+npm run dev
+```
+
+Each example demonstrates:
+- Database table view displaying all three properties
+- Individual article pages with full content
+- Navigation between database and article views
+
 Scripts
 --
 

@@ -1,0 +1,8 @@
+.table :global(.rotion-table-column0) {
+  white-space: nowrap;
+  width: 100%;
+}
+
+.table :global(.rotion-table-column0 .rotion-table-cell-inner) {
+  width: 100%;
+}

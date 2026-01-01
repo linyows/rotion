@@ -176,6 +176,69 @@ const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
 - `Checkbox` - チェックボックスの表示
 - `createClientLink` - Next.js App Router用ヘルパー（v2.0.1以降）
 
+サンプル
+--
+
+`examples/` ディレクトリには、Notionデータベース連携を実演する完全なサンプルが含まれています。
+
+### データベースのセットアップ
+
+すべてのサンプルは、以下のプロパティを持つNotionデータベースが必要です：
+
+| プロパティ名 | プロパティ型 |
+|------------|-------------|
+| Title      | `title`     |
+| Tags       | `multi_select`|
+| Date       | `date`      |
+
+### [nextjs-approuter](./examples/nextjs-approuter)
+データベース対応のNext.js App Routerサンプル：
+- インデックスページにデータベーステーブルビュー
+- 個別記事用の動的 `[id]` ルート
+- `generateStaticParams` を使ったServer Components
+- CSS Modulesによるスタイリング
+
+```bash
+cd examples/nextjs-approuter
+cp .env.example .env.local
+# NOTION_TOKENとNOTION_DATABASE_IDを設定
+npm install
+npm run dev
+```
+
+### [nextjs-pagerouter](./examples/nextjs-pagerouter)
+データベース対応のNext.js Pages Routerサンプル：
+- `getStaticProps` を使ったデータベーステーブルビュー
+- `getStaticPaths` による動的 `[id]` ルート
+- 従来のSSGワークフロー
+
+```bash
+cd examples/nextjs-pagerouter
+cp .env.example .env.local
+# NOTION_TOKENとNOTION_DATABASE_IDを設定
+npm install
+npm run dev
+```
+
+### [astro](./examples/astro)
+データベース対応のAstroサンプル：
+- `.astro` ファイルでのデータベーステーブルビュー
+- `getStaticPaths` による動的ルート
+- `client:load` によるReactコンポーネント
+
+```bash
+cd examples/astro
+cp .env.example .env
+# NOTION_TOKENとNOTION_DATABASE_IDを設定
+npm install
+npm run dev
+```
+
+各サンプルのデモ内容：
+- 3つのプロパティすべてを表示するデータベーステーブルビュー
+- 完全なコンテンツを持つ個別記事ページ
+- データベースと記事ビュー間のナビゲーション
+
 スクリプト
 --
 

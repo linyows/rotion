@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import "rotion/style-without-dark.css";
 import "./globals.css";
+import { Header } from "./compornents/Header";
+import styles from "./layout.module.css";
 
 const raleway = Raleway({
   variable: "--font-raleway",
@@ -21,7 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={raleway.variable}>
-        {children}
+        <Header />
+        <div className={styles.content}>
+          {children}
+        </div>
       </body>
     </html>
   );
