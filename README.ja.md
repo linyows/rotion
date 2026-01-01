@@ -179,7 +179,17 @@ const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
 サンプル
 --
 
-`examples/` ディレクトリには、Notionデータベース連携を実演する完全なサンプルが含まれています：
+`examples/` ディレクトリには、Notionデータベース連携を実演する完全なサンプルが含まれています。
+
+### データベースのセットアップ
+
+すべてのサンプルは、以下のプロパティを持つNotionデータベースが必要です：
+
+| プロパティ名 | プロパティ型 |
+|------------|-------------|
+| Title      | `title`     |
+| Tags       | `multi_select`|
+| Date       | `date`      |
 
 ### [app-router](./examples/app-router)
 データベース対応のNext.js App Routerサンプル：
@@ -224,7 +234,10 @@ npm install
 npm run dev
 ```
 
-すべてのサンプルは、**Title**、**Tags**、**Date** フィールドを持つNotionデータベースを表示し、個別記事ページへのナビゲーションを含んでいます。
+各サンプルのデモ内容：
+- 3つのプロパティすべてを表示するデータベーステーブルビュー
+- 完全なコンテンツを持つ個別記事ページ
+- データベースと記事ビュー間のナビゲーション
 
 スクリプト
 --

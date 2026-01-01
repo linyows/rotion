@@ -178,7 +178,17 @@ Main Exports
 Examples
 --
 
-The `examples/` directory contains complete working examples demonstrating Notion database integration:
+The `examples/` directory contains complete working examples demonstrating Notion database integration.
+
+### Database Setup
+
+All examples require a Notion database with the following properties:
+
+| Property Name | Property Type |
+|--------------|---------------|
+| Title        | `title`       |
+| Tags         | `multi_select`|
+| Date         | `date`        |
 
 ### [app-router](./examples/app-router)
 Next.js App Router example with database support:
@@ -223,7 +233,10 @@ npm install
 npm run dev
 ```
 
-All examples display a Notion database with **Title**, **Tags**, and **Date** fields, and include navigation to individual article pages.
+Each example demonstrates:
+- Database table view displaying all three properties
+- Individual article pages with full content
+- Navigation between database and article views
 
 Scripts
 --
