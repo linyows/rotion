@@ -3,67 +3,45 @@ import type {
   InferGetStaticPropsType,
 } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
 import {
-  FetchBlocks,
-  FetchPage,
-  FetchBlocksRes,
-  RichTextItemResponse,
-  TitlePropertyItemObjectResponse,
-  FetchBreadcrumbs,
-  Breadcrumb,
+  FetchDatabase,
+  type QueryDatabaseResponseEx,
 } from 'rotion'
-
-import {
-  Page,
-  Link as NLink,
-} from 'rotion/ui'
+import { Header } from '@/components/Header'
+import { Table } from '@/components/Table'
+import styles from './index.module.css'
 
 type Props = {
-  title: null | RichTextItemResponse
-  icon: string
-  logo: string
-  blocks: FetchBlocksRes
-  breadcrumbs: Breadcrumb[]
+  databaseTitle: string
+  db: QueryDatabaseResponseEx
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  const id = process.env.NOTION_PAGE_ID || ''
-  const page = await FetchPage({ page_id: id, last_edited_time: 'force' })
-  let title: null | RichTextItemResponse = null
-  if ('meta' in page && page.meta?.object === 'list') {
-    const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
-    title = obj.title
-  }
-  const logo = page.cover?.src || ''
-  const icon = page.icon!.src
-  const blocks = await FetchBlocks({ block_id: id, last_edited_time: page.last_edited_time })
-  const breadcrumbs = await FetchBreadcrumbs({ id, type: 'page_id' })
+  const databaseId = process.env.NOTION_DATABASE_ID || ''
+  const db = await FetchDatabase({ database_id: databaseId })
+  const databaseTitle = db.meta?.title?.[0]?.plain_text || 'Database'
 
   return {
     props: {
-      title,
-      icon,
-      logo,
-      blocks,
-      breadcrumbs,
+      databaseTitle,
+      db,
     }
   }
 }
 
-export default function Home({ title, logo, icon, blocks, breadcrumbs }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const titleText = title?.plain_text
+export default function Home({ databaseTitle, db }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const description = 'This is a rotion example of the Notion database.'
+  const keys = ['Title', 'Tags', 'Date']
+
   return (
     <>
       <Head>
-        <title>{titleText}</title>
-        <link rel="icon" type="image/svg+xml" href={icon} />
+        <title>{databaseTitle}</title>
       </Head>
-      <div className="content">
-        <Image src={icon} width={160} height={160} alt="Icon" className="page-icon" />
-        <h1 className="page-title">{titleText}</h1>
-        <Page blocks={blocks} href="/[title]" link={Link as NLink} />
+      <Header title={databaseTitle} />
+      <div className={styles.container}>
+        <p className={styles.description}>{description}</p>
+        <Table keys={keys} db={db} />
       </div>
     </>
   )

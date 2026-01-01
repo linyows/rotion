@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.description {
+  font-size: 2.4rem;
+  margin: 4rem 0 2rem;
+  font-weight: bold;
+  padding: 0;
+}
