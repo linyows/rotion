@@ -176,6 +176,56 @@ const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
 - `Checkbox` - チェックボックスの表示
 - `createClientLink` - Next.js App Router用ヘルパー（v2.0.1以降）
 
+サンプル
+--
+
+`examples/` ディレクトリには、Notionデータベース連携を実演する完全なサンプルが含まれています：
+
+### [app-router](./examples/app-router)
+データベース対応のNext.js App Routerサンプル：
+- インデックスページにデータベーステーブルビュー
+- 個別記事用の動的 `[id]` ルート
+- `generateStaticParams` を使ったServer Components
+- CSS Modulesによるスタイリング
+
+```bash
+cd examples/app-router
+cp .env.example .env.local
+# NOTION_TOKENとNOTION_DATABASE_IDを設定
+npm install
+npm run dev
+```
+
+### [page-router](./examples/page-router)
+データベース対応のNext.js Pages Routerサンプル：
+- `getStaticProps` を使ったデータベーステーブルビュー
+- `getStaticPaths` による動的 `[id]` ルート
+- 従来のSSGワークフロー
+
+```bash
+cd examples/page-router
+cp .env.example .env.local
+# NOTION_TOKENとNOTION_DATABASE_IDを設定
+npm install
+npm run dev
+```
+
+### [astro](./examples/astro)
+データベース対応のAstroサンプル：
+- `.astro` ファイルでのデータベーステーブルビュー
+- `getStaticPaths` による動的ルート
+- `client:load` によるReactコンポーネント
+
+```bash
+cd examples/astro
+cp .env.example .env
+# NOTION_TOKENとNOTION_DATABASE_IDを設定
+npm install
+npm run dev
+```
+
+すべてのサンプルは、**Title**、**Tags**、**Date** フィールドを持つNotionデータベースを表示し、個別記事ページへのナビゲーションを含んでいます。
+
 スクリプト
 --
 

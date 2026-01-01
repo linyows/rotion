@@ -175,6 +175,56 @@ Main Exports
 - `Checkbox` – Renders checkboxes
 - `createClientLink` – Helper for Next.js App Router (v2.0.1+)
 
+Examples
+--
+
+The `examples/` directory contains complete working examples demonstrating Notion database integration:
+
+### [app-router](./examples/app-router)
+Next.js App Router example with database support:
+- Database table view on the index page
+- Dynamic `[id]` routes for individual articles
+- Server Components with `generateStaticParams`
+- CSS Modules for styling
+
+```bash
+cd examples/app-router
+cp .env.example .env.local
+# Add your NOTION_TOKEN and NOTION_DATABASE_ID
+npm install
+npm run dev
+```
+
+### [page-router](./examples/page-router)
+Next.js Pages Router example with database support:
+- Database table view using `getStaticProps`
+- Dynamic `[id]` routes with `getStaticPaths`
+- Traditional SSG workflow
+
+```bash
+cd examples/page-router
+cp .env.example .env.local
+# Add your NOTION_TOKEN and NOTION_DATABASE_ID
+npm install
+npm run dev
+```
+
+### [astro](./examples/astro)
+Astro example with database support:
+- Database table view in `.astro` files
+- Dynamic routes with `getStaticPaths`
+- React components with `client:load`
+
+```bash
+cd examples/astro
+cp .env.example .env
+# Add your NOTION_TOKEN and NOTION_DATABASE_ID
+npm install
+npm run dev
+```
+
+All examples display a Notion database with **Title**, **Tags**, and **Date** fields, and include navigation to individual article pages.
+
 Scripts
 --
 
