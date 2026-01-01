@@ -1,47 +1,25 @@
-import Image from 'next/image'
-import {
-  FetchBlocks,
-  FetchPage,
-  RichTextItemResponse,
-  TitlePropertyItemObjectResponse,
-} from 'rotion'
-
-import { RotionPage } from './compornents/RotionPage'
+import { FetchDatabase } from 'rotion'
+import { ClientLink } from './compornents/ClientLink'
+import { Table } from './compornents/Table'
+import styles from './page.module.css'
 
 export async function generateMetadata() {
-  const id = process.env.NOTION_PAGE_ID || ''
-  const page = await FetchPage({ page_id: id, last_edited_time: 'force' })
-
-  let title: null | RichTextItemResponse = null
-  if ('meta' in page && page.meta?.object === 'list') {
-    const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
-    title = obj.title
-  }
-
+  const databaseId = process.env.NOTION_DATABASE_ID || ''
+  const db = await FetchDatabase({ database_id: databaseId })
   return {
-    title: title?.plain_text,
+    title: db.meta?.title?.[0]?.plain_text || 'Database',
   }
 }
 
 export default async function Home() {
-  const id = process.env.NOTION_PAGE_ID || ''
-  const page = await FetchPage({ page_id: id, last_edited_time: 'force' })
-
-  let title: null | RichTextItemResponse = null
-  if ('meta' in page && page.meta?.object === 'list') {
-    const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
-    title = obj.title
-  }
-
-  const icon = page.icon!.src
-  const blocks = await FetchBlocks({ block_id: id, last_edited_time: page.last_edited_time })
-  const titleText = title?.plain_text
-
+  const description = 'This is a rotion example of the Notion database.'
+  const databaseId = process.env.NOTION_DATABASE_ID || ''
+  const db = await FetchDatabase({ database_id: databaseId })
+  const keys = ['Title', 'Tags', 'Date']
   return (
-    <div className="content">
-      <Image src={icon} width={160} height={160} alt="Icon" className="page-icon" />
-      <h1 className="page-title">{titleText}</h1>
-      <RotionPage blocks={blocks} />
+    <div className={styles.container}>
+      <p className={styles.description}>{description}</p>
+      <Table keys={keys} db={db} link={ClientLink} />
     </div>
   )
 }

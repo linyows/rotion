@@ -15,7 +15,7 @@
     "prismjs": "^1.29.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "rotion": "^2.0.5"
+    "rotion": "^3.0.0-rc.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
