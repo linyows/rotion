@@ -2,10 +2,10 @@ import { readFileSync } from 'fs'
 const pkg = JSON.parse(readFileSync('./package.json').toString())
 
 export const cacheDir = process.env.ROTION_CACHEDIR || '.cache'
-export const waitingTimeSec = (process.env.ROTION_WAITTIME || 0) as number
-export const waitTimeSecAfterLimit = (process.env.ROTION_LIMITED_WAITTIME || 60 * 1000) as number
+export const waitingTimeSec = process.env.ROTION_WAITTIME ? parseInt(process.env.ROTION_WAITTIME) : 0
+export const waitTimeSecAfterLimit = process.env.ROTION_LIMITED_WAITTIME ? parseInt(process.env.ROTION_LIMITED_WAITTIME) : 60 * 1000
 export const incrementalCache = process.env.ROTION_INCREMENTAL_CACHE === 'true'
-export const cacheAvailableDuration = (process.env.ROTION_CACHE_AVAILABLE_DURATION || 60 * 2 * 1000) as number
+export const cacheAvailableDuration = process.env.ROTION_CACHE_AVAILABLE_DURATION ? parseInt(process.env.ROTION_CACHE_AVAILABLE_DURATION) : 60 * 2 * 1000
 export const auth = process.env.NOTION_TOKEN
 export const googleMapKey = process.env.GOOGLEMAP_KEY
 export const docRoot = process.env.ROTION_DOCROOT || 'public'
