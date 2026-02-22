@@ -44,7 +44,7 @@ export function getSlug(key: string, page: GetPageResponse) {
   return p.rich_text.map((v) => v.text.content).join(',')
 }
 
-export function UsePagination<T>(
+export function usePagination<T>(
   pages: T[],
   perPage: number,
 ): {

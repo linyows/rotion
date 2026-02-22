@@ -27,6 +27,7 @@ const GalleryPreview = ({ src, options }: GalleryPreviewProps) => {
         src={src}
         className={`rotion-gallery-preview-img rotion-gallery-preview-${fit ? 'fit' : 'nofit'}`}
         style={{ height: h }}
+        alt=""
       />
     </div>
   )

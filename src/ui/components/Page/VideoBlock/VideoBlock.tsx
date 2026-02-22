@@ -53,6 +53,7 @@ const File = ({ video: { src, caption, videoType } }: VideoFileProps) => {
         <div className="rotion-video-file">
           <video controls preload="metadata" width="100%">
             <source src={src} type={videoType} />
+            <track kind="captions" />
             Download the <a href={src}>Video</a>
           </video>
         </div>
