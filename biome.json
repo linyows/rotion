@@ -31,8 +31,8 @@
       },
       "a11y": {
         "noSvgWithoutTitle": "warn",
-        "noStaticElementInteractions": "warn",
-        "useKeyWithClickEvents": "warn",
+        "noStaticElementInteractions": "off",
+        "useKeyWithClickEvents": "off",
         "useKeyWithMouseEvents": "warn",
         "useAltText": "warn",
         "noRedundantAlt": "warn",

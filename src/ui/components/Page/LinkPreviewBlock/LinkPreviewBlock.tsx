@@ -53,7 +53,7 @@ const GithubLinkPreview = ({ url, github }: GithubLinkPreviewProps) => {
     return (
       <div className="rotion-linkpreview-area rotion-linkpreview-github">
         <div className="rotion-linkpreview-githubicon">
-          <img className="rotion-linkpreview-githubicon-user" src={avatar_src} width="32px" height="32px" />
+          <img className="rotion-linkpreview-githubicon-user" src={avatar_src} width="32px" height="32px" alt={`${login} avatar`} />
           <Icon className="rotion-linkpreview-githubicon-octocat" name="github" width="15px" height="15px" />
         </div>
         <div>
@@ -82,7 +82,7 @@ const GithubLinkPreview = ({ url, github }: GithubLinkPreviewProps) => {
     return (
       <div className="rotion-linkpreview-area rotion-linkpreview-github">
         <div className="rotion-linkpreview-githubicon">
-          <img className="rotion-linkpreview-githubicon-user" src={avatar_src} width="32px" height="32px" />
+          <img className="rotion-linkpreview-githubicon-user" src={avatar_src} width="32px" height="32px" alt={`${login} avatar`} />
           <Icon className="rotion-linkpreview-githubicon-octocat" name="github" width="15px" height="15px" />
         </div>
         <div>

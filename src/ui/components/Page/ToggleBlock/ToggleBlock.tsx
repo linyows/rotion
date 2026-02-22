@@ -16,7 +16,7 @@ const Triangle = ({ open }: TriangleProps) => {
     transform: `rotateZ(${open ? 180 : 90}deg)`,
   }
   return (
-    <svg className="rotion-toggle-icon" style={css} viewBox="0 0 100 100">
+    <svg className="rotion-toggle-icon" style={css} viewBox="0 0 100 100" role="img" aria-hidden="true">
       <polygon points="5.9,88.2 50,11.8 94.1,88.2 "></polygon>
     </svg>
   )

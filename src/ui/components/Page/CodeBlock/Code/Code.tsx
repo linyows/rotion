@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import type { CodeProps } from './Code.types'
 import './Code.css'
 import mermaid from 'mermaid'
@@ -41,7 +41,7 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
         }
       }
     },
-    [codeRef],
+    [],
   )
   const cl = language === 'mermaid' ? 'mermaid' : `language-${language.toLowerCase()}`
 
@@ -54,7 +54,7 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
   }, [language, highlight])
 
   return (
-    <div className="rotion-code-area" onMouseOver={showLang} onMouseOut={hideLang}>
+    <div className="rotion-code-area" onMouseOver={showLang} onMouseOut={hideLang} onFocus={showLang} onBlur={hideLang}>
       {show && <div className="rotion-code-lang">{language}</div>}
       <pre className={cl} suppressHydrationWarning>
         <code ref={codeRef} suppressHydrationWarning>
