@@ -2,7 +2,6 @@ import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import {
   type Breadcrumb,
   FetchBlocks,
@@ -12,7 +11,7 @@ import {
   type RichTextItemResponse,
   type TitlePropertyItemObjectResponse,
 } from "rotion";
-import { type Link as NLink, Page, RichText } from "rotion/ui";
+import { type Link as NLink, Page } from "rotion/ui";
 import Header from "@/components/Header";
 import styles from "@/styles/Page.module.css";
 
@@ -24,7 +23,7 @@ type Props = {
   breadcrumbs: Breadcrumb[];
 };
 
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const id = process.env.NOTION_TESTROOT_ID as string;
   const page = await FetchPage({ page_id: id, last_edited_time: "force" });
   let title: null | RichTextItemResponse = null;
@@ -35,7 +34,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     title = obj.title;
   }
   const logo = page.cover?.src || "";
-  const icon = page.icon!.src;
+  const icon = page.icon?.src ?? "";
   const blocks = await FetchBlocks({
     block_id: id,
     last_edited_time: page.last_edited_time,
@@ -54,7 +53,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 };
 
 export default function Home({
-  title,
+  title: _title,
   logo,
   icon,
   blocks,

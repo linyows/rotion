@@ -89,7 +89,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
     ) as TitlePropertyItemObjectResponse;
     title = obj.title;
   }
-  const icon = page.icon!.src;
+  const icon = page.icon?.src;
   const blocks = await FetchBlocks({
     block_id: id,
     last_edited_time: page.last_edited_time,
@@ -112,6 +112,10 @@ export default function BlockPage({
   blocks,
   breadcrumbs,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  if (!icon || !blocks || !breadcrumbs) {
+    return null;
+  }
+
   return (
     <>
       <Head>
@@ -119,14 +123,14 @@ export default function BlockPage({
         <link rel="icon" type="image/svg+xml" href={icon} />
       </Head>
 
-      <Header breadcrumbs={breadcrumbs!} breadcrumb_hrefs={["/"]} />
+      <Header breadcrumbs={breadcrumbs} breadcrumb_hrefs={["/"]} />
 
       <div className={styles.layout}>
         <span></span>
         <div>
           <header className={styles.header}>
             <div className={styles.icon}>
-              <Image src={icon!} width={78} height={78} alt="Icon" />
+              <Image src={icon} width={78} height={78} alt="Icon" />
             </div>
             <h1 className={styles.title}>
               {title && <RichText textObject={title} />}
@@ -134,7 +138,7 @@ export default function BlockPage({
           </header>
 
           <div className={styles.page}>
-            <Page blocks={blocks!} href="/[title]" link={Link as NLink} />
+            <Page blocks={blocks} href="/[title]" link={Link as NLink} />
           </div>
         </div>
         <span></span>

@@ -25,7 +25,7 @@ type Props = {
   breadcrumbs: Breadcrumb[];
 };
 
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const id = process.env.NOTION_TABLEPAGE_ID as string;
   const page = await FetchPage({ page_id: id, last_edited_time: "force" });
   let title: null | RichTextItemResponse = null;
@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     ) as TitlePropertyItemObjectResponse;
     title = obj.title;
   }
-  const icon = page.icon!.src;
+  const icon = page.icon?.src ?? "";
   const blocks = await FetchBlocks({
     block_id: id,
     last_edited_time: page.last_edited_time,

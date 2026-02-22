@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import type { Breadcrumb } from "rotion";
 import { Breadcrumbs, Icon } from "rotion/ui";
 import styles from "@/components/Header.module.css";
