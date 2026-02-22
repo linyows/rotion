@@ -18,11 +18,12 @@
 }
 
 .copyright {
-  padding-top: .6rem;
+  padding-top: 0.6rem;
   font-size: small;
 }
 
-.copyright, .copyright a {
+.copyright,
+.copyright a {
   color: #999;
 }
 
@@ -30,7 +31,8 @@
   .footer a {
     color: #888;
   }
-  .copyright, .copyright a {
+  .copyright,
+  .copyright a {
     color: #666;
   }
 }

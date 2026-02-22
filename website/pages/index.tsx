@@ -1,50 +1,46 @@
-import type {
-  GetStaticProps,
-  InferGetStaticPropsType,
-} from 'next'
-import Image from 'next/image'
-import React from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
-import styles from '@/styles/Page.module.css'
-import Header from '@/components/Header'
-
+import type { GetStaticProps, InferGetStaticPropsType } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 import {
+  type Breadcrumb,
   FetchBlocks,
-  FetchPage,
-  FetchBlocksRes,
-  RichTextItemResponse,
-  TitlePropertyItemObjectResponse,
+  type FetchBlocksRes,
   FetchBreadcrumbs,
-  Breadcrumb,
-} from 'rotion'
-
-import {
-  Page,
-  RichText,
-  Link as NLink,
-} from 'rotion/ui'
+  FetchPage,
+  type RichTextItemResponse,
+  type TitlePropertyItemObjectResponse,
+} from "rotion";
+import { type Link as NLink, Page, RichText } from "rotion/ui";
+import Header from "@/components/Header";
+import styles from "@/styles/Page.module.css";
 
 type Props = {
-  title: null | RichTextItemResponse
-  icon: string
-  logo: string
-  blocks: FetchBlocksRes
-  breadcrumbs: Breadcrumb[]
-}
+  title: null | RichTextItemResponse;
+  icon: string;
+  logo: string;
+  blocks: FetchBlocksRes;
+  breadcrumbs: Breadcrumb[];
+};
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
-  const id = process.env.NOTION_TESTROOT_ID as string
-  const page = await FetchPage({ page_id: id, last_edited_time: 'force' })
-  let title: null | RichTextItemResponse = null
-  if ('meta' in page && page.meta?.object === 'list') {
-    const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
-    title = obj.title
+  const id = process.env.NOTION_TESTROOT_ID as string;
+  const page = await FetchPage({ page_id: id, last_edited_time: "force" });
+  let title: null | RichTextItemResponse = null;
+  if ("meta" in page && page.meta?.object === "list") {
+    const obj = page.meta.results.find(
+      (v) => v.type === "title",
+    ) as TitlePropertyItemObjectResponse;
+    title = obj.title;
   }
-  const logo = page.cover?.src || ''
-  const icon = page.icon!.src
-  const blocks = await FetchBlocks({ block_id: id, last_edited_time: page.last_edited_time })
-  const breadcrumbs = await FetchBreadcrumbs({ id, type: 'page_id' })
+  const logo = page.cover?.src || "";
+  const icon = page.icon!.src;
+  const blocks = await FetchBlocks({
+    block_id: id,
+    last_edited_time: page.last_edited_time,
+  });
+  const breadcrumbs = await FetchBreadcrumbs({ id, type: "page_id" });
 
   return {
     props: {
@@ -53,11 +49,17 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
       logo,
       blocks,
       breadcrumbs,
-    }
-  }
-}
+    },
+  };
+};
 
-export default function Home({ title, logo, icon, blocks, breadcrumbs }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({
+  title,
+  logo,
+  icon,
+  blocks,
+  breadcrumbs,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Head>
@@ -65,14 +67,16 @@ export default function Home({ title, logo, icon, blocks, breadcrumbs }: InferGe
         <link rel="icon" type="image/svg+xml" href={icon} />
       </Head>
 
-      <Header breadcrumbs={breadcrumbs} breadcrumb_hrefs={['/']} />
+      <Header breadcrumbs={breadcrumbs} breadcrumb_hrefs={["/"]} />
 
       <div className={styles.layout}>
         <span></span>
         <div>
           <header className={styles.header}>
             <div className={styles.logo}>
-              <h1><Image src={logo} width={360} height={360} alt="Rotion" /></h1>
+              <h1>
+                <Image src={logo} width={360} height={360} alt="Rotion" />
+              </h1>
             </div>
           </header>
 
@@ -83,5 +87,5 @@ export default function Home({ title, logo, icon, blocks, breadcrumbs }: InferGe
         <span></span>
       </div>
     </>
-  )
+  );
 }
