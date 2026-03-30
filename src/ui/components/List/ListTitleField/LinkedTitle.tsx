@@ -1,5 +1,6 @@
 import type { LinkedTitleProps } from './LinkedTitle.types'
 import './LinkedTitle.css'
+import { richTextKey } from '../../lib.js'
 import { RichText } from '../../RichText/index.js'
 
 const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
@@ -12,7 +13,7 @@ const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
     return (
       <Link className={className()} href={{ pathname: options.pathname, query: options.query }}>
         {textObjects.map((t, i) => (
-          <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
+          <RichText key={richTextKey(t.plain_text, i)} textObject={t} />
         ))}
       </Link>
     )
@@ -21,7 +22,7 @@ const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
     return (
       <Link className={className()} href={options.pathname}>
         {textObjects.map((t, i) => (
-          <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
+          <RichText key={richTextKey(t.plain_text, i)} textObject={t} />
         ))}
       </Link>
     )
@@ -29,7 +30,7 @@ const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
     return (
       <a className={className()} href={options.pathname}>
         {textObjects.map((t, i) => (
-          <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
+          <RichText key={richTextKey(t.plain_text, i)} textObject={t} />
         ))}
       </a>
     )
@@ -38,7 +39,7 @@ const LinkedTitle = ({ textObjects, options }: LinkedTitleProps) => {
   return (
     <span className={className()}>
       {textObjects.map((t, i) => (
-        <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
+        <RichText key={richTextKey(t.plain_text, i)} textObject={t} />
       ))}
     </span>
   )

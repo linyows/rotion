@@ -1,4 +1,5 @@
 import type { Breadcrumb } from '../../../../exporter/index.js'
+import { richTextKey } from '../../lib.js'
 import type { BreadcrumbsProps } from './Breadcrumbs.types'
 import LinkedBreadcrumbIfLinked from './LinkedBreadcrumbIfLinked.js'
 
@@ -8,7 +9,7 @@ const Breadcrumbs = ({ list, link, hrefs, query }: BreadcrumbsProps) => {
   return (
     <div className="rotion-breadcrumb">
       {list.map((v: Breadcrumb, i: number) => (
-        <span key={`${v.name || 'crumb'}-${i}`}>
+        <span key={richTextKey(v.name, i)}>
           <LinkedBreadcrumbIfLinked
             breadcrumb={v}
             href={hrefs === undefined ? undefined : hrefs[i]}

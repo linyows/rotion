@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import type { ParagraphBlockObjectResponse } from '../../../../exporter/index.js'
+import { richTextKey } from '../../lib.js'
 import { RichText } from '../../RichText/index.js'
 import type { ToggleBlockProps } from './ToggleBlock.types'
 import '../../tokens.css'
@@ -31,7 +32,7 @@ const ToggleBlock = ({ block }: ToggleBlockProps) => {
     return (
       <>
         {v.paragraph.rich_text.map((v, i) => (
-          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
+          <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
         ))}
       </>
     )
@@ -45,7 +46,7 @@ const ToggleBlock = ({ block }: ToggleBlockProps) => {
       <div className="rotion-toggle-text">
         <div>
           {block.toggle.rich_text.map((v, i) => (
-            <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
+            <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
           ))}
         </div>
         {open ? text : null}

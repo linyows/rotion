@@ -3,6 +3,7 @@ import type {
   RichTextItemResponseEx,
   TextRichTextItemResponse,
 } from '../../../../exporter/index.js'
+import { richTextKey } from '../../lib.js'
 import RichText from '../../RichText/RichText.js'
 import Code from './Code/Code.js'
 import type { CodeBlockProps } from './CodeBlock.types'
@@ -13,14 +14,14 @@ const CodeBlock = ({ block }: CodeBlockProps) => {
   const els = block.code?.rich_text.map((textObject: RichTextItemResponse, i) => {
     const text = textObject as TextRichTextItemResponse
     return (
-      <Code language={block.code?.language || ''} key={`${text.text.content.substring(0, 50)}-${i}`}>
+      <Code language={block.code?.language || ''} key={richTextKey(text.text.content.substring(0, 50), i)}>
         {text.text.content}
       </Code>
     )
   })
 
   const captions = block.code?.caption.map((v, i) => {
-    return <RichText textObject={v as RichTextItemResponseEx} key={`${v.plain_text || 'empty'}-${i}`} />
+    return <RichText textObject={v as RichTextItemResponseEx} key={richTextKey(v.plain_text, i)} />
   })
 
   return (

@@ -1,5 +1,6 @@
 import type { RichTextItemResponse } from '../../../../exporter/index.js'
 import { Icon } from '../../Icon/index.js'
+import { richTextKey } from '../../lib.js'
 import RichText from '../../RichText/RichText.js'
 import type { FileBlockProps } from './FileBlock.types'
 import '../../tokens.css'
@@ -26,7 +27,7 @@ const FileBlock = ({ block }: FileBlockProps) => {
       {file.caption.length > 0 && (
         <div className="rotion-file-caption">
           {file.caption.map((v: RichTextItemResponse, i) => (
-            <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
+            <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
           ))}
         </div>
       )}

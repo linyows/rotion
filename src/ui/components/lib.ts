@@ -95,6 +95,10 @@ export function getDatetimeFormat(lang?: string) {
   return { dateF, timeF }
 }
 
+export function richTextKey(plainText: string | undefined, index: number): string {
+  return `${plainText || 'empty'}-${index}`
+}
+
 export function splitUrl(url: string) {
   const withoutScheme = url.replace(/https?:\/\//, '')
   const arrayPath = withoutScheme.split('/')

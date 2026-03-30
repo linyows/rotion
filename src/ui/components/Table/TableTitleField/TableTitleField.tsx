@@ -1,3 +1,4 @@
+import { richTextKey } from '../../lib.js'
 import { RichText } from '../../RichText/index.js'
 import LinkedTitleIfLinked from './LinkedTitleIfLinked.js'
 import type { TableTitleFieldProps } from './TableTitleField.types'
@@ -8,7 +9,7 @@ const TableTitleField = ({ textObjects, options }: TableTitleFieldProps) => {
     <div className="rotion-table-title">
       <LinkedTitleIfLinked options={options}>
         {textObjects.map((t, i) => (
-          <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
+          <RichText key={richTextKey(t.plain_text, i)} textObject={t} />
         ))}
       </LinkedTitleIfLinked>
     </div>

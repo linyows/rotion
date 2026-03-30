@@ -1,3 +1,4 @@
+import { richTextKey } from '../../lib.js'
 import { RichText } from '../../RichText/index.js'
 import type { TableRichTextFieldProps } from './TableRichTextField.types'
 import './TableRichTextField.css'
@@ -10,7 +11,7 @@ const TableRichTextField = ({ textObjects }: TableRichTextFieldProps) => {
   return (
     <div className="rotion-table-richtext">
       {textObjects.map((t, i) => (
-        <RichText key={`${t.plain_text || 'empty'}-${i}`} textObject={t} />
+        <RichText key={richTextKey(t.plain_text, i)} textObject={t} />
       ))}
     </div>
   )

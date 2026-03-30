@@ -1,3 +1,4 @@
+import { richTextKey } from '../../lib.js'
 import { RichText } from '../../RichText/index.js'
 import type { BookmarkBlockProps } from './BookmarkBlock.types'
 import '../../tokens.css'
@@ -31,7 +32,7 @@ const BookmarkBlock = ({ block }: BookmarkBlockProps) => {
       </div>
       <div className="rotion-bookmark-caption">
         {block.bookmark.caption.map((v, i) => (
-          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
+          <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
         ))}
       </div>
     </div>

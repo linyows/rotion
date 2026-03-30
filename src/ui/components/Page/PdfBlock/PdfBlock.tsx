@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import type { RichTextItemResponse } from '../../../../exporter/index.js'
 import { Icon } from '../../Icon/index.js'
+import { richTextKey } from '../../lib.js'
 import RichText from '../../RichText/RichText.js'
 import { usePdf } from './Pdf.js'
 import type { PdfBlockProps } from './PdfBlock.types'
@@ -52,7 +53,7 @@ const PdfBlock = ({ block }: PdfBlockProps) => {
       {caption.length > 0 && (
         <div className="rotion-pdf-caption">
           {caption.map((v: RichTextItemResponse, i) => (
-            <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
+            <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
           ))}
         </div>
       )}

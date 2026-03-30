@@ -1,4 +1,5 @@
 import type { RichTextItemResponse } from '../../../../exporter/index.js'
+import { richTextKey } from '../../lib.js'
 import RichText from '../../RichText/RichText.js'
 import { GenHtmlId } from '../../TableOfContents/index.js'
 import type { TextBlockProps } from './TextBlock.types'
@@ -33,7 +34,7 @@ const TextBlock = ({ tag, block }: TextBlockProps) => {
   return (
     <CustomTag className={css.join(' ')} {...(isHeading && { id: GenHtmlId(block.id) })}>
       {richText.map((v, i) => (
-        <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
+        <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
       ))}
     </CustomTag>
   )

@@ -1,4 +1,5 @@
 import type { JSX } from 'react'
+import { richTextKey } from '../../lib.js'
 import { RichText } from '../../RichText/index.js'
 import Page from '../Page.js'
 import { blockType } from '../PageHandler.js'
@@ -15,7 +16,7 @@ const NumberedListBlock = ({ block, href, link, query }: NumberedListBlockProps)
     return (
       <CustomTag key={block.id} className="rotion-numbered-list">
         {text.map((v, i) => (
-          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
+          <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
         ))}
         <Page blocks={block.children} href={href} link={link} query={query} />
       </CustomTag>
@@ -25,7 +26,7 @@ const NumberedListBlock = ({ block, href, link, query }: NumberedListBlockProps)
   return (
     <CustomTag className="rotion-numbered-list">
       {text.map((v, i) => (
-        <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
+        <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
       ))}
     </CustomTag>
   )

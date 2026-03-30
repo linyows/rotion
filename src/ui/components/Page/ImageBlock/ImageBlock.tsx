@@ -1,3 +1,4 @@
+import { richTextKey } from '../../lib.js'
 import { RichText } from '../../RichText/index.js'
 import type { ImageBlockProps } from './ImageBlock.types'
 import '../../tokens.css'
@@ -17,7 +18,7 @@ export const ImageBlock = ({ block }: ImageBlockProps) => {
       </div>
       <div className="rotion-image-caption">
         {block.image.caption.map((v, i) => (
-          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
+          <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
         ))}
       </div>
     </div>

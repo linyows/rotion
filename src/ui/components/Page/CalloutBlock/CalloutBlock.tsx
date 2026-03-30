@@ -1,3 +1,4 @@
+import { richTextKey } from '../../lib.js'
 import { RichText } from '../../RichText/index.js'
 import Page from '../Page.js'
 import type { CalloutBlockProps } from './CalloutBlock.types'
@@ -31,7 +32,7 @@ const CalloutBlock = ({ block, href, link, query }: CalloutBlockProps) => {
       </div>
       <div className="rotion-callout-text">
         {rich_text.map((v, i) => (
-          <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
+          <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
         ))}
         {block.has_children && block.children !== undefined && (
           <Page blocks={block.children} href={href} link={link} query={query} />

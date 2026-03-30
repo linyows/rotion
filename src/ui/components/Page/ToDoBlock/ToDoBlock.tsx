@@ -1,4 +1,5 @@
 import { Checkbox } from '../../Checkbox/index.js'
+import { richTextKey } from '../../lib.js'
 import { RichText } from '../../RichText/index.js'
 import type { ToDoBlockProps } from './ToDoBlock.types'
 import '../../tokens.css'
@@ -19,7 +20,7 @@ const ToDoBlock = ({ block }: ToDoBlockProps) => {
       <div className="rotion-todo-text">
         <div className={`rotion-todo-text-inner ${todoChecked ? 'rotion-todo-text-inner-checked' : ''}`}>
           {block.to_do.rich_text.map((v, i) => (
-            <RichText textObject={v} key={`${v.plain_text || 'empty'}-${i}`} />
+            <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
           ))}
         </div>
       </div>
