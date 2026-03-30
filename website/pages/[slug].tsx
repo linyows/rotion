@@ -25,7 +25,7 @@ type Params = {
 
 type Props = {
   title?: null | RichTextItemResponse;
-  icon?: string;
+  icon?: string | null;
   blocks?: FetchBlocksRes;
   breadcrumbs?: Breadcrumb[];
 };
@@ -89,7 +89,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
     ) as TitlePropertyItemObjectResponse;
     title = obj.title;
   }
-  const icon = page.icon?.src;
+  const icon = page.icon?.src ?? null;
   const blocks = await FetchBlocks({
     block_id: id,
     last_edited_time: page.last_edited_time,
@@ -97,12 +97,12 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
   const breadcrumbs = await FetchBreadcrumbs({ id, type: "page_id" });
 
   return {
-    props: {
+    props: JSON.parse(JSON.stringify({
       title,
       icon,
       blocks,
       breadcrumbs,
-    },
+    })),
   };
 };
 
