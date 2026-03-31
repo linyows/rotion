@@ -112,7 +112,7 @@ export default function BlockPage({
   blocks,
   breadcrumbs,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  if (!icon || !blocks || !breadcrumbs) {
+  if (!blocks || !breadcrumbs) {
     return null;
   }
 
@@ -120,7 +120,7 @@ export default function BlockPage({
     <>
       <Head>
         <title>{`${title?.plain_text} Block - Rotion`}</title>
-        <link rel="icon" type="image/svg+xml" href={icon} />
+        {icon && <link rel="icon" type="image/svg+xml" href={icon} />}
       </Head>
 
       <Header breadcrumbs={breadcrumbs} breadcrumb_hrefs={["/"]} />
@@ -129,9 +129,11 @@ export default function BlockPage({
         <span></span>
         <div>
           <header className={styles.header}>
-            <div className={styles.icon}>
-              <Image src={icon} width={78} height={78} alt="Icon" />
-            </div>
+            {icon && (
+              <div className={styles.icon}>
+                <Image src={icon} width={78} height={78} alt="Icon" />
+              </div>
+            )}
             <h1 className={styles.title}>
               {title && <RichText textObject={title} />}
             </h1>

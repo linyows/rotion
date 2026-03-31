@@ -17,8 +17,8 @@ import styles from "@/styles/Page.module.css";
 
 type Props = {
   title: null | RichTextItemResponse;
-  icon: string;
-  logo: string;
+  icon: string | null;
+  logo: string | null;
   blocks: FetchBlocksRes;
   breadcrumbs: Breadcrumb[];
 };
@@ -33,8 +33,8 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     ) as TitlePropertyItemObjectResponse;
     title = obj.title;
   }
-  const logo = page.cover?.src || "";
-  const icon = page.icon?.src ?? "";
+  const logo = page.cover?.src || null;
+  const icon = page.icon?.src ?? null;
   const blocks = await FetchBlocks({
     block_id: id,
     last_edited_time: page.last_edited_time,
@@ -63,7 +63,7 @@ export default function Home({
     <>
       <Head>
         <title>Rotion</title>
-        <link rel="icon" type="image/svg+xml" href={icon} />
+        {icon && <link rel="icon" type="image/svg+xml" href={icon} />}
       </Head>
 
       <Header breadcrumbs={breadcrumbs} breadcrumb_hrefs={["/"]} />
@@ -72,11 +72,13 @@ export default function Home({
         <span></span>
         <div>
           <header className={styles.header}>
-            <div className={styles.logo}>
-              <h1>
-                <Image src={logo} width={360} height={360} alt="Rotion" />
-              </h1>
-            </div>
+            {logo && (
+              <div className={styles.logo}>
+                <h1>
+                  <Image src={logo} width={360} height={360} alt="Rotion" />
+                </h1>
+              </div>
+            )}
           </header>
 
           <div className={styles.page}>
