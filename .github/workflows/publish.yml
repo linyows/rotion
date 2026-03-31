@@ -7,6 +7,7 @@ on:
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
+    environment: release
     permissions:
       contents: read
       id-token: write
@@ -30,4 +31,4 @@ jobs:
         run: npm run build
 
       - name: Publish to npm
-        run: npm publish --provenance
+        run: npm publish --provenance --access public
