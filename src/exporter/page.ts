@@ -120,6 +120,10 @@ export async function savePageCover(page: GetPageResponseEx | PageObjectResponse
   }
 }
 
+export function getNotionIconUrl(icon: { name: string, color: string }): string {
+  return `https://www.notion.so/icons/${icon.name}_${icon.color}.svg`
+}
+
 export async function savePageIcon(page: GetPageResponseEx | PageObjectResponseEx) {
   if (page.icon === undefined || page.icon === null) {
     return
@@ -131,6 +135,10 @@ export async function savePageIcon(page: GetPageResponseEx | PageObjectResponseE
     } else if (page.icon.type === 'file') {
       const ipws = await saveImage(page.icon.file.url, `page-icon-${page.id}`)
       page.icon.src = ipws.path
+    } else if (page.icon.type === 'icon') {
+      const url = getNotionIconUrl(page.icon.icon)
+      const ipws = await saveImage(url, `page-icon-${page.id}`)
+      ;(page as any).icon = { type: 'external', external: { url }, src: ipws.path }
     }
   } catch (e) {
     if (debug) {

@@ -8,7 +8,7 @@ import {
   incrementalCache,
   debug,
 } from './variables.js'
-import { FetchPage } from './page.js'
+import { FetchPage, getNotionIconUrl } from './page.js'
 import {
   createDirWhenNotfound,
   saveImage,
@@ -119,6 +119,16 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
             try {
               const ipws = await saveImage(iconUrl, `block-${block.id}`)
               block.callout.icon.src = ipws.path
+            } catch (e) {
+              if (debug) {
+                console.log(`Failed to save callout icon: ${e}`)
+              }
+            }
+          } else if (block.callout.icon?.type === 'icon') {
+            const url = getNotionIconUrl(block.callout.icon.icon)
+            try {
+              const ipws = await saveImage(url, `block-${block.id}`)
+              ;(block.callout as any).icon = { type: 'external', external: { url }, src: ipws.path }
             } catch (e) {
               if (debug) {
                 console.log(`Failed to save callout icon: ${e}`)

@@ -2,6 +2,7 @@ import {
   reqAPIWithBackoff,
   notion,
 } from './api.js'
+import { getNotionIconUrl } from './page.js'
 import {
   cacheDir,
   incrementalCache,
@@ -188,6 +189,10 @@ export async function saveDatabaseIcon(db: GetDatabaseResponseEx) {
     } else if (db.icon.type === 'file') {
       const ipws = await saveImage(db.icon.file.url, `database-icon-${db.id}`)
       db.icon.src = ipws.path
+    } else if (db.icon.type === 'icon') {
+      const url = getNotionIconUrl(db.icon.icon)
+      const ipws = await saveImage(url, `database-icon-${db.id}`)
+      ;(db as any).icon = { type: 'external', external: { url }, src: ipws.path }
     }
   } catch (e) {
     if (debug) {

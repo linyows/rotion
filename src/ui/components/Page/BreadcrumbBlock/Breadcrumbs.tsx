@@ -16,8 +16,8 @@ const Breadcrumbs = ({ list, link, hrefs, query }: BreadcrumbsProps) => {
             link={link}
             query={query}
           >
-            {v.icon.type === 'emoji' && <span className="rotion-breadcrumb-emoji">{v.icon.emoji}</span>}
-            {v.icon.type !== 'emoji' && (
+            {v.icon?.type === 'emoji' && <span className="rotion-breadcrumb-emoji">{v.icon.emoji}</span>}
+            {v.icon && v.icon.type !== 'emoji' && (
               <img className="rotion-breadcrumb-icon" src={v.icon.src} width={20} height={20} alt={v.name} />
             )}
             <span className="rotion-breadcrumb-title">{v.name}</span>
