@@ -117,6 +117,28 @@ test('saveDatabaseIcon handles undefined icon gracefully', async () => {
 
   // Should not set src property when icon is undefined
   assert.equal(mockDatabase.icon, undefined)
-}) 
+})
 
-test.run() 
+test('saveDatabaseIcon saves notion icon type and converts to external', async () => {
+  const mockDatabase = {
+    id: 'test-db-id',
+    icon: {
+      type: 'icon',
+      icon: {
+        name: 'list-indent',
+        color: 'blue',
+      },
+    }
+  } as unknown as GetDatabaseResponseEx
+
+  await saveDatabaseIcon(mockDatabase)
+
+  const icon = mockDatabase.icon as any
+  assert.equal(icon.type, 'external')
+  assert.ok(icon.src !== undefined)
+  assert.ok(icon.src.includes('/images/database-icon-test-db-id'))
+  assert.ok(icon.src.includes('.svg'))
+  assert.equal(icon.external.url, 'https://www.notion.so/icons/list-indent_blue.svg')
+})
+
+test.run()

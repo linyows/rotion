@@ -150,6 +150,7 @@ export type CalloutBlockObjectResponseEx = CalloutBlockObjectResponse & {
     | { type: 'emoji', emoji: EmojiRequest }
     | { src: string, type: 'external', external: { url: TextRequest } }
     | { src: string, type: 'file', file: { url: string, expiry_time: string } }
+    | { src: string, type: 'icon', icon: { name: string, color: string } }
   }
   children?: ListBlockChildrenResponseEx
 }
@@ -237,7 +238,7 @@ export type ParagraphBlockObjectResponseEx = ParagraphBlockObjectResponse & {
 export type Breadcrumb = {
   id: string
   name: string
-  icon: MentionIcon
+  icon?: MentionIcon
 }
 export type BreadcrumbBlockObjectResponseEx = BreadcrumbBlockObjectResponse & {
   list: Breadcrumb[]
@@ -352,6 +353,7 @@ export type GetPageResponseEx = PageObjectResponse & {
     | { src: string, type: 'emoji'; emoji: EmojiRequest }
     | { src: string, type: 'external', external: { url: string, expiry_time: string } }
     | { src: string, type: 'file', file: { url: string, expiry_time: string } }
+    | { src: string, type: 'icon', icon: { name: string, color: string } }
     | null
   meta?: GetPagePropertyResponse
 }
@@ -450,6 +452,7 @@ export type GetDatabaseResponseEx = DatabaseObjectResponse & {
     | { type: 'emoji'; emoji: EmojiRequest }
     | { src: string, type: 'external'; external: { url: TextRequest } }
     | { src: string, type: 'file'; file: { url: string; expiry_time: string } }
+    | { src: string, type: 'icon'; icon: { name: string; color: string } }
     | null
   cover:
     | { src: string, type: 'external'; external: { url: TextRequest } }

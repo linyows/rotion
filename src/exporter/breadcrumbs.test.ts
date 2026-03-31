@@ -3,6 +3,7 @@ import * as td from 'testdouble'
 import * as assert from 'uvu/assert'
 import type { FetchBreadcrumbsProps } from './breadcrumbs.js'
 import { FetchBreadcrumbs } from './breadcrumbs.js'
+import type { Breadcrumb } from './types.js'
 
 test.before(() => {
   td.replace(console, 'log')
@@ -141,10 +142,10 @@ test('FetchBreadcrumbs returns correct data structure', async () => {
 
   try {
     const result = await FetchBreadcrumbs(props)
-    
+
     // Always returns an array
     assert.ok(Array.isArray(result))
-    
+
     // Each breadcrumb should have required structure
     for (const breadcrumb of result) {
       assert.ok(typeof breadcrumb === 'object')
@@ -152,12 +153,12 @@ test('FetchBreadcrumbs returns correct data structure', async () => {
       assert.ok('name' in breadcrumb)
       assert.ok(typeof breadcrumb.id === 'string')
       assert.ok(typeof breadcrumb.name === 'string')
-      
+
       // Icon is optional but if present should have correct structure
       if ('icon' in breadcrumb && breadcrumb.icon) {
         assert.ok('type' in breadcrumb.icon)
         assert.ok(['emoji', 'external', 'file'].includes(breadcrumb.icon.type))
-        
+
         if (breadcrumb.icon.type === 'emoji') {
           assert.ok('emoji' in breadcrumb.icon)
         } else {
@@ -170,6 +171,46 @@ test('FetchBreadcrumbs returns correct data structure', async () => {
     // Function handles errors gracefully
     assert.ok(error instanceof Error)
   }
+})
+
+test('Breadcrumb type allows entries without icon', () => {
+  // Pages without icon should still produce valid breadcrumb entries
+  const breadcrumb: Breadcrumb = {
+    id: 'page-without-icon',
+    name: 'No Icon Page',
+  }
+
+  assert.ok(typeof breadcrumb.id === 'string')
+  assert.ok(typeof breadcrumb.name === 'string')
+  assert.equal(breadcrumb.icon, undefined)
+})
+
+test('Breadcrumb type allows entries with emoji icon', () => {
+  const breadcrumb: Breadcrumb = {
+    id: 'page-with-emoji',
+    name: 'Emoji Page',
+    icon: {
+      type: 'emoji',
+      emoji: '📚',
+    },
+  }
+
+  assert.equal(breadcrumb.icon?.type, 'emoji')
+})
+
+test('Breadcrumb type allows entries with external icon', () => {
+  const breadcrumb: Breadcrumb = {
+    id: 'page-with-icon',
+    name: 'Icon Page',
+    icon: {
+      type: 'external',
+      src: '/images/page-icon-123.svg',
+      url: 'https://www.notion.so/icons/bookmark-outline_blue.svg',
+    },
+  }
+
+  assert.equal(breadcrumb.icon?.type, 'external')
+  assert.ok(breadcrumb.icon?.src?.includes('/images/'))
 })
 
 test('FetchBreadcrumbs supports all parent types correctly', async () => {

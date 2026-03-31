@@ -2,7 +2,7 @@ import { test } from 'uvu'
 import * as td from 'testdouble'
 import * as assert from 'uvu/assert'
 import type { GetPageResponseEx, PageObjectResponseEx } from './types.js'
-import { savePageCover, savePageIcon } from './page.js'
+import { savePageCover, savePageIcon, getNotionIconUrl } from './page.js'
 
 test.before(() => {
   td.replace(console, 'log')
@@ -179,4 +179,63 @@ test('savePageIcon works with PageObjectResponseEx type', async () => {
   assert.ok((mockPage.icon as any)?.src.includes('.png'))
 })
 
-test.run() 
+test('getNotionIconUrl builds correct URL from icon name and color', () => {
+  const url = getNotionIconUrl({ name: 'bookmark-outline', color: 'blue' })
+  assert.equal(url, 'https://www.notion.so/icons/bookmark-outline_blue.svg')
+})
+
+test('getNotionIconUrl handles various icon names and colors', () => {
+  const cases = [
+    { icon: { name: 'light-bulb', color: 'gray' }, expected: 'https://www.notion.so/icons/light-bulb_gray.svg' },
+    { icon: { name: 'circle', color: 'red' }, expected: 'https://www.notion.so/icons/circle_red.svg' },
+    { icon: { name: 'bread', color: 'blue' }, expected: 'https://www.notion.so/icons/bread_blue.svg' },
+  ]
+  for (const { icon, expected } of cases) {
+    assert.equal(getNotionIconUrl(icon), expected)
+  }
+})
+
+test('savePageIcon saves notion icon type and converts to external', async () => {
+  const mockPage = {
+    id: 'test-page-id',
+    icon: {
+      type: 'icon',
+      icon: {
+        name: 'bookmark-outline',
+        color: 'blue',
+      },
+    }
+  } as unknown as GetPageResponseEx
+
+  await savePageIcon(mockPage)
+
+  // Should convert icon type to external with src set
+  const icon = mockPage.icon as any
+  assert.equal(icon.type, 'external')
+  assert.ok(icon.src !== undefined)
+  assert.ok(icon.src.includes('/images/page-icon-test-page-id'))
+  assert.ok(icon.src.includes('.svg'))
+  assert.equal(icon.external.url, 'https://www.notion.so/icons/bookmark-outline_blue.svg')
+})
+
+test('savePageIcon saves notion icon type with PageObjectResponseEx', async () => {
+  const mockPage = {
+    id: 'test-page-id',
+    icon: {
+      type: 'icon',
+      icon: {
+        name: 'circle',
+        color: 'red',
+      },
+    }
+  } as unknown as PageObjectResponseEx
+
+  await savePageIcon(mockPage)
+
+  const icon = mockPage.icon as any
+  assert.equal(icon.type, 'external')
+  assert.ok(icon.src.includes('/images/page-icon-test-page-id'))
+  assert.equal(icon.external.url, 'https://www.notion.so/icons/circle_red.svg')
+})
+
+test.run()

@@ -1,5 +1,5 @@
 import { notion, reqAPIWithBackoffAndCache } from './api.js'
-import { savePageIcon } from './page.js'
+import { savePageIcon, getNotionIconUrl } from './page.js'
 import { saveDatabaseIcon } from './database.js'
 import type {
   GetBlockResponse,
@@ -69,26 +69,27 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
           nextType = page.parent.type
           nextID = getID(page.parent)
           const name = page.properties.title.type === 'title' ? page.properties.title.title.map(v => v.plain_text).join('') : ''
+          const breadcrumb: Breadcrumb = { id: page.id, name }
           if (page.icon?.type === 'emoji') {
-            breadcrumbs.unshift({
-              id: page.id,
-              name,
-              icon: {
-                type: page.icon.type,
-                emoji: page.icon.emoji,
-              }
-            })
+            breadcrumb.icon = {
+              type: page.icon.type,
+              emoji: page.icon.emoji,
+            }
           } else if (page.icon?.type === 'external' || page.icon?.type === 'file') {
-            breadcrumbs.unshift({
-              id: page.id,
-              name,
-              icon: {
-                type: page.icon.type,
-                src: page.icon.src,
-                url: page.icon.type === 'external' ? page.icon.external.url : page.icon.file.url,
-              }
-            })
+            breadcrumb.icon = {
+              type: page.icon.type,
+              src: page.icon.src,
+              url: page.icon.type === 'external' ? page.icon.external.url : page.icon.file.url,
+            }
+          } else if (page.icon?.type === 'icon') {
+            const url = getNotionIconUrl(page.icon.icon)
+            breadcrumb.icon = {
+              type: 'external',
+              src: page.icon.src ?? url,
+              url,
+            }
           }
+          breadcrumbs.unshift(breadcrumb)
           count++
           break
         }
@@ -104,26 +105,27 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
           nextType = db.parent.type
           nextID = getID(db.parent)
           const name = db.title.map(v => v.plain_text).join('')
+          const breadcrumb: Breadcrumb = { id: db.id, name }
           if (db.icon?.type === 'emoji') {
-            breadcrumbs.unshift({
-              id: db.id,
-              name,
-              icon: {
-                type: db.icon.type,
-                emoji: db.icon.emoji,
-              }
-            })
+            breadcrumb.icon = {
+              type: db.icon.type,
+              emoji: db.icon.emoji,
+            }
           } else if (db.icon?.type === 'external' || db.icon?.type === 'file') {
-            breadcrumbs.unshift({
-              id: db.id,
-              name,
-              icon: {
-                type: db.icon.type,
-                src: db.icon.src,
-                url: db.icon.type === 'external' ? db.icon.external.url : db.icon.file.url,
-              }
-            })
+            breadcrumb.icon = {
+              type: db.icon.type,
+              src: db.icon.src,
+              url: db.icon.type === 'external' ? db.icon.external.url : db.icon.file.url,
+            }
+          } else if (db.icon?.type === 'icon') {
+            const url = getNotionIconUrl(db.icon.icon)
+            breadcrumb.icon = {
+              type: 'external',
+              src: db.icon.src ?? url,
+              url,
+            }
           }
+          breadcrumbs.unshift(breadcrumb)
           count++
           break
         }
