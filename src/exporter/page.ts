@@ -121,7 +121,7 @@ export async function savePageCover(page: GetPageResponseEx | PageObjectResponse
 }
 
 export function getNotionIconUrl(icon: { name: string, color: string }): string {
-  return `https://www.notion.so/icons/${icon.name}_${icon.color}.svg`
+  return `https://www.notion.so/icons/${encodeURIComponent(icon.name)}_${encodeURIComponent(icon.color)}.svg`
 }
 
 export async function savePageIcon(page: GetPageResponseEx | PageObjectResponseEx) {

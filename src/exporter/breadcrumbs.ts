@@ -85,7 +85,7 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
             const url = getNotionIconUrl(page.icon.icon)
             breadcrumb.icon = {
               type: 'external',
-              src: page.icon.src,
+              src: page.icon.src ?? url,
               url,
             }
           }
@@ -121,7 +121,7 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
             const url = getNotionIconUrl(db.icon.icon)
             breadcrumb.icon = {
               type: 'external',
-              src: db.icon.src,
+              src: db.icon.src ?? url,
               url,
             }
           }
