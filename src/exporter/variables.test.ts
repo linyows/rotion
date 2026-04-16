@@ -13,7 +13,7 @@ for (const [envKey, varName, envValue, expected, defaultValue] of testsEnvParseN
     process.env[envKey] = envValue
 
     const modulePath = new URL('./variables.js', import.meta.url).href
-    const module = await import(`${modulePath}?t=${Date.now()}`)
+    const module = await import(`${modulePath}?t=${Date.now()}-${varName}-set`)
 
     assert.type(module[varName], 'number')
     assert.equal(module[varName], expected)
@@ -30,7 +30,7 @@ for (const [envKey, varName, envValue, expected, defaultValue] of testsEnvParseN
     delete process.env[envKey]
 
     const modulePath = new URL('./variables.js', import.meta.url).href
-    const module = await import(`${modulePath}?t=${Date.now()}`)
+    const module = await import(`${modulePath}?t=${Date.now()}-${varName}-default`)
 
     assert.type(module[varName], 'number')
     assert.equal(module[varName], defaultValue)
