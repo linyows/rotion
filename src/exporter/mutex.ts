@@ -26,20 +26,20 @@ export async function withFileLock<T>(
   const opts = { ...DEFAULT_OPTIONS, ...options }
   const lockDir = path.join(cacheDir, 'locks')
   const lockFile = path.join(lockDir, `${key}.lock`)
-  
+
   await createDirWhenNotfound(lockDir)
-  
+
   const startTime = Date.now()
   let fd: fs.FileHandle | null = null
-  
+
   while (Date.now() - startTime < opts.timeout) {
     try {
       // Cleanup stale lock files
       await cleanupStalelock(lockFile, opts.maxAge)
-      
+
       // Create lock file exclusively
       fd = await fs.open(lockFile, 'wx')
-      
+
       // Write process ID and timestamp
       const lockData = JSON.stringify({
         pid: process.pid,
@@ -47,11 +47,11 @@ export async function withFileLock<T>(
         key
       })
       await fd.writeFile(lockData)
-      
+
       if (debug) {
         console.log(`Lock acquired: ${key} (pid: ${process.pid})`)
       }
-      
+
       // Execute operation
       try {
         const result = await operation()
@@ -60,7 +60,7 @@ export async function withFileLock<T>(
         // Release lock
         await releaseLock(fd, lockFile, key)
       }
-      
+
     } catch (error: any) {
       if (error.code === 'EEXIST') {
         // Lock file already exists - wait and retry
@@ -70,7 +70,7 @@ export async function withFileLock<T>(
       throw error
     }
   }
-  
+
   throw new Error(`Failed to acquire lock for "${key}" within ${opts.timeout}ms`)
 }
 
@@ -81,11 +81,11 @@ async function cleanupStalelock(lockFile: string, maxAge: number): Promise<void>
   try {
     const stats = await fs.stat(lockFile)
     const age = Date.now() - stats.mtime.getTime()
-    
+
     if (age > maxAge) {
       const lockData = await fs.readFile(lockFile, 'utf-8')
       const lock = JSON.parse(lockData)
-      
+
       // Check if process is alive
       if (!isProcessAlive(lock.pid)) {
         await fs.unlink(lockFile)

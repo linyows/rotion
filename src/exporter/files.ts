@@ -21,6 +21,7 @@ import {
   maxRedirects,
   isSkipDownload,
 } from './variables.js'
+import { withFileLock } from './mutex.js'
 import type {
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
@@ -263,7 +264,13 @@ export async function readCache<T> (f: string): Promise<T> {
 }
 
 export async function writeCache (f: string, data: unknown): Promise<void> {
-  return writeFile(f, JSON.stringify(data), 'utf8').catch(() => {})
+  const tmp = `${f}.${process.pid}.tmp`
+  try {
+    await writeFile(tmp, JSON.stringify(data), 'utf8')
+    await fs.promises.rename(tmp, f)
+  } catch {
+    try { await fs.promises.unlink(tmp) } catch {}
+  }
 }
 
 export async function isAvailableCache (f: string, d?: number): Promise<boolean> {
@@ -284,45 +291,51 @@ export async function saveFile (fileUrl: string, prefix: string) {
   const urlPath = `/${fileDir}/${prefix}-${basename}`
   const filePath = `${docRoot}${urlPath}`
   const dirPath = `${docRoot}/${fileDir}`
+  const lockKey = `savefile-${atoh(filePath)}`
 
   await createDirWhenNotfound(dirPath)
 
-  if (fs.existsSync(filePath)) {
+  return withFileLock(lockKey, async () => {
+    if (fs.existsSync(filePath)) {
+      const stats = await stat(filePath)
+      return {
+        src: urlPath,
+        size: stats.size,
+      }
+
+    /* Download file */
+    } else {
+      try {
+        let res: HttpGetResponse
+        res = await httpsGetWithFollowRedirects(fileUrl)
+        if (res.statusCode >= 400 && res.statusCode < 500 && imageDir !== urlWithoutQuerystring) {
+          res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
+          if (res.statusCode >= 400 && res.statusCode < 500) {
+            throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
+          }
+        }
+        const writeStream = fs.createWriteStream(filePath)
+        res.pipe(writeStream)
+        await res.end
+        await new Promise<void>((resolve, reject) => {
+          writeStream.on('finish', resolve)
+          writeStream.on('error', reject)
+        })
+      } catch (e) {
+        const errorMessage = `saveFile download error -- path: ${filePath}, url: ${fileUrl}, message: ${e}`
+        if (debug) {
+          console.log(errorMessage)
+        }
+        throw new Error(errorMessage)
+      }
+    }
+
     const stats = await stat(filePath)
     return {
       src: urlPath,
       size: stats.size,
     }
-
-  /* Download file */
-  } else {
-    try {
-      let res: HttpGetResponse
-      res = await httpsGetWithFollowRedirects(fileUrl)
-      if (res.statusCode >= 400 && res.statusCode < 500 && imageDir !== urlWithoutQuerystring) {
-        res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
-        if (res.statusCode >= 400 && res.statusCode < 500) {
-          throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
-        }
-      }
-      res.pipe(fs.createWriteStream(filePath))
-      await res.end
-      // This fix that for fileType do not returns undefined
-      await sleep(10)
-    } catch (e) {
-      const errorMessage = `saveFile download error -- path: ${filePath}, url: ${fileUrl}, message: ${e}`
-      if (debug) {
-        console.log(errorMessage)
-      }
-      throw new Error(errorMessage)
-    }
-  }
-
-  const stats = await stat(filePath)
-  return {
-    src: urlPath,
-    size: stats.size,
-  }
+  })
 }
 
 export const saveImage = async (imageUrl: string, prefix: string): Promise<ImagePathWithSize> => {
@@ -334,130 +347,134 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
   const dirPath = `${docRoot}/${imageDir}`
   const webpUrlPath = replaceExt(urlPath, '.webp')
   const webpPath = `${docRoot}${webpUrlPath}`
+  const lockKey = `saveimage-${atoh(filePath)}`
 
   await createDirWhenNotfound(dirPath)
 
-  if (fs.existsSync(filePath)) {
-    if (webpQuality > 0 && fs.existsSync(webpPath)) {
-      try {
-        const meta = await sharp(webpPath).metadata()
-        return {
-          path: webpUrlPath,
-          width: meta.width,
-          height: meta.height,
+  return withFileLock(lockKey, async () => {
+    if (fs.existsSync(filePath)) {
+      if (webpQuality > 0 && fs.existsSync(webpPath)) {
+        try {
+          const meta = await sharp(webpPath).metadata()
+          return {
+            path: webpUrlPath,
+            width: meta.width,
+            height: meta.height,
+          }
+        } catch(e) {
+          if (debug) {
+            console.log(`sharp.metadata() error -- path: ${webpUrlPath}, message: ${e}`)
+          }
+          return { path: webpUrlPath }
         }
-      } catch(e) {
-        if (debug) {
-          console.log(`sharp.metadata() error -- path: ${webpUrlPath}, message: ${e}`)
+      } else {
+        if (ext === '.ico' || ext === '.svg') {
+          return { path: urlPath }
         }
-        return { path: webpUrlPath }
+        try {
+          const meta = await sharp(filePath).metadata()
+          return {
+            path: urlPath,
+            width: meta.width,
+            height: meta.height,
+          }
+        } catch(e) {
+          if (debug) {
+            console.log(`sharp.metadata() error -- path: ${urlPath}, message: ${e}`)
+          }
+          return { path: urlPath }
+        }
       }
+
+    /* Download image */
     } else {
-      if (ext === '.ico' || ext === '.svg') {
+      if (isSkipDownload()) {
         return { path: urlPath }
       }
+
       try {
-        const meta = await sharp(filePath).metadata()
-        return {
-          path: urlPath,
-          width: meta.width,
-          height: meta.height,
+        let res: HttpGetResponse
+        res = await httpsGetWithFollowRedirects(imageUrl)
+        if (res.statusCode >= 400 && res.statusCode < 500 && imageDir !== urlWithoutQuerystring) {
+          res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
+          if (res.statusCode >= 400 && res.statusCode < 500) {
+            throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
+          }
         }
-      } catch(e) {
+        const writeStream = fs.createWriteStream(filePath)
+        res.pipe(writeStream)
+        await res.end
+        await new Promise<void>((resolve, reject) => {
+          writeStream.on('finish', resolve)
+          writeStream.on('error', reject)
+        })
+      } catch (e) {
+        const errorMessage = `saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`
         if (debug) {
-          console.log(`sharp.metadata() error -- path: ${urlPath}, message: ${e}`)
+          console.log(errorMessage)
         }
-        return { path: urlPath }
+        throw new Error(errorMessage)
       }
     }
 
-  /* Download image */
-  } else {
-    if (isSkipDownload()) {
+    if (ext === '.ico' || ext === '.svg') {
       return { path: urlPath }
     }
 
-    try {
-      let res: HttpGetResponse
-      res = await httpsGetWithFollowRedirects(imageUrl)
-      if (res.statusCode >= 400 && res.statusCode < 500 && imageDir !== urlWithoutQuerystring) {
-        res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
-        if (res.statusCode >= 400 && res.statusCode < 500) {
-          throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
+    /* Convert HEIC/HEIF to PNG first if needed */
+    let processFilePath = filePath
+    let processUrlPath = urlPath
+    if (ext === '.heic' || ext === '.heif') {
+      try {
+        if (debug) {
+          console.log(`Converting HEIC/HEIF to PNG -- path: ${filePath}`)
+        }
+        const heicBuffer = await readFile(filePath)
+        const pngArrayBuffer = await heicConvert({
+          buffer: heicBuffer.buffer.slice(heicBuffer.byteOffset, heicBuffer.byteOffset + heicBuffer.byteLength),
+          format: 'PNG',
+        })
+        const pngBuffer = Buffer.from(pngArrayBuffer)
+        const pngPath = replaceExt(filePath, '.png')
+        await writeFile(pngPath, pngBuffer)
+        await unlink(filePath)
+        processFilePath = pngPath
+        processUrlPath = replaceExt(urlPath, '.png')
+        if (debug) {
+          console.log(`Converted HEIC/HEIF to PNG -- from: ${filePath}, to: ${pngPath}`)
+        }
+      } catch (e) {
+        const errorMessage = e instanceof Error ? e.message : String(e)
+        if (debug) {
+          console.log(`HEIC/HEIF to PNG conversion error -- path: ${filePath}, message: ${errorMessage}`)
         }
       }
-      const writeStream = fs.createWriteStream(filePath)
-      res.pipe(writeStream)
-      await res.end
-      // Wait for the write stream to finish
-      await new Promise<void>((resolve, reject) => {
-        writeStream.on('finish', resolve)
-        writeStream.on('error', reject)
-      })
-    } catch (e) {
-      const errorMessage = `saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`
-      if (debug) {
-        console.log(errorMessage)
-      }
-      throw new Error(errorMessage)
     }
-  }
 
-  if (ext === '.ico' || ext === '.svg') {
-    return { path: urlPath }
-  }
-
-  /* Convert HEIC/HEIF to PNG first if needed */
-  let processFilePath = filePath
-  let processUrlPath = urlPath
-  if (ext === '.heic' || ext === '.heif') {
+    /* Convert to webp */
     try {
-      if (debug) {
-        console.log(`Converting HEIC/HEIF to PNG -- path: ${filePath}`)
-      }
-      const heicBuffer = await readFile(filePath)
-      const pngArrayBuffer = await heicConvert({
-        buffer: heicBuffer.buffer.slice(heicBuffer.byteOffset, heicBuffer.byteOffset + heicBuffer.byteLength),
-        format: 'PNG',
-      })
-      const pngBuffer = Buffer.from(pngArrayBuffer)
-      const pngPath = replaceExt(filePath, '.png')
-      await writeFile(pngPath, pngBuffer)
-      // Delete original HEIC file
-      await unlink(filePath)
-      processFilePath = pngPath
-      processUrlPath = replaceExt(urlPath, '.png')
-      if (debug) {
-        console.log(`Converted HEIC/HEIF to PNG -- from: ${filePath}, to: ${pngPath}`)
-      }
-    } catch (e) {
-      const errorMessage = e instanceof Error ? e.message : String(e)
-      if (debug) {
-        console.log(`HEIC/HEIF to PNG conversion error -- path: ${filePath}, message: ${errorMessage}`)
-      }
-      // Fall through to try WebP conversion with original file
-    }
-  }
-
-  /* Convert to webp */
-  try {
-    const meta = await sharp(processFilePath).metadata()
-    if (webpQuality > 0) {
-      // Convert various image formats to webp (png, jpeg, heic, heif, tiff, avif, etc.)
-      // Exclude gif to preserve animations
-      if (meta.format && meta.format !== 'gif') {
-        if (meta.orientation && [3,6,8].includes(meta.orientation)) {
-          const angle = (meta.orientation === 6) ? 90 : (meta.orientation === 8) ? -90 : 180
-          await sharp(processFilePath).rotate(angle).webp({ quality: webpQuality }).toFile(webpPath)
-          return {
-            path: webpUrlPath,
-            width: meta.orientation === 6 || meta.orientation === 8 ? meta.height : meta.width,
-            height: meta.orientation === 6 || meta.orientation === 8 ? meta.width : meta.height,
+      const meta = await sharp(processFilePath).metadata()
+      if (webpQuality > 0) {
+        if (meta.format && meta.format !== 'gif') {
+          if (meta.orientation && [3,6,8].includes(meta.orientation)) {
+            const angle = (meta.orientation === 6) ? 90 : (meta.orientation === 8) ? -90 : 180
+            await sharp(processFilePath).rotate(angle).webp({ quality: webpQuality }).toFile(webpPath)
+            return {
+              path: webpUrlPath,
+              width: meta.orientation === 6 || meta.orientation === 8 ? meta.height : meta.width,
+              height: meta.orientation === 6 || meta.orientation === 8 ? meta.width : meta.height,
+            }
+          } else {
+            await sharp(processFilePath).webp({ quality: webpQuality }).toFile(webpPath)
+            return {
+              path: webpUrlPath,
+              width: meta.width,
+              height: meta.height,
+            }
           }
         } else {
-          await sharp(processFilePath).webp({ quality: webpQuality }).toFile(webpPath)
           return {
-            path: webpUrlPath,
+            path: processUrlPath,
             width: meta.width,
             height: meta.height,
           }
@@ -469,29 +486,22 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
           height: meta.height,
         }
       }
-    } else {
-      return {
-        path: processUrlPath,
-        width: meta.width,
-        height: meta.height,
+    } catch (e) {
+      const errorMessage = e instanceof Error ? e.message : String(e)
+
+      if (errorMessage.includes('Support for this compression format has not been built in')) {
+        const unsupportedMessage = `HEIC/HEIF image with unsupported compression format detected -- path: ${processFilePath}, url: ${imageUrl}. This image may not display in browsers other than Safari. Consider using a different image format or re-encoding the HEIC file.`
+        if (debug) {
+          console.log(unsupportedMessage)
+        }
+        console.warn(unsupportedMessage)
+      } else if (debug) {
+        console.log(`saveImage webp convert error -- path: ${processFilePath}, url: ${imageUrl}, message: ${errorMessage}`)
       }
     }
-  } catch (e) {
-    const errorMessage = e instanceof Error ? e.message : String(e)
 
-    // Check if the error is due to unsupported HEIC/HEIF compression format
-    if (errorMessage.includes('Support for this compression format has not been built in')) {
-      const unsupportedMessage = `HEIC/HEIF image with unsupported compression format detected -- path: ${processFilePath}, url: ${imageUrl}. This image may not display in browsers other than Safari. Consider using a different image format or re-encoding the HEIC file.`
-      if (debug) {
-        console.log(unsupportedMessage)
-      }
-      console.warn(unsupportedMessage)
-    } else if (debug) {
-      console.log(`saveImage webp convert error -- path: ${processFilePath}, url: ${imageUrl}, message: ${errorMessage}`)
-    }
-  }
-
-  return { path: processUrlPath }
+    return { path: processUrlPath }
+  })
 }
 
 export const decodeHtmlEntities = (text: string): string => {
