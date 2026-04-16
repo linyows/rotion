@@ -1,6 +1,4 @@
 import fs from 'fs/promises'
-import fsSync from 'fs'
-import path from 'path'
 import { test } from 'uvu'
 import * as td from 'testdouble'
 import * as assert from 'uvu/assert'

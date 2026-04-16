@@ -264,11 +264,14 @@ export async function readCache<T> (f: string): Promise<T> {
 }
 
 export async function writeCache (f: string, data: unknown): Promise<void> {
-  const tmp = `${f}.${process.pid}.tmp`
+  const tmp = `${f}.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2, 8)}.tmp`
   try {
     await writeFile(tmp, JSON.stringify(data), 'utf8')
     await fs.promises.rename(tmp, f)
-  } catch {
+  } catch (e) {
+    if (debug) {
+      console.log(`writeCache error -- path: ${f}, message: ${e}`)
+    }
     try { await fs.promises.unlink(tmp) } catch {}
   }
 }
