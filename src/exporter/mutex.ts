@@ -1,7 +1,6 @@
 import { promises as fs } from 'fs'
 import path from 'path'
 import { cacheDir, debug } from './variables.js'
-import { createDirWhenNotfound } from './files.js'
 
 interface LockOptions {
   timeout?: number // Lock acquisition timeout (milliseconds)
@@ -27,7 +26,7 @@ export async function withFileLock<T>(
   const lockDir = path.join(cacheDir, 'locks')
   const lockFile = path.join(lockDir, `${key}.lock`)
 
-  await createDirWhenNotfound(lockDir)
+  await fs.mkdir(lockDir, { recursive: true })
 
   const startTime = Date.now()
   let fd: fs.FileHandle | null = null
