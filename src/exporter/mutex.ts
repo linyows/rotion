@@ -34,7 +34,7 @@ export async function withFileLock<T>(
   while (Date.now() - startTime < opts.timeout) {
     try {
       // Cleanup stale lock files
-      await cleanupStalelock(lockFile, opts.maxAge)
+      await cleanupStaleLock(lockFile, opts.maxAge)
 
       // Create lock file exclusively
       fd = await fs.open(lockFile, 'wx')
@@ -76,7 +76,7 @@ export async function withFileLock<T>(
 /**
  * Cleanup stale lock files
  */
-async function cleanupStalelock(lockFile: string, maxAge: number): Promise<void> {
+async function cleanupStaleLock(lockFile: string, maxAge: number): Promise<void> {
   try {
     const stats = await fs.stat(lockFile)
     const age = Date.now() - stats.mtime.getTime()

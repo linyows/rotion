@@ -311,7 +311,7 @@ export async function saveFile (fileUrl: string, prefix: string) {
       try {
         let res: HttpGetResponse
         res = await httpsGetWithFollowRedirects(fileUrl)
-        if (res.statusCode >= 400 && res.statusCode < 500 && imageDir !== urlWithoutQuerystring) {
+        if (res.statusCode >= 400 && res.statusCode < 500 && fileUrl !== urlWithoutQuerystring) {
           res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
           if (res.statusCode >= 400 && res.statusCode < 500) {
             throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
@@ -398,7 +398,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
       try {
         let res: HttpGetResponse
         res = await httpsGetWithFollowRedirects(imageUrl)
-        if (res.statusCode >= 400 && res.statusCode < 500 && imageDir !== urlWithoutQuerystring) {
+        if (res.statusCode >= 400 && res.statusCode < 500 && imageUrl !== urlWithoutQuerystring) {
           res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
           if (res.statusCode >= 400 && res.statusCode < 500) {
             throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
