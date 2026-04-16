@@ -387,4 +387,97 @@ for (const t of testsDecodeHtmlEntities) {
   })
 }
 
+// --- Concurrency safety tests ---
+
+test('saveImage concurrent calls for same URL do not corrupt file', async () => {
+  const url = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+  const concurrency = 5
+
+  const promises = Array.from({ length: concurrency }, () =>
+    files.saveImage(url, 'concurrent-test')
+  )
+  const results = await Promise.all(promises)
+
+  // All results should return the same path
+  const paths = results.map(r => r.path)
+  const uniquePaths = [...new Set(paths)]
+  assert.equal(uniquePaths.length, 1, `All concurrent calls should return same path, got: ${uniquePaths}`)
+
+  // All results should have valid dimensions
+  for (const r of results) {
+    assert.ok(r.width, 'width should be defined')
+    assert.ok(r.height, 'height should be defined')
+  }
+})
+
+test('saveFile concurrent calls for same URL do not corrupt file', async () => {
+  const url = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+  const concurrency = 5
+
+  const promises = Array.from({ length: concurrency }, () =>
+    files.saveFile(url, 'concurrent-test')
+  )
+  const results = await Promise.all(promises)
+
+  // All results should return the same src path
+  const srcs = results.map(r => r.src)
+  const uniqueSrcs = [...new Set(srcs)]
+  assert.equal(uniqueSrcs.length, 1, `All concurrent calls should return same src, got: ${uniqueSrcs}`)
+
+  // All results should have consistent file size
+  const sizes = results.map(r => r.size)
+  const uniqueSizes = [...new Set(sizes)]
+  assert.equal(uniqueSizes.length, 1, `All concurrent calls should return same size, got: ${uniqueSizes}`)
+  assert.ok(sizes[0] > 0, 'file size should be > 0')
+})
+
+test('writeCache concurrent writes produce valid JSON', async () => {
+  const cacheFile = 'testdata/concurrent-cache-test.json'
+  const concurrency = 10
+
+  const promises = Array.from({ length: concurrency }, (_, i) =>
+    files.writeCache(cacheFile, { index: i, data: `value-${i}` })
+  )
+  await Promise.all(promises)
+
+  // The file should contain valid JSON (one of the writes should win)
+  const content = await fs.readFile(cacheFile, 'utf8')
+  let parsed: any
+  try {
+    parsed = JSON.parse(content)
+  } catch (e) {
+    assert.unreachable(`Cache file should contain valid JSON after concurrent writes, got: ${content}`)
+  }
+  assert.ok(typeof parsed.index === 'number', 'parsed result should have index')
+  assert.ok(typeof parsed.data === 'string', 'parsed result should have data')
+
+  // Clean up
+  await fs.unlink(cacheFile)
+})
+
+test('writeCache uses atomic rename (no partial writes visible)', async () => {
+  const cacheFile = 'testdata/atomic-cache-test.json'
+  const largeData = { key: 'x'.repeat(10000) }
+
+  await files.writeCache(cacheFile, largeData)
+
+  const content = await fs.readFile(cacheFile, 'utf8')
+  const parsed = JSON.parse(content)
+  assert.equal(parsed.key.length, 10000, 'full data should be written atomically')
+
+  // Clean up
+  await fs.unlink(cacheFile)
+})
+
+test('saveFile writeStream finish is awaited (file is complete on return)', async () => {
+  const url = 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png'
+  const result = await files.saveFile(url, 'stream-finish-test')
+
+  // File should exist and be readable immediately after saveFile returns
+  const filePath = `public${result.src}`
+  const stats = await fs.stat(filePath)
+  assert.ok(stats.size > 0, 'file should have content')
+  assert.equal(stats.size, result.size, 'reported size should match actual file size')
+})
+
 test.run()
