@@ -1,4 +1,5 @@
 import fs from 'fs/promises'
+import http from 'http'
 import { test } from 'uvu'
 import * as td from 'testdouble'
 import * as assert from 'uvu/assert'
@@ -362,6 +363,28 @@ const testsIconRegex = [
     '<link rel="shortcut icon" href="https://example.com/favicon.ico">',
     'https://example.com/favicon.ico',
   ],
+  // Unquoted href followed by additional attributes — the regex must
+  // capture only the URL, not bleed across `>` or whitespace.
+  [
+    '<link rel="icon" href=/foo.png class="x">',
+    '/foo.png',
+  ],
+  [
+    '<link rel="icon" type="image/x-icon" href=/bar.ico />',
+    '/bar.ico',
+  ],
+  // The leak we observed in cognano builds: nature.com served a link tag
+  // whose captured href ended with `>` and the saved file became
+  // `something.png>`, which then crashed sharp with "unsupported image
+  // format". The fix tightens `[^"]+` URL captures to `[^"\s>]+`.
+  [
+    '<link rel="icon" type="image/png" sizes="48x48" href=/static/favicon-48x48.png>',
+    '/static/favicon-48x48.png',
+  ],
+  [
+    '<link rel="icon" href=/foo.svg/>',
+    '/foo.svg',
+  ],
 ]
 for (const t of testsIconRegex) {
   const [tag, path] = t
@@ -488,6 +511,138 @@ test('saveFile writeStream finish is awaited (file is complete on return)', asyn
   const stats = await fs.stat(filePath)
   assert.ok(stats.size > 0, 'file should have content')
   assert.equal(stats.size, result.size, 'reported size should match actual file size')
+})
+
+// --- Stream hang regression tests ---
+//
+// Reproduce the deadlock observed in cognano builds: a remote server returns
+// response headers and a few bytes, then stops sending data. The current
+// `await res.end` in saveImage/saveFile hangs forever in this case, because
+// `req.setTimeout` aborts the request without emitting the 'end' event that
+// the awaited promise listens for. The lock around saveImage is therefore
+// never released and downstream workers deadlock.
+//
+// After the fix, saveImage/saveFile must reject within roughly the configured
+// timeout window (default 1500ms) instead of hanging.
+
+async function startStallingServer (): Promise<{ port: number, close: () => Promise<void> }> {
+  const sockets: import('net').Socket[] = []
+  const server = http.createServer((_req, res) => {
+    // Send headers and a few bytes, then deliberately never end.
+    // No Content-Length, so the client cannot know the body is complete.
+    res.writeHead(200, { 'Content-Type': 'image/png' })
+    res.write(Buffer.alloc(64, 0))
+  })
+  server.on('connection', (socket) => { sockets.push(socket) })
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve))
+  const addr = server.address()
+  if (!addr || typeof addr === 'string') throw new Error('failed to bind test server')
+  return {
+    port: addr.port,
+    close: async () => {
+      for (const s of sockets) s.destroy()
+      await new Promise<void>(resolve => server.close(() => resolve()))
+    },
+  }
+}
+
+test('saveImage rejects (does not hang) when remote stalls mid-response', async () => {
+  const { port, close } = await startStallingServer()
+  // Unique URL per run so the existsSync fast-path in saveImage doesn't
+  // bypass the download (which is what we are exercising).
+  const url = `http://127.0.0.1:${port}/stall-img-${Date.now()}-${Math.random().toString(36).slice(2)}.png`
+  try {
+    const start = Date.now()
+    const TEST_BUDGET = 8000 // generous: 1500ms ROTION_TIMEOUT default + slack
+    let outcome: 'resolved' | 'rejected' | 'hang' = 'hang'
+
+    await Promise.race([
+      files.saveImage(url, 'stall-test-img')
+        .then(() => { outcome = 'resolved' })
+        .catch(() => { outcome = 'rejected' }),
+      new Promise<void>(resolve => setTimeout(resolve, TEST_BUDGET)),
+    ])
+
+    const elapsed = Date.now() - start
+    assert.equal(
+      outcome,
+      'rejected',
+      `saveImage should reject when remote stalls (elapsed=${elapsed}ms, outcome=${outcome})`,
+    )
+    assert.ok(
+      elapsed < TEST_BUDGET,
+      `saveImage should fail fast, took ${elapsed}ms (>= ${TEST_BUDGET}ms budget)`,
+    )
+  } finally {
+    await close()
+  }
+})
+
+test('saveFile rejects (does not hang) when remote stalls mid-response', async () => {
+  const { port, close } = await startStallingServer()
+  const url = `http://127.0.0.1:${port}/stall-file-${Date.now()}-${Math.random().toString(36).slice(2)}.bin`
+  try {
+    const start = Date.now()
+    const TEST_BUDGET = 8000
+    let outcome: 'resolved' | 'rejected' | 'hang' = 'hang'
+
+    await Promise.race([
+      files.saveFile(url, 'stall-test-file')
+        .then(() => { outcome = 'resolved' })
+        .catch(() => { outcome = 'rejected' }),
+      new Promise<void>(resolve => setTimeout(resolve, TEST_BUDGET)),
+    ])
+
+    const elapsed = Date.now() - start
+    assert.equal(
+      outcome,
+      'rejected',
+      `saveFile should reject when remote stalls (elapsed=${elapsed}ms, outcome=${outcome})`,
+    )
+    assert.ok(
+      elapsed < TEST_BUDGET,
+      `saveFile should fail fast, took ${elapsed}ms (>= ${TEST_BUDGET}ms budget)`,
+    )
+  } finally {
+    await close()
+  }
+})
+
+// --- saveImage webp same-file regression test ---
+//
+// When the source URL ends in `.webp`, replaceExt(urlPath, '.webp') yields
+// the same path as filePath, so the conversion step
+// `sharp(filePath).webp().toFile(webpPath)` fails with
+// "Cannot use same file for input and output" and the function returns
+// without populated width/height. The fix short-circuits the re-encode
+// when the downloaded file is already at the target webp path.
+
+test('saveImage downloads .webp URL without "Cannot use same file" error', async () => {
+  const sharp = (await import('sharp')).default
+  const webpBuffer = await sharp({
+    create: { width: 12, height: 8, channels: 3, background: { r: 12, g: 34, b: 56 } },
+  }).webp().toBuffer()
+
+  const server = http.createServer((_req, res) => {
+    res.writeHead(200, { 'Content-Type': 'image/webp', 'Content-Length': String(webpBuffer.length) })
+    res.end(webpBuffer)
+  })
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve))
+  const addr = server.address()
+  if (!addr || typeof addr === 'string') throw new Error('failed to bind test server')
+  const port = addr.port
+  const url = `http://127.0.0.1:${port}/test-webp-${Date.now()}-${Math.random().toString(36).slice(2)}.webp`
+
+  try {
+    const ipws = await files.saveImage(url, 'webp-saveimage-test')
+    assert.match(ipws.path, /^\/images\/.*\.webp$/, `expected .webp path, got: ${ipws.path}`)
+    // The fix should still report metadata (width/height) instead of bailing
+    // out after the sharp error.
+    assert.equal(ipws.width, 12, `width should match source, got: ${ipws.width}`)
+    assert.equal(ipws.height, 8, `height should match source, got: ${ipws.height}`)
+  } finally {
+    await new Promise<void>(resolve => server.close(() => resolve()))
+  }
 })
 
 test.run()

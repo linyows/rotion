@@ -1,7 +1,9 @@
 import fs from 'fs'
 import { mkdir, stat, unlink } from 'node:fs/promises'
+import { pipeline } from 'node:stream/promises'
 import https from 'https'
 import http from 'http'
+import type { IncomingMessage } from 'node:http'
 import path from 'path'
 import crypto from 'crypto'
 import { promisify } from 'util'
@@ -61,11 +63,14 @@ http.get[promisify.custom] = function getAsync (url: any) {
   })
 }
 
-interface HttpGetResponse {
-  pipe: Function
+// Extends IncomingMessage so it is a proper Readable stream (and works
+// directly with `stream.pipeline` without a cast). Overrides `end` with the
+// Promise we attach in the custom promisify above (resolved when the
+// response emits 'end'), and tightens `statusCode` to non-optional since
+// the response is only constructed after headers arrive.
+interface HttpGetResponse extends Omit<IncomingMessage, 'end' | 'statusCode'> {
   end: Promise<unknown>
   statusCode: number
-  rawHeaders: string[]
 }
 
 // https://oembed.com/
@@ -317,14 +322,17 @@ export async function saveFile (fileUrl: string, prefix: string) {
             throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
           }
         }
+        // Use stream.pipeline so that source-side errors (request abort,
+        // socket close, network stall after `req.setTimeout` fires) reject
+        // and clean up the write stream instead of leaving the
+        // `writeStream.on('finish')` promise dangling forever.
         const writeStream = fs.createWriteStream(filePath)
-        res.pipe(writeStream)
-        await res.end
-        await new Promise<void>((resolve, reject) => {
-          writeStream.on('finish', resolve)
-          writeStream.on('error', reject)
-        })
+        await pipeline(res, writeStream)
       } catch (e) {
+        // Best-effort cleanup of any partial bytes pipeline managed to write
+        // before failing — otherwise the next call hits the existsSync()
+        // fast-path and serves a corrupted cached file.
+        try { await unlink(filePath) } catch {}
         const errorMessage = `saveFile download error -- path: ${filePath}, url: ${fileUrl}, message: ${e}`
         if (debug) {
           console.log(errorMessage)
@@ -404,14 +412,17 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
             throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
           }
         }
+        // Use stream.pipeline so that source-side errors (request abort,
+        // socket close, network stall after `req.setTimeout` fires) reject
+        // and clean up the write stream instead of leaving the
+        // `writeStream.on('finish')` promise dangling forever.
         const writeStream = fs.createWriteStream(filePath)
-        res.pipe(writeStream)
-        await res.end
-        await new Promise<void>((resolve, reject) => {
-          writeStream.on('finish', resolve)
-          writeStream.on('error', reject)
-        })
+        await pipeline(res, writeStream)
       } catch (e) {
+        // Best-effort cleanup of any partial bytes pipeline managed to write
+        // before failing — otherwise the next call hits the existsSync()
+        // fast-path and serves a corrupted cached file.
+        try { await unlink(filePath) } catch {}
         const errorMessage = `saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`
         if (debug) {
           console.log(errorMessage)
@@ -422,6 +433,21 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
 
     if (ext === '.ico' || ext === '.svg') {
       return { path: urlPath }
+    }
+
+    // Source is already webp — re-encoding it would point sharp at the same
+    // path for input and output ("Cannot use same file for input and output")
+    // and discard width/height. Just measure metadata and return.
+    if (ext === '.webp') {
+      try {
+        const meta = await sharp(filePath).metadata()
+        return { path: urlPath, width: meta.width, height: meta.height }
+      } catch (e) {
+        if (debug) {
+          console.log(`sharp.metadata() error -- path: ${urlPath}, message: ${e}`)
+        }
+        return { path: urlPath }
+      }
     }
 
     /* Convert HEIC/HEIF to PNG first if needed */
@@ -589,17 +615,23 @@ export const imageRegexps = [
   /name="twitter:image"\s+content="([^"]+)"/,
 ]
 
+// URL captures use `[^"\s>]+?` (lazy) followed by a lookahead requiring
+// `"`, whitespace, `>`, or `/>` so that an unquoted href like
+// `href=/foo.svg/>` captures `/foo.svg` and not `/foo.svg/`. Without this
+// the trailing `/` of a self-closing tag bleeds into the saved filename
+// and breaks downstream sharp processing. `[^"]+` is preserved for
+// non-URL captures (e.g. `sizes="..."`).
 export const iconRegexps = [
-  /<link\s+href="?([^"]+)"?\s+rel="icon"/,
-  /<link\s+rel="icon"\s+href="?([^"]+)"?\s*?\/?>/,
-  /<link\s+rel="icon".*?href="?([^"]+)"?/,
-  /<link\s+rel="shortcut icon"\s+type="image\/x-icon"\s+href="?([^"]+)"?\s?\/?>/,
-  /<link\s+rel="shortcut icon"\s+href="?([^"\s>]+)"?\s?\/?>/,
-  /<link\s+href="?([^"]+)"?\s+rel="(shortcut icon|icon shortcut)"(\s+type="image\/x-icon")?\s?\/?>/,
-  /<link\s+href="?([^"]+)"?\s+rel="icon"\s+sizes="[^"]+"\s+type="image\/[^"]"\s*\/?>/,
-  /type="image\/x-icon"\s+href="?([^"]+)"?/,
-  /rel="icon"\s+href="?([^"]+)"?/,
-  /rel="shortcut icon"\s+href="?([^"\s>]+)"?/,
+  /<link\s+href="?([^"\s>]+?(?=["\s>]|\/>))"?\s+rel="icon"/,
+  /<link\s+rel="icon"\s+href="?([^"\s>]+?(?=["\s>]|\/>))"?\s*?\/?>/,
+  /<link\s+rel="icon".*?href="?([^"\s>]+?(?=["\s>]|\/>))"?/,
+  /<link\s+rel="shortcut icon"\s+type="image\/x-icon"\s+href="?([^"\s>]+?(?=["\s>]|\/>))"?\s?\/?>/,
+  /<link\s+rel="shortcut icon"\s+href="?([^"\s>]+?(?=["\s>]|\/>))"?\s?\/?>/,
+  /<link\s+href="?([^"\s>]+?(?=["\s>]|\/>))"?\s+rel="(shortcut icon|icon shortcut)"(\s+type="image\/x-icon")?\s?\/?>/,
+  /<link\s+href="?([^"\s>]+?(?=["\s>]|\/>))"?\s+rel="icon"\s+sizes="[^"]+"\s+type="image\/[^"]"\s*\/?>/,
+  /type="image\/x-icon"\s+href="?([^"\s>]+?(?=["\s>]|\/>))"?/,
+  /rel="icon"\s+href="?([^"\s>]+?(?=["\s>]|\/>))"?/,
+  /rel="shortcut icon"\s+href="?([^"\s>]+?(?=["\s>]|\/>))"?/,
 ]
 
 export const findImage = (html: string): string | null => {

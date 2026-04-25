@@ -278,4 +278,83 @@ test('withFileLock works with different lock keys simultaneously', async () => {
   assert.ok(results.includes('op2'))
 })
 
-test.run() 
+// --- operationTimeout regression tests ---
+//
+// Defense-in-depth: even if an inner operation (e.g. a saveImage download)
+// hangs forever, withFileLock must release the lock and surface a timeout
+// error rather than letting the lock holder block all peers indefinitely.
+// This is what cascaded into the cognano build deadlock when saveImage's
+// `await res.end` never resolved after a request abort.
+
+// Helper: run a promise against a hard wall-clock budget so a hang shows up
+// as a clean assertion failure instead of locking up uvu.
+async function runWithBudget<T> (p: Promise<T>, budgetMs: number): Promise<{ outcome: 'resolved' | 'rejected' | 'hang', value?: T, error?: any, elapsed: number }> {
+  const start = Date.now()
+  let outcome: 'resolved' | 'rejected' | 'hang' = 'hang'
+  let value: T | undefined
+  let error: any
+  await Promise.race([
+    p.then(v => { outcome = 'resolved'; value = v })
+      .catch(e => { outcome = 'rejected'; error = e }),
+    new Promise<void>(resolve => setTimeout(resolve, budgetMs)),
+  ])
+  return { outcome, value, error, elapsed: Date.now() - start }
+}
+
+test('withFileLock rejects with operationTimeout when operation hangs', async () => {
+  const lockKey = 'test-op-timeout'
+  const hangingOperation = () => new Promise(() => { /* never resolves */ })
+
+  const { outcome, error, elapsed } = await runWithBudget(
+    withFileLock(lockKey, hangingOperation, { operationTimeout: 200 }),
+    3000,
+  )
+
+  assert.equal(outcome, 'rejected',
+    `withFileLock should reject when operation hangs longer than operationTimeout (outcome=${outcome}, elapsed=${elapsed}ms)`)
+  assert.ok(error, 'expected an error')
+  assert.match(error.message, /operation timed out|operationTimeout/i,
+    `error should mention operation timeout, got: ${error?.message}`)
+  assert.ok(elapsed >= 200 && elapsed < 2000,
+    `should fire near operationTimeout (~200ms), got ${elapsed}ms`)
+
+  // Lock file must be released so the next acquirer can proceed
+  const lockFile = path.join(process.cwd(), '.cache', 'locks', `${lockKey}.lock`)
+  try {
+    await fs.access(lockFile)
+    assert.unreachable(`lock file should be removed after operationTimeout, but exists: ${lockFile}`)
+  } catch {
+    // expected: file does not exist
+  }
+})
+
+test('withFileLock allows next acquirer immediately after operationTimeout fires', async () => {
+  const lockKey = 'test-op-timeout-handoff'
+
+  // Worker A holds the lock with a hanging operation.
+  const aPromise = withFileLock(
+    lockKey,
+    () => new Promise(() => { /* never resolves */ }),
+    { operationTimeout: 200 },
+  ).catch(e => e)
+
+  // Give A time to acquire the lock.
+  await new Promise(resolve => setTimeout(resolve, 50))
+
+  // Worker B waits and should succeed once A's operationTimeout releases the lock.
+  const { outcome, value, elapsed } = await runWithBudget(
+    withFileLock(lockKey, async () => 'B', { timeout: 5000 }),
+    3000,
+  )
+
+  assert.equal(outcome, 'resolved',
+    `B should acquire after A's operationTimeout (outcome=${outcome}, elapsed=${elapsed}ms)`)
+  assert.equal(value, 'B')
+  assert.ok(elapsed < 2000, `B should acquire shortly after A's operationTimeout, took ${elapsed}ms`)
+
+  // A should have errored out, not silently hung
+  const aErr = await aPromise
+  assert.ok(aErr instanceof Error, 'A should have rejected with an error')
+})
+
+test.run()
