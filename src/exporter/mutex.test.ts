@@ -306,7 +306,7 @@ test('withFileLock rejects with operationTimeout when operation hangs', async ()
   const hangingOperation = () => new Promise(() => { /* never resolves */ })
 
   const { outcome, error, elapsed } = await runWithBudget(
-    withFileLock(lockKey, hangingOperation, { operationTimeout: 200 } as any),
+    withFileLock(lockKey, hangingOperation, { operationTimeout: 200 }),
     3000,
   )
 
@@ -335,7 +335,7 @@ test('withFileLock allows next acquirer immediately after operationTimeout fires
   const aPromise = withFileLock(
     lockKey,
     () => new Promise(() => { /* never resolves */ }),
-    { operationTimeout: 200 } as any,
+    { operationTimeout: 200 },
   ).catch(e => e)
 
   // Give A time to acquire the lock.

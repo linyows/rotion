@@ -1,9 +1,9 @@
 import fs from 'fs'
 import { mkdir, stat, unlink } from 'node:fs/promises'
 import { pipeline } from 'node:stream/promises'
-import type { Readable } from 'node:stream'
 import https from 'https'
 import http from 'http'
+import type { IncomingMessage } from 'node:http'
 import path from 'path'
 import crypto from 'crypto'
 import { promisify } from 'util'
@@ -63,11 +63,14 @@ http.get[promisify.custom] = function getAsync (url: any) {
   })
 }
 
-interface HttpGetResponse {
-  pipe: Function
+// Extends IncomingMessage so it is a proper Readable stream (and works
+// directly with `stream.pipeline` without a cast). Overrides `end` with the
+// Promise we attach in the custom promisify above (resolved when the
+// response emits 'end'), and tightens `statusCode` to non-optional since
+// the response is only constructed after headers arrive.
+interface HttpGetResponse extends Omit<IncomingMessage, 'end' | 'statusCode'> {
   end: Promise<unknown>
   statusCode: number
-  rawHeaders: string[]
 }
 
 // https://oembed.com/
@@ -324,8 +327,12 @@ export async function saveFile (fileUrl: string, prefix: string) {
         // and clean up the write stream instead of leaving the
         // `writeStream.on('finish')` promise dangling forever.
         const writeStream = fs.createWriteStream(filePath)
-        await pipeline(res as unknown as Readable, writeStream)
+        await pipeline(res, writeStream)
       } catch (e) {
+        // Best-effort cleanup of any partial bytes pipeline managed to write
+        // before failing — otherwise the next call hits the existsSync()
+        // fast-path and serves a corrupted cached file.
+        try { await unlink(filePath) } catch {}
         const errorMessage = `saveFile download error -- path: ${filePath}, url: ${fileUrl}, message: ${e}`
         if (debug) {
           console.log(errorMessage)
@@ -410,8 +417,12 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
         // and clean up the write stream instead of leaving the
         // `writeStream.on('finish')` promise dangling forever.
         const writeStream = fs.createWriteStream(filePath)
-        await pipeline(res as unknown as Readable, writeStream)
+        await pipeline(res, writeStream)
       } catch (e) {
+        // Best-effort cleanup of any partial bytes pipeline managed to write
+        // before failing — otherwise the next call hits the existsSync()
+        // fast-path and serves a corrupted cached file.
+        try { await unlink(filePath) } catch {}
         const errorMessage = `saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`
         if (debug) {
           console.log(errorMessage)
