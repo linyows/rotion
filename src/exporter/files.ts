@@ -594,12 +594,12 @@ export const iconRegexps = [
   /<link\s+rel="icon"\s+href="?([^"]+)"?\s*?\/?>/,
   /<link\s+rel="icon".*?href="?([^"]+)"?/,
   /<link\s+rel="shortcut icon"\s+type="image\/x-icon"\s+href="?([^"]+)"?\s?\/?>/,
-  /<link\s+rel="shortcut icon"\s+href="?([^\s>]+)"?\s?\/?>/,
+  /<link\s+rel="shortcut icon"\s+href="?([^"\s>]+)"?\s?\/?>/,
   /<link\s+href="?([^"]+)"?\s+rel="(shortcut icon|icon shortcut)"(\s+type="image\/x-icon")?\s?\/?>/,
   /<link\s+href="?([^"]+)"?\s+rel="icon"\s+sizes="[^"]+"\s+type="image\/[^"]"\s*\/?>/,
   /type="image\/x-icon"\s+href="?([^"]+)"?/,
   /rel="icon"\s+href="?([^"]+)"?/,
-  /rel="shortcut icon"\s+href="?([^\s>]+)"?/,
+  /rel="shortcut icon"\s+href="?([^"\s>]+)"?/,
 ]
 
 export const findImage = (html: string): string | null => {
