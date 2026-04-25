@@ -6,6 +6,11 @@ interface LockOptions {
   timeout?: number // Lock acquisition timeout (milliseconds)
   retryInterval?: number // Retry interval (milliseconds)
   maxAge?: number // Auto-cleanup time for stale lock files (milliseconds)
+  operationTimeout?: number // Hard upper bound on the wrapped operation
+                            // (milliseconds). Defense-in-depth: if the
+                            // operation hangs (e.g. a stalled HTTP download),
+                            // the lock is forcibly released and the call
+                            // rejects instead of blocking peers indefinitely.
 }
 
 const DEFAULT_OPTIONS: Required<LockOptions> = {
@@ -14,6 +19,9 @@ const DEFAULT_OPTIONS: Required<LockOptions> = {
                    // inside a single critical section.
   retryInterval: 100, // 100ms
   maxAge: 60000, // 1 minute
+  operationTimeout: 600000, // 10 minutes — same upper bound as `timeout` so a
+                            // hanging operation cannot keep the lock past the
+                            // window in which other waiters would give up.
 }
 
 /**
@@ -53,9 +61,10 @@ export async function withFileLock<T>(
         console.log(`Lock acquired: ${key} (pid: ${process.pid})`)
       }
 
-      // Execute operation
+      // Execute operation, bounded by operationTimeout so a hanging
+      // operation cannot wedge the lock indefinitely.
       try {
-        const result = await operation()
+        const result = await runWithOperationTimeout(operation, opts.operationTimeout, key)
         return result
       } finally {
         // Release lock
@@ -110,6 +119,32 @@ function isProcessAlive(pid: number): boolean {
     return true
   } catch {
     return false
+  }
+}
+
+/**
+ * Race the operation against an operation-level timeout. The operation may
+ * still continue running after the timeout fires (we cannot synchronously
+ * cancel an arbitrary Promise), but the lock will be released and an error
+ * propagated so peers waiting on the same lock can make progress.
+ */
+async function runWithOperationTimeout<T> (
+  operation: () => Promise<T>,
+  operationTimeout: number,
+  key: string,
+): Promise<T> {
+  let timer: NodeJS.Timeout | undefined
+  const timeoutPromise = new Promise<never>((_resolve, reject) => {
+    timer = setTimeout(() => {
+      reject(new Error(`operation timed out for "${key}" after ${operationTimeout}ms`))
+    }, operationTimeout)
+    // Don't keep the event loop alive solely for the timeout.
+    if (typeof timer.unref === 'function') timer.unref()
+  })
+  try {
+    return await Promise.race([operation(), timeoutPromise])
+  } finally {
+    if (timer) clearTimeout(timer)
   }
 }
 
