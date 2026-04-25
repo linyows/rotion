@@ -352,6 +352,16 @@ const testsIconRegex = [
     '<link rel="shortcut icon" type="image/x-icon" href="/assets/favicon-test.ico" />',
     '/assets/favicon-test.ico',
   ],
+  // The captured href must not include the trailing `"` even though `[^\s>]+`
+  // alone would also accept it. See iconRegexps in files.ts.
+  [
+    '<link rel="shortcut icon" href="/favicon.ico"/>',
+    '/favicon.ico',
+  ],
+  [
+    '<link rel="shortcut icon" href="https://example.com/favicon.ico">',
+    'https://example.com/favicon.ico',
+  ],
 ]
 for (const t of testsIconRegex) {
   const [tag, path] = t

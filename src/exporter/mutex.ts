@@ -9,7 +9,9 @@ interface LockOptions {
 }
 
 const DEFAULT_OPTIONS: Required<LockOptions> = {
-  timeout: 30000, // 30 seconds
+  timeout: 600000, // 10 minutes — must accommodate long operations like
+                   // FetchDatabase that wrap many sequential image downloads
+                   // inside a single critical section.
   retryInterval: 100, // 100ms
   maxAge: 60000, // 1 minute
 }
