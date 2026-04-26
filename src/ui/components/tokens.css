@@ -167,4 +167,8 @@
   --rotion-dark-table-box-shadow: rgb(25, 25, 25) -3px 0px 0px, rgb(47, 47, 47) 0px 1px 0px;
   --rotion-table-link-hover-bg: rgb(227, 226, 224) none repeat scroll 0% 0%;
   --rotion-dark-table-link-hover-bg: rgb(28, 29, 31) none repeat scroll 0% 0%;
+
+  /* CALENDAR */
+  --rotion-calendar-weekend-bg: #f9f8f7;
+  --rotion-dark-calendar-weekend-bg: #202020;
 }

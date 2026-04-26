@@ -1,0 +1,30 @@
+.rotion-calendar-week {
+  position: relative;
+}
+
+.rotion-calendar-week-cells {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  height: 100%;
+}
+
+.rotion-calendar-week-events {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.rotion-calendar-event-slot {
+  position: absolute;
+  pointer-events: auto;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+.rotion-calendar-event-slot:not(.rotion-calendar-event-slot-start) {
+  padding-left: 0;
+}
+
+.rotion-calendar-event-slot:not(.rotion-calendar-event-slot-end) {
+  padding-right: 0;
+}

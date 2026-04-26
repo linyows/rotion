@@ -133,7 +133,7 @@ export default function MyPage({ blocks }) {
 Display Notion databases in different formats:
 
 ```tsx
-import { Gallery, Table, List } from 'rotion/ui'
+import { Gallery, Table, List, Calendar } from 'rotion/ui'
 import { FetchDatabase } from 'rotion'
 
 const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
@@ -146,6 +146,27 @@ const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
 
 // List view
 <List db={db} keys={['Name', 'Tags']} />
+
+// Calendar view
+<Calendar db={db} date="Date" keys={['Name', 'Tags']} />
+```
+
+##### Calendar options
+
+Calendar view renders a monthly grid. Multi-day events (date properties with both `start` and `end`) are drawn as a single bar that spans the matching cells, with continuation across week boundaries.
+
+```tsx
+<Calendar
+  db={db}
+  date="Date"                       // required: name of the date property
+  keys={['Name', 'Tags']}           // properties to render inside each event bar
+  options={{
+    initialDate: '2026-04-01',      // YYYY-MM-DD or YYYY-MM (default: today)
+    weekStart: 'monday',            // 'sunday' | 'monday' (default: 'sunday')
+    locale: 'ja-JP',                // overrides navigator.language for labels
+    href: { Name: '/blog/[id]' },   // same href/link/query API as other views
+  }}
+/>
 ```
 
 Main Exports
@@ -164,6 +185,7 @@ Main Exports
 - `Gallery` – Gallery view for databases
 - `Table` – Table view for databases
 - `List` – List view for databases
+- `Calendar` – Monthly calendar view for databases (events placed on a date property)
 
 **Page & Blocks:**
 - `Page` – Renders a complete Notion page

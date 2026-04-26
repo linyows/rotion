@@ -1,0 +1,59 @@
+.rotion-calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px 12px;
+  font-family: var(--rotion-font-family);
+  color: var(--rotion-primary-text);
+}
+
+.rotion-calendar-header-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.rotion-calendar-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rotion-calendar-header-button,
+.rotion-calendar-header-today {
+  appearance: none;
+  background: transparent;
+  border: none;
+  border-radius: var(--rotion-border-radius);
+  color: var(--rotion-primary-text);
+  cursor: var(--rotion-link-cursor);
+  font-family: var(--rotion-font-family);
+  font-size: .9rem;
+  line-height: 1;
+  padding: 4px 8px;
+  transition: background 100ms ease-out 0s;
+}
+
+.rotion-calendar-header-button {
+  min-width: 28px;
+}
+
+.rotion-calendar-header-button:hover,
+.rotion-calendar-header-today:hover {
+  background: var(--rotion-link-hover-bg-color);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-calendar-header {
+    color: var(--rotion-dark-primary-text);
+  }
+
+  .rotion-calendar-header-button,
+  .rotion-calendar-header-today {
+    color: var(--rotion-dark-primary-text);
+  }
+
+  .rotion-calendar-header-button:hover,
+  .rotion-calendar-header-today:hover {
+    background: var(--rotion-dark-link-hover-bg-color);
+  }
+}
