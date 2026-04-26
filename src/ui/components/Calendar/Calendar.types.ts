@@ -13,8 +13,6 @@ export interface CalendarOptions {
   href?: { [key: string]: string }
   link?: Link
   query?: ParsedUrlQueryInput
-  prefix?: { [key: string]: string }
-  suffix?: { [key: string]: string }
   initialDate?: string
   weekStart?: 'sunday' | 'monday'
   locale?: string

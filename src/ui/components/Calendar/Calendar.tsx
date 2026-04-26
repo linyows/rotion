@@ -6,6 +6,7 @@ import type { CalendarProps } from './Calendar.types'
 import CalendarHeader from './CalendarHeader/CalendarHeader.js'
 import CalendarWeek from './CalendarWeek/CalendarWeek.js'
 import type { PlacedEvent } from './CalendarWeek/CalendarWeek.types.js'
+import { dateKey } from './lib.js'
 import '../tokens.css'
 import './Calendar.css'
 
@@ -47,10 +48,6 @@ function buildCalendarDays(year: number, month: number, weekStart: 'sunday' | 'm
     return days.slice(0, 35)
   }
   return days
-}
-
-function dateKey(d: Date) {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 }
 
 function dayDiff(a: Date, b: Date) {

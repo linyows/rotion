@@ -1,15 +1,12 @@
 import CalendarCell from '../CalendarCell/CalendarCell.js'
 import CalendarEvent from '../CalendarEvent/CalendarEvent.js'
+import { dateKey } from '../lib.js'
 import type { CalendarWeekProps } from './CalendarWeek.types'
 import './CalendarWeek.css'
 
 const SLOT_HEIGHT_PX = 28
 const SLOT_TOP_OFFSET_PX = 28
 const MIN_CELL_HEIGHT_PX = 110
-
-function dateKey(d: Date) {
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
-}
 
 const CalendarWeek = ({ weekStart, monthInView, todayKey, placed, slotCount, keys, date, options }: CalendarWeekProps) => {
   const days: Date[] = []
