@@ -15,13 +15,31 @@ const WEEKDAYS_MON = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 const WEEKDAYS_SUN_JA = ['日', '月', '火', '水', '木', '金', '土']
 const WEEKDAYS_MON_JA = ['月', '火', '水', '木', '金', '土', '日']
 
+type ParsedEvent = { page: PageObjectResponseEx; range: { start: Date; end: Date } }
+
+function detectLang(locale?: string) {
+  return locale || (typeof navigator !== 'undefined' ? navigator.language : undefined)
+}
+
 function getWeekdayLabels(weekStart: 'sunday' | 'monday', locale?: string) {
-  const lang = locale || (typeof navigator !== 'undefined' ? navigator.language : undefined)
-  const isJa = lang?.includes('ja')
-  if (weekStart === 'monday') {
-    return isJa ? WEEKDAYS_MON_JA : WEEKDAYS_MON
+  const lang = detectLang(locale)
+  try {
+    const formatter = new Intl.DateTimeFormat(lang, { weekday: 'short' })
+    const baseSunday = new Date(Date.UTC(2024, 0, 7))
+    const labels = Array.from({ length: 7 }, (_, i) => {
+      const d = new Date(baseSunday)
+      d.setUTCDate(baseSunday.getUTCDate() + i)
+      return formatter.format(d)
+    })
+    if (weekStart === 'monday') {
+      return [...labels.slice(1), labels[0]]
+    }
+    return labels
+  } catch {
+    const isJa = lang?.includes('ja')
+    if (weekStart === 'monday') return isJa ? WEEKDAYS_MON_JA : WEEKDAYS_MON
+    return isJa ? WEEKDAYS_SUN_JA : WEEKDAYS_SUN
   }
-  return isJa ? WEEKDAYS_SUN_JA : WEEKDAYS_SUN
 }
 
 function parseInitialDate(initialDate?: string): Date {
@@ -75,30 +93,29 @@ function parseDateOnly(s: string): Date | null {
   return new Date(Number.parseInt(m[1], 10), Number.parseInt(m[2], 10) - 1, Number.parseInt(m[3], 10))
 }
 
-function placeWeekEvents(
-  weekStart: Date,
-  pages: PageObjectResponseEx[],
-  dateKeyName: string,
-): { placed: PlacedEvent[]; slotCount: number } {
-  const weekEnd = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + 6)
-  const candidates: { page: PageObjectResponseEx; range: { start: Date; end: Date } }[] = []
+function parseAllEvents(pages: PageObjectResponseEx[], dateKeyName: string): ParsedEvent[] {
+  const list: ParsedEvent[] = []
   for (const page of pages) {
     const range = getEventDateRange(page, dateKeyName)
     if (!range) continue
-    if (range.end < weekStart || range.start > weekEnd) continue
-    candidates.push({ page, range })
+    list.push({ page, range })
   }
-
-  candidates.sort((a, b) => {
+  list.sort((a, b) => {
     const sd = a.range.start.getTime() - b.range.start.getTime()
     if (sd !== 0) return sd
     return b.range.end.getTime() - a.range.end.getTime()
   })
+  return list
+}
 
+function placeWeekEvents(weekStart: Date, events: ParsedEvent[]): { placed: PlacedEvent[]; slotCount: number } {
+  const weekEnd = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + 6)
   const occupancy: boolean[][] = []
   const placed: PlacedEvent[] = []
 
-  for (const { page, range } of candidates) {
+  for (const { page, range } of events) {
+    if (range.end < weekStart || range.start > weekEnd) continue
+
     const startCol = Math.max(0, dayDiff(range.start, weekStart))
     const endCol = Math.min(6, dayDiff(range.end, weekStart))
     const span = endCol - startCol + 1
@@ -146,14 +163,19 @@ const Calendar = ({ keys, date, db, options }: CalendarProps) => {
   const today = new Date()
   const days = useMemo(() => buildCalendarDays(cursor.year, cursor.month, weekStart), [cursor.year, cursor.month, weekStart])
 
+  const parsedEvents = useMemo(
+    () => parseAllEvents(db.results as PageObjectResponseEx[], date),
+    [db.results, date],
+  )
+
   const weeks = useMemo(() => {
     const result: { weekStart: Date; placement: { placed: PlacedEvent[]; slotCount: number } }[] = []
     for (let i = 0; i < days.length; i += 7) {
       const ws = days[i]
-      result.push({ weekStart: ws, placement: placeWeekEvents(ws, db.results as PageObjectResponseEx[], date) })
+      result.push({ weekStart: ws, placement: placeWeekEvents(ws, parsedEvents) })
     }
     return result
-  }, [days, db.results, date])
+  }, [days, parsedEvents])
 
   const weekdayLabels = getWeekdayLabels(weekStart, options?.locale)
 

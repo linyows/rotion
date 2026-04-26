@@ -11,10 +11,14 @@ function detectLang(locale?: string) {
 function getMonthLabel(year: number, month: number, locale?: string) {
   const date = new Date(year, month, 1)
   const lang = detectLang(locale)
-  if (lang?.includes('ja')) {
-    return cdate(date).format('YYYY年M月')
+  try {
+    return new Intl.DateTimeFormat(lang, { month: 'long', year: 'numeric' }).format(date)
+  } catch {
+    if (lang?.includes('ja')) {
+      return cdate(date).format('YYYY年M月')
+    }
+    return cdate(date).format('MMMM YYYY')
   }
-  return cdate(date).format('MMMM YYYY')
 }
 
 function getCalendarLabels(locale?: string) {
