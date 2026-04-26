@@ -13,11 +13,7 @@ import {
   type RichTextItemResponse,
   type TitlePropertyItemObjectResponse,
 } from "rotion";
-import {
-  // Calendar,
-  Page,
-  RichText,
-} from "rotion/ui";
+import { Calendar, Page, RichText } from "rotion/ui";
 import Header from "@/components/Header";
 import styles from "@/styles/Db.module.css";
 
@@ -78,7 +74,7 @@ const CalendarPage: NextPage<Props> = ({
   title,
   icon,
   blocks,
-  db: _db,
+  db,
   breadcrumbs,
 }) => {
   return (
@@ -105,7 +101,14 @@ const CalendarPage: NextPage<Props> = ({
             </div>
           </header>
 
-          <div className={styles.db}></div>
+          <div className={styles.db}>
+            <Calendar
+              keys={["Name", "Tags"]}
+              date="Date"
+              db={db}
+              options={{ href: { Name: "/[title]" } }}
+            />
+          </div>
         </div>
         <div></div>
       </div>

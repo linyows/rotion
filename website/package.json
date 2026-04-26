@@ -16,7 +16,7 @@
     "prismjs": "^1.29.0",
     "react": "^19",
     "react-dom": "^19",
-    "rotion": "^3.3.0"
+    "rotion": "^3.5.0"
   },
   "devDependencies": {
     "@types/node": "^25",
