@@ -1,0 +1,44 @@
+.rotion-calendar {
+  font-family: var(--rotion-font-family);
+  color: var(--rotion-primary-text);
+}
+
+.rotion-calendar-grid {
+  border-radius: var(--rotion-border-radius);
+  overflow: hidden;
+}
+
+.rotion-calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.rotion-calendar-weekday {
+  padding: 6px 8px;
+  font-size: .75rem;
+  font-weight: 600;
+  color: var(--rotion-secondary-text);
+  text-align: center;
+}
+
+.rotion-calendar-days {
+  display: flex;
+  flex-direction: column;
+  border-top: var(--rotion-table-border);
+  border-left: var(--rotion-table-border);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-calendar {
+    color: var(--rotion-dark-primary-text);
+  }
+
+  .rotion-calendar-weekday {
+    color: var(--rotion-dark-secondary-text);
+  }
+
+  .rotion-calendar-days {
+    border-top: var(--rotion-dark-table-border);
+    border-left: var(--rotion-dark-table-border);
+  }
+}

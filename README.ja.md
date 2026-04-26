@@ -134,7 +134,7 @@ export default function MyPage({ blocks }) {
 Notionデータベースをさまざまな形式で表示：
 
 ```tsx
-import { Gallery, Table, List } from 'rotion/ui'
+import { Gallery, Table, List, Calendar } from 'rotion/ui'
 import { FetchDatabase } from 'rotion'
 
 const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
@@ -147,6 +147,27 @@ const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
 
 // リストビュー
 <List db={db} keys={['Name', 'Tags']} />
+
+// カレンダービュー
+<Calendar db={db} date="Date" keys={['Name', 'Tags']} />
+```
+
+##### Calendar オプション
+
+カレンダービューは月単位のグリッドを描画します。`start` と `end` を持つ複数日のイベントは、対象のセルにまたがる1本の帯としてレンダリングされ、週境界では帯が分割されて続きが描かれます。
+
+```tsx
+<Calendar
+  db={db}
+  date="Date"                       // 必須: 使用するdateプロパティ名
+  keys={['Name', 'Tags']}           // イベント帯の中に表示するプロパティ
+  options={{
+    initialDate: '2026-04-01',      // YYYY-MM-DD または YYYY-MM (既定: 今日)
+    weekStart: 'monday',            // 'sunday' | 'monday' (既定: 'sunday')
+    locale: 'ja-JP',                // navigator.language を上書き
+    href: { Name: '/blog/[id]' },   // 他のビューと同じ href/link/query API
+  }}
+/>
 ```
 
 主なエクスポート
@@ -165,6 +186,7 @@ const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
 - `Gallery` - ギャラリービュー
 - `Table` - テーブルビュー
 - `List` - リストビュー
+- `Calendar` - 月単位のカレンダービュー（指定したdateプロパティに従って予定を配置）
 
 **ページとブロック:**
 - `Page` - Notionページ全体を表示

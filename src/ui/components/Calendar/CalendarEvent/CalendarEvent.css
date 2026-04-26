@@ -1,0 +1,119 @@
+.rotion-calendar-event {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 100%;
+  padding: 5px 6px;
+  border: var(--rotion-border);
+  border-radius: var(--rotion-border-radius);
+  background: #fff;
+  color: var(--rotion-primary-text);
+  font-family: var(--rotion-font-family);
+  font-size: .78rem;
+  line-height: 1.3;
+  overflow: hidden;
+  text-decoration: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+.rotion-calendar-event-cont-left {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: none;
+}
+
+.rotion-calendar-event-cont-right {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+
+.rotion-calendar-event-link {
+  cursor: var(--rotion-link-cursor);
+  transition: background 100ms ease-out 0s;
+}
+
+.rotion-calendar-event-link:hover {
+  background: var(--rotion-gallery-hover-bg);
+}
+
+.rotion-calendar-event-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.rotion-calendar-event-emoji {
+  font-size: .9rem;
+  line-height: 1;
+}
+
+.rotion-calendar-event-icon-img {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.rotion-calendar-event-body {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.rotion-calendar-event-title {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rotion-calendar-event-text {
+  color: var(--rotion-secondary-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rotion-calendar-event-tags {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.rotion-calendar-event-tag {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: .7rem;
+  line-height: 1.3;
+  background: var(--rotion-tag-bg-default);
+  color: var(--rotion-tag-default);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-calendar-event {
+    border: var(--rotion-dark-border);
+    background: var(--rotion-dark-gallery-bg);
+    color: var(--rotion-dark-primary-text);
+  }
+
+  .rotion-calendar-event-link:hover {
+    background: var(--rotion-dark-gallery-hover-bg);
+  }
+
+  .rotion-calendar-event-text {
+    color: var(--rotion-dark-secondary-text);
+  }
+
+  .rotion-calendar-event-tag {
+    background: var(--rotion-dark-tag-bg-default);
+    color: var(--rotion-dark-tag-default);
+  }
+}

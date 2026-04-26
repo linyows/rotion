@@ -1,0 +1,59 @@
+.rotion-calendar-cell {
+  display: flex;
+  flex-direction: column;
+  min-height: 110px;
+  padding: 6px;
+  border-right: var(--rotion-table-border);
+  border-bottom: var(--rotion-table-border);
+  overflow: hidden;
+  background: transparent;
+}
+
+.rotion-calendar-cell-weekend {
+  background: var(--rotion-calendar-weekend-bg);
+}
+
+.rotion-calendar-cell-day {
+  font-family: var(--rotion-font-family);
+  font-size: .85rem;
+  color: var(--rotion-secondary-text);
+  padding: 2px 4px 4px;
+  text-align: right;
+}
+
+.rotion-calendar-cell-out .rotion-calendar-cell-day {
+  color: var(--rotion-tertiary-text);
+}
+
+.rotion-calendar-cell-today .rotion-calendar-cell-day {
+  display: inline-flex;
+  align-self: flex-end;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--rotion-annot-blue);
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .rotion-calendar-cell {
+    border-right: var(--rotion-dark-table-border);
+    border-bottom: var(--rotion-dark-table-border);
+  }
+
+  .rotion-calendar-cell-weekend {
+    background: var(--rotion-dark-calendar-weekend-bg);
+  }
+
+  .rotion-calendar-cell-day {
+    color: var(--rotion-dark-secondary-text);
+  }
+
+  .rotion-calendar-cell-out .rotion-calendar-cell-day {
+    color: var(--rotion-dark-tertiary-text);
+  }
+}
