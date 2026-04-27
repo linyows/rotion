@@ -27,21 +27,19 @@ const setPrismCss = () => {
 }
 
 const Code = ({ children, language = 'text' }: CodeProps) => {
-  const preRef = useRef<HTMLPreElement>(null)
   const codeRef = useRef<HTMLElement>(null)
 
   const highlight = useCallback(
     async (language: string) => {
+      if (!codeRef.current) return
       if (language === 'mermaid') {
-        if (!preRef.current) return
         mermaid.initialize({ theme: isDark() ? 'dark' : 'neutral' })
         try {
-          await mermaid.run({ nodes: [preRef.current] })
+          await mermaid.run({ nodes: [codeRef.current] })
         } catch (e) {
           console.error('mermaid render failed:', e)
         }
       } else {
-        if (!codeRef.current) return
         setPrismCss()
         Prism.highlightElement(codeRef.current)
       }
@@ -61,7 +59,7 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
   return (
     <div className="rotion-code-area" onMouseOver={showLang} onMouseOut={hideLang} onFocus={showLang} onBlur={hideLang}>
       {show && <div className="rotion-code-lang">{language}</div>}
-      <pre ref={preRef} className={cl} suppressHydrationWarning>
+      <pre className={cl} suppressHydrationWarning>
         <code ref={codeRef} suppressHydrationWarning>
           {children}
         </code>
