@@ -69,7 +69,9 @@
   "files": {
     "includes": [
       "src/ui/components/**/*.ts",
-      "src/ui/components/**/*.tsx"
+      "src/ui/components/**/*.tsx",
+      "!website",
+      "!examples"
     ]
   }
 }
