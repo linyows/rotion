@@ -16,6 +16,9 @@
         "useExhaustiveDependencies": "warn",
         "useHookAtTopLevel": "warn"
       },
+      "nursery": {
+        "noFloatingPromises": "error"
+      },
       "style": {
         "noNonNullAssertion": "off",
         "useImportType": "warn",
@@ -66,7 +69,9 @@
   "files": {
     "includes": [
       "src/ui/components/**/*.ts",
-      "src/ui/components/**/*.tsx"
+      "src/ui/components/**/*.tsx",
+      "!website",
+      "!examples"
     ]
   }
 }

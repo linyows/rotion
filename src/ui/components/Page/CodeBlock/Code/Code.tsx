@@ -27,18 +27,21 @@ const setPrismCss = () => {
 }
 
 const Code = ({ children, language = 'text' }: CodeProps) => {
-  const codeRef = useRef<HTMLPreElement>(null)
+  const codeRef = useRef<HTMLElement>(null)
 
   const highlight = useCallback(
     async (language: string) => {
-      if (codeRef.current) {
-        if (language === 'mermaid') {
-          mermaid.initialize({ theme: isDark() ? 'dark' : 'neutral' })
-          mermaid.init(undefined, codeRef.current as HTMLPreElement)
-        } else {
-          setPrismCss()
-          Prism.highlightElement(codeRef.current as Element)
+      if (!codeRef.current) return
+      if (language === 'mermaid') {
+        mermaid.initialize({ theme: isDark() ? 'dark' : 'neutral' })
+        try {
+          await mermaid.run({ nodes: [codeRef.current] })
+        } catch (e) {
+          console.error('mermaid render failed:', e)
         }
+      } else {
+        setPrismCss()
+        Prism.highlightElement(codeRef.current)
       }
     },
     [],
@@ -50,7 +53,7 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
   const hideLang = () => setShow(false)
 
   useEffect(() => {
-    highlight(language)
+    highlight(language).catch((e) => console.error(e))
   }, [language, highlight])
 
   return (
