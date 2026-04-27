@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { CodeProps } from './Code.types'
 import './Code.css'
 import mermaid from 'mermaid'
+mermaid.startOnLoad = false
 import Prism from 'prismjs'
 import 'prismjs/plugins/autoloader/prism-autoloader.js'
 if (Prism.plugins.autoloader) {
@@ -28,18 +29,29 @@ const setPrismCss = () => {
 
 const Code = ({ children, language = 'text' }: CodeProps) => {
   const codeRef = useRef<HTMLElement>(null)
+  const sourceRef = useRef<string | null>(null)
+  const mermaidIdRef = useRef<string>(`mermaid-${Math.random().toString(36).slice(2, 11)}`)
+  const [mermaidSvg, setMermaidSvg] = useState<string | null>(null)
 
   const highlight = useCallback(
     async (language: string) => {
-      if (!codeRef.current) return
       if (language === 'mermaid') {
-        mermaid.initialize({ theme: isDark() ? 'dark' : 'neutral' })
+        if (sourceRef.current === null) {
+          if (!codeRef.current) return
+          sourceRef.current = codeRef.current.textContent ?? ''
+        }
+        mermaid.initialize({
+          theme: isDark() ? 'dark' : 'neutral',
+          securityLevel: 'strict',
+        })
         try {
-          await mermaid.run({ nodes: [codeRef.current] })
+          const { svg } = await mermaid.render(mermaidIdRef.current, sourceRef.current)
+          setMermaidSvg(svg)
         } catch (e) {
           console.error('mermaid render failed:', e)
         }
       } else {
+        if (!codeRef.current) return
         setPrismCss()
         Prism.highlightElement(codeRef.current)
       }
@@ -53,17 +65,29 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
   const hideLang = () => setShow(false)
 
   useEffect(() => {
+    if (language === 'mermaid' && mermaidSvg !== null) return
     highlight(language).catch((e) => console.error(e))
-  }, [language, highlight])
+  }, [language, highlight, mermaidSvg])
+
+  const showMermaid = language === 'mermaid' && mermaidSvg
 
   return (
     <div className="rotion-code-area" onMouseOver={showLang} onMouseOut={hideLang} onFocus={showLang} onBlur={hideLang}>
       {show && <div className="rotion-code-lang">{language}</div>}
-      <pre className={cl} suppressHydrationWarning>
-        <code ref={codeRef} suppressHydrationWarning>
-          {children}
-        </code>
-      </pre>
+      {showMermaid ? (
+        <pre
+          key="mermaid-rendered"
+          className={cl}
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: mermaidSvg as string }}
+        />
+      ) : (
+        <pre key="mermaid-source" className={cl} suppressHydrationWarning>
+          <code ref={codeRef} suppressHydrationWarning>
+            {children}
+          </code>
+        </pre>
+      )}
     </div>
   )
 }
