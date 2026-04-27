@@ -32,10 +32,6 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
   const sourceRef = useRef<string | null>(null)
   const mermaidIdRef = useRef<string>(`mermaid-${Math.random().toString(36).slice(2, 11)}`)
   const [mermaidSvg, setMermaidSvg] = useState<string | null>(null)
-  const [hydrated, setHydrated] = useState(false)
-  useEffect(() => {
-    setHydrated(true)
-  }, [])
 
   const highlight = useCallback(
     async (language: string) => {
@@ -44,7 +40,10 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
           if (!codeRef.current) return
           sourceRef.current = codeRef.current.textContent ?? ''
         }
-        mermaid.initialize({ theme: isDark() ? 'dark' : 'neutral' })
+        mermaid.initialize({
+          theme: isDark() ? 'dark' : 'neutral',
+          securityLevel: 'strict',
+        })
         try {
           const { svg } = await mermaid.render(mermaidIdRef.current, sourceRef.current)
           setMermaidSvg(svg)
@@ -66,12 +65,11 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
   const hideLang = () => setShow(false)
 
   useEffect(() => {
-    if (!hydrated) return
     if (language === 'mermaid' && mermaidSvg !== null) return
     highlight(language).catch((e) => console.error(e))
-  }, [language, highlight, hydrated, mermaidSvg])
+  }, [language, highlight, mermaidSvg])
 
-  const showMermaid = hydrated && language === 'mermaid' && mermaidSvg
+  const showMermaid = language === 'mermaid' && mermaidSvg
 
   return (
     <div className="rotion-code-area" onMouseOver={showLang} onMouseOut={hideLang} onFocus={showLang} onBlur={hideLang}>
