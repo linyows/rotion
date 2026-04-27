@@ -28,14 +28,20 @@ const setPrismCss = () => {
 
 const Code = ({ children, language = 'text' }: CodeProps) => {
   const codeRef = useRef<HTMLElement>(null)
+  const sourceRef = useRef<string | null>(null)
+  const mermaidIdRef = useRef<string>(`mermaid-${Math.random().toString(36).slice(2, 11)}`)
 
   const highlight = useCallback(
     async (language: string) => {
       if (!codeRef.current) return
       if (language === 'mermaid') {
+        if (sourceRef.current === null) {
+          sourceRef.current = codeRef.current.textContent ?? ''
+        }
         mermaid.initialize({ theme: isDark() ? 'dark' : 'neutral' })
         try {
-          await mermaid.run({ nodes: [codeRef.current] })
+          const { svg } = await mermaid.render(mermaidIdRef.current, sourceRef.current)
+          codeRef.current.innerHTML = svg
         } catch (e) {
           console.error('mermaid render failed:', e)
         }
