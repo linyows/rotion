@@ -16,6 +16,9 @@
         "useExhaustiveDependencies": "warn",
         "useHookAtTopLevel": "warn"
       },
+      "nursery": {
+        "noFloatingPromises": "error"
+      },
       "style": {
         "noNonNullAssertion": "off",
         "useImportType": "warn",
