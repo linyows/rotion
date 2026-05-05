@@ -22,5 +22,8 @@
   "devDependencies": {
     "@types/prismjs": "^1.26.3",
     "typescript": "^6.0.2"
+  },
+  "overrides": {
+    "uuid": "^14.0.0"
   }
 }

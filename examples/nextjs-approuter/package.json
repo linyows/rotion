@@ -24,5 +24,9 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "typescript": "^6.0.2"
+  },
+  "overrides": {
+    "uuid": "^14.0.0",
+    "postcss": "^8.5.10"
   }
 }
