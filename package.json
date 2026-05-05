@@ -1,6 +1,6 @@
 {
   "name": "rotion",
-  "version": "3.5.2",
+  "version": "3.5.3",
   "license": "MIT",
   "repository": "linyows/rotion",
   "description": "This is react components that uses the notion API to display the notion's database and page.",
@@ -111,7 +111,8 @@
   },
   "extends": "@tsconfig/node-lts-strictest-esm",
   "overrides": {
-    "storybook": "$storybook"
+    "storybook": "$storybook",
+    "uuid": "^14.0.0"
   },
   "publishConfig": {
     "access": "public",
