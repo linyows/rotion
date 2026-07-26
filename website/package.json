@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@biomejs/biome": "^2.4.4",
-    "mermaid": "^11.12.0",
-    "next": "^16",
+    "mermaid": "^11.15.0",
+    "next": "^16.2.11",
     "prismjs": "^1.29.0",
     "react": "^19",
     "react-dom": "^19",
@@ -27,6 +27,8 @@
   },
   "overrides": {
     "uuid": "^14.0.0",
-    "postcss": "^8.5.10"
+    "postcss": "^8.5.18",
+    "sharp": "^0.35.0",
+    "dompurify": "^3.4.12"
   }
 }
