@@ -460,7 +460,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
         }
         const heicBuffer = await readFile(filePath)
         const pngArrayBuffer = await heicConvert({
-          buffer: heicBuffer.buffer.slice(heicBuffer.byteOffset, heicBuffer.byteOffset + heicBuffer.byteLength),
+          buffer: heicBuffer,
           format: 'PNG',
         })
         const pngBuffer = Buffer.from(pngArrayBuffer)
