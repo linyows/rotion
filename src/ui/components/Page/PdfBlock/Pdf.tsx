@@ -84,7 +84,7 @@ export const usePdf = ({
     if (typeof window === 'undefined') return
     import('pdfjs-dist')
       .then((pdfjsModule) => {
-        // pdfjs-dist 5.x uses named exports
+        // pdfjs-dist 5.x/6.x use named exports
         const { GlobalWorkerOptions, getDocument, version } = pdfjsModule
         const defaultWorkerSrc = workerSrc || `https://unpkg.com/pdfjs-dist@${version}/build/pdf.worker.min.mjs`
         GlobalWorkerOptions.workerSrc = defaultWorkerSrc
