@@ -477,6 +477,7 @@ export type Parent =
 | { type: "block_id"; block_id: string }
 | { type: "workspace"; workspace: true }
 | { type: "data_source_id"; data_source_id: string }
+| { type: "agent_id"; agent_id: string }
 
 export type DatabaseProperty = DatabasePropertyConfigResponse
 

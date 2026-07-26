@@ -10,7 +10,7 @@ import type {
 } from './types.js'
 
 export interface FetchBreadcrumbsProps {
-  type: 'page_id' | 'database_id' | 'block_id' | 'workspace' | 'data_source_id'
+  type: 'page_id' | 'database_id' | 'block_id' | 'workspace' | 'data_source_id' | 'agent_id'
   id: string
   limit?: number
 }
@@ -33,6 +33,7 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
         return parent.database_id
       case 'data_source_id':
         return parent.data_source_id
+      case 'agent_id':
       case 'workspace':
         isNext = false
         return ''
@@ -134,6 +135,7 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
           // We would need to get the parent database instead
           isNext = false
           break
+        case 'agent_id':
         case 'workspace':
           isNext = false
           break
