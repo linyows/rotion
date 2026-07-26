@@ -1,6 +1,6 @@
 {
   "name": "rotion",
-  "version": "3.5.4",
+  "version": "3.5.5",
   "license": "MIT",
   "repository": "linyows/rotion",
   "description": "This is react components that uses the notion API to display the notion's database and page.",
@@ -77,7 +77,7 @@
     "pdfjs-dist": "^5.4.624",
     "prismjs": "^1.30.0",
     "replace-ext": "^2.0.0",
-    "sharp": "^0.34.5"
+    "sharp": "^0.35.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.10",
@@ -117,5 +117,9 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "fsevents@2.3.3": true
   }
 }
