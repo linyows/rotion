@@ -7,7 +7,12 @@ import {
   cacheDir,
   incrementalCache,
   debug,
+  skipQueryValidation,
 } from './variables.js'
+import {
+  validateQuery,
+  buildQueryValidationMessage,
+} from './validation.js'
 import {
   atoh,
   createDirWhenNotfound,
@@ -35,6 +40,11 @@ export interface FetchDatabaseArgs extends Omit<QueryDataSourceParameters, 'data
 }
 
 export interface FetchDatabaseRes extends QueryDatabaseResponseEx {
+}
+
+const databaseLabel = (meta: GetDatabaseResponseEx, database_id: string): string => {
+  const title = (meta.title ?? []).map(v => v.plain_text).join('').trim()
+  return title === '' ? database_id : `"${title}" (${database_id})`
 }
 
 /**
@@ -100,6 +110,14 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
     // Add properties to meta for backward compatibility
     if (dataSource && dataSource.properties) {
       meta.properties = dataSource.properties
+    }
+
+    // Tell which part of the query is wrong before the notion api rejects it
+    if (!skipQueryValidation) {
+      const errors = validateQuery({ properties: meta.properties, filter: params.filter, sorts: params.sorts })
+      if (errors.length > 0) {
+        throw new Error(buildQueryValidationMessage(`database ${databaseLabel(meta, database_id)}`, errors))
+      }
     }
 
     // Remove database_id and add data_source_id to params

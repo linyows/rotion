@@ -3,6 +3,7 @@ import * as td from 'testdouble'
 import * as assert from 'uvu/assert'
 import type { reqAPIWithBackoffArgs, reqAPIWithBackoffAndCacheArgs, FetchOptions } from './api.js'
 import { reqAPIWithBackoff, reqAPIWithBackoffAndCache, fetchWithTimeout } from './api.js'
+import { APIErrorCode, APIResponseError } from '@notionhq/client'
 
 test.before(() => {
   td.replace(console, 'log')
@@ -85,6 +86,59 @@ test('reqAPIWithBackoff handles function with no name gracefully', async () => {
   } catch (error) {
     assert.ok(error instanceof Error)
     assert.ok(error.message.includes('request to notion api failed'))
+  }
+})
+
+test('reqAPIWithBackoff keeps the reason when the notion api rejects the request', async () => {
+  const mockFunc = td.func()
+  Object.defineProperty(mockFunc, 'name', { value: 'query' })
+
+  const apiError = new APIResponseError({
+    code: APIErrorCode.ValidationError,
+    message: 'body failed validation: body.filter.and[1].multi_select.does_not_contain should be a valid option name',
+    status: 400,
+    headers: new Headers(),
+    rawBodyText: '{}',
+  })
+  td.when(mockFunc(td.matchers.anything())).thenReject(apiError)
+
+  const args: reqAPIWithBackoffArgs = {
+    func: mockFunc,
+    args: { filter: { property: 'Tags' } },
+    count: 3
+  }
+
+  try {
+    await reqAPIWithBackoff(args)
+    assert.unreachable('Should have thrown an error')
+  } catch (error) {
+    assert.ok(error instanceof Error)
+    assert.ok(error.message.includes('request to notion api failed: query'))
+    assert.ok(error.message.includes('validation_error'))
+    assert.ok(error.message.includes('should be a valid option name'))
+    assert.ok(error.message.includes('"property":"Tags"'))
+    assert.equal(error.cause, apiError)
+  }
+})
+
+test('reqAPIWithBackoff keeps the reason when the request throws a non notion error', async () => {
+  const mockFunc = td.func()
+  Object.defineProperty(mockFunc, 'name', { value: 'retrieve' })
+  td.when(mockFunc(td.matchers.anything())).thenReject(new Error('socket hang up'))
+
+  const args: reqAPIWithBackoffArgs = {
+    func: mockFunc,
+    args: {},
+    count: 1
+  }
+
+  try {
+    await reqAPIWithBackoff(args)
+    assert.unreachable('Should have thrown an error')
+  } catch (error) {
+    assert.ok(error instanceof Error)
+    assert.ok(error.message.includes('request to notion api failed: retrieve'))
+    assert.ok(error.message.includes('socket hang up'))
   }
 })
 
