@@ -27,6 +27,31 @@ export interface reqAPIWithBackoffArgs {
   count: number
 }
 
+const retryableErrorCodes: string[] = [
+  APIErrorCode.RateLimited,
+  APIErrorCode.InternalServerError,
+  ClientErrorCode.ResponseError,
+  ClientErrorCode.RequestTimeout,
+]
+
+const truncate = (str: string, max = 1000): string => {
+  return str.length > max ? `${str.slice(0, max)}...` : str
+}
+
+/**
+ * buildAPIErrorMessage keeps the reason of the failure in the message.
+ * Without it, a validation error of the notion api -- a filter for a property
+ * or an option that no longer exists, for example -- is indistinguishable
+ * from a network failure.
+ */
+export function buildAPIErrorMessage (func: Function, args: unknown, error: unknown): string {
+  const name = func.name === '' ? 'anonymous' : func.name
+  const reason = error && typeof error === 'object' && isNotionClientError(error)
+    ? `${error.code}: ${error.message}`
+    : `${error}`
+  return `request to notion api failed: ${name} -- ${reason}\n  args: ${truncate(JSON.stringify(args) ?? 'undefined')}`
+}
+
 export async function reqAPIWithBackoff<T> ({ func, args, count }: reqAPIWithBackoffArgs): Promise<T> {
   if (count < 1) {
     throw new Error('backoff count exceeded')
@@ -40,29 +65,24 @@ export async function reqAPIWithBackoff<T> ({ func, args, count }: reqAPIWithBac
       await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
     }
   } catch (error: unknown) {
-    if (error && typeof error === 'object' && isNotionClientError(error)) {
-      switch (error.code) {
-        case APIErrorCode.RateLimited:
-        case APIErrorCode.InternalServerError:
-        case ClientErrorCode.ResponseError:
-        case ClientErrorCode.RequestTimeout:
-          if (debug) {
-            console.log(`reqAPIWithBackoff backoff(${count}) -- error code: ${error.code}`)
-          }
-          if (waitTimeSecAfterLimit > 0) {
-            await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
-          }
-          res = await reqAPIWithBackoff<T>({ func, args, count: count - 1 })
-          break
+    const retryable = error && typeof error === 'object' && isNotionClientError(error) && retryableErrorCodes.includes(error.code)
+    if (retryable && count > 1) {
+      if (debug) {
+        console.log(`reqAPIWithBackoff backoff(${count}) -- error: ${error}`)
       }
+      if (waitTimeSecAfterLimit > 0) {
+        await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
+      }
+      return await reqAPIWithBackoff<T>({ func, args, count: count - 1 })
     }
     if (debug) {
       console.error(`reqAPIWithBackoff error -- func: ${func.name}, args: ${JSON.stringify(args)}, error: ${error}`)
     }
+    throw new Error(buildAPIErrorMessage(func, args, error), { cause: error })
   }
 
-  if (res === null) {
-    throw new Error(`request to notion api failed: ${func.name}`)
+  if (res === null || res === undefined) {
+    throw new Error(`request to notion api failed: ${func.name === '' ? 'anonymous' : func.name} -- empty response`)
   }
 
   return res
