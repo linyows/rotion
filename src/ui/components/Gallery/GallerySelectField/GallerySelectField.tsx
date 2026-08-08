@@ -3,6 +3,9 @@ import LinkedTagIfLinked from './LinkedTag.js'
 import './GallerySelectField.css'
 
 const GalleryMultiSelectField = ({ select, options }: GallerySelectFieldProps) => {
+  if (!select) {
+    return null
+  }
   const { name, color } = select
   const { pathname, link, query } = options || {}
   return (
