@@ -59,18 +59,19 @@ const findProperty = (properties: QueryProperties, nameOrId: string): DatabasePr
 
 /** Returns option names when the property has selectable options, otherwise undefined. */
 const optionNamesOf = (prop: DatabasePropertyConfigResponse): string[] | undefined => {
-  const config = (prop as unknown as Record<string, unknown>)[prop.type]
-  if (config === null || typeof config !== 'object') {
-    return undefined
+  switch (prop.type) {
+    case 'select':
+      return prop.select.options.map(o => o.name)
+    case 'multi_select':
+      return prop.multi_select.options.map(o => o.name)
+    case 'status':
+      return prop.status.options.map(o => o.name)
+    default:
+      return undefined
   }
-  const options = (config as Record<string, unknown>)['options']
-  if (!Array.isArray(options)) {
-    return undefined
-  }
-  return options.map(o => `${(o as { name?: string }).name}`)
 }
 
-const validateCondition = (prop: DatabasePropertyConfigResponse, name: string, condition: unknown, path: string, errors: string[]): void => {
+const validateCondition = (prop: DatabasePropertyConfigResponse, condition: unknown, path: string, errors: string[]): void => {
   const options = optionNamesOf(prop)
   if (options === undefined || condition === null || typeof condition !== 'object') {
     return
@@ -80,7 +81,7 @@ const validateCondition = (prop: DatabasePropertyConfigResponse, name: string, c
       continue
     }
     if (!options.includes(value)) {
-      errors.push(`${path}.${key}: "${value}" is not an option of the "${name}" property -- available options: ${quotedList(options)}`)
+      errors.push(`${path}.${key}: "${value}" is not an option of the "${prop.name}" property -- available options: ${quotedList(options)}`)
     }
   }
 }
@@ -128,17 +129,17 @@ const validateFilter = (properties: QueryProperties, filter: unknown, path: stri
 
   const conditionKeys = Object.keys(f).filter(k => k !== 'property')
   if (conditionKeys.length === 0) {
-    errors.push(`${path}: property "${name}" has no condition, "${prop.type}" is expected`)
+    errors.push(`${path}: property "${prop.name}" has no condition, "${prop.type}" is expected`)
     return
   }
 
   const allowedKeys = filterKeysByPropertyType[prop.type] ?? [prop.type]
   for (const key of conditionKeys) {
     if (!allowedKeys.includes(key)) {
-      errors.push(`${path}: property "${name}" is a "${prop.type}" property, but the filter uses "${key}" -- "${allowedKeys[0]}" is expected`)
+      errors.push(`${path}: property "${prop.name}" is a "${prop.type}" property, but the filter uses "${key}" -- "${allowedKeys[0]}" is expected`)
       continue
     }
-    validateCondition(prop, name, f[key], `${path}.${key}`, errors)
+    validateCondition(prop, f[key], `${path}.${key}`, errors)
   }
 }
 

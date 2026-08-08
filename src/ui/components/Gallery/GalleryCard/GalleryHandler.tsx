@@ -1,3 +1,4 @@
+import { formulaNumber } from '../../lib.js'
 import GalleryCheckboxField from '../GalleryCheckboxField/GalleryCheckboxField.js'
 import GalleryDateField from '../GalleryDateField/GalleryDateField.js'
 import GalleryFormulaField from '../GalleryFormulaField/GalleryFormulaField.js'
@@ -33,7 +34,7 @@ const GalleryHandler = ({ property, options }: GalleryHandlerProps) => {
     case 'number':
       return <GalleryNumberField number={property.number} options={options} />
     case 'formula':
-      return <GalleryFormulaField number={property.formula.number} options={options} />
+      return <GalleryFormulaField number={formulaNumber(property.formula)} options={options} />
     default:
       console.log('unsupport database property:', property)
       return null

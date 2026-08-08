@@ -1,3 +1,4 @@
+import { formulaNumber } from '../lib.js'
 import TableCheckboxField from './TableCheckboxField/TableCheckboxField.js'
 import TableDateField from './TableDateField/TableDateField.js'
 import TableFormulaField from './TableFormulaField/TableFormulaField.js'
@@ -33,7 +34,7 @@ const TableHandler = ({ property, options }: TableHandlerProps) => {
     case 'select':
       return <TableSelectField select={property.select} options={options} />
     case 'formula':
-      return <TableFormulaField number={property.formula.number} options={options} />
+      return <TableFormulaField number={formulaNumber(property.formula)} options={options} />
     default:
       console.log('unsupport database property:', property)
       return null

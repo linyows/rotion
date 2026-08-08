@@ -37,12 +37,12 @@ import type {
   LinkPreviewBlockObjectResponse,
   UnsupportedBlockObjectResponse,
   RichTextItemResponse,
+  NumberFormat,
   GetPagePropertyResponse,
   PageObjectResponse,
   UserObjectResponse,
   DatabaseObjectResponse,
   MentionRichTextItemResponse,
-  TextRichTextItemResponse,
   EquationRichTextItemResponse,
   PropertyItemListResponse,
 } from '@notionhq/client/build/src/api-endpoints.js'
@@ -379,35 +379,7 @@ export type DBPageBase = {
   properties: {}
 }
 
-export type DBProperties = Record<
-    string,
-    | { type: 'title', title: Array<RichTextItemResponse>, id: string }
-    | { type: 'rich_text', rich_text: Array<RichTextItemResponse>, id: string }
-    | { type: 'number', number: number | null, id: string }
-    | { type: 'url', url: string | null, id: string }
-    | { type: 'select', select: SelectPropertyResponse | null, id: string }
-    | { type: 'multi_select', multi_select: Array<SelectPropertyResponse>, id: string }
-    | { type: 'people', people: Array<PartialUserObjectResponse>, id: string }
-    | { type: 'email', email: string | null, id: string }
-    | { type: 'phone_number', phone_number: string | null, id: string }
-    | { type: 'date', date: DateResponse | null, id: string }
-    | { type: 'files', files: Array<
-      | { file: { url: string, expiry_time: string }, name: StringRequest, type?: 'file' }
-      | { external: { url: TextRequest }, name: StringRequest, type?: 'external' }
-      >, id: string }
-    | { type: 'checkbox', checkbox: boolean, id: string }
-    | { type: 'formula', formula:
-      | { type: 'string', string: string | null }
-      | { type: 'date', date: DateResponse | null }
-      | { type: 'number', number: number | null }
-      | { type: 'boolean', boolean: boolean | null }
-      , id: string }
-    | { type: 'relation', relation: Array<{ id: string }>, id: string }
-    | { type: 'created_time', created_time: string, id: string }
-    | { type: 'created_by', created_by: PartialUserObjectResponse, id: string }
-    | { type: 'last_edited_time', last_edited_time: string, id: string }
-    | { type: 'last_edited_by', last_edited_by: PartialUserObjectResponse, id: string }
-  >
+export type DBProperties = Record<string, DatabasePropertyValue>
 
 // https://github.com/makenotion/notion-sdk-js/blob/d3f6c1b41c0f814e39ed202c6aa3b4a7cfdca582/src/api-endpoints.ts#L10837-L11019
 export type QueryDatabaseResponseResult = | {
@@ -479,9 +451,15 @@ export type Parent =
 | { type: "data_source_id"; data_source_id: string }
 | { type: "agent_id"; agent_id: string }
 
-export type DatabaseProperty = DatabasePropertyConfigResponse
+// A database property has two shapes in the notion api: its schema, returned
+// in the `properties` of a data source, and the value it holds on a page,
+// returned in the `properties` of a page. They are not interchangeable -- a
+// select property is `{ options: [...] }` in the schema and a single option
+// in a page. `DatabasePropertyConfigResponse` is the former,
+// `DatabasePropertyValue` the latter.
+export type DatabaseProperty = DatabasePropertyValue
 
-export type DatabasePropertyConfigResponse =
+export type DatabasePropertyConfigResponse = DatabasePropertyConfigResponseCommon & (
   | NumberDatabasePropertyConfigResponse
   | FormulaDatabasePropertyConfigResponse
   | SelectDatabasePropertyConfigResponse
@@ -503,6 +481,15 @@ export type DatabasePropertyConfigResponse =
   | CreatedTimeDatabasePropertyConfigResponse
   | LastEditedByDatabasePropertyConfigResponse
   | LastEditedTimeDatabasePropertyConfigResponse
+  | ButtonDatabasePropertyConfigResponse
+  | VerificationDatabasePropertyConfigResponse
+)
+
+export type DatabasePropertyConfigResponseCommon = {
+  id: string
+  name: string
+  description: string | null
+}
 
 type RollupFunction =
   | "count"
@@ -530,28 +517,34 @@ type RollupFunction =
   | "percent_per_group"
   | "show_original"
 
+// An option of a select/multi_select/status property in the schema. The same
+// option on a page has no description, hence SelectPropertyResponse.
+export type SelectOptionResponse = SelectPropertyResponse & {
+  description: string | null
+}
+
+export type StatusOptionResponse = StatusPropertyResponse & {
+  description: string | null
+}
+
 export type NumberDatabasePropertyConfigResponse = {
   type: "number"
-  number: number | null
-  id: string
+  number: { format: NumberFormat }
 }
 
 export type FormulaDatabasePropertyConfigResponse = {
   type: "formula"
-  formula: NumberDatabasePropertyConfigResponse
-  id: string
+  formula: { expression: string }
 }
 
 export type SelectDatabasePropertyConfigResponse = {
   type: "select"
-  select: SelectPropertyResponse
-  id: string
+  select: { options: Array<SelectOptionResponse> }
 }
 
 export type MultiSelectDatabasePropertyConfigResponse = {
   type: "multi_select"
-  multi_select: SelectPropertyResponse[]
-  id: string
+  multi_select: { options: Array<SelectOptionResponse> }
 }
 
 export type StatusPropertyResponse = {
@@ -563,7 +556,7 @@ export type StatusPropertyResponse = {
 export type StatusDatabasePropertyConfigResponse = {
   type: "status"
   status: {
-    options: Array<StatusPropertyResponse>
+    options: Array<StatusOptionResponse>
     groups: Array<{
       id: StringRequest
       name: StringRequest
@@ -571,13 +564,11 @@ export type StatusDatabasePropertyConfigResponse = {
       option_ids: Array<string>
     }>
   }
-  id: string
 }
 
 export type SinglePropertyDatabasePropertyRelationConfigResponse = {
   type: "single_property"
   single_property: EmptyObject
-  database_id: IdRequest
 }
 
 export type DualPropertyDatabasePropertyRelationConfigResponse = {
@@ -586,17 +577,19 @@ export type DualPropertyDatabasePropertyRelationConfigResponse = {
     synced_property_id: StringRequest
     synced_property_name: StringRequest
   }
-  database_id: IdRequest
 }
 
-export type DatabasePropertyRelationConfigResponse =
+export type DatabasePropertyRelationConfigResponse = {
+  database_id: IdRequest
+  data_source_id: IdRequest
+} & (
   | SinglePropertyDatabasePropertyRelationConfigResponse
   | DualPropertyDatabasePropertyRelationConfigResponse
+)
 
 export type RelationDatabasePropertyConfigResponse = {
   type: "relation"
   relation: DatabasePropertyRelationConfigResponse
-  id: string
 }
 
 export type RollupDatabasePropertyConfigResponse = {
@@ -608,92 +601,144 @@ export type RollupDatabasePropertyConfigResponse = {
     relation_property_id: string
     function: RollupFunction
   }
-  id: string
 }
 
 export type UniqueIdDatabasePropertyConfigResponse = {
   type: "unique_id"
   unique_id: { prefix: string | null }
-  id: string
 }
 
 export type TitleDatabasePropertyConfigResponse = {
   type: "title"
-  title: TextRichTextItemResponse[]
-  id: string
+  title: EmptyObject
 }
 
 export type RichTextDatabasePropertyConfigResponse = {
   type: "rich_text"
-  rich_text: TextRichTextItemResponse[]
-  id: string
+  rich_text: EmptyObject
 }
 
 export type UrlDatabasePropertyConfigResponse = {
   type: "url"
-  url: string | null
-  id: string
+  url: EmptyObject
 }
 
 export type PeopleDatabasePropertyConfigResponse = {
   type: "people"
   people: EmptyObject
-  id: string
 }
 
 export type FilesDatabasePropertyConfigResponse = {
   type: "files"
   files: EmptyObject
-  id: string
 }
 
 export type EmailDatabasePropertyConfigResponse = {
   type: "email"
-  email: string | null
-  id: string
+  email: EmptyObject
 }
 
 export type PhoneNumberDatabasePropertyConfigResponse = {
   type: "phone_number"
-  phone_number: number | null
-  id: string
+  phone_number: EmptyObject
 }
 
 export type DateDatabasePropertyConfigResponse = {
   type: "date"
-  date: DateResponse | null
-  id: string
+  date: EmptyObject
 }
 
 export type CheckboxDatabasePropertyConfigResponse = {
   type: "checkbox"
-  checkbox: boolean
-  id: string
+  checkbox: EmptyObject
 }
 
 export type CreatedByDatabasePropertyConfigResponse = {
   type: "created_by"
   created_by: EmptyObject
-  id: string
 }
 
 export type CreatedTimeDatabasePropertyConfigResponse = {
   type: "created_time"
   created_time: EmptyObject
-  id: string
 }
 
 export type LastEditedByDatabasePropertyConfigResponse = {
   type: "last_edited_by"
   last_edited_by: EmptyObject
-  id: string
 }
 
 export type LastEditedTimeDatabasePropertyConfigResponse = {
   type: "last_edited_time"
   last_edited_time: EmptyObject
-  id: string
 }
+
+export type ButtonDatabasePropertyConfigResponse = {
+  type: "button"
+  button: EmptyObject
+}
+
+export type VerificationDatabasePropertyConfigResponse = {
+  type: "verification"
+  verification: EmptyObject
+}
+
+// The value a database property holds on a page.
+export type DatabasePropertyValue = { id: string } & (
+  | SimpleOrArrayPropertyValueResponse
+  | { type: 'rollup', rollup: RollupPropertyValueResponse }
+)
+
+export type SimpleOrArrayPropertyValueResponse =
+  | { type: 'title', title: Array<RichTextItemResponse> }
+  | { type: 'rich_text', rich_text: Array<RichTextItemResponse> }
+  | { type: 'people', people: Array<PartialUserObjectResponse> }
+  | { type: 'relation', relation: Array<{ id: IdRequest }> }
+  | { type: 'number', number: number | null }
+  | { type: 'url', url: string | null }
+  | { type: 'select', select: SelectPropertyResponse | null }
+  | { type: 'multi_select', multi_select: Array<SelectPropertyResponse> }
+  | { type: 'status', status: StatusPropertyResponse | null }
+  | { type: 'date', date: DateResponse | null }
+  | { type: 'email', email: string | null }
+  | { type: 'phone_number', phone_number: string | null }
+  | { type: 'checkbox', checkbox: boolean }
+  | { type: 'files', files: Array<FileWithNameResponse> }
+  | { type: 'created_by', created_by: PartialUserObjectResponse }
+  | { type: 'created_time', created_time: string }
+  | { type: 'last_edited_by', last_edited_by: PartialUserObjectResponse }
+  | { type: 'last_edited_time', last_edited_time: string }
+  | { type: 'formula', formula: FormulaPropertyValueResponse }
+  | { type: 'button', button: EmptyObject }
+  | { type: 'unique_id', unique_id: { prefix: string | null, number: number | null } }
+  | { type: 'verification', verification: VerificationPropertyValueResponse | null }
+
+export type FileWithNameResponse = { name: StringRequest } & (
+  | { type: 'file', file: { url: string, expiry_time: string } }
+  | { type: 'external', external: { url: TextRequest } }
+)
+
+export type FormulaPropertyValueResponse =
+  | { type: 'string', string: string | null }
+  | { type: 'date', date: DateResponse | null }
+  | { type: 'number', number: number | null }
+  | { type: 'boolean', boolean: boolean | null }
+  | { type: 'unsupported', unsupported: EmptyObject }
+
+export type RollupPropertyValueResponse = { function: RollupFunction } & (
+  | { type: 'number', number: number | null }
+  | { type: 'date', date: DateResponse | null }
+  | { type: 'array', array: Array<SimpleOrArrayPropertyValueResponse> }
+  | { type: 'unsupported', unsupported: EmptyObject }
+)
+
+export type VerificationPropertyValueResponse =
+  | { state: 'unverified', date: null, verified_by: null }
+  | {
+    state: 'verified' | 'expired'
+    date: DateResponse | null
+    verified_by: PartialUserObjectResponse | null
+  }
 
 export type ImagePathWithSize = {
   path: string

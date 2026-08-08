@@ -3,33 +3,35 @@ import * as assert from 'uvu/assert'
 import type { QueryProperties } from './validation.js'
 import { validateQuery, buildQueryValidationMessage } from './validation.js'
 
-const properties = {
-  Name: { id: 'title', name: 'Name', type: 'title', title: {} },
-  Published: { id: 'aBcD', name: 'Published', type: 'checkbox', checkbox: {} },
+const properties: QueryProperties = {
+  Name: { id: 'title', name: 'Name', description: null, type: 'title', title: {} },
+  Published: { id: 'aBcD', name: 'Published', description: null, type: 'checkbox', checkbox: {} },
   Tags: {
     id: 'eFgH',
     name: 'Tags',
+    description: null,
     type: 'multi_select',
     multi_select: {
       options: [
-        { id: '1', name: 'Blog', color: 'blue' },
-        { id: '2', name: 'Release', color: 'red' },
+        { id: '1', name: 'Blog', color: 'blue', description: null },
+        { id: '2', name: 'Release', color: 'red', description: null },
       ],
     },
   },
   Status: {
     id: 'iJkL',
     name: 'Status',
+    description: null,
     type: 'status',
     status: {
       options: [
-        { id: '1', name: 'Done', color: 'green' },
+        { id: '1', name: 'Done', color: 'green', description: null },
       ],
       groups: [],
     },
   },
-  Date: { id: 'mNoP', name: 'Date', type: 'date', date: {} },
-} as unknown as QueryProperties
+  Date: { id: 'mNoP', name: 'Date', description: null, type: 'date', date: {} },
+}
 
 test('validateQuery returns no error for a valid query', () => {
   const errors = validateQuery({
@@ -95,6 +97,15 @@ test('validateQuery accepts a property id instead of a property name', () => {
     filter: { property: 'eFgH', multi_select: { contains: 'Blog' } },
   })
   assert.equal(errors, [])
+})
+
+test('validateQuery reports the property name when the query uses a property id', () => {
+  const errors = validateQuery({
+    properties,
+    filter: { property: 'eFgH', multi_select: { contains: 'News' } },
+  })
+  assert.equal(errors.length, 1)
+  assert.ok(errors[0]?.includes('is not an option of the "Tags" property'))
 })
 
 test('validateQuery accepts a rich_text filter on a title property', () => {

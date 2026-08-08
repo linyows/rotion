@@ -1,3 +1,4 @@
+import { formulaNumber } from '../lib.js'
 import ListCheckboxField from './ListCheckboxField/ListCheckboxField.js'
 import ListDateField from './ListDateField/ListDateField.js'
 import ListFormulaField from './ListFormulaField/ListFormulaField.js'
@@ -33,7 +34,7 @@ const ListHandler = ({ property, options }: ListHandlerProps) => {
     case 'select':
       return <ListSelectField select={property.select} options={options} />
     case 'formula':
-      return <ListFormulaField number={property.formula.number} options={options} />
+      return <ListFormulaField number={formulaNumber(property.formula)} options={options} />
     default:
       console.log('unsupport database property:', property)
       return null

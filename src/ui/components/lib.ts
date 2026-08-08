@@ -1,6 +1,6 @@
 import type { ParsedUrlQueryInput } from 'node:querystring'
 import { useState } from 'react'
-import type { GetPageResponse, ListBlockChildrenResponseEx } from '../../exporter/index.js'
+import type { FormulaPropertyValueResponse, GetPageResponse, ListBlockChildrenResponseEx } from '../../exporter/index.js'
 
 export function queryToString(q: ParsedUrlQueryInput | undefined) {
   if (q === undefined) {
@@ -97,6 +97,12 @@ export function getDatetimeFormat(lang?: string) {
 
 export function richTextKey(plainText: string | undefined, index: number): string {
   return `${plainText || 'empty'}-${index}`
+}
+
+// A formula property holds a string, a date or a boolean as well as a number,
+// and the formula fields only render a number.
+export function formulaNumber(formula: FormulaPropertyValueResponse): number | null {
+  return formula.type === 'number' ? formula.number : null
 }
 
 export function splitUrl(url: string) {
