@@ -16,14 +16,14 @@
     "prismjs": "^1.29.0",
     "react": "^19",
     "react-dom": "^19",
-    "rotion": "^3.5.0"
+    "rotion": "^3.5.6"
   },
   "devDependencies": {
-    "@types/node": "^25",
+    "@types/node": "^26",
     "@types/prismjs": "^1.26.3",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "typescript": "^6.0.2"
+    "typescript": "^7.0.2"
   },
   "overrides": {
     "uuid": "^14.0.0",
