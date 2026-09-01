@@ -315,7 +315,9 @@ test('withFileLock rejects with operationTimeout when operation hangs', async ()
   assert.ok(error, 'expected an error')
   assert.match(error.message, /operation timed out|operationTimeout/i,
     `error should mention operation timeout, got: ${error?.message}`)
-  assert.ok(elapsed >= 200 && elapsed < 2000,
+  // The elapsed time is measured after withFileLock has started its timer, and
+  // a timer may fire a few milliseconds early, so the lower bound has a margin
+  assert.ok(elapsed >= 180 && elapsed < 2000,
     `should fire near operationTimeout (~200ms), got ${elapsed}ms`)
 
   // Lock file must be released so the next acquirer can proceed
