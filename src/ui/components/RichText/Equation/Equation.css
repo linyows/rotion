@@ -3,6 +3,10 @@
   color: var(--rotion-primary-text);
 }
 
+.rotion-richtext-equation-line {
+  display: block;
+}
+
 @media (prefers-color-scheme: dark) {
   .rotion-richtext-equation {
     color: var(--rotion-dark-primary-text);

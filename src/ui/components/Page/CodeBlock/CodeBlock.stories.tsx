@@ -135,3 +135,21 @@ export const Mermaid: Story = {
     block: mermaid,
   },
 }
+
+// Notion returns several rich text items when a part of the code has its own
+// annotations, such as a comment
+const splitByComment = structuredClone(block)
+splitByComment.code.language = 'go'
+splitByComment.code.rich_text = ['func main() {\n    ', '// print a greeting', '\n    fmt.Println("hello")\n}'].map(
+  (content) => {
+    const item = structuredClone(richText)
+    item.text.content = content
+    item.plain_text = content
+    return item
+  },
+)
+export const SplitByComment: Story = {
+  args: {
+    block: splitByComment,
+  },
+}

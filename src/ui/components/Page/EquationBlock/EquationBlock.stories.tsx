@@ -41,3 +41,19 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {}
+
+const multiline = structuredClone(block)
+multiline.equation.expression = 'x = a + b \\\\ y = c + d \\\\ z = x + y'
+export const MultiLine: Story = {
+  args: {
+    block: multiline,
+  },
+}
+
+const aligned = structuredClone(block)
+aligned.equation.expression = '\\begin{aligned} x &= a + b \\\\ y &= c + d \\end{aligned}'
+export const Aligned: Story = {
+  args: {
+    block: aligned,
+  },
+}
