@@ -77,6 +77,24 @@ const blocks = await FetchBlocks({ block_id: 'YOUR_PAGE_ID' })
 const page = await FetchPage({ page_id: 'YOUR_PAGE_ID' })
 ```
 
+#### Incremental Cache
+
+Fetched data is cached in `.cache` (change it with `ROTION_CACHEDIR`). By default, an existing cache is always reused. With `ROTION_INCREMENTAL_CACHE=true`, only changed data is fetched again: database queries are refreshed after `ROTION_CACHE_AVAILABLE_DURATION` milliseconds (default: 2 minutes), and pages and blocks are refreshed when the page's `last_edited_time` changes.
+
+In this mode, pass the page's `last_edited_time` to `FetchBlocks` and `FetchPage`. Without it, an existing cache is always returned and edits are not reflected. Changes inside nested blocks such as toggles and columns update only the page's `last_edited_time`, so use the page's value, not a block's.
+
+```ts
+// Pages from a database already have last_edited_time
+const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
+for (const page of db.results) {
+  const blocks = await FetchBlocks({ block_id: page.id, last_edited_time: page.last_edited_time })
+}
+
+// Or fetch the latest page first ('force' always requests the API)
+const page = await FetchPage({ page_id: 'YOUR_PAGE_ID', last_edited_time: 'force' })
+const blocks = await FetchBlocks({ block_id: 'YOUR_PAGE_ID', last_edited_time: page.last_edited_time })
+```
+
 ### 3. Render with React Components
 
 #### Next.js App Router (v15+)
@@ -282,4 +300,4 @@ MIT
 Author
 --
 
-[@linyows](https://github.com/linyows) 
+[@linyows](https://github.com/linyows)
