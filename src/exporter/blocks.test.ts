@@ -3,6 +3,10 @@ import * as td from 'testdouble'
 import * as assert from 'uvu/assert'
 import type { FetchBlocksArgs, FetchBlocksRes } from './blocks.js'
 import { FetchBlocks } from './blocks.js'
+import { notion } from './api.js'
+import { readCache } from './files.js'
+import { cacheDir } from './variables.js'
+import { rm } from 'node:fs/promises'
 
 test.before(() => {
   td.replace(console, 'log')
@@ -184,4 +188,71 @@ test('FetchBlocks integrates with file system correctly', async () => {
   }
 })
 
-test.run() 
+const nestedBlocksFixture = (suffix: string) => {
+  const ids = {
+    page: `nested-page-${suffix}`,
+    toggle: `nested-toggle-${suffix}`,
+    columnList: `nested-column-list-${suffix}`,
+    column: `nested-column-${suffix}`,
+  }
+  const block = (id: string, type: string, last_edited_time: string, value: object = {}) => ({
+    object: 'block', id, type, has_children: true, last_edited_time, [type]: value,
+  })
+  const children: Record<string, unknown[]> = {
+    [ids.page]: [
+      block(ids.toggle, 'toggle', '2025-01-01T00:00:00.000Z', { rich_text: [] }),
+      block(ids.columnList, 'column_list', '2025-01-01T00:00:00.000Z'),
+    ],
+    [ids.toggle]: [],
+    [ids.columnList]: [block(ids.column, 'column', '2025-01-01T00:00:00.000Z')],
+    [ids.column]: [],
+  }
+  const list = async ({ block_id }: { block_id: string }) => ({
+    object: 'list', results: children[block_id], next_cursor: null, has_more: false,
+  })
+  const cacheFiles = Object.values(ids).map(id => `${cacheDir}/notion.blocks.children.list-${id}`)
+  return { ids, list, cacheFiles }
+}
+
+const withStubbedBlocksList = async (list: unknown, cacheFiles: string[], fn: () => Promise<void>) => {
+  const original = notion.blocks.children.list
+  notion.blocks.children.list = list as typeof original
+  try {
+    await Promise.all(cacheFiles.map(f => rm(f, { force: true })))
+    await fn()
+  } finally {
+    notion.blocks.children.list = original
+    await Promise.all(cacheFiles.map(f => rm(f, { force: true })))
+  }
+}
+
+test('FetchBlocks passes the page last_edited_time down to nested blocks', async () => {
+  const { ids, list, cacheFiles } = nestedBlocksFixture(`${Date.now()}-root`)
+  const pageEditedTime = '2026-09-17T00:00:00.000Z'
+
+  await withStubbedBlocksList(list, cacheFiles, async () => {
+    await FetchBlocks({ block_id: ids.page, last_edited_time: pageEditedTime })
+
+    // Nested blocks must be cached with the page time, not their parent block time,
+    // because editing a nested block does not update its parent block's last_edited_time.
+    for (const id of [ids.toggle, ids.columnList, ids.column]) {
+      const cache = await readCache<FetchBlocksRes>(`${cacheDir}/notion.blocks.children.list-${id}`)
+      assert.equal(cache.last_edited_time, pageEditedTime, `cache of ${id}`)
+    }
+  })
+})
+
+test('FetchBlocks uses the block last_edited_time for nested blocks when none is given', async () => {
+  const { ids, list, cacheFiles } = nestedBlocksFixture(`${Date.now()}-fallback`)
+
+  await withStubbedBlocksList(list, cacheFiles, async () => {
+    await FetchBlocks({ block_id: ids.page })
+
+    for (const id of [ids.toggle, ids.columnList, ids.column]) {
+      const cache = await readCache<FetchBlocksRes>(`${cacheDir}/notion.blocks.children.list-${id}`)
+      assert.equal(cache.last_edited_time, '2025-01-01T00:00:00.000Z', `cache of ${id}`)
+    }
+  })
+})
+
+test.run()
