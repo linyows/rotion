@@ -3,6 +3,14 @@ import * as td from 'testdouble'
 import * as assert from 'uvu/assert'
 import type { FetchBlocksArgs, FetchBlocksRes } from './blocks.js'
 import { FetchBlocks } from './blocks.js'
+import { notion } from './api.js'
+import { readCache } from './files.js'
+import { cacheDir } from './variables.js'
+import { mkdtemp, rm } from 'node:fs/promises'
+import { execFile } from 'node:child_process'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { promisify } from 'node:util'
 
 test.before(() => {
   td.replace(console, 'log')
@@ -184,4 +192,130 @@ test('FetchBlocks integrates with file system correctly', async () => {
   }
 })
 
-test.run() 
+const blockEditedTimes = {
+  toggle: '2025-01-01T00:00:00.000Z',
+  columnList: '2025-02-01T00:00:00.000Z',
+  column: '2025-03-01T00:00:00.000Z',
+}
+
+const nestedBlocksFixture = (suffix: string) => {
+  const ids = {
+    page: `nested-page-${suffix}`,
+    toggle: `nested-toggle-${suffix}`,
+    columnList: `nested-column-list-${suffix}`,
+    column: `nested-column-${suffix}`,
+  }
+  const block = (id: string, type: string, last_edited_time: string, value: object = {}) => ({
+    object: 'block', id, type, has_children: true, last_edited_time, [type]: value,
+  })
+  const children: Record<string, unknown[]> = {
+    [ids.page]: [
+      block(ids.toggle, 'toggle', blockEditedTimes.toggle, { rich_text: [] }),
+      block(ids.columnList, 'column_list', blockEditedTimes.columnList),
+    ],
+    [ids.toggle]: [],
+    [ids.columnList]: [block(ids.column, 'column', blockEditedTimes.column)],
+    [ids.column]: [],
+  }
+  const list = async ({ block_id }: { block_id: string }) => ({
+    object: 'list', results: children[block_id], next_cursor: null, has_more: false,
+  })
+  const cacheFiles = Object.values(ids).map(id => `${cacheDir}/notion.blocks.children.list-${id}`)
+  return { ids, list, cacheFiles }
+}
+
+const withStubbedBlocksList = async (list: unknown, cacheFiles: string[], fn: () => Promise<void>) => {
+  const original = notion.blocks.children.list
+  notion.blocks.children.list = list as typeof original
+  try {
+    await Promise.all(cacheFiles.map(f => rm(f, { force: true })))
+    await fn()
+  } finally {
+    notion.blocks.children.list = original
+    await Promise.all(cacheFiles.map(f => rm(f, { force: true })))
+  }
+}
+
+test('FetchBlocks passes the page last_edited_time down to nested blocks', async () => {
+  const { ids, list, cacheFiles } = nestedBlocksFixture(`${Date.now()}-root`)
+  const pageEditedTime = '2026-09-17T00:00:00.000Z'
+
+  await withStubbedBlocksList(list, cacheFiles, async () => {
+    await FetchBlocks({ block_id: ids.page, last_edited_time: pageEditedTime })
+
+    // Nested blocks must be cached with the page time, not their parent block time,
+    // because editing a nested block does not update its parent block's last_edited_time.
+    for (const id of [ids.toggle, ids.columnList, ids.column]) {
+      const cache = await readCache<FetchBlocksRes>(`${cacheDir}/notion.blocks.children.list-${id}`)
+      assert.equal(cache.last_edited_time, pageEditedTime, `cache of ${id}`)
+    }
+  })
+})
+
+test('FetchBlocks uses the block last_edited_time for nested blocks when none is given', async () => {
+  const { ids, list, cacheFiles } = nestedBlocksFixture(`${Date.now()}-fallback`)
+
+  await withStubbedBlocksList(list, cacheFiles, async () => {
+    await FetchBlocks({ block_id: ids.page })
+
+    for (const key of ['toggle', 'columnList', 'column'] as const) {
+      const cache = await readCache<FetchBlocksRes>(`${cacheDir}/notion.blocks.children.list-${ids[key]}`)
+      assert.equal(cache.last_edited_time, blockEditedTimes[key], `cache of ${ids[key]}`)
+    }
+  })
+})
+
+// incrementalCache is read from the environment when the variables module is loaded,
+// so run the two-pass scenario in a child process with ROTION_INCREMENTAL_CACHE=true.
+const incrementalCacheScenario = `
+const { notion } = await import(new URL('./src/exporter/api.ts', 'file://' + process.cwd() + '/').href)
+const { FetchBlocks } = await import(new URL('./src/exporter/blocks.ts', 'file://' + process.cwd() + '/').href)
+const { incrementalCache } = await import(new URL('./src/exporter/variables.ts', 'file://' + process.cwd() + '/').href)
+console.log = () => {}
+
+const blockEditedTime = '2025-01-01T00:00:00.000Z'
+let text = 'before'
+const block = (id, type, value = {}) => ({ object: 'block', id, type, has_children: true, last_edited_time: blockEditedTime, [type]: value })
+const paragraph = (id) => ({
+  object: 'block', id, type: 'paragraph', has_children: false, last_edited_time: blockEditedTime,
+  paragraph: { rich_text: [{ type: 'text', plain_text: text, text: { content: text, link: null }, annotations: {}, href: null }] },
+})
+const children = {
+  page: () => [block('toggle', 'toggle', { rich_text: [] }), block('column-list', 'column_list'), block('list-item', 'bulleted_list_item', { rich_text: [] })],
+  toggle: () => [paragraph('toggle-paragraph')],
+  'column-list': () => [block('column', 'column')],
+  column: () => [paragraph('column-paragraph')],
+  'list-item': () => [paragraph('list-item-paragraph')],
+}
+notion.blocks.children.list = async ({ block_id }) => ({ object: 'list', results: children[block_id](), next_cursor: null, has_more: false })
+
+const texts = (res) => ({
+  toggle: res.results[0].children.results[0].paragraph.rich_text[0].plain_text,
+  column: res.results[1].columns[0].results[0].paragraph.rich_text[0].plain_text,
+  listItem: res.results[2].children.results[0].paragraph.rich_text[0].plain_text,
+})
+const first = texts(await FetchBlocks({ block_id: 'page', last_edited_time: '2026-01-01T00:00:00.000Z' }))
+// Editing nested blocks updates only the page last_edited_time
+text = 'after'
+const second = texts(await FetchBlocks({ block_id: 'page', last_edited_time: '2026-02-01T00:00:00.000Z' }))
+process.stdout.write(JSON.stringify({ incrementalCache, first, second }))
+`
+
+test('FetchBlocks reflects nested block changes with incremental cache', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'rotion-blocks-test-'))
+  try {
+    const { stdout } = await promisify(execFile)(
+      process.execPath,
+      ['--import', 'tsx', '--input-type=module', '-e', incrementalCacheScenario],
+      { env: { ...process.env, ROTION_INCREMENTAL_CACHE: 'true', ROTION_CACHEDIR: dir } },
+    )
+    const { incrementalCache, first, second } = JSON.parse(stdout)
+    assert.equal(incrementalCache, true)
+    assert.equal(first, { toggle: 'before', column: 'before', listItem: 'before' })
+    assert.equal(second, { toggle: 'after', column: 'after', listItem: 'after' })
+  } finally {
+    await rm(dir, { recursive: true, force: true })
+  }
+})
+
+test.run()

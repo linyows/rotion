@@ -98,6 +98,8 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
     allres.last_edited_time = last_edited_time
   }
 
+  // Editing a nested block does not update its parent block's last_edited_time,
+  // only the page's. So pass the page's last_edited_time down to nested blocks.
   for (const block of allres.results) {
     try {
       const { type } = block
@@ -107,7 +109,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
           break
         case 'bulleted_list_item':
           if (block.has_children) {
-            block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
+            block.children = await FetchBlocks({ block_id: block.id, last_edited_time: last_edited_time ?? block.last_edited_time })
           }
           break
         case 'breadcrumb':
@@ -136,7 +138,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
             }
           }
           if (block.has_children) {
-            block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
+            block.children = await FetchBlocks({ block_id: block.id, last_edited_time: last_edited_time ?? block.last_edited_time })
           }
           break
         case 'child_database':
@@ -156,10 +158,10 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
           // block.children = await FetchBlocks(block.id, block.last_edited_time)
           break
         case 'column_list':
-          block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
+          block.children = await FetchBlocks({ block_id: block.id, last_edited_time: last_edited_time ?? block.last_edited_time })
           block.columns = []
           for (const b of block.children.results) {
-            block.columns.push(await FetchBlocks({ block_id: b.id, last_edited_time: block.last_edited_time }))
+            block.columns.push(await FetchBlocks({ block_id: b.id, last_edited_time: last_edited_time ?? b.last_edited_time }))
           }
           break
         case 'embed':
@@ -187,7 +189,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
           break
         case 'numbered_list_item':
           if (block.has_children) {
-            block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
+            block.children = await FetchBlocks({ block_id: block.id, last_edited_time: last_edited_time ?? block.last_edited_time })
           }
           break
         case 'paragraph':
@@ -302,18 +304,18 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
         case 'synced_block':
           if (block.has_children) {
             if (block.synced_block.synced_from === null) {
-              block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
+              block.children = await FetchBlocks({ block_id: block.id, last_edited_time: last_edited_time ?? block.last_edited_time })
             } else if (block.synced_block.synced_from.type === 'block_id') {
               const block_id = block.synced_block.synced_from.block_id
-              block.children = await FetchBlocks({ block_id, last_edited_time: block.last_edited_time })
+              block.children = await FetchBlocks({ block_id, last_edited_time: last_edited_time ?? block.last_edited_time })
             }
           }
           break
         case 'table':
-          block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
+          block.children = await FetchBlocks({ block_id: block.id, last_edited_time: last_edited_time ?? block.last_edited_time })
           break
         case 'toggle':
-          block.children = await FetchBlocks({ block_id: block.id, last_edited_time: block.last_edited_time })
+          block.children = await FetchBlocks({ block_id: block.id, last_edited_time: last_edited_time ?? block.last_edited_time })
           break
         case 'video':
           if (block.video.type === 'file') {
