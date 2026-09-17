@@ -734,11 +734,14 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx, httpFunc?:
   return ''
 }
 
-export async function getSlideshareOembedUrl (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<string> {
-  const resbody = httpFunc ? await httpFunc(reqUrl) : await getHTTP(reqUrl)
-  const metaTagRegex = /<meta\s+name=["']twitter:player["']\s+content=["'](.*?)["']/i
-  const matched = resbody.match(metaTagRegex)
-  return matched ? matched[1] : ''
+/*
+ * SlideShare pages now return a JavaScript client challenge to non-browser clients,
+ * so the embed URL cannot be scraped from the page. The oEmbed API is not challenged,
+ * but it rejects the `/slideshow/{slug}/{id}` form, so that form is converted to `/slideshow/embed_code/{id}`.
+ */
+export function getSlideshareOembedTargetUrl (url: string): string {
+  const m = url.match(/^https?:\/\/www\.slideshare\.net\/slideshow\/(?!embed_code\/)[^/?#]+\/(\d+)\/?(?:[?#].*)?$/)
+  return m ? `https://www.slideshare.net/slideshow/embed_code/${m[1]}` : url
 }
 
 export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx, httpFunc?: (reqUrl: string) => Promise<string>): Promise<string> => {
@@ -813,8 +816,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx, httpFunc?:
     }
 
   } else if (url.includes('//www.slideshare.net')) {
-    const playerUrl = (url.includes('/embed_code/')) ? url : await getSlideshareOembedUrl(url)
-    oembedUrl = `https://www.slideshare.net/api/oembed/2?url=${encodeURIComponent(playerUrl)}`
+    oembedUrl = `https://www.slideshare.net/api/oembed/2?url=${encodeURIComponent(getSlideshareOembedTargetUrl(url))}`
 
   } else if (url.includes('//x.com') || url.includes('//twitter.com')) {
     const tweetId = path.basename(src.split('?').shift() || '')

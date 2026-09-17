@@ -269,52 +269,45 @@ test('getVideoHtml returns html', async () => {
   assert.match(html, /<iframe/)
 })
 
-const testsSlideshareOembedUrls = [
+const testsSlideshareOembedTargetUrls = [
   [
-    'https://www.slideshare.net/naotomatsumoto/ss-76167012',
-    'https://www.slideshare.net/slideshow/embed_code/key/P8K5T2uhutnid',
+    'slide title and id pattern is converted to embed code with id',
+    'https://www.slideshare.net/slideshow/ss-236336482/236336482',
+    'https://www.slideshare.net/slideshow/embed_code/236336482',
   ],
   [
-    'https://www.slideshare.net/naotomatsumoto/iot29',
-    'https://www.slideshare.net/slideshow/embed_code/key/4XbwpqYMhN1Y9T',
-  ],
-]
-for (const t of testsSlideshareOembedUrls) {
-  const [url, expect] = t
-  test(`getSlideshareOembedUrl: ${url}`, async () => {
-    const got = await files.getSlideshareOembedUrl(url, vcr)
-    assert.equal(got, expect)
-  })
-}
-
-const testsSlideshow = [
-  [
-    'slide title pattern',
-    'https://www.slideshare.net/slideshow/artificial-intelligence-data-and-competition-schrepel-june-2024-oecd-discussion/269644409',
-    'https://www.slideshare.net/slideshow/embed_code/key/hRM8WIyvd1l8mG',
+    'slide title and id pattern with trailing slash and query',
+    'https://www.slideshare.net/slideshow/lgstats2016/58447564/?from_search=1',
+    'https://www.slideshare.net/slideshow/embed_code/58447564',
   ],
   [
-    'username and slide id pattern redirects to slide title pattern',
+    'username and slide pattern is kept',
     'https://www.slideshare.net/ShunsukeKikuchi1/fog-153532606',
+    'https://www.slideshare.net/ShunsukeKikuchi1/fog-153532606',
+  ],
+  [
+    'embed code key pattern is kept',
+    'https://www.slideshare.net/slideshow/embed_code/key/13RbHMBj5OkZV3',
     'https://www.slideshare.net/slideshow/embed_code/key/13RbHMBj5OkZV3',
   ],
   [
-    'embed code url not include twitter player',
+    'embed code id pattern is kept',
     'http://www.slideshare.net/slideshow/embed_code/12628111',
-    '',
-  ]
+    'http://www.slideshare.net/slideshow/embed_code/12628111',
+  ],
 ]
-for (const t of testsSlideshow) {
+for (const t of testsSlideshareOembedTargetUrls) {
   const [name, url, expect] = t
-  test(`getSlideshareOembedUrl returns URL for oEmbed: ${url} (${name})`, async () => {
-    const got = await files.getSlideshareOembedUrl(url, vcr)
-    assert.equal(got, expect)
+  test(`getSlideshareOembedTargetUrl: ${url} (${name})`, () => {
+    assert.equal(files.getSlideshareOembedTargetUrl(url), expect)
   })
 }
 
 const testsEmbedHtml = [
   ['https://speakerdeck.com/chrislema/infographics-made-easy', /<iframe/],
   ['https://www.slideshare.net/slideshow/embed_code/key/13RbHMBj5OkZV3', /<iframe/],
+  ['https://www.slideshare.net/slideshow/ss-236336482/236336482', /<iframe/],
+  ['https://www.slideshare.net/ShunsukeKikuchi1/fog-153532606', /<iframe/],
   ['https://twitter.com/jack/status/1247616214769086465', /<blockquote/],
   ['https://www.instagram.com/p/Cu2DjxmvLeI/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==', /<blockquote/],
   ['https://open.spotify.com/intl-ja/artist/2YZyLoL8N0Wb9xBt1NhZWg', /<iframe/],
