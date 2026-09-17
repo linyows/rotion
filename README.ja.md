@@ -78,6 +78,24 @@ const blocks = await FetchBlocks({ block_id: 'YOUR_PAGE_ID' })
 const page = await FetchPage({ page_id: 'YOUR_PAGE_ID' })
 ```
 
+#### インクリメンタルキャッシュ
+
+取得したデータは `.cache` にキャッシュされます（`ROTION_CACHEDIR` で変更できます）。デフォルトでは、既存のキャッシュが常に使われます。`ROTION_INCREMENTAL_CACHE=true` を指定すると、変更されたデータだけを再取得します。データベースのクエリは `ROTION_CACHE_AVAILABLE_DURATION` ミリ秒（デフォルト：2分）を過ぎると再取得し、ページとブロックはページの `last_edited_time` が変わったときに再取得します。
+
+このモードでは、`FetchBlocks` と `FetchPage` にページの `last_edited_time` を渡してください。渡さない場合は既存のキャッシュが常に返され、編集が反映されません。トグルやカラムなど、ネストしたブロックの中身を変更しても更新されるのはページの `last_edited_time` だけなので、ブロックではなくページの値を渡してください。
+
+```ts
+// データベースから取得したページには last_edited_time が含まれる
+const db = await FetchDatabase({ database_id: 'YOUR_DATABASE_ID' })
+for (const page of db.results) {
+  const blocks = await FetchBlocks({ block_id: page.id, last_edited_time: page.last_edited_time })
+}
+
+// または先に最新のページ情報を取得する（'force' は常にAPIへリクエストする）
+const page = await FetchPage({ page_id: 'YOUR_PAGE_ID', last_edited_time: 'force' })
+const blocks = await FetchBlocks({ block_id: 'YOUR_PAGE_ID', last_edited_time: page.last_edited_time })
+```
+
 ### 3. Reactコンポーネントで表示
 
 #### Next.js App Router (v15+)
@@ -283,4 +301,4 @@ MIT
 作者
 --
 
-[@linyows](https://github.com/linyows) 
+[@linyows](https://github.com/linyows)
