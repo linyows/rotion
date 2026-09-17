@@ -161,7 +161,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
           block.children = await FetchBlocks({ block_id: block.id, last_edited_time: last_edited_time ?? block.last_edited_time })
           block.columns = []
           for (const b of block.children.results) {
-            block.columns.push(await FetchBlocks({ block_id: b.id, last_edited_time: last_edited_time ?? block.last_edited_time }))
+            block.columns.push(await FetchBlocks({ block_id: b.id, last_edited_time: last_edited_time ?? b.last_edited_time }))
           }
           break
         case 'embed':
