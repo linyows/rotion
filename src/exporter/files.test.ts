@@ -638,4 +638,164 @@ test('saveImage downloads .webp URL without "Cannot use same file" error', async
   }
 })
 
+// --- HTTP status and redirect handling ---
+//
+// saveImage and saveFile treat an existing file as downloaded. A body saved
+// from an error response would therefore be served, and never replaced,
+// until someone deletes it by hand.
+
+type Handler = (req: http.IncomingMessage, res: http.ServerResponse) => void
+
+async function startServer (handler: Handler): Promise<{ base: string, requests: string[], close: () => Promise<void> }> {
+  const requests: string[] = []
+  const server = http.createServer((req, res) => {
+    requests.push(req.url || '')
+    handler(req, res)
+  })
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve))
+  const addr = server.address()
+  if (!addr || typeof addr === 'string') throw new Error('failed to bind test server')
+  return {
+    base: `http://127.0.0.1:${addr.port}`,
+    requests,
+    close: () => new Promise<void>(resolve => server.close(() => resolve())),
+  }
+}
+
+const unique = () => `${Date.now()}-${Math.random().toString(36).slice(2)}`
+
+async function pngBuffer (): Promise<Buffer> {
+  const sharp = (await import('sharp')).default
+  return sharp({
+    create: { width: 6, height: 4, channels: 3, background: { r: 200, g: 100, b: 50 } },
+  }).png().toBuffer()
+}
+
+async function listDir (dir: string): Promise<string[]> {
+  try {
+    return await fs.readdir(dir)
+  } catch {
+    return []
+  }
+}
+
+for (const status of [500, 503]) {
+  test(`saveImage does not save the body of a ${status} response`, async () => {
+    const { docRoot, imageDir } = await import('./variables.js')
+    const { base, close } = await startServer((_req, res) => {
+      res.writeHead(status, { 'Content-Type': 'text/html' })
+      res.end('<html>error</html>')
+    })
+    const prefix = `status-${status}-${unique()}`
+    try {
+      await files.saveImage(`${base}/image.png`, prefix)
+      assert.unreachable('should have thrown an error')
+    } catch (e) {
+      assert.ok(e instanceof Error)
+      assert.match(e.message, new RegExp(`unexpected status ${status}`))
+    } finally {
+      await close()
+    }
+    const left = (await listDir(`${docRoot}/${imageDir}`)).filter(f => f.startsWith(prefix))
+    assert.equal(left, [], 'no file (or temporary file) should be left behind')
+  })
+}
+
+test('saveFile does not save the body of a 404 response for a URL without a query', async () => {
+  const { docRoot, fileDir } = await import('./variables.js')
+  const { base, close } = await startServer((_req, res) => {
+    res.writeHead(404, { 'Content-Type': 'text/html' })
+    res.end('<html>not found</html>')
+  })
+  const prefix = `status-404-${unique()}`
+  try {
+    await files.saveFile(`${base}/doc.pdf`, prefix)
+    assert.unreachable('should have thrown an error')
+  } catch (e) {
+    assert.ok(e instanceof Error)
+    assert.match(e.message, /unexpected status 404/)
+  } finally {
+    await close()
+  }
+  const left = (await listDir(`${docRoot}/${fileDir}`)).filter(f => f.startsWith(prefix))
+  assert.equal(left, [])
+})
+
+test('saveImage retries without the query when a signed URL answers 403', async () => {
+  const png = await pngBuffer()
+  const { base, requests, close } = await startServer((req, res) => {
+    if (req.url?.includes('?')) {
+      res.writeHead(403)
+      res.end('expired')
+      return
+    }
+    res.writeHead(200, { 'Content-Type': 'image/png' })
+    res.end(png)
+  })
+  try {
+    const ipws = await files.saveImage(`${base}/signed.png?X-Amz-Signature=abc`, `query-retry-${unique()}`)
+    assert.match(ipws.path, /\.webp$/)
+    assert.equal(ipws.width, 6)
+    assert.equal(requests, ['/signed.png?X-Amz-Signature=abc', '/signed.png'])
+  } finally {
+    await close()
+  }
+})
+
+test('saveImage follows a relative Location header', async () => {
+  const png = await pngBuffer()
+  const { base, requests, close } = await startServer((req, res) => {
+    if (req.url === '/old.png') {
+      res.writeHead(302, { Location: '/assets/new.png' })
+      res.end('moved')
+      return
+    }
+    res.writeHead(200, { 'Content-Type': 'image/png' })
+    res.end(png)
+  })
+  try {
+    const ipws = await files.saveImage(`${base}/old.png`, `relative-redirect-${unique()}`)
+    assert.equal(ipws.width, 6)
+    assert.equal(ipws.height, 4)
+    assert.equal(requests, ['/old.png', '/assets/new.png'])
+  } finally {
+    await close()
+  }
+})
+
+test('getHTTP throws on a response that is not successful', async () => {
+  const { base, close } = await startServer((_req, res) => {
+    res.writeHead(403, { 'Content-Type': 'text/html' })
+    res.end('<title>Just a moment...</title>')
+  })
+  try {
+    await files.getHTTP(`${base}/page`)
+    assert.unreachable('should have thrown an error')
+  } catch (e) {
+    assert.ok(e instanceof Error)
+    assert.match(e.message, /unexpected status 403/)
+  } finally {
+    await close()
+  }
+})
+
+test('saveImage does not download a HEIC image again once it is converted', async () => {
+  const heic = await fs.readFile('testdata/example.heic')
+  const { base, requests, close } = await startServer((_req, res) => {
+    res.writeHead(200, { 'Content-Type': 'image/heic' })
+    res.end(heic)
+  })
+  const prefix = `heic-once-${unique()}`
+  try {
+    const first = await files.saveImage(`${base}/photo.heic`, prefix)
+    const second = await files.saveImage(`${base}/photo.heic`, prefix)
+    assert.equal(requests.length, 1, `expected one download, got ${requests.length}`)
+    assert.equal(second.path, first.path)
+    assert.equal(second.width, first.width)
+    assert.equal(second.height, first.height)
+  } finally {
+    await close()
+  }
+})
+
 test.run()
