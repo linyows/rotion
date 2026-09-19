@@ -175,6 +175,7 @@ The main groups are:
 | Text colors and backgrounds from Notion | `--rotion-annot-<color>`, `--rotion-annot-bg-<color>` for `default`, `gray`, `brown`, `orange`, `yellow`, `green`, `blue`, `purple`, `pink`, `red` |
 | Select and multi-select tags | `--rotion-tag-<color>`, `--rotion-tag-bg-<color>`, same colors |
 | Gallery | `--rotion-gallery-box-shadow`, `--rotion-gallery-bg`, `--rotion-gallery-grid-template-columns-small` / `-medium` / `-large` |
+| List view | `--rotion-list-min-width` |
 | Table view | `--rotion-table-border`, `--rotion-table-icon-fill` |
 | Calendar | `--rotion-calendar-weekend-bg` |
 

@@ -204,6 +204,7 @@ TypeScript がそのままでは受け付けない箇所では `as Link` でキ�
 | Notion の文字色と背景色 | `--rotion-annot-<color>`、`--rotion-annot-bg-<color>`。色は `default`、`gray`、`brown`、`orange`、`yellow`、`green`、`blue`、`purple`、`pink`、`red` |
 | セレクトとマルチセレクトのタグ | `--rotion-tag-<color>`、`--rotion-tag-bg-<color>`。色は同上 |
 | ギャラリー | `--rotion-gallery-box-shadow`、`--rotion-gallery-bg`、`--rotion-gallery-grid-template-columns-small` / `-medium` / `-large` |
+| リストビュー | `--rotion-list-min-width` |
 | テーブルビュー | `--rotion-table-border`、`--rotion-table-icon-fill` |
 | カレンダー | `--rotion-calendar-weekend-bg` |
 

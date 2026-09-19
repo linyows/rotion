@@ -140,6 +140,10 @@ import { List } from 'rotion/ui'
 | `keys` | `string[]` | 表示するプロパティと、`spacer` または `dashed`。 |
 | `options` | `ListOptions` | 上で説明した `href`、`link`、`query`、`prefix`、`suffix`。 |
 
+リストは、長い行が切れないよう、少なくとも 1200px の幅で描画され、それより狭い要素の中では横にスクロールします。
+この幅は `--rotion-list-min-width` で変えられます。
+`0` にすると、リストは包んでいる要素の幅に収まります。
+
 ## Gallery
 
 ```tsx
