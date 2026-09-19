@@ -20,6 +20,9 @@
     "./LICENSE": "./LICENSE"
   },
   "main": "./dist/exporter/index.js",
+  "bin": {
+    "rotion": "./dist/exporter/bin.js"
+  },
   "types": "./dist/exporter/index.d.ts",
   "type": "module",
   "files": [
@@ -42,7 +45,7 @@
     "test": "npm run exporter:test && npm run ui:test",
     "exporter:build": "npm run exporter:clean && tsc -p src/exporter/tsconfig.json",
     "exporter:clean": "rm -rf dist/exporter/*",
-    "exporter:test": "tsx node_modules/uvu/bin.js ./src/exporter",
+    "exporter:test": "tsx node_modules/uvu/bin.js ./src/exporter \\.test\\.ts$",
     "ui:test": "tsx node_modules/uvu/bin.js ./src/ui/components \\.test\\.ts$",
     "ui:build": "npm run ui:lint && npm run ui:typecheck && npm run ui:clean && npm run ui:css:generate && npm run ui:tsc && npm run ui:fix-output && npm run ui:remove-css-imports && npm run ui:css:build && npm run ui:css:build:without-dark && npm run ui:use-client",
     "ui:clean": "rm -rf dist/ui/*",

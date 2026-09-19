@@ -153,6 +153,14 @@ function configure(options: Partial<RotionConfig>): void
 
 Sets the settings in code instead of environment variables; a value given here wins over its variable. See [Configure in code](configuration#configure-in-code) for the options.
 
+## pruneCache
+
+```ts
+function pruneCache(args: { before: Date, dryRun?: boolean }): Promise<{ removed: string[] }>
+```
+
+Removes cache files and downloaded images and files that Rotion has not used since `before`, and returns their paths. The `rotion prune` command calls it. See [Removing unused files](caching#removing-unused-files).
+
 ## Lower-level helpers
 
 These are exported because the fetch functions use them, and are rarely needed directly. Each downloads the image and sets `src` on the object passed in; a failed download is ignored.

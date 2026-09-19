@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { mkdir, stat, unlink } from 'node:fs/promises'
+import { mkdir, stat, unlink, utimes } from 'node:fs/promises'
 import { pipeline } from 'node:stream/promises'
 import https from 'https'
 import http from 'http'
@@ -308,8 +308,64 @@ export const createDirWhenNotfound = async (dir: string): Promise<void> => {
   }
 }
 
+const markedAt = new Map<string, number>()
+const markInterval = 10 * 60 * 1000
+
+/**
+ * markUsed sets the access time of files that Rotion has just used, so that
+ * pruneCache can tell them from files nothing uses any more. The modification
+ * time is kept, because it decides how long a cache file stays fresh. A file
+ * is marked at most once in markInterval by one process.
+ */
+export async function markUsed (paths: string[]): Promise<void> {
+  const now = Date.now()
+  for (const p of paths) {
+    const last = markedAt.get(p)
+    if (last !== undefined && now - last < markInterval) {
+      continue
+    }
+    try {
+      const { mtime } = await stat(p)
+      await utimes(p, new Date(now), mtime)
+      markedAt.set(p, now)
+    } catch {
+      // A file that does not exist is not used
+    }
+  }
+}
+
+/**
+ * localFilesIn returns the paths of downloaded images and files that a cached
+ * result refers to, such as /images/block-...webp, relative to the docroot.
+ */
+export function localFilesIn (data: unknown, prefixes: string[]): string[] {
+  const found = new Set<string>()
+  const walk = (v: unknown) => {
+    if (typeof v === 'string') {
+      if (prefixes.some(prefix => v.startsWith(prefix))) {
+        found.add(v)
+      }
+    } else if (Array.isArray(v)) {
+      v.forEach(walk)
+    } else if (v !== null && typeof v === 'object') {
+      Object.values(v).forEach(walk)
+    }
+  }
+  walk(data)
+  return [...found]
+}
+
+/**
+ * readCache returns a cached result. It marks the cache file and the images
+ * and files the result refers to as used: a page served from the cache still
+ * shows them, although nothing downloads them again.
+ */
 export async function readCache<T> (f: string): Promise<T> {
-  return JSON.parse(await readFile(f, 'utf8'))
+  const data = JSON.parse(await readFile(f, 'utf8'))
+  const { docRoot, imageDir, fileDir } = config()
+  const files = localFilesIn(data, [`/${imageDir}/`, `/${fileDir}/`]).map(p => `${docRoot}${p}`)
+  await markUsed([f, ...files])
+  return data
 }
 
 export async function writeCache (f: string, data: unknown): Promise<void> {
@@ -350,6 +406,7 @@ export async function saveFile (fileUrl: string, prefix: string) {
 
   return withFileLock(lockKey, async () => {
     if (fs.existsSync(filePath)) {
+      await markUsed([filePath])
       const stats = await stat(filePath)
       return {
         src: urlPath,
@@ -403,6 +460,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
       : [filePath, urlPath]
 
     if (fs.existsSync(storedPath)) {
+      await markUsed([storedPath, webpPath])
       if (webpQuality > 0 && fs.existsSync(webpPath)) {
         try {
           const meta = await sharp(webpPath).metadata()
