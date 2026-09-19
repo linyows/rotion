@@ -187,6 +187,7 @@ function pruneCache(args: { before: Date, dryRun?: boolean }): Promise<{ removed
 ```
 
 `before` 以降に Rotion が使っていないキャッシュファイル、ダウンロードした画像とファイルを削除し、そのパスを返します。
+`rotion prune` コマンドはこの関数を呼びます。
 [使われなくなったファイルの削除](caching#removing-unused-files)を参照してください。
 
 ## 下位のヘルパー関数

@@ -159,7 +159,7 @@ Sets the settings in code instead of environment variables; a value given here w
 function pruneCache(args: { before: Date, dryRun?: boolean }): Promise<{ removed: string[] }>
 ```
 
-Removes cache files and downloaded images and files that Rotion has not used since `before`, and returns their paths. See [Removing unused files](caching#removing-unused-files).
+Removes cache files and downloaded images and files that Rotion has not used since `before`, and returns their paths. The `rotion prune` command calls it. See [Removing unused files](caching#removing-unused-files).
 
 ## Lower-level helpers
 

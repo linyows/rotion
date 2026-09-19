@@ -102,7 +102,15 @@ Set `ROTION_STRICT=true` to fail instead: the first failure that is not a third-
 
 ## Removing unused files
 
-The cache and the downloads only grow: a page that was deleted in Notion, or an image that was replaced, leaves its files behind. `pruneCache` removes what Rotion has not used since a given time.
+The cache and the downloads only grow: a page that was deleted in Notion, or an image that was replaced, leaves its files behind. The `rotion prune` command removes what Rotion has not used for a given period:
+
+```bash
+npx rotion prune --unused-for 7d            # s, m, h or d
+npx rotion prune --before 2026-09-20T00:00:00Z
+npx rotion prune --unused-for 7d --dry-run  # only list
+```
+
+It prints the removed paths and a count. The directories come from the same environment variables as a build (`ROTION_CACHEDIR`, `ROTION_DOCROOT`, `ROTION_IMAGEDIR`, `ROTION_FILEDIR`). From code, `pruneCache` does the same:
 
 ```ts
 import { pruneCache } from 'rotion'
@@ -117,7 +125,17 @@ Rotion marks what it uses by setting the file's access time: a cache file when i
 - Temporary files that a failed write left behind are removed as well. Lock files are not touched.
 - `dryRun: true` returns the list without removing anything.
 
-Choose `before` so that nothing in use can be older. After a full build, the time the build started works, since the build read everything it shows; a script can record it before `next build` and prune after it. On a server, use a period longer than any page is served without calling Rotion again, such as the `revalidate` of your pages plus a margin.
+Choose the period so that nothing in use can be older. A full build marks everything it shows, so right after one, any period longer than the build takes is safe:
+
+```json
+{
+  "scripts": {
+    "build": "next build && rotion prune --unused-for 1h"
+  }
+}
+```
+
+On a server, use a period longer than any page is served without calling Rotion again, such as the `revalidate` of your pages plus a margin, and run it from a scheduled job.
 
 ## Keeping the cache in CI
 
