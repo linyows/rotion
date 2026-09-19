@@ -1,13 +1,14 @@
 # サンプル
 
-リポジトリの [examples/](https://github.com/linyows/rotion/tree/main/examples) には、3つのサンプルプロジェクトがあります。
+リポジトリの [examples/](https://github.com/linyows/rotion/tree/main/examples) には、4つのサンプルプロジェクトがあります。
 どれも1つの Notion データベースから同じサイトを作ります。
 データベースをテーブルで表示するトップページと、行ごとに本文を表示するページです。
-違うのはフレームワークだけです。
+違うのは、フレームワークと、ページを前もってビルドするかサーバーで描画するかです。
 
 | サンプル | フレームワーク | データを取得する場所 |
 |----------|----------------|----------------------|
 | [nextjs-approuter](https://github.com/linyows/rotion/tree/main/examples/nextjs-approuter) | Next.js App Router | サーバーコンポーネント、`generateStaticParams`、`generateMetadata` |
+| [nextjs-server](https://github.com/linyows/rotion/tree/main/examples/nextjs-server) | Node.js のサーバーで動かす Next.js App Router | リクエスト時に描画するサーバーコンポーネント（`revalidate` 付き） |
 | [nextjs-pagerouter](https://github.com/linyows/rotion/tree/main/examples/nextjs-pagerouter) | Next.js Pages Router | `getStaticProps`、`getStaticPaths` |
 | [astro](https://github.com/linyows/rotion/tree/main/examples/astro) | Astro と `@astrojs/react` | `.astro` のフロントマター、`getStaticPaths` |
 
@@ -41,6 +42,7 @@ npm run dev
 ```
 
 `npm run build` を実行すると、静的エクスポートが `out/` に書き出されます。
+ただし nextjs-server だけは、ビルドの後に `npm start` でサーバーを起動します。
 サンプルは `rotion` をリポジトリではなく npm からインストールします。
 ローカルでビルドした Rotion を `npm pack` で試す方法は、各サンプルの README にあります。
 
@@ -54,6 +56,17 @@ npm run dev
 - `next.config.ts` は `output: 'export'` と `images.unoptimized` を指定しています。
 
 手順の解説は [App Router](app-router) にあります。
+
+## nextjs-server
+
+nextjs-approuter と同じサイトを、書き出す代わりに `next start` で描画します。
+
+- `next.config.ts` には `output: 'export'` がありません。
+- `app/page.tsx` と `app/[id]/page.tsx` は `revalidate = 60` を export しています。`app/[id]/page.tsx` には `generateStaticParams` がないので、各行のページは最初のリクエストで描画され、その後は多くても1分に1回だけ描画し直されます。
+- 秘密ではない設定（`ROTION_DOCROOT=storage` と `ROTION_INCREMENTAL_CACHE=true`）を書いた `.env` をコミットしています。`NOTION_TOKEN` と `NOTION_DATABASE_ID` は、ほかのサンプルと同じく `.env.local` に書きます。
+- `next start` は起動時に `public/` にあったファイルしか配信しません。そのため `app/images/[name]/route.ts` と `app/files/[name]/route.ts` が、`lib/serveFile.ts` を通じて `storage/` からダウンロード済みのファイルを配信します。
+
+手順の解説は [サーバーでの描画](server-rendering) にあります。
 
 ## nextjs-pagerouter
 

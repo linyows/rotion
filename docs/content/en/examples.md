@@ -1,10 +1,11 @@
 # Examples
 
-The repository has three example projects in [examples/](https://github.com/linyows/rotion/tree/main/examples). All three build the same site from one Notion database: an index page with the database as a table, and one page per row with its content. They differ in the framework.
+The repository has four example projects in [examples/](https://github.com/linyows/rotion/tree/main/examples). All four build the same site from one Notion database: an index page with the database as a table, and one page per row with its content. They differ in the framework, and in whether the pages are built ahead of time or rendered on a server.
 
 | Example | Framework | Fetches data in |
 |---------|-----------|-----------------|
 | [nextjs-approuter](https://github.com/linyows/rotion/tree/main/examples/nextjs-approuter) | Next.js App Router | Server components, `generateStaticParams`, `generateMetadata` |
+| [nextjs-server](https://github.com/linyows/rotion/tree/main/examples/nextjs-server) | Next.js App Router on a Node.js server | Server components rendered on request, with `revalidate` |
 | [nextjs-pagerouter](https://github.com/linyows/rotion/tree/main/examples/nextjs-pagerouter) | Next.js Pages Router | `getStaticProps`, `getStaticPaths` |
 | [astro](https://github.com/linyows/rotion/tree/main/examples/astro) | Astro with `@astrojs/react` | The frontmatter of `.astro` pages, `getStaticPaths` |
 
@@ -34,7 +35,7 @@ npm install
 npm run dev
 ```
 
-`npm run build` writes a static export into `out/`. The examples install `rotion` from npm, not from the repository; their READMEs describe how to try a local build with `npm pack`.
+`npm run build` writes a static export into `out/`, except in nextjs-server, which is started with `npm start` after the build. The examples install `rotion` from npm, not from the repository; their READMEs describe how to try a local build with `npm pack`.
 
 ## nextjs-approuter
 
@@ -46,6 +47,17 @@ npm run dev
 - `next.config.ts` sets `output: 'export'` and `images.unoptimized`.
 
 The walkthrough is in [App Router](app-router).
+
+## nextjs-server
+
+The same site as nextjs-approuter, rendered by `next start` instead of exported.
+
+- `next.config.ts` has no `output: 'export'`.
+- `app/page.tsx` and `app/[id]/page.tsx` export `revalidate = 60`. `app/[id]/page.tsx` has no `generateStaticParams`, so each row's page is rendered on its first request and regenerated at most once a minute.
+- `.env` is committed with settings that are not secret: `ROTION_DOCROOT=storage` and `ROTION_INCREMENTAL_CACHE=true`. `NOTION_TOKEN` and `NOTION_DATABASE_ID` go in `.env.local` as in the other examples.
+- `app/images/[name]/route.ts` and `app/files/[name]/route.ts` serve the downloaded files from `storage/` through `lib/serveFile.ts`, because `next start` serves only the files that were in `public/` when it started.
+
+The walkthrough is in [Server rendering](server-rendering).
 
 ## nextjs-pagerouter
 

@@ -2,6 +2,8 @@
 
 Rotion does not require a static export. The exporter is ordinary Node.js code, so it can run on a server when a page is requested: in a dynamically rendered or revalidated Next.js server component, in `getServerSideProps`, or in an Astro page with server output. The components render the returned data the same way in either case.
 
+[examples/nextjs-server](https://github.com/linyows/rotion/tree/main/examples/nextjs-server) puts everything on this page together.
+
 A server adds three things to take care of: the process needs a writable disk, the files Rotion downloads have to be served, and the cache has to let edits in Notion through.
 
 ## Requirements

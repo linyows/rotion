@@ -240,6 +240,20 @@ npm install
 npm run dev
 ```
 
+### [nextjs-server](./examples/nextjs-server)
+Next.js App Router example rendered on a Node.js server:
+- Pages rendered on request and regenerated with `revalidate`
+- Downloaded images and files served from `storage/` by route handlers
+- Incremental cache, so edits in Notion appear without a rebuild
+
+```bash
+cd examples/nextjs-server
+# Add your NOTION_TOKEN and NOTION_DATABASE_ID to .env.local
+npm install
+npm run build
+npm start
+```
+
 ### [nextjs-pagerouter](./examples/nextjs-pagerouter)
 Next.js Pages Router example with database support:
 - Database table view using `getStaticProps`

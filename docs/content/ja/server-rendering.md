@@ -5,6 +5,8 @@ Rotion は静的エクスポートを前提にしていません。
 呼び出す場所は、動的に描画する（または再検証する）Next.js のサーバーコンポーネント、`getServerSideProps`、サーバー出力にした Astro のページなどです。
 コンポーネントは、どちらの場合も返ってきたデータを同じように描画します。
 
+このページの内容をまとめたものが [examples/nextjs-server](https://github.com/linyows/rotion/tree/main/examples/nextjs-server) です。
+
 サーバーで動かす場合は、3つのことに気を配る必要があります。
 プロセスが書き込めるディスク、Rotion がダウンロードしたファイルの配信、そして Notion での編集を反映させるキャッシュの設定です。
 
