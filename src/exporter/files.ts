@@ -24,7 +24,8 @@ import {
   isSkipDownload,
 } from './variables.js'
 import { withFileLock } from './mutex.js'
-import { HTTPStatusError } from './failures.js'
+import { HTTPStatusError, reportExtraFailure } from './failures.js'
+import { warn } from './log.js'
 import type {
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
@@ -323,9 +324,9 @@ export async function writeCache (f: string, data: unknown): Promise<void> {
     await writeFile(tmp, JSON.stringify(data), 'utf8')
     await fs.promises.rename(tmp, f)
   } catch (e) {
-    if (debug) {
-      console.log(`writeCache error -- path: ${f}, message: ${e}`)
-    }
+    // Every later call asks the API again when the cache cannot be written,
+    // for example on a full disk
+    warn(`failed to write the cache ${f}`, e)
     try { await fs.promises.unlink(tmp) } catch {}
   }
 }
@@ -497,10 +498,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
           console.log(`Converted HEIC/HEIF to PNG -- from: ${filePath}, to: ${pngPath}`)
         }
       } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        if (debug) {
-          console.log(`HEIC/HEIF to PNG conversion error -- path: ${filePath}, message: ${errorMessage}`)
-        }
+        warn(`failed to convert ${filePath} to PNG; it may not display in browsers other than Safari`, e)
       }
     }
 
@@ -543,13 +541,10 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
       const errorMessage = e instanceof Error ? e.message : String(e)
 
       if (errorMessage.includes('Support for this compression format has not been built in')) {
-        const unsupportedMessage = `HEIC/HEIF image with unsupported compression format detected -- path: ${processFilePath}, url: ${imageUrl}. This image may not display in browsers other than Safari. Consider using a different image format or re-encoding the HEIC file.`
-        if (debug) {
-          console.log(unsupportedMessage)
-        }
-        console.warn(unsupportedMessage)
-      } else if (debug) {
-        console.log(`saveImage webp convert error -- path: ${processFilePath}, url: ${imageUrl}, message: ${errorMessage}`)
+        warn(`HEIC/HEIF image with unsupported compression format detected -- path: ${processFilePath}, url: ${imageUrl}. This image may not display in browsers other than Safari. Consider using a different image format or re-encoding the HEIC file.`)
+      } else {
+        // The original is served instead, larger and possibly rotated
+        warn(`failed to convert ${processFilePath} to WebP`, e)
       }
     }
 
@@ -726,9 +721,7 @@ export const getHtmlMeta = async (
 
     return { title, desc, image, icon }
   } catch (e) {
-    if (debug) {
-      console.log(`getHtmlMeta failure: ${reqUrl} -- ${e}`)
-    }
+    reportExtraFailure(`metadata of ${reqUrl}`, e)
   }
   return { title: '', desc: '', image: '', icon: '' }
 }
@@ -750,9 +743,7 @@ export const getVideoHtml = async (block: VideoBlockObjectResponseEx, httpFunc?:
       const json = JSON.parse(jsonStr) as YoutubeOembedResponse | VimeoOembedResponse
       return json.html
     } catch (e) {
-      if (debug) {
-        console.log(`getVideoHtml failure: ${reqUrl} - ${e}`)
-      }
+      reportExtraFailure(`video embed of ${extUrl}`, e)
     }
   }
   return ''
@@ -790,7 +781,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx, httpFunc?:
       const id = src.split('/').pop()
       return `<iframe style="border-radius:12px" src="https://open.spotify.com/embed/${type}/${id}?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>`
     }
-    console.log(`spotify url mismatched: ${src}`)
+    warn(`not embedding ${src}: unsupported Spotify URL`)
 
   } else if (url.includes('//music.apple.com')) {
     // Example: https://music.apple.com/us/album/paracosm-bonus-track-version/655768700
@@ -801,7 +792,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx, httpFunc?:
       const musicId = m[3]
       return `<iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="450" style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/${contry}/album/${albumName}/${musicId}"></iframe>`
     }
-    console.log(`apple music url mismatched: ${src}`)
+    warn(`not embedding ${src}: unsupported Apple Music URL`)
 
   } else if (url.includes('//www.google')) {
     if (googleMapKey) {
@@ -834,9 +825,9 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx, httpFunc?:
         }
         return `<iframe width="100%" height="450" frameborder="0" style="border:0" referrerpolicy="no-referrer-when-downgrade" src="${url}" allowfullscreen> </iframe>`
       }
-      console.log(`map url mismatched: ${src}`)
+      warn(`not embedding ${src}: unsupported Google Maps URL`)
     } else {
-      console.log('map is required: GOOGLEMAP_KEY')
+      warn(`not embedding ${src}: GOOGLEMAP_KEY is required for Google Maps`)
     }
 
   } else if (url.includes('//www.slideshare.net')) {
@@ -864,9 +855,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx, httpFunc?:
       const json = JSON.parse(jsonStr) as TwitterOembedResponse | SpeakerdeckOembedResponse | TiktokOembedResponse | SlideshareOembedResponse
       return json.html
     } catch (e) {
-      if (debug) {
-        console.log(`getEmbedHtml failure: ${oembedUrl} -- ${e}`)
-      }
+      reportExtraFailure(`embed of ${url}`, e)
     }
   }
 

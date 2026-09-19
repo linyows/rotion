@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs'
 import path from 'path'
 import { cacheDir, debug } from './variables.js'
+import { warn } from './log.js'
 
 interface LockOptions {
   timeout?: number // Lock acquisition timeout (milliseconds)
@@ -176,8 +177,7 @@ async function releaseLock(fd: fs.FileHandle, lockFile: string, key: string): Pr
       console.log(`Lock released: ${key} (pid: ${process.pid})`)
     }
   } catch (error) {
-    if (debug) {
-      console.error(`Failed to release lock: ${key}`, error)
-    }
+    // A lock file left behind makes the next caller wait until it is stale
+    warn(`failed to release the lock ${lockFile}`, error)
   }
 } 

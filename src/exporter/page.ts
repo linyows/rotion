@@ -23,6 +23,7 @@ import type {
 } from './types.js'
 import { withFileLock } from './mutex.js'
 import { collectFailures, reportFailure } from './failures.js'
+import { warn } from './log.js'
 
 export interface FetchPageArgs {
   page_id: string
@@ -104,8 +105,8 @@ export const FetchPage = async ({ page_id, last_edited_time }: FetchPageArgs): P
 
     if (complete) {
       await writeCache(cacheFile, value)
-    } else if (debug) {
-      console.log(`not caching FetchPage() because of a transient failure: ${cacheFile}`)
+    } else {
+      warn(`not caching page ${page_id} because of a transient failure; it is fetched again on the next call`)
     }
 
     return value
@@ -125,10 +126,7 @@ export async function savePageCover(page: GetPageResponseEx | PageObjectResponse
       page.cover.src = ipws.path
     }
   } catch (e) {
-    reportFailure(e)
-    if (debug) {
-      console.log(`Failed to save page cover: ${e}`)
-    }
+    reportFailure(`cover of page ${page.id}`, e)
   }
 }
 
@@ -153,9 +151,6 @@ export async function savePageIcon(page: GetPageResponseEx | PageObjectResponseE
       ;(page as any).icon = { type: 'external', external: { url }, src: ipws.path }
     }
   } catch (e) {
-    reportFailure(e)
-    if (debug) {
-      console.log(`Failed to save page icon: ${e}`)
-    }
+    reportFailure(`icon of page ${page.id}`, e)
   }
 }

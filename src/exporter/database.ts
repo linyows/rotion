@@ -35,6 +35,7 @@ import {
 } from './page.js'
 import { withFileLock } from './mutex.js'
 import { collectFailures, reportFailure } from './failures.js'
+import { warn } from './log.js'
 
 export interface FetchDatabaseArgs extends Omit<QueryDataSourceParameters, 'data_source_id'> {
   database_id: string
@@ -161,10 +162,7 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
                   const ipws = await saveImage(people.avatar_url, `database-avatar-${people.id}`)
                   people.avatar = ipws.path
                 } catch (e) {
-                  reportFailure(e)
-                  if (debug) {
-                    console.log(`Failed to save people avatar: ${e}`)
-                  }
+                  reportFailure(`avatar of user ${people.id} in database ${database_id}`, e)
                 }
               }
             }
@@ -180,8 +178,8 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
 
     if (complete) {
       await writeCache(cacheFile, value)
-    } else if (debug) {
-      console.log(`not caching FetchDatabase() because of a transient failure: ${cacheFile}`)
+    } else {
+      warn(`not caching the query of database ${database_id} because of a transient failure; it is sent again on the next call`)
     }
 
     return value
@@ -201,10 +199,7 @@ export async function saveDatabaseCover(db: GetDatabaseResponseEx) {
       db.cover.src = ipws.path
     }
   } catch (e) {
-    reportFailure(e)
-    if (debug) {
-      console.log(`Failed to save database cover: ${e}`)
-    }
+    reportFailure(`cover of database ${db.id}`, e)
   }
 }
 
@@ -225,9 +220,6 @@ export async function saveDatabaseIcon(db: GetDatabaseResponseEx) {
       ;(db as any).icon = { type: 'external', external: { url }, src: ipws.path }
     }
   } catch (e) {
-    reportFailure(e)
-    if (debug) {
-      console.log(`Failed to save database icon: ${e}`)
-    }
+    reportFailure(`icon of database ${db.id}`, e)
   }
 }

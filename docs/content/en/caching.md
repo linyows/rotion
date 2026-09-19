@@ -59,7 +59,7 @@ Pass the page's `last_edited_time`, not a block's. When a block inside a toggle,
 
 ## Rate limits and retries
 
-Every Notion request goes through a retry loop. When the API answers `rate_limited` or `internal_server_error`, or the Notion client reports an unexpected response or a timeout, Rotion waits `ROTION_LIMITED_WAITTIME` milliseconds (default 60000, one minute) and tries again, up to three attempts in total. Other errors, such as a missing page or an invalid filter, are thrown at once with the reason from the API.
+Every Notion request goes through a retry loop. When the API answers `rate_limited`, `internal_server_error`, `service_overload`, `service_unavailable` or `gateway_timeout`, or the Notion client reports an unexpected response or a timeout, Rotion prints a warning, waits `ROTION_LIMITED_WAITTIME` milliseconds (default 60000, one minute) and tries again, up to three attempts in total. Other errors, such as a missing page or an invalid filter, are thrown at once with the reason from the API.
 
 `ROTION_WAITTIME` adds a pause, in milliseconds, after every successful request (default 0). A value such as `350` keeps a cold build under the three-requests-per-second average instead of relying on retries.
 
@@ -74,9 +74,29 @@ Images are converted to WebP with quality `ROTION_WEBP_QUALITY` (default 95) and
 
 A file that already exists on disk is not downloaded again. The local name is built from the ID of the block or page it belongs to and a hash of the file name in the URL. Replacing an image with a file of a different name therefore downloads the new one; replacing it with a file of the same name keeps the old copy until you delete it. Files that are no longer referenced are not deleted.
 
-The HTTP requests Rotion makes itself (downloads, and fetching pages for bookmark and embed metadata) send the `ROTION_UA` user agent, give up when the connection is idle for `ROTION_TIMEOUT` milliseconds (default 1500), and follow at most `ROTION_MAX_REDIRECTS` redirects (default 5). A download that fails leaves the block without a local `src`; the build continues.
+The HTTP requests Rotion makes itself (downloads, and fetching pages for bookmark and embed metadata) send the `ROTION_UA` user agent, give up when the connection is idle for `ROTION_TIMEOUT` milliseconds (default 1500), and follow at most `ROTION_MAX_REDIRECTS` redirects (default 5). Only a successful (2xx) response is saved. A download that fails leaves the block without a local `src`; see [Failed requests](#failed-requests).
 
 `ROTION_SKIP_DOWNLOAD=true` makes image downloads return the path without fetching the file. It exists for Rotion's own tests.
+
+## Failed requests
+
+A failure inside a page does not stop the build. Rotion prints one line to stderr for it, and leaves that part out: an image without a local `src`, a mention shown as `--`, a nested block without its children.
+
+```
+[rotion] failed to get image of block 1a2b...: saveImage download error -- path: public/images/block-1a2b....png, url: https://..., message: HTTPStatusError: unexpected status 503: https://...
+[rotion] not caching the blocks of 9f8e... because of a transient failure; they are fetched again on the next call
+```
+
+Whether the result is cached depends on the failure.
+
+- **Transient failures**: a rate limit or server error that is still there after the retries, a timeout, a network error, or an HTTP 5xx, 408 or 429 from a download. The result is not cached, so the next build (or request) fetches it again. A failure in a nested block keeps the page that contains it out of the cache too. Rotion prints a `not caching ...` line for each.
+- **Permanent failures**: an HTTP 4xx such as a deleted image, or a page or database the integration cannot access. They would fail the same way again, so the result is cached with the part left out.
+
+Bookmark metadata, embeds, video embeds and GitHub link previews come from third-party sites. Their failures are printed, but never keep a result out of the cache.
+
+Set `ROTION_STRICT=true` to fail instead: the first failure that is not a third-party extra is thrown as an error, and nothing is cached for the page. Use it in CI when a site with a missing image should not be published.
+
+`ROTION_DEBUG=true` prints the whole error, with the arguments of a failed Notion request, after each line.
 
 ## Keeping the cache in CI
 

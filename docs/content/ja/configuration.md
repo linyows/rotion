@@ -28,7 +28,8 @@ NOTION_TOKEN=ntn_xxx ROTION_INCREMENTAL_CACHE=true npm run build
 | `ROTION_MAX_REDIRECTS` | `5` | それらの HTTP リクエストでたどるリダイレクトの最大回数。 |
 | `ROTION_UA` | カレントディレクトリの `package.json` の `<name>/<version>` | それらの HTTP リクエストの `User-Agent` ヘッダ。これによって返す内容を変えるサイトもあります。Rotion 自身のサイトは `ROTION_UA=curl` でビルドしています。 |
 | `ROTION_SKIP_QUERY_VALIDATION` | `false` | `true` にすると、データベースのクエリをフィルタとソートの照合なしで送ります。[validateQuery](api#validatequery) を参照してください。 |
-| `ROTION_DEBUG` | `false` | `true` にすると、キャッシュの判断、再試行、ダウンロードのエラーをログに出し、Notion クライアントのログレベルを debug にします。 |
+| `ROTION_STRICT` | `false` | `true` にすると、画像などページの一部の取得に失敗したとき、警告を出して省く代わりに例外を投げます。外部のサイトからの取得（ブックマーク、埋め込み、リンクプレビュー）は警告だけです。[取得に失敗したとき](caching#failed-requests)を参照してください。 |
+| `ROTION_DEBUG` | `false` | `true` にすると、キャッシュの判断とロックの動作をログに出し、各警告のあとにエラーの全体を出し、Notion クライアントのログレベルを debug にします。失敗の警告は、これがなくても出ます。 |
 | `ROTION_SKIP_DOWNLOAD` | `false` | `true` にすると、画像をダウンロードせずにパスだけを返します。Rotion のテスト用です。 |
 
 真偽値の変数は、文字列 `true` と完全に一致するときだけ有効になります。
