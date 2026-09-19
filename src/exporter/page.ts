@@ -21,6 +21,11 @@ import { withFileLock } from './mutex.js'
 import { collectFailures, reportFailure } from './failures.js'
 import { warn } from './log.js'
 
+// Only these property types answer pages.properties.retrieve with a list,
+// which is what page.meta collects. Any other type answers with a single
+// item, which page.meta leaves out, so asking for it would be a wasted request.
+const listPropertyTypes = new Set(['title', 'rich_text', 'people', 'relation', 'rollup'])
+
 export interface FetchPageArgs {
   page_id: string
   last_edited_time?: string
@@ -76,6 +81,9 @@ export const FetchPage = async ({ page_id, last_edited_time }: FetchPageArgs): P
       if ('properties' in page) {
         let list: undefined|PropertyItemListResponse
         for (const [, v] of Object.entries(page.properties)) {
+          if (!listPropertyTypes.has(v.type)) {
+            continue
+          }
           const property_id = v.id
           const res = await reqAPIWithBackoffAndCache<GetPagePropertyResponse>({
             name: 'notion.pages.properties.retrieve',
