@@ -328,10 +328,25 @@ export type BlockObjectResponse =
   | LinkPreviewBlockObjectResponseEx
   | UnsupportedBlockObjectResponse
 
+/**
+ * Dependency is a page or database whose content is copied into a result of
+ * FetchBlocks: the source of a synced block, a mentioned page or database, a
+ * child page or a child database. Editing it does not change the
+ * last_edited_time of the page that shows it, so the incremental cache checks
+ * the dependency itself before it reuses the result.
+ */
+export interface Dependency {
+  type: 'page' | 'database'
+  id: string
+  last_edited_time: string
+}
+
 export type ListBlockChildrenResponseEx = ListBlockChildrenResponse & {
   results: Array<BlockObjectResponse>
   children?: ListBlockChildrenResponse
   last_edited_time?: string
+  // Pages and databases whose content is copied into these blocks
+  dependencies?: Dependency[]
 }
 export type LinkPreviewBlockObjectResponseEx = LinkPreviewBlockObjectResponse & {
   link_preview: {
