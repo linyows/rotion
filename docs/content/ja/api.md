@@ -180,6 +180,15 @@ function configure(options: Partial<RotionConfig>): void
 ここで渡した値は、対応する環境変数より優先されます。
 オプションは[コードで設定する](configuration#configure-in-code)を参照してください。
 
+## pruneCache
+
+```ts
+function pruneCache(args: { before: Date, dryRun?: boolean }): Promise<{ removed: string[] }>
+```
+
+`before` 以降に Rotion が使っていないキャッシュファイル、ダウンロードした画像とファイルを削除し、そのパスを返します。
+[使われなくなったファイルの削除](caching#removing-unused-files)を参照してください。
+
 ## 下位のヘルパー関数
 
 取得の関数が内部で使うために公開されているもので、直接使うことはあまりありません。

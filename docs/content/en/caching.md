@@ -74,7 +74,7 @@ Notion's file URLs expire after about an hour, so Rotion saves the files themsel
 
 Images are converted to WebP with quality `ROTION_WEBP_QUALITY` (default 95) and rotated according to their EXIF orientation. GIF, SVG, ICO and images that are already WebP are kept as they are. HEIC and HEIF images are first converted to PNG. Set `ROTION_WEBP_QUALITY=0` to skip the WebP conversion (HEIC and HEIF still become PNG).
 
-A file that already exists on disk is not downloaded again. The local name is built from the ID of the block or page it belongs to and a hash of the file name in the URL. Replacing an image with a file of a different name therefore downloads the new one; replacing it with a file of the same name keeps the old copy until you delete it. Files that are no longer referenced are not deleted.
+A file that already exists on disk is not downloaded again. The local name is built from the ID of the block or page it belongs to and a hash of the file name in the URL. Replacing an image with a file of a different name therefore downloads the new one; replacing it with a file of the same name keeps the old copy until you delete it. Files that are no longer referenced stay until you remove them; see [Removing unused files](#removing-unused-files).
 
 The HTTP requests Rotion makes itself (downloads, and fetching pages for bookmark and embed metadata) send the `ROTION_UA` user agent, give up when the connection is idle for `ROTION_TIMEOUT` milliseconds (default 1500), and follow at most `ROTION_MAX_REDIRECTS` redirects (default 5). Only a successful (2xx) response is saved. A download that fails leaves the block without a local `src`; see [Failed requests](#failed-requests).
 
@@ -99,6 +99,25 @@ Bookmark metadata, embeds, video embeds and GitHub link previews come from third
 Set `ROTION_STRICT=true` to fail instead: the first failure that is not a third-party extra is thrown as an error, and nothing is cached for the page. Use it in CI when a site with a missing image should not be published.
 
 `ROTION_DEBUG=true` prints the whole error, with the arguments of a failed Notion request, after each line.
+
+## Removing unused files
+
+The cache and the downloads only grow: a page that was deleted in Notion, or an image that was replaced, leaves its files behind. `pruneCache` removes what Rotion has not used since a given time.
+
+```ts
+import { pruneCache } from 'rotion'
+
+const { removed } = await pruneCache({ before: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) })
+```
+
+Rotion marks what it uses by setting the file's access time: a cache file when it is read or written, a download when it is saved or found on disk, and every image and file that a cached result refers to when that result is read. So a page served from the cache keeps its images. The modification time, which decides how long a cache file stays fresh, is not changed.
+
+- Only files named the way Rotion names them are removed: cache files that start with `notion.`, and downloads whose name ends with a hash (`block-<id>-<hash>.webp`). Other files in `public/images`, such as images of the site itself, are kept.
+- A download and its conversions (the WebP of an image, the PNG of a HEIC image) are removed together, and only when none of them was used.
+- Temporary files that a failed write left behind are removed as well. Lock files are not touched.
+- `dryRun: true` returns the list without removing anything.
+
+Choose `before` so that nothing in use can be older. After a full build, the time the build started works, since the build read everything it shows; a script can record it before `next build` and prune after it. On a server, use a period longer than any page is served without calling Rotion again, such as the `revalidate` of your pages plus a margin.
 
 ## Keeping the cache in CI
 
