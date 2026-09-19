@@ -1,0 +1,623 @@
+/* The landing page shows what rotion draws. The words are few and set in the
+   one family the site uses; the colour and the space go to the stage, where a
+   real Notion database is drawn by the components, and to the wall of blocks
+   under it. */
+.lp {
+  --lp-ink: var(--site-ink);
+  --lp-heading: var(--site-heading);
+  --lp-muted: var(--site-muted);
+  --lp-rule: var(--site-rule);
+  --lp-surface: var(--x-color-white);
+  /* The fill a primary thing is drawn in, and the ink set on that fill. */
+  --lp-fill: var(--rotion-wine);
+  --lp-on-fill: var(--rotion-cream);
+  /* The hero and the stage are one band of the lemon, in either theme. */
+  --lp-band: var(--rotion-yellow);
+  /* The window's outline, and the hard shadow it casts on the band. */
+  --lp-frame: var(--rotion-wine);
+  --lp-shadow: var(--rotion-mustard);
+  max-width: 72rem;
+  /* The landing page sits in a flex column of the theme's; without this its
+     widest child would set its width, and the page would scroll sideways on
+     a phone. */
+  min-width: 0;
+  margin: 0 auto;
+  /* The theme's full-width layout supplies the side gutter. */
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+  color: var(--lp-ink);
+}
+
+html.dark .lp {
+  --lp-surface: color-mix(in srgb, var(--rotion-cream) 5%, var(--site-paper));
+  --lp-fill: var(--rotion-yellow);
+  --lp-on-fill: var(--rotion-wine);
+}
+
+/* The band: the lemon across the whole window, the same in either theme,
+   with the hero's words on the left and the stage's window on the right. */
+
+.lp-band {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  margin-inline: calc(50% - 50vw);
+  padding: clamp(2.5rem, 6vw, 4.5rem) max(1.5rem, calc(50vw - 38rem))
+    clamp(3rem, 6vw, 5rem);
+  background: var(--lp-band);
+}
+
+/* Japanese gives the words a little more of the band, so that its headline
+   can be set as large as the English one. */
+:lang(ja) .lp-band {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+}
+
+/* The hero sets the wine on the lemon. Its headline is sized against the
+   hero's own width. */
+.lp-hero {
+  container-type: inline-size;
+  --lp-heading: var(--rotion-wine);
+  --lp-muted: color-mix(in srgb, var(--rotion-wine) 82%, var(--rotion-yellow));
+  --lp-fill: var(--rotion-wine);
+  --lp-on-fill: var(--rotion-cream);
+}
+
+.lp .lp-title {
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  color: var(--lp-heading);
+  text-wrap: balance;
+}
+
+.lp .lp-title-line {
+  display: block;
+}
+
+/* The caret that types the word naming what the window shows. It takes no
+   width of its own and is drawn over the seam between the word and the comma,
+   so the comma sits where it would without it. It is drawn in the headline's
+   own ink, as tall as its capitals. */
+.lp .lp-caret {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0.8em;
+  vertical-align: -0.04em;
+}
+
+.lp .lp-caret::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0.01em;
+  width: 0.07em;
+  background: currentColor;
+  animation: lp-blink 1s step-end infinite;
+}
+
+/* It holds still while it is erasing and typing, as a caret does. */
+.lp .lp-caret[data-typing]::after {
+  animation: none;
+}
+
+@keyframes lp-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+:lang(ja) .lp :is(.lp-title, .lp-section-title) {
+  /* Break Japanese between phrases rather than inside a word. */
+  word-break: auto-phrase;
+}
+
+:lang(ja) .lp .lp-title {
+  /* Three lines, whatever the width of the column: the longest of them is
+     nine full-width characters, set close together, so each can be a ninth
+     of the column. */
+  font-size: min(4rem, 12.4cqi);
+  line-height: 1.16;
+  white-space: nowrap;
+  letter-spacing: -0.03em;
+}
+
+.lp .lp-lede {
+  margin: 1.5rem 0 0;
+  max-width: 36em;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--lp-muted);
+}
+
+.lp .lp-lede > p {
+  margin: 0;
+  line-height: inherit;
+}
+
+.lp .lp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 2rem 0 0;
+}
+
+.lp .lp-action {
+  display: inline-block;
+  padding: 0.65rem 1.3rem;
+  border: 2px solid var(--lp-heading);
+  border-radius: 999px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--lp-heading);
+}
+
+.lp .lp-action:hover {
+  background: color-mix(in srgb, var(--lp-heading) 8%, transparent);
+}
+
+.lp .lp-action-primary {
+  background: var(--lp-fill);
+  border-color: var(--lp-fill);
+  color: var(--lp-on-fill);
+}
+
+.lp .lp-action-primary:hover {
+  background: var(--lp-fill);
+  box-shadow: 3px 3px 0 var(--rotion-mustard);
+}
+
+.lp .lp-action:focus-visible,
+.lp .lp-stage-tab:focus-visible,
+.lp .lp-tile a:focus-visible {
+  outline: 3px solid var(--rotion-mustard);
+  outline-offset: 3px;
+}
+
+/* The stage: a window on the band with the page or the database drawn
+   inside. The window casts a hard mustard shadow,
+   the one heavy thing on the page. */
+
+.lp-stage {
+  min-width: 0;
+}
+
+.lp-stage-window {
+  border: 2px solid var(--lp-frame);
+  border-radius: 18px;
+  background: var(--lp-surface);
+  box-shadow: 10px 10px 0 var(--lp-shadow);
+  overflow: hidden;
+}
+
+.lp-stage-bar {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.7rem;
+  border-bottom: 2px solid var(--lp-frame);
+  overflow-x: auto;
+}
+
+.lp .lp-stage-tab {
+  flex: none;
+  padding: 0.45rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--lp-muted);
+  cursor: pointer;
+}
+
+.lp .lp-stage-tab:hover {
+  color: var(--lp-heading);
+}
+
+.lp .lp-stage-tab[aria-selected='true'] {
+  background: var(--rotion-yellow);
+  color: var(--rotion-wine);
+}
+
+.lp-stage-panel {
+  height: clamp(24rem, 62vh, 34rem);
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+  animation: lp-swap 220ms ease-out;
+}
+
+/* The gallery in this window: three cards a row, set through the custom
+   property rotion reads its columns from, and two on a phone. */
+.lp-stage-panel {
+  --rotion-gallery-grid-template-columns-medium: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 40rem) {
+  .lp-stage-panel {
+    --rotion-gallery-grid-template-columns-medium: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* rotion lays a list out at least 1200px wide, which in this window would
+   leave everything after the name out of sight. Here it is fitted to the
+   window instead, and the spacer between the name and the rest gives way. */
+.lp-stage-panel .rotion-list {
+  overflow-x: auto;
+}
+
+.lp-stage-panel .rotion-list-inner {
+  min-width: 0;
+}
+
+@keyframes lp-swap {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lp .lp-stage-code {
+  margin: 0;
+  padding: 0.85rem 1.25rem;
+  border-top: 2px solid var(--lp-frame);
+  background: var(--lp-fill);
+  color: var(--lp-on-fill);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* In the dark the fill is the yellow, which would run into the shadow under
+   it, so the line of code is set on the code ground instead. */
+html.dark .lp .lp-stage-code {
+  background: var(--site-code);
+  color: var(--rotion-cream);
+}
+
+.lp .lp-stage-code code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+
+/* Sections */
+
+.lp-section {
+  margin-top: clamp(5rem, 10vw, 8rem);
+}
+
+.lp .lp-section-title {
+  margin: 0;
+  max-width: 22ch;
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--lp-heading);
+  text-wrap: balance;
+}
+
+:lang(ja) .lp .lp-section-title {
+  max-width: none;
+  letter-spacing: -0.015em;
+}
+
+.lp .lp-section-lede {
+  margin: 1.1rem 0 0;
+  max-width: 38em;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--lp-muted);
+}
+
+/* A section laid on a band of the sky across the whole window, the same in
+   either theme, with the wine set on it like the lemon hero. */
+.lp-section[data-band='sky'] {
+  --lp-ink: #3d1a1f;
+  --lp-heading: var(--rotion-wine);
+  --lp-muted: color-mix(in srgb, var(--rotion-wine) 85%, var(--rotion-sky));
+  --lp-fill: var(--rotion-wine);
+  --lp-on-fill: var(--rotion-cream);
+  margin-inline: calc(50% - 50vw);
+  padding: clamp(4rem, 8vw, 6rem) max(1.5rem, calc(50vw - 36rem));
+  background: var(--rotion-sky);
+  color: var(--lp-ink);
+}
+
+/* Right after the lemon band it starts where the band ends, so the two
+   bands meet with no cream between them. */
+.lp-band + .lp-section[data-band] {
+  margin-top: 0;
+}
+
+/* Its code sits on the cream, so it reads the same in either theme. */
+.lp-section[data-band='sky'] .nextra-code pre {
+  background: var(--rotion-cream);
+}
+
+/* The highlighting stays on its light colours in the dark theme too, since the
+   ground under it stays light. */
+html.dark .lp-section[data-band='sky'] .nextra-code span {
+  background-color: var(--shiki-light-bg);
+  color: var(--shiki-light);
+}
+
+.lp-section[data-band='sky'] :not(pre) > code {
+  background: color-mix(in srgb, var(--rotion-cream) 55%, var(--rotion-sky));
+  border-color: transparent;
+  color: var(--lp-ink);
+}
+
+/* The wall of blocks: each tile a specimen, as tall as what is in it. */
+
+.lp-wall {
+  margin-top: 2.75rem;
+  columns: 3 18rem;
+  column-gap: 1.25rem;
+}
+
+.lp-tile {
+  break-inside: avoid;
+  margin: 0 0 1.25rem;
+  border: 1.5px solid var(--lp-rule);
+  border-radius: 14px;
+  background: var(--lp-surface);
+  overflow: hidden;
+}
+
+.lp-tile-body {
+  padding: 1.1rem 1.25rem 0.5rem;
+  overflow-x: auto;
+}
+
+.lp-tile figcaption {
+  padding: 0.6rem 1.25rem 0.8rem;
+}
+
+.lp .lp-tile figcaption a {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--lp-heading);
+  text-decoration: underline;
+  text-decoration-color: var(--rotion-mustard);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.lp .lp-tile figcaption a:hover {
+  text-decoration-color: var(--lp-heading);
+}
+
+/* In the dark the tiles stay dark on the sky, so their captions are set in
+   the cream rather than in the band's wine. */
+html.dark .lp .lp-section[data-band='sky'] .lp-tile figcaption a {
+  color: var(--rotion-cream);
+}
+
+/* The ways to customize: two by two, each a heading, a note and its code. */
+
+.lp-ways {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+  margin-top: 2.75rem;
+}
+
+.lp-way {
+  min-width: 0;
+}
+
+.lp .lp-way h3 {
+  margin: 0;
+  font-size: 1.1875rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--lp-heading);
+}
+
+.lp .lp-way p {
+  margin: 0.6rem 0 0;
+  line-height: 1.7;
+  color: var(--lp-muted);
+}
+
+.lp .lp-way .nextra-code {
+  margin-top: 1rem;
+}
+
+.lp .lp-way pre {
+  font-size: 0.8125rem !important;
+}
+
+.lp .lp-ways + .lp-actions {
+  margin-top: 2.5rem;
+}
+
+/* The flowchart is laid on a light panel in either theme: its arrows are
+   drawn in the wine, which would sink into the dark ground between the
+   groups. */
+.lp div:has(> svg[aria-roledescription]) {
+  /* On a wide window the chart reaches out past the column, up to the edges
+     of the window less a gutter, so that its words can be set larger. */
+  --lp-figure: max(100%, min(calc(100vw - 3rem), 88rem));
+  width: var(--lp-figure);
+  margin: 2.5rem calc((100% - var(--lp-figure)) / 2) 0;
+  padding: 0.5rem clamp(0.75rem, 2vw, 1.5rem) 1.5rem;
+  border: 1.5px solid var(--lp-rule);
+  border-radius: 16px;
+  background: #fcf9f0;
+  overflow-x: auto;
+}
+
+/* Mermaid holds the chart to the width it was drawn at; here it is scaled to
+   the panel instead. */
+.lp div:has(> svg[aria-roledescription]) > svg {
+  width: 100%;
+  max-width: none !important;
+  height: auto;
+}
+
+/* On a phone it is not shrunk below a readable size; the panel scrolls. */
+@media (max-width: 48rem) {
+  .lp div:has(> svg[aria-roledescription]) > svg {
+    min-width: 44rem;
+  }
+}
+
+/* The note under the flowchart saying how to read it. */
+.lp .lp-caption {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--lp-muted);
+}
+
+/* The last section is set on the footer's own ground, running on into it,
+   and reads down a single centred column: the install, the code, and where
+   to go next. */
+.lp-section[data-band='footer'] {
+  margin-inline: calc(50% - 50vw);
+  padding: clamp(4rem, 8vw, 6rem) max(1.5rem, calc(50vw - 36rem));
+  background: var(--x-color-gray-100);
+  text-align: center;
+}
+
+html.dark .lp-section[data-band='footer'] {
+  background: var(--x-color-neutral-900);
+}
+
+.lp .lp-section[data-band='footer'] :is(.lp-section-title, .lp-section-lede) {
+  margin-inline: auto;
+}
+
+.lp-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 2.5rem auto 0;
+  max-width: 40rem;
+  text-align: start;
+}
+
+.lp-stack > * {
+  width: 100%;
+}
+
+.lp .lp-stack .nextra-code {
+  margin-top: 0;
+}
+
+.lp-stack pre {
+  font-size: 0.8125rem !important;
+}
+
+.lp .lp-stack .lp-actions {
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+/* With the footer's band last, the page runs straight on into the footer. */
+.lp:has(> .lp-section[data-band='footer']:last-child) {
+  padding-bottom: 0;
+}
+
+body:has(.lp) article {
+  padding-bottom: 0;
+}
+
+/* The theme keeps a spaced-out box under the text for the pagination and the
+   last-updated date, both of which the landing page turns off. */
+body:has(.lp) article > main + div[class~='x:mt-16'] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lp-stage-panel,
+  .lp .lp-caret::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 60rem) {
+  :lang(ja) .lp-band {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lp-ways {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lp-band {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lp-stage-window {
+    box-shadow: 6px 6px 0 var(--lp-shadow);
+  }
+}
+
+/* The hero's band starts right under the navbar, so the theme's space above
+   the article is taken away on the landing page. */
+body:has(.lp) article {
+  padding-top: 0;
+}
+
+/* On the landing page the navbar is part of the lemon band while the band is
+   under it: the same ground as the hero, in either theme, with everything in
+   it set in the wine, since the cream the dark theme would use does not read
+   on the lemon. Once the band has scrolled away it goes back to the navbar
+   every other page has. */
+body:has(.lp) .nextra-navbar-blur {
+  transition: background-color 200ms ease;
+}
+
+body:has(.lp):not([data-lp-past-band]) .nextra-navbar-blur {
+  background: var(--rotion-yellow);
+  backdrop-filter: none;
+}
+
+body:has(.lp):not([data-lp-past-band]) .nextra-navbar > nav {
+  color: var(--rotion-wine);
+}
+
+body:has(.lp):not([data-lp-past-band]) .nextra-navbar .rotion-logo {
+  --logo-ink: var(--rotion-wine);
+}
+
+body:has(.lp):not([data-lp-past-band]) .nextra-search {
+  color: var(--rotion-wine);
+}
+
+body:has(.lp):not([data-lp-past-band]) .nextra-search input {
+  background: color-mix(in srgb, var(--rotion-wine) 8%, transparent);
+  color: var(--rotion-wine);
+}
+
+body:has(.lp):not([data-lp-past-band]) .nextra-search input::placeholder {
+  color: color-mix(in srgb, var(--rotion-wine) 72%, var(--rotion-yellow));
+}
+
+body:has(.lp):not([data-lp-past-band]) .nextra-search kbd {
+  background: var(--rotion-yellow);
+  border-color: color-mix(in srgb, var(--rotion-wine) 30%, var(--rotion-yellow));
+  color: var(--rotion-wine);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:has(.lp) .nextra-navbar-blur {
+    transition: none;
+  }
+}

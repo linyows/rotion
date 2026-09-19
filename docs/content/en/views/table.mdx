@@ -1,0 +1,25 @@
+import { NotionView } from '@/app/_components/notion.jsx'
+
+# Table view
+
+The sample database, drawn by `<Table>`. The code below is what this page runs.
+
+```tsx
+const db = await FetchDatabase({
+  database_id: process.env.NOTION_TESTDB_ID,
+  filter: { property: 'Published', checkbox: { equals: true } },
+  sorts: [{ property: 'Date', direction: 'descending' }],
+})
+
+<Table
+  db={db}
+  keys={["Name", "Date", "Tags", "Url", "Note", "Born", "Category"]}
+/>
+```
+
+<NotionView
+  page="NOTION_TABLEPAGE_ID"
+  view="table"
+  lang="en"
+  keys={["Name", "Date", "Tags", "Url", "Note", "Born", "Category"]}
+/>

@@ -1,0 +1,434 @@
+/* The palette. Cream is the ground and wine the ink; in the dark the two
+   swap ends, the ground going down to a deep wine and the ink up to cream.
+   The other three are accents: the yellow marks and fills (it has no contrast
+   to speak on cream, and all of it on the dark ground), the mustard draws the
+   rules, and the sky carries the quieter words where the ground is dark. */
+:root {
+  --rotion-cream: #f7efda;
+  --rotion-wine: #6a2730;
+  --rotion-yellow: #f2f465;
+  --rotion-mustard: #bda80f;
+  --rotion-sky: #92c2ea;
+
+  --site-paper: var(--rotion-cream);
+  --site-ink: #3d1a1f;
+  --site-heading: var(--rotion-wine);
+  --site-muted: color-mix(in srgb, var(--site-ink) 68%, var(--site-paper));
+  --site-rule: color-mix(in srgb, var(--rotion-mustard) 45%, var(--site-paper));
+  --site-code: color-mix(in srgb, var(--rotion-wine) 6%, var(--site-paper));
+  --site-code-chrome: color-mix(in srgb, var(--rotion-wine) 11%, var(--site-paper));
+}
+
+html.dark {
+  --site-paper: #2e1015;
+  --site-ink: var(--rotion-cream);
+  --site-heading: var(--rotion-cream);
+  --site-muted: var(--rotion-sky);
+  --site-rule: color-mix(in srgb, var(--rotion-mustard) 40%, var(--site-paper));
+  --site-code: #220a0e;
+  --site-code-chrome: #3a141a;
+}
+
+/* The theme reaches for Tailwind's neutrals, which are cool and read
+   grey-blue on a cream ground. The ramp is redrawn as one warm scale, from
+   the cream at the light end to a wine-black at the dark end, so that every
+   surface, border and quiet word the theme draws belongs to the same family.
+   The ramp does not swap with the theme: the theme picks which end to use. */
+:root {
+  --x-color-white: #fcf9f0;
+  --x-color-black: #1c080b;
+
+  --x-color-gray-50: #ece3d0;
+  --x-color-gray-100: #e3dac7;
+  --x-color-gray-200: #d4cab9;
+  --x-color-gray-300: #beb3a4;
+  --x-color-gray-400: #9b8e83;
+  --x-color-gray-500: #85776e;
+  --x-color-gray-600: #6f605a;
+  --x-color-gray-700: #5c4b47;
+  --x-color-gray-800: #4a3936;
+  --x-color-gray-900: #3b2828;
+
+  --x-color-neutral-400: #9b8e83;
+  --x-color-neutral-700: #5c4b47;
+  --x-color-neutral-800: #4a2a2e;
+  --x-color-neutral-900: #3a1a1f;
+
+  /* Prose. The theme sets it in slate, one value per theme. */
+  --x-color-slate-700: #3d1a1f;
+  --x-color-slate-200: #f7efda;
+}
+
+body {
+  color: var(--site-ink);
+  font-family: var(--font-sans), var(--font-jp), sans-serif;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--font-mono), var(--font-jp), ui-monospace, monospace;
+}
+
+article h1,
+article h2,
+article h3 {
+  color: var(--site-heading);
+}
+
+.nextra-code pre {
+  background: var(--site-code);
+}
+
+.nextra-code > div:first-child {
+  background: var(--site-code-chrome);
+}
+
+.nextra-border {
+  border-color: var(--site-rule);
+}
+
+/* Section headings in the documentation stand on their size and weight and
+   on the space above them; the theme would rule each one off underneath
+   instead. */
+article h2 {
+  margin-top: 4rem;
+  border-bottom-width: 0;
+}
+
+/* A note in the documentation is laid on the sky: a pale wash of it with a
+   rule of it around, the text in the page's own ink and the icon in the
+   wine. The sky has too little contrast on the cream to carry words itself. */
+.nextra-callout[class~='x:bg-blue-100'] {
+  background: color-mix(in srgb, var(--rotion-sky) 30%, var(--site-paper));
+  border-color: var(--rotion-sky);
+  color: var(--site-ink);
+}
+
+.nextra-callout[class~='x:bg-blue-100'] svg {
+  color: var(--rotion-wine);
+}
+
+/* In the dark the sky is mixed into a near black rather than into the wine
+   ground, which would turn it purple. */
+html.dark .nextra-callout[class~='x:bg-blue-100'] {
+  background: color-mix(in srgb, var(--rotion-sky) 16%, #14161c);
+  border-color: color-mix(in srgb, var(--rotion-sky) 55%, #14161c);
+  color: var(--site-ink);
+}
+
+html.dark .nextra-callout[class~='x:bg-blue-100'] svg {
+  color: var(--rotion-sky);
+}
+
+/* In any callout the text follows its title closely, well inside the space
+   the theme leaves between paragraphs. */
+.nextra-callout b + p:not(:first-child) {
+  margin-top: 0.5em;
+}
+
+.nextra-breadcrumb span {
+  color: var(--site-muted);
+  font-weight: 400;
+}
+
+::selection {
+  background: var(--rotion-yellow);
+  color: var(--rotion-wine);
+}
+
+/* The navbar and the footer run the full width of the window, edge to edge
+   like the bands on the landing page; the theme would hold them to the
+   width of the content. */
+.nextra-navbar > nav,
+footer {
+  max-width: none;
+}
+
+/* On a page without a sidebar the theme switch sits in the footer's band,
+   held to the content width too; it goes to the left edge, where the
+   sidebar puts it on every other page. */
+div:has(> hr + footer) > div:first-child {
+  max-width: none;
+}
+
+/* The documentation's frame runs the full width of the window too, so the
+   sidebar sits at the left edge under the logo and the table of contents at
+   the right. The text between them keeps the measure it had, centred in the
+   space that is left. */
+div:has(> .nextra-sidebar) {
+  max-width: none;
+}
+
+div:has(> .nextra-sidebar) article > * {
+  max-width: 52rem;
+  margin-inline: auto;
+}
+
+/* The foot of the sidebar holds only the theme switch: no rule above it, and
+   no button to fold the sidebar away. */
+.nextra-sidebar-footer {
+  border-top-width: 0;
+}
+
+.nextra-sidebar-footer button[title='Collapse sidebar'],
+.nextra-sidebar-footer button[title='Expand sidebar'] {
+  display: none;
+}
+
+/* The "Copy page" button floats to the right, and a float ignores auto
+   margins, so it is pushed in by the space either side of the column. */
+div:has(> .nextra-sidebar) article > [class~='x:float-end'] {
+  margin-inline-end: max(0px, calc((100% - 52rem) / 2));
+}
+
+/* Neither the navbar nor the footer is ruled off from the page; the ground
+   each sits on is enough. The theme draws the footer's rule as the <hr> just
+   before it. */
+.nextra-navbar-blur {
+  border-bottom-color: transparent;
+}
+
+hr:has(+ footer) {
+  display: none;
+}
+
+/* The logo in the navbar: the board and the name in the ink of whichever
+   ground it is on. */
+.rotion-logo {
+  --logo-ink: var(--rotion-wine);
+  height: 1.6rem;
+  width: auto;
+}
+
+html.dark .rotion-logo {
+  --logo-ink: var(--rotion-cream);
+}
+
+/* The language link in the navbar, sized to sit beside the theme's own
+   buttons rather than to compete with them. */
+.rotion-locale {
+  font-size: 0.8125rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity 120ms ease;
+}
+
+.rotion-locale:hover {
+  opacity: 1;
+}
+
+/* Every page but the landing page starts a little way below the navbar. */
+:root {
+  --site-below-navbar: 1.75rem;
+}
+
+body:not(:has(.lp)) article {
+  padding-top: calc(1rem + var(--site-below-navbar));
+}
+
+body:not(:has(.lp)) .nextra-sidebar,
+body:not(:has(.lp)) .nextra-toc > div {
+  padding-top: var(--site-below-navbar);
+}
+
+/* The showcase: a Notion page drawn by rotion, set apart from the prose
+   around it as a sheet of its own, with a caption saying where it came from. */
+.rotion-showcase {
+  margin: 1.75rem 0 0;
+  border: 1px solid var(--site-rule);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--x-color-white);
+}
+
+html.dark .rotion-showcase {
+  background: color-mix(in srgb, var(--rotion-cream) 4%, var(--site-paper));
+}
+
+.rotion-showcase-caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--site-rule);
+  background: var(--site-code-chrome);
+  font-family: var(--font-mono), var(--font-jp), ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--site-muted);
+}
+
+.rotion-showcase-caption span::before {
+  content: '';
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: var(--rotion-yellow);
+  box-shadow: 0 0 0 1px var(--rotion-mustard);
+}
+
+.rotion-showcase-caption a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rotion-showcase-body {
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.rotion-showcase-db {
+  margin-top: 1.5rem;
+}
+
+/* rotion's own colours, set in the palette. Its stylesheet switches to its
+   dark values on the system's preference, while this site switches on a
+   class, so the stylesheet without the dark half is loaded and the dark
+   values are put in place of the light ones here. */
+.rotion-showcase,
+.lp-stage-window,
+.lp-tile {
+  --rotion-font-family: var(--font-sans), var(--font-jp), sans-serif;
+  --rotion-primary-text: var(--site-ink);
+  --rotion-secondary-text: var(--site-muted);
+  --rotion-link-color: var(--site-heading);
+  --rotion-quote-border-color: var(--rotion-mustard);
+}
+
+/* rotion leans on the browser's own sizes for headings and on its own list
+   markers; the theme's reset takes both away, so they are put back inside
+   whatever rotion draws. */
+:is(.rotion-showcase, .lp-stage-window, .lp-tile) .rotion-text-h1 {
+  font-size: 1.875em;
+  font-weight: 700;
+}
+
+:is(.rotion-showcase, .lp-stage-window, .lp-tile) .rotion-text-h2 {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+:is(.rotion-showcase, .lp-stage-window, .lp-tile) .rotion-text-h3 {
+  font-size: 1.25em;
+  font-weight: 700;
+}
+
+:is(.rotion-showcase, .lp-stage-window, .lp-tile) ul.rotion-list-ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+:is(.rotion-showcase, .lp-stage-window, .lp-tile) ul.rotion-list-ul ul.rotion-list-ul {
+  list-style: circle;
+}
+
+:is(.rotion-showcase, .lp-stage-window, .lp-tile) ol.rotion-list-ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+}
+
+html.dark {
+  --rotion-annot-bg-blue: var(--rotion-dark-annot-bg-blue);
+  --rotion-annot-bg-brown: var(--rotion-dark-annot-bg-brown);
+  --rotion-annot-bg-default: var(--rotion-dark-annot-bg-default);
+  --rotion-annot-bg-gray: var(--rotion-dark-annot-bg-gray);
+  --rotion-annot-bg-green: var(--rotion-dark-annot-bg-green);
+  --rotion-annot-bg-orange: var(--rotion-dark-annot-bg-orange);
+  --rotion-annot-bg-pink: var(--rotion-dark-annot-bg-pink);
+  --rotion-annot-bg-purple: var(--rotion-dark-annot-bg-purple);
+  --rotion-annot-bg-red: var(--rotion-dark-annot-bg-red);
+  --rotion-annot-bg-yellow: var(--rotion-dark-annot-bg-yellow);
+  --rotion-annot-blue: var(--rotion-dark-annot-blue);
+  --rotion-annot-border: var(--rotion-dark-annot-border);
+  --rotion-annot-brown: var(--rotion-dark-annot-brown);
+  --rotion-annot-default: var(--rotion-dark-annot-default);
+  --rotion-annot-gray: var(--rotion-dark-annot-gray);
+  --rotion-annot-green: var(--rotion-dark-annot-green);
+  --rotion-annot-orange: var(--rotion-dark-annot-orange);
+  --rotion-annot-pink: var(--rotion-dark-annot-pink);
+  --rotion-annot-purple: var(--rotion-dark-annot-purple);
+  --rotion-annot-red: var(--rotion-dark-annot-red);
+  --rotion-annot-yellow: var(--rotion-dark-annot-yellow);
+  --rotion-border: var(--rotion-dark-border);
+  --rotion-border-color: var(--rotion-dark-border-color);
+  --rotion-border-hover: var(--rotion-dark-border-hover);
+  --rotion-border-hover-color: var(--rotion-dark-border-hover-color);
+  --rotion-calendar-weekend-bg: var(--rotion-dark-calendar-weekend-bg);
+  --rotion-code-bg-color: var(--rotion-dark-code-bg-color);
+  --rotion-gallery-bg: var(--rotion-dark-gallery-bg);
+  --rotion-gallery-box-shadow: var(--rotion-dark-gallery-box-shadow);
+  --rotion-gallery-hover-bg: var(--rotion-dark-gallery-hover-bg);
+  --rotion-gallery-image-border-bottom: var(--rotion-dark-gallery-image-border-bottom);
+  --rotion-link-bg-color: var(--rotion-dark-link-bg-color);
+  --rotion-link-border-bottom: var(--rotion-dark-link-border-bottom);
+  --rotion-link-color: var(--rotion-dark-link-color);
+  --rotion-link-hover-bg-color: var(--rotion-dark-link-hover-bg-color);
+  --rotion-link-hover-border-bottom: var(--rotion-dark-link-hover-border-bottom);
+  --rotion-link-hover-color: var(--rotion-dark-link-hover-color);
+  --rotion-primary-text: var(--rotion-dark-primary-text);
+  --rotion-quote-border-color: var(--rotion-dark-quote-border-color);
+  --rotion-secondary-text: var(--rotion-dark-secondary-text);
+  --rotion-table-border: var(--rotion-dark-table-border);
+  --rotion-table-box-shadow: var(--rotion-dark-table-box-shadow);
+  --rotion-table-header-bg-color: var(--rotion-dark-table-header-bg-color);
+  --rotion-table-icon-fill: var(--rotion-dark-table-icon-fill);
+  --rotion-table-link-hover-bg: var(--rotion-dark-table-link-hover-bg);
+  --rotion-tag-bg-blue: var(--rotion-dark-tag-bg-blue);
+  --rotion-tag-bg-brown: var(--rotion-dark-tag-bg-brown);
+  --rotion-tag-bg-default: var(--rotion-dark-tag-bg-default);
+  --rotion-tag-bg-gray: var(--rotion-dark-tag-bg-gray);
+  --rotion-tag-bg-green: var(--rotion-dark-tag-bg-green);
+  --rotion-tag-bg-orange: var(--rotion-dark-tag-bg-orange);
+  --rotion-tag-bg-pink: var(--rotion-dark-tag-bg-pink);
+  --rotion-tag-bg-purple: var(--rotion-dark-tag-bg-purple);
+  --rotion-tag-bg-red: var(--rotion-dark-tag-bg-red);
+  --rotion-tag-bg-yellow: var(--rotion-dark-tag-bg-yellow);
+  --rotion-tag-blue: var(--rotion-dark-tag-blue);
+  --rotion-tag-brown: var(--rotion-dark-tag-brown);
+  --rotion-tag-default: var(--rotion-dark-tag-default);
+  --rotion-tag-gray: var(--rotion-dark-tag-gray);
+  --rotion-tag-green: var(--rotion-dark-tag-green);
+  --rotion-tag-orange: var(--rotion-dark-tag-orange);
+  --rotion-tag-pink: var(--rotion-dark-tag-pink);
+  --rotion-tag-purple: var(--rotion-dark-tag-purple);
+  --rotion-tag-red: var(--rotion-dark-tag-red);
+  --rotion-tag-yellow: var(--rotion-dark-tag-yellow);
+  --rotion-tertiary-text: var(--rotion-dark-tertiary-text);
+  --rotion-toggle-hover-bg-color: var(--rotion-dark-toggle-hover-bg-color);
+}
+
+html.dark :is(.rotion-showcase, .lp-stage-window, .lp-tile) {
+  --rotion-primary-text: var(--site-ink);
+  --rotion-secondary-text: var(--site-muted);
+  --rotion-link-color: var(--rotion-yellow);
+}
+
+html.dark .rotion-code-area {
+  background-color: var(--site-code);
+}
+
+/* The page the reader is on is marked in the sidebar the way the landing
+   page marks things: a band of the yellow with the wine set on it, rather
+   than the pale tint of the primary the theme would draw. */
+.nextra-sidebar a.x\:bg-primary-100 {
+  background: var(--rotion-yellow);
+  color: var(--rotion-wine);
+}
+
+html.dark .nextra-sidebar a.x\:bg-primary-100 {
+  background: color-mix(in srgb, var(--rotion-yellow) 16%, var(--site-paper));
+  color: var(--rotion-yellow);
+}
+
+/* Japanese sets its kana on full-width bodies, which next to the Latin of the
+   sans reads as letter-spaced. Proportional widths close them up. */
+:lang(ja) body {
+  font-feature-settings: 'palt';
+}

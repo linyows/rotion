@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://rotion.linyo.ws">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/linyows/rotion/blob/main/misc/rotion-dark-bg.svg?raw=true">
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/linyows/rotion/blob/main/misc/rotion-dark.svg?raw=true">
       <img alt="Rotion" src="https://github.com/linyows/rotion/blob/main/misc/rotion.svg?raw=true" width="300">
     </picture>
   </a>
@@ -40,12 +40,6 @@ Next.jsをはじめとしたReact系フレームワークでの利用を想定�
 
 ```bash
 npm install rotion
-```
-
-または
-
-```bash
-yarn add rotion
 ```
 
 使い方

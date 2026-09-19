@@ -27,7 +27,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: website/package-lock.json
+          cache-dependency-path: docs/package-lock.json
       - name: Setup pages
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
         with:
@@ -36,7 +36,7 @@ jobs:
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: |
-            website/.next/cache
+            docs/.next/cache
           key: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
           restore-keys: |
@@ -45,23 +45,23 @@ jobs:
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: |
-            website/.cache
-            website/public/images
-            website/public/files
-          key: rotion
-          restore-keys: rotion
+            docs/.cache
+            docs/public/images
+            docs/public/files
+          key: rotion-${{ github.run_id }}
+          restore-keys: rotion-
       - name: Install dependencies
-        working-directory: website
+        working-directory: docs
         run: npm ci
       - name: Build and Export
-        working-directory: website
+        working-directory: docs
         run: |
           npm run build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
         with:
           name: github-pages
-          path: ./website/out
+          path: ./docs/out
 
   deploy:
     environment:

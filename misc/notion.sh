@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./website/.env
+source ./docs/.env
 
 parent_id=23740912d6ac4018ab76c64e772a342a
 child_id=68b8b602-fd15-47e0-8b80-760536a7868e

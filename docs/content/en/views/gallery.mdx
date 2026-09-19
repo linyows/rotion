@@ -1,0 +1,27 @@
+import { NotionView } from '@/app/_components/notion.jsx'
+
+# Gallery view
+
+The sample database, drawn by `<Gallery>`. The code below is what this page runs.
+
+```tsx
+const db = await FetchDatabase({
+  database_id: process.env.NOTION_TESTDB_ID,
+  filter: { property: 'Published', checkbox: { equals: true } },
+  sorts: [{ property: 'Date', direction: 'descending' }],
+})
+
+<Gallery
+  db={db}
+  keys={["Name", "Date", "Tags"]}
+  options={{ image: { preview: "cover", size: "large" } }}
+/>
+```
+
+<NotionView
+  page="NOTION_GALLERYPAGE_ID"
+  view="gallery"
+  lang="en"
+  keys={["Name", "Date", "Tags"]}
+  options={{ image: { preview: "cover", size: "large" } }}
+/>
