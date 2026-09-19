@@ -1,11 +1,11 @@
 import type { DatabaseProperty, PageObjectResponseEx } from '../../../../exporter/index.js'
 import { getLinkPathAndLinkKey, getSlug } from '../../lib.js'
-import type { GalleryOptions } from '../Gallery.types'
 import GalleryPreview from '../GalleryPreview/GalleryPreview.js'
 import type { GalleryCardProps } from './GalleryCard.types'
 import GalleryHandler from './GalleryHandler.js'
 import type { GalleryPropertyOptions } from './GalleryHandler.types'
 import GalleryLinkedCard from './GalleryLinkedCard.js'
+import { propertyOptions } from './options.js'
 import './GalleryCard.css'
 
 function findTitlePropertyName(page: PageObjectResponseEx) {
@@ -15,25 +15,6 @@ function findTitlePropertyName(page: PageObjectResponseEx) {
       return key
     }
   }
-}
-
-function setPathnamePrefixAndSuffix(name: string, dstOpts: GalleryPropertyOptions, srcOpts?: GalleryOptions) {
-  if (!srcOpts) {
-    return dstOpts
-  }
-  const { href, prefix, suffix } = srcOpts || {}
-
-  if (href?.[name]) {
-    dstOpts.pathname = href[name]
-  }
-  if (prefix?.[name]) {
-    dstOpts.prefix = prefix[name]
-  }
-  if (suffix?.[name]) {
-    dstOpts.suffix = suffix[name]
-  }
-
-  return dstOpts
 }
 
 const GalleryCard = ({ keys, page, options }: GalleryCardProps) => {
@@ -58,7 +39,7 @@ const GalleryCard = ({ keys, page, options }: GalleryCardProps) => {
           <div key={`${page.id}${name}`} className={`field${i}`}>
             <GalleryHandler
               property={page.properties[name] as DatabaseProperty | undefined}
-              options={setPathnamePrefixAndSuffix(name, structuredClone(opts), options)}
+              options={propertyOptions(name, opts, options)}
             />
           </div>
         ))}

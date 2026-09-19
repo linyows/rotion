@@ -116,6 +116,8 @@
   --rotion-gallery-grid-template-columns-small: repeat(auto-fill, minmax(180px, 1fr));
   --rotion-gallery-grid-template-columns-medium: repeat(auto-fill, minmax(260px, 1fr));
   --rotion-gallery-grid-template-columns-large: repeat(auto-fill, minmax(320px, 1fr));
+  /* LIST */
+  --rotion-list-min-width: 1200px;
   /* TAGS */
   --rotion-tag-default: rgb(50, 48, 44);
   --rotion-dark-tag-default: rgba(255, 255, 255, 0.804);

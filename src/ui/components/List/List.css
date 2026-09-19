@@ -10,7 +10,7 @@
   margin: 0;
   padding: 0 0 .8rem;
   max-width: 100%;
-  min-width: 1200px;
+  min-width: var(--rotion-list-min-width);
 }
 
 .rotion-list-line {

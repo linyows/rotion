@@ -122,6 +122,8 @@ A list shows one row per page, with the values of `keys` side by side. Two names
 | `keys` | `string[]` | Properties to show, plus `spacer` or `dashed`. |
 | `options` | `ListOptions` | `href`, `link`, `query`, `prefix`, `suffix`, as described above. |
 
+The list is laid out at least 1200px wide and scrolls sideways in a narrower container, so that long rows are not cut off. Set `--rotion-list-min-width` to change that width, or to `0` to fit the list to its container.
+
 ## Gallery
 
 ```tsx
