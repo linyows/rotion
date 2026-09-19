@@ -1,6 +1,6 @@
 # App Router
 
-This page builds a static site with the Next.js App Router: an index page that lists a Notion database, and one page per database row. It follows [examples/nextjs-approuter](https://github.com/linyows/rotion/tree/main/examples/nextjs-approuter).
+This page builds a static site with the Next.js App Router: an index page that lists a Notion database, and one page per database row. It follows [examples/nextjs-approuter](https://github.com/linyows/rotion/tree/main/examples/nextjs-approuter). To render the pages on a server instead, see [Server rendering](server-rendering).
 
 ## Configure a static export
 

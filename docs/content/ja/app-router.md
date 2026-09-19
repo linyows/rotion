@@ -3,6 +3,7 @@
 このページでは、Next.js App Router で静的サイトを作ります。
 Notion のデータベースを一覧するトップページと、データベースの行ごとのページからなるサイトです。
 内容は [examples/nextjs-approuter](https://github.com/linyows/rotion/tree/main/examples/nextjs-approuter) に沿っています。
+サーバーで描画する場合は、[サーバーでの描画](server-rendering)を参照してください。
 
 ## 静的エクスポートの設定
 

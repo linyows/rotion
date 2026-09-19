@@ -21,6 +21,7 @@ export default {
   '-- guides': { type: 'separator', title: 'Guides' },
   'app-router': 'Next.js App Router',
   'pages-router': 'Next.js Pages Router',
+  'server-rendering': 'Server rendering',
   'database-views': 'Database views',
   caching: 'Caching and files',
   '-- reference': { type: 'separator', title: 'Reference' },

@@ -1,7 +1,7 @@
 # API リファレンス
 
 このページのものは、すべて `rotion` から import します。
-これらの関数はビルド時に Node.js で動き、`NOTION_TOKEN` をはじめとする[設定](configuration)の変数を、モジュールが読み込まれた時点で読みます。
+これらの関数は、ビルド時またはサーバー上（[サーバーでの描画](server-rendering)を参照）の Node.js で動き、`NOTION_TOKEN` をはじめとする[設定](configuration)の変数を、モジュールが読み込まれた時点で読みます。
 
 ```ts
 import { FetchDatabase, FetchPage, FetchBlocks, FetchBreadcrumbs } from 'rotion'

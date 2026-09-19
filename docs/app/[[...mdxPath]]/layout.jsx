@@ -42,7 +42,7 @@ const japanese = Noto_Sans_JP({
 const DICTIONARY = {
   en: {
     description:
-      'Rotion turns Notion pages and databases into a static website with React.',
+      'Rotion turns Notion pages and databases into a website with React.',
     editPage: 'Edit this page on GitHub',
     lastUpdated: 'Last updated on',
     backToTop: 'Scroll to top',
@@ -52,7 +52,7 @@ const DICTIONARY = {
   },
   ja: {
     description:
-      'Rotion は Notion のページとデータベースを React で静的サイトにします。',
+      'Rotion は Notion のページとデータベースを React で Web サイトにします。',
     editPage: 'GitHub でこのページを編集',
     lastUpdated: '最終更新',
     backToTop: '先頭に戻る',

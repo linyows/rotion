@@ -1,6 +1,6 @@
 # API
 
-Everything on this page is imported from `rotion`. These functions run in Node.js at build time; they read `NOTION_TOKEN` and the other variables in [Configuration](configuration) when the module is loaded.
+Everything on this page is imported from `rotion`. These functions run in Node.js, at build time or on a server (see [Server rendering](server-rendering)); they read `NOTION_TOKEN` and the other variables in [Configuration](configuration) when the module is loaded.
 
 ```ts
 import { FetchDatabase, FetchPage, FetchBlocks, FetchBreadcrumbs } from 'rotion'

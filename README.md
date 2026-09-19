@@ -18,18 +18,18 @@
   </a>
 </p>
 
-**Rotion** is a set of components and tools that utilize the Notion API and React to generate a static website from your Notion databases and pages.  
-It is designed primarily for use with Next.js (or other React frameworks) and stores images and other files locally, so that you can build a fully static site.
+**Rotion** is a set of components and tools that utilize the Notion API and React to build a website from your Notion databases and pages.  
+It is designed primarily for use with Next.js (or other React frameworks) and stores images and other files locally, so that you can build a fully static site or render the pages on a Node.js server.
 
 Official site: https://rotion.linyo.ws
 
 Features
 --
 
-- Fetch and convert Notion databases and pages into static site data via the Notion API.
+- Fetch and convert Notion databases and pages into data for your site via the Notion API, at build time or on request.
 - Local storage of images, PDFs, and other files.
 - Rich React components (Gallery, Table, List, Page, and various Blocks).
-- Compatible with static site generators such as Next.js.
+- Works with static site generation and server rendering in frameworks such as Next.js ([Server rendering](https://rotion.linyo.ws/server-rendering)).
 - **Next.js App Router support** with `createClientLink` helper (v2.0.1+).
 - **Next.js Page Router support** for traditional SSG workflows.
 - TypeScript support.
