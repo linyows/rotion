@@ -77,7 +77,7 @@ Rotion は受け取った値をネストしたブロックにも引き継ぐの�
 ## レート制限とリトライ [#rate-limits-and-retries]
 
 Notion へのリクエストは、すべてリトライの仕組みを通ります。
-API が `rate_limited` や `internal_server_error` を返したとき、または Notion クライアントが想定外のレスポンスやタイムアウトを報告したとき、Rotion は `ROTION_LIMITED_WAITTIME` ミリ秒（デフォルトは60000、1分）待ってから再試行します。
+API が `rate_limited`、`internal_server_error`、`service_overload`、`service_unavailable`、`gateway_timeout` を返したとき、または Notion クライアントが想定外のレスポンスやタイムアウトを報告したとき、Rotion は警告を出し、`ROTION_LIMITED_WAITTIME` ミリ秒（デフォルトは60000、1分）待ってから再試行します。
 試行は合計で最大3回です。
 ページが見つからない、フィルタが不正といったそれ以外のエラーは、API が返した理由を付けてすぐに投げます。
 
@@ -104,10 +104,37 @@ HEIC と HEIF の画像は、先に PNG に変換します。
 
 Rotion が自分で行う HTTP リクエスト（ダウンロードと、ブックマークや埋め込みのメタデータを得るためのページの取得）は、`ROTION_UA` を User-Agent として送ります。
 接続が `ROTION_TIMEOUT` ミリ秒（デフォルトは1500）無通信になると打ち切り、リダイレクトは `ROTION_MAX_REDIRECTS` 回（デフォルトは5）までたどります。
-ダウンロードに失敗したブロックはローカルの `src` を持たないまま残り、ビルドは続きます。
+保存するのは、成功（2xx）のレスポンスだけです。
+ダウンロードに失敗したブロックはローカルの `src` を持たないまま残ります。
+詳しくは[取得に失敗したとき](#failed-requests)を参照してください。
 
 `ROTION_SKIP_DOWNLOAD=true` にすると、画像をダウンロードせずにパスだけを返します。
 これは Rotion 自身のテストのための設定です。
+
+## 取得に失敗したとき [#failed-requests]
+
+ページの中の一部の取得に失敗しても、ビルドは止まりません。
+Rotion は失敗ごとに1行を標準エラー出力に出し、その部分を欠いたまま進みます。
+たとえば画像はローカルの `src` を持たず、メンションは `--` と表示され、ネストしたブロックは子を持ちません。
+
+```
+[rotion] failed to get image of block 1a2b...: saveImage download error -- path: public/images/block-1a2b....png, url: https://..., message: HTTPStatusError: unexpected status 503: https://...
+[rotion] not caching the blocks of 9f8e... because of a transient failure; they are fetched again on the next call
+```
+
+その結果をキャッシュするかどうかは、失敗の種類で決まります。
+
+- **一時的な失敗**：リトライしても解消しなかったレート制限やサーバーエラー、タイムアウト、ネットワークのエラー、ダウンロードでの HTTP 5xx、408、429 です。結果はキャッシュせず、次のビルド（またはリクエスト）で取得し直します。ネストしたブロックでの失敗は、それを含むページもキャッシュしません。キャッシュしなかった結果ごとに、`not caching ...` の行を出します。
+- **恒久的な失敗**：削除された画像のような HTTP 4xx や、インテグレーションがアクセスできないページやデータベースです。何度試しても同じように失敗するので、その部分を欠いたまま結果をキャッシュします。
+
+ブックマークのメタデータ、埋め込み、動画の埋め込み、GitHub のリンクプレビューは、外部のサイトから取得します。
+これらの失敗も出力しますが、キャッシュを止めることはありません。
+
+`ROTION_STRICT=true` にすると、失敗したときにビルドを止めます。
+外部のサイトからの取得を除き、最初の失敗をエラーとして投げ、そのページは何もキャッシュしません。
+画像が欠けたサイトを公開したくない CI で使います。
+
+`ROTION_DEBUG=true` にすると、各行のあとに、失敗した Notion リクエストの引数を含むエラーの全体を出します。
 
 ## CI でのキャッシュの引き継ぎ
 

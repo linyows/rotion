@@ -4,6 +4,7 @@ import {
   LogLevel,
 } from '@notionhq/client'
 import { transientNotionErrorCodes } from './failures.js'
+import { warn } from './log.js'
 import {
   atoh,
   readCache,
@@ -59,9 +60,9 @@ export async function reqAPIWithBackoff<T> ({ func, args, count }: reqAPIWithBac
   } catch (error: unknown) {
     const retryable = error && typeof error === 'object' && isNotionClientError(error) && transientNotionErrorCodes.includes(error.code)
     if (retryable && count > 1) {
-      if (debug) {
-        console.log(`reqAPIWithBackoff backoff(${count}) -- error: ${error}`)
-      }
+      // The wait is a minute by default; say why nothing seems to happen
+      const name = func.name === '' ? 'anonymous' : func.name
+      warn(`notion api ${name} failed with ${error.code}; retrying in ${waitTimeSecAfterLimit}ms (${count - 1} attempts left)`)
       if (waitTimeSecAfterLimit > 0) {
         await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
       }

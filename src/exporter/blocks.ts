@@ -28,7 +28,8 @@ import type {
 } from './types.js'
 import { FetchBreadcrumbs } from './breadcrumbs.js'
 import { getIssueForLinkPreview, getRepoForLinkPreview } from './github.js'
-import { collectFailures, reportFailure } from './failures.js'
+import { collectFailures, reportFailure, reportExtraFailure } from './failures.js'
+import { warn } from './log.js'
 
 export interface FetchBlocksArgs {
   block_id: string
@@ -127,10 +128,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                 const ipws = await saveImage(iconUrl, `block-${block.id}`)
                 block.callout.icon.src = ipws.path
               } catch (e) {
-                reportFailure(e)
-                if (debug) {
-                  console.log(`Failed to save callout icon: ${e}`)
-                }
+                reportFailure(`icon of callout block ${block.id}`, e)
               }
             } else if (block.callout.icon?.type === 'icon') {
               const url = getNotionIconUrl(block.callout.icon.icon)
@@ -138,10 +136,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                 const ipws = await saveImage(url, `block-${block.id}`)
                 ;(block.callout as any).icon = { type: 'external', external: { url }, src: ipws.path }
               } catch (e) {
-                reportFailure(e)
-                if (debug) {
-                  console.log(`Failed to save callout icon: ${e}`)
-                }
+                reportFailure(`icon of callout block ${block.id}`, e)
               }
             }
             if (block.has_children) {
@@ -188,10 +183,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                   block.image.height = ipws.height
                 }
               } catch (e) {
-                reportFailure(e)
-                if (debug) {
-                  console.log(`Failed to save image: ${e}`)
-                }
+                reportFailure(`image of block ${id}`, e)
               }
             }
             break
@@ -225,17 +217,11 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                         const ipws = await saveImage(iconUrl, `block-${block.id}`)
                         mention.database.icon = { type: db.icon.type, src: ipws.path, url: ipws.path }
                       } catch (e) {
-                        reportFailure(e)
-                        if (debug) {
-                          console.log(`Failed to save database icon: ${e}`)
-                        }
+                        reportFailure(`icon of the database mentioned in block ${block.id}`, e)
                       }
                     }
                   } catch (e) {
-                    reportFailure(e)
-                    if (debug) {
-                      console.log(`database view mention is unsupported ${block.type}`, block, e)
-                    }
+                    reportFailure(`database mentioned in block ${block.id}`, e)
                     mention.database.name = '--'
                     mention.database.icon = { type: 'emoji', emoji: '@' }
                   }
@@ -269,17 +255,11 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                           url: ipws.path,
                         }
                       } catch (e) {
-                        reportFailure(e)
-                        if (debug) {
-                          console.log(`Failed to save page icon: ${e}`)
-                        }
+                        reportFailure(`icon of the page mentioned in block ${block.id}`, e)
                       }
                     }
                   } catch (e) {
-                    reportFailure(e)
-                    if (debug) {
-                      console.log(`page mention is unsupported ${block.type}`, block, e)
-                    }
+                    reportFailure(`page mentioned in block ${block.id}`, e)
                     mention.page.name = '--'
                     mention.page.icon = { type: 'emoji', emoji: '@' }
                   }
@@ -294,10 +274,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
               block.file.src = src
               block.file.size = size
             } catch (e) {
-              reportFailure(e)
-              if (debug) {
-                console.log(`Failed to save file: ${e}`)
-              }
+              reportFailure(`file of block ${block.id}`, e)
             }
             break
           }
@@ -308,10 +285,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
               block.pdf.src = src
               block.pdf.size = size
             } catch (e) {
-              reportFailure(e)
-              if (debug) {
-                console.log(`Failed to save PDF: ${e}`)
-              }
+              reportFailure(`PDF of block ${block.id}`, e)
             }
             break
           }
@@ -338,10 +312,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                 block.video.src = src
                 block.video.videoType = getVideoType(src)
               } catch (e) {
-                reportFailure(e)
-                if (debug) {
-                  console.log(`Failed to save video: ${e}`)
-                }
+                reportFailure(`video of block ${block.id}`, e)
               }
             } else if (block.video.type === 'external') {
               block.video.html = await getVideoHtml(block)
@@ -357,9 +328,9 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
               }
 
             } else if (url.includes('github.com')) {
-              // Like bookmarks and embeds, the preview comes from a third party.
-              // Its failure is not reported, so that GitHub being unavailable
-              // does not keep the whole page out of the cache.
+              // Like bookmarks and embeds, the preview comes from a third party,
+              // so GitHub being unavailable does not keep the whole page out of
+              // the cache.
               try {
                 const u = new URL(url).pathname
                 if (u.split('/').length > 1) {
@@ -379,9 +350,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                   }
                 }
               } catch (e) {
-                if (debug) {
-                  console.log(`Failed to get github link preview: ${e}`)
-                }
+                reportExtraFailure(`GitHub preview of block ${block.id}`, e)
               }
             }
             break
@@ -408,10 +377,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
             break
         }
       } catch (e) {
-        reportFailure(e)
-        if (debug) {
-          console.log(`error for ${block.type} contents get`, block, e)
-        }
+        reportFailure(`contents of ${block.type} block ${block.id}`, e)
       }
     }
 
@@ -420,8 +386,8 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
 
   if (complete) {
     await writeCache(cacheFile, allres)
-  } else if (debug) {
-    console.log(`not caching FetchBlocks() because of a transient failure: ${cacheFile}`)
+  } else {
+    warn(`not caching the blocks of ${block_id} because of a transient failure; they are fetched again on the next call`)
   }
 
   return allres

@@ -4,6 +4,7 @@ import {
   APIErrorCode,
   ClientErrorCode,
 } from '@notionhq/client'
+import { warn } from './log.js'
 
 /**
  * HTTPStatusError is thrown for a response whose status is not 2xx.
@@ -63,15 +64,46 @@ interface Collector {
 const collectors = new AsyncLocalStorage<Collector>()
 
 /**
- * reportFailure records a failure that was caught and replaced with a
- * fallback, such as an image without a local copy. collectFailures uses the
- * record to decide whether its result is complete.
+ * StrictModeError is thrown by reportFailure when ROTION_STRICT is true.
  */
-export function reportFailure (error: unknown): void {
-  if (!isTransientError(error)) {
-    return
+export class StrictModeError extends Error {
+  constructor (message: string, cause: unknown) {
+    super(message, { cause })
+    this.name = 'StrictModeError'
   }
-  collectors.getStore()?.transient.push(error)
+}
+
+const isStrict = () => process.env.ROTION_STRICT === 'true'
+
+/**
+ * reportFailure is called for content that was caught failing and replaced
+ * with a fallback, such as an image without a local copy. It warns, and
+ * records the failure for collectFailures, which decides from the record
+ * whether its result is complete. With ROTION_STRICT=true it throws instead,
+ * so that a build does not publish a site with missing content.
+ */
+export function reportFailure (what: string, error: unknown): void {
+  // Already reported where it happened, on its way out of an outer catch
+  if (error instanceof StrictModeError) {
+    throw error
+  }
+  warn(`failed to get ${what}`, error)
+  if (isStrict()) {
+    throw new StrictModeError(`failed to get ${what} (ROTION_STRICT=true)`, error)
+  }
+  if (isTransientError(error)) {
+    collectors.getStore()?.transient.push(error)
+  }
+}
+
+/**
+ * reportExtraFailure is reportFailure for extras that come from third
+ * parties: bookmark metadata, embeds and link previews. It only warns. One
+ * slow or rate-limited site should neither keep a page out of the cache nor
+ * fail a strict build.
+ */
+export function reportExtraFailure (what: string, error: unknown): void {
+  warn(`failed to get ${what}`, error)
 }
 
 /**

@@ -798,4 +798,17 @@ test('saveImage does not download a HEIC image again once it is converted', asyn
   }
 })
 
+test('writeCache warns when the cache cannot be written', async () => {
+  const original = console.warn
+  const warnings: string[] = []
+  console.warn = (...args: unknown[]) => { warnings.push(args.map(String).join(' ')) }
+  try {
+    await files.writeCache('testdata/no-such-dir/cache.json', { a: 1 })
+  } finally {
+    console.warn = original
+  }
+  assert.equal(warnings.length, 1)
+  assert.match(warnings[0], /^\[rotion\] failed to write the cache testdata\/no-such-dir\/cache\.json: ENOENT/)
+})
+
 test.run()

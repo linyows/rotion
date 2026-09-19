@@ -422,4 +422,41 @@ test('FetchBlocks does not cache a parent whose nested block had a transient fai
   }
 })
 
+test('FetchBlocks fails with ROTION_STRICT=true when content could not be fetched', async () => {
+  const { StrictModeError } = await import('./failures.js')
+  const { base, close } = await imageServer(() => 404)
+  const suffix = `${Date.now()}-${Math.random().toString(36).slice(2)}`
+  const pageId = `strict-page-${suffix}`
+  const cacheFile = `${cacheDir}/notion.blocks.children.list-${pageId}`
+  const list = async () => ({
+    object: 'list', results: [imageBlock(`strict-image-${suffix}`, `${base}/gone-${suffix}.png`)], next_cursor: null, has_more: false,
+  })
+  const original = { strict: process.env.ROTION_STRICT, warn: console.warn }
+  const warnings: string[] = []
+  process.env.ROTION_STRICT = 'true'
+  console.warn = (...args: unknown[]) => { warnings.push(args.map(String).join(' ')) }
+
+  try {
+    await withStubbedBlocksList(list, [cacheFile], async () => {
+      try {
+        await FetchBlocks({ block_id: pageId })
+        assert.unreachable('should have thrown')
+      } catch (e) {
+        assert.instance(e, StrictModeError)
+      }
+      assert.not.ok(await exists(cacheFile), 'a failed strict fetch must not be cached')
+    })
+    assert.equal(warnings.length, 1, `expected one warning, got ${JSON.stringify(warnings)}`)
+    assert.match(warnings[0], /^\[rotion\] failed to get image of block strict-image-/)
+  } finally {
+    if (original.strict === undefined) {
+      delete process.env.ROTION_STRICT
+    } else {
+      process.env.ROTION_STRICT = original.strict
+    }
+    console.warn = original.warn
+    await close()
+  }
+})
+
 test.run()

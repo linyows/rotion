@@ -25,7 +25,8 @@ NOTION_TOKEN=ntn_xxx ROTION_INCREMENTAL_CACHE=true npm run build
 | `ROTION_MAX_REDIRECTS` | `5` | Maximum number of redirects followed by those HTTP requests. |
 | `ROTION_UA` | `<name>/<version>` of the `package.json` in the current directory | `User-Agent` header of those HTTP requests. Some sites answer differently depending on it; Rotion's own site builds with `ROTION_UA=curl`. |
 | `ROTION_SKIP_QUERY_VALIDATION` | `false` | `true` sends database queries without checking the filter and sorts first. See [validateQuery](api#validatequery). |
-| `ROTION_DEBUG` | `false` | `true` logs cache decisions, retries and download errors, and sets the Notion client's log level to debug. |
+| `ROTION_STRICT` | `false` | `true` throws on the first failure to fetch a part of a page, such as an image, instead of printing a warning and leaving it out. Third-party extras (bookmarks, embeds, link previews) only warn. See [Failed requests](caching#failed-requests). |
+| `ROTION_DEBUG` | `false` | `true` logs cache decisions and lock activity, prints the whole error after each warning, and sets the Notion client's log level to debug. Failures are printed without it. |
 | `ROTION_SKIP_DOWNLOAD` | `false` | `true` returns image paths without downloading the images. Intended for Rotion's tests. |
 
 Boolean variables are enabled only by the exact string `true`. Numeric values are parsed as integers.
