@@ -3,12 +3,7 @@ import {
   notion,
 } from './api.js'
 import { getNotionIconUrl } from './page.js'
-import {
-  cacheDir,
-  incrementalCache,
-  debug,
-  skipQueryValidation,
-} from './variables.js'
+import { config } from './variables.js'
 import {
   validateQuery,
   buildQueryValidationMessage,
@@ -54,6 +49,7 @@ const databaseLabel = (meta: GetDatabaseResponseEx, database_id: string): string
  * And create cache that includes filepath of downloaded images.
  */
 export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabaseRes> => {
+  const { cacheDir, incrementalCache, debug, skipQueryValidation } = config()
   const params = JSON.parse(JSON.stringify(p))
   const { database_id } = params
   const limit = ('page_size' in params) ? params.page_size : undefined
@@ -95,7 +91,7 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
 
       // First, retrieve the database to get the data_source_id
       const meta = await reqAPIWithBackoff<GetDatabaseResponseEx>({
-        func: notion.databases.retrieve,
+        func: notion().databases.retrieve,
         args: { database_id },
         count: 3,
       })
@@ -108,7 +104,7 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
 
       // Retrieve the data source to get properties
       const dataSource = await reqAPIWithBackoff<any>({
-        func: notion.dataSources.retrieve,
+        func: notion().dataSources.retrieve,
         args: { data_source_id },
         count: 3,
       })
@@ -134,7 +130,7 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
           queryParams.start_cursor = res.next_cursor
         }
         res = await reqAPIWithBackoff<QueryDatabaseResponseEx>({
-          func: notion.dataSources.query,
+          func: notion().dataSources.query,
           args: queryParams,
           count: 3,
         })

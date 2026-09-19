@@ -1,6 +1,6 @@
 import { fetchWithTimeout } from './api.js'
 import { saveImage } from './files.js'
-import { debug } from './variables.js'
+import { config } from './variables.js'
 import { HTTPStatusError } from './failures.js'
 
 export interface FetchFunc<T> {
@@ -167,7 +167,7 @@ export async function getRepoForLinkPreview({ owner, repo }: GithubRepoArgs, fun
     const ipws = await saveImage(avatar_url, 'github-link-preview')
     avatar_src = ipws.path
   } catch (e) {
-    if (debug) {
+    if (config().debug) {
       console.log(`Failed to save github avatar: ${e}`)
     }
   }
@@ -311,7 +311,7 @@ export async function getIssueForLinkPreview({ owner, repo, number }: GithubIssu
     const ipws = await saveImage(avatar_url, 'github-link-preview')
     avatar_src = ipws.path
   } catch (e) {
-    if (debug) {
+    if (config().debug) {
       console.log(`Failed to save github avatar: ${e}`)
     }
   }

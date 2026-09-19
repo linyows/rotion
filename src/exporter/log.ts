@@ -1,4 +1,4 @@
-import { debug } from './variables.js'
+import { config } from './variables.js'
 
 const messageOf = (error: unknown): string => error instanceof Error ? error.message : String(error)
 
@@ -10,7 +10,7 @@ const messageOf = (error: unknown): string => error instanceof Error ? error.mes
 export function warn (message: string, error?: unknown): void {
   const reason = error === undefined ? '' : `: ${messageOf(error).split('\n')[0]}`
   console.warn(`[rotion] ${message}${reason}`)
-  if (debug && error !== undefined) {
+  if (config().debug && error !== undefined) {
     console.warn(error)
   }
 }

@@ -1,7 +1,7 @@
 # API リファレンス
 
 このページのものは、すべて `rotion` から import します。
-これらの関数は、ビルド時またはサーバー上（[サーバーでの描画](server-rendering)を参照）の Node.js で動き、`NOTION_TOKEN` をはじめとする[設定](configuration)の変数を、モジュールが読み込まれた時点で読みます。
+これらの関数は、ビルド時またはサーバー上（[サーバーでの描画](server-rendering)を参照）の Node.js で動き、`NOTION_TOKEN` をはじめとする[設定](configuration)を、実行する時点で読みます。
 
 ```ts
 import { FetchDatabase, FetchPage, FetchBlocks, FetchBreadcrumbs } from 'rotion'
@@ -169,6 +169,16 @@ function buildQueryValidationMessage(target: string, errors: string[]): string
 ```
 
 `validateQuery` のメッセージを、`FetchDatabase` が投げるエラーの文面に整形します。
+
+## configure
+
+```ts
+function configure(options: Partial<RotionConfig>): void
+```
+
+環境変数の代わりに、コードで設定します。
+ここで渡した値は、対応する環境変数より優先されます。
+オプションは[コードで設定する](configuration#configure-in-code)を参照してください。
 
 ## 下位のヘルパー関数
 

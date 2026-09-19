@@ -11,15 +11,22 @@ import {
   writeCache,
   isAvailableCache,
 } from './files.js'
-import {
-  cacheDir,
-  waitingTimeSec,
-  waitTimeSecAfterLimit,
-  auth,
-  debug,
-} from './variables.js'
+import { config } from './variables.js'
 
-export const notion = new Client({ auth, logLevel: debug ? LogLevel.DEBUG : LogLevel.ERROR })
+let client: { auth?: string, debug: boolean, instance: Client } | undefined
+
+/**
+ * notion returns the Notion client for the current settings. It is created on
+ * first use, not on import, so NOTION_TOKEN (or configure({ auth })) only has
+ * to be set before the first request, and a new token gets a new client.
+ */
+export function notion (): Client {
+  const { auth, debug } = config()
+  if (client === undefined || client.auth !== auth || client.debug !== debug) {
+    client = { auth, debug, instance: new Client({ auth, logLevel: debug ? LogLevel.DEBUG : LogLevel.ERROR }) }
+  }
+  return client.instance
+}
 
 export interface reqAPIWithBackoffArgs {
   func: Function
@@ -50,21 +57,22 @@ export async function reqAPIWithBackoff<T> ({ func, args, count }: reqAPIWithBac
     throw new Error('backoff count exceeded')
   }
 
+  const { waitTime, limitedWaitTime, debug } = config()
   let res: T|null = null
 
   try {
     res = await func(args) as T
-    if (waitingTimeSec > 0) {
-      await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
+    if (waitTime > 0) {
+      await new Promise(resolve => setTimeout(resolve, waitTime))
     }
   } catch (error: unknown) {
     const retryable = error && typeof error === 'object' && isNotionClientError(error) && transientNotionErrorCodes.includes(error.code)
     if (retryable && count > 1) {
       // The wait is a minute by default; say why nothing seems to happen
       const name = func.name === '' ? 'anonymous' : func.name
-      warn(`notion api ${name} failed with ${error.code}; retrying in ${waitTimeSecAfterLimit}ms (${count - 1} attempts left)`)
-      if (waitTimeSecAfterLimit > 0) {
-        await new Promise(resolve => setTimeout(resolve, waitTimeSecAfterLimit))
+      warn(`notion api ${name} failed with ${error.code}; retrying in ${limitedWaitTime}ms (${count - 1} attempts left)`)
+      if (limitedWaitTime > 0) {
+        await new Promise(resolve => setTimeout(resolve, limitedWaitTime))
       }
       return await reqAPIWithBackoff<T>({ func, args, count: count - 1 })
     }
@@ -90,7 +98,7 @@ export interface reqAPIWithBackoffAndCacheArgs {
 
 export async function reqAPIWithBackoffAndCache<T> ( { name, func, args, count }: reqAPIWithBackoffAndCacheArgs): Promise<T> {
   const key = atoh(JSON.stringify({ func: func.name, args }))
-  const cacheFile = `${cacheDir}/${name}-${key}`
+  const cacheFile = `${config().cacheDir}/${name}-${key}`
 
   try {
     const cache = await readCache<T|null>(cacheFile)

@@ -10,7 +10,6 @@ A server adds three things to take care of: the process needs a writable disk, t
 
 - **Node.js runtime.** The exporter uses the file system, `https` and `sharp`, so it does not run in an edge runtime.
 - **A writable, persistent disk.** Each request can write to `.cache` (`ROTION_CACHEDIR`) and download files below `ROTION_DOCROOT`. A long-running server or a container with a volume keeps them between requests. Serverless platforms that allow writing only to a temporary directory, and discard it between instances, lose the cache and the downloaded files.
-- **`package.json` in the working directory.** Rotion reads it when it is imported, as described in [Configuration](configuration). Start the server from the project root.
 - **`NOTION_TOKEN` on the server.** The token stays in the server process. Import `rotion` only from server code, never from a client component.
 
 ## Render pages on request
