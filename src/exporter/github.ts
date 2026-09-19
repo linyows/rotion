@@ -1,6 +1,7 @@
 import { fetchWithTimeout } from './api.js'
 import { saveImage } from './files.js'
 import { debug } from './variables.js'
+import { HTTPStatusError } from './failures.js'
 
 export interface FetchFunc<T> {
   (input: RequestInfo, init?: RequestInit): Promise<T>
@@ -11,6 +12,23 @@ const reqInit = {
     'Accept': 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28',
   }
+}
+
+/**
+ * fetchGitHub returns the JSON body of a successful response from the GitHub
+ * API. Any other status throws an HTTPStatusError, instead of handing an
+ * error message to a caller that expects a repository or an issue. A request
+ * over the rate limit (403 or 429 with no requests remaining) is reported as
+ * 429, because it succeeds once the limit resets.
+ */
+export async function fetchGitHub<T> (url: string): Promise<T> {
+  const res = await fetchWithTimeout(url, reqInit)
+  if (!res.ok) {
+    await res.body?.cancel()
+    const limited = (res.status === 403 || res.status === 429) && res.headers.get('x-ratelimit-remaining') === '0'
+    throw new HTTPStatusError(limited ? 429 : res.status, url)
+  }
+  return await res.json() as T
 }
 
 export interface GithubRepoArgs {
@@ -130,7 +148,7 @@ export interface GithubRepoResponse {
 
 export async function getRepo({ owner, repo }: GithubRepoArgs, func?: FetchFunc<GithubRepoResponse>): Promise<GithubRepoResponse> {
   const url = `https://api.github.com/repos/${owner}/${repo}`
-  return (func) ? func(url, reqInit) : (await fetchWithTimeout(url, reqInit)).json()
+  return (func) ? func(url, reqInit) : fetchGitHub<GithubRepoResponse>(url)
 }
 
 export interface LinkPreviewGithubRepo {
@@ -269,7 +287,7 @@ export interface GithubIssueResponse {
 
 export async function getIssue({ owner, repo, number }: GithubIssueArgs, func?: FetchFunc<GithubIssueResponse>): Promise<GithubIssueResponse> {
   const url = `https://api.github.com/repos/${owner}/${repo}/issues/${number}`
-  return func ? func(url, reqInit) : (await fetchWithTimeout(url, reqInit)).json()
+  return func ? func(url, reqInit) : fetchGitHub<GithubIssueResponse>(url)
 }
 
 export interface LinkPreviewGithubIssue {

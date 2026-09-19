@@ -5,6 +5,8 @@ import * as files from './files'
 import * as assert from 'uvu/assert'
 import * as github from './github'
 import { fetchWithTimeout } from './api'
+import { HTTPStatusError } from './failures'
+import http from 'node:http'
 
 test.before(() => {
   td.replace(console, 'log')
@@ -65,5 +67,51 @@ test('getIssue returns correct response', async () => {
     number: 1,
   })
 })
+
+// --- Status handling of the GitHub API ---
+
+async function startGitHubServer (status: number, headers: Record<string, string> = {}) {
+  const server = http.createServer((_req, res) => {
+    res.writeHead(status, { 'Content-Type': 'application/json', ...headers })
+    res.end(status === 200 ? '{"name":"rotion"}' : '{"message":"error"}')
+  })
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve))
+  const addr = server.address()
+  if (!addr || typeof addr === 'string') throw new Error('failed to bind test server')
+  return {
+    url: `http://127.0.0.1:${addr.port}/repos/linyows/rotion`,
+    close: () => new Promise<void>(resolve => server.close(() => resolve())),
+  }
+}
+
+test('fetchGitHub returns the body of a successful response', async () => {
+  const { url, close } = await startGitHubServer(200)
+  try {
+    const res = await github.fetchGitHub<{ name: string }>(url)
+    assert.equal(res.name, 'rotion')
+  } finally {
+    await close()
+  }
+})
+
+for (const [status, headers, expected] of [
+  [404, {}, 404],
+  [403, {}, 403],
+  [403, { 'x-ratelimit-remaining': '0' }, 429],
+  [429, { 'x-ratelimit-remaining': '0' }, 429],
+] as const) {
+  test(`fetchGitHub throws HTTPStatusError(${expected}) for ${status} ${JSON.stringify(headers)}`, async () => {
+    const { url, close } = await startGitHubServer(status, headers)
+    try {
+      await github.fetchGitHub(url)
+      assert.unreachable('should have thrown')
+    } catch (e) {
+      assert.instance(e, HTTPStatusError)
+      assert.equal((e as HTTPStatusError).status, expected)
+    } finally {
+      await close()
+    }
+  })
+}
 
 test.run()
