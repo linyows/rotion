@@ -68,6 +68,14 @@ const blocks = await FetchBlocks({ block_id: 'YOUR_PAGE_ID', last_edited_time: p
 トグル、カラム、リストの項目、同期ブロックの中のブロックを編集すると、Notion はページの `last_edited_time` を更新しますが、親のブロックの値は更新しません。
 Rotion は受け取った値をネストしたブロックにも引き継ぐので、変更のあったページでは、ネストしたブロックも取得し直します。
 
+ブロックの中には、ほかのページやデータベースの内容を表示するものがあります。
+同期ブロックの同期元、メンションしたページやデータベース、子ページ、子データベースです。
+それらの内容を編集しても、表示しているページの `last_edited_time` は変わりません。
+そこで `FetchBlocks` は、これらのページとデータベースを、その `last_edited_time` とともに `dependencies` としてキャッシュに記録します。
+キャッシュを使う前には、それらの現在の `last_edited_time` を Notion に問い合わせ、どれかが変わっていればブロックを取得し直します。
+問い合わせの結果は `ROTION_CACHE_AVAILABLE_DURATION` のあいだ使い回すので、依存1つにつき、その期間のリクエストは多くても1回です。
+同期ブロックの同期元のブロックは、同期元があるページの `last_edited_time` をキーにキャッシュします。
+
 > [!WARNING]
 >
 > `'force'` は `FetchPage` にだけ使ってください。

@@ -53,6 +53,8 @@ const blocks = await FetchBlocks({ block_id: 'YOUR_PAGE_ID', last_edited_time: p
 
 Pass the page's `last_edited_time`, not a block's. When a block inside a toggle, column, list item or synced block is edited, Notion updates the page's `last_edited_time` but not the parent block's. Rotion passes the value it receives down to the nested blocks, so a changed page refetches its nested blocks too.
 
+Some blocks show content from another page or database: the source of a synced block, a mentioned page or database, a child page, a child database. Editing that content does not change the `last_edited_time` of the page that shows it. `FetchBlocks` therefore records these pages and databases, with their `last_edited_time`, in the cache as `dependencies`, and before it reuses the cache it asks Notion for their current `last_edited_time`. If one of them changed, the blocks are fetched again. The answers are kept for `ROTION_CACHE_AVAILABLE_DURATION`, so each dependency costs at most one request in that period. The blocks of a synced block's source are cached with the `last_edited_time` of the page the source is in.
+
 > [!WARNING]
 >
 > Use `'force'` with `FetchPage` only. `FetchBlocks` stores the value it is given in the cache, so `FetchBlocks` with `'force'` refetches once and then matches its own stored `'force'` on the next build.
