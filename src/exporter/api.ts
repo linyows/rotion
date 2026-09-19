@@ -109,26 +109,19 @@ export interface FetchOptions extends RequestInit {
   timeout?: number;
 }
 
+/**
+ * fetchWithTimeout aborts the request when it takes longer than timeout
+ * milliseconds. The limit also covers reading the body, so a server that
+ * sends the headers and then stalls does not hold the caller forever.
+ */
 // TODO: replace http(s).get functions to this
 export async function fetchWithTimeout(url: string | URL | Request, options: FetchOptions = {}): Promise<Response> {
   const { timeout = 5000, ...fetchOptions } = options
-  const controller = new AbortController()
-  const { signal } = controller
-
-  const timeoutId = setTimeout(() => {
-    controller.abort()
-  }, timeout)
-
-  options.signal = signal
-
   try {
-    const response = await fetch(url, fetchOptions)
-    clearTimeout(timeoutId)
-    return response
+    return await fetch(url, { ...fetchOptions, signal: AbortSignal.timeout(timeout) })
   } catch (error) {
-    clearTimeout(timeoutId)
-    if (error instanceof Error && error.name === 'AbortError') {
-      throw new Error(`Request timed out after ${timeout}ms`)
+    if (error instanceof Error && (error.name === 'TimeoutError' || error.name === 'AbortError')) {
+      throw new Error(`Request timed out after ${timeout}ms`, { cause: error })
     }
     throw error
   }

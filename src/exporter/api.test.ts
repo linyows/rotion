@@ -1,3 +1,4 @@
+import http from 'node:http'
 import { test } from 'uvu'
 import * as td from 'testdouble'
 import * as assert from 'uvu/assert'
@@ -199,18 +200,57 @@ test('fetchWithTimeout uses default timeout of 5000ms', async () => {
   }
 })
 
-test('fetchWithTimeout respects custom timeout', async () => {
-  const url = 'https://httpbin.org/delay/1' // 1 second delay
-  const options: FetchOptions = {
-    timeout: 100 // 100ms timeout
+// A local server whose response stalls: before the headers, or after the
+// headers and a part of the body.
+async function startStallingServer (stage: 'headers' | 'body') {
+  const sockets: import('node:net').Socket[] = []
+  const server = http.createServer((_req, res) => {
+    if (stage === 'body') {
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.write('{"partial":')
+    }
+  })
+  server.on('connection', (socket) => { sockets.push(socket) })
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve))
+  const addr = server.address()
+  if (!addr || typeof addr === 'string') throw new Error('failed to bind test server')
+  return {
+    url: `http://127.0.0.1:${addr.port}/`,
+    close: async () => {
+      for (const s of sockets) s.destroy()
+      await new Promise<void>(resolve => server.close(() => resolve()))
+    },
   }
+}
 
+test('fetchWithTimeout rejects when the headers do not arrive in time', async () => {
+  const { url, close } = await startStallingServer('headers')
+  const start = Date.now()
   try {
-    await fetchWithTimeout(url, options)
-    assert.unreachable('Should have timed out')
+    await fetchWithTimeout(url, { timeout: 200 })
+    assert.unreachable('should have timed out')
   } catch (error) {
-    assert.ok(error instanceof Error)
-    assert.ok(error.message.includes('timed out') || error.message.includes('fetch'))
+    assert.instance(error, Error)
+    assert.match((error as Error).message, /^Request timed out after 200ms$/)
+    assert.ok(Date.now() - start < 2000, 'should give up at the timeout')
+  } finally {
+    await close()
+  }
+})
+
+test('fetchWithTimeout rejects when the body stalls after the headers', async () => {
+  const { url, close } = await startStallingServer('body')
+  const start = Date.now()
+  try {
+    const res = await fetchWithTimeout(url, { timeout: 200 })
+    await res.json()
+    assert.unreachable('should have timed out')
+  } catch (error) {
+    assert.instance(error, Error)
+    assert.not.match((error as Error).message, /should have timed out/)
+    assert.ok(Date.now() - start < 2000, 'should give up at the timeout')
+  } finally {
+    await close()
   }
 })
 
