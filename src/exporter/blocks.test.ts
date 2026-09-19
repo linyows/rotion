@@ -5,13 +5,15 @@ import type { FetchBlocksArgs, FetchBlocksRes } from './blocks.js'
 import { FetchBlocks } from './blocks.js'
 import { notion } from './api.js'
 import { readCache } from './files.js'
-import { cacheDir } from './variables.js'
+import { config } from './variables.js'
 import { mkdtemp, rm, access } from 'node:fs/promises'
 import http from 'node:http'
 import { execFile } from 'node:child_process'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
+
+const { cacheDir } = config()
 
 test.before(() => {
   td.replace(console, 'log')
@@ -226,13 +228,13 @@ const nestedBlocksFixture = (suffix: string) => {
 }
 
 const withStubbedBlocksList = async (list: unknown, cacheFiles: string[], fn: () => Promise<void>) => {
-  const original = notion.blocks.children.list
-  notion.blocks.children.list = list as typeof original
+  const original = notion().blocks.children.list
+  notion().blocks.children.list = list as typeof original
   try {
     await Promise.all(cacheFiles.map(f => rm(f, { force: true })))
     await fn()
   } finally {
-    notion.blocks.children.list = original
+    notion().blocks.children.list = original
     await Promise.all(cacheFiles.map(f => rm(f, { force: true })))
   }
 }
@@ -271,7 +273,8 @@ test('FetchBlocks uses the block last_edited_time for nested blocks when none is
 const incrementalCacheScenario = `
 const { notion } = await import(new URL('./src/exporter/api.ts', 'file://' + process.cwd() + '/').href)
 const { FetchBlocks } = await import(new URL('./src/exporter/blocks.ts', 'file://' + process.cwd() + '/').href)
-const { incrementalCache } = await import(new URL('./src/exporter/variables.ts', 'file://' + process.cwd() + '/').href)
+const { config } = await import(new URL('./src/exporter/variables.ts', 'file://' + process.cwd() + '/').href)
+const { incrementalCache } = config()
 console.log = () => {}
 
 const blockEditedTime = '2025-01-01T00:00:00.000Z'
@@ -288,7 +291,7 @@ const children = {
   column: () => [paragraph('column-paragraph')],
   'list-item': () => [paragraph('list-item-paragraph')],
 }
-notion.blocks.children.list = async ({ block_id }) => ({ object: 'list', results: children[block_id](), next_cursor: null, has_more: false })
+notion().blocks.children.list = async ({ block_id }) => ({ object: 'list', results: children[block_id](), next_cursor: null, has_more: false })
 
 const texts = (res) => ({
   toggle: res.results[0].children.results[0].paragraph.rich_text[0].plain_text,

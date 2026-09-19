@@ -95,7 +95,8 @@ npm install
 npm run dev
 ```
 
-Rotion 自身は、import された時点で `process.env` から `NOTION_TOKEN` を読みます。
+Rotion 自身は、リクエストを送る時点で `process.env` から `NOTION_TOKEN` を読みます。
 サンプルのページは、`import.meta.env` の値を `process.env` にコピーしています。
+[`configure({ auth: import.meta.env.NOTION_TOKEN })`](configuration#configure-in-code) を使えば、`process.env` を経由せずに同じことができます。
 ビルドを実行するシェルで変数を設定すれば（`NOTION_TOKEN=... npm run build`）、Astro が `.env` をどう読み込むかにかかわらず Rotion に値が渡ります。
 開発サーバーは `http://localhost:4321` で動き、`npm run build` はサイトを `dist/` に書き出します。

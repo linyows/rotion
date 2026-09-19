@@ -151,7 +151,7 @@ test('saveImage saves a image correct file name', async () => {
 test('saveImage converts HEIC to WebP', async () => {
   const sharp = (await import('sharp')).default
   const heicConvert = (await import('heic-convert')).default
-  const { docRoot, imageDir } = await import('./variables.js')
+  const { docRoot, imageDir } = (await import('./variables.js')).config()
 
   // Use local HEIC file from testdata
   const sourceHeic = 'testdata/example.heic'
@@ -681,7 +681,7 @@ async function listDir (dir: string): Promise<string[]> {
 
 for (const status of [500, 503]) {
   test(`saveImage does not save the body of a ${status} response`, async () => {
-    const { docRoot, imageDir } = await import('./variables.js')
+    const { docRoot, imageDir } = (await import('./variables.js')).config()
     const { base, close } = await startServer((_req, res) => {
       res.writeHead(status, { 'Content-Type': 'text/html' })
       res.end('<html>error</html>')
@@ -702,7 +702,7 @@ for (const status of [500, 503]) {
 }
 
 test('saveFile does not save the body of a 404 response for a URL without a query', async () => {
-  const { docRoot, fileDir } = await import('./variables.js')
+  const { docRoot, fileDir } = (await import('./variables.js')).config()
   const { base, close } = await startServer((_req, res) => {
     res.writeHead(404, { 'Content-Type': 'text/html' })
     res.end('<html>not found</html>')

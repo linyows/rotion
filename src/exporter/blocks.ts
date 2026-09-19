@@ -3,11 +3,7 @@ import {
   reqAPIWithBackoffAndCache,
   notion,
 } from './api.js'
-import {
-  cacheDir,
-  incrementalCache,
-  debug,
-} from './variables.js'
+import { config } from './variables.js'
 import { FetchPage, getNotionIconUrl } from './page.js'
 import {
   createDirWhenNotfound,
@@ -45,6 +41,7 @@ export interface FetchBlocksRes extends ListBlockChildrenResponseEx {
  * The last_edited_time of 2nd args is for ROTION_INCREMENTAL_CACHE.
  */
 export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArgs): Promise<FetchBlocksRes> => {
+  const { cacheDir, incrementalCache, debug } = config()
   await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.blocks.children.list-${block_id}`
 
@@ -84,7 +81,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
         params.start_cursor = res.next_cursor
       }
       res = await reqAPIWithBackoff<ListBlockChildrenResponseEx>({
-        func: notion.blocks.children.list,
+        func: notion().blocks.children.list,
         args: params,
         count: 3
       })
@@ -148,7 +145,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
             const database_id = block.id
             block.database = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>({
               name: 'notion.databases.retrieve',
-              func: notion.databases.retrieve,
+              func: notion().databases.retrieve,
               args: { database_id },
               count: 3,
             })
@@ -204,7 +201,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                     const database_id = mention.database.id
                     const db = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>({
                       name: 'notion.databases.retrieve',
-                      func: notion.databases.retrieve,
+                      func: notion().databases.retrieve,
                       args: { database_id },
                       count: 3,
                     })
@@ -230,7 +227,7 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                   try {
                     const page_id = mention.page.id
                     const page = await reqAPIWithBackoff<GetPageResponseEx>({
-                      func: notion.pages.retrieve,
+                      func: notion().pages.retrieve,
                       args: { page_id },
                       count: 3,
                     })

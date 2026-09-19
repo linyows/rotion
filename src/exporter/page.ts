@@ -3,11 +3,7 @@ import {
   reqAPIWithBackoffAndCache,
   notion,
 } from './api.js'
-import {
-  cacheDir,
-  incrementalCache,
-  debug,
-} from './variables.js'
+import { config } from './variables.js'
 import {
   createDirWhenNotfound,
   saveImage,
@@ -39,6 +35,7 @@ export interface FetchPageRes extends GetPageResponseEx {
  * The last_edited_time of 2nd args is for ROTION_INCREMENTAL_CACHE.
  */
 export const FetchPage = async ({ page_id, last_edited_time }: FetchPageArgs): Promise<FetchPageRes> => {
+  const { cacheDir, incrementalCache, debug } = config()
   await createDirWhenNotfound(cacheDir)
   const cacheFile = `${cacheDir}/notion.pages.retrieve-${page_id}`
   const lockKey = `page-${page_id}`
@@ -71,7 +68,7 @@ export const FetchPage = async ({ page_id, last_edited_time }: FetchPageArgs): P
     // cached; see FetchBlocks.
     const { value, complete } = await collectFailures(async () => {
       const page = await reqAPIWithBackoff<GetPageResponseEx>({
-        func: notion.pages.retrieve,
+        func: notion().pages.retrieve,
         args: { page_id },
         count: 3
       })
@@ -82,7 +79,7 @@ export const FetchPage = async ({ page_id, last_edited_time }: FetchPageArgs): P
           const property_id = v.id
           const res = await reqAPIWithBackoffAndCache<GetPagePropertyResponse>({
             name: 'notion.pages.properties.retrieve',
-            func: notion.pages.properties.retrieve,
+            func: notion().pages.properties.retrieve,
             args: { page_id, property_id },
             count: 3,
           })

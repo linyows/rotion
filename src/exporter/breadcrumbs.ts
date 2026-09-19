@@ -46,7 +46,7 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
         case 'block_id': {
           const res = await reqAPIWithBackoffAndCache<GetBlockResponse>({
             name: 'notion.blocks.retrieve',
-            func: notion.blocks.retrieve,
+            func: notion().blocks.retrieve,
             args: { block_id: nextID },
             count: 3,
           })
@@ -61,7 +61,7 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
         case 'page_id': {
           const page = await reqAPIWithBackoffAndCache<GetPageResponseEx>({
             name: 'notion.pages.retrieve',
-            func: notion.pages.retrieve,
+            func: notion().pages.retrieve,
             args: { page_id: nextID },
             count: 3,
           })
@@ -97,7 +97,7 @@ export const FetchBreadcrumbs = async ({ type, id, limit }: FetchBreadcrumbsProp
         case 'database_id': {
           const db = await reqAPIWithBackoffAndCache<GetDatabaseResponseEx>({
             name: 'notion.database.retrieve',
-            func: notion.databases.retrieve,
+            func: notion().databases.retrieve,
             args: { database_id: nextID },
             count: 3,
           })

@@ -1,6 +1,6 @@
 # API
 
-Everything on this page is imported from `rotion`. These functions run in Node.js, at build time or on a server (see [Server rendering](server-rendering)); they read `NOTION_TOKEN` and the other variables in [Configuration](configuration) when the module is loaded.
+Everything on this page is imported from `rotion`. These functions run in Node.js, at build time or on a server (see [Server rendering](server-rendering)); they read `NOTION_TOKEN` and the other settings in [Configuration](configuration) when they run.
 
 ```ts
 import { FetchDatabase, FetchPage, FetchBlocks, FetchBreadcrumbs } from 'rotion'
@@ -144,6 +144,14 @@ function buildQueryValidationMessage(target: string, errors: string[]): string
 ```
 
 Formats the messages of `validateQuery` into the error text `FetchDatabase` throws.
+
+## configure
+
+```ts
+function configure(options: Partial<RotionConfig>): void
+```
+
+Sets the settings in code instead of environment variables; a value given here wins over its variable. See [Configure in code](configuration#configure-in-code) for the options.
 
 ## Lower-level helpers
 

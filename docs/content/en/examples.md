@@ -86,4 +86,4 @@ npm install
 npm run dev
 ```
 
-Rotion itself reads `NOTION_TOKEN` from `process.env` when it is imported, and the pages copy the value there from `import.meta.env`. Exporting the variable in the shell that runs the build (`NOTION_TOKEN=... npm run build`) sets it for Rotion regardless of how Astro loads `.env`. The development server runs at `http://localhost:4321`, and `npm run build` writes the site into `dist/`.
+Rotion itself reads `NOTION_TOKEN` from `process.env` when it sends a request, and the pages copy the value there from `import.meta.env`. [`configure({ auth: import.meta.env.NOTION_TOKEN })`](configuration#configure-in-code) does the same without `process.env`. Exporting the variable in the shell that runs the build (`NOTION_TOKEN=... npm run build`) sets it for Rotion regardless of how Astro loads `.env`. The development server runs at `http://localhost:4321`, and `npm run build` writes the site into `dist/`.

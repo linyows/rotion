@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs'
 import path from 'path'
-import { cacheDir, debug } from './variables.js'
+import { config } from './variables.js'
 import { warn } from './log.js'
 
 interface LockOptions {
@@ -34,7 +34,7 @@ export async function withFileLock<T>(
   options: LockOptions = {}
 ): Promise<T> {
   const opts = { ...DEFAULT_OPTIONS, ...options }
-  const lockDir = path.join(cacheDir, 'locks')
+  const lockDir = path.join(config().cacheDir, 'locks')
   const lockFile = path.join(lockDir, `${key}.lock`)
 
   await fs.mkdir(lockDir, { recursive: true })
@@ -58,7 +58,7 @@ export async function withFileLock<T>(
       })
       await fd.writeFile(lockData)
 
-      if (debug) {
+      if (config().debug) {
         console.log(`Lock acquired: ${key} (pid: ${process.pid})`)
       }
 
@@ -102,7 +102,7 @@ async function cleanupStaleLock(lockFile: string, maxAge: number): Promise<void>
       // would hold every waiter until the timeout.
       if (pid === undefined || !isProcessAlive(pid)) {
         await fs.unlink(lockFile)
-        if (debug) {
+        if (config().debug) {
           const reason = pid === undefined ? 'no readable pid' : `dead pid: ${pid}`
           console.log(`Cleaned up stale lock: ${lockFile} (${reason})`)
         }
@@ -173,7 +173,7 @@ async function releaseLock(fd: fs.FileHandle, lockFile: string, key: string): Pr
   try {
     await fd.close()
     await fs.unlink(lockFile)
-    if (debug) {
+    if (config().debug) {
       console.log(`Lock released: ${key} (pid: ${process.pid})`)
     }
   } catch (error) {

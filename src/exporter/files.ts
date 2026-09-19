@@ -11,16 +11,8 @@ import sharp from 'sharp'
 import replaceExt from 'replace-ext'
 import heicConvert from 'heic-convert'
 import {
-  docRoot,
-  imageDir,
-  fileDir,
-  timeout,
-  webpQuality,
+  config,
   httpOptions,
-  debug,
-  googleMapKey,
-  cacheAvailableDuration,
-  maxRedirects,
   isSkipDownload,
 } from './variables.js'
 import { withFileLock } from './mutex.js'
@@ -35,8 +27,9 @@ import type {
 
 // @ts-ignore
 https.get[promisify.custom] = function getAsync (url: any) {
+  const { timeout } = config()
   return new Promise((resolve, reject) => {
-    const req = https.get(url, httpOptions, (res) => {
+    const req = https.get(url, httpOptions(), (res) => {
       // @ts-ignore
       res.end = new Promise((resolve) => res.on('end', resolve))
       resolve(res)
@@ -51,8 +44,9 @@ https.get[promisify.custom] = function getAsync (url: any) {
 
 // @ts-ignore
 http.get[promisify.custom] = function getAsync (url: any) {
+  const { timeout } = config()
   return new Promise((resolve, reject) => {
-    const req = http.get(url, httpOptions, (res) => {
+    const req = http.get(url, httpOptions(), (res) => {
       // @ts-ignore
       res.end = new Promise((resolve) => res.on('end', resolve))
       resolve(res)
@@ -203,7 +197,7 @@ export const findLocationUrl = (rawHeaders: string[]): string => {
       return rawHeaders[i + next]
     }
   }
-  if (debug) {
+  if (config().debug) {
     console.log('location header url is not found', rawHeaders)
   }
   return ''
@@ -223,8 +217,8 @@ async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: numb
 
   if (res.statusCode >= 300 && res.statusCode < 400 && isIncludesLocationHeader()) {
     redirectCount++
-    if (maxRedirects < redirectCount) {
-      if (debug) {
+    if (config().maxRedirects < redirectCount) {
+      if (config().debug) {
         console.log('maximum number of redirects exceeded')
       }
       return res
@@ -308,7 +302,7 @@ export const atoh = (a: string): string => {
 export const createDirWhenNotfound = async (dir: string): Promise<void> => {
   if (!fs.existsSync(dir)) {
     await mkdir(dir, { recursive: true })
-    if (debug) {
+    if (config().debug) {
       console.log(`created direcotry: ${dir}`)
     }
   }
@@ -334,7 +328,7 @@ export async function writeCache (f: string, data: unknown): Promise<void> {
 export async function isAvailableCache (f: string, d?: number): Promise<boolean> {
   const now = Date.now()
   const stats = await stat(f)
-  const cache = stats.mtime.getTime() + (d || cacheAvailableDuration)
+  const cache = stats.mtime.getTime() + (d || config().cacheAvailableDuration)
   return now < cache
 }
 
@@ -343,6 +337,7 @@ export const sleep = (m: number) => {
 }
 
 export async function saveFile (fileUrl: string, prefix: string) {
+  const { docRoot, fileDir, debug } = config()
   const urlWithoutQuerystring = fileUrl.split('?').shift() || ''
   const { ext, name } = path.parse(urlWithoutQuerystring)
   const basename = `${atoh(name)}${ext}`
@@ -383,6 +378,7 @@ export async function saveFile (fileUrl: string, prefix: string) {
 }
 
 export const saveImage = async (imageUrl: string, prefix: string): Promise<ImagePathWithSize> => {
+  const { docRoot, imageDir, webpQuality, debug } = config()
   const urlWithoutQuerystring = imageUrl.split('?').shift() || ''
   const { ext, name } = path.parse(urlWithoutQuerystring)
   const basename = `${atoh(name)}${ext}`
@@ -694,7 +690,7 @@ export const getHtmlMeta = async (
       try {
         ipws = await saveImageToUse(imageUrl, 'html-image')
       } catch (e) {
-        if (debug) {
+        if (config().debug) {
           console.log(`Failed to save html image: ${e}`)
         }
       }
@@ -712,7 +708,7 @@ export const getHtmlMeta = async (
       try {
         ipws2 = await saveImageToUse(iconUrl, `html-icon-${atoh(reqUrl)}`)
       } catch (e) {
-        if (debug) {
+        if (config().debug) {
           console.log(`Failed to save html icon: ${e}`)
         }
       }
@@ -795,6 +791,7 @@ export const getEmbedHtml = async (block: EmbedBlockObjectResponseEx, httpFunc?:
     warn(`not embedding ${src}: unsupported Apple Music URL`)
 
   } else if (url.includes('//www.google')) {
+    const { googleMapKey } = config()
     if (googleMapKey) {
       // Example:
       // https://www.google.com/maps/@33.5838302,130.3657052,14z?entry=ttu

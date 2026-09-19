@@ -5,6 +5,7 @@ import {
   ClientErrorCode,
 } from '@notionhq/client'
 import { warn } from './log.js'
+import { config } from './variables.js'
 
 /**
  * HTTPStatusError is thrown for a response whose status is not 2xx.
@@ -73,8 +74,6 @@ export class StrictModeError extends Error {
   }
 }
 
-const isStrict = () => process.env.ROTION_STRICT === 'true'
-
 /**
  * reportFailure is called for content that was caught failing and replaced
  * with a fallback, such as an image without a local copy. It warns, and
@@ -88,7 +87,7 @@ export function reportFailure (what: string, error: unknown): void {
     throw error
   }
   warn(`failed to get ${what}`, error)
-  if (isStrict()) {
+  if (config().strict) {
     throw new StrictModeError(`failed to get ${what} (ROTION_STRICT=true)`, error)
   }
   if (isTransientError(error)) {
