@@ -1,78 +1,75 @@
 ---
-import { FetchBlocks, FetchDatabase, FetchPage } from 'rotion';
-import Header from '../components/Header';
-import NotionPage from '../components/NotionPage';
-import 'rotion/style-without-dark.css';
+import { FetchBlocks, FetchDatabase, FetchPage } from 'rotion'
+import Header from '../components/Header'
+import NotionPage from '../components/NotionPage'
+import 'rotion/style-without-dark.css'
 
 // Get configuration from environment variables
-const apiToken = import.meta.env.NOTION_TOKEN;
-const databaseId = import.meta.env.NOTION_DATABASE_ID;
+const apiToken = import.meta.env.NOTION_TOKEN
+const databaseId = import.meta.env.NOTION_DATABASE_ID
 
 // Set process.env for Rotion (it expects NOTION_TOKEN)
 if (apiToken) {
-  process.env.NOTION_TOKEN = apiToken;
+  process.env.NOTION_TOKEN = apiToken
 }
 
 export async function getStaticPaths() {
-  const apiToken = import.meta.env.NOTION_TOKEN;
-  const databaseId = import.meta.env.NOTION_DATABASE_ID;
+  const apiToken = import.meta.env.NOTION_TOKEN
+  const databaseId = import.meta.env.NOTION_DATABASE_ID
 
   if (apiToken) {
-    process.env.NOTION_TOKEN = apiToken;
+    process.env.NOTION_TOKEN = apiToken
   }
 
   if (!databaseId || !apiToken) {
-    return [];
+    return []
   }
 
-  const db = await FetchDatabase({ database_id: databaseId });
+  const db = await FetchDatabase({ database_id: databaseId })
 
   return db.results.map((page) => ({
     params: { id: page.id },
-  }));
+  }))
 }
 
-const { id } = Astro.params;
+const { id } = Astro.params
 
-let blocks = [];
-let pageTitle = '';
-let pageIcon = '';
-let databaseTitle = '';
-let error = null;
+let blocks = []
+let pageTitle = ''
+let pageIcon = ''
+let databaseTitle = ''
+let error = null
 
 if (!id) {
-  error = 'No page ID provided';
+  error = 'No page ID provided'
 } else if (!apiToken) {
-  error = 'Please set NOTION_TOKEN in your .env file';
+  error = 'Please set NOTION_TOKEN in your .env file'
 } else {
   try {
-    const [page, db] = await Promise.all([
-      FetchPage({ page_id: id }),
-      FetchDatabase({ database_id: databaseId })
-    ]);
+    const [page, db] = await Promise.all([FetchPage({ page_id: id }), FetchDatabase({ database_id: databaseId })])
 
     // Extract title from properties
     if ('properties' in page) {
-      for (const [key, property] of Object.entries(page.properties)) {
+      for (const property of Object.values(page.properties)) {
         if (property.type === 'title' && 'title' in property) {
-          pageTitle = property.title.map((t: any) => t.plain_text).join('');
-          break;
+          pageTitle = property.title.map((t) => t.plain_text).join('')
+          break
         }
       }
     }
 
     // Get icon
     if (page.icon && 'src' in page.icon) {
-      pageIcon = page.icon.src;
+      pageIcon = page.icon.src
     }
 
     // Get database title
-    databaseTitle = db.meta?.title?.[0]?.plain_text || 'Database';
+    databaseTitle = db.meta?.title?.[0]?.plain_text || 'Database'
 
     // Fetch blocks for content
-    blocks = await FetchBlocks({ block_id: id });
+    blocks = await FetchBlocks({ block_id: id })
   } catch (err) {
-    error = err instanceof Error ? err.message : 'Failed to fetch Notion page';
+    error = err instanceof Error ? err.message : 'Failed to fetch Notion page'
   }
 }
 ---

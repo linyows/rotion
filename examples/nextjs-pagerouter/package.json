@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "biome check",
+    "format": "biome format --write"
   },
   "dependencies": {
     "mermaid": "^11.15.0",
@@ -17,6 +18,7 @@
     "rotion": "^3.5.6"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.14",
     "@types/node": "^26",
     "@types/prismjs": "^1.26.3",
     "@types/react": "^19",
