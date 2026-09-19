@@ -215,6 +215,44 @@ test('withFileLock handles stale lock cleanup', async () => {
   assert.ok(executed)
 })
 
+test('withFileLock cleans up an old lock file that holds no pid', async () => {
+  const lockKey = 'test-key-empty-old'
+  const testCacheDir = path.join(process.cwd(), '.cache', 'locks')
+  const lockFile = path.join(testCacheDir, `${lockKey}.lock`)
+
+  await fs.mkdir(testCacheDir, { recursive: true })
+
+  // A process that died between creating the lock file and writing its pid
+  // leaves the file empty.
+  await fs.writeFile(lockFile, '')
+  const oldTime = new Date(Date.now() - 120000)
+  await fs.utimes(lockFile, oldTime, oldTime)
+
+  const result = await withFileLock(lockKey, async () => 'acquired', { timeout: 2000, maxAge: 60000 })
+
+  assert.equal(result, 'acquired')
+})
+
+test('withFileLock keeps a new lock file that holds no pid yet', async () => {
+  const lockKey = 'test-key-empty-new'
+  const testCacheDir = path.join(process.cwd(), '.cache', 'locks')
+  const lockFile = path.join(testCacheDir, `${lockKey}.lock`)
+
+  await fs.mkdir(testCacheDir, { recursive: true })
+
+  // Its holder may still be about to write the pid, so it is not stale yet.
+  await fs.writeFile(lockFile, '')
+
+  try {
+    await withFileLock(lockKey, async () => 'should-timeout', { timeout: 100, maxAge: 60000 })
+    assert.unreachable('Should have timed out')
+  } catch (error: any) {
+    assert.match(error.message, /Failed to acquire lock/)
+  }
+
+  await fs.unlink(lockFile).catch(() => {})
+})
+
 test('withFileLock preserves lock from live process', async () => {
   const lockKey = 'test-key-9'
   const testCacheDir = path.join(process.cwd(), '.cache', 'locks')

@@ -93,19 +93,36 @@ async function cleanupStaleLock(lockFile: string, maxAge: number): Promise<void>
     const age = Date.now() - stats.mtime.getTime()
 
     if (age > maxAge) {
-      const lockData = await fs.readFile(lockFile, 'utf-8')
-      const lock = JSON.parse(lockData)
+      const pid = await readLockPid(lockFile)
 
-      // Check if process is alive
-      if (!isProcessAlive(lock.pid)) {
+      // A lock holder writes its pid right after creating the file, so a lock
+      // older than maxAge without a readable pid was left by a process that
+      // died in between. Nothing will ever remove it, and without this it
+      // would hold every waiter until the timeout.
+      if (pid === undefined || !isProcessAlive(pid)) {
         await fs.unlink(lockFile)
         if (debug) {
-          console.log(`Cleaned up stale lock: ${lockFile} (dead pid: ${lock.pid})`)
+          const reason = pid === undefined ? 'no readable pid' : `dead pid: ${pid}`
+          console.log(`Cleaned up stale lock: ${lockFile} (${reason})`)
         }
       }
     }
   } catch {
     // Ignore if file doesn't exist or can't be read
+  }
+}
+
+/**
+ * Read the pid a lock file was written with, or undefined when the file is
+ * empty or does not hold one.
+ */
+async function readLockPid(lockFile: string): Promise<number | undefined> {
+  const lockData = await fs.readFile(lockFile, 'utf-8')
+  try {
+    const { pid } = JSON.parse(lockData)
+    return Number.isInteger(pid) ? pid : undefined
+  } catch {
+    return undefined
   }
 }
 
