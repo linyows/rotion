@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs'
 import path from 'path'
+import os from 'os'
 import { config } from './variables.js'
 import { warn } from './log.js'
 
@@ -45,14 +46,15 @@ export async function withFileLock<T>(
   while (Date.now() - startTime < opts.timeout) {
     try {
       // Cleanup stale lock files
-      await cleanupStaleLock(lockFile, opts.maxAge)
+      await cleanupStaleLock(lockFile, opts.maxAge, opts.operationTimeout)
 
       // Create lock file exclusively
       fd = await fs.open(lockFile, 'wx')
 
-      // Write process ID and timestamp
+      // Write process ID, host and timestamp
       const lockData = JSON.stringify({
         pid: process.pid,
+        hostname: os.hostname(),
         timestamp: Date.now(),
         key
       })
@@ -88,22 +90,37 @@ export async function withFileLock<T>(
 /**
  * Cleanup stale lock files
  */
-async function cleanupStaleLock(lockFile: string, maxAge: number): Promise<void> {
+async function cleanupStaleLock(lockFile: string, maxAge: number, operationTimeout: number): Promise<void> {
   try {
     const stats = await fs.stat(lockFile)
     const age = Date.now() - stats.mtime.getTime()
 
     if (age > maxAge) {
-      const pid = await readLockPid(lockFile)
+      const { pid, hostname } = await readLockHolder(lockFile)
 
       // A lock holder writes its pid right after creating the file, so a lock
       // older than maxAge without a readable pid was left by a process that
       // died in between. Nothing will ever remove it, and without this it
       // would hold every waiter until the timeout.
-      if (pid === undefined || !isProcessAlive(pid)) {
+      let reason: string | undefined
+      if (pid === undefined) {
+        reason = 'no readable pid'
+      } else if (hostname !== undefined && hostname !== os.hostname()) {
+        // A pid means nothing on another host that shares the cache directory
+        // (a volume shared by containers, for example): it may belong to an
+        // unrelated process here, or to none. The holder releases the lock
+        // within operationTimeout, so only a lock older than that is left
+        // behind.
+        if (age > operationTimeout) {
+          reason = `held by ${hostname} for longer than ${operationTimeout}ms`
+        }
+      } else if (!isProcessAlive(pid)) {
+        reason = `dead pid: ${pid}`
+      }
+
+      if (reason !== undefined) {
         await fs.unlink(lockFile)
         if (config().debug) {
-          const reason = pid === undefined ? 'no readable pid' : `dead pid: ${pid}`
           console.log(`Cleaned up stale lock: ${lockFile} (${reason})`)
         }
       }
@@ -114,16 +131,20 @@ async function cleanupStaleLock(lockFile: string, maxAge: number): Promise<void>
 }
 
 /**
- * Read the pid a lock file was written with, or undefined when the file is
- * empty or does not hold one.
+ * Read the pid and host a lock file was written with. Either is undefined
+ * when the file is empty or does not hold it; a lock written before the host
+ * was recorded is taken as one from this host.
  */
-async function readLockPid(lockFile: string): Promise<number | undefined> {
+async function readLockHolder(lockFile: string): Promise<{ pid?: number, hostname?: string }> {
   const lockData = await fs.readFile(lockFile, 'utf-8')
   try {
-    const { pid } = JSON.parse(lockData)
-    return Number.isInteger(pid) ? pid : undefined
+    const { pid, hostname } = JSON.parse(lockData)
+    return {
+      pid: Number.isInteger(pid) ? pid : undefined,
+      hostname: typeof hostname === 'string' ? hostname : undefined,
+    }
   } catch {
-    return undefined
+    return {}
   }
 }
 

@@ -462,4 +462,23 @@ test('FetchBlocks fails with ROTION_STRICT=true when content could not be fetche
   }
 })
 
+test('FetchBlocks for the same block at the same time asks the API once', async () => {
+  const blockId = `concurrent-${Date.now()}-${Math.random().toString(36).slice(2)}`
+  const cacheFile = `${cacheDir}/notion.blocks.children.list-${blockId}`
+  let calls = 0
+  const list = async () => {
+    calls++
+    await new Promise(resolve => setTimeout(resolve, 100))
+    return { object: 'list', results: [], next_cursor: null, has_more: false }
+  }
+
+  await withStubbedBlocksList(list, [cacheFile], async () => {
+    const results = await Promise.all([1, 2, 3].map(() => FetchBlocks({ block_id: blockId })))
+    assert.equal(calls, 1, `expected one request, got ${calls}`)
+    for (const r of results) {
+      assert.equal(r.results, [])
+    }
+  })
+})
+
 test.run()
