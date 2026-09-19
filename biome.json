@@ -70,7 +70,7 @@
     "includes": [
       "src/ui/components/**/*.ts",
       "src/ui/components/**/*.tsx",
-      "!website",
+      "!docs",
       "!examples"
     ]
   }

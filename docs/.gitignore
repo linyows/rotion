@@ -1,0 +1,13 @@
+# The favicon is copied in from misc/, which keeps the one copy of it.
+/public/logo.svg
+# What rotion downloads from Notion while building.
+/.cache/
+/public/images/
+/public/files/
+# What next build writes, and what pagefind indexes into it.
+/.next/
+/out/
+/node_modules/
+# The Notion token. Page ids live in .env.local, which is committed.
+.env
+next-env.d.ts

@@ -59,7 +59,7 @@
     "ui:format": "biome format --write ./src/ui/components",
     "ui:check": "biome check ./src/ui/components",
     "ui:check:fix": "biome check --write ./src/ui/components",
-    "ui:fixtures": "jq '.' website/.cache/notion.databases.query-* | sed 's/?.*\",/\",/g' > src/ui/fixtures/fetch_database_response.json",
+    "ui:fixtures": "jq '.' docs/.cache/notion.databases.query-* | sed 's/?.*\",/\",/g' > src/ui/fixtures/fetch_database_response.json",
     "story": "storybook dev -p 6006 --ci",
     "build-story": "storybook build",
     "prepublishOnly": "npm install && npm run test && npm run build"

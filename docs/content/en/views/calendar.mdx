@@ -1,0 +1,27 @@
+import { NotionView } from '@/app/_components/notion.jsx'
+
+# Calendar view
+
+The sample database, drawn by `<Calendar>`. The code below is what this page runs.
+
+```tsx
+const db = await FetchDatabase({
+  database_id: process.env.NOTION_TESTDB_ID,
+  filter: { property: 'Published', checkbox: { equals: true } },
+  sorts: [{ property: 'Date', direction: 'descending' }],
+})
+
+<Calendar
+  db={db}
+  keys={["Name", "Tags"]}
+    date="Date"
+/>
+```
+
+<NotionView
+  page="NOTION_CALENDARPAGE_ID"
+  view="calendar"
+  lang="en"
+  keys={["Name", "Tags"]}
+    date="Date"
+/>

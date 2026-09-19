@@ -1,0 +1,25 @@
+import { NotionView } from '@/app/_components/notion.jsx'
+
+# List view
+
+The sample database, drawn by `<List>`. The code below is what this page runs.
+
+```tsx
+const db = await FetchDatabase({
+  database_id: process.env.NOTION_TESTDB_ID,
+  filter: { property: 'Published', checkbox: { equals: true } },
+  sorts: [{ property: 'Date', direction: 'descending' }],
+})
+
+<List
+  db={db}
+  keys={["Name", "spacer", "Note", "Tags", "Url", "Born", "Date"]}
+/>
+```
+
+<NotionView
+  page="NOTION_LISTPAGE_ID"
+  view="list"
+  lang="en"
+  keys={["Name", "spacer", "Note", "Tags", "Url", "Born", "Date"]}
+/>
