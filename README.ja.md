@@ -240,6 +240,20 @@ npm install
 npm run dev
 ```
 
+### [nextjs-server](./examples/nextjs-server)
+Node.jsのサーバーで描画するNext.js App Routerサンプル：
+- リクエスト時に描画し、`revalidate` で再生成するページ
+- ダウンロードした画像やファイルを、ルートハンドラーで `storage/` から配信
+- インクリメンタルキャッシュにより、再ビルドなしでNotionの編集を反映
+
+```bash
+cd examples/nextjs-server
+# .env.localにNOTION_TOKENとNOTION_DATABASE_IDを設定
+npm install
+npm run build
+npm start
+```
+
 ### [nextjs-pagerouter](./examples/nextjs-pagerouter)
 データベース対応のNext.js Pages Routerサンプル：
 - `getStaticProps` を使ったデータベーステーブルビュー
