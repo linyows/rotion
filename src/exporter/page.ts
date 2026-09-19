@@ -22,6 +22,7 @@ import type {
   PageObjectResponseEx,
 } from './types.js'
 import { withFileLock } from './mutex.js'
+import { collectFailures, reportFailure } from './failures.js'
 
 export interface FetchPageArgs {
   page_id: string
@@ -65,39 +66,49 @@ export const FetchPage = async ({ page_id, last_edited_time }: FetchPageArgs): P
       /* not fatal */
     }
 
-    const page = await reqAPIWithBackoff<GetPageResponseEx>({
-      func: notion.pages.retrieve,
-      args: { page_id },
-      count: 3
+    // A result that misses something because of a transient failure is not
+    // cached; see FetchBlocks.
+    const { value, complete } = await collectFailures(async () => {
+      const page = await reqAPIWithBackoff<GetPageResponseEx>({
+        func: notion.pages.retrieve,
+        args: { page_id },
+        count: 3
+      })
+
+      if ('properties' in page) {
+        let list: undefined|PropertyItemListResponse
+        for (const [, v] of Object.entries(page.properties)) {
+          const property_id = v.id
+          const res = await reqAPIWithBackoffAndCache<GetPagePropertyResponse>({
+            name: 'notion.pages.properties.retrieve',
+            func: notion.pages.properties.retrieve,
+            args: { page_id, property_id },
+            count: 3,
+          })
+          if (res.object !== 'list') {
+            continue
+          }
+          if (list === undefined) {
+            list = res
+          } else {
+            list.results.push(...res.results)
+          }
+        }
+        page.meta = list
+      }
+
+      await savePageCover(page)
+      await savePageIcon(page)
+      return page
     })
 
-    if ('properties' in page) {
-      let list: undefined|PropertyItemListResponse
-      for (const [, v] of Object.entries(page.properties)) {
-        const property_id = v.id
-        const res = await reqAPIWithBackoffAndCache<GetPagePropertyResponse>({
-          name: 'notion.pages.properties.retrieve',
-          func: notion.pages.properties.retrieve,
-          args: { page_id, property_id },
-          count: 3,
-        })
-        if (res.object !== 'list') {
-          continue
-        }
-        if (list === undefined) {
-          list = res
-        } else {
-          list.results.push(...res.results)
-        }
-      }
-      page.meta = list
+    if (complete) {
+      await writeCache(cacheFile, value)
+    } else if (debug) {
+      console.log(`not caching FetchPage() because of a transient failure: ${cacheFile}`)
     }
 
-    await savePageCover(page)
-    await savePageIcon(page)
-    await writeCache(cacheFile, page)
-
-    return page
+    return value
   })
 }
 
@@ -114,6 +125,7 @@ export async function savePageCover(page: GetPageResponseEx | PageObjectResponse
       page.cover.src = ipws.path
     }
   } catch (e) {
+    reportFailure(e)
     if (debug) {
       console.log(`Failed to save page cover: ${e}`)
     }
@@ -141,6 +153,7 @@ export async function savePageIcon(page: GetPageResponseEx | PageObjectResponseE
       ;(page as any).icon = { type: 'external', external: { url }, src: ipws.path }
     }
   } catch (e) {
+    reportFailure(e)
     if (debug) {
       console.log(`Failed to save page icon: ${e}`)
     }
