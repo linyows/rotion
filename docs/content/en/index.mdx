@@ -1,6 +1,6 @@
 ---
 title: Your Notion pages, as a website
-description: Rotion draws Notion pages and databases with React components and builds them into a static website.
+description: Rotion draws Notion pages and databases with React components and builds them into a website, static or server-rendered.
 ---
 
 import {
@@ -28,7 +28,7 @@ import {
   <Lede>
     Rotion draws Notion pages and databases with React components. Galleries,
     tables, calendars and every kind of block come styled and ready, and the
-    site builds to plain static HTML. Everything below was fetched from Notion
+    site builds to plain static HTML or renders on a server. Everything below was fetched from Notion
     and drawn by Rotion when this page was built.
   </Lede>
   <Actions>
@@ -156,11 +156,11 @@ flowchart LR
     fetch -->|download| files
     fetch -->|data| ui
   end
-  subgraph B ["Your build"]
-    html["Static HTML"]
+  subgraph B ["Your site"]
+    html["HTML<br/>static or on a server"]
   end
   notion -->|Notion API| fetch
-  ui -->|next build| html
+  ui -->|render| html
   files --> html
   style N fill:#f7efda,stroke:#6a2730,stroke-width:2px,color:#6a2730
   style R fill:#f2f465,stroke:#6a2730,stroke-width:2px,color:#6a2730

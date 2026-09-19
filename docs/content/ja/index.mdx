@@ -1,6 +1,6 @@
 ---
 title: Notion のページを、そのままサイトに
-description: Rotion は Notion のページとデータベースを React コンポーネントで描画し、静的サイトとしてビルドします。
+description: Rotion は Notion のページとデータベースを React コンポーネントで描画し、静的サイトとしてビルドするか、サーバーで描画します。
 ---
 
 import {
@@ -27,7 +27,7 @@ import {
 >
   <Lede>
     Rotion は Notion のページとデータベースを React コンポーネントで描画します。
-    ギャラリー、テーブル、カレンダー、各種ブロックはスタイル付きで用意されていて、サイトは静的 HTML としてビルドされます。
+    ギャラリー、テーブル、カレンダー、各種ブロックはスタイル付きで用意されていて、サイトは静的 HTML としてビルドすることも、サーバーで描画することもできます。
     この下にあるものは、どれもこのページのビルド時に Notion から取得し、Rotion で描画したものです。
   </Lede>
   <Actions>
@@ -158,11 +158,11 @@ flowchart LR
     fetch -->|ダウンロード| files
     fetch -->|データ| ui
   end
-  subgraph B ["サイトのビルド"]
-    html["静的 HTML"]
+  subgraph B ["サイト"]
+    html["HTML<br/>静的またはサーバー"]
   end
   notion -->|Notion API| fetch
-  ui -->|next build| html
+  ui -->|描画| html
   files --> html
   style N fill:#f7efda,stroke:#6a2730,stroke-width:2px,color:#6a2730
   style R fill:#f2f465,stroke:#6a2730,stroke-width:2px,color:#6a2730

@@ -18,19 +18,19 @@
   </a>
 </p>
 
-**Rotion**は、Notion APIとReactを活用して、Notionのデータベースやページを静的ウェブサイトとして生成するためのコンポーネント＆ツール群です。  
+**Rotion**は、Notion APIとReactを活用して、Notionのデータベースやページからウェブサイトを作るためのコンポーネント＆ツール群です。  
 Next.jsをはじめとしたReact系フレームワークでの利用を想定していますが、他のフレームワークでも動作します。  
-画像や必要なファイルはローカルに保存されるため、完全な静的サイト生成が可能です。
+画像や必要なファイルはローカルに保存されるため、完全な静的サイトとして生成することも、Node.jsのサーバーで描画することもできます。
 
 公式サイト: https://rotion.linyo.ws
 
 主な特徴
 --
 
-- Notion APIからデータベース・ページを取得し、静的サイト用データとして変換
+- Notion APIからデータベース・ページを取得し、ビルド時またはリクエスト時にサイト用のデータとして変換
 - 画像やPDFなどのファイルもローカル保存
 - 豊富なReactコンポーネント（Gallery, Table, List, Page, 各種Blockなど）
-- Next.jsなどの静的サイトジェネレーターと親和性が高い
+- Next.jsなどで、静的サイト生成にもサーバーでの描画にも対応（[サーバーでの描画](https://rotion.linyo.ws/ja/server-rendering)）
 - **Next.js App Router サポート** - `createClientLink` ヘルパー（v2.0.1以降）
 - **Next.js Page Router サポート** - 従来のSSGワークフロー
 - TypeScript対応
