@@ -212,7 +212,7 @@ async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: numb
     redirectCount = 0
   }
 
-  const httpFunc = (reqUrl.includes('https://')) ? httpsGet : httpGet
+  const httpFunc = new URL(reqUrl).protocol === 'https:' ? httpsGet : httpGet
   const res = await httpFunc(reqUrl) as unknown as HttpGetResponse
 
   const isIncludesLocationHeader = () => {
@@ -220,7 +220,6 @@ async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: numb
   }
 
   if (res.statusCode >= 300 && res.statusCode < 400 && isIncludesLocationHeader()) {
-    const redirectTo = findLocationUrl(res.rawHeaders)
     redirectCount++
     if (maxRedirects < redirectCount) {
       if (debug) {
@@ -228,20 +227,67 @@ async function httpsGetWithFollowRedirects (reqUrl: string, redirectCount?: numb
       }
       return res
     }
+    // The body of a redirect is not used; read it off so that the socket is
+    // released now instead of when it times out.
+    res.resume()
+    // A Location header may be relative to the URL that was requested
+    const redirectTo = new URL(findLocationUrl(res.rawHeaders), reqUrl).toString()
     return await httpsGetWithFollowRedirects(redirectTo, redirectCount)
   } else {
     return res
   }
 }
 
+const isSuccess = (statusCode: number): boolean => statusCode >= 200 && statusCode < 300
+
+/**
+ * getHTTP returns the body of a successful response. Any other status is an
+ * error, so that an error page is never taken for the requested content.
+ */
 export async function getHTTP (reqUrl: string): Promise<string> {
-  let body = ''
   const res = await httpsGetWithFollowRedirects(reqUrl)
+  if (!isSuccess(res.statusCode)) {
+    res.resume()
+    throw new Error(`unexpected status ${res.statusCode}: ${reqUrl}`)
+  }
+  let body = ''
   // @ts-ignore
   for await (const chunk of res) {
     body += chunk
   }
   return body
+}
+
+/**
+ * download saves the body of fileUrl to filePath. A URL whose query has
+ * expired (a signed URL, for example) answers with 4xx, so it is retried once
+ * without the query. Only a successful response is saved, and it is written
+ * to a temporary file first, so that filePath never holds an error page or a
+ * partial body: the callers treat an existing filePath as downloaded.
+ */
+async function download (fileUrl: string, filePath: string): Promise<void> {
+  const urlWithoutQuerystring = fileUrl.split('?').shift() || ''
+  let res = await httpsGetWithFollowRedirects(fileUrl)
+  if (res.statusCode >= 400 && res.statusCode < 500 && fileUrl !== urlWithoutQuerystring) {
+    res.resume()
+    res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
+  }
+  if (!isSuccess(res.statusCode)) {
+    res.resume()
+    throw new Error(`unexpected status ${res.statusCode}`)
+  }
+
+  const tmp = `${filePath}.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2, 8)}.tmp`
+  try {
+    // Use stream.pipeline so that source-side errors (request abort, socket
+    // close, network stall after `req.setTimeout` fires) reject and clean up
+    // the write stream instead of leaving it dangling forever.
+    await pipeline(res, fs.createWriteStream(tmp))
+    await fs.promises.rename(tmp, filePath)
+  } catch (e) {
+    try { await unlink(tmp) } catch {}
+    throw e
+  }
 }
 
 export async function getJson<T> (reqUrl: string, httpFunc?: (reqUrl: string) => Promise<string>): Promise<T> {
@@ -314,25 +360,8 @@ export async function saveFile (fileUrl: string, prefix: string) {
     /* Download file */
     } else {
       try {
-        let res: HttpGetResponse
-        res = await httpsGetWithFollowRedirects(fileUrl)
-        if (res.statusCode >= 400 && res.statusCode < 500 && fileUrl !== urlWithoutQuerystring) {
-          res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
-          if (res.statusCode >= 400 && res.statusCode < 500) {
-            throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
-          }
-        }
-        // Use stream.pipeline so that source-side errors (request abort,
-        // socket close, network stall after `req.setTimeout` fires) reject
-        // and clean up the write stream instead of leaving the
-        // `writeStream.on('finish')` promise dangling forever.
-        const writeStream = fs.createWriteStream(filePath)
-        await pipeline(res, writeStream)
+        await download(fileUrl, filePath)
       } catch (e) {
-        // Best-effort cleanup of any partial bytes pipeline managed to write
-        // before failing — otherwise the next call hits the existsSync()
-        // fast-path and serves a corrupted cached file.
-        try { await unlink(filePath) } catch {}
         const errorMessage = `saveFile download error -- path: ${filePath}, url: ${fileUrl}, message: ${e}`
         if (debug) {
           console.log(errorMessage)
@@ -359,11 +388,21 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
   const webpUrlPath = replaceExt(urlPath, '.webp')
   const webpPath = `${docRoot}${webpUrlPath}`
   const lockKey = `saveimage-${atoh(filePath)}`
+  const isHeif = ext === '.heic' || ext === '.heif'
+  const pngUrlPath = replaceExt(urlPath, '.png')
+  const pngPath = `${docRoot}${pngUrlPath}`
 
   await createDirWhenNotfound(dirPath)
 
   return withFileLock(lockKey, async () => {
-    if (fs.existsSync(filePath)) {
+    // A HEIC/HEIF image is replaced by its PNG conversion, so the PNG is what
+    // an earlier call left on disk. Without this, every call downloads and
+    // converts it again.
+    const [storedPath, storedUrlPath] = isHeif && !fs.existsSync(filePath) && fs.existsSync(pngPath)
+      ? [pngPath, pngUrlPath]
+      : [filePath, urlPath]
+
+    if (fs.existsSync(storedPath)) {
       if (webpQuality > 0 && fs.existsSync(webpPath)) {
         try {
           const meta = await sharp(webpPath).metadata()
@@ -383,17 +422,17 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
           return { path: urlPath }
         }
         try {
-          const meta = await sharp(filePath).metadata()
+          const meta = await sharp(storedPath).metadata()
           return {
-            path: urlPath,
+            path: storedUrlPath,
             width: meta.width,
             height: meta.height,
           }
         } catch(e) {
           if (debug) {
-            console.log(`sharp.metadata() error -- path: ${urlPath}, message: ${e}`)
+            console.log(`sharp.metadata() error -- path: ${storedUrlPath}, message: ${e}`)
           }
-          return { path: urlPath }
+          return { path: storedUrlPath }
         }
       }
 
@@ -404,25 +443,8 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
       }
 
       try {
-        let res: HttpGetResponse
-        res = await httpsGetWithFollowRedirects(imageUrl)
-        if (res.statusCode >= 400 && res.statusCode < 500 && imageUrl !== urlWithoutQuerystring) {
-          res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
-          if (res.statusCode >= 400 && res.statusCode < 500) {
-            throw new Error(`retry download to ${urlWithoutQuerystring} but failed`)
-          }
-        }
-        // Use stream.pipeline so that source-side errors (request abort,
-        // socket close, network stall after `req.setTimeout` fires) reject
-        // and clean up the write stream instead of leaving the
-        // `writeStream.on('finish')` promise dangling forever.
-        const writeStream = fs.createWriteStream(filePath)
-        await pipeline(res, writeStream)
+        await download(imageUrl, filePath)
       } catch (e) {
-        // Best-effort cleanup of any partial bytes pipeline managed to write
-        // before failing — otherwise the next call hits the existsSync()
-        // fast-path and serves a corrupted cached file.
-        try { await unlink(filePath) } catch {}
         const errorMessage = `saveImage download error -- path: ${filePath}, url: ${imageUrl}, message: ${e}`
         if (debug) {
           console.log(errorMessage)
@@ -453,7 +475,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
     /* Convert HEIC/HEIF to PNG first if needed */
     let processFilePath = filePath
     let processUrlPath = urlPath
-    if (ext === '.heic' || ext === '.heif') {
+    if (isHeif) {
       try {
         if (debug) {
           console.log(`Converting HEIC/HEIF to PNG -- path: ${filePath}`)
@@ -464,11 +486,10 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
           format: 'PNG',
         })
         const pngBuffer = Buffer.from(pngArrayBuffer)
-        const pngPath = replaceExt(filePath, '.png')
         await writeFile(pngPath, pngBuffer)
         await unlink(filePath)
         processFilePath = pngPath
-        processUrlPath = replaceExt(urlPath, '.png')
+        processUrlPath = pngUrlPath
         if (debug) {
           console.log(`Converted HEIC/HEIF to PNG -- from: ${filePath}, to: ${pngPath}`)
         }
