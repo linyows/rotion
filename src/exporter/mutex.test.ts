@@ -397,4 +397,56 @@ test('withFileLock allows next acquirer immediately after operationTimeout fires
   assert.ok(aErr instanceof Error, 'A should have rejected with an error')
 })
 
+// --- Locks from another host that shares the cache directory ---
+
+async function writeLock (lockKey: string, holder: object, ageMs: number): Promise<string> {
+  const testCacheDir = path.join(process.cwd(), '.cache', 'locks')
+  const lockFile = path.join(testCacheDir, `${lockKey}.lock`)
+  await fs.mkdir(testCacheDir, { recursive: true })
+  await fs.writeFile(lockFile, JSON.stringify({ ...holder, timestamp: Date.now() - ageMs, key: lockKey }))
+  const time = new Date(Date.now() - ageMs)
+  await fs.utimes(lockFile, time, time)
+  return lockFile
+}
+
+test('withFileLock keeps a lock from another host even when its pid is not alive here', async () => {
+  const lockKey = 'test-key-remote-held'
+  // 2 minutes old: past maxAge, but within operationTimeout, so the holder
+  // on the other host may still be working
+  await writeLock(lockKey, { pid: 999999, hostname: 'another-host.invalid' }, 120000)
+
+  try {
+    await withFileLock(lockKey, async () => 'acquired', { timeout: 500, maxAge: 60000, operationTimeout: 600000 })
+    assert.unreachable('the lock of another host must not be taken over')
+  } catch (e) {
+    assert.match((e as Error).message, /Failed to acquire lock/)
+  }
+})
+
+test('withFileLock cleans up a lock from another host that is older than operationTimeout', async () => {
+  const lockKey = 'test-key-remote-stale'
+  await writeLock(lockKey, { pid: 999999, hostname: 'another-host.invalid' }, 120000)
+
+  const result = await withFileLock(lockKey, async () => 'acquired', { timeout: 2000, maxAge: 60000, operationTimeout: 90000 })
+  assert.equal(result, 'acquired')
+})
+
+test('withFileLock cleans up a lock from this host whose pid is not alive', async () => {
+  const lockKey = 'test-key-local-dead'
+  const os = await import('node:os')
+  await writeLock(lockKey, { pid: 999999, hostname: os.hostname() }, 120000)
+
+  const result = await withFileLock(lockKey, async () => 'acquired', { timeout: 2000, maxAge: 60000, operationTimeout: 600000 })
+  assert.equal(result, 'acquired')
+})
+
+test('withFileLock records the host in the lock file', async () => {
+  const lockKey = 'test-key-hostname'
+  const os = await import('node:os')
+  const lockFile = path.join(process.cwd(), '.cache', 'locks', `${lockKey}.lock`)
+  const holder = await withFileLock(lockKey, async () => JSON.parse(await fs.readFile(lockFile, 'utf-8')))
+  assert.equal(holder.hostname, os.hostname())
+  assert.equal(holder.pid, process.pid)
+})
+
 test.run()
