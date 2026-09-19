@@ -1,8 +1,8 @@
 'use client'
 
-import { Table as RotionTable } from 'rotion/ui'
 import type { QueryDatabaseResponseEx } from 'rotion'
 import type { Link } from 'rotion/ui'
+import { Table as RotionTable } from 'rotion/ui'
 import styles from './Table.module.css'
 
 export interface TableProps {
@@ -14,9 +14,9 @@ export interface TableProps {
 export const Table = ({ keys, db, link }: TableProps) => {
   const options = {
     href: {
-      Title: '/[id]'
+      Title: '/[id]',
     },
-    link
+    link,
   }
 
   return (

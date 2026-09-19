@@ -1,37 +1,37 @@
 ---
-import { FetchDatabase } from 'rotion';
-import Header from '../components/Header';
-import Table from '../components/Table';
-import 'rotion/style-without-dark.css';
+import { FetchDatabase } from 'rotion'
+import Header from '../components/Header'
+import Table from '../components/Table'
+import 'rotion/style-without-dark.css'
 
 // Get configuration from environment variables
-const apiToken = import.meta.env.NOTION_TOKEN;
-const databaseId = import.meta.env.NOTION_DATABASE_ID;
+const apiToken = import.meta.env.NOTION_TOKEN
+const databaseId = import.meta.env.NOTION_DATABASE_ID
 
 // Set process.env for Rotion (it expects NOTION_TOKEN)
 if (apiToken) {
-  process.env.NOTION_TOKEN = apiToken;
+  process.env.NOTION_TOKEN = apiToken
 }
 
-let db = null;
-let databaseTitle = '';
-let error = null;
+let db = null
+let databaseTitle = ''
+let error = null
 
 if (!databaseId) {
-  error = 'Please set NOTION_DATABASE_ID in your .env file';
+  error = 'Please set NOTION_DATABASE_ID in your .env file'
 } else if (!apiToken) {
-  error = 'Please set NOTION_TOKEN in your .env file';
+  error = 'Please set NOTION_TOKEN in your .env file'
 } else {
   try {
-    db = await FetchDatabase({ database_id: databaseId });
-    databaseTitle = db.meta?.title?.[0]?.plain_text || 'Database';
+    db = await FetchDatabase({ database_id: databaseId })
+    databaseTitle = db.meta?.title?.[0]?.plain_text || 'Database'
   } catch (err) {
-    error = err instanceof Error ? err.message : 'Failed to fetch Notion database';
+    error = err instanceof Error ? err.message : 'Failed to fetch Notion database'
   }
 }
 
-const description = 'This is a rotion example of the Notion database.';
-const keys = ['Title', 'Tags', 'Date'];
+const description = 'This is a rotion example of the Notion database.'
+const keys = ['Title', 'Tags', 'Date']
 ---
 
 <!DOCTYPE html>

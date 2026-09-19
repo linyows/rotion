@@ -1,7 +1,7 @@
-import { Table as RotionTable } from 'rotion/ui'
-import type { QueryDatabaseResponseEx } from 'rotion'
 import Link from 'next/link'
+import type { QueryDatabaseResponseEx } from 'rotion'
 import type { Link as NLink } from 'rotion/ui'
+import { Table as RotionTable } from 'rotion/ui'
 import styles from './Table.module.css'
 
 export interface TableProps {
@@ -12,9 +12,9 @@ export interface TableProps {
 export const Table = ({ keys, db }: TableProps) => {
   const options = {
     href: {
-      Title: '/[id]'
+      Title: '/[id]',
     },
-    link: Link as NLink
+    link: Link as NLink,
   }
 
   return (

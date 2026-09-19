@@ -1,16 +1,12 @@
-import type {
-  GetStaticPaths,
-  GetStaticProps,
-  InferGetStaticPropsType,
-} from 'next'
+import type { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 import {
   FetchBlocks,
+  type FetchBlocksRes,
   FetchDatabase,
   FetchPage,
-  type FetchBlocksRes,
   type RichTextItemResponse,
   type TitlePropertyItemObjectResponse,
 } from 'rotion'
@@ -45,12 +41,12 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
 
   const [page, db] = await Promise.all([
     FetchPage({ page_id: id, last_edited_time: 'force' }),
-    FetchDatabase({ database_id: databaseId })
+    FetchDatabase({ database_id: databaseId }),
   ])
 
   let title: null | RichTextItemResponse = null
   if ('meta' in page && page.meta?.object === 'list') {
-    const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
+    const obj = page.meta.results.find((v) => v.type === 'title') as TitlePropertyItemObjectResponse
     title = obj.title
   }
 
@@ -64,11 +60,16 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
       title,
       icon,
       blocks,
-    }
+    },
   }
 }
 
-export default function Article({ databaseTitle, title, icon, blocks }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Article({
+  databaseTitle,
+  title,
+  icon,
+  blocks,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const titleText = title?.plain_text
 
   return (

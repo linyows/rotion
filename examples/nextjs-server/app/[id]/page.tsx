@@ -1,11 +1,6 @@
 import Image from 'next/image'
-import {
-  FetchBlocks,
-  FetchPage,
-  RichTextItemResponse,
-  TitlePropertyItemObjectResponse,
-} from 'rotion'
 import Link from 'next/link'
+import { FetchBlocks, FetchPage, type RichTextItemResponse, type TitlePropertyItemObjectResponse } from 'rotion'
 import { Page } from '../compornents/Page'
 import styles from './page.module.css'
 
@@ -24,7 +19,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   let title: null | RichTextItemResponse = null
   if ('meta' in page && page.meta?.object === 'list') {
-    const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
+    const obj = page.meta.results.find((v) => v.type === 'title') as TitlePropertyItemObjectResponse
     title = obj.title
   }
 
@@ -39,7 +34,7 @@ export default async function Article({ params }: PageProps) {
 
   let title: null | RichTextItemResponse = null
   if ('meta' in page && page.meta?.object === 'list') {
-    const obj = page.meta.results.find(v => v.type === 'title') as TitlePropertyItemObjectResponse
+    const obj = page.meta.results.find((v) => v.type === 'title') as TitlePropertyItemObjectResponse
     title = obj.title
   }
 

@@ -1,12 +1,6 @@
-import type {
-  GetStaticProps,
-  InferGetStaticPropsType,
-} from 'next'
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
-import {
-  FetchDatabase,
-  type QueryDatabaseResponseEx,
-} from 'rotion'
+import { FetchDatabase, type QueryDatabaseResponseEx } from 'rotion'
 import { Header } from '@/components/Header'
 import { Table } from '@/components/Table'
 import styles from './index.module.css'
@@ -16,7 +10,7 @@ type Props = {
   db: QueryDatabaseResponseEx
 }
 
-export const getStaticProps: GetStaticProps<Props> = async (context) => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const databaseId = process.env.NOTION_DATABASE_ID || ''
   const db = await FetchDatabase({ database_id: databaseId })
   const databaseTitle = db.meta?.title?.[0]?.plain_text || 'Database'
@@ -25,7 +19,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
     props: {
       databaseTitle,
       db,
-    }
+    },
   }
 }
 

@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 2rem auto 0;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .name {
@@ -17,7 +17,7 @@
   color: #fff;
   background-color: #000;
   border-radius: 10rem;
-  padding: .5rem 1.5rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .name a:hover {
