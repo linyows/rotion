@@ -6,7 +6,8 @@ import { FetchBlocks } from './blocks.js'
 import { notion } from './api.js'
 import { readCache } from './files.js'
 import { cacheDir } from './variables.js'
-import { mkdtemp, rm } from 'node:fs/promises'
+import { mkdtemp, rm, access } from 'node:fs/promises'
+import http from 'node:http'
 import { execFile } from 'node:child_process'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -315,6 +316,109 @@ test('FetchBlocks reflects nested block changes with incremental cache', async (
     assert.equal(second, { toggle: 'after', column: 'after', listItem: 'after' })
   } finally {
     await rm(dir, { recursive: true, force: true })
+  }
+})
+
+// --- Results with a transient failure are not cached ---
+
+const imageServer = async (status: () => number) => {
+  const sharp = (await import('sharp')).default
+  const png = await sharp({
+    create: { width: 3, height: 2, channels: 3, background: { r: 0, g: 0, b: 0 } },
+  }).png().toBuffer()
+  const server = http.createServer((_req, res) => {
+    const code = status()
+    res.writeHead(code, { 'Content-Type': code === 200 ? 'image/png' : 'text/html' })
+    res.end(code === 200 ? png : 'error')
+  })
+  await new Promise<void>(resolve => server.listen(0, '127.0.0.1', resolve))
+  const addr = server.address()
+  if (!addr || typeof addr === 'string') throw new Error('failed to bind test server')
+  return {
+    base: `http://127.0.0.1:${addr.port}`,
+    close: () => new Promise<void>(resolve => server.close(() => resolve())),
+  }
+}
+
+const exists = async (f: string) => access(f).then(() => true, () => false)
+
+const imageBlock = (id: string, url: string) => ({
+  object: 'block', id, type: 'image', has_children: false, last_edited_time: '2025-01-01T00:00:00.000Z',
+  image: { type: 'external', external: { url } },
+})
+
+test('FetchBlocks does not cache a result whose image failed with a server error', async () => {
+  let status = 503
+  const { base, close } = await imageServer(() => status)
+  const suffix = `${Date.now()}-${Math.random().toString(36).slice(2)}`
+  const pageId = `transient-page-${suffix}`
+  const imageId = `transient-image-${suffix}`
+  const cacheFile = `${cacheDir}/notion.blocks.children.list-${pageId}`
+  const list = async () => ({
+    object: 'list', results: [imageBlock(imageId, `${base}/image-${suffix}.png`)], next_cursor: null, has_more: false,
+  })
+
+  try {
+    await withStubbedBlocksList(list, [cacheFile], async () => {
+      const first = await FetchBlocks({ block_id: pageId })
+      assert.equal((first.results[0] as any).image.src, undefined)
+      assert.not.ok(await exists(cacheFile), 'a result missing an image because of a 503 must not be cached')
+
+      status = 200
+      const second = await FetchBlocks({ block_id: pageId })
+      assert.match((second.results[0] as any).image.src, /\.webp$/)
+      assert.ok(await exists(cacheFile), 'the complete result should be cached')
+    })
+  } finally {
+    await close()
+  }
+})
+
+test('FetchBlocks caches a result whose image failed permanently', async () => {
+  const { base, close } = await imageServer(() => 404)
+  const suffix = `${Date.now()}-${Math.random().toString(36).slice(2)}`
+  const pageId = `permanent-page-${suffix}`
+  const cacheFile = `${cacheDir}/notion.blocks.children.list-${pageId}`
+  const list = async () => ({
+    object: 'list', results: [imageBlock(`permanent-image-${suffix}`, `${base}/gone-${suffix}.png`)], next_cursor: null, has_more: false,
+  })
+
+  try {
+    await withStubbedBlocksList(list, [cacheFile], async () => {
+      await FetchBlocks({ block_id: pageId })
+      assert.ok(await exists(cacheFile), 'a 404 does not go away on retry, so the result is cached')
+    })
+  } finally {
+    await close()
+  }
+})
+
+test('FetchBlocks does not cache a parent whose nested block had a transient failure', async () => {
+  const { base, close } = await imageServer(() => 503)
+  const suffix = `${Date.now()}-${Math.random().toString(36).slice(2)}`
+  const pageId = `parent-page-${suffix}`
+  const toggleId = `parent-toggle-${suffix}`
+  const cacheFiles = [pageId, toggleId].map(id => `${cacheDir}/notion.blocks.children.list-${id}`)
+  const children: Record<string, unknown[]> = {
+    [pageId]: [{
+      object: 'block', id: toggleId, type: 'toggle', has_children: true,
+      last_edited_time: '2025-01-01T00:00:00.000Z', toggle: { rich_text: [] },
+    }],
+    [toggleId]: [imageBlock(`parent-image-${suffix}`, `${base}/nested-${suffix}.png`)],
+  }
+  const list = async ({ block_id }: { block_id: string }) => ({
+    object: 'list', results: children[block_id], next_cursor: null, has_more: false,
+  })
+
+  try {
+    await withStubbedBlocksList(list, cacheFiles, async () => {
+      await FetchBlocks({ block_id: pageId })
+      for (const f of cacheFiles) {
+        assert.not.ok(await exists(f), `${f} must not be cached`)
+      }
+    })
+  } finally {
+    await close()
   }
 })
 

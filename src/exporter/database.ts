@@ -34,6 +34,7 @@ import {
   savePageIcon,
 } from './page.js'
 import { withFileLock } from './mutex.js'
+import { collectFailures, reportFailure } from './failures.js'
 
 export interface FetchDatabaseArgs extends Omit<QueryDataSourceParameters, 'data_source_id'> {
   database_id: string
@@ -62,9 +63,6 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
   const lockKey = `database-${paramsHash}`
 
   return withFileLock(lockKey, async () => {
-    let allres: undefined|QueryDatabaseResponseEx
-    let res: undefined|QueryDatabaseResponseEx
-
     try {
       const list = await readCache<QueryDatabaseResponseEx>(cacheFile)
       if (!isEmpty(list)) {
@@ -88,92 +86,105 @@ export const FetchDatabase = async (p: FetchDatabaseArgs): Promise<FetchDatabase
       /* not fatal */
     }
 
-    // First, retrieve the database to get the data_source_id
-    const meta = await reqAPIWithBackoff<GetDatabaseResponseEx>({
-      func: notion.databases.retrieve,
-      args: { database_id },
-      count: 3,
-    })
+    // A result that misses something because of a transient failure is not
+    // cached; see FetchBlocks.
+    const { value, complete } = await collectFailures(async () => {
+      let allres: undefined|QueryDatabaseResponseEx
+      let res: undefined|QueryDatabaseResponseEx
 
-    // Get the data_source_id from the first data source
-    if (!meta.data_sources || meta.data_sources.length === 0) {
-      throw new Error(`No data sources found for database ${database_id}`)
-    }
-    const data_source_id = meta.data_sources[0].id
-
-    // Retrieve the data source to get properties
-    const dataSource = await reqAPIWithBackoff<any>({
-      func: notion.dataSources.retrieve,
-      args: { data_source_id },
-      count: 3,
-    })
-    // Add properties to meta for backward compatibility
-    if (dataSource && dataSource.properties) {
-      meta.properties = dataSource.properties
-    }
-
-    // Tell which part of the query is wrong before the notion api rejects it
-    if (!skipQueryValidation) {
-      const errors = validateQuery({ properties: meta.properties, filter: params.filter, sorts: params.sorts })
-      if (errors.length > 0) {
-        throw new Error(buildQueryValidationMessage(`database ${databaseLabel(meta, database_id)}`, errors))
-      }
-    }
-
-    // Remove database_id and add data_source_id to params
-    const queryParams = { ...params, data_source_id }
-    delete (queryParams as any).database_id
-
-    while (true) {
-      if (res && res.next_cursor) {
-        queryParams.start_cursor = res.next_cursor
-      }
-      res = await reqAPIWithBackoff<QueryDatabaseResponseEx>({
-        func: notion.dataSources.query,
-        args: queryParams,
+      // First, retrieve the database to get the data_source_id
+      const meta = await reqAPIWithBackoff<GetDatabaseResponseEx>({
+        func: notion.databases.retrieve,
+        args: { database_id },
         count: 3,
       })
-      if (allres === undefined) {
-        allres = res
-      } else {
-        allres.results.push(...res.results)
-      }
-      if (res.next_cursor === null || limit !== undefined) {
-        break
-      }
-    }
 
-    for (const result of allres.results) {
-      const page: PageObjectResponseEx = result
-      await savePageCover(page)
-      await savePageIcon(page)
-      for (const [, v] of Object.entries(page.properties)) {
-        // Save avatar in people property type
-        if (v.type === 'people') {
-          const peoples = v.people as unknown as PersonUserObjectResponseEx[]
-          for (const people of peoples) {
-            if (people.avatar_url) {
-              try {
-                const ipws = await saveImage(people.avatar_url, `database-avatar-${people.id}`)
-                people.avatar = ipws.path
-              } catch (e) {
-                if (debug) {
-                  console.log(`Failed to save people avatar: ${e}`)
+      // Get the data_source_id from the first data source
+      if (!meta.data_sources || meta.data_sources.length === 0) {
+        throw new Error(`No data sources found for database ${database_id}`)
+      }
+      const data_source_id = meta.data_sources[0].id
+
+      // Retrieve the data source to get properties
+      const dataSource = await reqAPIWithBackoff<any>({
+        func: notion.dataSources.retrieve,
+        args: { data_source_id },
+        count: 3,
+      })
+      // Add properties to meta for backward compatibility
+      if (dataSource && dataSource.properties) {
+        meta.properties = dataSource.properties
+      }
+
+      // Tell which part of the query is wrong before the notion api rejects it
+      if (!skipQueryValidation) {
+        const errors = validateQuery({ properties: meta.properties, filter: params.filter, sorts: params.sorts })
+        if (errors.length > 0) {
+          throw new Error(buildQueryValidationMessage(`database ${databaseLabel(meta, database_id)}`, errors))
+        }
+      }
+
+      // Remove database_id and add data_source_id to params
+      const queryParams = { ...params, data_source_id }
+      delete (queryParams as any).database_id
+
+      while (true) {
+        if (res && res.next_cursor) {
+          queryParams.start_cursor = res.next_cursor
+        }
+        res = await reqAPIWithBackoff<QueryDatabaseResponseEx>({
+          func: notion.dataSources.query,
+          args: queryParams,
+          count: 3,
+        })
+        if (allres === undefined) {
+          allres = res
+        } else {
+          allres.results.push(...res.results)
+        }
+        if (res.next_cursor === null || limit !== undefined) {
+          break
+        }
+      }
+
+      for (const result of allres.results) {
+        const page: PageObjectResponseEx = result
+        await savePageCover(page)
+        await savePageIcon(page)
+        for (const [, v] of Object.entries(page.properties)) {
+          // Save avatar in people property type
+          if (v.type === 'people') {
+            const peoples = v.people as unknown as PersonUserObjectResponseEx[]
+            for (const people of peoples) {
+              if (people.avatar_url) {
+                try {
+                  const ipws = await saveImage(people.avatar_url, `database-avatar-${people.id}`)
+                  people.avatar = ipws.path
+                } catch (e) {
+                  reportFailure(e)
+                  if (debug) {
+                    console.log(`Failed to save people avatar: ${e}`)
+                  }
                 }
               }
             }
           }
         }
       }
+
+      await saveDatabaseCover(meta)
+      await saveDatabaseIcon(meta)
+      allres.meta = meta
+      return allres
+    })
+
+    if (complete) {
+      await writeCache(cacheFile, value)
+    } else if (debug) {
+      console.log(`not caching FetchDatabase() because of a transient failure: ${cacheFile}`)
     }
 
-    await saveDatabaseCover(meta)
-    await saveDatabaseIcon(meta)
-    allres.meta = meta
-
-    await writeCache(cacheFile, allres)
-
-    return allres
+    return value
   })
 }
 
@@ -190,6 +201,7 @@ export async function saveDatabaseCover(db: GetDatabaseResponseEx) {
       db.cover.src = ipws.path
     }
   } catch (e) {
+    reportFailure(e)
     if (debug) {
       console.log(`Failed to save database cover: ${e}`)
     }
@@ -213,6 +225,7 @@ export async function saveDatabaseIcon(db: GetDatabaseResponseEx) {
       ;(db as any).icon = { type: 'external', external: { url }, src: ipws.path }
     }
   } catch (e) {
+    reportFailure(e)
     if (debug) {
       console.log(`Failed to save database icon: ${e}`)
     }

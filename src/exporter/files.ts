@@ -24,6 +24,7 @@ import {
   isSkipDownload,
 } from './variables.js'
 import { withFileLock } from './mutex.js'
+import { HTTPStatusError } from './failures.js'
 import type {
   VideoBlockObjectResponseEx,
   EmbedBlockObjectResponseEx,
@@ -248,7 +249,7 @@ export async function getHTTP (reqUrl: string): Promise<string> {
   const res = await httpsGetWithFollowRedirects(reqUrl)
   if (!isSuccess(res.statusCode)) {
     res.resume()
-    throw new Error(`unexpected status ${res.statusCode}: ${reqUrl}`)
+    throw new HTTPStatusError(res.statusCode, reqUrl)
   }
   let body = ''
   // @ts-ignore
@@ -267,14 +268,16 @@ export async function getHTTP (reqUrl: string): Promise<string> {
  */
 async function download (fileUrl: string, filePath: string): Promise<void> {
   const urlWithoutQuerystring = fileUrl.split('?').shift() || ''
-  let res = await httpsGetWithFollowRedirects(fileUrl)
+  let reqUrl = fileUrl
+  let res = await httpsGetWithFollowRedirects(reqUrl)
   if (res.statusCode >= 400 && res.statusCode < 500 && fileUrl !== urlWithoutQuerystring) {
     res.resume()
-    res = await httpsGetWithFollowRedirects(urlWithoutQuerystring)
+    reqUrl = urlWithoutQuerystring
+    res = await httpsGetWithFollowRedirects(reqUrl)
   }
   if (!isSuccess(res.statusCode)) {
     res.resume()
-    throw new Error(`unexpected status ${res.statusCode}`)
+    throw new HTTPStatusError(res.statusCode, reqUrl)
   }
 
   const tmp = `${filePath}.${process.pid}.${Date.now()}.${Math.random().toString(36).slice(2, 8)}.tmp`
@@ -366,7 +369,7 @@ export async function saveFile (fileUrl: string, prefix: string) {
         if (debug) {
           console.log(errorMessage)
         }
-        throw new Error(errorMessage)
+        throw new Error(errorMessage, { cause: e })
       }
     }
 
@@ -449,7 +452,7 @@ export const saveImage = async (imageUrl: string, prefix: string): Promise<Image
         if (debug) {
           console.log(errorMessage)
         }
-        throw new Error(errorMessage)
+        throw new Error(errorMessage, { cause: e })
       }
     }
 

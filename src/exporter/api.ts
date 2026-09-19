@@ -1,10 +1,9 @@
 import { Client } from '@notionhq/client'
 import {
   isNotionClientError,
-  APIErrorCode,
-  ClientErrorCode,
   LogLevel,
 } from '@notionhq/client'
+import { transientNotionErrorCodes } from './failures.js'
 import {
   atoh,
   readCache,
@@ -26,13 +25,6 @@ export interface reqAPIWithBackoffArgs {
   args: unknown
   count: number
 }
-
-const retryableErrorCodes: string[] = [
-  APIErrorCode.RateLimited,
-  APIErrorCode.InternalServerError,
-  ClientErrorCode.ResponseError,
-  ClientErrorCode.RequestTimeout,
-]
 
 const truncate = (str: string, max = 1000): string => {
   return str.length > max ? `${str.slice(0, max)}...` : str
@@ -65,7 +57,7 @@ export async function reqAPIWithBackoff<T> ({ func, args, count }: reqAPIWithBac
       await new Promise(resolve => setTimeout(resolve, waitingTimeSec))
     }
   } catch (error: unknown) {
-    const retryable = error && typeof error === 'object' && isNotionClientError(error) && retryableErrorCodes.includes(error.code)
+    const retryable = error && typeof error === 'object' && isNotionClientError(error) && transientNotionErrorCodes.includes(error.code)
     if (retryable && count > 1) {
       if (debug) {
         console.log(`reqAPIWithBackoff backoff(${count}) -- error: ${error}`)
