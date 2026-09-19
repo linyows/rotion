@@ -42,12 +42,6 @@ Next.jsをはじめとしたReact系フレームワークでの利用を想定�
 npm install rotion
 ```
 
-または
-
-```bash
-yarn add rotion
-```
-
 使い方
 --
 

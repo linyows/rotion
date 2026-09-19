@@ -41,12 +41,6 @@ Installation
 npm install rotion
 ```
 
-or
-
-```bash
-yarn add rotion
-```
-
 Usage
 --
 
