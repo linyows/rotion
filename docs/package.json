@@ -10,7 +10,7 @@
     "dev": "next dev",
     "prebuild": "npm run logo",
     "build": "next build",
-    "postbuild": "node scripts/redirects.mjs && pagefind --site out --output-path out/_pagefind"
+    "postbuild": "node scripts/redirects.mjs && pagefind --site out --output-path out/_pagefind && rotion prune --unused-for 1h"
   },
   "dependencies": {
     "mermaid": "^12.0.0",
@@ -20,7 +20,7 @@
     "prismjs": "^1.29.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
-    "rotion": "^3.6.3"
+    "rotion": "^4.0.0"
   },
   "devDependencies": {
     "pagefind": "^1.5.2"
@@ -30,6 +30,7 @@
     "postcss": "^8.5.18",
     "sharp": "^0.35.0",
     "dompurify": "^3.4.12",
-    "@xmldom/xmldom": "^0.9.12"
+    "@xmldom/xmldom": "^0.9.12",
+    "lodash-es": "^4.18.1"
   }
 }
