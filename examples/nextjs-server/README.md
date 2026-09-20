@@ -27,6 +27,10 @@ npm start
 
 The server keeps `.cache/` and `storage/` on disk, so run it where the working directory is writable and survives restarts.
 
+## Remove what is no longer used
+
+`npm run prune` runs `rotion prune --unused-for 7d`, which removes cache files and downloads that Rotion has not used for a week. Run it from a scheduled job, not right after `npm run build`: this example renders its pages on request, so a build only touches what it prerenders and everything else would look unused.
+
 ## Development
 
 ### Testing Local Changes

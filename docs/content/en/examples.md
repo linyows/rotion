@@ -55,6 +55,7 @@ The same site as nextjs-approuter, rendered by `next start` instead of exported.
 - `next.config.ts` has no `output: 'export'`.
 - `app/page.tsx` and `app/[id]/page.tsx` export `revalidate = 60`. `app/[id]/page.tsx` has no `generateStaticParams`, so each row's page is rendered on its first request and regenerated at most once a minute.
 - `.env` is committed with settings that are not secret: `ROTION_DOCROOT=storage` and `ROTION_INCREMENTAL_CACHE=true`. `NOTION_TOKEN` and `NOTION_DATABASE_ID` go in `.env.local` as in the other examples.
+- `npm run prune` removes cache files and downloads that have not been used for a week, for a scheduled job. It is not part of the build: the pages are rendered on request, so a build touches only what it prerenders.
 - `app/images/[name]/route.ts` and `app/files/[name]/route.ts` serve the downloaded files from `storage/` through `lib/serveFile.ts`, because `next start` serves only the files that were in `public/` when it started.
 
 The walkthrough is in [Server rendering](server-rendering).
@@ -86,4 +87,4 @@ npm install
 npm run dev
 ```
 
-Rotion itself reads `NOTION_TOKEN` from `process.env` when it sends a request, and the pages copy the value there from `import.meta.env`. [`configure({ auth: import.meta.env.NOTION_TOKEN })`](configuration#configure-in-code) does the same without `process.env`. Exporting the variable in the shell that runs the build (`NOTION_TOKEN=... npm run build`) sets it for Rotion regardless of how Astro loads `.env`. The development server runs at `http://localhost:4321`, and `npm run build` writes the site into `dist/`.
+Astro does not put `.env` into `process.env`, which is where Rotion looks for `NOTION_TOKEN`, so the pages hand the token over with [`configure({ auth: import.meta.env.NOTION_TOKEN })`](configuration#configure-in-code). Exporting the variable in the shell that runs the build (`NOTION_TOKEN=... npm run build`) works as well, regardless of how Astro loads `.env`. The development server runs at `http://localhost:4321`, and `npm run build` writes the site into `dist/`.
