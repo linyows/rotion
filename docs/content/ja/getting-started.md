@@ -15,6 +15,21 @@
 npm install rotion
 ```
 
+Rotion が図の描画に使う mermaid は chevrotain 11 に依存し、chevrotain 11 は `lodash-es` を 4.17.23 に固定しています。
+このバージョンには [CVE-2026-4800](https://github.com/advisories/GHSA-35jh-r3h4-6jhm) と CVE-2026-2950 の2件の脆弱性があり、どちらも 4.18.0 で修正されています。
+mermaid が `lodash-es` を使わない chevrotain 13 に移るまで（[mermaid-js/mermaid#8278](https://github.com/mermaid-js/mermaid/issues/8278)）は、`package.json` の `overrides` で修正版を使ってください。
+
+```json filename="package.json"
+{
+  "overrides": {
+    "lodash-es": "^4.18.1"
+  }
+}
+```
+
+同じ指定は、Yarn では `resolutions`、pnpm では `pnpm.overrides` という名前です。
+mermaid は 4.18 でも動きます。Rotion 自身も、同じ指定でビルドとテストをしています。
+
 ## Notion インテグレーションの作成 [#create-a-notion-integration]
 
 Rotion は、インテグレーションのトークンを使って Notion を読みます。
