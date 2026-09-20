@@ -14,6 +14,18 @@ This page takes one Notion page to a rendered page in a Next.js App Router proje
 npm install rotion
 ```
 
+Mermaid, which Rotion draws diagrams with, depends on chevrotain 11, which pins `lodash-es` to 4.17.23. That version has two open advisories, [CVE-2026-4800](https://github.com/advisories/GHSA-35jh-r3h4-6jhm) and CVE-2026-2950, both fixed in 4.18.0. Until mermaid moves to chevrotain 13, which no longer uses `lodash-es` ([mermaid-js/mermaid#8278](https://github.com/mermaid-js/mermaid/issues/8278)), take the fixed version with an override in your `package.json`:
+
+```json filename="package.json"
+{
+  "overrides": {
+    "lodash-es": "^4.18.1"
+  }
+}
+```
+
+Yarn calls this `resolutions`, and pnpm `pnpm.overrides`. Mermaid works with 4.18; Rotion itself is built and tested with the same override.
+
 ## Create a Notion integration
 
 Rotion reads Notion through an integration token.
