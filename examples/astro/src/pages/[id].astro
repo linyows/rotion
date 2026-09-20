@@ -1,5 +1,5 @@
 ---
-import { FetchBlocks, FetchDatabase, FetchPage } from 'rotion'
+import { configure, FetchBlocks, FetchDatabase, FetchPage } from 'rotion'
 import Header from '../components/Header'
 import NotionPage from '../components/NotionPage'
 import 'rotion/style-without-dark.css'
@@ -8,18 +8,14 @@ import 'rotion/style-without-dark.css'
 const apiToken = import.meta.env.NOTION_TOKEN
 const databaseId = import.meta.env.NOTION_DATABASE_ID
 
-// Set process.env for Rotion (it expects NOTION_TOKEN)
-if (apiToken) {
-  process.env.NOTION_TOKEN = apiToken
-}
+// Astro does not put .env into process.env, so hand the token to Rotion
+configure({ auth: apiToken })
 
 export async function getStaticPaths() {
   const apiToken = import.meta.env.NOTION_TOKEN
   const databaseId = import.meta.env.NOTION_DATABASE_ID
 
-  if (apiToken) {
-    process.env.NOTION_TOKEN = apiToken
-  }
+  configure({ auth: apiToken })
 
   if (!databaseId || !apiToken) {
     return []

@@ -64,6 +64,7 @@ nextjs-approuter と同じサイトを、書き出す代わりに `next start` �
 - `next.config.ts` には `output: 'export'` がありません。
 - `app/page.tsx` と `app/[id]/page.tsx` は `revalidate = 60` を export しています。`app/[id]/page.tsx` には `generateStaticParams` がないので、各行のページは最初のリクエストで描画され、その後は多くても1分に1回だけ描画し直されます。
 - 秘密ではない設定（`ROTION_DOCROOT=storage` と `ROTION_INCREMENTAL_CACHE=true`）を書いた `.env` をコミットしています。`NOTION_TOKEN` と `NOTION_DATABASE_ID` は、ほかのサンプルと同じく `.env.local` に書きます。
+- `npm run prune` は、1週間使われていないキャッシュとダウンロードしたファイルを削除します。定期実行のジョブ向けで、ビルドには含めていません。このサンプルはページをリクエスト時に描画するので、ビルドが触るのは事前に生成する分だけだからです。
 - `next start` は起動時に `public/` にあったファイルしか配信しません。そのため `app/images/[name]/route.ts` と `app/files/[name]/route.ts` が、`lib/serveFile.ts` を通じて `storage/` からダウンロード済みのファイルを配信します。
 
 手順の解説は [サーバーでの描画](server-rendering) にあります。
@@ -95,8 +96,7 @@ npm install
 npm run dev
 ```
 
-Rotion 自身は、リクエストを送る時点で `process.env` から `NOTION_TOKEN` を読みます。
-サンプルのページは、`import.meta.env` の値を `process.env` にコピーしています。
-[`configure({ auth: import.meta.env.NOTION_TOKEN })`](configuration#configure-in-code) を使えば、`process.env` を経由せずに同じことができます。
-ビルドを実行するシェルで変数を設定すれば（`NOTION_TOKEN=... npm run build`）、Astro が `.env` をどう読み込むかにかかわらず Rotion に値が渡ります。
+Astro は `.env` を `process.env` に入れませんが、Rotion は `NOTION_TOKEN` をそこから読みます。
+そのためサンプルのページは、[`configure({ auth: import.meta.env.NOTION_TOKEN })`](configuration#configure-in-code) でトークンを渡しています。
+ビルドを実行するシェルで変数を設定しても（`NOTION_TOKEN=... npm run build`）、Astro が `.env` をどう読み込むかにかかわらず Rotion に値が渡ります。
 開発サーバーは `http://localhost:4321` で動き、`npm run build` はサイトを `dist/` に書き出します。
