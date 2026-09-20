@@ -297,7 +297,7 @@ Scripts
 Requirements
 --
 
-- Node.js 18 or later (recommended)
+- Node.js 22.12 or later
 - React 17, 18, or 19
 - Next.js 13+ (for App Router features, Next.js 15+ recommended)
 
