@@ -5,7 +5,7 @@
 
 ## 必要なもの
 
-- Node.js 20.9 以降。Rotion が画像の変換に使う [sharp](https://sharp.pixelplumbing.com) がこのバージョンを要求します。
+- Node.js 22.12 以降。Rotion が画像の変換に使う [sharp](https://sharp.pixelplumbing.com) と、図の描画に使う [mermaid](https://mermaid.js.org) がこのバージョンを要求します。
 - React 17、18、19 のいずれか（peer dependency）。
 - インテグレーションを作成できる Notion のワークスペース。
 

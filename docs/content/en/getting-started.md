@@ -4,7 +4,7 @@ This page takes one Notion page to a rendered page in a Next.js App Router proje
 
 ## Requirements
 
-- Node.js 20.9 or later. Rotion converts images with [sharp](https://sharp.pixelplumbing.com), which requires it.
+- Node.js 22.12 or later. Rotion converts images with [sharp](https://sharp.pixelplumbing.com) and draws diagrams with [mermaid](https://mermaid.js.org), which require it.
 - React 17, 18 or 19 (a peer dependency).
 - A Notion workspace where you can create an integration.
 

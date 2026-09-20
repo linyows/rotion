@@ -297,7 +297,7 @@ npm run dev
 必要な環境
 --
 
-- Node.js 18以上推奨
+- Node.js 22.12以上
 - React 17、18、または19
 - Next.js 13以上（App Router機能を使う場合はNext.js 15以上推奨）
 
