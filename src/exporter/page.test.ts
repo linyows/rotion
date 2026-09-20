@@ -2,7 +2,11 @@ import { test } from 'uvu'
 import * as td from 'testdouble'
 import * as assert from 'uvu/assert'
 import type { GetPageResponseEx, PageObjectResponseEx } from './types.js'
-import { savePageCover, savePageIcon, getNotionIconUrl } from './page.js'
+import { savePageCover, savePageIcon, getNotionIconUrl, FetchPage } from './page.js'
+import { notion } from './api.js'
+import { mkdtemp, rm } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 
 test.before(() => {
   td.replace(console, 'log')
@@ -236,6 +240,45 @@ test('savePageIcon saves notion icon type with PageObjectResponseEx', async () =
   assert.equal(icon.type, 'external')
   assert.ok(icon.src.includes('/images/page-icon-test-page-id'))
   assert.equal(icon.external.url, 'https://www.notion.so/icons/circle_red.svg')
+})
+
+test('FetchPage asks only for the properties that answer with a list, and page.meta keeps them', async () => {
+  const types = ['title', 'rich_text', 'people', 'relation', 'rollup', 'number', 'select', 'multi_select', 'date', 'checkbox', 'url', 'formula', 'status']
+  const properties = Object.fromEntries(types.map(type => [`${type} property`, { id: `id-${type}`, type, [type]: {} }]))
+  const listTypes = ['title', 'rich_text', 'people', 'relation', 'rollup']
+  const client = notion()
+  const original = { page: client.pages.retrieve, property: client.pages.properties.retrieve }
+  const asked: string[] = []
+  client.pages.retrieve = (async ({ page_id }: { page_id: string }) => ({
+    object: 'page', id: page_id, last_edited_time: '2026-01-01T00:00:00.000Z', cover: null, icon: null, properties,
+  })) as never
+  client.pages.properties.retrieve = (async ({ property_id }: { property_id: string }) => {
+    const type = property_id.replace('id-', '')
+    asked.push(type)
+    // The API answers these types with a list, and any other with a single item
+    return listTypes.includes(type)
+      ? { object: 'list', type: 'property_item', results: [{ object: 'property_item', id: property_id, type }], next_cursor: null, has_more: false }
+      : { object: 'property_item', id: property_id, type }
+  }) as never
+  const cacheDir = await mkdtemp(join(tmpdir(), 'rotion-page-test-'))
+  const originalCacheDir = process.env.ROTION_CACHEDIR
+  process.env.ROTION_CACHEDIR = cacheDir
+
+  try {
+    const page = await FetchPage({ page_id: `properties-${Date.now()}` })
+    assert.equal(asked.sort(), [...listTypes].sort())
+    assert.equal(page.meta?.object, 'list')
+    assert.equal((page.meta?.results ?? []).map((r: { type: string }) => r.type), listTypes)
+  } finally {
+    client.pages.retrieve = original.page
+    client.pages.properties.retrieve = original.property
+    if (originalCacheDir === undefined) {
+      delete process.env.ROTION_CACHEDIR
+    } else {
+      process.env.ROTION_CACHEDIR = originalCacheDir
+    }
+    await rm(cacheDir, { recursive: true, force: true })
+  }
 })
 
 test.run()
