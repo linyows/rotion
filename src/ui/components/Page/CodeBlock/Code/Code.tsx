@@ -43,6 +43,11 @@ const Code = ({ children, language = 'text' }: CodeProps) => {
         mermaid.initialize({
           theme: isDark() ? 'dark' : 'neutral',
           securityLevel: 'strict',
+          // Mermaid 12 lays diagrams out with ELK by default, which moves the
+          // nodes of a diagram that has not changed. Keep the earlier engine
+          // and shapes, so that a site looks the same after the update.
+          layout: 'dagre',
+          look: 'classic',
         })
         try {
           const { svg } = await mermaid.render(mermaidIdRef.current, sourceRef.current)
