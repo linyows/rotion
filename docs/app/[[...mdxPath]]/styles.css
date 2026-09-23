@@ -198,7 +198,7 @@ hr:has(+ footer) {
    ground it is on. */
 .rotion-logo {
   --logo-ink: var(--rotion-wine);
-  height: 1.6rem;
+  height: 2rem;
   width: auto;
 }
 
@@ -206,20 +206,40 @@ html.dark .rotion-logo {
   --logo-ink: var(--rotion-cream);
 }
 
-/* The language link in the navbar, sized to sit beside the theme's own
-   buttons rather than to compete with them. */
+/* The language menu in the navbar, sized to sit beside the theme's own
+   buttons rather than to compete with them. The native arrow is replaced by
+   a drawn chevron so it looks the same in every browser. */
 .rotion-locale {
+  appearance: none;
+  font: inherit;
   font-size: 0.8125rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 5px;
-  text-decoration: none;
+  line-height: 1.25rem;
+  padding: 0.25rem 1.75rem 0.25rem 0.625rem;
+  border: 1px solid currentColor;
+  border-radius: 6px;
   color: inherit;
+  background-color: transparent;
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    right 0.8125rem center,
+    right 0.5625rem center;
+  background-size: 4px 4px;
+  background-repeat: no-repeat;
+  cursor: pointer;
   opacity: 0.7;
   transition: opacity 120ms ease;
 }
 
-.rotion-locale:hover {
+.rotion-locale:hover,
+.rotion-locale:focus-visible {
   opacity: 1;
+}
+
+.rotion-locale option {
+  color: #000;
+  background: #fff;
 }
 
 /* Every page but the landing page starts a little way below the navbar. */
