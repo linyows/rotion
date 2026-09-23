@@ -1,20 +1,33 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 // The theme's own switch swaps the first segment of the path for the locale,
 // which only works when every locale has one. English has none here, so the
-// switch is a single link to the same page in the other language.
+// switch works out the same page in the other language by itself.
+const pathFor = (pathname, locale) => {
+  const base = pathname.replace(/^\/ja(?=\/|$)/, '') || '/'
+  if (locale === 'en') return base
+  return `/ja${base === '/' ? '' : base}`
+}
+
 export const LocaleSwitch = ({ labels }) => {
   const pathname = usePathname()
-  const japanese = pathname === '/ja' || pathname.startsWith('/ja/')
-  const other = japanese
-    ? pathname.replace(/^\/ja(?=\/|$)/, '') || '/'
-    : `/ja${pathname === '/' ? '' : pathname}`
+  const router = useRouter()
+  const current = pathname === '/ja' || pathname.startsWith('/ja/') ? 'ja' : 'en'
 
   return (
-    <a className="rotion-locale" href={other} lang={japanese ? 'en' : 'ja'}>
-      {japanese ? labels.en : labels.ja}
-    </a>
+    <select
+      className="rotion-locale"
+      aria-label="Language"
+      value={current}
+      onChange={event => router.push(pathFor(pathname, event.target.value))}
+    >
+      {Object.entries(labels).map(([locale, label]) => (
+        <option key={locale} value={locale} lang={locale}>
+          {label}
+        </option>
+      ))}
+    </select>
   )
 }

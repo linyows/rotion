@@ -80,7 +80,7 @@ const Copyright = () => {
   return (
     <span>
       © {now > SINCE ? `${SINCE}-${now}` : SINCE}{' '}
-      <a href="https://github.com/linyows" target="_blank" rel="noreferrer">
+      <a href="https://tomohisaoda.com/projects" target="_blank" rel="noreferrer">
         linyows
       </a>
     </span>
