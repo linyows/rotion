@@ -1,6 +1,6 @@
 {
   "name": "rotion",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "license": "MIT",
   "repository": "linyows/rotion",
   "description": "This is react components that uses the notion API to display the notion's database and page.",
@@ -120,7 +120,8 @@
   "overrides": {
     "storybook": "$storybook",
     "uuid": "^14.0.0",
-    "lodash-es": "^4.18.1"
+    "lodash-es": "^4.18.1",
+    "katex": "$katex"
   },
   "publishConfig": {
     "access": "public",
