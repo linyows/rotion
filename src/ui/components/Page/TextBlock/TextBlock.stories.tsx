@@ -5,7 +5,7 @@ import type {
   Heading2BlockObjectResponse,
   Heading3BlockObjectResponse,
   ParagraphBlockObjectResponseEx,
-  QuoteBlockObjectResponse,
+  QuoteBlockObjectResponseEx,
   RichTextItemResponse,
 } from '../../../../exporter/index.js'
 import TextBlock from './TextBlock.js'
@@ -138,7 +138,7 @@ export const Paragraph: Story = {
 }
 
 /* BLOCK QUOTE */
-const bq = structuredClone(block) as QuoteBlockObjectResponse
+const bq = structuredClone(block) as QuoteBlockObjectResponseEx
 bq.type = 'quote'
 const r2 = structuredClone(richText)
 r2.text.content = `This principle has been a key, and a huge success in my years of software engineering. A common problem among software engineers and developers today is that they tend to over complicate problems.
@@ -157,6 +157,62 @@ bq.quote = {
 export const BlockQuote: Story = {
   args: {
     block: bq,
+    tag: 'blockquote',
+  },
+}
+
+/* QUOTE WITH CHILDREN */
+const quoteLine = (content: string, i: number) => {
+  const p = structuredClone(block) as ParagraphBlockObjectResponseEx
+  p.id = `12345678-1234-1234-1234-12345678900${i}`
+  p.type = 'paragraph'
+  const r = structuredClone(richText)
+  r.text.content = content
+  r.plain_text = content
+  p.paragraph = { rich_text: [r], color: 'default' }
+  return p
+}
+const quoteChildren = (lines: string[]) => ({
+  object: 'list' as const,
+  results: lines.map(quoteLine),
+  next_cursor: null,
+  has_more: false as const,
+  type: 'block' as const,
+  block: {},
+})
+
+// Notion usually keeps the first line in rich_text and the following lines as child blocks
+const bqc = structuredClone(bq)
+const firstLine = structuredClone(richText)
+firstLine.text.content = 'Keep it simple, stupid.'
+firstLine.plain_text = firstLine.text.content
+bqc.quote = {
+  rich_text: [firstLine],
+  color: 'default',
+}
+bqc.has_children = true
+bqc.children = quoteChildren([
+  'Simplicity should be a key goal in design.',
+  'Unnecessary complexity should be avoided.',
+])
+export const BlockQuoteWithChildren: Story = {
+  args: {
+    block: bqc,
+    tag: 'blockquote',
+  },
+}
+
+// rich_text is empty when the first line of the quote is left empty
+const bqo = structuredClone(bq)
+bqo.quote = {
+  rich_text: [],
+  color: 'default',
+}
+bqo.has_children = true
+bqo.children = quoteChildren(['Keep it simple, stupid.', 'Simplicity should be a key goal in design.'])
+export const BlockQuoteWithOnlyChildren: Story = {
+  args: {
+    block: bqo,
     tag: 'blockquote',
   },
 }

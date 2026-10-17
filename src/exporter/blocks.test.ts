@@ -268,6 +268,39 @@ test('FetchBlocks uses the block last_edited_time for nested blocks when none is
   })
 })
 
+test('FetchBlocks fetches the child blocks of a quote', async () => {
+  const suffix = `${Date.now()}-quote`
+  const pageId = `quote-page-${suffix}`
+  const quoteId = `quote-${suffix}`
+  const text = 'second line of the quote'
+  const children: Record<string, unknown[]> = {
+    [pageId]: [{
+      object: 'block', id: quoteId, type: 'quote', has_children: true,
+      last_edited_time: '2025-01-01T00:00:00.000Z', quote: { rich_text: [], color: 'default' },
+    }],
+    [quoteId]: [{
+      object: 'block', id: `quote-paragraph-${suffix}`, type: 'paragraph', has_children: false,
+      last_edited_time: '2025-01-01T00:00:00.000Z',
+      paragraph: { rich_text: [{ type: 'text', plain_text: text, text: { content: text, link: null }, annotations: {}, href: null }] },
+    }],
+  }
+  const list = async ({ block_id }: { block_id: string }) => ({
+    object: 'list', results: children[block_id], next_cursor: null, has_more: false,
+  })
+  const cacheFiles = [pageId, quoteId].map(id => `${cacheDir}/notion.blocks.children.list-${id}`)
+
+  await withStubbedBlocksList(list, cacheFiles, async () => {
+    const res = await FetchBlocks({ block_id: pageId, last_edited_time: '2026-09-17T00:00:00.000Z' })
+    const quote = res.results[0]
+    assert.is(quote.type, 'quote')
+    if (quote.type !== 'quote') return
+    const child = quote.children?.results[0]
+    assert.is(child?.type, 'paragraph')
+    if (child?.type !== 'paragraph') return
+    assert.is(child.paragraph.rich_text[0].plain_text, text)
+  })
+})
+
 // incrementalCache is read from the environment when the variables module is loaded,
 // so run the two-pass scenario in a child process with ROTION_INCREMENTAL_CACHE=true.
 const incrementalCacheScenario = `

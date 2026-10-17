@@ -121,6 +121,9 @@ export type NumberedListItemBlockObjectResponseEx = NumberedListItemBlockObjectR
 export type TableBlockObjectResponseEx = TableBlockObjectResponse & {
   children: ListBlockChildrenResponseEx
 }
+export type QuoteBlockObjectResponseEx = QuoteBlockObjectResponse & {
+  children?: ListBlockChildrenResponseEx
+}
 export type ToggleBlockObjectResponseEx = ToggleBlockObjectResponse & {
   children: ListBlockChildrenResponseEx
 }
@@ -300,7 +303,7 @@ export type BlockObjectResponse =
   | Heading3BlockObjectResponse
   | BulletedListItemBlockObjectResponseEx
   | NumberedListItemBlockObjectResponseEx
-  | QuoteBlockObjectResponse
+  | QuoteBlockObjectResponseEx
   | ToDoBlockObjectResponse
   | ToggleBlockObjectResponseEx
   | TemplateBlockObjectResponse
