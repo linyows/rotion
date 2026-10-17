@@ -162,13 +162,7 @@ export const BlockQuote: Story = {
 }
 
 /* QUOTE WITH CHILDREN */
-const bqc = structuredClone(bq)
-bqc.quote = {
-  rich_text: [],
-  color: 'default',
-}
-bqc.has_children = true
-const lines = ['Keep it simple, stupid.', 'Simplicity should be a key goal in design.'].map((content, i) => {
+const quoteLine = (content: string, i: number) => {
   const p = structuredClone(block) as ParagraphBlockObjectResponseEx
   p.id = `12345678-1234-1234-1234-12345678900${i}`
   p.type = 'paragraph'
@@ -177,18 +171,48 @@ const lines = ['Keep it simple, stupid.', 'Simplicity should be a key goal in de
   r.plain_text = content
   p.paragraph = { rich_text: [r], color: 'default' }
   return p
-})
-bqc.children = {
-  object: 'list',
-  results: lines,
-  next_cursor: null,
-  has_more: false,
-  type: 'block',
-  block: {},
 }
+const quoteChildren = (lines: string[]) => ({
+  object: 'list' as const,
+  results: lines.map(quoteLine),
+  next_cursor: null,
+  has_more: false as const,
+  type: 'block' as const,
+  block: {},
+})
+
+// Notion usually keeps the first line in rich_text and the following lines as child blocks
+const bqc = structuredClone(bq)
+const firstLine = structuredClone(richText)
+firstLine.text.content = 'Keep it simple, stupid.'
+firstLine.plain_text = firstLine.text.content
+bqc.quote = {
+  rich_text: [firstLine],
+  color: 'default',
+}
+bqc.has_children = true
+bqc.children = quoteChildren([
+  'Simplicity should be a key goal in design.',
+  'Unnecessary complexity should be avoided.',
+])
 export const BlockQuoteWithChildren: Story = {
   args: {
     block: bqc,
+    tag: 'blockquote',
+  },
+}
+
+// rich_text is empty when the first line of the quote is left empty
+const bqo = structuredClone(bq)
+bqo.quote = {
+  rich_text: [],
+  color: 'default',
+}
+bqo.has_children = true
+bqo.children = quoteChildren(['Keep it simple, stupid.', 'Simplicity should be a key goal in design.'])
+export const BlockQuoteWithOnlyChildren: Story = {
+  args: {
+    block: bqo,
     tag: 'blockquote',
   },
 }
