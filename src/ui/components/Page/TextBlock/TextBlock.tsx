@@ -2,11 +2,12 @@ import type { RichTextItemResponse } from '../../../../exporter/index.js'
 import { richTextKey } from '../../lib.js'
 import RichText from '../../RichText/RichText.js'
 import { GenHtmlId } from '../../TableOfContents/index.js'
+import Page from '../Page.js'
 import type { TextBlockProps } from './TextBlock.types'
 import '../../tokens.css'
 import './TextBlock.css'
 
-const TextBlock = ({ tag, block }: TextBlockProps) => {
+const TextBlock = ({ tag, block, href, link, query }: TextBlockProps) => {
   if (block.type === 'divider') {
     return <div className="rotion-text-hr"></div>
   }
@@ -36,6 +37,9 @@ const TextBlock = ({ tag, block }: TextBlockProps) => {
       {richText.map((v, i) => (
         <RichText textObject={v} key={richTextKey(v.plain_text, i)} />
       ))}
+      {block.type === 'quote' && block.has_children && block.children !== undefined && (
+        <Page blocks={block.children} href={href} link={link} query={query} />
+      )}
     </CustomTag>
   )
 }

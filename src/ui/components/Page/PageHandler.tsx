@@ -67,7 +67,7 @@ export const PageHandler = ({ block, href, link, query, breadcrumb_hrefs }: Hand
     case 'quote':
     case 'divider': {
       const tag = blockType[block.type] as keyof JSX.IntrinsicElements
-      return <TextBlock tag={tag} block={block} key={block.id} />
+      return <TextBlock tag={tag} block={block} href={href} link={link} query={query} key={block.id} />
     }
     case 'image':
       return <ImageBlock block={block} key={block.id} />

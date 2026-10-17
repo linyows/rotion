@@ -5,7 +5,7 @@ import type {
   Heading2BlockObjectResponse,
   Heading3BlockObjectResponse,
   ParagraphBlockObjectResponseEx,
-  QuoteBlockObjectResponse,
+  QuoteBlockObjectResponseEx,
   RichTextItemResponse,
 } from '../../../../exporter/index.js'
 import TextBlock from './TextBlock.js'
@@ -138,7 +138,7 @@ export const Paragraph: Story = {
 }
 
 /* BLOCK QUOTE */
-const bq = structuredClone(block) as QuoteBlockObjectResponse
+const bq = structuredClone(block) as QuoteBlockObjectResponseEx
 bq.type = 'quote'
 const r2 = structuredClone(richText)
 r2.text.content = `This principle has been a key, and a huge success in my years of software engineering. A common problem among software engineers and developers today is that they tend to over complicate problems.
@@ -157,6 +157,38 @@ bq.quote = {
 export const BlockQuote: Story = {
   args: {
     block: bq,
+    tag: 'blockquote',
+  },
+}
+
+/* QUOTE WITH CHILDREN */
+const bqc = structuredClone(bq)
+bqc.quote = {
+  rich_text: [],
+  color: 'default',
+}
+bqc.has_children = true
+const lines = ['Keep it simple, stupid.', 'Simplicity should be a key goal in design.'].map((content, i) => {
+  const p = structuredClone(block) as ParagraphBlockObjectResponseEx
+  p.id = `12345678-1234-1234-1234-12345678900${i}`
+  p.type = 'paragraph'
+  const r = structuredClone(richText)
+  r.text.content = content
+  r.plain_text = content
+  p.paragraph = { rich_text: [r], color: 'default' }
+  return p
+})
+bqc.children = {
+  object: 'list',
+  results: lines,
+  next_cursor: null,
+  has_more: false,
+  type: 'block',
+  block: {},
+}
+export const BlockQuoteWithChildren: Story = {
+  args: {
+    block: bqc,
     tag: 'blockquote',
   },
 }

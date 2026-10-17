@@ -311,6 +311,12 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
                 }
                 break
               }
+              case 'quote':
+                // A quote holding several lines keeps them as child blocks
+                if (block.has_children) {
+                  block.children = await FetchBlocks({ block_id: block.id, last_edited_time: last_edited_time ?? block.last_edited_time })
+                }
+                break
               case 'synced_block':
                 if (block.has_children) {
                   if (block.synced_block.synced_from === null) {
@@ -394,7 +400,6 @@ export const FetchBlocks = async ({ block_id, last_edited_time }: FetchBlocksArg
               case 'heading_2':
               case 'heading_3':
               case 'link_to_page':
-              case 'quote':
               case 'table_of_contents':
               case 'table_row':
               case 'template':
