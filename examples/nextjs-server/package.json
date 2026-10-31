@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "mermaid": "^12.0.0",
-    "next": "^16.2.11",
+    "next": "^16.4.1",
     "prismjs": "^1.29.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
